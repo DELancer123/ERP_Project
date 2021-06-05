@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/regbom" >
+<form name="popForm" method="get" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -96,8 +96,18 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+1;
-    		window.close();
+    		window.opener.document.location.reload();    	
+    		var form = document.createElement("form");
+   		 form.setAttribute("method", "get");
+ 			 window.self.close(); 
+   		  form.setAttribute("action", document.referrer); 
+   	     var itemCodeInput = document.createElement("input");
+   	  	itemCodeInput.setAttribute("type","hidden");
+   		itemCodeInput.setAttribute("name","itemCode");
+   		itemCodeInput.setAttribute("value", text_code.value);
+   		 
+   	     form.appendChild(itemCodeInput);
+   	     document.body.appendChild(form);
     	}
     </script>
     </form>

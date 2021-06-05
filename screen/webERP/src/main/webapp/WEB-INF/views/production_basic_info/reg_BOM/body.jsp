@@ -57,7 +57,7 @@
                             <input type="text" name="factory" value='${param.itemNumber }' style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
-                            <a href="javascript:search1('1')"><i class="fas fa-search" style="color: blue;"></i></a>
+                            <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
                         </td>
                         <td>
                             <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
@@ -91,14 +91,11 @@
         </container1>
         
       <script>
-      function search1(num){
-    	  if(num == 1){
-      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do?div='+1,'codehelper');
-    	  }
-    	  else if(num == 2){
-    	      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do?div='+2,'codehelper');
+      function search1(){
+    	  
+    	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');
 
-    	  }
+    	  
       }
       	
       </script>

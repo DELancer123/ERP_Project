@@ -91,8 +91,8 @@
     </c:forEach> 
     <tr>
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" style="width:100%" disabled/></td>
-    	<td><input type="text" id="itemcode" ondblclick="search1('2')"/></td>
+    	<td><input type="text" style="width:100%"  disabled/></td>
+    	<td><input type="text" id="itemcode" ondblclick="search2()"/></td>
     	<td><input type="text" disabled/></td>
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
@@ -114,14 +114,10 @@
             <!-- 합계 출력부 종료 -->
         </container2>
       <script>
-      function search1(num){
-    	  if(num == 1){
-      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do?div='+1,'codehelper');
-    	  }
-    	  else if(num == 2){
-    	      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do?div='+2,'codehelper');
-
-    	  }
+      function search2(){
+    	
+      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+    	 
       }
       	
       </script>
