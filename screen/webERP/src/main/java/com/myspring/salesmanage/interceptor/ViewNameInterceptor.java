@@ -1,4 +1,4 @@
-package com.myspring.outsourcing_manage.RegOutsourcing.interceptor;
+package com.myspring.salesmanage.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +32,6 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 		if (uri == null || uri.trim().equals("")) {
 			uri = request.getRequestURI();
-			System.out.println(uri);
 		}
 
 		int begin = 0;

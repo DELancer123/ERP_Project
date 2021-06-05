@@ -1,4 +1,4 @@
-package com.myspring.weberp.salesmanage.salesplan.controller;
+package com.myspring.salesmanage.salesplan.reg.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.weberp.salesmanage.salesplan.vo.SalesplanVO;
+import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
-public interface SalesplanController {
+public interface SalesplanRegController {
 
 	public ModelAndView listSalesplans(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	public ModelAndView addSalesplan(@ModelAttribute("info")SalesplanVO salesplan,HttpServletRequest request, HttpServletResponse response) throws Exception;

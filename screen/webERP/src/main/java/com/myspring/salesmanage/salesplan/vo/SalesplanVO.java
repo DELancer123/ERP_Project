@@ -1,13 +1,17 @@
-package com.myspring.weberp.salesmanage.salesplan.vo;
+package com.myspring.salesmanage.salesplan.vo;
+
+import java.sql.Date;
 
 public class SalesplanVO {
-	private String Plan_Item_Code;		//품번
-	private String Plan_Item_Name;		//품명
-	private String Plan_Item_Unit;		//단위
-	private int Plan_Item_Quantity;		//판매계획 수량
-	private int Plan_Uint_Price;		//판매계획 단가
-	private int Newplan_Item_Quabtity;	//계획 수정 수량
-	private int Newplan_Item_Unit_Price;//계획 수정 단가
+	private String Item_Code;		
+	private String Item_Name;	
+	private String Item_Unit;	
+	private String Item_Group_Code;
+	private int Plan_Item_Quantity;		
+	private int Plan_Uint_Price;		
+	private int Newplan_Item_Quabtity;	
+	private int Newplan_Item_Unit_Price;
+	private Date Plan_Date;
 
 
 	public SalesplanVO() {
@@ -22,41 +26,43 @@ public class SalesplanVO {
 //		this.Plan_Uint_Price = Plan_Uint_Price;
 //	}
 	public SalesplanVO(String Plan_Item_Code, String Plan_Item_Name, String Plan_Item_Unit, int Plan_Item_Quantity,
-	int Plan_Uint_Price,int Newplan_Item_Quabtity,int Newplan_Item_Unit_Price) {
-		this.Plan_Item_Code =  Plan_Item_Code;
-		this.Plan_Item_Name = Plan_Item_Name;
-		this.Plan_Item_Unit = Plan_Item_Unit;
+			 String Item_Group_Code,
+	int Plan_Uint_Price,int Newplan_Item_Quabtity,int Newplan_Item_Unit_Price, Date Plan_Date) {
+		this.Item_Code =  Plan_Item_Code;
+		this.Item_Name = Plan_Item_Name;
+		this.Item_Unit = Plan_Item_Unit;
+		this.Item_Group_Code = Item_Group_Code;
 		this.Plan_Item_Quantity =  Plan_Item_Quantity;
 		this.Plan_Uint_Price = Plan_Uint_Price;
 		this.Newplan_Item_Quabtity = Newplan_Item_Quabtity;
 		this.Newplan_Item_Unit_Price = Newplan_Item_Unit_Price;
+		this.Plan_Date = Plan_Date;
 
 	}
-
-	public String getPlan_Item_Code() {
-		return Plan_Item_Code;
+	public String getItem_Code() {
+		return Item_Code;
 	}
-
-	public void setPlan_Item_Code(String plan_Item_Code) {
-		Plan_Item_Code = plan_Item_Code;
+	public void setItem_Code(String item_Code) {
+		Item_Code = item_Code;
 	}
-
-	public String getPlan_Item_Name() {
-		return Plan_Item_Name;
+	public String getItem_Name() {
+		return Item_Name;
 	}
-
-	public void setPlan_Item_Name(String plan_Item_Name) {
-		Plan_Item_Name = plan_Item_Name;
+	public void setItem_Name(String item_Name) {
+		Item_Name = item_Name;
 	}
-
-	public String getPlan_Item_Unit() {
-		return Plan_Item_Unit;
+	public String getItem_Unit() {
+		return Item_Unit;
 	}
-
-	public void setPlan_Item_Unit(String plan_Item_Unit) {
-		Plan_Item_Unit = plan_Item_Unit;
+	public void setItem_Unit(String item_Unit) {
+		Item_Unit = item_Unit;
 	}
-
+	public String getItem_Group_Code() {
+		return Item_Group_Code;
+	}
+	public void setItem_Group_Code(String item_Group_Code) {
+		Item_Group_Code = item_Group_Code;
+	}
 	public int getPlan_Item_Quantity() {
 		return Plan_Item_Quantity;
 	}
@@ -87,6 +93,12 @@ public class SalesplanVO {
 
 	public void setNewplan_Item_Unit_Price(int newplan_Item_Unit_Price) {
 		Newplan_Item_Unit_Price = newplan_Item_Unit_Price;
+	}
+	public Date getPlan_Date() {
+		return Plan_Date;
+	}
+	public void setPlan_Date(Date plan_Date) {
+		Plan_Date = plan_Date;
 	}
 
 }
