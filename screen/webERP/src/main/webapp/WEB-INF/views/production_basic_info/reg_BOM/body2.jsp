@@ -136,11 +136,14 @@
 		  const newParam = URLSearch.toString();
 
         document.getElementById("itemcode").value = name;
-        
-        if(URLSearch.get('itemcode') == null)
+        if(URLSearch.get('itemCode') == null){
 		window.location.href = location.pathname +'?'+newParam + '&&itemCode=' + name;
+        }
         else{
-        	URLSearch.set('itemcode', name);
+        	URLSearch.set('itemCode', name);
+        	const newParam = URLSearch.toString();
+        	console.log(URLSearch.get('itemCode'));
+        	console.log(name);
         	window.location.href = location.pathname +'?'+newParam;
         }
     }
