@@ -94,20 +94,11 @@
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
+    			
     	}
     	submit_button.onclick = function(){
-    		window.opener.document.location.reload();    	
-    		var form = document.createElement("form");
-   		 form.setAttribute("method", "get");
- 			 window.self.close(); 
-   		  form.setAttribute("action", document.referrer); 
-   	     var itemCodeInput = document.createElement("input");
-   	  	itemCodeInput.setAttribute("type","hidden");
-   		itemCodeInput.setAttribute("name","itemCode");
-   		itemCodeInput.setAttribute("value", text_code.value);
-   		 
-   	     form.appendChild(itemCodeInput);
-   	     document.body.appendChild(form);
+    		opener.setChildValue(text_code.value);
+			window.close();
     	}
     </script>
     </form>

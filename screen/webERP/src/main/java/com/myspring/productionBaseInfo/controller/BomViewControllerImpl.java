@@ -42,15 +42,21 @@ public class BomViewControllerImpl implements BomViewController {
 		String itemCode = (String) request.getParameter("itemCode");
 		System.out.println("아이템코드:" + itemCode);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
-			mav = new 
-					ModelAndView(viewName);
+			mav = new ModelAndView(viewName);
 			return mav;
 		}
 		else if(submit.equals("1")){
 			List bomView = viewService.SearchView(number);
-			/* List bomInsert = viewService.selectPop(itemCode); */
+			
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
+		}
+		else if(submit.equals("2")) {
+			List bomView = viewService.SearchView(number);
+			List bomInsert = viewService.setText(itemCode);
+			mav = new ModelAndView(viewName);
+			mav.addObject("bomView", bomView);
+			mav.addObject("bomInsert",bomInsert);
 		}
 		
 		 

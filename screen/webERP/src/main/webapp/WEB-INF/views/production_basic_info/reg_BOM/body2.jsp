@@ -92,7 +92,7 @@
     <tr>
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" style="width:100%"  disabled/></td>
-    	<td><input type="text" id="itemcode" ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemcode"  ondblclick="search2()"/></td>
     	<td><input type="text" disabled/></td>
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
@@ -104,7 +104,18 @@
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
     </tr>
-   
+<c:forEach var="bom" items="${bomInsert}" >     
+   <tr align="center">
+   	  <td><input type="checkbox" name="content"/></td>
+
+      <td>${bom.itemNumber}</td>
+      <td>${bom.itemName}</td>
+      <td>${bom.standard}</td>
+      <td>${bom.unit}</td>
+      
+  
+    </tr>
+    </c:forEach> 
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -119,7 +130,20 @@
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
     	 
       }
-      	
+      function setChildValue(name){
+    	  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '2');
+		  const newParam = URLSearch.toString();
+
+        document.getElementById("itemcode").value = name;
+        
+        if(URLSearch.get('itemcode') == null)
+		window.location.href = location.pathname +'?'+newParam + '&&itemCode=' + name;
+        else{
+        	URLSearch.set('itemcode', name);
+        	window.location.href = location.pathname +'?'+newParam;
+        }
+    }
       </script>
 </body>
 </html>
