@@ -3,11 +3,15 @@
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-
+ <c:forEach var="bom" items="${bomInsert}" >     
+ 	<c:set var="itemNumber" value="${bom.itemNumber }"/>
+ 	<c:set var="itemName" value="${bom.itemName }"/>
+ 	<c:set var="standard" value="${bom.standard }"/>
+ 	<c:set var="unit" value="${bom.unit }"/>
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,13 +93,13 @@
       <td>${bom.note}</td>
     </tr>
     </c:forEach> 
-    <tr>
+    <tr align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" style="width:100%"  disabled/></td>
-    	<td><input type="text" id="itemcode"  ondblclick="search2()"/></td>
-    	<td><input type="text" disabled/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
+    	<td><input type="text" id="itemCode" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemName" value='${itemName }' disabled/></td>
+    	<td><input type="text" id="standard" value='${standard }'/></td>
+    	<td><input type="text" id="unit" value='${unit }'/></td>
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
@@ -104,18 +108,7 @@
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
     </tr>
-<c:forEach var="bom" items="${bomInsert}" >     
-   <tr align="center">
-   	  <td><input type="checkbox" name="content"/></td>
-
-      <td>${bom.itemNumber}</td>
-      <td>${bom.itemName}</td>
-      <td>${bom.standard}</td>
-      <td>${bom.unit}</td>
-      
-  
-    </tr>
-    </c:forEach> 
+    
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -125,27 +118,29 @@
             <!-- 합계 출력부 종료 -->
         </container2>
       <script>
+      var itemNumber = document.getElementById("itemCode");
+      var itemName = document.getElementById("dataoutput");
+      var standard = document.getElementById("dataoutput");
+      var unit = document.getElementById("dataoutput");
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
     	 
       }
       function setChildValue(name){
+    	  
     	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '2');
 		  const newParam = URLSearch.toString();
-
-        document.getElementById("itemcode").value = name;
         if(URLSearch.get('itemCode') == null){
-		window.location.href = location.pathname +'?'+newParam + '&&itemCode=' + name;
+		window.location.href = location.pathname +'?'+newParam + '&itemCode=' + name;
         }
         else{
         	URLSearch.set('itemCode', name);
         	const newParam = URLSearch.toString();
-        	console.log(URLSearch.get('itemCode'));
-        	console.log(name);
         	window.location.href = location.pathname +'?'+newParam;
         }
+        
     }
       </script>
 </body>
