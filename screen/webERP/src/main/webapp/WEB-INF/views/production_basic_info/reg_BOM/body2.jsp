@@ -174,6 +174,20 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
+<<<<<<< HEAD
+      
+     function deleteData() {
+    	  var item = document.getElementsByName("content").length;
+    	  var itemCode = "";
+    	  for(var i=0; i<item;i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			  itemCode = document.getElementsByName("content")[i].value;
+    			  window.location.href = "${contextPath}/member/delBOM.do?itemCode="+itemCode;
+    		  }
+    	  }
+      }
+=======
+>>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
       </script>
       </form>
 </body>
