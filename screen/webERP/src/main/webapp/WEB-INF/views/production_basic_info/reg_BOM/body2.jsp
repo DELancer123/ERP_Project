@@ -79,7 +79,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" >     
    <tr align="center">
-   	  <td><input type="checkbox" name="content"/></td>
+   	  <td><input type="checkbox" name="content" value="${bom.itemNumber }"/></td>
    	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
    	  <td><input type="text" value = '${bom.itemNumber}'/>
    	  <td><input type="text" value = '${bom.itemName}'/>
@@ -126,6 +126,8 @@
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
       var save_button = document.getElementById("save");
+      var delete_button = document.getElementById('delete');
+      
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
@@ -164,6 +166,10 @@
           cell5.innerHTML = "<input type='text' />";
           cell3.innerHTML =  "<input type='date' />";
            */
+      }
+      delete_button.onclick = function(){
+      	console.log('기본');
+      	console.info('정보');
       }
       </script>
       </form>

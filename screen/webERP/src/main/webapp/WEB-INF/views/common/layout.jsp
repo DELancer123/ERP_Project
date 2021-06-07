@@ -259,7 +259,7 @@
             </ul>
         </nav>
         <nav id="nav2">
-            <button id="delete" onclick="">삭제</button>
+            <button id="delete">삭제</button>
             <button id="view_button">조회</button>
             <button id="save">저장</button>
             <button id="lookup" onclick="opencodehelper()">코드도움</button>
@@ -282,7 +282,6 @@
         var search_box = document.getElementById('search');
         var num_box = document.getElementById('num');
         var save_button = document.getElementById('save');
-        var delete_button = document.getElementById('delete');
         var lookup_button = document.getElementById('lookup');
         var view_button = document.getElementById('view_button');
         var itemcode = document.getElementById('itemcode');
@@ -334,9 +333,6 @@
             cell3.innerHTML =  "<input type='date' />";
             }
         }
-        delete_button.onclick = function(){
-            //dao에서 체크항목 삭제
-        }
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
@@ -355,6 +351,7 @@
 
 			  window.open(location.pathname + '?' + newParam, '_self');
       	}
+		
     </script>
 </body>
 </html>

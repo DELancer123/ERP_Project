@@ -151,7 +151,7 @@
 </html>
  <script>
       function search1(){
-    	      	openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');	  
+    	    openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');	  
     	}
       function search2(){
 	      	openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');	  
