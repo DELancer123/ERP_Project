@@ -25,12 +25,19 @@
 		<result property="inspection" column="Inspection" />
 		<result property="note" column="note" />
 	</resultMap>
-
+	<resultMap id="FactoryViewResult" type="FactoryViewVO">
+		<result property="workplaceCode" column="workplace_Code" />
+		<result property="workplaceName" column="workplace_Name" />
+	</resultMap>
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
 		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit, DailyProduction from SM_BIM_Ite_Reg]]>
 	</select>
 	<select id="selectAllOperationRegistInfo" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg]]>
+	</select>
+	
+	<select id="selectFactoryList" resultMap="FactoryViewResult">
+		<![CDATA[select * from SM_CRI_Wor_Reg]]>
 	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
@@ -38,7 +45,7 @@
 		<result property="itemNumber" column="item_code" />
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
-		<result property="unit" column="unit" />
+		<result property="unit" column="invenvtory_unit" />
 		<result property="precisionQuantity" column="precisionQuantity" />
 		<result property="loss" column="loss" />
 		<result property="actualCost" column="actualCost" />
@@ -68,7 +75,27 @@
 	<select id="selectPopList" resultMap="popView">
 		<![CDATA[select * from CPM_BIM_BOM_REG]]>
 	</select>
+	<insert id="insertBOM" parameterType="bomVO">
+		<![CDATA[
+		 insert into CPM_BIM_BOM_REG
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		]]>  
+	</insert>
+<<<<<<< HEAD
+	<delete id="deleteBOM">
+		delete from CPM_BIM_BOM_REG where item_Code = #{itemCode}
+	</delete>
+=======
+	<update id="updateBOM" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
+		where  item_code=#{itemNumber}
+		]]>  
+	</update>
+	
 
+>>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />
@@ -168,7 +195,7 @@
 	</select>
 	
 	<!-- 외주발주등록 파트 -->
-	<resultMap id="outsourcingView" type="RegOutsourcingVO">
+	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
 		<result property="instructionDate" column="instructionDate" />
 		<result property="dueDate" column="dueDate" />
@@ -182,10 +209,10 @@
 		<result property="status" column="status" />
 		<result property="inspection" column="inspection" />
 		<result property="note" column="note" />
-	</resultMap>
+	</resultMap> -->
 	
 	
-	<select id="selectAllOutsourcingList" resultMap="outsourcingView">
+	<!-- <select id="selectAllOutsourcingList" resultMap="outsourcingView">
 		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
 	</select>
 	
@@ -197,7 +224,7 @@
 	
 	<delete id="deleteOutsourcing" parameterType="int">
 		<![CDATA[delete from t_member where id=#{id}]]>
-	</delete>
+	</delete> -->
 
 
 	<!-- saleplan파트 -->

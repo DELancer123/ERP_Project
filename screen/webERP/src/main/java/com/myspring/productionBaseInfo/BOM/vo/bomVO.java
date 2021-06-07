@@ -13,6 +13,7 @@ public class bomVO {
 	private String unit;
 	private int precisionQuantity;
 	private int loss;
+	private String actualQuantity;
 	private int actualCost;
 	private int outSourcingUnitPrice;
 	private Date startDate;
@@ -92,6 +93,12 @@ public class bomVO {
 	}
 	public void setStandard(String standard) {
 		this.standard = standard;
+	}
+	public String getActualQuantity() {
+		return actualQuantity;
+	}
+	public void setActualQuantity(String actualQuantity) {
+		this.actualQuantity = actualQuantity;
 	}
 	
 }

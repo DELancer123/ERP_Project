@@ -76,11 +76,11 @@
 				class="com.myspring.Billing.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
 		
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/*/*.do" />
 			<beans:bean
 				class="com.myspring.outsourcing_manage.RegOutsourcing.interceptor.ViewNameInterceptor" />
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 		
 	</mvc:interceptors>
 

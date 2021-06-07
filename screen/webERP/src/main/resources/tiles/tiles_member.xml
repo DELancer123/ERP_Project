@@ -93,6 +93,18 @@
       <put-attribute name="side" value="" />
    </definition>
    
+   <!-- 생산파트 popup layout -->
+    <definition name="FactoryPopupLayout"  template="/WEB-INF/views/production_manage/reg_operation_instruction/pop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/factorySearch" extends="FactoryPopupLayout">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <!--  -->
    
 
     

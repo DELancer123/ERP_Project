@@ -66,7 +66,7 @@
                         <input type=text name="companyCode"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" pattern="[0-9]{4}" maxlength="4"/>
+                        text-align: center;" maxlength="12"/>
                     </td>
                     <td>
                         <input type=text name="companyName"

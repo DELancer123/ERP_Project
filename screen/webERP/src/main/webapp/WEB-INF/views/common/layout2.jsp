@@ -3,6 +3,7 @@
  %>
  <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
  
 <!DOCTYPE html>
 <html lang="en">
@@ -261,8 +262,8 @@
         <nav id="nav2">
             <button id="delete" onclick="">삭제</button>
             <button id="view_button">조회</button>
-            <button id="save">저장</button>
-            <button id="lookup" onclick="opencodehelper()">코드도움</button>
+            <button id="save" onclick="newRow()">저장</button>
+            <button id="update" onclick="updateRow()">수정</button>
         </nav>
         <div>
             <tiles:insertAttribute name="side"/>
@@ -284,7 +285,7 @@
         var num_box = document.getElementById('num');
         var save_button = document.getElementById('save');
         var delete_button = document.getElementById('delete');
-        var lookup_button = document.getElementById('lookup');
+        var update_button = document.getElementById('update');
         var view_button = document.getElementById('view_button');
         var itemcode = document.getElementById('itemcode');
         side_button1.onclick = function(){
@@ -316,28 +317,13 @@
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
         }
-        save_button.onclick = function(){
-            // dao에서 저장
-            var view1 = document.getElementById('table1');
-            var view2 = document.getElementById('view2');
-            focus = document.activeElement;
-            if(view1 == focus){
-            var row = view1.insertRow( view1.rows.length ); 
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
-            cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-            cell2.innerHTML = "<input type='text'/>";
-            cell4.innerHTML = "<input type='text' />";
-            cell5.innerHTML = "<input type='text' />";
-            cell3.innerHTML =  "<input type='date' />";
-            }
-        }
+        
         delete_button.onclick = function(){
             //dao에서 체크항목 삭제
         }
+        
+     
+        
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
