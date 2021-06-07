@@ -96,9 +96,9 @@ a {
 						<td><a href="#">${MpsOS.sequence}</a></td>
 						<td><a href="#">${MpsOS.orderdate}</a></td>
 						<td><a href="#">${MpsOS.okeydate}</a></td>
-						<td><a href="#">${MpsOS.buyer}</a></td>
-						<td><a href="#">${MpsOS.itemnumber}</a></td>
-						<td><a href="#">${MpsOS.itemName}</a></td>
+						<td><a href="#">${MpsOS.customer_name}</a></td>
+						<td><a href="#">${MpsOS.item_Code}</a></td>
+						<td><a href="#">${MpsOS.item_Name}</a></td>
 						<td><a href="#">${MpsOS.standard}</a></td>
 						<td><a href="#">${MpsOS.unit}</a></td>
 						<td><a href="#">${MpsOS.order_quantity}</a></td>

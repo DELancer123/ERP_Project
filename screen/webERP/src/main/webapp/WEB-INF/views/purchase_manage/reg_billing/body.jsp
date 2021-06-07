@@ -31,15 +31,15 @@ $(function() {
            		bottomInfo += "=======<br>";
 	           for(var i in jsonInfo.listArray){
 	        	   bottomInfo += "순서: " + jsonInfo.listArray[i].sequence+"<br>";
-	        	   bottomInfo += "품번: " + jsonInfo.listArray[i].itemNumber+"<br>";
-	        	   bottomInfo += "품명: " + jsonInfo.listArray[i].itemName+"<br>";
+	        	   bottomInfo += "품번: " + jsonInfo.listArray[i].item_Code+"<br>";
+	        	   bottomInfo += "품명: " + jsonInfo.listArray[i].item_Name+"<br>";
 	        	   bottomInfo += "규격: " + jsonInfo.listArray[i].standard+"<br>";
 	        	   bottomInfo += "요청일: " + jsonInfo.listArray[i].requestdate+"<br>";
 	        	   bottomInfo += "재고단위: " + jsonInfo.listArray[i].inventory_unit+"<br>";
 	        	   bottomInfo += "재고단위수량: " + jsonInfo.listArray[i].inventory_qy+"<br><br>";
 	        	   bottomInfo += "청구단위: " + jsonInfo.listArray[i].claim_unit+"<br><br>";
 	        	   bottomInfo += "청구단위수량: " + jsonInfo.listArray[i].claim_quantity+"<br><br>";
-	        	   bottomInfo += "주거래처: " + jsonInfo.listArray[i].buyer+"<br><br>";
+	        	   bottomInfo += "주거래처: " + jsonInfo.listArray[i].customer_name+"<br><br>";
 	           }
 	           $("#output").html(consertInfo);
 	        },
@@ -207,15 +207,15 @@ $(function() {
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
  				<td>${btm.sequence}</td>
-				<td>${btm.itemNumber}</td>
-				<td>${btm.itemName}</td>
+				<td>${btm.item_Code}</td>
+				<td>${btm.item_Name}</td>
 				<td>${btm.standard}</td>
 				<td>${btm.requestdate}</td>
 				<td>${btm.inventory_unit}</td>
 				<td>${btm.inventory_qy}</td>
 				<td>${btm.claim_unit}</td>
 				<td>${btm.claim_quantity}</td>
-				<td>${btm.buyer}</td> 
+				<td>${btm.customer_name}</td> 
 			</tr>
 		</c:forEach>  --%>
 	</table>

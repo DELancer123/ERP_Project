@@ -86,8 +86,8 @@ a {
 						<td><input type="checkbox" name="content" /></td>
 						<td><a href="#">${mrp.need_date}</a></td>
 						<td><a href="#">${mrp.expected_order}</a></td>
-						<td><a href="#">${mrp.itemnumber}</a></td>
-						<td><a href="#">${mrp.itemname}</a></td>
+						<td><a href="#">${mrp.item_Code}</a></td>
+						<td><a href="#">${mrp.item_Name}</a></td>
 						<td><a href="#">${mrp.standard}</a></td>
 						<td><a href="#">${mrp.unit}</a></td>
 						<td><a href="#">${mrp.expected_quantity}</a></td>
