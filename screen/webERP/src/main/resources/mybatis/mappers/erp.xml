@@ -72,18 +72,18 @@
 	</resultMap>
 
 	<select id="selectAllMemberList" resultMap="bomView">
-		<![CDATA[select * from CPM_BIM_BOM_REG]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where item_code = #{itemNumber}]]>
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
+		<![CDATA[select item_code,item_name,standard,inventory_unit from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList" resultMap="popView">
-		<![CDATA[select * from CPM_BIM_BOM_REG]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
