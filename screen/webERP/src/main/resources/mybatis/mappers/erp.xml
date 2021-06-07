@@ -148,6 +148,8 @@
 		<![CDATA[select need_date,expected_order,itemnumber,itemname,standard,unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
+	
+	
 
 	<!-- mrp파트 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
