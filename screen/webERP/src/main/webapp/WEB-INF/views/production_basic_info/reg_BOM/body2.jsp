@@ -49,7 +49,9 @@
             right: 10px;
             top: 10px;
         }
-
+		input {
+			text-align : center;
+		}
 
 </style>
 </head>
@@ -59,8 +61,8 @@
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead align="center" style="background-color:gray">
-                        <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>No</td>
+                        <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                        <td style="width:10px;">No</td>
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -78,7 +80,20 @@
          <c:forEach var="bom" items="${bomView}" >     
    <tr align="center">
    	  <td><input type="checkbox" name="content"/></td>
-      <td>${bom.no}</td>
+   	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
+   	  <td><input type="text" value = '${bom.itemNumber}'/>
+   	  <td><input type="text" value = '${bom.itemName}'/>
+   	  <td><input type="text" value = '${bom.standard }'/>
+   	  <td><input type="text" value = '${bom.unit }'/>
+   	  <td><input type="text" value = '${bom.precisionQuantity }'/>
+   	  <td><input type="text" value = '${bom.loss }'/>
+   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/>
+   	  <td><input type="text" value = '${bom.actualCost }'/>
+   	  <td><input type="text" value = '${bom.outSourcingUnitPrice }'/>
+   	  <td><input type="date" value = '${bom.startDate }'/>
+   	  <td><input type="date" value = '${bom.endDate }'/>
+   	  <td><input type="text" value = '${bom.note }'/>
+      <%-- <td>${bom.no}</td>
       <td>${bom.itemNumber}</td>
       <td>${bom.itemName}</td>
       <td>${bom.standard}</td>
@@ -90,7 +105,7 @@
       <td>${bom.outSourcingUnitPrice}</td>
       <td>${bom.startDate}</td>
       <td>${bom.endDate}</td>
-      <td>${bom.note}</td>
+      <td>${bom.note}</td> --%>
     </tr>
     </c:forEach> 
     <tr align="center">
@@ -98,8 +113,9 @@
     	<td><input type="text" style="width:100%"  disabled/></td>
     	<td><input type="text" id="itemCode" value='${itemNumber }' ondblclick="search2()"/></td>
     	<td><input type="text" id="itemName" value='${itemName }' disabled/></td>
-    	<td><input type="text" id="standard" value='${standard }'/></td>
-    	<td><input type="text" id="unit" value='${unit }'/></td>
+    	<td><input type="text" id="standard" value='${standard }' disabled/></td>
+    	<td><input type="text" id="unit" value='${unit }' disabled/></td>
+    	<td><input type="text"/></td>
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>
     	<td><input type="text"/></td>

@@ -82,7 +82,13 @@ public class BomViewControllerImpl implements BomViewController {
 		/* mav.addObject("itemSet", itemSet); */
 		return mav;
 	}
-	
+	@Override
+	@RequestMapping(value="/member/addBOM.do", method = RequestMethod.GET)
+	public ModelAndView addMember(String itemCode, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		return null;
+	}
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -113,6 +119,8 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return viewName;
 	}
+
+	
 
 	
 	
