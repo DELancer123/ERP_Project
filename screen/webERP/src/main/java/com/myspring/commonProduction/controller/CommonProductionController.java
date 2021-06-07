@@ -11,6 +11,5 @@ public interface CommonProductionController {
 	public ModelAndView listProductInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView departmentCodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

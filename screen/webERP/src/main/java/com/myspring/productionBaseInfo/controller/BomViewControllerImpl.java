@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,8 +76,10 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
+		/* List itemSet = viewService.itemSet(); */
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
+		/* mav.addObject("itemSet", itemSet); */
 		return mav;
 	}
 	
@@ -86,14 +87,13 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(bomVO.getItemName());
+		System.out.println(bomVO.getItemNumber());
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		String resulturl = url.toString();
-		System.out.println("유알엘" + resulturl);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
 		return mav;
 	}
 	
@@ -101,13 +101,19 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(bomVO.getItemNumber());
+		System.out.println("item_name bef:"+bomVO.getItemName());
 		request.setCharacterEncoding("utf-8");
+		String viewName = getViewName(request);
+		List itemUpdate = viewService.itemView();
+		System.out.println("item_name aft:"+bomVO.getItemName());
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
+		System.out.println(result);
 		String resulturl = url.toString();
 		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		mav.addObject("itemUpdate", itemUpdate);
+		System.out.println("itemUpdate:"+itemUpdate);
 		return mav;
 	}
 	

@@ -13,7 +13,6 @@
   
   public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException; 
   public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException;
-  public List itemView() throws DataAccessException;
-  public List departmentView() throws DataAccessException;  
+  public List itemView() throws DataAccessException;  
   }
  

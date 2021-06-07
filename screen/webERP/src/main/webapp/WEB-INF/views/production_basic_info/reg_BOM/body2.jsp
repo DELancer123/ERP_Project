@@ -99,10 +99,10 @@
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" id="no" style="width:100%"/></td>
-    	<td><input type="text" id="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" id="itemName" value='${itemName }' /></td>
-    	<td><input type="text" id="standard" value='${standard }' /></td>
-    	<td><input type="text" id="unit" value='${unit }'/></td>
+    	<td><input type="text" id="itemNumber" value='${Item_code }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemName" value='${Item_+Name }' /></td>
+    	<td><input type="text" id="standard" value='${Standard }' /></td>
+    	<td><input type="text" id="unit" value='${inventory_unit }'/></td>
     	<td><input type="text" id="precisionQuantity"/></td>
     	<td><input type="text" id="loss"/></td>
     	<td><input type="text" id="actualQuantity"/></td>

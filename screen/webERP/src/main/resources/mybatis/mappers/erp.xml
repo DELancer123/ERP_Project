@@ -4,7 +4,8 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mappers.erp">
-	<resultMap id="SmBimResult" type="CommitOperationInstructionVO">
+	<resultMap id="SmBimResult"
+		type="CommitOperationInstructionVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
@@ -24,30 +25,19 @@
 		<result property="inspection" column="Inspection" />
 		<result property="note" column="note" />
 	</resultMap>
-	
+	<resultMap id="FactoryViewResult" type="FactoryViewVO">
+		<result property="workplaceCode" column="workplace_Code" />
+		<result property="workplaceName" column="workplace_Name" />
+	</resultMap>
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
 		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit, DailyProduction from SM_BIM_Ite_Reg]]>
 	</select>
 	<select id="selectAllOperationRegistInfo" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg]]>
 	</select>
-	<!-- 생산 검색부 파트 -->
-	<!-- 사업장 검색 -->
-	<resultMap id="FactoryViewResult" type="FactoryViewVO">
-		<result property="workplaceCode" column="workplace_Code" />
-		<result property="workplaceName" column="workplace_Name" />
-	</resultMap>
+	
 	<select id="selectFactoryList" resultMap="FactoryViewResult">
 		<![CDATA[select * from SM_CRI_Wor_Reg]]>
-	</select>
-	<!-- 부서 검색 -->
-	<resultMap id="DepartmentViewResult" type="DepartmentViewVO">
-		<result property="departmentCode" column="Department_Code" />
-		<result property="departmentName" column="Department_Name" />
-	</resultMap>
-	
-	<select id="selectDepartmentList" resultMap="DepartmentViewResult">
-		<![CDATA[select * from SM_CRI_Dep_Reg]]>
 	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
@@ -72,23 +62,23 @@
 	</resultMap>
 
 	<select id="selectAllMemberList" resultMap="bomView">
-		<![CDATA[select * from SM_BIM_Ite_Reg]]>
+		<![CDATA[select * from CPM_BIM_BOM_REG]]>
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select * from SM_BIM_Ite_Reg where item_code = #{itemNumber}]]>
+		<![CDATA[select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}]]>
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
+		<![CDATA[select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList" resultMap="popView">
-		<![CDATA[select * from SM_BIM_Ite_Reg]]>
+		<![CDATA[select * from CPM_BIM_BOM_REG]]>
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
 		 insert into CPM_BIM_BOM_REG
-		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
 	<update id="updateBOM" parameterType="bomVO">
