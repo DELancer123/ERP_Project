@@ -58,6 +58,16 @@ import com.myspring.commonProduction.service.CommonProductionService;
 		return mav;
 	}
   
+  @Override
+  @RequestMapping(value="/member/departmentSearch.do" ,method = RequestMethod.GET)
+	public ModelAndView departmentCodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List departmentView = productionService.departmentView();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("departmentView", departmentView);
+		return mav;
+	}
+  
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
 	  String uri = (String) request.getAttribute("javax.servlet.include.request_uri"); 

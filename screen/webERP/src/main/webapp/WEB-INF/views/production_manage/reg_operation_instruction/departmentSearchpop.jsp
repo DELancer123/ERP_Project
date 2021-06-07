@@ -69,13 +69,13 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>사업장코드</td>
-                    <td>사업장명</td>
+                    <td>부서코드</td>
+                    <td>부서명</td>
                 </tr>
-    <c:forEach var="factory" items="${itemView}" >     
+    <c:forEach var="department" items="${departmentView}" >     
 		<tr align="center">
-      		<td><a href="javascript:popFunction('${factory.workplaceCode }','${factory.workplaceName }')">${factory.workplaceCode}</a></td>
-      		<td><a href="#">${factory.workplaceName}</a></td>
+      		<td><a href="javascript:popFunction('${department.departmentCode }','${department.departmentName }')">${department.departmentCode}</a></td>
+      		<td><a href="#">${department.departmentName}</a></td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -92,7 +92,7 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		opener.parent.location='${contextPath }/member/regoperins.do?departmentCode='+text_code.value+'&&departmentName='+text_name.value;
     		window.close();
     	}
     </script>
