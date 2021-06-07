@@ -39,8 +39,8 @@ public class BomViewControllerImpl implements BomViewController {
 		String viewName = getViewName(request);
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
-		String itemCode = (String) request.getParameter("itemCode");
-		System.out.println("아이템코드:" + itemCode);
+		String itemNumber = (String) request.getParameter("itemCode");
+		System.out.println("아이템코드:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -53,7 +53,7 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		else if(submit.equals("2")) {
 			List bomView = viewService.SearchView(number);
-			List bomInsert = viewService.setText(itemCode);
+			List bomInsert = viewService.setText(itemNumber);
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
@@ -82,13 +82,15 @@ public class BomViewControllerImpl implements BomViewController {
 		/* mav.addObject("itemSet", itemSet); */
 		return mav;
 	}
+	
 	@Override
-	@RequestMapping(value="/member/addBOM.do", method = RequestMethod.GET)
-	public ModelAndView addMember(String itemCode, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
+	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView addMember(@ModelAttribute("info") bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -119,6 +121,8 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return viewName;
 	}
+
+	
 
 	
 
