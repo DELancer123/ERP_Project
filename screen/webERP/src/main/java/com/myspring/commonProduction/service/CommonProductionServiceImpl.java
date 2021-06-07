@@ -19,19 +19,27 @@
   
   @Service("CommonProductionService")
   
-  @Transactional(propagation = Propagation.REQUIRED) public class
-  CommonProductionServiceImpl implements CommonProductionService{
-  
+  @Transactional(propagation = Propagation.REQUIRED) 
+  public class CommonProductionServiceImpl implements CommonProductionService {
   @Autowired private CommitOperationInstructionDAO COIdao;
-  
   @Autowired private OperationRegistDAO ORdao;
   
-  @Override public List<CommitOperationInstructionVO>
-  selectAllProductionPlanInfo() throws DataAccessException {
-  List<CommitOperationInstructionVO> infolist = null; infolist =
-  COIdao.selectAllProductionPlanInfo(); return infolist; }
+  @Override public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException {
+  List<CommitOperationInstructionVO> infolist = null; 
+  infolist = COIdao.selectAllProductionPlanInfo();
+  return infolist; 
+  }
   
-  @Override public List<OperationRegistVO> selectAllOperationInfo() throws
-  DataAccessException{ List<OperationRegistVO> infolist = null; infolist =
-  ORdao.selectAllOperationInfo(); return infolist; } }
+  @Override public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException{ 
+	  List<OperationRegistVO> infolist = null; 
+	  infolist = ORdao.selectAllOperationInfo(); return infolist; 
+	  }
+
+  @Override
+  public List itemView() throws DataAccessException {
+	  List popList = null;
+	  popList = ORdao.viewPop();
+	  return popList;
+	}
+  }
  

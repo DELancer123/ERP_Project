@@ -41,5 +41,11 @@ public class bomViewDAOImpl implements bomViewDAO{
 		searchList = sqlSession.selectList("mappers.erp.searchitem",itemNumber);
 		return searchList;
 	}
+
+	@Override
+	public int addBOM(bomVO bomVO) throws DataAccessException {
+		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO);
+		return 0;
+	}
 	
 }

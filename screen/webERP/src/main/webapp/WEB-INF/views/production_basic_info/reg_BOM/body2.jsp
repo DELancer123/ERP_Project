@@ -56,7 +56,7 @@
 </style>
 </head>
 <body>
-
+<form id="regBOM" method="get">
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -93,38 +93,25 @@
    	  <td><input type="date" value = '${bom.startDate }'/>
    	  <td><input type="date" value = '${bom.endDate }'/>
    	  <td><input type="text" value = '${bom.note }'/>
-      <%-- <td>${bom.no}</td>
-      <td>${bom.itemNumber}</td>
-      <td>${bom.itemName}</td>
-      <td>${bom.standard}</td>
-      <td>${bom.unit}</td>
-      <td>${bom.precisionQuantity}</td>
-      <td>${bom.loss}</td>
-      <td>${bom.precisionQuantity +bom.loss * 0.1 }</td>
-      <td>${bom.actualCost}</td>
-      <td>${bom.outSourcingUnitPrice}</td>
-      <td>${bom.startDate}</td>
-      <td>${bom.endDate}</td>
-      <td>${bom.note}</td> --%>
+      
     </tr>
     </c:forEach> 
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" style="width:100%"  disabled/></td>
-    	<td><input type="text" id="itemCode" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" id="itemName" value='${itemName }' disabled/></td>
-    	<td><input type="text" id="standard" value='${standard }' disabled/></td>
-    	<td><input type="text" id="unit" value='${unit }' disabled/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text"/></td>
+    	<td><input type="text" id="no" style="width:100%"/></td>
+    	<td><input type="text" id="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemName" value='${itemName }' /></td>
+    	<td><input type="text" id="standard" value='${standard }' /></td>
+    	<td><input type="text" id="unit" value='${unit }'/></td>
+    	<td><input type="text" id="precisionQuantity"/></td>
+    	<td><input type="text" id="loss"/></td>
+    	<td><input type="text" id="actualQuantity"/></td>
+    	<td><input type="text" id="actualCost"/></td>
+    	<td><input type="text" id="outSourcingUnitPrice"/></td>
+    	<td><input type="date" id="startDate"/></td>
+    	<td><input type="date" id="endDate"/></td>
+    	<td><input type="text" id="note"/></td>
     </tr>
-    
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -138,6 +125,7 @@
       var itemName = document.getElementById("dataoutput");
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
+      var save_button = document.getElementById("save");
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
@@ -158,6 +146,26 @@
         }
         
     }
+      function newRow(){
+          // dao에서 저장
+          var workOrderTable = document.getElementById('workOrderTable');
+          var row = workOrderTable.insertRow(); 
+          /* document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit(); */
+		window.location.href = "${contextPath}/member/addBOM.do";
+         /*  var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          cell1.innerHTML = "<input type='checkbox' name='content'/>";;
+          cell2.innerHTML = "<input type='text'/>";
+          cell4.innerHTML = "<input type='text' />";
+          cell5.innerHTML = "<input type='text' />";
+          cell3.innerHTML =  "<input type='date' />";
+           */
+      }
       </script>
+      </form>
 </body>
 </html>

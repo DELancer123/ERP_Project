@@ -261,7 +261,7 @@
         <nav id="nav2">
             <button id="delete" onclick="">삭제</button>
             <button id="view_button">조회</button>
-            <button id="save">저장</button>
+            <button id="save" onclick="newRow()">저장</button>
             <button id="lookup" onclick="opencodehelper()">코드도움</button>
         </nav>
         <div>
@@ -316,25 +316,7 @@
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
         }
-        save_button.onclick = function(){
-            // dao에서 저장
-            var view1 = document.getElementById('table1');
-            var view2 = document.getElementById('view2');
-            focus = document.activeElement;
-            if(view1 == focus){
-            var row = view1.insertRow( view1.rows.length ); 
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
-            cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-            cell2.innerHTML = "<input type='text'/>";
-            cell4.innerHTML = "<input type='text' />";
-            cell5.innerHTML = "<input type='text' />";
-            cell3.innerHTML =  "<input type='date' />";
-            }
-        }
+        
         delete_button.onclick = function(){
             //dao에서 체크항목 삭제
         }
