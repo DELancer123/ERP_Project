@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 
 @Repository("OperationRegistDAO")
@@ -20,5 +21,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		List<OperationRegistVO> infoList = null;
 		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
 		return infoList;
+	}
+	
+	@Override
+	public List viewPop() throws DataAccessException {
+		List<bomVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectFactoryList");
+		return popList;
 	}
 }
