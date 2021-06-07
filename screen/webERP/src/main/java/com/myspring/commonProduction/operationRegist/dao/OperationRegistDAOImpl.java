@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
+import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 
 @Repository("OperationRegistDAO")
@@ -25,8 +26,15 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	
 	@Override
 	public List viewPop() throws DataAccessException {
-		List<bomVO> popList = null;
+		List<FactoryViewVO> popList = null;
 		popList = sqlSession.selectList("mappers.erp.selectFactoryList");
+		return popList;
+	}
+	
+	@Override
+	public List departmentViewPop() throws DataAccessException {
+		List<DepartmentViewVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectDepartmentList");
 		return popList;
 	}
 }
