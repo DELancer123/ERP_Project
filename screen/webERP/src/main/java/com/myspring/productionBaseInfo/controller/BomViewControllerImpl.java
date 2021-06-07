@@ -98,6 +98,7 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 	
 	@Override
+<<<<<<< HEAD
 	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("itemCode");
@@ -108,6 +109,21 @@ public class BomViewControllerImpl implements BomViewController {
 		return mav;
 		}
 		
+=======
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println(bomVO.getItemNumber());
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.updateBOM(bomVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		return mav;
+	}
+	
+>>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

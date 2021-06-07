@@ -19,7 +19,11 @@ public interface BomViewController {
                               HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception; 
 */
+<<<<<<< HEAD
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+=======
+	ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+>>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
 
 
 }

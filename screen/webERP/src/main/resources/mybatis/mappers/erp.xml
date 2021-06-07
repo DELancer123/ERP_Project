@@ -91,9 +91,21 @@
 		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
+<<<<<<< HEAD
 	<delete id="deleteBOM">
 		delete from CPM_BIM_BOM_REG where item_Code = #{itemCode}
 	</delete>
+=======
+	<update id="updateBOM" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
+		where  item_code=#{itemNumber}
+		]]>  
+	</update>
+	
+
+>>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

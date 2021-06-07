@@ -79,7 +79,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" >     
    <tr align="center">
-   	  <td><input type="checkbox" name="content" value="${bom.itemNumber }"/></td>
+   	  <td><input type="checkbox" name="content"/></td>
    	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
    	  <td><input type="text" value = '${bom.itemNumber}'/>
    	  <td><input type="text" value = '${bom.itemName}'/>
@@ -98,19 +98,19 @@
     </c:forEach> 
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="no" style="width:100%"/></td>
-    	<td><input type="text" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="itemName" value='${itemName }' /></td>
-    	<td><input type="text" name="standard" value='${standard }' /></td>
-    	<td><input type="text" name="unit" value='${unit }'/></td>
-    	<td><input type="text" name="precisionQuantity"/></td>
-    	<td><input type="text" name="loss"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text" name="actualCost"/></td>
-    	<td><input type="text" name="outSourcingUnitPrice"/></td>
-    	<td><input type="date" name="startDate"/></td>
-    	<td><input type="date" name="endDate"/></td>
-    	<td><input type="text" name="note"/></td>
+    	<td><input type="text" id="no" style="width:100%"/></td>
+    	<td><input type="text" id="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemName" value='${itemName }' /></td>
+    	<td><input type="text" id="standard" value='${standard }' /></td>
+    	<td><input type="text" id="unit" value='${unit }'/></td>
+    	<td><input type="text" id="precisionQuantity"/></td>
+    	<td><input type="text" id="loss"/></td>
+    	<td><input type="text" id="actualQuantity"/></td>
+    	<td><input type="text" id="actualCost"/></td>
+    	<td><input type="text" id="outSourcingUnitPrice"/></td>
+    	<td><input type="date" id="startDate"/></td>
+    	<td><input type="date" id="endDate"/></td>
+    	<td><input type="text" id="note"/></td>
     </tr>
                 </table>
             </div>
@@ -126,8 +126,7 @@
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
       var save_button = document.getElementById("save");
-      var delete_button = document.getElementById('delete');
-      
+      var update_button = document.getElementById('update');
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
@@ -148,13 +147,21 @@
         }
         
     }
+      
+      function updateRow(){
+    	  var workOrderTable = document.getElementById('workOrderTable');
+          var row = workOrderTable.insertRow(); 
+          window.location.href = "${contextPath}/member/updateBOM.do";
+      }
+      
+      
       function newRow(){
           // dao에서 저장
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-           document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
-  			document.getElementById('regBOM').submit(); 
-		/* window.location.href = "${contextPath}/member/addBOM.do"; */
+          /* document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit(); */
+		window.location.href = "${contextPath}/member/addBOM.do";
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
@@ -167,6 +174,7 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
+<<<<<<< HEAD
       
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
@@ -178,9 +186,9 @@
     		  }
     	  }
       }
+=======
+>>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
       </script>
-      
-      
       </form>
 </body>
 </html>
