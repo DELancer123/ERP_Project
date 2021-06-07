@@ -88,7 +88,7 @@
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
 		 insert into CPM_BIM_BOM_REG
-		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
 
