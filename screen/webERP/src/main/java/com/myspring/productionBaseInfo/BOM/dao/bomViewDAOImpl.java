@@ -1,6 +1,8 @@
 package com.myspring.productionBaseInfo.BOM.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +50,10 @@ public class bomViewDAOImpl implements bomViewDAO{
 		return 0;
 	}
 	
+	@Override
+	public void delBOM(String itemCode) throws DataAccessException{
+		Map<String, String> param = new HashMap<>();
+		param.put("itemCode", itemCode);
+		sqlSession.delete("mappers.erp.deleteBOM", itemCode);
+	}
 }

@@ -97,6 +97,17 @@ public class BomViewControllerImpl implements BomViewController {
 		return mav;
 	}
 	
+	@Override
+	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("itemCode");
+		String viewName = getViewName(request);
+		System.out.println("삭제 확인 : "+number);
+		viewService.delBOM(number);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		return mav;
+		}
+		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

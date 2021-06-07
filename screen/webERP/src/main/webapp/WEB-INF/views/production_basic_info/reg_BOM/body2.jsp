@@ -174,7 +174,7 @@
     	  for(var i=0; i<item;i++){
     		  if(document.getElementsByName("content")[i].checked==true){
     			  itemCode = document.getElementsByName("content")[i].value;
-    			  alert(itemCode);
+    			  window.location.href = "${contextPath}/member/delBOM.do?itemCode="+itemCode;
     		  }
     	  }
       }
