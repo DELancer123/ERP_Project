@@ -44,11 +44,4 @@ public class BomViewServiceImpl implements BomViewService{
 		return searchList;
 	}
 
-	@Override
-	public List itemSet() throws DataAccessException {
-		List itemSet = null;
-		/* itemSet = bomDAO.itemSet(); */
-		return null;
-	}
-
 }

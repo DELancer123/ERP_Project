@@ -88,13 +88,15 @@
     var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
-    		
     	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+    		text_code.value = code;
+    		text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		text_code.setAttribute("itemNumber",text_code.value);
+			text_name.setAttribute("itemName",text_name.value);
+    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value;
+
     		window.close();
     	}
     </script>

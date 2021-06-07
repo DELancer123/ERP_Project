@@ -9,5 +9,4 @@ public interface BomViewService {
 	public List itemView() throws DataAccessException;
 	public List setText(String itemNumber)throws DataAccessException;
 	public List SearchView(String itemNumber) throws DataAccessException;
-	public List itemSet() throws DataAccessException;
 }

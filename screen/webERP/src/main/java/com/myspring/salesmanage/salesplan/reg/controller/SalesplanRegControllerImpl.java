@@ -76,7 +76,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 		salesplanService.removeSalesplan(Plan_Item_Code);
 		ModelAndView mav = new ModelAndView("redirect:/salesplan/listSalesplans.do");
 		return mav;
-	}//�ּ�ó��
+	}
 
 	
 	@RequestMapping(value = "/salesplan/*Form.do", method =  RequestMethod.GET)

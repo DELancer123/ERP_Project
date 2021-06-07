@@ -28,27 +28,24 @@ public class SalesplanRegServiceImpl implements SalesplanRegService{
 	}
 
 	@Override
-	public int addSalesplan(String Item_Code) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addSalesplan(SalesplanVO salesplan) throws DataAccessException{
+		return salesplanDAO.insertSalesplan(salesplan);
+	}
+	
+	@Override
+	public int addNewSalesplan(SalesplanVO salesplan) throws DataAccessException {
+		return salesplanDAO.insertSalesplan(salesplan);
+
 	}
 
 	@Override
-	public int addNewSalesplan(String Item_Code) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int removeSalesplan(String Plan_Item_Code) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int removeSalesplan(String Item_Code) throws DataAccessException {
+		return salesplanDAO.deleteSalesplan(Item_Code);
 	}
 
 	@Override
 	public SalesplanVO searchCode(String Item_Code) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return salesplanDAO.searchByItemCode(Item_Code);
 	}
 
 	@Override
