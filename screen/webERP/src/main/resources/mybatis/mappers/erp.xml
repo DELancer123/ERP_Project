@@ -81,6 +81,14 @@
 		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
+	<update id="updateBOM" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
+		where  item_code=#{itemNumber}
+		]]>  
+	</update>
+	
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">

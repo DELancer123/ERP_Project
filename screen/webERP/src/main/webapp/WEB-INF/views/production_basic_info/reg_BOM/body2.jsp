@@ -126,6 +126,7 @@
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
       var save_button = document.getElementById("save");
+      var update_button = document.getElementById('update');
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
@@ -146,6 +147,14 @@
         }
         
     }
+      
+      function updateRow(){
+    	  var workOrderTable = document.getElementById('workOrderTable');
+          var row = workOrderTable.insertRow(); 
+          window.location.href = "${contextPath}/member/updateBOM.do";
+      }
+      
+      
       function newRow(){
           // dao에서 저장
           var workOrderTable = document.getElementById('workOrderTable');

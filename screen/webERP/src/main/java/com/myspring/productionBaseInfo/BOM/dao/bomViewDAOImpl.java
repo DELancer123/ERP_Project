@@ -48,4 +48,10 @@ public class bomViewDAOImpl implements bomViewDAO{
 		return 0;
 	}
 	
+	@Override
+	public int updateBOM(bomVO bomVO) throws DataAccessException {
+		int result = sqlSession.update("mappers.erp.updateBOM",bomVO);
+		return 0;
+	}
+	
 }

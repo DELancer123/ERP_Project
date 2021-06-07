@@ -97,6 +97,20 @@ public class BomViewControllerImpl implements BomViewController {
 		return mav;
 	}
 	
+	@Override
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println(bomVO.getItemNumber());
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.updateBOM(bomVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		return mav;
+	}
+	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
