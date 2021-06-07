@@ -259,7 +259,7 @@
             </ul>
         </nav>
         <nav id="nav2">
-            <button id="delete" onclick="">삭제</button>
+            <button id="delete" onclick="deleteData()">삭제</button>
             <button id="view_button">조회</button>
             <button id="save" onclick="newRow()">저장</button>
             <button id="lookup" onclick="opencodehelper()">코드도움</button>
@@ -315,10 +315,6 @@
         }
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
-        }
-        
-        delete_button.onclick = function(){
-            //dao에서 체크항목 삭제
         }
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');

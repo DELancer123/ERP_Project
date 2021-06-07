@@ -167,11 +167,20 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
-      delete_button.onclick = function(){
-      	console.log('기본');
-      	console.info('정보');
+      
+     function deleteData() {
+    	  var item = document.getElementsByName("content").length;
+    	  var itemCode = "";
+    	  for(var i=0; i<item;i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			  itemCode = document.getElementsByName("content")[i].value;
+    			  alert(itemCode);
+    		  }
+    	  }
       }
       </script>
+      
+      
       </form>
 </body>
 </html>
