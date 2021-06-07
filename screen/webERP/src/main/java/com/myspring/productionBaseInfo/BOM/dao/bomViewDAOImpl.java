@@ -60,10 +60,12 @@ public class bomViewDAOImpl implements bomViewDAO{
 		sqlSession.delete("mappers.erp.deleteBOM", itemCode);
 	}
 
+
 	public int updateBOM(bomVO bomVO) throws DataAccessException {
 		int result = sqlSession.update("mappers.erp.updateBOM",bomVO);
 		return 0;
 	}
 	
+
 
 }
