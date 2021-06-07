@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 
 import com.myspring.productionBaseInfo.BOM.dao.bomViewDAO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
 
@@ -49,6 +50,11 @@ public class BomViewServiceImpl implements BomViewService{
 		List itemSet = null;
 		/* itemSet = bomDAO.itemSet(); */
 		return null;
+	}
+
+	@Override
+	public int addBOM(bomVO bomVO) throws DataAccessException {
+		return bomDAO.addBOM(bomVO);
 	}
 
 }
