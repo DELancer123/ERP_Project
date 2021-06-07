@@ -56,7 +56,7 @@
 </style>
 </head>
 <body>
-
+<form id="regBOM" method="get">
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -98,11 +98,11 @@
     </c:forEach> 
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" id="no" style="width:100%"  disabled/></td>
+    	<td><input type="text" id="no" style="width:100%"/></td>
     	<td><input type="text" id="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" id="itemName" value='${itemName }' disabled/></td>
-    	<td><input type="text" id="standard" value='${standard }' disabled/></td>
-    	<td><input type="text" id="unit" value='${unit }' disabled/></td>
+    	<td><input type="text" id="itemName" value='${itemName }' /></td>
+    	<td><input type="text" id="standard" value='${standard }' /></td>
+    	<td><input type="text" id="unit" value='${unit }'/></td>
     	<td><input type="text" id="precisionQuantity"/></td>
     	<td><input type="text" id="loss"/></td>
     	<td><input type="text" id="actualQuantity"/></td>
@@ -112,7 +112,6 @@
     	<td><input type="date" id="endDate"/></td>
     	<td><input type="text" id="note"/></td>
     </tr>
-    
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -151,6 +150,9 @@
           // dao에서 저장
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
+          /* document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit(); */
+		window.location.href = "${contextPath}/member/addBOM.do";
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
@@ -164,5 +166,6 @@
            */
       }
       </script>
+      </form>
 </body>
 </html>

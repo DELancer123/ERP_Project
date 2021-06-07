@@ -45,7 +45,7 @@
 		<result property="itemNumber" column="item_code" />
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
-		<result property="unit" column="unit" />
+		<result property="unit" column="invenvtory_unit" />
 		<result property="precisionQuantity" column="precisionQuantity" />
 		<result property="loss" column="loss" />
 		<result property="actualCost" column="actualCost" />
@@ -75,6 +75,12 @@
 	<select id="selectPopList" resultMap="popView">
 		<![CDATA[select * from CPM_BIM_BOM_REG]]>
 	</select>
+	<insert id="insertBOM" parameterType="bomVO">
+		<![CDATA[
+		 insert into CPM_BIM_BOM_REG
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		]]>  
+	</insert>
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">

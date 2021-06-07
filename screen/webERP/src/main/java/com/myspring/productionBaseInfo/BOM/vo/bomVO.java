@@ -13,12 +13,12 @@ public class bomVO {
 	private String unit;
 	private int precisionQuantity;
 	private int loss;
+	private String actualQuantity;
 	private int actualCost;
 	private int outSourcingUnitPrice;
 	private Date startDate;
 	private Date endDate;
 	private String note;
-	private String actualQuantity;
 	public bomVO() {
 		super();
 	}

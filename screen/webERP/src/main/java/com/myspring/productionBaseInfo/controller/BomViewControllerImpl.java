@@ -85,10 +85,16 @@ public class BomViewControllerImpl implements BomViewController {
 	
 	@Override
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
-	public ModelAndView addMember(@ModelAttribute("info") bomVO bomVO, HttpServletRequest request,
+	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(bomVO.getItemNumber());
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.addBOM(bomVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		return mav;
 	}
 	
 	private String getViewName(HttpServletRequest request) {
