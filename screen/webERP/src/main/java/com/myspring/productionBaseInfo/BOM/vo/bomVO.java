@@ -18,6 +18,7 @@ public class bomVO {
 	private Date startDate;
 	private Date endDate;
 	private String note;
+	private String actualQuantity;
 	public bomVO() {
 		super();
 	}
@@ -92,6 +93,12 @@ public class bomVO {
 	}
 	public void setStandard(String standard) {
 		this.standard = standard;
+	}
+	public String getActualQuantity() {
+		return actualQuantity;
+	}
+	public void setActualQuantity(String actualQuantity) {
+		this.actualQuantity = actualQuantity;
 	}
 	
 }
