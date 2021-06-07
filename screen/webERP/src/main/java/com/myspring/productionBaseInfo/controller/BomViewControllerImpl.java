@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,18 +77,16 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
-		/* List itemSet = viewService.itemSet(); */
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
-		/* mav.addObject("itemSet", itemSet); */
 		return mav;
 	}
 	
 	@Override
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
-	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
+	public ModelAndView addMember(@ModelAttribute("bomVO") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(bomVO.getItemNumber());
+		System.out.println(bomVO.getItemName());
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
