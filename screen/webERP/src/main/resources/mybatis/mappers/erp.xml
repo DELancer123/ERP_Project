@@ -87,11 +87,7 @@
 	</delete>
 
 	<update id="updateBOM" parameterType="bomVO">
-		<![CDATA[
-		update CPM_BIM_BOM_REG
-		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
-		where  item_code=#{itemNumber}
-		]]>  
+		<![CDATA[update CPM_BIM_BOM_REG	set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}	where  item_code=#{itemNumber}]]>  
 	</update>
 
 	<!-- mainPaln 파트 -->
