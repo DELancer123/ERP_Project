@@ -53,6 +53,7 @@
 </style>
 </head>
 <body>
+<form action="${contextPath }/reg_company/addcompony.do" method="post">
 <container id = contents1 style="overflow: auto;">
             <table id="table1">
                 
@@ -212,5 +213,6 @@
                 </tr>
             </table>
         </container>
+</form>
 </body>
 </html>

@@ -196,7 +196,49 @@
 	<delete id="deleteOutsourcing" parameterType="int">
 		<![CDATA[delete from t_member where id=#{id}]]>
 	</delete>
-
+	
+	<!-- 회사등록 -->
+	<resultMap id="regCompony" type="SystemmagVO">
+		<result property="Company_Code" column="Company_Code"	/> 
+		<result property="Company_Name" column="Company_Name"	/> 
+		<result property="Sortation" column="Sortation"	/>
+		<result property="Fiscal_Year_Number" column="Fiscal_Year_Number"	/>
+		<result property="Fiscal_Year_Date" column="Fiscal_Year_Date"	/>
+		<result property="Company_Registration_Number" column="Company_Registration_Number"	/>
+		<result property="Corporate_Registration_Number" column="Corporate_Registration_Number"	/>
+		<result property="Representatives_Name" column="Representatives_Name"	/>
+		<result property="Resident_Registration_Number" column="Resident_Registration_Number"	/>
+		<result property="Main_Store_Postal_Code" column="Main_Store_Postal_Code"	/>
+		<result property="Main_Store_Address" column="Main_Store_Address"	/>
+		<result property="Main_Branch_Number" column="Main_Branch_Number"	/>
+		<result property="Main_Store_Tel" column="Main_Store_Tel"	/>
+		<result property="Upstate" column="Upstate"	/>
+		<result property="Industry" column="Industry"	/>
+		<result property="Date_Of_Establishment" column="Date_Of_Establishment"	/>
+		<result property="Whether_To_Use_Status" column="Whether_To_Use_Status"	/>
+	</resultMap>
+	
+	<insert id="insertNewCompony" parameterType="systemmagVO">
+		<![CDATA[
+		insert into SM_CRI_Com_Reg(Company_Code,
+									Company_Name,
+									Sortation,
+									Fiscal_Year_Number,
+									Fiscal_Year_Date,
+									Company_Registration_Number,
+									Corporate_Registration_Number,
+									Representatives_Name,
+									Resident_Registration_Number,
+									Main_Store_Postal_Code,
+									Main_Store_Address,
+									Main_Branch_Number,
+									Main_Store_Tel,
+									Upstate,
+									Industry,
+									Date_Of_Establishment,
+									Whether_To_Use_Status
+		]]>
+	</insert>
 
 	<!-- saleplan파트 -->
 	<!-- <resultMap id="salesplanResult" type="salesplanVO"> 
