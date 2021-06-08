@@ -15,7 +15,7 @@ request.setCharacterEncoding("UTF-8");
 	function func_Popup(){
 		var url = "applyorder.do";
 		var name = "applyorder";
-		var option = "width = 1500, height= 600, top = 100, left = 200"
+		var option = "width = 1000, height= 600, top = 100, left = 200"
 		window.open(url, name, option);
 	}
 </script>
@@ -127,15 +127,15 @@ request.setCharacterEncoding("UTF-8");
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
 				<td>${mainplan.plandate}</td>
-				<td>${mainplan.itemnumber}</td>
-				<td>${mainplan.itemName}</td>
+				<td>${mainplan.item_Code}</td>
+				<td>${mainplan.item_Name}</td>
 				<td>${mainplan.standard}</td>
 				<td>${mainplan.unit}</td>
 				<td>${mainplan.sequence}</td>
 				<td>${mainplan.expected_date}</td>
 				<td>${mainplan.due_date}</td>
 				<td>${mainplan.plan_quantity}</td>
-				<td>${mainplan.buyer}</td>
+				<td>${mainplan.customer_name}</td>
 				<td>${mainplan.note}</td>
 			</tr>
 		</c:forEach>
