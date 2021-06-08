@@ -1,6 +1,7 @@
 package com.myspring.productionBaseInfo.controller;
 
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,13 +87,10 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(bomVO.getItemName());
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		String resulturl = url.toString();
-		System.out.println("�쑀�븣�뿕" + resulturl);
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 	}

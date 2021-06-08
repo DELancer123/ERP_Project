@@ -98,7 +98,7 @@
    	  <td><input type="text" name="note" value = '${bom.note }'/>   
     </tr>
     </c:forEach> 
-    <!--
+    
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="no" style="width:100%"/></td>
@@ -116,7 +116,7 @@
     	<td><input type="date" name="endDate"/></td>
     	<td><input type="text" name="note"/></td>
     </tr>
-    -->
+    
                 </table>
             </div>
             <!-- 합계 출력부 -->
