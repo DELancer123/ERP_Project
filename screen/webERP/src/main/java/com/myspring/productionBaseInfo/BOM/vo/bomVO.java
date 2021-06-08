@@ -1,6 +1,7 @@
 package com.myspring.productionBaseInfo.BOM.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ public class bomVO {
 	private Date startDate;
 	private Date endDate;
 	private String note;
+	private List<bomVO> ListVO;
 	public bomVO() {
 		super();
 	}
@@ -99,6 +101,12 @@ public class bomVO {
 	}
 	public void setParent(String parent) {
 		this.parent = parent;
+	}
+	public List<bomVO> getListVO() {
+		return ListVO;
+	}
+	public void setListVO(List<bomVO> listVO) {
+		ListVO = listVO;
 	}
 	
 }
