@@ -29,4 +29,11 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		popList = sqlSession.selectList("mappers.erp.selectFactoryList");
 		return popList;
 	}
+	
+	@Override
+	public List departmentViewPop() throws DataAccessException {
+		List<bomVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectDepartmentList");
+		return popList;
+	}
 }

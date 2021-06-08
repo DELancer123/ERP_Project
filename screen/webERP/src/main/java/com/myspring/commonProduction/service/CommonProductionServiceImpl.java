@@ -41,5 +41,12 @@
 	  popList = ORdao.viewPop();
 	  return popList;
 	}
+  
+  @Override
+  public List departmentView() throws DataAccessException {
+	  List popList = null;
+	  popList = ORdao.departmentViewPop();
+	  return popList;
+	}
   }
  

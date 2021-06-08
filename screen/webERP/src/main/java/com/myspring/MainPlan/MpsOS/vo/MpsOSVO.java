@@ -10,9 +10,9 @@ public class MpsOSVO {
 	private int sequence;
 	private Date orderdate;
 	private Date okeydate;
-	private String buyer;
-	private String itemnumber;
-	private String itemName;
+	private String customer_name;
+	private String item_Code;
+	private String item_Name;
 	private String standard;
 	private String unit;
 	private int order_quantity;
@@ -23,16 +23,16 @@ public class MpsOSVO {
 
 public MpsOSVO() {}
 
-public MpsOSVO(String ordersno,int sequence,Date orderdate, Date okeydate,String buyer,String itemnumber,
-		String itemName,String standard,String unit,int order_quantity,int apply_quantity,int order_Balance,Date expected_Date,String note) 
+public MpsOSVO(String ordersno,int sequence,Date orderdate, Date okeydate,String customer_name,String item_Code,
+		String item_Name,String standard,String unit,int order_quantity,int apply_quantity,int order_Balance,Date expected_Date,String note) 
 {
 	this.ordersno=ordersno;
 	this.sequence=sequence;
 	this.orderdate=orderdate;
 	this.okeydate=okeydate;
-	this.buyer=buyer;
-	this.itemnumber=itemnumber;
-	this.itemName=itemName;
+	this.customer_name=customer_name;
+	this.item_Code=item_Code;
+	this.item_Name=item_Name;
 	this.standard=standard;
 	this.unit=unit;
 	this.order_quantity=order_quantity;
@@ -55,14 +55,14 @@ public void setOrderdate(Date orderdate) {this.orderdate=orderdate;}
 public Date getOkeydate() {return okeydate;}
 public void setOkeydate(Date okeydate) {this.okeydate=okeydate;}
 
-public String getBuyer() {return buyer;}
-public void setBuyer(String buyer) {this.buyer=buyer;}
+public String getCustomer_name() {return customer_name;}
+public void setCustomer_name(String customer_name) {this.customer_name=customer_name;}
 
-public String getItemnumber() {return itemnumber;}
-public void setItemnumber(String itemnumber) {this.itemnumber=itemnumber;}
+public String getItem_Code() {return item_Code;}
+public void setItem_Code(String item_Code) {this.item_Code=item_Code;}
 
-public String getItemName() {return itemName;}
-public void setItemName(String itemName) {this.itemName=itemName;}
+public String getItem_Name() {return item_Name;}
+public void setItem_Name(String item_Name) {this.item_Name=item_Name;}
 
 public String getStandard() {return standard;}
 public void setStandard(String standard) {this.standard=standard;}

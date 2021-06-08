@@ -58,7 +58,14 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 	
 	@Override
+
+	public void delBOM(String itemCode) throws DataAccessException{
+		bomDAO.delBOM(itemCode);
+	}
+
+
 	public int updateBOM(bomVO bomVO) throws DataAccessException {
 		return bomDAO.updateBOM(bomVO);
 	}
+
 }
