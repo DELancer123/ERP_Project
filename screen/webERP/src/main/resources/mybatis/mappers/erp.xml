@@ -42,15 +42,16 @@
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
+		<result property = "parent" column = "parent_item_code"/>
 		<result property="itemNumber" column="item_code" />
+		
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
 		<result property="unit" column="invenvtory_unit" />
 		<result property="precisionQuantity" column="precisionQuantity" />
 		<result property="loss" column="loss" />
 		<result property="actualCost" column="actualCost" />
-		<result property="outSourcingUnitPrice"
-			column="outSourcingUnitPrice" />
+		<result property="outSourcingUnitPrice" column="outSourcingUnitPrice" />
 		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
 		<result property="note" column="note" />
@@ -66,19 +67,19 @@
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}]]>
+		<![CDATA[select * from CPM_BIM_BOM_REG where parent_item_code = #{parent}]]>
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
+		<![CDATA[select item_code,item_name,standard,inventory_unit from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList" resultMap="popView">
-		<![CDATA[select * from CPM_BIM_BOM_REG]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
 		 insert into CPM_BIM_BOM_REG
-		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
 	<update id="updateBOM" parameterType="bomVO">

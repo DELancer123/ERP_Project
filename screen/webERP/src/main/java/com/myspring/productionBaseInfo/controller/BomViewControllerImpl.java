@@ -40,16 +40,16 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
-		System.out.println("아이템코드:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
 		else if(submit.equals("1")){
 			List bomView = viewService.SearchView(number);
-			
+			System.out.println("아이템코드:" + number);
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
+			return mav;
 		}
 		else if(submit.equals("2")) {
 			List bomView = viewService.SearchView(number);
@@ -57,11 +57,12 @@ public class BomViewControllerImpl implements BomViewController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
+			return mav;
 		}
-		
+		return mav;
 		 
 			
-		return mav;
+		
 	}
 	
 	@RequestMapping(value="/member/codehelper.do" ,method = RequestMethod.GET)
