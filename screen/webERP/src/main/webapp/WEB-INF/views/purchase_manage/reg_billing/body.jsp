@@ -11,6 +11,45 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function func_Popup(){
+	var url = "mrpamount.do";
+	var name = "mrpamount";
+	var option = "width = 1500, height= 600, top = 100, left = 200"
+	window.open(url, name, option);
+}
+$(function() {
+	 $("#checkJson").click(function() {
+	  $.ajax({
+        type:"get", 
+        url:"${pageContext.request.contextPath}/member/regbilling.do",
+        success:function (data,textStatus){
+           var jsonInfo;
+           var listArray = new Array();
+           var bottomInfo ="청구번호별 리스트<br>";
+           		bottomInfo += "=======<br>";
+	           for(var i in jsonInfo.listArray){
+	        	   bottomInfo += "순서: " + jsonInfo.listArray[i].sequence+"<br>";
+	        	   bottomInfo += "품번: " + jsonInfo.listArray[i].item_Code+"<br>";
+	        	   bottomInfo += "품명: " + jsonInfo.listArray[i].item_Name+"<br>";
+	        	   bottomInfo += "규격: " + jsonInfo.listArray[i].standard+"<br>";
+	        	   bottomInfo += "요청일: " + jsonInfo.listArray[i].requestdate+"<br>";
+	        	   bottomInfo += "재고단위: " + jsonInfo.listArray[i].inventory_unit+"<br>";
+	        	   bottomInfo += "재고단위수량: " + jsonInfo.listArray[i].inventory_qy+"<br><br>";
+	        	   bottomInfo += "청구단위: " + jsonInfo.listArray[i].claim_unit+"<br><br>";
+	        	   bottomInfo += "청구단위수량: " + jsonInfo.listArray[i].claim_quantity+"<br><br>";
+	        	   bottomInfo += "주거래처: " + jsonInfo.listArray[i].customer_name+"<br><br>";
+	           }
+	           $("#output").html(consertInfo);
+	        },
+	        error:function(data,textStatus){
+	           alert("에러가 발생했습니다.");
+	        }
+	      }); 
+    });
+ });
+</script>
 <style>
 #contents1 {
 	position: absolute;
@@ -31,6 +70,7 @@ request.setCharacterEncoding("UTF-8");
 	height: 35%;
 	border: 1px solid black;
 	z-index: 1;
+	cursor:pointer
 }
 
 #contents3 {
@@ -70,7 +110,8 @@ request.setCharacterEncoding("UTF-8");
 }
 
 #contents3 {
-	overflow: scroll;
+	/* overflow: scroll; */
+	
 }
 
 #total td {
@@ -84,6 +125,9 @@ request.setCharacterEncoding("UTF-8");
 #reqInput {
 	background-color: rgb(255, 255, 149);
 	text-align: center;
+}
+#Popup{
+	float: right;
 }
 </style>
 </head>
@@ -115,37 +159,26 @@ request.setCharacterEncoding("UTF-8");
 			<td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
-			<td><input type="text" name="" disabled /></td>
+			<td><input type="text" name="" disabled /></td> 
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
 		</tr>
 	</table>
-	<div id="button">
-		<button>청구적용조회</button>
-		<button>청구일괄적용</button>
+	<div>
+		<input type="button" id="Popup" onclick="func_Popup();" value="소요량적용" />
 	</div>
 	</container1>
 	<container2 id="contents2">
 	<table id="view1">
 		<thead align="center" style="background-color: gray">
-			<td><input type="checkbox" name="content"
-				onclick="selectAll(this)" /></td>
+			<td><input type="button" value="조회" id="checkJson";/></td>
 			<td>청구번호</td>
 			<td>청구일자</td>
 			<td>청구구분</td>
 			<td>비고</td>
 		</thead>
-<!-- 		<tbody id="table1">
-			<td><input type="checkbox" value="check1" id="check"
-				name="content" /></td>
-			<td><input type="text" /></td>
-			<td><input type="date" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-		</tbody> -->
 		<c:forEach var="cm" items="${cmList}">
 			<tr align="center">
-				<td><input type="checkbox" name="content" /></td>
+				<td><input type="checkbox" name="content"/></td>
 				<td>${cm.claim_no}</td>
 				<td>${cm.claim_date}</td>
 				<td>${cm.claim_division}</td>
@@ -155,39 +188,36 @@ request.setCharacterEncoding("UTF-8");
 	</table>
 	</container2>
 	<container3 id="contents3">
-	<table id="view2">
-		<tr>
-			<td><input type="checkbox" value="check1" id="check"
-				name="content" /></td>
-			<td>no</td>
+ 	<table id="view2">
+		<thead align="center" style="background-color: gray">
+			<td><input type="checkbox" name="content""/></td>
+			<td>순서</td>
+			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
-			<td>단위</td>
-			<td>납기일</td>
-			<td>입고예정일</td>
-			<td>발주수량</td>
-			<td>단가</td>
-			<td>공급가</td>
-			<td>부가세</td>
-			<td>합계</td>
-			<td>검사</td>
-		</tr>
-		<tr>
-			<td><input type="checkbox" value="check1" id="check"
-				name="content" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="date" /></td>
-			<td><input type="date" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-			<td><input type="text" /></td>
-		</tr>
+			<td>요청일</td>
+			<td>재고단위</td>
+			<td>재고단위수량</td>
+			<td>청구단위</td>
+			<td>청구단위수량</td>
+			<td>주거래처</td>
+			<div id="output"/>
+		</thead>
+<%-- 		 <c:forEach var="btm" items="${bottomList}">
+			<tr align="center">
+				<td><input type="checkbox" name="content" /></td>
+ 				<td>${btm.sequence}</td>
+				<td>${btm.item_Code}</td>
+				<td>${btm.item_Name}</td>
+				<td>${btm.standard}</td>
+				<td>${btm.requestdate}</td>
+				<td>${btm.inventory_unit}</td>
+				<td>${btm.inventory_qy}</td>
+				<td>${btm.claim_unit}</td>
+				<td>${btm.claim_quantity}</td>
+				<td>${btm.customer_name}</td> 
+			</tr>
+		</c:forEach>  --%>
 	</table>
 	<div id="total">
 		<table>

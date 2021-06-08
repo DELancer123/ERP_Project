@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 public interface BomViewController {
 	public ModelAndView viewBOM(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	/*public ModelAndView addMember(@ModelAttribute("info") bomVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	/*public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView login(@ModelAttribute("member") bomVO member,
                               RedirectAttributes rAttr,
                               HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception; 
 */
+
+	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 
 }

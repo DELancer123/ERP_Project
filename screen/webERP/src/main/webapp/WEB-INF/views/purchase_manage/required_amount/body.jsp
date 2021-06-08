@@ -124,8 +124,8 @@ request.setCharacterEncoding("UTF-8");
 		<c:forEach var="mrp" items="${mrpList}">
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
-				<td>${mrp.itemnumber}</td>
-				<td>${mrp.itemname}</td>
+				<td>${mrp.item_Code}</td>
+				<td>${mrp.item_Name}</td>
 				<td>${mrp.standard}</td>
 				<td>${mrp.need_date}</td>
 				<td>${mrp.sequence}</td>

@@ -22,6 +22,10 @@
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 
+	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
+		name="suffix" value=".jsp" /> </beans:bean> -->
+
 
 	<!-- 타일즈 실습 설정 -->
 
@@ -71,8 +75,15 @@
 			<beans:bean
 				class="com.myspring.Billing.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
+		
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/*/*.do" />
+			<beans:bean
+				class="com.myspring.outsourcing_manage.RegOutsourcing.interceptor.ViewNameInterceptor" />
+		</mvc:interceptor> -->
+		
 	</mvc:interceptors>
 
-<mvc:annotation-driven />
+	<mvc:annotation-driven />
 
 </beans:beans>

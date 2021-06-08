@@ -127,15 +127,15 @@ request.setCharacterEncoding("UTF-8");
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
 				<td>${mainplan.plandate}</td>
-				<td>${mainplan.itemnumber}</td>
-				<td>${mainplan.itemName}</td>
+				<td>${mainplan.item_Code}</td>
+				<td>${mainplan.item_Name}</td>
 				<td>${mainplan.standard}</td>
 				<td>${mainplan.unit}</td>
 				<td>${mainplan.sequence}</td>
 				<td>${mainplan.expected_date}</td>
 				<td>${mainplan.due_date}</td>
 				<td>${mainplan.plan_quantity}</td>
-				<td>${mainplan.buyer}</td>
+				<td>${mainplan.customer_name}</td>
 				<td>${mainplan.note}</td>
 			</tr>
 		</c:forEach>

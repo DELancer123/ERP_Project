@@ -38,17 +38,29 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String number = (String) request.getParameter("itemNumber");
-		if(number == null || number.length() == 0) {
+		String submit = (String) request.getParameter("submit");
+		String itemNumber = (String) request.getParameter("itemCode");
+		System.out.println("�븘�씠�뀥肄붾뱶:" + itemNumber);
+		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
-		else {
+		else if(submit.equals("1")){
 			List bomView = viewService.SearchView(number);
+			
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 		}
+		else if(submit.equals("2")) {
+			List bomView = viewService.SearchView(number);
+			List bomInsert = viewService.setText(itemNumber);
+			mav = new ModelAndView(viewName);
+			mav.addObject("bomView", bomView);
+			mav.addObject("bomInsert",bomInsert);
+		}
+		
+		 
 			
-		System.out.println("숫자" + number);
 		return mav;
 	}
 	
@@ -60,7 +72,64 @@ public class BomViewControllerImpl implements BomViewController {
 		mav.addObject("itemView", itemView);
 		return mav;
 	}
+	@RequestMapping(value="/member/bomcodehelper.do" ,method = RequestMethod.GET)
+	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List itemView = viewService.itemView();
+		/* List itemSet = viewService.itemSet(); */
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("itemView", itemView);
+		/* mav.addObject("itemSet", itemSet); */
+		return mav;
+	}
 	
+	@Override
+	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println(bomVO.getItemNumber());
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.addBOM(bomVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		return mav;
+	}
+	
+	@Override
+
+	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("itemCode");
+		String viewName = getViewName(request);
+		System.out.println("�궘�젣 �솗�씤 : "+number);
+		viewService.delBOM(number);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		return mav;
+		}
+		
+
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println("item_name bef:"+bomVO.getItemName());
+		request.setCharacterEncoding("utf-8");
+		String viewName = getViewName(request);
+		List itemUpdate = viewService.itemView();
+		System.out.println("item_name aft:"+bomVO.getItemName());
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.updateBOM(bomVO);
+		System.out.println(result);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		mav.addObject("itemUpdate", itemUpdate);
+		System.out.println("itemUpdate:"+itemUpdate);
+		return mav;
+	}
+	
+
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -91,6 +160,10 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return viewName;
 	}
+
+	
+
+	
 
 	
 	
