@@ -41,7 +41,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
-		System.out.println("아이템코드:" + itemNumber);
+		System.out.println("�븘�씠�뀥肄붾뱶:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -92,7 +92,7 @@ public class BomViewControllerImpl implements BomViewController {
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		String resulturl = url.toString();
-		System.out.println("유알엘" + resulturl);
+		System.out.println("�쑀�븣�뿕" + resulturl);
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 	}
@@ -107,6 +107,31 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 		}
+	
+	@Override
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		System.out.println(bomVO.getItemNumber());
+		System.out.println(bomVO.getItemName());
+		System.out.println(bomVO.getStandard());
+		System.out.println(bomVO.getUnit());
+		System.out.println(bomVO.getPrecisionQuantity());
+		System.out.println(bomVO.getLoss());
+		System.out.println(bomVO.getActualCost());
+		System.out.println(bomVO.getOutSourcingUnitPrice());
+		System.out.println(bomVO.getStartDate());
+		System.out.println(bomVO.getEndDate());
+		System.out.println(bomVO.getNote());
+		System.out.println(bomVO.getNo());
+		int result = 0;
+		result = viewService.updateBOM(bomVO);
+		//String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		//mav.addObject("itemView", itemView);
+		//System.out.println("itemcode:"+bomVO.getItemNumber());
+		return mav;
+	}
 		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
@@ -138,20 +163,5 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return viewName;
 	}
-
-	@Override
-	public ModelAndView updateMember(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	
-
-	
-	
-	
 
 }

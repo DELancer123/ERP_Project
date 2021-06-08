@@ -8,7 +8,6 @@
 %>    
 <% String parent = request.getParameter("itemNumber"); %>
  <c:forEach var="bom" items="${bomInsert}" >     
-
  	<c:set var="itemNumber" value="${bom.itemNumber }"/>
  	<c:set var="itemName" value="${bom.itemName }"/>
  	<c:set var="standard" value="${bom.standard }"/>
@@ -155,7 +154,8 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-          window.location.href = "${contextPath}/member/updateBOM.do";
+           document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
+  			document.getElementById('regBOM').submit(); 
       }
       
       
