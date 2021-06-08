@@ -10,9 +10,11 @@
     </settings>
 	<typeAliases>
 		<!-- 생산파트 -->
+		<!-- 
 		<typeAlias type="com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO" alias="CommitOperationInstructionVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.OperationRegistVO" alias="OperationRegistVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.FactoryViewVO" alias="FactoryViewVO" />
+		-->
 		<!-- 물류 구매관리 파트 -->
 		<typeAlias type="com.myspring.MainPlan.vo.MainPlanVO" alias="MainPlanVO" />
 		<typeAlias type="com.myspring.MainPlan.MpsOS.vo.MpsOSVO" alias="MpsOSVO" />

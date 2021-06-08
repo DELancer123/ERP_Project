@@ -96,13 +96,13 @@
       
     </tr>
     </c:forEach> 
-    <tr align="center">
+	<tr align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" id="no" style="width:100%"/></td>
-    	<td><input type="text" id="itemNumber" value='${Item_code }' ondblclick="search2()"/></td>
-    	<td><input type="text" id="itemName" value='${Item_+Name }' /></td>
-    	<td><input type="text" id="standard" value='${Standard }' /></td>
-    	<td><input type="text" id="unit" value='${inventory_unit }'/></td>
+    	<td><input type="text" id="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemName" value='${itemName }' /></td>
+    	<td><input type="text" id="standard" value='${standard }' /></td>
+    	<td><input type="text" id="unit" value='${unit }'/></td>
     	<td><input type="text" id="precisionQuantity"/></td>
     	<td><input type="text" id="loss"/></td>
     	<td><input type="text" id="actualQuantity"/></td>
@@ -149,9 +149,14 @@
     }
       
       function updateRow(){
-    	  var workOrderTable = document.getElementById('workOrderTable');
-          var row = workOrderTable.insertRow(); 
-          window.location.href = "${contextPath}/member/updateBOM.do";
+    	  var item = document.getElementsByName("content").length;
+    	  var itemCode = "";
+    	  for(var i=0; i<item;i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			  itemCode = document.getElementsByName("content")[i].value;
+    			  window.location.href = "${contextPath}/member/updateBOM.do;
+    		  }
+    	  }
       }
       
       
@@ -174,20 +179,6 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
-<<<<<<< HEAD
-      
-     function deleteData() {
-    	  var item = document.getElementsByName("content").length;
-    	  var itemCode = "";
-    	  for(var i=0; i<item;i++){
-    		  if(document.getElementsByName("content")[i].checked==true){
-    			  itemCode = document.getElementsByName("content")[i].value;
-    			  window.location.href = "${contextPath}/member/delBOM.do?itemCode="+itemCode;
-    		  }
-    	  }
-      }
-=======
->>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
       </script>
       </form>
 </body>

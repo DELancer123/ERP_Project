@@ -57,28 +57,32 @@
                 </tr>
                 <tr>
                     <td>검색2</td>
-                    <td><input type="text" id="name" /></td>
+                    <td><input type="text" id="name"/></td>
                 </tr>
             </table>
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
+                 
                 <button>버튼3</button>
             </div>
         </div>
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>부서코드</td>
-                    <td>부서명</td>
+                    <td>품목코드</td>
+                    <td>품명</td>
+                    <td>규격</td>
                 </tr>
-    <c:forEach var="department" items="${departmentView}" >     
-		<tr align="center">
-      		<td><a href="javascript:popFunction('${department.departmentCode }','${department.departmentName }')">${department.departmentCode}</a></td>
-      		<td><a href="#">${department.departmentName}</a></td>
-    	</tr> 
+                <c:forEach var="bom" items="${itemView}" >     
+   <tr align="center">
+      <td><a href="javascript:popFunction('${bom.itemNumber }','${bom.itemName }')">${bom.itemNumber}</a></td>
+      <td><a href="#">${bom.itemName}</a></td>
+      <td><a href="#">${bom.standard}</a></td>
+    </tr>
     </c:forEach> 
             </table>
+            
         </div>
     </div>
     
@@ -92,7 +96,7 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regoperins.do?departmentCode='+text_code.value+'&&departmentName='+text_name.value;
+    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+1;
     		window.close();
     	}
     </script>
