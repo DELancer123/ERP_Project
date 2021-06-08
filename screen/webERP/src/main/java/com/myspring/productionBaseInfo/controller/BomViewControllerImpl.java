@@ -100,10 +100,10 @@ public class BomViewControllerImpl implements BomViewController {
 	@Override
 	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("itemCode");
+		String number = (String) request.getParameter("no");
 		String viewName = getViewName(request);
-		System.out.println("삭제 확인 : "+number);
-		viewService.delBOM(number);
+		String[] numberary = number.split(",");
+		viewService.delBOM(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 		}

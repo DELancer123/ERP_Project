@@ -54,10 +54,11 @@ public class bomViewDAOImpl implements bomViewDAO{
 	
 	@Override
 
-	public void delBOM(String itemCode) throws DataAccessException{
-		Map<String, String> param = new HashMap<>();
-		param.put("itemCode", itemCode);
-		sqlSession.delete("mappers.erp.deleteBOM", itemCode);
+	public void delBOM(String[] noary) throws DataAccessException{
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteBOM", Integer.parseInt(obj));		
+			System.out.println("삭제 완료");
+		}
 	}
 
 

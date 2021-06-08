@@ -82,7 +82,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" >     
    <tr align="center">
-   	  <td><input type="checkbox" name="content"/></td>
+   	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
    	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
    	  <td><input type="text" value = '${bom.parent}'/>
    	  <td><input type="text" value = '${bom.itemNumber}'/>
@@ -96,12 +96,11 @@
    	  <td><input type="text" value = '${bom.outSourcingUnitPrice }'/>
    	  <td><input type="date" value = '${bom.startDate }'/>
    	  <td><input type="date" value = '${bom.endDate }'/>
-   	  <td><input type="text" value = '${bom.note }'/>
-      
+   	  <td><input type="text" value = '${bom.note }'/>   
     </tr>
     </c:forEach> 
     <tr align="center">
-    <td><input type="checkbox" name="content" value="${itemNumber }"/></td>
+    <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="no" style="width:100%"/></td>
     	<td><input type="text" name="parent" value = <%=parent %> /></td>
     	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
@@ -183,12 +182,14 @@
       
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
-    	  var itemCode = "";
+    	  var no = "";
+    	  var ary = [];
     	  for(var i=0; i<item;i++){
     		  if(document.getElementsByName("content")[i].checked==true){
-    			  itemCode = document.getElementsByName("content")[i].value;
-    			  window.location.href = "${contextPath}/member/delBOM.do?itemCode="+itemCode;
+    			  no = document.getElementsByName("content")[i].value;
+    			  ary.push(no);
     		  }
+    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
     	  }
       }
 

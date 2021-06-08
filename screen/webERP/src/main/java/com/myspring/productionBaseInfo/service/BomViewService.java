@@ -13,9 +13,7 @@ public interface BomViewService {
 	public List SearchView(String itemNumber) throws DataAccessException;
 	public List itemSet() throws DataAccessException;
 	public int addBOM(bomVO bomVO) throws DataAccessException;
-
-	public void delBOM(String itemCode) throws DataAccessException;
-
+	public void delBOM(String[] noary) throws DataAccessException;
 	public int updateBOM(bomVO bomVO) throws DataAccessException;
 
 }
