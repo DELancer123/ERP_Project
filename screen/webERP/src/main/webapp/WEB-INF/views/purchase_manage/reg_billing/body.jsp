@@ -12,12 +12,12 @@ request.setCharacterEncoding("UTF-8");
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script>
-	function func_Popup(){
-		var url = "mrpamount.do";
-		var name = "mrpamount";
-		var option = "width = 1500, height= 600, top = 100, left = 200"
-		window.open(url, name, option);
-	}
+function func_Popup(){
+	var url = "mrpamount.do";
+	var name = "mrpamount";
+	var option = "width = 1500, height= 600, top = 100, left = 200"
+	window.open(url, name, option);
+}
 </script>
 <style>
 #contents1 {
@@ -170,15 +170,15 @@ request.setCharacterEncoding("UTF-8");
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
 				<td>${btm.sequence}</td>
-					<td>${btm.itemNumber}</td>
-					<td>${btm.itemName}</td>
+					<td>${btm.item_Code}</td>
+					<td>${btm.item_Name}</td>
 					<td>${btm.standard}</td>
 					<td>${btm.requestdate}</td>
 					<td>${btm.inventory_unit}</td>
-					<td>${btm.inventory_qy}</td>
+					<td>${btm.inventory_qty}</td>
 					<td>${btm.claim_unit}</td>
 					<td>${btm.claim_quantity}</td>
-					<td>${btm.buyer}</td>
+					<td>${btm.customer_Name}</td>
 			</tr>
 		</c:forEach>
 	</table>

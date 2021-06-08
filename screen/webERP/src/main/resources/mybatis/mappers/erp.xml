@@ -81,10 +81,19 @@
 		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
+	<!-- 
+		<update id="updateBOM" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set no=#{no}, item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
+		where  item_code=#{itemNumber}
+		]]>  
+	</update>
+	-->
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
-		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
+		set item_name=#{itemName}
 		where  item_code=#{itemNumber}
 		]]>  
 	</update>
@@ -93,15 +102,15 @@
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />
-		<result property="itemnumber" column="itemnumber" />
-		<result property="itemName" column="itemName" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="unit" column="unit" />
 		<result property="sequence" column="sequence" />
 		<result property="expected_date" column="expected_date" />
 		<result property="due_date" column="due_date" />
 		<result property="plan_quantity" column="plan_quantity" />
-		<result property="buyer" column="buyer" />
+		<result property="customer_Name" column="customer_Name" />
 		<result property="note" column="note" />
 	</resultMap>
 	<resultMap type="mpsosVO" id="MpsOSResult">
@@ -109,9 +118,9 @@
 		<result column="sequence" property="sequence" />
 		<result column="orderdate" property="orderdate" />
 		<result column="okeydate" property="okeydate" />
-		<result column="buyer" property="buyer" />
-		<result column="itemnumber" property="itemnumber" />
-		<result column="itemName" property="itemName" />
+		<result column="customer_Name" property="customer_Name" />
+		<result column="item_Code" property="item_Code" />
+		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
 		<result column="unit" property="unit" />
 		<result column="order_quantity" property="order_quantity" />
@@ -137,21 +146,21 @@
 	</resultMap>
 	<resultMap id="ListResult" type="listVO">
 		<result column="sequence" property="sequence" />
-		<result column="itemNumber" property="itemNumber" />
-		<result column="itemName" property="itemName" />
+		<result column="item_Code" property="item_Code" />
+		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
 		<result column="requestdate" property="requestdate" />
 		<result column="inventory_unit" property="inventory_unit" />
-		<result column="inventory_qy" property="inventory_qy" />
+		<result column="inventory_qty" property="inventory_qty" />
 		<result column="claim_unit" property="claim_unit" />
 		<result column="claim_quantity" property="claim_quantity" />
-		<result column="buyer" property="buyer" />		
+		<result column="customer_Name" property="customer_Name" />		
 	</resultMap>
 	<resultMap id="mrpamountResult" type="requiredamountVO">
 		<result property="need_date" column="need_date" />
 		<result property="expected_order" column="expected_order" />
-		<result property="itemnumber" column="itemnumber" />
-		<result property="itemname" column="itemname" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="unit" column="unit" />
 		<result property="expected_quantity" column="expected_quantity" />
@@ -166,14 +175,14 @@
 	</select>
 	
 	<select id="selectAllMrpaMount" resultMap="mrpamountResult">
-		<![CDATA[select need_date,expected_order,itemnumber,itemname,standard,unit,expected_quantity
+		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
 
 	<!-- mrp파트 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
-		<result property="itemnumber" column="itemnumber" />
-		<result property="itemname" column="itemname" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="need_date" column="need_date" />
 		<result property="sequence" column="sequence" />
