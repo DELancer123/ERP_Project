@@ -101,7 +101,7 @@
     </tr>
     </c:forEach> 
     <tr align="center">
-    <td><input type="checkbox" name="content"/></td>
+    <td><input type="checkbox" name="content" value="${itemNumber }"/></td>
     	<td><input type="text" name="no" style="width:100%"/></td>
     	<td><input type="text" name="parent" value = <%=parent %> /></td>
     	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
@@ -179,7 +179,7 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
-<<<<<<< HEAD
+
       
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
@@ -191,8 +191,7 @@
     		  }
     	  }
       }
-=======
->>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
+
       </script>
       </form>
 </body>
