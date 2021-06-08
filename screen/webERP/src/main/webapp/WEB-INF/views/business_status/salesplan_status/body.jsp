@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 #contents1{
@@ -128,12 +128,12 @@
 <container1 id = contents1>
             <table class="con1_search">
                 <tr>
-                    <td>�����</td>
+                    <td>사업장</td>
                     <td style="width: 50px;"><input type="text" style="width: 100%;"/></td>
 
                     <td ><input type="text" name="" disabled style="width: 100%;"/></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
-                    <td colspan="5" style="width: 50px;">�μ�</td>
+                    <td colspan="5" style="width: 50px;">부서</td>
                     <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                     <td><input type="text" name="" disabled/></td>
                     <td ><i class="fas fa-search" style="color: blue;"></i></td>
@@ -141,22 +141,23 @@
                 </tr>
                 
                 <tr>
-                    <td>��ȹ�Ⱓ</td>
+                    <td>계획기간</td>
                     <td colspan="3" style="width: 70px; text-align: left;">
                         <button id="minus"><<</button>
                         <input type="text" value="2021" id="year" style="background-color: rgb(255, 255, 149); width: 30%;"/>
                     <button id="plus">>></button></td>
-                    <td colspan="5">ǰ��</td>
+                    <td colspan="5">품목군</td>
                     <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                     <td><input type="text" name="" disabled/></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
+                    <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                 </tr>
             </table>
             <div id="tab_div">
                 <ul class="tabs" style="left: 0px; bottom: 0px; position: absolute;">
-                    <li class="tab-link current" data-tab="tab-1" id="things_button">ǰ��</li>
-                    <li class="tab-link" data-tab="tab-2" id="set_button">ǰ�񱺺�</li>
-                    <li class="tab-link" data-tab="tab-3" id="month_button">����</li>
+                    <li class="tab-link current" data-tab="tab-1" id="things_button">품목별</li>
+                    <li class="tab-link" data-tab="tab-2" id="set_button">품목군별</li>
+                    <li class="tab-link" data-tab="tab-3" id="month_button">월별</li>
                 </ul>
             </div>
         </container1>
@@ -164,41 +165,41 @@
             
             <table id="view1">
                 <thead id="month" style="display: none;">
-                    <!-- ���� -->
+                    <!-- 월별 -->
                     <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)"/></th>
-                    <th>�ش��</th>
-                    <th>���ʼ���</th>
-                    <th>��������</th>
-                    <th>���̼���</th>
-                    <th>���ʿ�ȭ�ݾ�</th>
-                    <th>������ȭ�ݾ�</th>
-                    <th>���̿�ȭ�ݾ�</th>
+                    <th>해당월</th>
+                    <th>연초수량</th>
+                    <th>수정수량</th>
+                    <th>차이수량</th>
+                    <th>연초원화금액</th>
+                    <th>수정원화금액</th>
+                    <th>차이원화금액</th>
                 </thead>
                 <thead id="things">
-                    <!-- ǰ�� -->
+                    <!-- 품목별 -->
                     <th id="non"><input type="checkbox" name="content"  onclick="selectAll(this)"/></th>
-                    <th>ǰ��</th>
-                    <th>ǰ��</th>
-                    <th>�԰�</th>
-                    <th>����</th>
-                    <th>���ʼ���</th>
-                    <th>��������</th>
-                    <th>���̼���</th>
-                    <th>���ʿ�ȭ�ݾ�</th>
-                    <th>������ȭ�ݾ�</th>
-                    <th>���̿�ȭ�ݾ�</th>
+                    <th>품번</th>
+                    <th>품명</th>
+                    <th>규격</th>
+                    <th>단위</th>
+                    <th>연초수량</th>
+                    <th>수정수량</th>
+                    <th>차이수량</th>
+                    <th>연초원화금액</th>
+                    <th>수정원화금액</th>
+                    <th>차이원화금액</th>
                 </thead> 
                 <thead id="set" style="display: none;"> 
-                    <!-- ǰ�񱺺� -->
+                    <!-- 품목군별 -->
                     <th id="non"><input type="checkbox" name="content"  onclick="selectAll(this)"/></th>
-                    <th>ǰ���ڵ�</th>
-                    <th>ǰ�񱺸�</th>
-                    <th>���ʼ���</th>
-                    <th>��������</th>
-                    <th>���̼���</th>
-                    <th>���ʿ�ȭ�ݾ�</th>
-                    <th>������ȭ�ݾ�</th>
-                    <th>���̿�ȭ�ݾ�</th>
+                    <th>품목군코드</th>
+                    <th>품목군명</th>
+                    <th>연초수량</th>
+                    <th>수정수량</th>
+                    <th>차이수량</th>
+                    <th>연초원화금액</th>
+                    <th>수정원화금액</th>
+                    <th>차이원화금액</th>
                 </thead>
                 <tbody id="view1" style="display: none;">
                     <td id="non"><input type="checkbox" value = "check1" name="content"/></td>
@@ -217,12 +218,12 @@
             <div id="total1">
                 <table id="v_total1">
                     <tr>
-                        <td>���ʼ����հ�</td>
-                        <td>���������հ�</td>
-                        <td>���̼����հ�</td>
-                        <td>���ʿ�ȭ�ݾ�</td>
-                        <td>������ȭ�ݾ�</td>
-                        <td>���̿�ȭ�ݾ�</td>
+                        <td>연초수량합계</td>
+                        <td>수정수량합계</td>
+                        <td>차이수량합계</td>
+                        <td>연초원화금액</td>
+                        <td>수정원화금액</td>
+                        <td>차이원화금액</td>
                     </tr>
                     <tr>
                         <td><input type="text" disabled/></td>
@@ -239,30 +240,30 @@
             <table id="view2">
                 <tr id="set2">
                     <td style="width: 3%;"><input type="checkbox" name="content" /></td>
-                    <td>�ش��</td>
-                    <td>���ʼ���</td>
-                    <td>��������</td>
-                    <td>���̼���</td>
-                    <td>���ʿ�ȭ�ܰ�</td>
-                    <td>������ȭ�ܰ�</td>
-                    <td>���ʿ�ȭ�ݾ�</td>
-                    <td>������ȭ�ݾ�</td>
-                    <td>���̿�ȭ�ݾ�</td>
+                    <td>해당월</td>
+                    <td>연초수량</td>
+                    <td>수정수량</td>
+                    <td>차이수량</td>
+                    <td>연초원화단가</td>
+                    <td>수정원화단가</td>
+                    <td>연초원화금액</td>
+                    <td>수정원화금액</td>
+                    <td>차이원화금액</td>
                 </tr>
                 <tr id="month2" style="display: none;">
                     <td style="width: 3%;"><input type="checkbox" name="content" /></td>
-                    <td>ǰ��</td>
-                    <td>ǰ��</td>
-                    <td>�԰�</td>
-                    <td>����</td>
-                    <td>���ʼ���</td>
-                    <td>��������</td>
-                    <td>���̼���</td>
-                    <td>���ʿ�ȭ�ܰ�</td>
-                    <td>������ȭ�ܰ�</td>
-                    <td>���ʿ�ȭ�ݾ�</td>
-                    <td>������ȭ�ݾ�</td>
-                    <td>���̿�ȭ�ݾ�</td>
+                    <td>품번</td>
+                    <td>품명</td>
+                    <td>규격</td>
+                    <td>단위</td>
+                    <td>연초수량</td>
+                    <td>수정수량</td>
+                    <td>차이수량</td>
+                    <td>연초원화단가</td>
+                    <td>수정원화단가</td>
+                    <td>연초원화금액</td>
+                    <td>수정원화금액</td>
+                    <td>차이원화금액</td>
                 </tr>
                 <!-- <tr>
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
@@ -280,12 +281,12 @@
             <div id="total1">
                 <table id="v_total1">
                     <tr >
-                        <td>���ʼ����հ�</td>
-                        <td>���������հ�</td>
-                        <td>���̼����հ�</td>
-                        <td>���ʿ�ȭ�ݾ�</td>
-                        <td>������ȭ�ݾ�</td>
-                        <td>���̿�ȭ�ݾ�</td>
+                        <td>연초수량합계</td>
+                        <td>수정수량합계</td>
+                        <td>차이수량합계</td>
+                        <td>연초원화금액</td>
+                        <td>수정원화금액</td>
+                        <td>차이원화금액</td>
                     </tr>
                     
                     <tr>
@@ -299,7 +300,7 @@
                 </table>
             </div>
         </container3>
-        <script>
+    <script>
         var plus_button = document.getElementById('plus');
         var minus_button = document.getElementById('minus');
         var month_button = document.getElementById('month_button');
@@ -354,7 +355,7 @@
         }
         
     </script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script> <!--���������ֽŹ���������-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
         $(document).ready(function(){
         
@@ -366,9 +367,17 @@
     
             $(this).addClass('current');
             $("#"+tab_id).addClass('current');
-        })
+        });
     
-    })
-</script>
+    });
+    </script>
+       <script>
+      function search1(){
+    	  
+    	      	openWindowPop('http://localhost:8090/webERP/member/codehelperbyplan.do','codebyplan');
+
+    	  
+      }
+    </script> 	
 </body>
 </html>

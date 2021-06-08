@@ -23,7 +23,7 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-    <definition name="PopupLayout1"  template="/WEB-INF/views/common/applyorder.jsp">
+    <definition name="MPSPopupLayout"  template="/WEB-INF/views/purchase_manage/reg_mainplan/applyorder.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -33,7 +33,7 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-   <definition name="PopupLayout2"  template="/WEB-INF/views/common/mrpamount.jsp">
+   <definition name="MRPPopupLayout"  template="/WEB-INF/views/purchase_manage/reg_billing/mrpamount.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -82,19 +82,19 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-      <definition name="/member/applyorder" extends="PopupLayout1">
+      <definition name="/member/applyorder" extends="MPSPopupLayout">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-      <definition name="/member/mrpamount" extends="PopupLayout2">
+      <definition name="/member/mrpamount" extends="MRPPopupLayout">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
    
    <!-- 생산파트 popup layout -->
-    <definition name="FactoryPopupLayout"  template="/WEB-INF/views/production_manage/reg_operation_instruction/pop.jsp">
+    <definition name="FactoryPopupLayout"  template="/WEB-INF/views/production_manage/reg_operation_instruction/factorySearchpop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -104,6 +104,17 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
+   <definition name="DepartmentPopupLayout"  template="/WEB-INF/views/production_manage/reg_operation_instruction/departmentSearchpop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/departmentSearch" extends="DepartmentPopupLayout">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
    <!--  -->
    
 

@@ -40,7 +40,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
-		System.out.println("아이템코드:" + itemNumber);
+		System.out.println("�븘�씠�뀥肄붾뱶:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -98,6 +98,18 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 	
 	@Override
+
+	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("itemCode");
+		String viewName = getViewName(request);
+		System.out.println("�궘�젣 �솗�씤 : "+number);
+		viewService.delBOM(number);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		return mav;
+		}
+		
+
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -117,6 +129,7 @@ public class BomViewControllerImpl implements BomViewController {
 		return mav;
 	}
 	
+
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
