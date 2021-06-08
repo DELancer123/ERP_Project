@@ -19,7 +19,6 @@ public interface BomViewController {
                               HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception; 
 */
-	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 

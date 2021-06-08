@@ -139,6 +139,13 @@ public class BomViewControllerImpl implements BomViewController {
 		return viewName;
 	}
 
+	@Override
+	public ModelAndView updateMember(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	

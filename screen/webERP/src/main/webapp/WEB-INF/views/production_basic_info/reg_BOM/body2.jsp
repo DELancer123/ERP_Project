@@ -179,7 +179,7 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
-<<<<<<< HEAD
+
       
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
@@ -191,8 +191,7 @@
     		  }
     	  }
       }
-=======
->>>>>>> 81038a2736614bc72197ad0df327da9ba7a333f2
+
       </script>
       </form>
 </body>
