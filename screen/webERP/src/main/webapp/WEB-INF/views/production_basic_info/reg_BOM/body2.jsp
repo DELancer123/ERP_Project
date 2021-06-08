@@ -101,7 +101,7 @@
     </tr>
     </c:forEach> 
     <tr align="center">
-    <td><input type="checkbox" name="content"/></td>
+    <td><input type="checkbox" name="content" value="${itemNumber }"/></td>
     	<td><input type="text" name="no" style="width:100%"/></td>
     	<td><input type="text" name="parent" value = <%=parent %> /></td>
     	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
