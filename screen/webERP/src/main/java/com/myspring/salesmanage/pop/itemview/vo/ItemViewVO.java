@@ -1,55 +1,55 @@
-package com.myspring.salesmanage.pop.itemview.vo;
-
-import org.springframework.stereotype.Component;
-
-@Component("itemviewVO")
-public class ItemViewVO {
-	
-	private String Item_Code; //Ç°¹ø
-	private String Item_Name; //Ç°¸í
-	private String Standard; //±Ô°Ý
-	private String Inventory_Unit; //´ÜÀ§
-	private String Inspection_Status; //°Ë»ç¿©ºÎ
-	
-	public ItemViewVO() {}
-	
-	public ItemViewVO(String Item_Code, String Item_Name,	String Standard, String Inventory_Unit,	String Inspection_Status) {
-		 this.Item_Code = Item_Code; //Ç°¹ø
-		 this.Item_Name = Item_Name; //Ç°¸í
-		 this.Standard = Standard; //±Ô°Ý
-		 this.Inventory_Unit = Inventory_Unit; //´ÜÀ§
-		 this.Inspection_Status = Inspection_Status; //°Ë»ç¿©ºÎ
-	}
-	
-	public String getItem_Code() {
-		return Item_Code;
-	}
-	public void setItem_Code(String item_Code) {
-		Item_Code = item_Code;
-	}
-	public String getItem_Name() {
-		return Item_Name;
-	}
-	public void setItem_Name(String item_Name) {
-		Item_Name = item_Name;
-	}
-	public String getStandard() {
-		return Standard;
-	}
-	public void setStandard(String standard) {
-		Standard = standard;
-	}
-	public String getInventory_Unit() {
-		return Inventory_Unit;
-	}
-	public void setInventory_Unit(String inventory_Unit) {
-		Inventory_Unit = inventory_Unit;
-	}
-	public String getInspection_Status() {
-		return Inspection_Status;
-	}
-	public void setInspection_Status(String inspection_Status) {
-		Inspection_Status = inspection_Status;
-	}
-
-}
+//package com.myspring.salesmanage.pop.itemview.vo;
+//
+//import org.springframework.stereotype.Component;
+//
+//@Component("itemviewVO")
+//public class ItemViewVO {
+//	
+//	private String Item_Code; //Ç°ï¿½ï¿½
+//	private String Item_Name; //Ç°ï¿½ï¿½
+//	private String Standard; //ï¿½Ô°ï¿½
+//	private String Inventory_Unit; //ï¿½ï¿½ï¿½ï¿½
+//	private String Inspection_Status; //ï¿½Ë»ç¿©ï¿½ï¿½
+//	
+//	public ItemViewVO() {}
+//	
+//	public ItemViewVO(String Item_Code, String Item_Name, String Standard, String Inventory_Unit, String Inspection_Status) {
+//		 this.Item_Code = Item_Code; //Ç°ï¿½ï¿½
+//		 this.Item_Name = Item_Name; //Ç°ï¿½ï¿½
+//		 this.Standard = Standard; //ï¿½Ô°ï¿½
+//		 this.Inventory_Unit = Inventory_Unit; //ï¿½ï¿½ï¿½ï¿½
+//		 this.Inspection_Status = Inspection_Status; //ï¿½Ë»ç¿©ï¿½ï¿½
+//	}
+//	
+//	public String getItem_Code() {
+//		return Item_Code;
+//	}
+//	public void setItem_Code(String item_Code) {
+//		Item_Code = item_Code;
+//	}
+//	public String getItem_Name() {
+//		return Item_Name;
+//	}
+//	public void setItem_Name(String item_Name) {
+//		Item_Name = item_Name;
+//	}
+//	public String getStandard() {
+//		return Standard;
+//	}
+//	public void setStandard(String standard) {
+//		Standard = standard;
+//	}
+//	public String getInventory_Unit() {
+//		return Inventory_Unit;
+//	}
+//	public void setInventory_Unit(String inventory_Unit) {
+//		Inventory_Unit = inventory_Unit;
+//	}
+//	public String getInspection_Status() {
+//		return Inspection_Status;
+//	}
+//	public void setInspection_Status(String inspection_Status) {
+//		Inspection_Status = inspection_Status;
+//	}
+//
+//}
