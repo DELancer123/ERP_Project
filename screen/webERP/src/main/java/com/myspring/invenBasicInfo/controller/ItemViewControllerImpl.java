@@ -1,4 +1,4 @@
-package com.myspring.productionBaseInfo.controller;
+package com.myspring.invenBasicInfo.controller;
 
 import java.util.List;
 
@@ -18,23 +18,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.productionBaseInfo.service.*;
-import com.myspring.productionBaseInfo.BOM.vo.*;
-
-
+import com.myspring.invenBasicInfo.service.*;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 @Controller("memberController")
-//@EnableAspectJAutoProxy
-public class BomViewControllerImpl implements BomViewController {
-	private static final Logger logger = LoggerFactory.getLogger(BomViewControllerImpl.class);
+//@EnalbleAspectAutoProxy
+public class ItemViewControllerImpl implements ItemViewController {
+	private static final Logger logger = LoggerFactory.getLogger(ItemViewControllerImpl.class);
 	@Autowired
-	private BomViewService viewService;
+	private ItemViewService viewService;
 	@Autowired
-	private bomVO bomVO ;
+	private ItemVO itemVO;
 	
 	@Override
-	@RequestMapping(value="/member/regbom.do" ,method = RequestMethod.GET)
-	public ModelAndView viewBOM(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/member/itemunitprice.do" ,method = RequestMethod.GET)
+	public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String number = (String) request.getParameter("itemNumber");
@@ -58,9 +57,6 @@ public class BomViewControllerImpl implements BomViewController {
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
 		}
-		
-		 
-			
 		return mav;
 	}
 	
@@ -147,5 +143,4 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return viewName;
 	}
-
 }

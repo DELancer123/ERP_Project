@@ -1,9 +1,12 @@
 package com.myspring.invenBasicInfo.regItemUnitPrice.dao;
 
 import org.springframework.dao.DataAccessException;
+
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.ItemVO;
+
 import java.util.List;
 
-public interface itemViewDAO {
+public interface ItemViewDAO {
 	public List viewItem() throws DataAccessException;
 	public List viewPop() throws DataAccessException;
 	
