@@ -11,6 +11,6 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagController {
-	public void addCompany (@ModelAttribute("company") SystemmagVO company,
+	public ModelAndView addCompany (@ModelAttribute("company") SystemmagVO company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

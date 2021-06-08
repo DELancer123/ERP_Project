@@ -67,7 +67,7 @@
                         <input type=text name="companyCode"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" maxlength="12"/>
+                        text-align: center;" maxlength="12" />
                     </td>
                     <td>
                         <input type=text name="companyName"
@@ -105,14 +105,13 @@
                         <input type="date" name="startDate" id="reqInput">
                         ~
                         <input type="date" name="endDate" id="reqInput"/>
-                        <button>필독</button>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
                         <input type="text" name="registrationNumber" id="reqInput"
-                        style="width: 240px;" pattern="[0-9]{10}" maxlength="10"/>
+                        style="width: 240px;" pattern="[0-9]{13}" maxlength="13"/>
                     </td>
                 </tr>
                 <tr>
@@ -176,7 +175,7 @@
                         <input type="text" name="headPhoneNumber"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
-                            text-align: center;" pattern="[0-9]{10}" maxlength="10"/>
+                            text-align: center;" pattern="[0-9]{12}" maxlength="10"/>
                     </td>
                 </tr>
                 <tr>

@@ -22,19 +22,18 @@ public class SystemmagControllerImpl implements SystemmagController{
 	private SystemmagService systemmagService;
 	@Autowired
 	private SystemmagVO systemmagVO;
-	
 	@Override
-	@RequestMapping(value="/addCompany.do" ,method = RequestMethod.POST)
-	public ModelAndView addCompany(@ModelAttribute("systemmagVO") SystemmagVO systemmagVO,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addCompany(SystemmagVO company, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		System.out.println(systemmagVO.getCompany_Code());
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
-		String result = null;
+		int result = 0;
 		result = systemmagService.addCompany(systemmagVO);
 		String resulturl = url.toString();
-		ModelAndview mav = new ModelAndView("redirect:/reg_company/addcompony.do");
+		ModelAndView mav = new ModelAndView();
 		return mav;
-	
 	}
+	
+	
 }

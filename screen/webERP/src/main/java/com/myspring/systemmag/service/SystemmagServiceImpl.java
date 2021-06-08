@@ -15,7 +15,8 @@ public class SystemmagServiceImpl implements SystemmagService {
 	private SystemmagDAO systemmagDAO;
 	
 	@Override
-	public void addCompany (SystemmagVO systemmagVO) throws Exception{
-		systemmagDAO.insertNewCompany(systemmagVO);
+	public int addCompany (SystemmagVO systemmagVO) throws Exception{
+		int result = systemmagDAO.insertNewCompany(systemmagVO);
+		return result;
 }
 }
