@@ -82,22 +82,23 @@
          <c:forEach var="bom" items="${bomView}" >     
    <tr align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
-   	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
-   	  <td><input type="text" value = '${bom.parent}'/>
-   	  <td><input type="text" value = '${bom.itemNumber}'/>
-   	  <td><input type="text" value = '${bom.itemName}'/>
-   	  <td><input type="text" value = '${bom.standard }'/>
-   	  <td><input type="text" value = '${bom.unit }'/>
-   	  <td><input type="text" value = '${bom.precisionQuantity }'/>
-   	  <td><input type="text" value = '${bom.loss }'/>
+   	  <td style="width:13px;"><input type="text" name="no" value = '${bom.no }' style="width:100%"/>
+   	  <td><input type="text" name="parent" value = '${bom.parent}'/>
+   	  <td><input type="text" name="itemNumber" value = '${bom.itemNumber}'/>
+   	  <td><input type="text" name="itemName" value = '${bom.itemName}'/>
+   	  <td><input type="text" name="standard" value = '${bom.standard }'/>
+   	  <td><input type="text" name="unit" value = '${bom.unit }'/>
+   	  <td><input type="text" name="precisionQuantity" value = '${bom.precisionQuantity }'/>
+   	  <td><input type="text" name="loss" value = '${bom.loss }'/>
    	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/>
-   	  <td><input type="text" value = '${bom.actualCost }'/>
-   	  <td><input type="text" value = '${bom.outSourcingUnitPrice }'/>
-   	  <td><input type="date" value = '${bom.startDate }'/>
-   	  <td><input type="date" value = '${bom.endDate }'/>
-   	  <td><input type="text" value = '${bom.note }'/>   
+   	  <td><input type="text" name="actualCost" value = '${bom.actualCost }'/>
+   	  <td><input type="text" name="outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/>
+   	  <td><input type="date" name="startDate" value = '${bom.startDate }'/>
+   	  <td><input type="date" name="endDate" value = '${bom.endDate }'/>
+   	  <td><input type="text" name="note" value = '${bom.note }'/>   
     </tr>
     </c:forEach> 
+    <!--
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="no" style="width:100%"/></td>
@@ -115,6 +116,7 @@
     	<td><input type="date" name="endDate"/></td>
     	<td><input type="text" name="note"/></td>
     </tr>
+    -->
                 </table>
             </div>
             <!-- 합계 출력부 -->

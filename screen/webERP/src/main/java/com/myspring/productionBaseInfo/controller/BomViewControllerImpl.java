@@ -41,7 +41,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
-		System.out.println("�븘�씠�뀥肄붾뱶:" + itemNumber);
+		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
