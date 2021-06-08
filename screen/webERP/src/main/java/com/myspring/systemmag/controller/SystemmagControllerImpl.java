@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.systemmag.service.SystemmagService;
 import com.myspring.systemmag.vo.SystemmagVO;
@@ -24,17 +25,16 @@ public class SystemmagControllerImpl implements SystemmagController{
 	
 	@Override
 	@RequestMapping(value="/addCompany.do" ,method = RequestMethod.POST)
-	public void addCompany(@ModelAttribute("systemmagVO") SystemmagVO _systemmagVO,
+	public ModelAndView addCompany(@ModelAttribute("systemmagVO") SystemmagVO systemmagVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html; charset=UTF-8");
+		System.out.println(systemmagVO.getCompany_Code());
 		request.setCharacterEncoding("utf-8");
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		try {
-			systemmagService.addCompany(_systemmagVO);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		StringBuffer url = request.getRequestURL();
+		String result = null;
+		result = systemmagService.addCompany(systemmagVO);
+		String resulturl = url.toString();
+		ModelAndview mav = new ModelAndView("redirect:/reg_company/addcompony.do");
+		return mav;
+	
 	}
 }
