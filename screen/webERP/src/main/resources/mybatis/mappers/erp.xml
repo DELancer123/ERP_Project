@@ -187,14 +187,14 @@
 	</select>
 	
 	<!-- 품목단가등록파트 재원-->
-	<resultMap id="itemView" type="itemVO">
-		<result property="Item_Code" column="Item_Code" /> <!-- 품번 -->
-		<result property="Item_Name" column="Item_Name" /> <!-- 품명 -->
-		<result property="Standard" column="Standard" /> <!-- 규격 -->
-		<result property="Inventory_Unit" column="Inventory_Unit" /> <!-- 단위 -->
-		<result property="Kind" column="Kind" /> <!-- 종류(구매단가,판매단가) -->
-		<result property="Purchase_Price" column="Purchase_Price" /> <!-- 구매단가 -->
-		<result property="Sales_Price" column="Sales_Price" /> <!-- 판매단가, 구매단가입력시 Null -->
+	<!-- <resultMap id="itemView" type="itemVO">
+		<result property="Item_Code" column="Item_Code" /> 품번
+		<result property="Item_Name" column="Item_Name" /> 품명
+		<result property="Standard" column="Standard" /> 규격
+		<result property="Inventory_Unit" column="Inventory_Unit" /> 단위
+		<result property="Kind" column="Kind" /> 종류(구매단가,판매단가)
+		<result property="Purchase_Price" column="Purchase_Price" /> 구매단가
+		<result property="Sales_Price" column="Sales_Price" /> 판매단가, 구매단가입력시 Null
 	</resultMap>
 	<resultMap id="popView" type="itemVO">
 		<result property="Item_Code" column="Item_Code" />
@@ -228,7 +228,7 @@
 		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
 		where  item_code=#{itemNumber}
 		]]>  
-	</update>
+	</update> -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
