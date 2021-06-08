@@ -6,7 +6,9 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
+<% String parent = request.getParameter("itemNumber"); %>
  <c:forEach var="bom" items="${bomInsert}" >     
+
  	<c:set var="itemNumber" value="${bom.itemNumber }"/>
  	<c:set var="itemName" value="${bom.itemName }"/>
  	<c:set var="standard" value="${bom.standard }"/>
@@ -82,7 +84,6 @@
    <tr align="center">
    	  <td><input type="checkbox" name="content"/></td>
    	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
-   	  
    	  <td><input type="text" value = '${bom.parent}'/>
    	  <td><input type="text" value = '${bom.itemNumber}'/>
    	  <td><input type="text" value = '${bom.itemName}'/>
@@ -102,7 +103,7 @@
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="no" style="width:100%"/></td>
-    	<td><input type="text" name="parent" style="width:100%" /></td>
+    	<td><input type="text" name="parent" value = <%=parent %> /></td>
     	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
     	<td><input type="text" name="itemName" value='${itemName }' /></td>
     	<td><input type="text" name="standard" value='${standard }' /></td>

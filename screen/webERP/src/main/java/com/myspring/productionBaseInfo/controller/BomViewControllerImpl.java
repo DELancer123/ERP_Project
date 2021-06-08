@@ -88,12 +88,14 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println(bomVO.getItemNumber());
+		String number = (String) request.getParameter("itemNumber");
 		request.setCharacterEncoding("utf-8");
-		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		String resulturl = url.toString();
-		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		ModelAndView mav;
+		List bomView = viewService.SearchView(number);
+		mav = new ModelAndView("member/regbom.do");
+		mav.addObject("bomView", bomView);
 		return mav;
 	}
 	
