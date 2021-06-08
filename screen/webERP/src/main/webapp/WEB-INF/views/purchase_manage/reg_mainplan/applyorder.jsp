@@ -46,7 +46,7 @@ a {
 #view {
 	width: 1400px;
 	height: 800px;
-	/* overflow: scroll; */
+	overflow: scroll;
 }
 </style>
 </head>
