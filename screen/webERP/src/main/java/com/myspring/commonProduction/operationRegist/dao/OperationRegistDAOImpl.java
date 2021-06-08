@@ -39,8 +39,8 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return popList;
 	}
 	
-	@Override
-	public List productionPlanPop() throws DataAccessException {
-		
-	}
+//	@Override
+//	public List productionPlanPop() throws DataAccessException {
+//		
+//	}
 }
