@@ -1,25 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<%
-   request.setCharacterEncoding("UTF-8");
-%> 
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script type="text/javascript">
-window.onload = function(){
-	var itemcode = document.getElementById('itemcode');
-	itemcode.onclick = function(){
-		window.open('http://localhost:8090/webERP/member/codehelper.do','codehelper','width = 300, height = 200');
-	}
-}
-</script>
 <style>
 #contents1{
             position: absolute;
@@ -42,7 +27,7 @@ window.onload = function(){
         .con1_search{
             padding:0;
             text-align: center;
-            /* position: absolute; ì¹¸ ëª¨ì˜ë¼ì„œ ì§€ì›€*/
+            /* position: absolute; Ä­ ¸ğÀß¶ó¼­ Áö¿ò*/
             top: 25%;
             left: 5%;
         }
@@ -52,14 +37,14 @@ window.onload = function(){
             padding:0;
             text-align: center;
         }
-        /* ì»¨í…Œì´ë„ˆ ìŠ¤íƒ€ì¼ë¶€ */
+        /* ÄÁÅ×ÀÌ³Ê ½ºÅ¸ÀÏºÎ */
         #workOrderInfo {
             overflow: scroll;
             height: 97%;
             width: 100%;
         }
         
-         /* í•©ê³„ ì¶œë ¥ë¶€ */
+         /* ÇÕ°è Ãâ·ÂºÎ */
          #resultWindow{
             height: 3%;
             background-color: gray;
@@ -73,12 +58,12 @@ window.onload = function(){
             <form id="searchForm">
                 <table class="con1_search">
                     <tr>
-                        <td>ì‚¬ì—…ì¥</td>
+                        <td>»ç¾÷Àå</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td> 
     
-                        <td colspan="4" style="width: 80px;">ë¶€ì„œ</td>
+                        <td colspan="4" style="width: 80px;">ºÎ¼­</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
@@ -86,24 +71,24 @@ window.onload = function(){
                     </tr>
                     
                     <tr>
-                        <td>ì™¸ì£¼ì²˜</td>
+                        <td>¿ÜÁÖÃ³</td>
                         <td style="width: 50px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
     
-                        <td colspan="4" style="width: 80px;">ì‚¬ì›</td>
+                        <td colspan="4" style="width: 80px;">»ç¿ø</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
                         <td>
-                            <input type="button" value="ì²­êµ¬ì¡°íšŒ" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="Ã»±¸Á¶È¸" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="ì£¼ë¬¸ì¡°íšŒ" style="padding: 5px;"></input>
+                            <input type="button" value="ÁÖ¹®Á¶È¸" style="padding: 5px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="ìƒì‚°ê³„íšì¡°íšŒ" style="padding: 5px; " ondblclick="openWindowPop('codehelper.do#','codehelper')"></input>
+                            <input type="button" value="»ı»ê°èÈ¹Á¶È¸" style="padding: 5px;"></input>
                         </td>
                     </tr>
                 </table>
@@ -112,53 +97,28 @@ window.onload = function(){
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-					 <thead align="center" style="background-color:gray">
+                    <thead>
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>ì™¸ì£¼ì§€ì‹œë²ˆí˜¸</td>
-                        <td>ë°œì£¼ì¼</td>
-                        <td>ë‚©ê¸°ì¼</td>
-                        <td>í’ˆë²ˆ</td>
-                        <td>í’ˆëª…</td>
-                        <td>ê·œê²©</td>
-                        <td>ë‹¨ìœ„</td>
-                        <td>ì§€ì‹œìˆ˜ëŸ‰</td>
-                        <td>ë‹¨ê°€</td>
-                        <td>ê¸ˆì•¡</td>
-                        <td>ìƒíƒœ</td>
-                        <td>ê²€ì‚¬</td>
-                        <td>ë¹„ê³ </td>
-                        </thead>
-
-                    
-
-                      <c:forEach var="out" items="${outsourcingView}" >   
-                     <tr align="center">
-                     <td><input type="checkbox" name="content"/></td>
-                        <td>${out.workOrderNumber}</td>
-                        <td>${out.instructionDate}</td>
-                        <td>${out.dueDate}</td>
-                        <td>${out.item_Code}</td>
-                        <td>${out.item_Name}</td>
-               		    <td>${out.standard}</td>
-                        <td>${out.inventory_Unit}</td>
-                        <td>${out.indicatedQuantity}</td>
-                        <td>${out.unitPrice}</td>
-                        <td>${out.price}</td>
-                        <td>${out.status}</td>
-                        <td>${out.inspection}</td>
-                        <td>${out.note}</td>
-                        
-                     </tr>
-                     </c:forEach>
-
-                    
-                    <!-- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°, ì¶”í›„ í‘œí˜„ì‹ìœ¼ë¡œ ìˆ˜ì •í•„ìš” -->
-<tr align="center">
-                        <td><input type="checkbox" name="content"/></td>
+                        <td>¿ÜÁÖÁö½Ã¹øÈ£</td>
+                        <td>¹ßÁÖÀÏ</td>
+                        <td>³³±âÀÏ</td>
+                        <td>Ç°¹ø</td>
+                        <td>Ç°¸í</td>
+                        <td>±Ô°İ</td>
+                        <td>´ÜÀ§</td>
+                        <td>Áö½Ã¼ö·®</td>
+                        <td>´Ü°¡</td>
+                        <td>±İ¾×</td>
+                        <td>»óÅÂ</td>
+                        <td>°Ë»ç</td>
+                        <td>ºñ°í</td>
+                    </thead>
+                    <!-- Å×½ºÆ®¿ë µ¥ÀÌÅÍ, ÃßÈÄ Ç¥Çö½ÄÀ¸·Î ¼öÁ¤ÇÊ¿ä -->
+                    <tbody>
+                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text"/></td>
                         <td><input type="date"/></td>
                         <td><input type="date"/></td>
-                        <td><input type="text" id="itemcode" ondblclick="openWindowPop('/member/proplanreg.do#','proplanreg')"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
@@ -168,27 +128,16 @@ window.onload = function(){
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-</tr>
+                        <td><input type="text"/></td>
+                    </tbody>
                 </table>
             </div>
-            <!-- í•©ê³„ ì¶œë ¥ë¶€ -->
+            <!-- ÇÕ°è Ãâ·ÂºÎ -->
             <div id="resultWindow">
-                í•© ê³„ <span style="margin-left: 100px;"></span>ì§€ì‹œìˆ˜ëŸ‰ <input type="text"><span style="margin-left: 100px;">ê¸ˆì•¡ <input type="text"></span>
+                ÇÕ °è <span style="margin-left: 100px;"></span>Áö½Ã¼ö·® <input type="text"><span style="margin-left: 100px;">±İ¾× <input type="text"></span>
             </div>
-            <!-- í•©ê³„ ì¶œë ¥ë¶€ ì¢…ë£Œ -->
+            <!-- ÇÕ°è Ãâ·ÂºÎ Á¾·á -->
         </container2>
-        
-          <script>
-      function search1(num){
-    	  if(num == 1){
-      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do?div='+1,'codehelper');
-    	  }
-    	  else if(num == 2){
-    	      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do?div='+2,'codehelper');
-
-    	  }
-      }
-      	
-      </script>
-          
+      
+</body>
 </html>

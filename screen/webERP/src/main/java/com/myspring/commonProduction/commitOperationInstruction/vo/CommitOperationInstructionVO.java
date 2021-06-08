@@ -1,31 +1,41 @@
-package com.myspring.commonProduction.commitOperationInstruction.vo;
 
+package com.myspring.commonProduction.commitOperationInstruction.vo;
+ 
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("CommitOperationInstructionVO")
-public class CommitOperationInstructionVO {
-	private String itemCode;
-	private String itemName;
-	private String standard;
-	private String inventoryUnit;
-	private int dailyProduction;
-	private int sequence;
+@Component("CommitOperationInstructionVO") 
+public class CommitOperationInstructionVO { 
+	private int NO; 
+	private String itemNumber;
+	private String itemName; 
+	private String standard; 
+	private String unit;
+	private int dailyProduction; 
+	private int sequence; 
 	private Date scheduled;
-	private int quantity;
+	private int quantity; 
 	private String note;
-	
+ 
 	public CommitOperationInstructionVO() {
-		super();
+	
 	}
 
-	public String getItemCode() {
-		return itemCode;
+	public int getNO() {
+		return NO;
 	}
 
-	public void setItemCode(String itemCode) {
-		this.itemCode = itemCode;
+	public void setNO(int NO) {
+		NO = NO;
+	}
+
+	public String getItemNumber() {
+		return itemNumber;
+	}
+
+	public void setItemNumber(String itemNumber) {
+		this.itemNumber = itemNumber;
 	}
 
 	public String getItemName() {
@@ -44,12 +54,12 @@ public class CommitOperationInstructionVO {
 		this.standard = standard;
 	}
 
-	public String getInventoryUnit() {
-		return inventoryUnit;
+	public String getUnit() {
+		return unit;
 	}
 
-	public void setInventoryUnit(String inventoryUnit) {
-		this.inventoryUnit = inventoryUnit;
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 	public int getDailyProduction() {
@@ -91,6 +101,7 @@ public class CommitOperationInstructionVO {
 	public void setNote(String note) {
 		this.note = note;
 	}
-
-
-}
+ 
+ 
+ 
+ }

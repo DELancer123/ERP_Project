@@ -58,14 +58,14 @@
                 <table class="con1_search">
                     <tr>
                         <td>사업장</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
+                        <td style="width: 80px;"><input type="text" value="${param.itemNumber }" style="width: 100%; background-color: yellow;"/></td>
+                        <td colspan="3"><input type="text" value="${param.itemName }" disabled style="width: 100%;"/></td>
                         <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td> 
     
                         <td colspan="5" style="width: 80px;">부서</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td><input type="text" name="" disabled/></td>
-                        <td> <i class="fas fa-search" style="color: blue;"></i></td>
+                        <td style="width: 80px;"><input type="text" value="${param.departmentCode }" style="width: 100%; background-color: yellow;"/></td>
+                        <td><input type="text" value="${param.departmentName }" disabled/></td>
+                        <td><a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></td>
                         
                     </tr>
                     
@@ -81,7 +81,7 @@
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
                         <td>
-                            <input type="button" value="생산계획조회" style="padding: 5px;"></input>
+                            <input type="button" value="생산계획조회" style="padding: 5px;" onClick="searchPlan()"></input>
                         </td>
                     </tr>
                 </table>
@@ -130,17 +130,17 @@
                      </c:forEach>
                      <tr>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text" name="workOrderNumber"/></td>
+                        <td><input type="date" name="instructionDate"/></td>
+                        <td><input type="date" name="dueDate"/></td>
+                        <td><input type="text" name="itemCode"/></td>
+                        <td><input type="text" name="itemName"/></td>
+                        <td><input type="text" name="standard"/></td>
+                        <td><input type="text" name="inventoryUnit"/></td>
+                        <td><input type="text" name="indicated"/></td>
+                        <td><input type="text" name="status"/></td>
+                        <td><input type="text" name="inspection"/></td>
+                        <td><input type="text" name="note"/></td>
                      </tr>
                     </tbody>
                 </table>
@@ -150,11 +150,13 @@
 </body>
 </html>
  <script>
-      function search1(){
-    	  
-    	      	openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');
-
-    	  
+      function search1(){  
+    	      	openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
       }
-      	
+      function search2(){  
+	      	openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
+		}
+      function searchPlan(){
+    	  openWindowPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
+      }
       </script>

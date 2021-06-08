@@ -6,7 +6,9 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
+<% String parent = request.getParameter("itemNumber"); %>
  <c:forEach var="bom" items="${bomInsert}" >     
+
  	<c:set var="itemNumber" value="${bom.itemNumber }"/>
  	<c:set var="itemName" value="${bom.itemName }"/>
  	<c:set var="standard" value="${bom.standard }"/>
@@ -63,6 +65,7 @@
                     <thead align="center" style="background-color:gray">
                         <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td style="width:10px;">No</td>
+                        <td>모품목코드</td>
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -81,6 +84,7 @@
    <tr align="center">
    	  <td><input type="checkbox" name="content"/></td>
    	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
+   	  <td><input type="text" value = '${bom.parent}'/>
    	  <td><input type="text" value = '${bom.itemNumber}'/>
    	  <td><input type="text" value = '${bom.itemName}'/>
    	  <td><input type="text" value = '${bom.standard }'/>
@@ -97,20 +101,21 @@
     </tr>
     </c:forEach> 
     <tr align="center">
-    <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" id="no" style="width:100%"/></td>
-    	<td><input type="text" id="itemNumber" value='${Item_code }' ondblclick="search2()"/></td>
-    	<td><input type="text" id="itemName" value='${Item_+Name }' /></td>
-    	<td><input type="text" id="standard" value='${Standard }' /></td>
-    	<td><input type="text" id="unit" value='${inventory_unit }'/></td>
-    	<td><input type="text" id="precisionQuantity"/></td>
-    	<td><input type="text" id="loss"/></td>
-    	<td><input type="text" id="actualQuantity"/></td>
-    	<td><input type="text" id="actualCost"/></td>
-    	<td><input type="text" id="outSourcingUnitPrice"/></td>
-    	<td><input type="date" id="startDate"/></td>
-    	<td><input type="date" id="endDate"/></td>
-    	<td><input type="text" id="note"/></td>
+    <td><input type="checkbox" name="content" value="${itemNumber }"/></td>
+    	<td><input type="text" name="no" style="width:100%"/></td>
+    	<td><input type="text" name="parent" value = <%=parent %> /></td>
+    	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" name="itemName" value='${itemName }' /></td>
+    	<td><input type="text" name="standard" value='${standard }' /></td>
+    	<td><input type="text" name="unit" value='${unit }'/></td>
+    	<td><input type="text" name="precisionQuantity"/></td>
+    	<td><input type="text" name="loss"/></td>
+    	<td><input type="text"/></td>
+    	<td><input type="text" name="actualCost"/></td>
+    	<td><input type="text" name="outSourcingUnitPrice"/></td>
+    	<td><input type="date" name="startDate"/></td>
+    	<td><input type="date" name="endDate"/></td>
+    	<td><input type="text" name="note"/></td>
     </tr>
                 </table>
             </div>
@@ -159,9 +164,9 @@
           // dao에서 저장
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-          /* document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
-  			document.getElementById('regBOM').submit(); */
-		window.location.href = "${contextPath}/member/addBOM.do";
+           document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit(); 
+		/* window.location.href = "${contextPath}/member/addBOM.do"; */
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
@@ -174,6 +179,19 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
+
+      
+     function deleteData() {
+    	  var item = document.getElementsByName("content").length;
+    	  var itemCode = "";
+    	  for(var i=0; i<item;i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			  itemCode = document.getElementsByName("content")[i].value;
+    			  window.location.href = "${contextPath}/member/delBOM.do?itemCode="+itemCode;
+    		  }
+    	  }
+      }
+
       </script>
       </form>
 </body>
