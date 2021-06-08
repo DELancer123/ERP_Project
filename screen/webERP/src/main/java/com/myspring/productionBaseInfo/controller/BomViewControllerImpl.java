@@ -85,10 +85,36 @@ public class BomViewControllerImpl implements BomViewController {
 	
 	@Override
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
-	public ModelAndView addMember(@ModelAttribute("info") bomVO bomVO, HttpServletRequest request,
+	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(bomVO.getItemNumber());
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.addBOM(bomVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println("item_name bef:"+bomVO.getItemName());
+		request.setCharacterEncoding("utf-8");
+		String viewName = getViewName(request);
+		List itemUpdate = viewService.itemView();
+		System.out.println("item_name aft:"+bomVO.getItemName());
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = viewService.updateBOM(bomVO);
+		System.out.println(result);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regBOM.do");
+		mav.addObject("itemUpdate", itemUpdate);
+		System.out.println("itemUpdate:"+itemUpdate);
+		return mav;
 	}
 	
 	private String getViewName(HttpServletRequest request) {

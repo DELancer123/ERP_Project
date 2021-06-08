@@ -11,9 +11,8 @@
   
   public interface CommonProductionService {
   
-  public List<CommitOperationInstructionVO> selectAllProductionPlanInfo()
-  throws DataAccessException; public List<OperationRegistVO>
-  selectAllOperationInfo() throws DataAccessException;
-  
+  public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException; 
+  public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException;
+  public List itemView() throws DataAccessException;  
   }
  

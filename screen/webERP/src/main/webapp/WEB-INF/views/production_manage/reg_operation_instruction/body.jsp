@@ -60,7 +60,7 @@
                         <td>사업장</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                        <td> <i class="fas fa-search" style="color: blue;"></i></td> 
+                        <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td> 
     
                         <td colspan="5" style="width: 80px;">부서</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
@@ -80,13 +80,6 @@
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
-
-                        <td>
-                            <input type="button" value="청구조회" style="padding: 5px; margin-left: 30px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="주문조회" style="padding: 5px;"></input>
-                        </td>
                         <td>
                             <input type="button" value="생산계획조회" style="padding: 5px;"></input>
                         </td>
@@ -156,3 +149,12 @@
       
 </body>
 </html>
+ <script>
+      function search1(){
+    	  
+    	      	openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');
+
+    	  
+      }
+      	
+      </script>
