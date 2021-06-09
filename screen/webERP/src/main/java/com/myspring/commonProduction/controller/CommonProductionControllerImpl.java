@@ -70,6 +70,14 @@ import com.myspring.commonProduction.service.CommonProductionService;
   @Override
   @RequestMapping(value="/member/productionPlanSearch.do",method = RequestMethod.GET)
   	public ModelAndView productionPlanSearch(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	  String viewName = getViewName(request);
+	  ModelAndView mav = new ModelAndView(viewName);
+	  return mav;
+  }
+  
+  @Override
+  @RequestMapping(value="/member/productionPlanResponse.do",method = RequestMethod.GET)
+  	public ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception{
 	  String startDate = request.getParameter("dateStart");
 	  String endDate = request.getParameter("dateEnd");
 	  String viewName = getViewName(request);
