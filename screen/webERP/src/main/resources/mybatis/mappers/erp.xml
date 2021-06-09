@@ -104,9 +104,11 @@
 	</update>
 	-->
 	<update id="updateBOM" parameterType="bomVO">
+		
 		update CPM_BIM_BOM_REG
 		<set>
-		<if test="Item_Name !='' and Item_Name != null">Item_Name=#{itemName},</if>
+		<if test="parent !='' and parent != null">parent_item_code=#{parent},</if>
+		<if test="itemName !='' and itemName != null">item_name=#{itemName},</if>
 		 Standard=#{standard}, 
 		 Inventory_Unit=#{unit},
 		<if test="precisionQuantity !='' and precisionQuantity != null">precisionQuantity=#{precisionQuantity},</if>
@@ -118,7 +120,7 @@
 		<if test="note !='' and note != null">note=#{note}</if>
 		</set>
 		where  Item_Code=#{itemNumber}
-
+		
 	</update>
 	
 	<!-- 

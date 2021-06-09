@@ -100,7 +100,7 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    
+    <!-- 
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" style="width:100%"/></td>
@@ -118,7 +118,7 @@
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-     
+     -->
                 </table>
                  
             </div>
@@ -159,8 +159,10 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-           document.getElementByName('updateTest').action = "${contextPath}/member/updateBOM.do";
-  			document.getElementByName('updateTest').submit(); 
+  			var link = document.location.href;
+  			document.getElementById('regBOM').setAttribute('path',link);
+           document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
+  			document.getElementById('regBOM').submit(); 
       }
       
       
