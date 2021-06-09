@@ -88,15 +88,15 @@
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
    <tr name= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
-   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' disabled style="width:100%"/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' disabled/></td>
+   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}' ondblclick="search2()"/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' disabled/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' disabled/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' disabled/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
-   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }' disabled/></td>
+   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
@@ -107,15 +107,15 @@
     
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' disabled style="width:100%"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' disabled /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' disabled/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' disabled/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' disabled/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss"/></td>
-    	<td><input type="text" disabled id="actualQuantity"/></td>
+    	<td><input type="text" readonly id="actualQuantity"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>

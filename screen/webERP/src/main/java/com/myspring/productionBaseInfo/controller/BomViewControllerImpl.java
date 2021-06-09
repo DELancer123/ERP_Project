@@ -97,7 +97,7 @@ public class BomViewControllerImpl implements BomViewController {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		System.out.println("url" + path);
-		
+		System.out.println(bomVO.getListVO().get(2).getParent());
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		ModelAndView mav = new ModelAndView("redirect:" + path);
