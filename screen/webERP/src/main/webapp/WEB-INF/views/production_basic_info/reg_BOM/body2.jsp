@@ -81,7 +81,7 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
-   <tr align="center">
+   <tr name= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
    	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' style="width:100%"/></td>
    	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}'/></td>
@@ -100,7 +100,7 @@
     </tr>
     </c:forEach> 
     
-    <tr align="center">
+    <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" style="width:100%"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = <%=parent %> /></td>
@@ -158,8 +158,8 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-           document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
-  			document.getElementById('regBOM').submit(); 
+           document.getElementByName('updateTest').action = "${contextPath}/member/updateBOM.do";
+  			document.getElementByName('updateTest').submit(); 
       }
       
       

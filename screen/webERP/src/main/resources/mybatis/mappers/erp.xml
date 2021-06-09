@@ -53,7 +53,6 @@
 		<result property="no" column="no" />
 		<result property = "parent" column = "parent_item_code"/>
 		<result property="itemNumber" column="item_code" />
-		
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
 		<result property="unit" column="invenvtory_unit" />
@@ -96,7 +95,7 @@
 		delete from CPM_BIM_BOM_REG where NO = #{no}
 	</delete>
 <!-- 
-	<update id="updateBOM">
+	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
 		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
@@ -104,6 +103,25 @@
 		]]>  
 	</update>
 	-->
+	<update id="updateBOM" parameterType="bomVO">
+		update CPM_BIM_BOM_REG
+		<set>
+		<if test="Item_Name !='' and Item_Name != null">Item_Name=#{itemName},</if>
+		 Standard=#{standard}, 
+		 Inventory_Unit=#{unit},
+		<if test="precisionQuantity !='' and precisionQuantity != null">precisionQuantity=#{precisionQuantity},</if>
+		<if test="loss !='' and loss != null">loss=#{loss},</if>
+		<if test="actualCost !='' and actualCost != null">actualCost=#{actualCost}, </if>
+		<if test="outSourcingUnitPrice !='' and outSourcingUnitPrice != null">outSourcingUnitPrice=#{outSourcingUnitPrice}, </if>
+		<if test="startDate !='' and startDate != null">startDate=#{startDate},</if>
+		<if test="endDate !='' and endDate != null">endDate=#{endDate},</if>
+		<if test="note !='' and note != null">note=#{note}</if>
+		</set>
+		where  Item_Code=#{itemNumber}
+
+	</update>
+	
+	<!-- 
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
 		 insert into CPM_BIM_BOM_REG
@@ -124,7 +142,7 @@
 		 note=values(note)
 		]]>  
 	</insert>
-	
+	-->
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
