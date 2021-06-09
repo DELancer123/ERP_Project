@@ -68,4 +68,9 @@ public class BomViewServiceImpl implements BomViewService{
 		return bomDAO.updBOM(bomVO);
 	}
 
+	@Override
+	public int inputNo() throws DataAccessException {
+		return bomDAO.selNo();
+	}
+
 }
