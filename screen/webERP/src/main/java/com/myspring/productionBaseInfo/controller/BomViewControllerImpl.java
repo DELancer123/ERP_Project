@@ -88,6 +88,8 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		System.out.println("url" + path);
 		System.out.println(bomVO.getListVO().get(2).getParent());
 		StringBuffer url = request.getRequestURL();
 		int result = 0;

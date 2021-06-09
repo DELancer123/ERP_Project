@@ -59,6 +59,7 @@
 </head>
 <body>
 <form id="regBOM" method="get" commandName = "ListVO">
+<input type="hidden" id="path" value=""/>
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -167,7 +168,9 @@
           // dao에서 저장
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-           document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			var link = document.location.href;
+  			document.getElementById('regBOM').setAttribute('path',link);
+            document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit(); 
 		/* window.location.href = "${contextPath}/member/addBOM.do"; */
          /*  var cell1 = row.insertCell(0);
