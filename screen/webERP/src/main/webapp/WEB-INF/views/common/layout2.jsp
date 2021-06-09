@@ -317,9 +317,7 @@
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
         }
-        
-     
-        
+              
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {

@@ -1,6 +1,6 @@
 package com.myspring.commonProduction.operationRegist.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProductionPalnViewVO {
 	int no;

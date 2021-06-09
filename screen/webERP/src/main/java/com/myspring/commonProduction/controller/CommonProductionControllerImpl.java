@@ -1,6 +1,7 @@
 
 package com.myspring.commonProduction.controller;
   
+import java.sql.Date;
 import java.util.List;
   
 import javax.servlet.http.HttpServletRequest; 
@@ -70,7 +71,17 @@ import com.myspring.commonProduction.service.CommonProductionService;
   @RequestMapping(value="/member/productionPlanSearch.do",method = RequestMethod.GET)
   	public ModelAndView productionPlanSearch(HttpServletRequest request, HttpServletResponse response) throws Exception{
 	  String viewName = getViewName(request);
-	  List productionPlanView = productionService.productionPlanView();
+	  ModelAndView mav = new ModelAndView(viewName);
+	  return mav;
+  }
+  
+  @Override
+  @RequestMapping(value="/member/productionPlanResponse.do",method = RequestMethod.GET)
+  	public ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	  String startDate = request.getParameter("dateStart");
+	  String endDate = request.getParameter("dateEnd");
+	  String viewName = getViewName(request);
+	  List productionPlanView = productionService.productionPlanView(startDate, endDate);
 	  ModelAndView mav = new ModelAndView(viewName);
 	  mav.addObject("productionPlanView", productionPlanView);
 	  return mav;

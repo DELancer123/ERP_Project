@@ -1,5 +1,8 @@
 package com.myspring.commonProduction.operationRegist.dao;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -41,9 +44,15 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	}
 	
 	@Override
-	public List productionPlanPop() throws DataAccessException {
+	public List productionPlanPop(String startDate, String endDate) throws DataAccessException, ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date start = new Date(sdf.parse(startDate).getTime());
+		Date end = new Date(sdf.parse(endDate).getTime());
+		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+		COIvo.setStartDate(start);
+		COIvo.setEndDate(end);
 		List<CommitOperationInstructionVO> COIList = null;
-		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList");
+		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList", COIvo);
 		return COIList;
 	}
 }
