@@ -9,7 +9,7 @@
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
-		<result property="dailyProduction" column="DailyProduction" />
+		<result property="dailyProduction" column="Dailyproduction" />
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
@@ -59,7 +59,7 @@
 		<result property="note" column="note" />
 	</resultMap>
 	<select id="selectProductionPlanList" resultMap="selectProductionPlanViewResult">
-		<![CDATA[select * from CPM_PM_PRO_REG]]>
+		<![CDATA[select * from CPM_PM_Pro_Pla_Reg]]>
 	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
