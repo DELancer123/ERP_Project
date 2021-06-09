@@ -22,17 +22,16 @@
     		text-decoration:none;
     	}
         #wrap{
-            width: 300px;
-            height: 400px;
+            width: 1000px;
+            height: 800px;
             border: 1px solid black;
         }
         #searchBox{
             width: 100%;
-            height: 23%;
+            height: 10%;
             border: 1px solid black;
         }
         #button{
-            margin-top: 3%;
             margin-right: 3%;
             text-align: right;
         }
@@ -41,27 +40,26 @@
         }
         #view{
         	width:100%;
-        	height:77%;
+        	height:90%;
         	overflow:scroll;
         }
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/regbom" >
+<form name="popForm" method="get" action="${contextPath }/member/productionPlanSearch" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
                 <tr>
                     <td>계획기간</td>
-                    <td><input type="date" id="dateStart" style="background-color: yello"/></td>
-                	~
-                    <td><input type="date" id="dateEnd" style="background-color: yello"/></td>
+                    <td><input type="date" name="dateStart" style="background-color: yellow;"/></td>
+                	<td>~</td>
+                    <td><input type="date" name="dateEnd" style="background-color: yellow;"/></td>
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
+                <button id="planSearch">조회</button>
                 <button id="submit">적용</button>
-                <button>버튼3</button>
             </div>
         </div>
         <div id="view">
@@ -75,25 +73,25 @@
                     <td>작업예정일</td>
                     <td>비고</td>
                 </tr>
-    <c:forEach var="factory" items="${itemView}" >     
+     <c:forEach var="productionPlan" items="${productionPalnView}" >     
 		<tr align="center">
-      		<td><a href="javascript:popFunction('${factory.workplaceCode }','${factory.workplaceName }')">${factory.workplaceCode}</a></td>
-      		<td><a href="#">${factory.workplaceName}</a></td>
+      		
+      		<td><a href="#">${productionPlan.itemName}</a></td>
     	</tr> 
     </c:forEach> 
             </table>
         </div>
     </div>
-    
     <script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
+    	var submit_button = document.getElementById("submit");
+    	var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
     	}
+    	
     	submit_button.onclick = function(){
     		opener.parent.location='${contextPath }/member/regoperins.do?itemNumber='+text_code.value+'&&itemName='+text_name.value;
     		window.close();
