@@ -15,6 +15,6 @@
   public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException;
   public List itemView() throws DataAccessException;
   public List departmentView() throws DataAccessException;
-  public List productionPlanView() throws DataAccessException;  
+  public List productionPlanView(String startDate, String endDate) throws DataAccessException;  
   }
  

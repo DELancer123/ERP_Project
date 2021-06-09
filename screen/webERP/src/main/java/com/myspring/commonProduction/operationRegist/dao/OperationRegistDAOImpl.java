@@ -41,7 +41,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	}
 	
 	@Override
-	public List productionPlanPop() throws DataAccessException {
+	public List productionPlanPop(String startDate, String endDate) throws DataAccessException {
 		List<CommitOperationInstructionVO> COIList = null;
 		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList");
 		return COIList;

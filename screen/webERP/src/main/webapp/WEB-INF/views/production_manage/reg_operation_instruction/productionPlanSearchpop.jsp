@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/productionPlanSearch" >
+<form name="popForm" method="get" action="${contextPath }/member/productionPlanSearch.do" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">

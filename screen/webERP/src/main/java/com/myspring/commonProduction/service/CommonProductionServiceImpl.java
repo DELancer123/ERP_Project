@@ -50,9 +50,9 @@
 	}
   
   @Override
-  public List productionPlanView() throws DataAccessException {
+  public List productionPlanView(String startDate, String endDate) throws DataAccessException {
 	  List popList = null;
-	  popList = ORdao.productionPlanPop();
+	  popList = ORdao.productionPlanPop(startDate, endDate);
 	  return popList;
   }
   }
