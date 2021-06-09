@@ -488,3 +488,4 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web,visualstudio
+screen/webERP/src/main/java/com/myspring/commonProduction/operationRegist/vo/ProductionPalnViewVO.java
