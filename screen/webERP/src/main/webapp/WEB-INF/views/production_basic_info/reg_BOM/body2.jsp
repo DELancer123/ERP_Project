@@ -7,6 +7,7 @@
   request.setCharacterEncoding("UTF-8");
 %>    
 <% String parent = request.getParameter("itemNumber"); %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  <c:forEach var="bom" items="${bomInsert}" >     
  	<c:set var="itemNumber" value="${bom.itemNumber }"/>
  	<c:set var="itemName" value="${bom.itemName }"/>
@@ -57,7 +58,7 @@
 </style>
 </head>
 <body>
-<form id="regBOM" method="get">
+<form id="regBOM" method="get" commandName = "ListVO">
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -82,42 +83,43 @@
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
    <tr align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
-   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}]no" value = '${bom.no }' style="width:100%"/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]parent" value = '${bom.parent}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]itemNumber" value = '${bom.itemNumber}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]itemName" value = '${bom.itemName}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]standard" value = '${bom.standard }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]unit" value = '${bom.unit }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]precisionQuantity" value = '${bom.precisionQuantity }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]loss" value = '${bom.loss }'/></td>
+   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
    	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]actualCost" value = '${bom.actualCost }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
-   	  <td><input type="date" name="ListVO[${status.index}]startDate" value = '${bom.startDate }'/></td>
-   	  <td><input type="date" name="ListVO[${status.index}]endDate" value = '${bom.endDate }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}]note" value = '${bom.note }'/>   </td>
+   	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].endDate" value = '${bom.endDate }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
     
     <tr align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="no" style="width:100%"/></td>
-    	<td><input type="text" name="parent" value = <%=parent %> /></td>
-    	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="itemName" value='${itemName }' /></td>
-    	<td><input type="text" name="standard" value='${standard }' /></td>
-    	<td><input type="text" name="unit" value='${unit }'/></td>
-    	<td><input type="text" name="precisionQuantity"/></td>
-    	<td><input type="text" name="loss"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" style="width:100%"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = <%=parent %> /></td>
+    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss"/></td>
     	<td><input type="text"/></td>
-    	<td><input type="text" name="actualCost"/></td>
-    	<td><input type="text" name="outSourcingUnitPrice"/></td>
-    	<td><input type="date" name="startDate"/></td>
-    	<td><input type="date" name="endDate"/></td>
-    	<td><input type="text" name="note"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-    
+     
                 </table>
+                 
             </div>
             <!-- 합계 출력부 -->
             <div id="resultWindow">
