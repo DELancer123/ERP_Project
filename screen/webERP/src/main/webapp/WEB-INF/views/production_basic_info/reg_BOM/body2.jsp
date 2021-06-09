@@ -6,12 +6,15 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
+<% String parent = request.getParameter("itemNumber"); %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  <c:forEach var="bom" items="${bomInsert}" >     
  	<c:set var="itemNumber" value="${bom.itemNumber }"/>
  	<c:set var="itemName" value="${bom.itemName }"/>
  	<c:set var="standard" value="${bom.standard }"/>
  	<c:set var="unit" value="${bom.unit }"/>
  </c:forEach>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,13 +59,14 @@
 </style>
 </head>
 <body>
-<form id="regBOM" method="get">
+<form id="regBOM" method="get" commandName = "ListVO">
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead align="center" style="background-color:gray">
                         <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td style="width:10px;">No</td>
+                        <td>모품목코드</td>
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -77,42 +81,47 @@
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-         <c:forEach var="bom" items="${bomView}" >     
-   <tr align="center">
-   	  <td><input type="checkbox" name="content"/></td>
-   	  <td style="width:13px;"><input type="text" value = '${bom.no }' style="width:100%"/>
-   	  <td><input type="text" value = '${bom.itemNumber}'/>
-   	  <td><input type="text" value = '${bom.itemName}'/>
-   	  <td><input type="text" value = '${bom.standard }'/>
-   	  <td><input type="text" value = '${bom.unit }'/>
-   	  <td><input type="text" value = '${bom.precisionQuantity }'/>
-   	  <td><input type="text" value = '${bom.loss }'/>
-   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/>
-   	  <td><input type="text" value = '${bom.actualCost }'/>
-   	  <td><input type="text" value = '${bom.outSourcingUnitPrice }'/>
-   	  <td><input type="date" value = '${bom.startDate }'/>
-   	  <td><input type="date" value = '${bom.endDate }'/>
-   	  <td><input type="text" value = '${bom.note }'/>
-      
+         <c:forEach var="bom" items="${bomView}" varStatus="status" >     
+   <tr name= "updateTest" align="center">
+   	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
+   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
+   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].endDate" value = '${bom.endDate }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    <tr align="center">
+    
+    <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" id="no" style="width:100%"/></td>
-    	<td><input type="text" id="itemNumber" value='${Item_code }' ondblclick="search2()"/></td>
-    	<td><input type="text" id="itemName" value='${Item_+Name }' /></td>
-    	<td><input type="text" id="standard" value='${Standard }' /></td>
-    	<td><input type="text" id="unit" value='${inventory_unit }'/></td>
-    	<td><input type="text" id="precisionQuantity"/></td>
-    	<td><input type="text" id="loss"/></td>
-    	<td><input type="text" id="actualQuantity"/></td>
-    	<td><input type="text" id="actualCost"/></td>
-    	<td><input type="text" id="outSourcingUnitPrice"/></td>
-    	<td><input type="date" id="startDate"/></td>
-    	<td><input type="date" id="endDate"/></td>
-    	<td><input type="text" id="note"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" style="width:100%"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' /></td>
+    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss"/></td>
+    	<td><input type="text"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
+		<input type = "hidden" id="path"/>
     </tr>
+     
                 </table>
+                 
             </div>
             <!-- 합계 출력부 -->
             <div id="resultWindow">
@@ -151,7 +160,8 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-          window.location.href = "${contextPath}/member/updateBOM.do";
+           document.getElementByName('updateTest').action = "${contextPath}/member/updateBOM.do";
+  			document.getElementByName('updateTest').submit(); 
       }
       
       
@@ -159,9 +169,12 @@
           // dao에서 저장
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-          /* document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
-  			document.getElementById('regBOM').submit(); */
-		window.location.href = "${contextPath}/member/addBOM.do";
+  			var link = document.location.href;
+  			document.getElementById("path").value = link;
+  			console.log(document.getElementById.value);
+            document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit();  
+		/* window.location.href = "${contextPath}/member/addBOM.do"; */
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
@@ -174,6 +187,21 @@
           cell3.innerHTML =  "<input type='date' />";
            */
       }
+
+      
+     function deleteData() {
+    	  var item = document.getElementsByName("content").length;
+    	  var no = "";
+    	  var ary = [];
+    	  for(var i=0; i<item;i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			  no = document.getElementsByName("content")[i].value;
+    			  ary.push(no);
+    		  }
+    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
+    	  }
+      }
+
       </script>
       </form>
 </body>
