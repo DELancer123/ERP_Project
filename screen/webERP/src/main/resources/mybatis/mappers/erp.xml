@@ -4,8 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mappers.erp">
-	<resultMap id="SmBimResult"
-		type="CommitOperationInstructionVO">
+	<resultMap id="SmBimResult"	type="CommitOperationInstructionVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
@@ -47,7 +46,21 @@
 	<select id="selectDepartmentList" resultMap="DepartmentViewResult">
 		<![CDATA[select* from SM_CRI_Dep_Reg]]>
 	</select>
-	
+	<resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
+		<result property="no" column="no" />
+		<result property="itemCode" column="item_code" />
+		<result property="itemName" column="item_Name" />
+		<result property="standard" column="standard" />
+		<result property="inventoryUnit" column="inventory_unit" />
+		<result property="dailyProduction" column="dailyProduction" />
+		<result property="sequence" column="sequence" />
+		<result property="schedule" column="scheduleddateofoperation" />
+		<result property="quantity" column="quantity" />
+		<result property="note" column="note" />
+	</resultMap>
+	<select id="selectProductionPlanList" resultMap="selectProductionPlanViewResult">
+		<![CDATA[select * from CPM_PM_PRO_REG]]>
+	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
