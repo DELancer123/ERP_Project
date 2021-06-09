@@ -6,13 +6,19 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
+<%
+	String inputNo = (String)request.getAttribute("inputNo");
+	
+%>
 <% String parent = request.getParameter("itemNumber"); %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  <c:forEach var="bom" items="${bomInsert}" >     
  	<c:set var="itemNumber" value="${bom.itemNumber }"/>
  	<c:set var="itemName" value="${bom.itemName }"/>
  	<c:set var="standard" value="${bom.standard }"/>
  	<c:set var="unit" value="${bom.unit }"/>
  </c:forEach>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +63,7 @@
 </style>
 </head>
 <body>
-<form id="regBOM" method="get">
+<form id="regBOM" method="get" commandName = "ListVO">
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -79,45 +85,46 @@
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-         <c:forEach var="bom" items="${bomView}" >     
-   <tr align="center">
+         <c:forEach var="bom" items="${bomView}" varStatus="status" >     
+   <tr id= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
-   	  <td style="width:13px;"><input type="text" name="no" value = '${bom.no }' style="width:100%"/>
-   	  <td><input type="text" name="parent" value = '${bom.parent}'/>
-   	  <td><input type="text" name="itemNumber" value = '${bom.itemNumber}'/>
-   	  <td><input type="text" name="itemName" value = '${bom.itemName}'/>
-   	  <td><input type="text" name="standard" value = '${bom.standard }'/>
-   	  <td><input type="text" name="unit" value = '${bom.unit }'/>
-   	  <td><input type="text" name="precisionQuantity" value = '${bom.precisionQuantity }'/>
-   	  <td><input type="text" name="loss" value = '${bom.loss }'/>
-   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/>
-   	  <td><input type="text" name="actualCost" value = '${bom.actualCost }'/>
-   	  <td><input type="text" name="outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/>
-   	  <td><input type="date" name="startDate" value = '${bom.startDate }'/>
-   	  <td><input type="date" name="endDate" value = '${bom.endDate }'/>
-   	  <td><input type="text" name="note" value = '${bom.note }'/>   
+   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
+   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].endDate" value = '${bom.endDate }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    <!--
-    <tr align="center">
+    
+    <tr id ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="no" style="width:100%"/></td>
-    	<td><input type="text" name="parent" value = <%=parent %> /></td>
-    	<td><input type="text" id="itemNumber" name="itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="itemName" value='${itemName }' /></td>
-    	<td><input type="text" name="standard" value='${standard }' /></td>
-    	<td><input type="text" name="unit" value='${unit }'/></td>
-    	<td><input type="text" name="precisionQuantity"/></td>
-    	<td><input type="text" name="loss"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text" name="actualCost"/></td>
-    	<td><input type="text" name="outSourcingUnitPrice"/></td>
-    	<td><input type="date" name="startDate"/></td>
-    	<td><input type="date" name="endDate"/></td>
-    	<td><input type="text" name="note"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
+    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss"/></td>
+    	<td><input type="text" readonly id="actualQuantity"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-    -->
+     
                 </table>
+                 
             </div>
             <!-- 합계 출력부 -->
             <div id="resultWindow">
@@ -132,6 +139,18 @@
       var unit = document.getElementById("dataoutput");
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
+      var actualCost = document.getElementById('actualCost');
+      actualCost.onfocus = function(){
+     	  var actualQuantity = document.getElementById('actualQuantity');
+    	  var loss = document.getElementById('loss');
+    	  var precisionQuantity = document.getElementById('precisionQuantity');
+    	  var actQuan = parseFloat(actualQuantity.value);
+    	  var preQuan = parseFloat(precisionQuantity.value);
+    	  var lossInt = parseFloat(loss.value);
+    	  actualQuantity.value = preQuan +(lossInt/10);
+    	  console.log(precisionQuantity.value);
+    	  console.log(actualQuantity.value);
+      }
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
@@ -156,17 +175,25 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
+  			var link = document.location.href;
+  			 document.getElementById('regBOM').setAttribute('path',link);
            document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
-  			document.getElementById('regBOM').submit(); 
+  			document.getElementById('regBOM').submit();  
       }
       
       
       function newRow(){
           // dao에서 저장
-          var workOrderTable = document.getElementById('workOrderTable');
+    	 
           var row = workOrderTable.insertRow(); 
-           document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
-  			document.getElementById('regBOM').submit(); 
+  			var link = document.location.href;
+  			var articleNOInput = document.createElement("input");
+  		     articleNOInput.setAttribute("type","hidden");
+  		     articleNOInput.setAttribute("name","path");
+  		     articleNOInput.setAttribute("value", link);
+  		     document.getElementById('regBOM').appendChild(articleNOInput);
+            document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit();  
 		/* window.location.href = "${contextPath}/member/addBOM.do"; */
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
@@ -191,6 +218,7 @@
     			  no = document.getElementsByName("content")[i].value;
     			  ary.push(no);
     		  }
+    		  
     			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
     	  }
       }

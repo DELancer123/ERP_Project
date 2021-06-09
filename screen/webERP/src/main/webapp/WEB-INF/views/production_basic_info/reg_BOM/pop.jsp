@@ -8,7 +8,9 @@
   request.setCharacterEncoding("UTF-8");
 %>    
     
-
+<%
+	String inputNo = (String)request.getAttribute("inputNo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +64,8 @@
             </table>
             <div id="button">
                 <button id="search">조회</button>
-                <button id="submit">적용</button>
+                <button id="submit" onclick="submitClick(this.form)">적용</button>
+                <input type="hidden" name="inputNo" value=""/>
                  
                 <button>버튼3</button>
             </div>
@@ -96,8 +99,8 @@
     			text_name.value = name;
     			
     	}
-    	submit_button.onclick = function(){
-    		opener.setChildValue(text_code.value);
+    	function submitClick(form){
+    		opener.setChildValue(text_code.value)
 			window.close();
     	}
     </script>

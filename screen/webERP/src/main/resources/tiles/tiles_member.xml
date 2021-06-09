@@ -114,7 +114,26 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-   
+   <definition name="ProductionPlanPopupLayout"  template="/WEB-INF/views/production_manage/reg_operation_instruction/productionPlanSearchpop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/productionPlanSearch" extends="ProductionPlanPopupLayout">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+    <definition name="ProductionPlanPopupLayout" template="/WEB-INF/views/production_manage/reg_operation_instruction/productionPlanSearchpop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/productionPlanResponse" extends="ProductionPlanPopupLayout">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
    <!--  -->
    
 

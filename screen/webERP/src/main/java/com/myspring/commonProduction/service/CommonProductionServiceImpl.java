@@ -1,7 +1,8 @@
 
  package com.myspring.commonProduction.service;
  
- import java.util.List;
+ import java.text.ParseException;
+import java.util.List;
  
  import org.springframework.beans.factory.annotation.Autowired; import
  org.springframework.dao.DataAccessException; import
@@ -48,5 +49,12 @@
 	  popList = ORdao.departmentViewPop();
 	  return popList;
 	}
+  
+  @Override
+  public List productionPlanView(String startDate, String endDate) throws DataAccessException, ParseException {
+	  List popList = null;
+	  popList = ORdao.productionPlanPop(startDate, endDate);
+	  return popList;
+  }
   }
  

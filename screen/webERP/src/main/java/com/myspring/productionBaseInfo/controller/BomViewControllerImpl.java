@@ -1,6 +1,8 @@
 package com.myspring.productionBaseInfo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +43,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
+		int sum = 0;
 		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
@@ -50,6 +53,7 @@ public class BomViewControllerImpl implements BomViewController {
 			List bomView = viewService.SearchView(number);
 			
 			mav = new ModelAndView(viewName);
+			
 			mav.addObject("bomView", bomView);
 		}
 		else if(submit.equals("2")) {
@@ -58,6 +62,10 @@ public class BomViewControllerImpl implements BomViewController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
+			int inputNo = viewService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo);
+			request.setAttribute("inputNo", inNo);
 		}
 		
 		 
@@ -86,14 +94,12 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(bomVO.getItemName());
 		request.setCharacterEncoding("utf-8");
-		StringBuffer url = request.getRequestURL();
+		String path = request.getParameter("path");
+		System.out.println("url" + path);
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		String resulturl = url.toString();
-		System.out.println("�쑀�븣�뿕" + resulturl);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 	
@@ -112,18 +118,21 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		System.out.println(bomVO.getItemNumber());
-		System.out.println(bomVO.getItemName());
-		System.out.println(bomVO.getStandard());
-		System.out.println(bomVO.getUnit());
-		System.out.println(bomVO.getPrecisionQuantity());
-		System.out.println(bomVO.getLoss());
-		System.out.println(bomVO.getActualCost());
-		System.out.println(bomVO.getOutSourcingUnitPrice());
-		System.out.println(bomVO.getStartDate());
-		System.out.println(bomVO.getEndDate());
-		System.out.println(bomVO.getNote());
-		System.out.println(bomVO.getNo());
+		for(int i = 0; i<bomVO.getListVO().size();i++) {
+			System.out.println(bomVO.getListVO().get(i).getNo());
+			System.out.println(bomVO.getListVO().get(i).getParent());
+			System.out.println(bomVO.getListVO().get(i).getItemNumber());
+			System.out.println(bomVO.getListVO().get(i).getItemName());
+			System.out.println(bomVO.getListVO().get(i).getStandard());
+			System.out.println(bomVO.getListVO().get(i).getUnit());
+			System.out.println(bomVO.getListVO().get(i).getPrecisionQuantity());
+			System.out.println(bomVO.getListVO().get(i).getLoss());
+			System.out.println(bomVO.getListVO().get(i).getActualCost());
+			System.out.println(bomVO.getListVO().get(i).getOutSourcingUnitPrice());
+			System.out.println(bomVO.getListVO().get(i).getStartDate());
+			System.out.println(bomVO.getListVO().get(i).getEndDate());
+			System.out.println(bomVO.getListVO().get(i).getNote());
+		}
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
 		//String resulturl = url.toString();
