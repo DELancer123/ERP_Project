@@ -14,6 +14,6 @@ public interface bomViewDAO {
 	public List SearchView(String itemNumber) throws DataAccessException;
 	public int addBOM(bomVO bomVO) throws DataAccessException;
 	public void delBOM(String[] noary) throws DataAccessException;
-	public int updateBOM(bomVO bomVO) throws DataAccessException;
+	public int updBOM(bomVO bomVO) throws DataAccessException;
 
 }

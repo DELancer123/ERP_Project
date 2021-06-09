@@ -1,6 +1,7 @@
 package com.myspring.productionBaseInfo.controller;
 
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +42,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
-		System.out.println("아이템코드:" + itemNumber);
+		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -86,13 +87,13 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(bomVO.getItemName());
 		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		System.out.println("url" + path);
+		System.out.println(bomVO.getListVO().get(2).getParent());
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		String resulturl = url.toString();
-		System.out.println("유알엘" + resulturl);
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 	}
@@ -107,6 +108,20 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 		}
+	
+	@Override
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+
+		int result = 0;
+		result = viewService.updateBOM(bomVO);
+		//String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		//mav.addObject("itemView", itemView);
+		//System.out.println("itemcode:"+bomVO.getItemNumber());
+		return mav;
+	}
 		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
@@ -138,20 +153,5 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return viewName;
 	}
-
-	@Override
-	public ModelAndView updateMember(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	
-
-	
-	
-	
 
 }

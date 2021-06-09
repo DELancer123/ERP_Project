@@ -20,9 +20,9 @@ public class bomViewDAOImpl implements bomViewDAO{
 	@Override
 	public List viewBOM() throws DataAccessException {
 		List<bomVO> bomList = null;
-		//System.out.println("�떎�삤 �떆�옉 : " + bomList);
+		//System.out.println("占쎈뼄占쎌궎 占쎈뻻占쎌삂 : " + bomList);
 		bomList = sqlSession.selectList("mappers.erp.selectAllMemberList");
-		//System.out.println("�떎�삤 醫낅즺 : " + bomList);
+		//System.out.println("占쎈뼄占쎌궎 �넫�굝利� : " + bomList);
 		return bomList;
 	}
 
@@ -48,23 +48,25 @@ public class bomViewDAOImpl implements bomViewDAO{
 
 	@Override
 	public int addBOM(bomVO bomVO) throws DataAccessException {
-		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO);
+		int idx = bomVO.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO.getListVO().get(idx));
 		return 0;
 	}
 	
 	@Override
-
 	public void delBOM(String[] noary) throws DataAccessException{
 		for(String obj: noary) {
 			sqlSession.delete("mappers.erp.deleteBOM", Integer.parseInt(obj));		
-			System.out.println("삭제 완료");
+			System.out.println("DAO.delBOM");
 		}
 	}
 
 
-	public int updateBOM(bomVO bomVO) throws DataAccessException {
+	@Override
+	public int updBOM(bomVO bomVO) throws DataAccessException {
 		int result = sqlSession.update("mappers.erp.updateBOM",bomVO);
-		return 0;
+		System.out.println("DAOresult:"+result);
+		return result;
 	}
 	
 
