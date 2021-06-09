@@ -121,10 +121,7 @@ public class BomViewControllerImpl implements BomViewController {
 		
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
-		//String resulturl = url.toString();
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
-		//mav.addObject("itemView", itemView);
-		//System.out.println("itemcode:"+bomVO.getItemNumber());
 		return mav;
 	}
 		

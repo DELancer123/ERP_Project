@@ -117,7 +117,7 @@
 		<![CDATA[
 		update CPM_BIM_BOM_REG
 		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
-		where  Item_Code=#{itemNumber}
+		where  no=#{no}
 		]]>  
 	</update>
 	
