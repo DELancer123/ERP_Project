@@ -1,55 +1,56 @@
-//package com.myspring.salesmanage.pop.itemview.vo;
-//
-//import org.springframework.stereotype.Component;
-//
-//@Component("itemviewVO")
-//public class ItemViewVO {
-//	
-//	private String Item_Code; //ǰ��
-//	private String Item_Name; //ǰ��
-//	private String Standard; //�԰�
-//	private String Inventory_Unit; //����
-//	private String Inspection_Status; //�˻翩��
-//	
-//	public ItemViewVO() {}
-//	
-//	public ItemViewVO(String Item_Code, String Item_Name, String Standard, String Inventory_Unit, String Inspection_Status) {
-//		 this.Item_Code = Item_Code; //ǰ��
-//		 this.Item_Name = Item_Name; //ǰ��
-//		 this.Standard = Standard; //�԰�
-//		 this.Inventory_Unit = Inventory_Unit; //����
-//		 this.Inspection_Status = Inspection_Status; //�˻翩��
-//	}
-//	
-//	public String getItem_Code() {
-//		return Item_Code;
-//	}
-//	public void setItem_Code(String item_Code) {
-//		Item_Code = item_Code;
-//	}
-//	public String getItem_Name() {
-//		return Item_Name;
-//	}
-//	public void setItem_Name(String item_Name) {
-//		Item_Name = item_Name;
-//	}
-//	public String getStandard() {
-//		return Standard;
-//	}
-//	public void setStandard(String standard) {
-//		Standard = standard;
-//	}
-//	public String getInventory_Unit() {
-//		return Inventory_Unit;
-//	}
-//	public void setInventory_Unit(String inventory_Unit) {
-//		Inventory_Unit = inventory_Unit;
-//	}
-//	public String getInspection_Status() {
-//		return Inspection_Status;
-//	}
-//	public void setInspection_Status(String inspection_Status) {
-//		Inspection_Status = inspection_Status;
-//	}
-//
-//}
+package com.myspring.salesmanage.pop.itemview.vo;
+
+import org.springframework.stereotype.Component;
+
+@Component("itemviewVO")
+public class ItemViewVO {
+	private String item_code; //ǰ��
+	private String item_name; //ǰ��
+	private String standard; //�԰�
+	private String inventory_unit; //����
+	private String inspection_status; //�˻翩��
+	
+	public ItemViewVO() {}
+	
+	public ItemViewVO(String item_code, String item_name, String standard, String inventory_unit,
+			String inspection_status) {
+		super();
+		this.item_code = item_code;
+		this.item_name = item_name;
+		this.standard = standard;
+		this.inventory_unit = inventory_unit;
+		this.inspection_status = inspection_status;
+	}
+	public String getItem_code() {
+		return item_code;
+	}
+	public void setItem_code(String item_code) {
+		this.item_code = item_code;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public String getStandard() {
+		return standard;
+	}
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
+	public String getInventory_unit() {
+		return inventory_unit;
+	}
+	public void setInventory_unit(String inventory_unit) {
+		this.inventory_unit = inventory_unit;
+	}
+	public String getInspection_status() {
+		return inspection_status;
+	}
+	public void setInspection_status(String inspection_status) {
+		this.inspection_status = inspection_status;
+	}
+
+	
+}

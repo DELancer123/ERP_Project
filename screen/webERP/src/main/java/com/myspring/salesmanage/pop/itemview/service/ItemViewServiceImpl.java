@@ -6,7 +6,9 @@
 //import org.springframework.dao.DataAccessException;
 //import org.springframework.stereotype.Service;
 //
+//
 //import com.myspring.salesmanage.pop.itemview.dao.ItemViewDAO;
+//import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
 //
 //@Service("itemviewService")
 //public class ItemViewServiceImpl implements ItemViewService {
@@ -15,30 +17,51 @@
 //	private ItemViewDAO itemViewDAO;
 //
 //	@Override
-//	public List itemSearch() throws DataAccessException {
-//		List itemList = null;
-//		itemList = itemViewDAO.searchItem();
-//		return itemList;
-//	}//itemViewDAO.searchItem()
-//
-//	@Override
-//	public List planItemView() throws DataAccessException {
-//		List planItemList = null;
-//		planItemList = itemViewDAO.viewPlanItem();
-//		return planItemList;
-//	}//itemViewDAO.viewPlanItem()
-//
-//	@Override
-//	public List itemIn(String Item_Code) throws DataAccessException {
-//		List textList = null;
-//		textList = itemViewDAO.inItem(Item_Code);
-//		return textList;
+//	public List listItems() throws DataAccessException {
+//		List allItemsList = null;
+//		allItemsList = itemViewDAO.selectAllItemList();
+//		return allItemsList;
 //	}
 //
 //	@Override
-//	public List viewSearch(String Item_Code) throws DataAccessException {
-//		List searchList = null;
-//		searchList = itemViewDAO.searchView(Item_Code);
-//		return searchList;
+//	public int addMember(ItemViewVO item) throws DataAccessException {
+//		return itemViewDAO.insertMember(item);
 //	}
+//
+//	@Override
+//	public int removeMember(String id) throws DataAccessException {
+//		return itemViewDAO.deleteMember(id);
+//	}
+//
+//	
+////	@Autowired
+////	private ItemViewDAO itemViewDAO;
+////
+////	@Override
+////	public List itemSearch() throws DataAccessException {
+////		List itemList = null;
+////		itemList = itemViewDAO.searchItem();
+////		return itemList;
+////	}//itemViewDAO.searchItem()
+////
+////	@Override
+////	public List planItemView() throws DataAccessException {
+////		List planItemList = null;
+////		planItemList = itemViewDAO.viewPlanItem();
+////		return planItemList;
+////	}//itemViewDAO.viewPlanItem()
+////
+////	@Override
+////	public List itemIn(String Item_Code) throws DataAccessException {
+////		List textList = null;
+////		textList = itemViewDAO.inItem(Item_Code);
+////		return textList;
+////	}
+////
+////	@Override
+////	public List viewSearch(String Item_Code) throws DataAccessException {
+////		List searchList = null;
+////		searchList = itemViewDAO.searchView(Item_Code);
+////		return searchList;
+////	}
 //}

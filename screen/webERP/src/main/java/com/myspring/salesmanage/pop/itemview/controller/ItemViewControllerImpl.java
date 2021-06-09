@@ -26,35 +26,46 @@
 //	@Autowired
 //	private ItemViewVO itemViewVO;
 //
+//
+//
 //	@Override
-//	@RequestMapping(value="/member/regplanitem.do" ,method = RequestMethod.GET)
-//	public ModelAndView viewPlanItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		ModelAndView mav = null;
+//	@RequestMapping(value="/common/popSalePlanItem.do" ,method = RequestMethod.GET)
+//	public ModelAndView listItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		String viewName = getViewName(request);
-//		String code = (String) request.getParameter("Item_Code");
-//		if(code == null || code.length() == 0) {
-//			mav = new ModelAndView(viewName);
-//			return mav;
-//		}
-//		else {
-//			List planItemView = itemViewService.viewSearch(code);
-//			mav = new ModelAndView(viewName);
-//			mav.addObject("planItemView", planItemView);
-//		}
-//			
-//		System.out.println("���Ͷ��" + code);
-//		return mav;
-//	}
-//
-//	@RequestMapping(value="/member/codehelperbyplan.do" ,method = RequestMethod.GET)
-//	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String viewName = getViewName(request);
-//		List itemSearch = itemViewService.itemSearch();
+////		String viewName = (String)request.getAttribute("viewName");
+//		//System.out.println("viewName: " +viewName);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
+//		List allItemsList = itemViewService.listItems();
 //		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("itemSearch", itemSearch);
+//		mav.addObject("allItemsList", allItemsList);
 //		return mav;
 //	}
 //
+//
+//
+//	@Override
+//	public ModelAndView addMember(ItemViewVO itemviewVO, HttpServletRequest request, HttpServletResponse response)
+//			throws Exception {
+//		request.setCharacterEncoding("utf-8");
+//		int result = 0;
+//		result = itemViewService.addMember(itemviewVO);
+//		ModelAndView mav = new ModelAndView("redirect:/common/popSalesPlansItem.do");
+//		return mav;
+//	}
+//
+//
+//
+//	@Override
+//	public ModelAndView removeMember(String id, HttpServletRequest request, HttpServletResponse response)
+//			throws Exception {
+//		request.setCharacterEncoding("utf-8");
+//		itemViewService.removeMember(id);
+//		ModelAndView mav = new ModelAndView("redirect:/common/popSalesPlansItem.do");
+//		return mav;
+//	}
+//	
+//	
 //	private String getViewName(HttpServletRequest request) {
 //		String contextPath = request.getContextPath();
 //		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -85,4 +96,38 @@
 //		}
 //		return viewName;
 //	}
+//
+//
+//
+//
+//	
+//	
+////	@Override
+////	@RequestMapping(value="/member/regplanitem.do" ,method = RequestMethod.GET)
+////	public ModelAndView viewPlanItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+////		ModelAndView mav = null;
+////		String viewName = getViewName(request);
+////		String code = (String) request.getParameter("Item_Code");
+////		if(code == null || code.length() == 0) {
+////			mav = new ModelAndView(viewName);
+////			return mav;
+////		}
+////		else {
+////			List planItemView = itemViewService.viewSearch(code);
+////			mav = new ModelAndView(viewName);
+////			mav.addObject("planItemView", planItemView);
+////		}
+////			
+////		System.out.println("���Ͷ��" + code);
+////		return mav;
+////	}
+////
+////	@RequestMapping(value="/member/codehelperbyplan.do" ,method = RequestMethod.GET)
+////	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+////		String viewName = getViewName(request);
+////		List itemSearch = itemViewService.itemSearch();
+////		ModelAndView mav = new ModelAndView(viewName);
+////		mav.addObject("itemSearch", itemSearch);
+////		return mav;
+////	}
 //}
