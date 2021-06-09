@@ -78,6 +78,10 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
+		int inputNo = viewService.inputNo();
+		String inNo = Integer.toString(inputNo+1);
+		System.out.println(inNo);
+		request.setAttribute("inputNo", inNo);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -90,8 +94,7 @@ public class BomViewControllerImpl implements BomViewController {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		System.out.println("url" + path);
-		System.out.println(bomVO.getListVO().get(2).getParent());
-		StringBuffer url = request.getRequestURL();
+		
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		ModelAndView mav = new ModelAndView("redirect:" + path);

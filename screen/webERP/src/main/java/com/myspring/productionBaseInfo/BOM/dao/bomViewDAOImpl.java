@@ -68,6 +68,11 @@ public class bomViewDAOImpl implements bomViewDAO{
 		System.out.println("DAOresult:"+result);
 		return result;
 	}
+
+	@Override
+	public int selNo() throws DataAccessException {
+		return sqlSession.selectOne("mappers.erp.selectNo");
+	}
 	
 
 

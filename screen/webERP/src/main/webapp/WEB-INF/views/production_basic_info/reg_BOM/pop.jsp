@@ -8,7 +8,9 @@
   request.setCharacterEncoding("UTF-8");
 %>    
     
-
+<%
+	String inputNo = (String)request.getAttribute("inputNo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +65,7 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
+                <input type="hidden" id="inputNo" value='${inputNo }'/>
                  
                 <button>버튼3</button>
             </div>
@@ -94,6 +97,7 @@
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
+    			console.log('${inputNo}');
     			
     	}
     	submit_button.onclick = function(){

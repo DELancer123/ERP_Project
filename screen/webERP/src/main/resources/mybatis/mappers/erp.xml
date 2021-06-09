@@ -69,9 +69,12 @@
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
 	</resultMap>
-
+	
 	<select id="selectAllMemberList" resultMap="bomView">
 		<![CDATA[select * from CPM_BIM_BOM_REG]]>
+	</select>
+	<select id="selectNo" resultType="int">
+		<![CDATA[select MAX(no) from CPM_BIM_BOM_REG]]>
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
