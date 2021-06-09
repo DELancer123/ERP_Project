@@ -67,8 +67,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 		int result = 0; 
 		int idx = bomVO.getListVO().size()-1;
 		for(int i = 0; i<idx;i++) {
-			System.out.println("i"+i);
-			System.out.println("idx : "+idx);
 			result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
 		}
 		return result;

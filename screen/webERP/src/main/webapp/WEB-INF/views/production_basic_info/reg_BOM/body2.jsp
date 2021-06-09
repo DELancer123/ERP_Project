@@ -106,7 +106,7 @@
     </c:forEach> 
 
     <tr id ="insertTest" align="center">
-    <td><input type="checkbox" name="content"/></td>
+    <td></td>
     	<td><input type="text" id="no" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
     	<td><input type="text" id="parent" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
@@ -143,15 +143,14 @@
       var outSourcingUnitPrice = document.getElementById("outSourcingUnitPrice");
       var startDate = document.getElementById("startDate");
       var endDate = document.getElementById("endDate");
+     	  var actualQuantity = document.getElementById('actualQuantity');
 
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
       var actualCost = document.getElementById('actualCost');
-      actualCost.onfocus = function(){
-     	  var actualQuantity = document.getElementById('actualQuantity');
+      actualQuantity.onfocus = function(){
     	  var loss = document.getElementById('loss');
     	  var precisionQuantity = document.getElementById('precisionQuantity');
-    	  var actQuan = parseFloat(actualQuantity.value);
     	  var preQuan = parseFloat(precisionQuantity.value);
     	  var lossInt = parseFloat(loss.value);
     	  actualQuantity.value = preQuan +(lossInt/10);
@@ -200,7 +199,10 @@
           // dao에서 저장
     	 
           var row = workOrderTable.insertRow(); 
-  			var link = document.location.href;
+          const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '2');
+		  const newParam = URLSearch.toString();
+		 var link = location.href +'?'+newParam;
   			var articleNOInput = document.createElement("input");
   		     articleNOInput.setAttribute("type","hidden");
   		     articleNOInput.setAttribute("name","path");
@@ -208,21 +210,10 @@
   		     document.getElementById('regBOM').appendChild(articleNOInput);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
-		/* window.location.href = "${contextPath}/member/addBOM.do"; */
-         /*  var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          var cell4 = row.insertCell(3);
-          var cell5 = row.insertCell(4);
-          cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-          cell2.innerHTML = "<input type='text'/>";
-          cell4.innerHTML = "<input type='text' />";
-          cell5.innerHTML = "<input type='text' />";
-          cell3.innerHTML =  "<input type='date' />";
-           */
+		
       }
 
-      
+      s
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
     	  var no = "";

@@ -44,7 +44,6 @@ public class BomViewControllerImpl implements BomViewController {
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
 		int sum = 0;
-		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -118,21 +117,7 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		for(int i = 0; i<bomVO.getListVO().size();i++) {
-			System.out.println(bomVO.getListVO().get(i).getNo());
-			System.out.println(bomVO.getListVO().get(i).getParent());
-			System.out.println(bomVO.getListVO().get(i).getItemNumber());
-			System.out.println(bomVO.getListVO().get(i).getItemName());
-			System.out.println(bomVO.getListVO().get(i).getStandard());
-			System.out.println(bomVO.getListVO().get(i).getUnit());
-			System.out.println(bomVO.getListVO().get(i).getPrecisionQuantity());
-			System.out.println(bomVO.getListVO().get(i).getLoss());
-			System.out.println(bomVO.getListVO().get(i).getActualCost());
-			System.out.println(bomVO.getListVO().get(i).getOutSourcingUnitPrice());
-			System.out.println(bomVO.getListVO().get(i).getStartDate());
-			System.out.println(bomVO.getListVO().get(i).getEndDate());
-			System.out.println(bomVO.getListVO().get(i).getNote());
-		}
+		
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
 		//String resulturl = url.toString();

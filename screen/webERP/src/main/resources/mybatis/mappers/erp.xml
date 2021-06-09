@@ -48,7 +48,7 @@
 	<select id="selectDepartmentList" resultMap="DepartmentViewResult">
 		<![CDATA[select* from SM_CRI_Dep_Reg]]>
 	</select>
-	<resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
+	<!-- <resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="item_code" />
 		<result property="itemName" column="item_Name" />
@@ -62,7 +62,7 @@
 	</resultMap>
 	<select id="selectProductionPlanList" parameterType="CommitOperationInstructionVO" resultMap="selectProductionPlanViewResult">
 		<![CDATA[select * from CPM_PM_Pro_Pla_Reg where scheduleddateofoperation between #{startDate} and #{endDate}]]>
-	</select>
+	</select> -->
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
@@ -112,7 +112,7 @@
 	<delete id="deleteBOM">
 		delete from CPM_BIM_BOM_REG where NO = #{no}
 	</delete>
-<!-- 
+ 
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
@@ -120,8 +120,8 @@
 		where  Item_Code=#{itemNumber}
 		]]>  
 	</update>
-	-->
-	<update id="updateBOM" parameterType="bomVO">
+	
+	<!-- <update id="updateBOM" parameterType="bomVO">
 		
 		update CPM_BIM_BOM_REG
 		<set>
@@ -140,30 +140,9 @@
 		</set>
 		where  Item_Code=#{itemNumber}
 		
-	</update>
+	</update> -->
 	
-	<!-- 
-	<insert id="insertBOM" parameterType="bomVO">
-		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
-		 values
-		 <foreach collection = "list" item = "ListVO" separator=",">
-		 (#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
-		 </foreach>
-		 on duplicate key update
-		 Item_Name= values(itemName), 
-		 Standard=values(standard), 
-		 Inventory_Unit=values(unit),
-		 precisionQuantity=values(precisionQuantity), 
-		 loss=values(loss),
-		 actualCost=values(actualCost), 
-		 outSourcingUnitPrice=values(outSourcingUnitPrice), 
-		 startDate=values(startDate), 
-		 endDate=values(endDate), 
-		 note=values(note)
-		]]>  
-	</insert>
-	-->
+	
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
