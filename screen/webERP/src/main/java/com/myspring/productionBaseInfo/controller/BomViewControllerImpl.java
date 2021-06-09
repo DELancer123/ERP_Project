@@ -59,11 +59,9 @@ public class BomViewControllerImpl implements BomViewController {
 		else if(submit.equals("2")) {
 			List bomView = viewService.SearchView(number);
 			List bomInsert = viewService.setText(itemNumber);
-			List bomNull = viewService.nullView();
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
-			mav.addObject("bomNull", bomNull);
 			int inputNo = viewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);
@@ -88,20 +86,8 @@ public class BomViewControllerImpl implements BomViewController {
 		String viewName = getViewName(request);
 		String itemNumber = (String) request.getParameter("itemCode");
 		List itemView = viewService.itemView();
-<<<<<<< .merge_file_a08292
-		List bomNull = viewService.nullView();
-
-		
-=======
->>>>>>> .merge_file_a06188
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
-		mav.addObject("bomNull", bomNull);
-		if( !bomNull.isEmpty() ) {
-			mav.addObject("bomNull",bomNull);
-			System.out.println("list성공?>?" + bomNull);
-			System.out.println(bomNull.get(2));
-		}
 		return mav;
 	}
 	
@@ -135,14 +121,14 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);		
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
-<<<<<<< .merge_file_a08292
 		System.out.println("result "+result);
-		//String resulturl = url.toString();
-=======
->>>>>>> .merge_file_a06188
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 		

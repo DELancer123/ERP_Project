@@ -15,12 +15,6 @@ public interface bomViewDAO {
 	public int addBOM(bomVO bomVO) throws DataAccessException;
 	public void delBOM(String[] noary) throws DataAccessException;
 	public int updBOM(bomVO bomVO) throws DataAccessException;
-
 	public int selNo() throws DataAccessException;
 
-<<<<<<< .merge_file_a02256
-	public List nullView() throws DataAccessException;
-
-=======
->>>>>>> .merge_file_a16300
 }

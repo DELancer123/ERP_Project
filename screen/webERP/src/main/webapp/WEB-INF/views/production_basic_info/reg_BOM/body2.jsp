@@ -18,15 +18,6 @@
  	<c:set var="standard" value="${bom.standard }"/>
  	<c:set var="unit" value="${bom.unit }"/>
  </c:forEach>
-  <c:forEach var="bom" items="${bomNull}" >     
- 	<c:set var="precisionQuantity" value="${bom.precisionQuantity}"/>
- 	<c:set var="loss" value="${bom.loss }"/>
- 	<c:set var="actualCost" value="${bom.actualCost}"/>
- 	<c:set var="outSourcingUnitPrice" value="${bom.outSourcingUnitPrice}"/>
- 	<c:set var="startDate" value="${bom.startDate}"/>
- 	<c:set var="endDate" value="${bom.endDate}"/>
- 	<c:set var="note" value="${bom.note}"/>
- </c:forEach>
 
 <!DOCTYPE html>
 <html>
@@ -113,27 +104,6 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-<<<<<<< .merge_file_a16856
-    
-    <tr name ="insertTest" align="center">
-    <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
-    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity" value='${precisionQuantity }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss" value='${loss }'/></td>
-    	<td><input type="text" readonly id="actualQuantity" value='${precisionQuantity+loss * 0.1 }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost" value='${actualCost }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice" value='${outSourcingUnitPrice }'/></td>
-    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate" value='${startDate }'/></td>
-    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate" value='${endDate }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note" value='${note }'/></td>
-    </tr>
-     
-=======
 
     <tr id ="insertTest" align="center">
     <td></td>
@@ -152,8 +122,6 @@
     	<td><input type="date" id="endDate" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     	<td><input type="text" id="note" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-
->>>>>>> .merge_file_a19572
                 </table>
                  
             </div>
@@ -168,21 +136,12 @@
       var itemName = document.getElementById("dataoutput");
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
-<<<<<<< .merge_file_a16856
-      var precisionQuantity = document.getElementById("dataoutput");
-      var loss = document.getElementById("dataoutput");
-      var actualCost = document.getElementById("dataoutput");
-      var outSourcingUnitPrice = document.getElementById("dataoutput");
-      var startDate = document.getElementById("dataoutput");
-      var endDate = document.getElementById("dataoutput");
-=======
-      
       var precisionQuantity = document.getElementById("precisionQuantity");
       var loss = document.getElementById("loss");
       var outSourcingUnitPrice = document.getElementById("outSourcingUnitPrice");
       var startDate = document.getElementById("startDate");
       var endDate = document.getElementById("endDate");
-     	  var actualQuantity = document.getElementById('actualQuantity');
+      var actualQuantity = document.getElementById('actualQuantity');
 
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');

@@ -48,13 +48,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
-	public List nullView() throws DataAccessException{
-		List<bomVO> searchList = null;
-		searchList = sqlSession.selectList("mappers.erp.nullitem");
-		return searchList;
-	}
-	
-	@Override
 	public int addBOM(bomVO bomVO) throws DataAccessException {
 		int idx = bomVO.getListVO().size()-1;
 		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO.getListVO().get(idx));
@@ -73,9 +66,7 @@ public class bomViewDAOImpl implements bomViewDAO{
 	@Override
 	public int updBOM(bomVO bomVO) throws DataAccessException {
 		int result = 0; 
-<<<<<<< .merge_file_a22532
-		//List<bomVO> bomList = null;
-		//for(bomVO bomVO : bomList) {
+
 		int idx = bomVO.getListVO().size()-1;
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
@@ -84,10 +75,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 		System.out.println("DAOresult:"+result);
 		//bomList.add(bomVO);
 		//}
-=======
-		for(int i = 0; i<bomVO.getListVO().size();i++) {
-			result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
->>>>>>> .merge_file_a20460
 		}
 		return result;
 	}

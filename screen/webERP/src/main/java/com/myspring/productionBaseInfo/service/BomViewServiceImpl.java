@@ -44,10 +44,6 @@ public class BomViewServiceImpl implements BomViewService{
 		searchList = bomDAO.SearchView(itemNumber);
 		return searchList;
 	}
-<<<<<<< .merge_file_a12552
-	
-=======
->>>>>>> .merge_file_a09140
 
 	@Override
 	public List itemSet() throws DataAccessException {
@@ -57,22 +53,11 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-<<<<<<< .merge_file_a12552
-	public List nullView() throws DataAccessException{
-		List searchList = null;
-		searchList = bomDAO.nullView();
-		return searchList;
-	}
-
-	@Override
-=======
->>>>>>> .merge_file_a09140
 	public int addBOM(bomVO bomVO) throws DataAccessException {
 		return bomDAO.addBOM(bomVO);
 	}
 	
 	@Override
-
 	public void delBOM(String[] noary) throws DataAccessException{
 		bomDAO.delBOM(noary);
 	}
