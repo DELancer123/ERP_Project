@@ -61,6 +61,10 @@ public class BomViewControllerImpl implements BomViewController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
+			int inputNo = viewService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo);
+			request.setAttribute("inputNo", inNo);
 		}
 		
 		 
@@ -80,10 +84,7 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
-		int inputNo = viewService.inputNo();
-		String inNo = Integer.toString(inputNo+1);
-		System.out.println(inNo);
-		request.setAttribute("inputNo", inNo);
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
