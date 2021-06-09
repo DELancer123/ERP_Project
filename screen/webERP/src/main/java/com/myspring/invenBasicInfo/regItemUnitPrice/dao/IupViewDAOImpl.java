@@ -60,7 +60,7 @@ public class IupViewDAOImpl implements IupViewDAO {
 	}
 	
 	@Override
-	public int updIup(IupVO iupVO) throws DataAccessException{
+	public int updateIup(IupVO iupVO) throws DataAccessException{
 		int result = sqlSession.update("mappers.erp.updateIup",iupVO);
 		System.out.println("DAOresult:"+result);
 		return result;

@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.invenBasicInfo.regItemUnitPrice.vo.IupVO;
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
+import com.myspring.invenBasicInfo.service.*;
 
 @Controller("memberController")
 //@EnableAspectAutoProxy
@@ -38,16 +39,23 @@ public class IupViewControllerImpl implements IupViewController{
 		String viewName = getViewName(request);
 		String Item_Code = (String)request.getParameter("Item_Code");
 		String submit = (String)request.getParameter("submit");
-//		String parentNumber  = (String)request.getParameter("parentNumber");
+//		String parentNumber  = (String)request.getParameter("parentNumber"); //부모코드값 받아올때
 		System.out.println("Item_Code" +Item_Code);
 		if(Item_Code == null || Item_Code.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
 		else if(submit.equals("1")) {
-			List iupView = viewService.SearchView(Item_Code);
+			List iupView = viewService.searchView(Item_Code);
 			mav = new ModelAndView(viewName);
-			mav.addAllObjects("bomView",iupView);
+			mav.addObjects("iupView",iupView);
+		}
+		else if(submit.equals("2")) {
+			List iupView = viewService.searchView(Item_Code);
+//			List iupInsert = viewService.setText(parentNumber); //부모코드값 받아 올때
+			mav = new ModelAndView(viewName);
+			mav.addObjects("iupView",iupView);
+//			mav.addObject("iupInsert",iupInsert); //부모코드값 받아 올때
 		}
 	}
 	

@@ -32,4 +32,38 @@ public class IupViewServiceImpl implements IupViewService{
 	}
 	
 	@Override
+	public List setText(String Item_Code) throws DataAccessException{
+		List searchList = null;
+		searchList = iupDAO.setText(Item_Code);
+		return searchList;
+	}
+	
+	@Override
+	public List searchView(String Item_Code) throws DataAccessException{
+		List searchList = null;
+		searchList = iupDAO.searchView(Item_Code);
+		return searchList;
+	}
+	
+	@Override
+	public List itemSet() throws DataAccessException{
+		List itemSet = null;
+		/* itemSet=iupDAO.itemSet(); */
+		return null;
+	}
+	
+	@Override
+	public int addIup(IupVO iupVO) throws DataAccessException{
+		return iupDAO.addIup(iupVO);
+	}
+	
+	@Override
+	public void delIup(String[] noary) throws DataAccessException{
+		iupDAO.delIup(noary);
+	}
+	
+	@Override
+	public int updateIup(IupVO iupVO) throws DataAccessException{
+		return iupDAO.updateIup(iupVO);
+	}
 }
