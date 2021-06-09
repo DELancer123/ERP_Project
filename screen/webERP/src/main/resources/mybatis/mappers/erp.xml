@@ -10,6 +10,8 @@
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="dailyProduction" column="Dailyproduction" />
+		<result property="startDate" column="start_Date" />
+		<result property="endDate" column="end_Date" />
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
