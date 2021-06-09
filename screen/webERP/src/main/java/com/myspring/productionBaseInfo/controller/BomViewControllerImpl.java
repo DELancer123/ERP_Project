@@ -42,6 +42,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
+		int sum = 0;
 		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
@@ -51,6 +52,7 @@ public class BomViewControllerImpl implements BomViewController {
 			List bomView = viewService.SearchView(number);
 			
 			mav = new ModelAndView(viewName);
+			
 			mav.addObject("bomView", bomView);
 		}
 		else if(submit.equals("2")) {
