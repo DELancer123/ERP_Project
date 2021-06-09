@@ -111,18 +111,7 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		System.out.println(bomVO.getItemNumber());
-		System.out.println(bomVO.getItemName());
-		System.out.println(bomVO.getStandard());
-		System.out.println(bomVO.getUnit());
-		System.out.println(bomVO.getPrecisionQuantity());
-		System.out.println(bomVO.getLoss());
-		System.out.println(bomVO.getActualCost());
-		System.out.println(bomVO.getOutSourcingUnitPrice());
-		System.out.println(bomVO.getStartDate());
-		System.out.println(bomVO.getEndDate());
-		System.out.println(bomVO.getNote());
-		System.out.println(bomVO.getNo());
+
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
 		//String resulturl = url.toString();

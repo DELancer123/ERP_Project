@@ -1,6 +1,7 @@
 package com.myspring.productionBaseInfo.BOM.vo;
 
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -21,6 +22,11 @@ public class bomVO {
 	private Date endDate;
 	private String note;
 	private List<bomVO> ListVO;
+	
+	@Override
+	public String toString() {
+		return Arrays.toString(ListVO.toArray());
+	}
 	public bomVO() {
 		super();
 	}
