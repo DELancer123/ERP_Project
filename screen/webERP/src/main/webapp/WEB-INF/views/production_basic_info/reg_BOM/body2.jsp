@@ -14,6 +14,7 @@
  	<c:set var="standard" value="${bom.standard }"/>
  	<c:set var="unit" value="${bom.unit }"/>
  </c:forEach>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,6 @@
 </head>
 <body>
 <form id="regBOM" method="get" commandName = "ListVO">
-<input type="hidden" id="path" value=""/>
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -104,7 +104,7 @@
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" style="width:100%"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = <%=parent %> /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' /></td>
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' /></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' /></td>
@@ -117,6 +117,7 @@
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
+		<input type = "hidden" id="path"/>
     </tr>
      
                 </table>
@@ -169,9 +170,10 @@
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
   			var link = document.location.href;
-  			document.getElementById('regBOM').setAttribute('path',link);
-            document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
-  			document.getElementById('regBOM').submit(); 
+  			document.getElementById("path").value = link;
+  			console.log(document.getElementById.value);
+           /*  document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit();  */
 		/* window.location.href = "${contextPath}/member/addBOM.do"; */
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
