@@ -5,7 +5,7 @@
 
 <mapper namespace="mappers.erp">
 	<resultMap id="SmBimResult"	type="CommitOperationInstructionVO">
-		<result property="itemCode" column="Item_Code" />
+		<result property="parentItemCode" column="parentItemCode" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
@@ -64,7 +64,7 @@
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
-		<result property = "parent" column = "parent_item_code"/>
+		<result property="parent" column = "parent_item_code"/>
 		<result property="itemNumber" column="item_code" />
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />

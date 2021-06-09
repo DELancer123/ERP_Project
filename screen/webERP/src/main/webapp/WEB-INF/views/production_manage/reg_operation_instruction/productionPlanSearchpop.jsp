@@ -65,6 +65,7 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
+                	<td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
@@ -73,10 +74,16 @@
                     <td>작업예정일</td>
                     <td>비고</td>
                 </tr>
-     <c:forEach var="productionPlan" items="${productionPalnView}" >     
+     <c:forEach var="productionPlan" items="${productionPlanView}" >     
 		<tr align="center">
-      		
+			<td><input type="checkbox" name="content" /></td>
+      		<td>${productionPlan.itemCode }</td>
       		<td><a href="#">${productionPlan.itemName}</a></td>
+      		<td>${productionPlan.standard }</td>
+      		<td>${productionPlan.inventoryUnit }</td>
+      		<td>${productionPlan.quantity }</td>
+      		<td>${productionPlan.schedule }</td>
+      		<td>${productionPlan.note }</td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -96,6 +103,12 @@
     		opener.parent.location='${contextPath }/member/regoperins.do?itemNumber='+text_code.value+'&&itemName='+text_name.value;
     		window.close();
     	}
+    	
+    	function selectAll(selectAll){
+            const checkbox = document.getElementsByName('content');
+            checkbox.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;
+           })
     </script>
     </form>
 </body>

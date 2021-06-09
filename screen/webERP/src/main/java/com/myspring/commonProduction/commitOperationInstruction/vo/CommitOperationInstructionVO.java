@@ -8,34 +8,31 @@ import org.springframework.stereotype.Component;
 @Component("CommitOperationInstructionVO") 
 public class CommitOperationInstructionVO { 
 	private int NO; 
-	private String itemNumber;
-	private String itemName; 
-	private String standard; 
-	private String unit;
-	private int dailyProduction; 
-	private int sequence; 
-	private Date scheduled;
-	private int quantity; 
+	private String parentItemCode;
+	private String itemName;
+	private String standard;
+	private String inventoryUnit;
+	private int precisionquantity;
+	private Date date;
 	private String note;
- 
-	public CommitOperationInstructionVO() {
 	
+	public CommitOperationInstructionVO() {
 	}
 
 	public int getNO() {
 		return NO;
 	}
 
-	public void setNO(int NO) {
-		this.NO = NO;
+	public void setNO(int nO) {
+		NO = nO;
 	}
 
-	public String getItemNumber() {
-		return itemNumber;
+	public String getParentItemCode() {
+		return parentItemCode;
 	}
 
-	public void setItemNumber(String itemNumber) {
-		this.itemNumber = itemNumber;
+	public void setParentItemCode(String parentItemCode) {
+		this.parentItemCode = parentItemCode;
 	}
 
 	public String getItemName() {
@@ -54,44 +51,28 @@ public class CommitOperationInstructionVO {
 		this.standard = standard;
 	}
 
-	public String getUnit() {
-		return unit;
+	public String getInventoryUnit() {
+		return inventoryUnit;
 	}
 
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setInventoryUnit(String inventoryUnit) {
+		this.inventoryUnit = inventoryUnit;
 	}
 
-	public int getDailyProduction() {
-		return dailyProduction;
+	public int getPrecisionquantity() {
+		return precisionquantity;
 	}
 
-	public void setDailyProduction(int dailyProduction) {
-		this.dailyProduction = dailyProduction;
+	public void setPrecisionquantity(int precisionquantity) {
+		this.precisionquantity = precisionquantity;
 	}
 
-	public int getSequence() {
-		return sequence;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setSequence(int sequence) {
-		this.sequence = sequence;
-	}
-
-	public Date getScheduled() {
-		return scheduled;
-	}
-
-	public void setScheduled(Date scheduled) {
-		this.scheduled = scheduled;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getNote() {
@@ -102,6 +83,6 @@ public class CommitOperationInstructionVO {
 		this.note = note;
 	}
  
- 
- 
+	
+	
  }
