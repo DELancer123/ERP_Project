@@ -27,7 +27,7 @@ public class CommitOperationInstructionVO {
 	}
 
 	public void setNO(int NO) {
-		NO = NO;
+		this.NO = NO;
 	}
 
 	public String getItemNumber() {

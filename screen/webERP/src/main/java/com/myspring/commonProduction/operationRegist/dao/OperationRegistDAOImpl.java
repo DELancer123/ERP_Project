@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
@@ -39,8 +40,10 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return popList;
 	}
 	
-//	@Override
-//	public List productionPlanPop() throws DataAccessException {
-//		
-//	}
+	@Override
+	public List productionPlanPop() throws DataAccessException {
+		List<CommitOperationInstructionVO> COIList = null;
+		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList");
+		return COIList;
+	}
 }
