@@ -36,8 +36,19 @@ public class IupViewControllerImpl implements IupViewController{
 	public ModelAndView viewIup(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String number = (String)request.getParameter("Item_Code");
+		String Item_Code = (String)request.getParameter("Item_Code");
 		String submit = (String)request.getParameter("submit");
+//		String parentNumber  = (String)request.getParameter("parentNumber");
+		System.out.println("Item_Code" +Item_Code);
+		if(Item_Code == null || Item_Code.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")) {
+			List iupView = viewService.SearchView(Item_Code);
+			mav = new ModelAndView(viewName);
+			mav.addAllObjects("bomView",iupView);
+		}
 	}
 	
 }
