@@ -79,25 +79,23 @@
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-         <c:forEach var="bom" items="${bomView}" >     
+         <c:forEach var="bom" items="${bomView}" varStatus="status" >     
    <tr align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
-   	  <c:forEach var="i" begin="0" end="">
-   	  <td style="width:13px;"><input type="text" name="no" value = '${bom.no }' style="width:100%"/></td>
-   	  <td><input type="text" name="parent" value = '${bom.parent}'/></td>
-   	  <td><input type="text" name="itemNumber" value = '${bom.itemNumber}'/></td>
-   	  <td><input type="text" name="itemName" value = '${bom.itemName}'/></td>
-   	  <td><input type="text" name="standard" value = '${bom.standard }'/></td>
-   	  <td><input type="text" name="unit" value = '${bom.unit }'/></td>
-   	  <td><input type="text" name="precisionQuantity" value = '${bom.precisionQuantity }'/></td>
-   	  <td><input type="text" name="loss" value = '${bom.loss }'/></td>
+   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}]no" value = '${bom.no }' style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]parent" value = '${bom.parent}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]itemNumber" value = '${bom.itemNumber}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]itemName" value = '${bom.itemName}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]standard" value = '${bom.standard }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]unit" value = '${bom.unit }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]precisionQuantity" value = '${bom.precisionQuantity }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]loss" value = '${bom.loss }'/></td>
    	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/></td>
-   	  <td><input type="text" name="actualCost" value = '${bom.actualCost }'/></td>
-   	  <td><input type="text" name="outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
-   	  <td><input type="date" name="startDate" value = '${bom.startDate }'/></td>
-   	  <td><input type="date" name="endDate" value = '${bom.endDate }'/></td>
-   	  <td><input type="text" name="note" value = '${bom.note }'/>   </td>
-   	  </c:forEach>
+   	  <td><input type="text" name="ListVO[${status.index}]actualCost" value = '${bom.actualCost }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}]startDate" value = '${bom.startDate }'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}]endDate" value = '${bom.endDate }'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}]note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
     
