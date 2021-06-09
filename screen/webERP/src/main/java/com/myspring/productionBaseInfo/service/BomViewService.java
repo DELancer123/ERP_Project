@@ -15,5 +15,6 @@ public interface BomViewService {
 	public int addBOM(bomVO bomVO) throws DataAccessException;
 	public void delBOM(String[] noary) throws DataAccessException;
 	public int updateBOM(bomVO bomVO) throws DataAccessException;
+	public int inputNo() throws DataAccessException;
 
 }

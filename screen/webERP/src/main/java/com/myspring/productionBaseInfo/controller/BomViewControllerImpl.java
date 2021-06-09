@@ -42,6 +42,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String number = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
+		int sum = 0;
 		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
@@ -51,6 +52,7 @@ public class BomViewControllerImpl implements BomViewController {
 			List bomView = viewService.SearchView(number);
 			
 			mav = new ModelAndView(viewName);
+			
 			mav.addObject("bomView", bomView);
 		}
 		else if(submit.equals("2")) {
@@ -59,6 +61,10 @@ public class BomViewControllerImpl implements BomViewController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
+			int inputNo = viewService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo);
+			request.setAttribute("inputNo", inNo);
 		}
 		
 		 
@@ -78,6 +84,7 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -91,10 +98,9 @@ public class BomViewControllerImpl implements BomViewController {
 		String path = request.getParameter("path");
 		System.out.println("url" + path);
 		System.out.println(bomVO.getListVO().get(2).getParent());
-		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 	

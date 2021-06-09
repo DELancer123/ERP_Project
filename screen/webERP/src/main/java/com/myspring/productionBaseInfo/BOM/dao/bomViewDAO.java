@@ -16,4 +16,6 @@ public interface bomViewDAO {
 	public void delBOM(String[] noary) throws DataAccessException;
 	public int updBOM(bomVO bomVO) throws DataAccessException;
 
+	public int selNo() throws DataAccessException;
+
 }
