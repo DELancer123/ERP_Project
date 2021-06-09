@@ -95,7 +95,7 @@
 	<delete id="deleteBOM">
 		delete from CPM_BIM_BOM_REG where NO = #{no}
 	</delete>
-
+<!-- 
 	<update id="updateBOM">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
@@ -103,6 +103,27 @@
 		where  Item_Code=#{itemNumber}
 		]]>  
 	</update>
+	-->
+	<insert id="insertBOM" parameterType="bomVO">
+		<![CDATA[
+		 insert into CPM_BIM_BOM_REG
+		 values
+		 <foreach collection = "list" item = "ListVO" separator=",">
+		 (#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		 </foreach>
+		 on duplicate key update
+		 Item_Name= values(itemName), 
+		 Standard=values(standard), 
+		 Inventory_Unit=values(unit),
+		 precisionQuantity=values(precisionQuantity), 
+		 loss=values(loss),
+		 actualCost=values(actualCost), 
+		 outSourcingUnitPrice=values(outSourcingUnitPrice), 
+		 startDate=values(startDate), 
+		 endDate=values(endDate), 
+		 note=values(note)
+		]]>  
+	</insert>
 	
 
 	<!-- mainPaln 파트 -->
