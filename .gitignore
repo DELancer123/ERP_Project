@@ -488,8 +488,12 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web,visualstudio
+<<<<<<< HEAD
+screen/webERP/src/main/java/com/myspring/commonProduction/operationRegist/vo/ProductionPalnViewVO.java
+=======
 screen/webERP(06041953).zip
 screen/webERP(202106071842).zip
 screen/webERP(202106072022).zip
 screen/webERP/src/main/webapp/WEB-INF/lib/ojdbc6.jar
 screen/webERP/webERP/src/main/webapp/WEB-INF/lib/ojdbc6.jar
+>>>>>>> b9f862f09be03b0f49c337a81a16b556d757ab87

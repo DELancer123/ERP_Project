@@ -13,5 +13,6 @@ public interface CommonProductionController {
 	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView departmentSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView productionPlanSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

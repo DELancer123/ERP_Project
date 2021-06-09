@@ -3,11 +3,10 @@
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-    
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
     	a{
     		text-decoration:none;
@@ -46,20 +48,20 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/productionPlanSearch" >
+<form name="popForm" method="get" action="${contextPath }/member/productionPlanResponse.do" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
                 <tr>
                     <td>계획기간</td>
-                    <td><input type="date" name="dateStart" style="background-color: yellow;"/></td>
+                    <td><input type="date" id="dateStart" style="background-color: yellow;"/></td>
                 	<td>~</td>
-                    <td><input type="date" name="dateEnd" style="background-color: yellow;"/></td>
+                    <td><input type="date" id="dateEnd" style="background-color: yellow;"/></td>
                 </tr>
             </table>
             <div id="button">
-                <button id="planSearch">조회</button>
-                <button id="submit">적용</button>
+                <input type="button" id="planSearch" value="조회" onClick="sendData();" />
+                <input type="button" id="submit" onClick="insertList();" value="적용" />
             </div>
         </div>
         <div id="view">
@@ -78,7 +80,7 @@
 		<tr align="center">
 			<td><input type="checkbox" name="content" /></td>
       		<td>${productionPlan.itemCode }</td>
-      		<td><a href="#">${productionPlan.itemName}</a></td>
+      		<td>${productionPlan.itemName}</td>
       		<td>${productionPlan.standard }</td>
       		<td>${productionPlan.inventoryUnit }</td>
       		<td>${productionPlan.quantity }</td>
@@ -90,16 +92,38 @@
         </div>
     </div>
     <script>
-    	var submit_button = document.getElementById("submit");
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
-    		
+    	var startDate;
+    	var endDate;
+    	
+    	$('#dateStart').change(function (){
+            var date = $('#dateStart').val();
+            startDate = date;
+        });
+    	$('#dateEnd').change(function (){
+            var date = $('#dateEnd').val();
+            endDate = date;
+        });
+    	
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
     	}
     	
-    	submit_button.onclick = function(){
+    	function sendData() {
+    		if(startDate == null && endDate == null){
+    			alert("시작일과 종료일은 필수 입력 요소입니다!");
+    		} else if(startDate == null) {
+    			alert("시작일은 필수 입력 요소입니다!");
+    		} else if(endDate == null){
+    			alert("종료일은 필수 입력 요소입니다!");
+    		} else {
+    			location.href='${contextPath }/member/productionPlanResponse.do?dateStart='+startDate+'&&dateEnd='+endDate;
+    		}
+    	}
+    	
+    	function insertList() {
     		opener.parent.location='${contextPath }/member/regoperins.do?itemNumber='+text_code.value+'&&itemName='+text_name.value;
     		window.close();
     	}
@@ -109,6 +133,7 @@
             checkbox.forEach((checkbox) => {
             checkbox.checked = selectAll.checked;
            })
+    	}
     </script>
     </form>
 </body>

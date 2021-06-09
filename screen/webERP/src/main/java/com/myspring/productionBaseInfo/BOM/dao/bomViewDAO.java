@@ -18,6 +18,9 @@ public interface bomViewDAO {
 
 	public int selNo() throws DataAccessException;
 
+<<<<<<< .merge_file_a02256
 	public List nullView() throws DataAccessException;
 
+=======
+>>>>>>> .merge_file_a16300
 }

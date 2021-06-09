@@ -14,7 +14,7 @@
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.OperationRegistVO" alias="OperationRegistVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.FactoryViewVO" alias="FactoryViewVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO" alias="DepartmentViewVO" />
-		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.ProductionPalnViewVO" alias="ProductionPalnViewVO" />
+		<!-- <typeAlias type="com.myspring.commonProduction.operationRegist.vo.ProductionPalnViewVO" alias="ProductionPalnViewVO" /> -->
 		<!-- 물류 구매관리 파트 -->
 		<typeAlias type="com.myspring.MainPlan.vo.MainPlanVO" alias="MainPlanVO" />
 		<typeAlias type="com.myspring.MainPlan.MpsOS.vo.MpsOSVO" alias="MpsOSVO" />

@@ -95,7 +95,7 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
-   <tr name= "updateTest" align="center">
+   <tr id= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
    	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
    	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
@@ -113,6 +113,7 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
+<<<<<<< .merge_file_a16856
     
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
@@ -132,6 +133,27 @@
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].note" value='${note }'/></td>
     </tr>
      
+=======
+
+    <tr id ="insertTest" align="center">
+    <td></td>
+    	<td><input type="text" id="no" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
+    	<td><input type="text" id="parent" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
+    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemName" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
+    	<td><input type="text" id="unit" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
+    	<td><input type="text" id="precisionQuantity" name="ListVO[${fn:length(bomView) }].precisionQuantity" /></td>
+    	<td><input type="text" id="loss" name="ListVO[${fn:length(bomView) }].loss" /></td>
+    	<td><input type="text" readonly id="actualQuantity"/></td>
+    	<td><input type="text" id="actualCost" name="ListVO[${fn:length(bomView) }].actualCost" /></td>
+    	<td><input type="text" id="outSourcingUnitPrice" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
+    	<td><input type="date" id="startDate" name="ListVO[${fn:length(bomView) }].startDate"/></td>
+    	<td><input type="date" id="endDate" name="ListVO[${fn:length(bomView) }].endDate"/></td>
+    	<td><input type="text" id="note" name="ListVO[${fn:length(bomView) }].note"/></td>
+    </tr>
+
+>>>>>>> .merge_file_a19572
                 </table>
                  
             </div>
@@ -146,23 +168,31 @@
       var itemName = document.getElementById("dataoutput");
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
+<<<<<<< .merge_file_a16856
       var precisionQuantity = document.getElementById("dataoutput");
       var loss = document.getElementById("dataoutput");
       var actualCost = document.getElementById("dataoutput");
       var outSourcingUnitPrice = document.getElementById("dataoutput");
       var startDate = document.getElementById("dataoutput");
       var endDate = document.getElementById("dataoutput");
+=======
+      
+      var precisionQuantity = document.getElementById("precisionQuantity");
+      var loss = document.getElementById("loss");
+      var outSourcingUnitPrice = document.getElementById("outSourcingUnitPrice");
+      var startDate = document.getElementById("startDate");
+      var endDate = document.getElementById("endDate");
+     	  var actualQuantity = document.getElementById('actualQuantity');
+
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
       var actualCost = document.getElementById('actualCost');
-      actualCost.onfocus = function(){
-     	  var actualQuantity = document.getElementById('actualQuantity');
+      actualQuantity.onfocus = function(){
     	  var loss = document.getElementById('loss');
     	  var precisionQuantity = document.getElementById('precisionQuantity');
-    	  var actQuan = parseFloat(actualQuantity.value);
     	  var preQuan = parseFloat(precisionQuantity.value);
     	  var lossInt = parseFloat(loss.value);
-    	  actualQuantity.value = preQuan +(lossInt/10);
+    	  actualQuantity.value = preQuan + (preQuan * (lossInt/100));
     	  console.log(precisionQuantity.value);
     	  console.log(actualQuantity.value);
       }
@@ -191,17 +221,27 @@
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
   			var link = document.location.href;
-  			document.getElementById('regBOM').setAttribute('path',link);
+  			 document.getElementById("precisionQuantity").disabled = true;
+  		     document.getElementById("loss").disabled = true;
+  		     document.getElementById("outSourcingUnitPrice").disabled = true;
+  		     document.getElementById("actualCost").disabled = true;
+  		     document.getElementById("no").disabled = true;
+  		     document.getElementById("startDate").disabled = true;
+  		     document.getElementById("endDate").disabled = true;
+  			 document.getElementById('regBOM').setAttribute('path',link);
            document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
-  			document.getElementById('regBOM').submit(); 
+  			document.getElementById('regBOM').submit();  
       }
       
       
       function newRow(){
           // dao에서 저장
-          var workOrderTable = document.getElementById('workOrderTable');
+    	 
           var row = workOrderTable.insertRow(); 
-  			var link = document.location.href;
+          const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+		 var link = location.pathname +'?'+newParam;
   			var articleNOInput = document.createElement("input");
   		     articleNOInput.setAttribute("type","hidden");
   		     articleNOInput.setAttribute("name","path");
@@ -209,18 +249,7 @@
   		     document.getElementById('regBOM').appendChild(articleNOInput);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
-		/* window.location.href = "${contextPath}/member/addBOM.do"; */
-         /*  var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          var cell4 = row.insertCell(3);
-          var cell5 = row.insertCell(4);
-          cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-          cell2.innerHTML = "<input type='text'/>";
-          cell4.innerHTML = "<input type='text' />";
-          cell5.innerHTML = "<input type='text' />";
-          cell3.innerHTML =  "<input type='date' />";
-           */
+		
       }
 
       

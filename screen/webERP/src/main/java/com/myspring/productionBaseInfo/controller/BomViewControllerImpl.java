@@ -1,5 +1,6 @@
 package com.myspring.productionBaseInfo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -44,7 +45,6 @@ public class BomViewControllerImpl implements BomViewController {
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
 		int sum = 0;
-		System.out.println("itemCode:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -88,9 +88,12 @@ public class BomViewControllerImpl implements BomViewController {
 		String viewName = getViewName(request);
 		String itemNumber = (String) request.getParameter("itemCode");
 		List itemView = viewService.itemView();
+<<<<<<< .merge_file_a08292
 		List bomNull = viewService.nullView();
 
 		
+=======
+>>>>>>> .merge_file_a06188
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		mav.addObject("bomNull", bomNull);
@@ -108,11 +111,11 @@ public class BomViewControllerImpl implements BomViewController {
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
 		System.out.println("url" + path);
-		System.out.println(bomVO.getListVO().get(2).getParent());
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		ModelAndView mav = new ModelAndView("redirect:" + path);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 	
@@ -131,28 +134,15 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		for(int i = 0; i<bomVO.getListVO().size();i++) {
-			System.out.println(bomVO.getListVO().get(i).getNo());
-			System.out.println(bomVO.getListVO().get(i).getParent());
-			System.out.println(bomVO.getListVO().get(i).getItemNumber());
-			System.out.println(bomVO.getListVO().get(i).getItemName());
-			System.out.println(bomVO.getListVO().get(i).getStandard());
-			System.out.println(bomVO.getListVO().get(i).getUnit());
-			System.out.println(bomVO.getListVO().get(i).getPrecisionQuantity());
-			System.out.println(bomVO.getListVO().get(i).getLoss());
-			System.out.println(bomVO.getListVO().get(i).getActualCost());
-			System.out.println(bomVO.getListVO().get(i).getOutSourcingUnitPrice());
-			System.out.println(bomVO.getListVO().get(i).getStartDate());
-			System.out.println(bomVO.getListVO().get(i).getEndDate());
-			System.out.println(bomVO.getListVO().get(i).getNote());
-		}
+		
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
+<<<<<<< .merge_file_a08292
 		System.out.println("result "+result);
 		//String resulturl = url.toString();
+=======
+>>>>>>> .merge_file_a06188
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
-		//mav.addObject("itemView", itemView);
-		//System.out.println("itemcode:"+bomVO.getItemNumber());
 		return mav;
 	}
 		

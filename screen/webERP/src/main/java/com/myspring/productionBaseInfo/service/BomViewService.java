@@ -14,9 +14,14 @@ public interface BomViewService {
 	public List itemSet() throws DataAccessException;
 	public int addBOM(bomVO bomVO) throws DataAccessException;
 	public void delBOM(String[] noary) throws DataAccessException;
+<<<<<<< .merge_file_a08756
 	public int inputNo() throws DataAccessException;
 	public int updateBOM(bomVO bomVO) throws DataAccessException;
 	public List nullView() throws DataAccessException;
 
+=======
+	public int updateBOM(bomVO bomVO) throws DataAccessException;
+	public int inputNo() throws DataAccessException;
+>>>>>>> .merge_file_a17008
 
 }

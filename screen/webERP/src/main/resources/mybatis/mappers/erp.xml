@@ -10,6 +10,8 @@
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="dailyProduction" column="Dailyproduction" />
+		<result property="startDate" column="start_Date" />
+		<result property="endDate" column="end_Date" />
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
@@ -46,7 +48,7 @@
 	<select id="selectDepartmentList" resultMap="DepartmentViewResult">
 		<![CDATA[select* from SM_CRI_Dep_Reg]]>
 	</select>
-	<resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
+	<!-- <resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="item_code" />
 		<result property="itemName" column="item_Name" />
@@ -58,9 +60,9 @@
 		<result property="quantity" column="quantity" />
 		<result property="note" column="note" />
 	</resultMap>
-	<select id="selectProductionPlanList" resultMap="selectProductionPlanViewResult">
-		<![CDATA[select * from CPM_PM_Pro_Pla_Reg]]>
-	</select>
+	<select id="selectProductionPlanList" parameterType="CommitOperationInstructionVO" resultMap="selectProductionPlanViewResult">
+		<![CDATA[select * from CPM_PM_Pro_Pla_Reg where scheduleddateofoperation between #{startDate} and #{endDate}]]>
+	</select> -->
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
@@ -114,19 +116,20 @@
 	<delete id="deleteBOM">
 		delete from CPM_BIM_BOM_REG where NO = #{no}
 	</delete>
-<!-- 
+ 
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
 		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
-		where  Item_Code=#{itemNumber}
+		where  no=#{no}
 		]]>  
 	</update>
-	-->
-	<update id="updateBOM" parameterType="bomVO">
+	
+	<!-- <update id="updateBOM" parameterType="bomVO">
 		
 		update CPM_BIM_BOM_REG
 		<set>
+		<if test="no !='' and no != null">no=#{no},</if>
 		<if test="parent !='' and parent != null">parent_item_code=#{parent},</if>
 		<if test="itemName !='' and itemName != null">item_name=#{itemName},</if>
 		 Standard=#{standard}, 
@@ -141,30 +144,9 @@
 		</set>
 		where  Item_Code=#{itemNumber}
 		
-	</update>
+	</update> -->
 	
-	<!-- 
-	<insert id="insertBOM" parameterType="bomVO">
-		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
-		 values
-		 <foreach collection = "list" item = "ListVO" separator=",">
-		 (#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
-		 </foreach>
-		 on duplicate key update
-		 Item_Name= values(itemName), 
-		 Standard=values(standard), 
-		 Inventory_Unit=values(unit),
-		 precisionQuantity=values(precisionQuantity), 
-		 loss=values(loss),
-		 actualCost=values(actualCost), 
-		 outSourcingUnitPrice=values(outSourcingUnitPrice), 
-		 startDate=values(startDate), 
-		 endDate=values(endDate), 
-		 note=values(note)
-		]]>  
-	</insert>
-	-->
+	
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
