@@ -20,9 +20,9 @@ public class bomViewDAOImpl implements bomViewDAO{
 	@Override
 	public List viewBOM() throws DataAccessException {
 		List<bomVO> bomList = null;
-		//System.out.println("占쎈뼄占쎌궎 占쎈뻻占쎌삂 : " + bomList);
+		//System.out.println("�뜝�럥堉꾢뜝�럩沅� �뜝�럥六삣뜝�럩�굚 : " + bomList);
 		bomList = sqlSession.selectList("mappers.erp.selectAllMemberList");
-		//System.out.println("占쎈뼄占쎌궎 �넫�굝利� : " + bomList);
+		//System.out.println("�뜝�럥堉꾢뜝�럩沅� 占쎈꽞占쎄턁筌앾옙 : " + bomList);
 		return bomList;
 	}
 
@@ -64,9 +64,13 @@ public class bomViewDAOImpl implements bomViewDAO{
 
 	@Override
 	public int updBOM(bomVO bomVO) throws DataAccessException {
+		int result = 0; 
 		int idx = bomVO.getListVO().size()-1;
-		int result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(idx));		
-		System.out.println("DAOresult:"+result);
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+			System.out.println("idx : "+idx);
+			result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
+		}
 		return result;
 	}
 

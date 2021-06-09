@@ -125,6 +125,7 @@
 		
 		update CPM_BIM_BOM_REG
 		<set>
+		<if test="no !='' and no != null">no=#{no},</if>
 		<if test="parent !='' and parent != null">parent_item_code=#{parent},</if>
 		<if test="itemName !='' and itemName != null">item_name=#{itemName},</if>
 		 Standard=#{standard}, 

@@ -104,25 +104,25 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    
+
     <tr id ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
+    	<td><input type="text" id="no" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
+    	<td><input type="text" id="parent" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss"/></td>
+    	<td><input type="text" id="itemName" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
+    	<td><input type="text" id="unit" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
+    	<td><input type="text" id="precisionQuantity" name="ListVO[${fn:length(bomView) }].precisionQuantity" /></td>
+    	<td><input type="text" id="loss" name="ListVO[${fn:length(bomView) }].loss" /></td>
     	<td><input type="text" readonly id="actualQuantity"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
-    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
-    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
+    	<td><input type="text" id="actualCost" name="ListVO[${fn:length(bomView) }].actualCost" /></td>
+    	<td><input type="text" id="outSourcingUnitPrice" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
+    	<td><input type="date" id="startDate" name="ListVO[${fn:length(bomView) }].startDate"/></td>
+    	<td><input type="date" id="endDate" name="ListVO[${fn:length(bomView) }].endDate"/></td>
+    	<td><input type="text" id="note" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-     
+
                 </table>
                  
             </div>
@@ -137,6 +137,13 @@
       var itemName = document.getElementById("dataoutput");
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
+      
+      var precisionQuantity = document.getElementById("precisionQuantity");
+      var loss = document.getElementById("loss");
+      var outSourcingUnitPrice = document.getElementById("outSourcingUnitPrice");
+      var startDate = document.getElementById("startDate");
+      var endDate = document.getElementById("endDate");
+
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
       var actualCost = document.getElementById('actualCost');
@@ -176,6 +183,13 @@
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
   			var link = document.location.href;
+  			 document.getElementById("precisionQuantity").disabled = true;
+  		     document.getElementById("loss").disabled = true;
+  		     document.getElementById("outSourcingUnitPrice").disabled = true;
+  		     document.getElementById("actualCost").disabled = true;
+  		     document.getElementById("no").disabled = true;
+  		     document.getElementById("startDate").disabled = true;
+  		     document.getElementById("endDate").disabled = true;
   			 document.getElementById('regBOM').setAttribute('path',link);
            document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
   			document.getElementById('regBOM').submit();  
