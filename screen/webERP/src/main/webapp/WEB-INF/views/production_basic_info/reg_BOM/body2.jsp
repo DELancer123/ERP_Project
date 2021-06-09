@@ -8,6 +8,7 @@
 %>    
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
+	
 %>
 <% String parent = request.getParameter("itemNumber"); %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -106,7 +107,7 @@
     
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${ inputNo}'  style="width:100%"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }'  style="width:100%"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' /></td>
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' /></td>
