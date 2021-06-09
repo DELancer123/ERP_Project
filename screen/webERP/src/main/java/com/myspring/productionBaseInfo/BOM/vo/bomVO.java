@@ -1,6 +1,7 @@
 package com.myspring.productionBaseInfo.BOM.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -112,7 +113,7 @@ public class bomVO {
 		return ListVO;
 	}
 	public void setListVO(List<bomVO> listVO) {
-		ListVO = listVO;
+		ListVO = new ArrayList();
 	}
 	
 }

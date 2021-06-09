@@ -86,7 +86,7 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
-   <tr name= "updateTest" align="center">
+   <tr id= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
    	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
    	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
@@ -104,8 +104,8 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    <!-- 
-    <tr name ="insertTest" align="center">
+    
+    <tr id ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
@@ -122,7 +122,7 @@
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-     -->
+     
                 </table>
                  
             </div>
@@ -176,15 +176,15 @@
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
   			var link = document.location.href;
-  			document.getElementById('regBOM').setAttribute('path',link);
+  			 document.getElementById('regBOM').setAttribute('path',link);
            document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
-  			document.getElementById('regBOM').submit(); 
+  			document.getElementById('regBOM').submit();  
       }
       
       
       function newRow(){
           // dao에서 저장
-          var workOrderTable = document.getElementById('workOrderTable');
+    	 
           var row = workOrderTable.insertRow(); 
   			var link = document.location.href;
   			var articleNOInput = document.createElement("input");
