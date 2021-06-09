@@ -117,7 +117,6 @@
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
-		<input type = "hidden" id="path"/>
     </tr>
      
                 </table>
@@ -170,8 +169,11 @@
           var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
   			var link = document.location.href;
-  			document.getElementById("path").value = link;
-  			console.log(document.getElementById.value);
+  			var articleNOInput = document.createElement("input");
+  		     articleNOInput.setAttribute("type","hidden");
+  		     articleNOInput.setAttribute("name","path");
+  		     articleNOInput.setAttribute("value", link);
+  		     document.getElementById('regBOM').appendChild(articleNOInput);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
 		/* window.location.href = "${contextPath}/member/addBOM.do"; */
@@ -198,6 +200,7 @@
     			  no = document.getElementsByName("content")[i].value;
     			  ary.push(no);
     		  }
+    		  
     			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
     	  }
       }

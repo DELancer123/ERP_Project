@@ -94,7 +94,7 @@ public class BomViewControllerImpl implements BomViewController {
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 	
