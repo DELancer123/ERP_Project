@@ -88,15 +88,15 @@
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
    <tr name= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
-   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' style="width:100%"/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }'/></td>
+   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
-   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }'/></td>
+   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
@@ -104,25 +104,25 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    
+    <!-- 
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }'  style="width:100%"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' /></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' /></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' /></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss"/></td>
-    	<td><input type="text"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss"/></td>
+    	<td><input type="text" readonly id="actualQuantity"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
     	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
     </tr>
-     
+     -->
                 </table>
                  
             </div>
@@ -139,6 +139,18 @@
       var unit = document.getElementById("dataoutput");
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
+      var actualCost = document.getElementById('actualCost');
+      actualCost.onfocus = function(){
+     	  var actualQuantity = document.getElementById('actualQuantity');
+    	  var loss = document.getElementById('loss');
+    	  var precisionQuantity = document.getElementById('precisionQuantity');
+    	  var actQuan = parseFloat(actualQuantity.value);
+    	  var preQuan = parseFloat(precisionQuantity.value);
+    	  var lossInt = parseFloat(loss.value);
+    	  actualQuantity.value = preQuan +(lossInt/10);
+    	  console.log(precisionQuantity.value);
+    	  console.log(actualQuantity.value);
+      }
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
@@ -163,8 +175,10 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-           document.getElementByName('updateTest').action = "${contextPath}/member/updateBOM.do";
-  			document.getElementByName('updateTest').submit(); 
+  			var link = document.location.href;
+  			document.getElementById('regBOM').setAttribute('path',link);
+           document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
+  			document.getElementById('regBOM').submit(); 
       }
       
       

@@ -64,7 +64,8 @@ public class bomViewDAOImpl implements bomViewDAO{
 
 	@Override
 	public int updBOM(bomVO bomVO) throws DataAccessException {
-		int result = sqlSession.update("mappers.erp.updateBOM",bomVO);
+		int idx = bomVO.getListVO().size()-1;
+		int result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(idx));		
 		System.out.println("DAOresult:"+result);
 		return result;
 	}

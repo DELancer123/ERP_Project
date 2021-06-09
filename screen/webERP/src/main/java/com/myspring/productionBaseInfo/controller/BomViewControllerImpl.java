@@ -61,6 +61,10 @@ public class BomViewControllerImpl implements BomViewController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
+			int inputNo = viewService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo);
+			request.setAttribute("inputNo", inNo);
 		}
 		
 		 
@@ -80,10 +84,7 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
-		int inputNo = viewService.inputNo();
-		String inNo = Integer.toString(inputNo+1);
-		System.out.println(inNo);
-		request.setAttribute("inputNo", inNo);
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -96,7 +97,7 @@ public class BomViewControllerImpl implements BomViewController {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		System.out.println("url" + path);
-		
+		System.out.println(bomVO.getListVO().get(2).getParent());
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		ModelAndView mav = new ModelAndView("redirect:" + path);
@@ -118,7 +119,21 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-
+		for(int i = 0; i<bomVO.getListVO().size();i++) {
+			System.out.println(bomVO.getListVO().get(i).getNo());
+			System.out.println(bomVO.getListVO().get(i).getParent());
+			System.out.println(bomVO.getListVO().get(i).getItemNumber());
+			System.out.println(bomVO.getListVO().get(i).getItemName());
+			System.out.println(bomVO.getListVO().get(i).getStandard());
+			System.out.println(bomVO.getListVO().get(i).getUnit());
+			System.out.println(bomVO.getListVO().get(i).getPrecisionQuantity());
+			System.out.println(bomVO.getListVO().get(i).getLoss());
+			System.out.println(bomVO.getListVO().get(i).getActualCost());
+			System.out.println(bomVO.getListVO().get(i).getOutSourcingUnitPrice());
+			System.out.println(bomVO.getListVO().get(i).getStartDate());
+			System.out.println(bomVO.getListVO().get(i).getEndDate());
+			System.out.println(bomVO.getListVO().get(i).getNote());
+		}
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
 		//String resulturl = url.toString();
