@@ -153,7 +153,7 @@
     	  var precisionQuantity = document.getElementById('precisionQuantity');
     	  var preQuan = parseFloat(precisionQuantity.value);
     	  var lossInt = parseFloat(loss.value);
-    	  actualQuantity.value = preQuan +(lossInt/10);
+    	  actualQuantity.value = preQuan + (preQuan * (lossInt/100));
     	  console.log(precisionQuantity.value);
     	  console.log(actualQuantity.value);
       }
