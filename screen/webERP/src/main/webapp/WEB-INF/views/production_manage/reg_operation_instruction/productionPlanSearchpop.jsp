@@ -54,7 +54,7 @@
             <table id="search">
                 <tr>
                     <td>계획기간</td>
-                    <td><input type="date" id="dateStart" style="background-color: yellow;" onChange="setStart();"/></td>
+                    <td><input type="date" id="dateStart" style="background-color: yellow;"/></td>
                 	<td>~</td>
                     <td><input type="date" id="dateEnd" style="background-color: yellow;"/></td>
                 </tr>
@@ -119,8 +119,7 @@
     		} else if(endDate == null){
     			alert("종료일은 필수 입력 요소입니다!");
     		} else {
-    			alert(startDate);
-    			alert(endDate);
+    			location.href='${contextPath }/member/productionPlanResponse.do?dateStart='+startDate+'&&dateEnd='+endDate;
     		}
     	}
     	
