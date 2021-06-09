@@ -44,12 +44,20 @@ public class BomViewServiceImpl implements BomViewService{
 		searchList = bomDAO.SearchView(itemNumber);
 		return searchList;
 	}
+	
 
 	@Override
 	public List itemSet() throws DataAccessException {
 		List itemSet = null;
 		/* itemSet = bomDAO.itemSet(); */
 		return null;
+	}
+
+	@Override
+	public List nullView() throws DataAccessException{
+		List searchList = null;
+		searchList = bomDAO.nullView();
+		return searchList;
 	}
 
 	@Override

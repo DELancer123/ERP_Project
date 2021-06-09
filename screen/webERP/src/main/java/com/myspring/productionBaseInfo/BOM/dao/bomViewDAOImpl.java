@@ -1,5 +1,6 @@
 package com.myspring.productionBaseInfo.BOM.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,13 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
+	public List nullView() throws DataAccessException{
+		List<bomVO> searchList = null;
+		searchList = sqlSession.selectList("mappers.erp.nullitem");
+		return searchList;
+	}
+	
+	@Override
 	public int addBOM(bomVO bomVO) throws DataAccessException {
 		int idx = bomVO.getListVO().size()-1;
 		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO.getListVO().get(idx));
@@ -64,9 +72,18 @@ public class bomViewDAOImpl implements bomViewDAO{
 
 	@Override
 	public int updBOM(bomVO bomVO) throws DataAccessException {
+		int result = 0; 
+		//List<bomVO> bomList = null;
+		//for(bomVO bomVO : bomList) {
 		int idx = bomVO.getListVO().size()-1;
-		int result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(idx));		
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
 		System.out.println("DAOresult:"+result);
+		//bomList.add(bomVO);
+		//}
+		}
 		return result;
 	}
 

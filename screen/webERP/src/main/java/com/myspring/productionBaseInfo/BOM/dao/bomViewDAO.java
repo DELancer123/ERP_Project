@@ -18,4 +18,6 @@ public interface bomViewDAO {
 
 	public int selNo() throws DataAccessException;
 
+	public List nullView() throws DataAccessException;
+
 }

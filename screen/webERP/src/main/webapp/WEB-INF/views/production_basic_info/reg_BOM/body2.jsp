@@ -18,6 +18,15 @@
  	<c:set var="standard" value="${bom.standard }"/>
  	<c:set var="unit" value="${bom.unit }"/>
  </c:forEach>
+  <c:forEach var="bom" items="${bomNull}" >     
+ 	<c:set var="precisionQuantity" value="${bom.precisionQuantity}"/>
+ 	<c:set var="loss" value="${bom.loss }"/>
+ 	<c:set var="actualCost" value="${bom.actualCost}"/>
+ 	<c:set var="outSourcingUnitPrice" value="${bom.outSourcingUnitPrice}"/>
+ 	<c:set var="startDate" value="${bom.startDate}"/>
+ 	<c:set var="endDate" value="${bom.endDate}"/>
+ 	<c:set var="note" value="${bom.note}"/>
+ </c:forEach>
 
 <!DOCTYPE html>
 <html>
@@ -104,7 +113,7 @@
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
     </tr>
     </c:forEach> 
-    <!-- 
+    
     <tr name ="insertTest" align="center">
     <td><input type="checkbox" name="content"/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
@@ -113,16 +122,16 @@
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss"/></td>
-    	<td><input type="text" readonly id="actualQuantity"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
-    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate"/></td>
-    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].precisionQuantity" id="precisionQuantity" value='${precisionQuantity }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].loss" id="loss" value='${loss }'/></td>
+    	<td><input type="text" readonly id="actualQuantity" value='${precisionQuantity+loss * 0.1 }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].actualCost" id="actualCost" value='${actualCost }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice" value='${outSourcingUnitPrice }'/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].startDate" value='${startDate }'/></td>
+    	<td><input type="date" name="ListVO[${fn:length(bomView) }].endDate" value='${endDate }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(bomView) }].note" value='${note }'/></td>
     </tr>
-     -->
+     
                 </table>
                  
             </div>
@@ -137,6 +146,12 @@
       var itemName = document.getElementById("dataoutput");
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
+      var precisionQuantity = document.getElementById("dataoutput");
+      var loss = document.getElementById("dataoutput");
+      var actualCost = document.getElementById("dataoutput");
+      var outSourcingUnitPrice = document.getElementById("dataoutput");
+      var startDate = document.getElementById("dataoutput");
+      var endDate = document.getElementById("dataoutput");
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
       var actualCost = document.getElementById('actualCost');

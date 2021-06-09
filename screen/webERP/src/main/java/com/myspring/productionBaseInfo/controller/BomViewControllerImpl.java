@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.productionBaseInfo.service.*;
 import com.myspring.productionBaseInfo.BOM.vo.*;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 
 
@@ -58,9 +59,11 @@ public class BomViewControllerImpl implements BomViewController {
 		else if(submit.equals("2")) {
 			List bomView = viewService.SearchView(number);
 			List bomInsert = viewService.setText(itemNumber);
+			List bomNull = viewService.nullView();
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
+			mav.addObject("bomNull", bomNull);
 			int inputNo = viewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);
@@ -83,10 +86,19 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/bomcodehelper.do" ,method = RequestMethod.GET)
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
+		String itemNumber = (String) request.getParameter("itemCode");
 		List itemView = viewService.itemView();
+		List bomNull = viewService.nullView();
+
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
+		mav.addObject("bomNull", bomNull);
+		if( !bomNull.isEmpty() ) {
+			mav.addObject("bomNull",bomNull);
+			System.out.println("list성공?>?" + bomNull);
+			System.out.println(bomNull.get(2));
+		}
 		return mav;
 	}
 	
@@ -136,6 +148,7 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
+		System.out.println("result "+result);
 		//String resulturl = url.toString();
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		//mav.addObject("itemView", itemView);
