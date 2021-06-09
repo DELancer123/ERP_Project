@@ -172,8 +172,8 @@
   			var link = document.location.href;
   			document.getElementById("path").value = link;
   			console.log(document.getElementById.value);
-           /*  document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
-  			document.getElementById('regBOM').submit();  */
+            document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
+  			document.getElementById('regBOM').submit();  
 		/* window.location.href = "${contextPath}/member/addBOM.do"; */
          /*  var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
