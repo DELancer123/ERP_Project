@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import com.myspring.invenBasicInfo.regItemUnitPrice.dao.IupViewDAO;
 import com.myspring.invenBasicInfo.regItemUnitPrice.vo.IupVO;
 
-@Service("memberService")
+@Service("iupService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class IupViewServiceImpl implements IupViewService{
 	@Autowired
