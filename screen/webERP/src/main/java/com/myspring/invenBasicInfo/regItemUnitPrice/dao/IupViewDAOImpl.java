@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.IupVO;
+
 @Repository("IupViewDAO")
 public class IupViewDAOImpl implements IupViewDAO {
 	@Autowired
@@ -37,7 +39,7 @@ public class IupViewDAOImpl implements IupViewDAO {
 	
 	@Override
 	public List searchView(String Item_Code) throws DataAccessException{
-		List<Iup> searchList = null;
+		List<IupVO> searchList = null;
 		searchList = sqlSession.selectList("mappers.erp.searchitem",Item_Code);
 		return searchList;
 	}
@@ -58,7 +60,7 @@ public class IupViewDAOImpl implements IupViewDAO {
 	}
 	
 	@Override
-	public int updIup(IupVo iupVO) throws DataAccessException{
+	public int updIup(IupVO iupVO) throws DataAccessException{
 		int result = sqlSession.update("mappers.erp.updateIup",iupVO);
 		System.out.println("DAOresult:"+result);
 		return result;
