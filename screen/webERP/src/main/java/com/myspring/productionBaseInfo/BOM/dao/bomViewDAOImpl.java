@@ -48,8 +48,8 @@ public class bomViewDAOImpl implements bomViewDAO{
 
 	@Override
 	public int addBOM(bomVO bomVO) throws DataAccessException {
-		
-		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO);
+		int idx = bomVO.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO.getListVO().get(idx));
 		return 0;
 	}
 	
