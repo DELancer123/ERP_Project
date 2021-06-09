@@ -95,10 +95,11 @@ public class BomViewControllerImpl implements BomViewController {
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
 		System.out.println("url" + path);
 		int result = 0;
 		result = viewService.addBOM(bomVO);
-		ModelAndView mav = new ModelAndView("redirect:" + path);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 	

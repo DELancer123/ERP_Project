@@ -200,9 +200,9 @@
     	 
           var row = workOrderTable.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
-		  URLSearch.set('submit', '2');
+		  URLSearch.set('submit', '1');
 		  const newParam = URLSearch.toString();
-		 var link = location.href +'?'+newParam;
+		 var link = location.pathname +'?'+newParam;
   			var articleNOInput = document.createElement("input");
   		     articleNOInput.setAttribute("type","hidden");
   		     articleNOInput.setAttribute("name","path");
@@ -213,7 +213,7 @@
 		
       }
 
-      s
+      
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
     	  var no = "";
