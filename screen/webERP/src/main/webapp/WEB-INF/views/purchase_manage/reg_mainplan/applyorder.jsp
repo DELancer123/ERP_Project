@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page import ="java.util.Arrays"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -15,7 +16,13 @@ request.setCharacterEncoding("UTF-8");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-
+<script type="text/javascript">
+function v_check(){
+	
+	
+	window.close();
+}
+</script>
 <style>
 a {
 	text-decoration: none;
@@ -65,15 +72,14 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>
-				<button>선택적용</button>
+				<input type="button" onclick="setParentText();" value="적용"/>
 				<button>취소</button>
 			</div>
 		</div>
 		<div id="view">
 			<table style="width: 100%;">
 				<thead align="center" style="background-color: gray">
-					<td><input type="checkbox" name="content"
-						onclick="selectAll(this)" /></td>
+					<td><input type="checkbox" name="content" onclick="selectAll(this)" /></td>
 					<td>주문번호</td>
 					<td>순서</td>
 					<td>주문일자</td>
@@ -89,28 +95,27 @@ a {
 					<td>출하예정일</td>
 					<td>비고</td>
 				</thead>
-				<c:forEach var="MpsOS" items="${mpsosList}">
-					<tr align="center">
-						<td><input type="checkbox" name="content" /></td>
-						<td><a href="#">${MpsOS.ordersno}</a></td>
-						<td><a href="#">${MpsOS.sequence}</a></td>
-						<td><a href="#">${MpsOS.orderdate}</a></td>
-						<td><a href="#">${MpsOS.okeydate}</a></td>
-						<td><a href="#">${MpsOS.customer_Name}</a></td>
-						<td><a href="#">${MpsOS.item_Code}</a></td>
-						<td><a href="#">${MpsOS.item_Name}</a></td>
-						<td><a href="#">${MpsOS.standard}</a></td>
-						<td><a href="#">${MpsOS.unit}</a></td>
-						<td><a href="#">${MpsOS.order_quantity}</a></td>
-						<td><a href="#">${MpsOS.apply_quantity}</a></td>
-						<td><a href="#">${MpsOS.order_Balance}</a></td>
-						<td><a href="#">${MpsOS.expected_Date}</a></td>
-						<td><a href="#">${MpsOS.note}</a></td>
+				<c:forEach var="MpsOS" items="${mpsosList}" varStatus="sts">
+					<tr align="center" id="idx_${mpsosList}">
+					<td><input type="checkbox" name="content"/></td>
+						<td>${MpsOS.ordersno}</td>
+						<td>${MpsOS.sequence}</td>
+						<td>${MpsOS.orderdate}</td>
+						<td>${MpsOS.okeydate}</a></td>
+						<td>${MpsOS.customer_Name}</td>
+						<td>${MpsOS.item_Code}</td>
+						<td>${MpsOS.item_Name}</td>
+						<td>${MpsOS.standard}</a></td>
+						<td>${MpsOS.unit}</a></td>
+						<td>${MpsOS.order_quantity}</td>
+						<td>${MpsOS.apply_quantity}</td>
+						<td>${MpsOS.order_Balance}</td>
+						<td>${MpsOS.expected_Date}</td>
+						<td>${MpsOS.note}</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
-
 </body>
 </html>
