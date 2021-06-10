@@ -11,6 +11,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
 #contents1{
             position: absolute;
@@ -154,15 +157,42 @@
  document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
  document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
  
+ /* 검색부 date onChange 함수 설정 */
+ 		var startDate = new Date().toISOString().substring(0,10);;
+    	var endDate = new Date().toISOString().substring(0,10);;
+    	
+    	$('#searchStartDate').change(function (){
+            var date = $('#searchStartDate').val();
+            startDate = date;
+        });
+    	$('#searchEndDate').change(function (){
+            var date = $('#searchEndDate').val();
+            endDate = date;
+        });
+    	
       function search1(){  
-    	      	openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
+    	  openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
       }
       function search2(){  
-	      	openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
+	      openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
 		}
       function searchPlan(){
-    	  openWindowPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
+    	  openWindowBroadPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
       }
       
+      /* 조회버튼 클릭시 기능 구현 */
+      view_button.onclick = function(){
+		  if(startDate>endDate){
+			  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
+		  } else{
+			  
+    	  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('startDate', startDate);
+		  URLSearch.set('endDate', endDate);
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+		  }
+  	}
       
       </script>

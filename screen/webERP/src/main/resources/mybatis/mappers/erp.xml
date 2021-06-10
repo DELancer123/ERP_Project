@@ -29,10 +29,20 @@
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
 		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit, DailyProduction from SM_BIM_Ite_Reg]]>
 	</select>
-	<select id="selectAllOperationRegistInfo" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg]]>
+	<select id="selectAllOperationRegistInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<where>
+			<if test="startDate != '' and startDate != null">
+				startDate = #{startDate}
+			</if>
+			<if test="endDate != '' and endDate != null">
+				endDate = #{endDate}
+			</if>
+		</where>
 	</select>
-
+	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+	</select>
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />

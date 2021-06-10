@@ -13,7 +13,7 @@ import java.util.List;
   public interface CommonProductionService {
   
   public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException; 
-  public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException;
+  public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
   public List itemView() throws DataAccessException;
   public List departmentView() throws DataAccessException;
   public List productionPlanView(String startDate, String endDate) throws DataAccessException, ParseException;  
