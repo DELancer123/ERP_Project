@@ -187,7 +187,7 @@
 	</select>
 	
 	
-		<!--popitem -->
+		<!--popitem 
 		
 		 <resultMap id="itemResult" type="itemviewVO">
 		<result property="item_code" column="item_code" />
@@ -218,7 +218,7 @@
 	   where
 	   item_code=#{item_code}
 	]]>      
-  </delete>
+  </delete>-->
 	
 	<!--popcust 
 		<resultMap id="custResult" type="custviewVO">

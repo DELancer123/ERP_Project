@@ -20,9 +20,8 @@
 //		public int updateNewSalesplan(String Item_Code) throws DataAccessException;
 //		public int deleteSalesplan(String Item_Code) throws DataAccessException;
 //		public SalesplanVO searchByItemCode(String Item_Code) throws DataAccessException;
-//		public SalesplanVO searchByItemName(String Item_Name) throws DataAccessException;
 //		public SalesplanVO searchByPlanDate(Date Plan_Date) throws DataAccessException;
 //		public SalesplanVO searchByItemGroup(String Item_Group_Code) throws DataAccessException;
 //		
-//}
-//
+//}	
+
