@@ -1,10 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+   request.setCharacterEncoding("UTF-8");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	var itemcode = document.getElementById('itemcode');
+	itemcode.onclick = function(){
+		window.open('http://localhost:8090/webERP/member/codehelper.do','codehelper','width = 300, height = 200');
+	}
+}
+</script>
 <style>
 #contents1{
             position: absolute;
@@ -27,7 +42,7 @@
         .con1_search{
             padding:0;
             text-align: center;
-            /* position: absolute; ƒ≠ ∏¿ﬂ∂Ûº≠ ¡ˆøÚ*/
+            /* position: absolute; Ïπ∏ Î™®ÏûòÎùºÏÑú ÏßÄÏõÄ*/
             top: 25%;
             left: 5%;
         }
@@ -37,14 +52,14 @@
             padding:0;
             text-align: center;
         }
-        /* ƒ¡≈◊¿Ã≥  Ω∫≈∏¿œ∫Œ */
+        /* Ïª®ÌÖåÏù¥ÎÑà Ïä§ÌÉÄÏùºÎ∂Ä */
         #workOrderInfo {
             overflow: scroll;
             height: 97%;
             width: 100%;
         }
         
-         /* «’∞Ë √‚∑¬∫Œ */
+         /* Ìï©Í≥Ñ Ï∂úÎ†•Î∂Ä */
          #resultWindow{
             height: 3%;
             background-color: gray;
@@ -58,12 +73,12 @@
             <form id="searchForm">
                 <table class="con1_search">
                     <tr>
-                        <td>ªÁæ˜¿Â</td>
+                        <td>ÏÇ¨ÏóÖÏû•</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td> 
     
-                        <td colspan="4" style="width: 80px;">∫Œº≠</td>
+                        <td colspan="4" style="width: 80px;">Î∂ÄÏÑú</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
@@ -71,24 +86,24 @@
                     </tr>
                     
                     <tr>
-                        <td>ø‹¡÷√≥</td>
+                        <td>Ïô∏Ï£ºÏ≤ò</td>
                         <td style="width: 50px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
     
-                        <td colspan="4" style="width: 80px;">ªÁø¯</td>
+                        <td colspan="4" style="width: 80px;">ÏÇ¨Ïõê</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
                         <td>
-                            <input type="button" value="√ª±∏¡∂»∏" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="Ï≤≠Íµ¨Ï°∞Ìöå" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="¡÷πÆ¡∂»∏" style="padding: 5px;"></input>
+                            <input type="button" value="Ï£ºÎ¨∏Ï°∞Ìöå" style="padding: 5px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="ª˝ªÍ∞Ë»π¡∂»∏" style="padding: 5px;"></input>
+                            <input type="button" value="ÏÉùÏÇ∞Í≥ÑÌöçÏ°∞Ìöå" style="padding: 5px; " ondblclick="openWindowPop('codehelper.do#','codehelper')"></input>
                         </td>
                     </tr>
                 </table>
@@ -97,28 +112,88 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead>
+					 <thead align="center" style="background-color:gray">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>ø‹¡÷¡ˆΩ√π¯»£</td>
-                        <td>πﬂ¡÷¿œ</td>
-                        <td>≥≥±‚¿œ</td>
-                        <td>«∞π¯</td>
-                        <td>«∞∏Ì</td>
-                        <td>±‘∞›</td>
-                        <td>¥‹¿ß</td>
-                        <td>¡ˆΩ√ºˆ∑Æ</td>
-                        <td>¥‹∞°</td>
-                        <td>±›æ◊</td>
-                        <td>ªÛ≈¬</td>
-                        <td>∞ÀªÁ</td>
-                        <td>∫Ò∞Ì</td>
-                    </thead>
-                    <!-- ≈◊Ω∫∆ÆøÎ µ•¿Ã≈Õ, √ﬂ»ƒ «•«ˆΩƒ¿∏∑Œ ºˆ¡§« ø‰ -->
-                    <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                        <td>Ïô∏Ï£ºÏßÄÏãúÎ≤àÌò∏</td>
+                        <td>Î∞úÏ£ºÏùº</td>
+                        <td>ÎÇ©Í∏∞Ïùº</td>
+                        <td>ÌíàÎ≤à</td>
+                        <td>ÌíàÎ™Ö</td>
+                        <td>Í∑úÍ≤©</td>
+                        <td>Îã®ÏúÑ</td>
+                        <td>ÏßÄÏãúÏàòÎüâ</td>
+                        <td>Îã®Í∞Ä</td>
+                        <td>Í∏àÏï°</td>
+                        <td>ÏÉÅÌÉú</td>
+                        <td>Í≤ÄÏÇ¨</td>
+                        <td>ÎπÑÍ≥†</td>
+                        </thead>
+
+   <c:forEach var="out" items="${outsourcingView}" varStatus="status" >     
+   <tr id= "updateTest" align="center">
+   	  <td><input type="checkbox" name="content" value="${out.workOrderNumber}"/></td>
+   	  <td style="width:13px;"><input type="text" name="workOrderNumber" value = '${out.workOrderNumber}' readonly style="width:100%"/></td>
+   	  <td><input type="date" name="instructionDate" value = '${out.instructionDate}'/></td>
+   	  <td><input type="date" name="dueDate" value = '${out.dueDate}'/></td>
+   	  <td><input type="text" name="item_Code" value = '${out.item_Code}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="item_Name" value = '${out.item_Name}' readonly/></td>
+   	  <td><input type="text" name="standard" value = '${out.standard}' readonly/></td>
+   	  <td><input type="text" name="inventory_Unit" value = '${out.inventory_Unit}' readonly/></td>
+   	  <td><input type="text" name="indicatedQuantity" value = '${out.indicatedQuantity}'/></td>
+   	  <td><input type="text" name="unitPrice" value = '${out.unitPrice}'/></td>
+   	  <td><input type="text" value = '${out.indicatedQuantity*out.unitPrice}' readonly/></td>
+   	  <td><input type="text" name="status" value = '${out.status}'/></td>
+   	  <td><input type="text" name="inspection" value = '${out.inspection}'/></td>
+   	  <td><input type="text" name="note" value = '${out.note}'/>   </td>
+    </tr>
+    </c:forEach> 
+
+    <tr id ="insertTest" align="center">
+    <td></td>
+    	<td><input type="text" id="workOrderNumber" name="workOrderNumber" value='${workOrderNumber }' readonly style="width:100%"/></td>
+    	<td><input type="date" id="instructionDate" name="instructionDate"/></td>
+    	<td><input type="date" id="dueDate" name="dueDate"/></td>
+    	<td><input type="text" id="item_Code" name="item_Code" value='${item_Code }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="item_Name" name="item_Name" value='${item_Name }' readonly/></td>
+    	<td><input type="text" id="standard" name="standard" value='${standard }' readonly/></td>
+    	<td><input type="text" id="inventory_Unit" name="inventory_Unit" value='${inventory_Unit }' readonly/></td>
+    	<td><input type="text" id="indicatedQuantity" name="indicatedQuantity" /></td>
+    	<td><input type="text" id="unitPrice" name="unitPrice" /></td>
+    	<td><input type="text" readonly id="price"/></td>
+    	<td><input type="text" id="status" name="status" /></td>
+    	<td><input type="text" id="inspection" name="inspection"/></td>
+    	<td><input type="text" id="note" name="note"/></td>
+    </tr>
+<!--  
+                      <c:forEach var="out" items="${outsourcingView}" >   
+                     <tr align="center">
+                     <td><input type="checkbox" name="content"/></td>
+                        <td>${out.workOrderNumber}</td>
+                        <td>${out.instructionDate}</td>
+                        <td>${out.dueDate}</td>
+                        <td>${out.item_Code}</td>
+                        <td>${out.item_Name}</td>
+               		    <td>${out.standard}</td>
+                        <td>${out.inventory_Unit}</td>
+                        <td>${out.indicatedQuantity}</td>
+                        <td>${out.unitPrice}</td>
+                        <td>${out.price}</td>
+                        <td>${out.status}</td>
+                        <td>${out.inspection}</td>
+                        <td>${out.note}</td>
+                        
+                     </tr>
+                     </c:forEach>
+
+                    
+                    <!-- ÌÖåÏä§Ìä∏Ïö© Îç∞Ïù¥ÌÑ∞, Ï∂îÌõÑ ÌëúÌòÑÏãùÏúºÎ°ú ÏàòÏ†ïÌïÑÏöî -->
+                    <!-- 
+<tr align="center">
+                        <td><input type="checkbox" name="content"/></td>
                         <td><input type="text"/></td>
                         <td><input type="date"/></td>
                         <td><input type="date"/></td>
+                        <td><input type="text" id="itemcode" ondblclick="openWindowPop('/member/proplanreg.do#','proplanreg')"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
@@ -128,16 +203,49 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                    </tbody>
+</tr>
+-->
                 </table>
             </div>
-            <!-- «’∞Ë √‚∑¬∫Œ -->
+            <!-- Ìï©Í≥Ñ Ï∂úÎ†•Î∂Ä -->
             <div id="resultWindow">
-                «’ ∞Ë <span style="margin-left: 100px;"></span>¡ˆΩ√ºˆ∑Æ <input type="text"><span style="margin-left: 100px;">±›æ◊ <input type="text"></span>
+                Ìï© Í≥Ñ <span style="margin-left: 100px;"></span>ÏßÄÏãúÏàòÎüâ <input type="text"><span style="margin-left: 100px;">Í∏àÏï° <input type="text"></span>
             </div>
-            <!-- «’∞Ë √‚∑¬∫Œ ¡æ∑· -->
+            <!-- Ìï©Í≥Ñ Ï∂úÎ†•Î∂Ä Ï¢ÖÎ£å -->
         </container2>
+        
+          <script>
+      function search1(num){
+    	  if(num == 1){
+      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do?div='+1,'codehelper');
+    	  }
+    	  else if(num == 2){
+    	      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do?div='+2,'codehelper');
+
+    	  }
+      }
       
-</body>
+      function search2(){
+      	
+        	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+      	 
+        }
+        function setChildValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);
+  		  URLSearch.set('submit', '2');
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('itemCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&itemCode=' + name;
+          }
+          else{
+          	URLSearch.set('itemCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
+      	
+      </script>
+          
 </html>
