@@ -291,7 +291,7 @@
 	</update> -->
 	
 	<!-- 외주발주등록 파트 -->
-	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
+<resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
 		<result property="instructionDate" column="instructionDate" />
 		<result property="dueDate" column="dueDate" />
@@ -305,10 +305,10 @@
 		<result property="status" column="status" />
 		<result property="inspection" column="inspection" />
 		<result property="note" column="note" />
-	</resultMap> -->
+	</resultMap>
 	
 	
-	<!-- <select id="selectAllOutsourcingList" resultMap="outsourcingView">
+<select id="selectAllOutsourcingList" resultMap="outsourcingView">
 		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
 	</select>
 	
@@ -320,8 +320,7 @@
 	
 	<delete id="deleteOutsourcing" parameterType="int">
 		<![CDATA[delete from t_member where id=#{id}]]>
-	</delete> -->
-
+	</delete>
 
 
 </mapper>
