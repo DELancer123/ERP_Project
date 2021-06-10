@@ -4,7 +4,14 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <% String inputNO = (String)request.getAttribute("inputNO"); %>
-<!-- <% String parent = request.getParameter("itemNumber"); %>  -->  
+<% String parent = request.getParameter("Item_Code"); %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:forEach var="iup" items="${iupInsert}">
+	<c:set var="Item_Code" value="${iup.Item_Code }"/>
+	<c:set var="Item_Name" value="${iup.Item_Name }"/>
+	<c:set var="Standard" value="${iup.Standard }"/>
+	<c:set var="Unit" value="${iup.Unit }"/>
+</c:forEach>
     
 <!DOCTYPE html>
 <html>
@@ -152,18 +159,98 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
         $(document).ready(function(){
+        	$('ul.tabs li').click(function(){
+            	var tab_id = $(this).attr('data-tab');
+    			$('ul.tabs li').removeClass('current');
+            	$('.tab-content').removeClass('current');
+    			$(this).addClass('current');
+            	$("#"+tab_id).addClass('current');
+        	})
+    	})
+    	
+    	var Item_Code = document.getElementById("Item_Code");
+        var Item_Name = document.getElementById("dataoutput");
+        var Standard = document.getElementById("dataoutput");
+        var Unit = document.getElementById("dataoutput");
         
-        $('ul.tabs li').click(function(){
-            var tab_id = $(this).attr('data-tab');
-    
-            $('ul.tabs li').removeClass('current');
-            $('.tab-content').removeClass('current');
-    
-            $(this).addClass('current');
-            $("#"+tab_id).addClass('current');
-        })
-    
-    })
+        var Inventory_Unit = document.getElementById("dataoutput");
+//	 	var Kind = document.getElementById("dataoutput"); //종류구분
+		var Purchase_Price = document.getElementById("dataoutput");
+		var Sales_Price = document.getElementById("dataoutput");
+		
+        var Inventory_Unit = document.getElementById("Inventory_Unit");
+//	 	var Kind = document.getElementById("dataoutput"); //종류구분
+		var Purchase_Price = document.getElementById("Purchase_Price");
+		var Sales_Price = document.getElementById("Sales_Price");
+		var save_button = document.getElementById("save");
+		var update_button = document.getElementById("update");
+		
+		function search2(){
+			openWindowPop('http://localhost:8090/webERP/member/iupcodehelper2.do','iupcodehelper2');
+		}
+		
+		function setChildValue(name){
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','2');
+			const newParam = URLSearch.toString();
+			if(URLSearch.get('Item_Code') == null){
+				window.location.href = location.pathname + '?' + newParam + '&Item_Code=' + name;
+			}
+			else{
+				URLSearch.set('Item_Code',name);
+				const newParam = URLSearch.toString();
+				window.location.href = location.pathname + '?' +newParam;
+			}
+		}
+		
+		function updateRow(){
+			var iupTable = document.getElementById('iupTable');
+			var row = iup.insertRow();
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','1');
+			const newParam = URLSearch.toString();
+			var link = location.pathname + '?' + newParam;
+				document.getElementById("Inventory_Unit").disabled = true;
+//				document.getElementById("Kind").disabled = true;
+				document.getElementById("Purchase_Price").disabled = true;
+				document.getElementById("Sales_Price").disabled = true;
+				document.getElementById("No").disabled = true;
+			var articleNoInput = document.createElement("input");
+				articleNoInput.setAttribute("type","hidden");
+				articleNoInput.setAttribute("name","path");
+				articleNoInput.setAttribute("value",link);
+				document.getElementById('regIup').appendChild(articleNoInput);
+				document.getElementById('regIup').action = "${contextPath}/member/updateIup.do";
+				document.getElementById('regIup').submit();
+		}
+		
+		function newRow(){ //DAO에서 저장
+			var row = workOrderTable.insertRow();
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','1');
+			const newParam = URLSearch.toString();
+			var link = location.pathname + '?' + newParam;
+			var articleNoInput = document.createElement("input");
+			articleNoInput.setAttribute("type","hidden");
+			articleNoInput.setAttribute("name","path");
+			articleNoInput.setAttribute("value",link);
+			document.getElementById('regIup').appendChild(articleNoInput);
+			document.getElementById('regIup').action = "${contextPath}/member/addIup.do";
+			document.getElementById('regIup').submit();
+		}
+		
+		function deleteData(){
+			var item = document.getElementsByName("content").length;
+			var no = "";
+			var ary = [];
+			for(var i=0; i<item; i++){
+				if(document.getElemetsByName("content")[i].checked==true){
+					no = document.getElementsByName("content")[i].value;
+					ary.push(no);
+				}
+				window.location.href = "${contextPath}/member/delIup.do?no="+ary;
+			}
+		}
     </script>
 </body>
 </html>
