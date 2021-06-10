@@ -21,6 +21,12 @@ public class ItemViewServiceImpl implements ItemViewService{
 		allItemsList = itemviewDAO.selectAllItemList();
 		return allItemsList;
 	}
+	@Override
+	public List submitItem(String item_code) throws DataAccessException {
+		List searchList = null;
+		searchList = itemviewDAO.searchView(item_code);
+		return searchList;
+	}
 
 	@Override
 	public int addItem(ItemViewVO itemview) throws DataAccessException {
@@ -31,6 +37,7 @@ public class ItemViewServiceImpl implements ItemViewService{
 	public int removeItem(String item_code) throws DataAccessException {
 		return itemviewDAO.deleteItem(item_code);
 	}
+
 
 }
 

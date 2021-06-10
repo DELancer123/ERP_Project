@@ -30,6 +30,38 @@ public class ItemViewControllerImpl implements ItemViewController {
 	private ItemViewVO itemviewVO;
 
 	@Override
+	@RequestMapping(value="/salesmanage/regplanitem.do" ,method = RequestMethod.GET)
+	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String code = (String)request.getParameter("item_code");
+		String name = (String)request.getParameter("item_name");
+		String stan = (String)request.getParameter("standard");
+		String unit = (String)request.getParameter("inventory_unit");
+		String inspect = (String)request.getParameter("inspection_status");
+		String submit = (String)request.getParameter("submit");
+		
+		if(code == null || code.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List submitItem = itemviewService.submitItem(code);
+			
+			mav = new ModelAndView(viewName);
+			mav.addObject("bomView", bomView);
+		}
+		else if(submit.equals("2")) {
+			List submitItem = itemviewService.submitItem(code);
+			List bomInsert = itemviewService.setText(itemNumber);
+			mav = new ModelAndView(viewName);
+			mav.addObject("bomView", bomView);
+			mav.addObject("bomInsert",bomInsert);
+		}
+		
+		return mav;
+	}
+	@Override
 	@RequestMapping(value="/sales_manage/popItem.do" ,method = RequestMethod.GET)
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
@@ -97,6 +129,7 @@ public class ItemViewControllerImpl implements ItemViewController {
 		}
 		return viewName;
 	}
+
 }
 
 ////	@Override

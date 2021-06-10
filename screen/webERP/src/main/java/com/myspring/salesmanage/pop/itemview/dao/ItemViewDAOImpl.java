@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
 
 @Repository("itemviewDAO")
@@ -20,8 +21,15 @@ public class ItemViewDAOImpl implements ItemViewDAO{
 		List<ItemViewVO> allItemsList = null;
 		allItemsList = sqlSession.selectList("mappers.erp.selectAllItemList");
 		return allItemsList;
-	}
+	}//allItemsList
 
+	@Override
+	public List submitView(String item_code) throws DataAccessException {
+		List<ItemViewVO> searchList = null;
+		searchList = sqlSession.selectList("mappers.erp.submitview",item_code);
+		return searchList;
+	}//submit를 누르면 table에 들어감
+	
 	@Override
 	public int insertItem(ItemViewVO itemviewVO) throws DataAccessException {
 		int result = sqlSession.insert("mappers.erp.insertItem", itemviewVO);
