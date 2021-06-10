@@ -44,7 +44,8 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/regbom" >
+<!-- 폼을 수정해여ㅑ할거같음 -->
+<form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -71,7 +72,7 @@
       					<td><b>규격</b></td>
   					</tr>
    
- 					<c:forEach var="item" items="${allItemsList}" >     
+ 					<c:forEach var="item" items="${allItemsList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
       						<td>${item.item_name}</td>
