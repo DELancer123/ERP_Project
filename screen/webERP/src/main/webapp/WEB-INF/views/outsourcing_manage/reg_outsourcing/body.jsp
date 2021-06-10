@@ -129,8 +129,42 @@ window.onload = function(){
                         <td>비고</td>
                         </thead>
 
-                    
+   <c:forEach var="out" items="${outsourcingView}" varStatus="status" >     
+   <tr id= "updateTest" align="center">
+   	  <td><input type="checkbox" name="content" value="${out.workOrderNumber}"/></td>
+   	  <td style="width:13px;"><input type="text" name="workOrderNumber" value = '${out.workOrderNumber}' readonly style="width:100%"/></td>
+   	  <td><input type="date" name="instructionDate" value = '${out.instructionDate}'/></td>
+   	  <td><input type="date" name="dueDate" value = '${out.dueDate}'/></td>
+   	  <td><input type="text" name="item_Code" value = '${out.item_Code}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="item_Name" value = '${out.item_Name}' readonly/></td>
+   	  <td><input type="text" name="standard" value = '${out.standard}' readonly/></td>
+   	  <td><input type="text" name="inventory_Unit" value = '${out.inventory_Unit}' readonly/></td>
+   	  <td><input type="text" name="indicatedQuantity" value = '${out.indicatedQuantity}'/></td>
+   	  <td><input type="text" name="unitPrice" value = '${out.unitPrice}'/></td>
+   	  <td><input type="text" value = '${out.indicatedQuantity*out.unitPrice}' readonly/></td>
+   	  <td><input type="text" name="status" value = '${out.status}'/></td>
+   	  <td><input type="text" name="inspection" value = '${out.inspection}'/></td>
+   	  <td><input type="text" name="note" value = '${out.note}'/>   </td>
+    </tr>
+    </c:forEach> 
 
+    <tr id ="insertTest" align="center">
+    <td></td>
+    	<td><input type="text" id="workOrderNumber" name="workOrderNumber" value='${workOrderNumber }' readonly style="width:100%"/></td>
+    	<td><input type="date" id="instructionDate" name="instructionDate"/></td>
+    	<td><input type="date" id="dueDate" name="dueDate"/></td>
+    	<td><input type="text" id="item_Code" name="item_Code" value='${item_Code }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="item_Name" name="item_Name" value='${item_Name }' readonly/></td>
+    	<td><input type="text" id="standard" name="standard" value='${standard }' readonly/></td>
+    	<td><input type="text" id="inventory_Unit" name="inventory_Unit" value='${inventory_Unit }' readonly/></td>
+    	<td><input type="text" id="indicatedQuantity" name="indicatedQuantity" /></td>
+    	<td><input type="text" id="unitPrice" name="unitPrice" /></td>
+    	<td><input type="text" readonly id="price"/></td>
+    	<td><input type="text" id="status" name="status" /></td>
+    	<td><input type="text" id="inspection" name="inspection"/></td>
+    	<td><input type="text" id="note" name="note"/></td>
+    </tr>
+<!--  
                       <c:forEach var="out" items="${outsourcingView}" >   
                      <tr align="center">
                      <td><input type="checkbox" name="content"/></td>
@@ -153,6 +187,7 @@ window.onload = function(){
 
                     
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
+                    <!-- 
 <tr align="center">
                         <td><input type="checkbox" name="content"/></td>
                         <td><input type="text"/></td>
@@ -169,6 +204,7 @@ window.onload = function(){
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
 </tr>
+-->
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -187,6 +223,27 @@ window.onload = function(){
     	      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do?div='+2,'codehelper');
 
     	  }
+      }
+      
+      function search2(){
+      	
+        	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+      	 
+        }
+        function setChildValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);
+  		  URLSearch.set('submit', '2');
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('itemCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&itemCode=' + name;
+          }
+          else{
+          	URLSearch.set('itemCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
       }
       	
       </script>
