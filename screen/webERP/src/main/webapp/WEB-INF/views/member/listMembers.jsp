@@ -25,17 +25,17 @@
       <td><b>삭제</b></td>
    </tr>
    
- <c:forEach var="member" items="${membersList}" >     
+ <c:forEach var="itemview" items="${allItemsList}" >     
    <tr align="center">
-      <td>${member.item_code}</td>
-      <td>${member.item_name}</td>
-      <td>${member.standard}</td>
-      <td>${member.inventory_unit}</td>
-      <td>${member.inspection_status}</td>
-      <td><a href="${contextPath}/member/removeMember.do?id=${member.item_code}">삭제하기</a></td>
+      <td>${itemview.item_code}</td>
+      <td>${itemview.item_name}</td>
+      <td>${itemview.standard}</td>
+      <td>${itemview.inventory_unit}</td>
+      <td>${itemview.inspection_status}</td>
+      <td><a href="${contextPath}/itemview/removeItem.do?item_code=${itemview.item_code}">삭제하기</a></td>
     </tr>
   </c:forEach>   
 </table>
-<a  href="${contextPath}/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
+<a  href="${contextPath}/member/itemviewForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </body>
 </html>

@@ -1,38 +1,39 @@
-//package com.myspring.salesmanage.pop.itemview.service;
-//
-//import java.util.List;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.dao.DataAccessException;
-//import org.springframework.stereotype.Service;
-//
-//
-//import com.myspring.salesmanage.pop.itemview.dao.ItemViewDAO;
-//import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
-//
-//@Service("itemviewService")
-//public class ItemViewServiceImpl implements ItemViewService {
-//	
-//	@Autowired
-//	private ItemViewDAO itemViewDAO;
-//
-//	@Override
-//	public List listItems() throws DataAccessException {
-//		List allItemsList = null;
-//		allItemsList = itemViewDAO.selectAllItemList();
-//		return allItemsList;
-//	}
-//
-//	@Override
-//	public int addMember(ItemViewVO item) throws DataAccessException {
-//		return itemViewDAO.insertMember(item);
-//	}
-//
-//	@Override
-//	public int removeMember(String id) throws DataAccessException {
-//		return itemViewDAO.deleteMember(id);
-//	}
-//
+package com.myspring.salesmanage.pop.itemview.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.myspring.salesmanage.pop.itemview.dao.ItemViewDAO;
+import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
+
+@Service("itemviewService")
+public class ItemViewServiceImpl implements ItemViewService{
+	
+	@Autowired
+	private ItemViewDAO itemviewDAO;
+
+	@Override
+	public List listItems() throws DataAccessException {
+		List allItemsList = null;
+		allItemsList = itemviewDAO.selectAllItemList();
+		return allItemsList;
+	}
+
+	@Override
+	public int addItem(ItemViewVO itemview) throws DataAccessException {
+		return itemviewDAO.insertItem(itemview);
+	}
+
+	@Override
+	public int removeItem(String item_code) throws DataAccessException {
+		return itemviewDAO.deleteItem(item_code);
+	}
+
+}
+
 //	
 ////	@Autowired
 ////	private ItemViewDAO itemViewDAO;
