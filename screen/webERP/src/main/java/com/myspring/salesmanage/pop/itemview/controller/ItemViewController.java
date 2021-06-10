@@ -11,7 +11,7 @@ import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
 
 public interface ItemViewController {
 
-	public ModelAndView listItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addItem(@ModelAttribute("info") ItemViewVO itemviewVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView removeItem(@RequestParam("item_code") String item_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
