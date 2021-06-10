@@ -307,19 +307,20 @@
 	</resultMap>
 	
 	
-<select id="selectAllOutsourcingList" resultMap="outsourcingView">
+	<select id="selectAllOutsourcingList" resultMap="outsourcingView">
 		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
 	</select>
 	
-	
-	<insert id="insertOutsourcing" parameterType="regOutsourcingVO">
-		<![CDATA[insert into CPM_OM_Out_Per_Reg(id,pwd,name,email) values(#{id}, #{pwd}, #{name}, #{email}]]>
-	</insert>
-
 	
 	<delete id="deleteOutsourcing" parameterType="int">
 		<![CDATA[delete from t_member where id=#{id}]]>
 	</delete>
 
+	<insert id="insertOutsourcing" parameterType="regOutsourcingVO">
+		<![CDATA[
+		 insert into CPM_BIM_BOM_REG
+		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		]]>  
+	</insert>
 
 </mapper>

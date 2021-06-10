@@ -16,9 +16,7 @@ public class RegOutsourcingDAOImpl implements RegOutsourcingDAO {
 	@Override
 	public List viewOutsourcingList() throws DataAccessException {
 		List<RegOutsourcingVO> outsourcingList = null;
-		System.out.println("outsourcingList 전 : " + outsourcingList);
 		outsourcingList = sqlSession.selectList("mappers.erp.selectAllOutsourcingList");
-		System.out.println("outsourcingList 후: " + outsourcingList);
 		return outsourcingList;
 	}
 
