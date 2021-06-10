@@ -70,13 +70,15 @@
       					<td><b>품번</b></td>
       					<td><b>품명</b></td>
       					<td><b>규격</b></td>
+      					<td><b>사업자명</b></td>
   					</tr>
    
- 					<c:forEach var="item" items="${allItemsList}" >
+ 					<c:forEach var="item" items="${allCustsList}" >
    						<tr align="center">
-      						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
-      						<td>${item.item_name}</td>
-      						<td>${item.standard}</td>
+      						<td><a href="javascript:popFunction('${item.custCode}','${item.custName}')">${item.custCode}</td>
+      						<td>${item.custName}</td>
+      						<td>${item.comnumber}</td>
+      						<td>${item.repName}</td>
 						</tr>
   					</c:forEach>   
 				</table>
@@ -92,7 +94,7 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath}/salesmanage/regplanitem.do?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
+    		opener.parent.location='${contextPath}/salesmanage/regplanitem.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>

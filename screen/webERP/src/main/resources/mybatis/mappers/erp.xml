@@ -220,15 +220,23 @@
 	]]>      
   </delete>
 	
-	<!--popcust -->
+	<!--popcust 
+		<resultMap id="custResult" type="custviewVO">
+		<result property="general_customer_code" column="general_customer_code" />
+        <result property="general_customer_name" column="general_customer_name" />
+        <result property="company_registration_number" column="company_registration_number" />
+        <result property="representativs_name" column="representativs_name" />
+	</resultMap>
 		
-		 <resultMap id="custResult" type="custviewVO">
+		
+		  <resultMap id="custResult" type="custviewVO">
 		<result property="custCode" column="general_customer_code" />
         <result property="custName" column="general_customer_name" />
         <result property="comnumber" column="company_registration_number" />
         <result property="repName" column="representativs_name" />
-	</resultMap> 
+	</resultMap>
 
+ 
 
 	<select id="selectAllCustList" resultMap="custResult">
       <![CDATA[
@@ -251,6 +259,7 @@
 	   general_customer_code=#{custCode}
 	]]>      
   </delete>	
+    -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
