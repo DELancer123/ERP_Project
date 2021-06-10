@@ -1,51 +1,61 @@
-//package com.myspring.invenBasicInfo.controller;
+//package com.myspring.salesmanage.pop.custView.controller;
+//
+//
 //
 //import java.util.List;
 //
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
 //
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.EnableAspectJAutoProxy;
 //import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.servlet.ModelAndView;
-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //
-//import com.myspring.invenBasicInfo.service.*;
-//import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
+//import com.myspring.salesmanage.pop.custView.service.CustViewService;
+//import com.myspring.salesmanage.pop.custView.vo.CustViewVO;
 //
-//@Controller("memberController")
-////@EnalbleAspectAutoProxy
-//public class InvenViewControllerImpl implements InvenViewController{
-//	private static final Logger logger = LoggerFactory.getLogger(InvenViewControllerImpl.class);
-//	@Autowired
-//	private InvenViewService viewService;
-//	@Autowired
-//	private RegItemUnitPriceVO regItemUnitPriceVO;
+//@Controller("custViewController")
+//public class CustViewControllerImpl implements CustViewController{
+//
+//	private static final Logger logger = LoggerFactory.getLogger(CustViewControllerImpl.class);
 //	
+//	@Autowired
+//	private CustViewService service;
+//	
+//	@Autowired
+//	private CustViewVO custViewVO;
+//
+//
 //	@Override
-//	@RequestMapping(value="/member/itemunitprice.do" ,method = RequestMethod.GET)
-//	public ModelAndView viewIUPrice(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	@RequestMapping(value = "/member/searchcust.do", method = RequestMethod.GET)
+//	public ModelAndView viewCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		ModelAndView mav = null;
 //		String viewName = getViewName(request);
-//		String number = (String) request.getParameter("itemNumber");
-//		if(number == null || number.length() == 0) {
+//		String custCode = (String) request.getParameter("General_Customer_Code");
+//		if(custCode == null || custCode.length() == 0) {
 //			mav = new ModelAndView(viewName);
 //			return mav;
 //		}
 //		else {
-//			List invenView = viewService.searchView(number);
+//			List bomView = service.searchView(custCode);
 //			mav = new ModelAndView(viewName);
-//			mav.addObject("invenView",invenView);
+//			mav.addObject("bomView", bomView);
 //		}
-//		System.out.println("숫자" + number);
+//			
+//		System.out.println("?��?��?�� ?��??" + custCode);
+//		return mav;
+//	}
+//	
+//	@RequestMapping(value="/member/requestcust.do" ,method = RequestMethod.GET)
+//	public ModelAndView requestCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = getViewName(request);
+//		List custView = service.custView();
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("custView", custView);
 //		return mav;
 //	}
 //	
