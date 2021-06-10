@@ -136,12 +136,21 @@
       var itemName = document.getElementById("dataoutput");
       var standard = document.getElementById("dataoutput");
       var unit = document.getElementById("dataoutput");
+
+      var precisionQuantity = document.getElementById("dataoutput");
+      var loss = document.getElementById("dataoutput");
+      var actualCost = document.getElementById("dataoutput");
+      var outSourcingUnitPrice = document.getElementById("dataoutput");
+      var startDate = document.getElementById("dataoutput");
+      var endDate = document.getElementById("dataoutput");
+
+      
       var precisionQuantity = document.getElementById("precisionQuantity");
       var loss = document.getElementById("loss");
       var outSourcingUnitPrice = document.getElementById("outSourcingUnitPrice");
       var startDate = document.getElementById("startDate");
       var endDate = document.getElementById("endDate");
-      var actualQuantity = document.getElementById('actualQuantity');
+     	  var actualQuantity = document.getElementById('actualQuantity');
 
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
