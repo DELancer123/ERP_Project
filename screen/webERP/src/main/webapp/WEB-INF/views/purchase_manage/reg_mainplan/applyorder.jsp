@@ -17,9 +17,27 @@ request.setCharacterEncoding("UTF-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <script type="text/javascript">
-function v_check(){
+function Check(){
+	var select = eval("document.select");
 	
+	var cntCheck =0;
+	for(i=0; i<select.content.length; i++){
+		if(select.content[i].checked == true){
+			cntCheck++;			
+		}
+	}
+}
+function setcontent(){
+	var select = eval("document.select");
+	var checked = document.getElementsByName("content");
+	var chkList = "";
 	
+	for(var i=0; i<select.content.length; i++){
+		if(checked[i].checked == true){
+			chkList += checked[i].value+" ";
+		}
+	}
+	opener.document.reserve.item_Code.value = chkList;
 	window.close();
 }
 </script>
@@ -72,14 +90,15 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>
-				<input type="button" onclick="setParentText();" value="적용"/>
+				<input type="button" onclick="selectcontent(this.form);" value="적용"/>
 				<button>취소</button>
 			</div>
 		</div>
 		<div id="view">
+			<form id="select">
 			<table style="width: 100%;">
 				<thead align="center" style="background-color: gray">
-					<td><input type="checkbox" name="content" onclick="selectAll(this)" /></td>
+					<td></td>
 					<td>주문번호</td>
 					<td>순서</td>
 					<td>주문일자</td>
@@ -95,8 +114,8 @@ a {
 					<td>출하예정일</td>
 					<td>비고</td>
 				</thead>
-				<c:forEach var="MpsOS" items="${mpsosList}" varStatus="sts">
-					<tr align="center" id="idx_${mpsosList}">
+				<c:forEach var="MpsOS" items="${mpsosList}">
+					<tr align="center">
 					<td><input type="checkbox" name="content"/></td>
 						<td>${MpsOS.ordersno}</td>
 						<td>${MpsOS.sequence}</td>
@@ -115,6 +134,7 @@ a {
 					</tr>
 				</c:forEach>
 			</table>
+			</form>
 		</div>
 	</div>
 </body>

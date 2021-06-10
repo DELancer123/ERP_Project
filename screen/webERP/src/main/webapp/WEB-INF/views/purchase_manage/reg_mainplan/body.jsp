@@ -108,7 +108,8 @@ function func_Popup(){
 		<input type="button" id="Popup" onclick="func_Popup();" value="주문적용" />
 	</div>
 	</container1>
-	<container2 id=contents2>
+<container2 id=contents2>
+	<form id="reserve">	
 	<table id="view1">
 		<thead align="center" style="background-color: gray">
 			<td>계획일</td>
@@ -139,6 +140,7 @@ function func_Popup(){
 			</tr>
 		</c:forEach>
 	</table>
+	</form>
 	</container2>
 </body>
 </html>
