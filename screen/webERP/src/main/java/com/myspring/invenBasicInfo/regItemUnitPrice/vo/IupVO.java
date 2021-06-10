@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component("IupVO")
 public class IupVO {
-	private String No; //PK걸기 위한 넘버코드(출력하진않음)
+	private String No; //PK걸기 위한 넘버코드
 	private String Item_Code; //품번
 	private String Item_Name; //품명
 	private String Standard; //규격

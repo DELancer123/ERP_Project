@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<% request.setCharacterEncoding("UTF-8"); %>
+<% String inputNO = (String)request.getAttribute("inputNO"); %>
+<!-- <% String parent = request.getParameter("itemNumber"); %>  -->  
+    
 <!DOCTYPE html>
 <html>
 <head>
