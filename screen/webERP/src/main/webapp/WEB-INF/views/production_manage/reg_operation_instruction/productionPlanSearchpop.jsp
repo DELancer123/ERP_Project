@@ -118,6 +118,8 @@
     			alert("시작일은 필수 입력 요소입니다!");
     		} else if(endDate == null){
     			alert("종료일은 필수 입력 요소입니다!");
+    		} else if(startDate > endDate){
+    			alert("종료일은 시작일보다 커야합니다!");
     		} else {
     			location.href='${contextPath }/member/productionPlanResponse.do?dateStart='+startDate+'&&dateEnd='+endDate;
     		}
