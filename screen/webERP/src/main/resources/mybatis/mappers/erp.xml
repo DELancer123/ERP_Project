@@ -26,20 +26,23 @@
 		<result property="inspection" column="Inspection" />
 		<result property="note" column="note" />
 	</resultMap>
+	
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
 		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit, DailyProduction from SM_BIM_Ite_Reg]]>
 	</select>
+	
 	<select id="selectAllOperationRegistInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
 		<where>
 			<if test="startDate != '' and startDate != null">
-				startDate = #{startDate}
+				instructionDate between #{startDate} and #{endDate}
 			</if>
 			<if test="endDate != '' and endDate != null">
-				endDate = #{endDate}
+				and dueDate between #{startDate} and #{endDate}
 			</if>
 		</where>
 	</select>
+	
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
 	</select>
