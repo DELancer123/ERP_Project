@@ -96,52 +96,51 @@
 </style>
 </head>
 <body>
-<container1 id = contents1>
-            <table class="con1_search">
-                
+	<container1 id = contents1>
+		<form id="searchForm">
+			<table class="con1_search">
                 <tr>
-                    <td >품번</td>
-                    <td style="width: 50px;"><input type="text" style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td> 
-                    <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-
-                    <td colspan="5" style="width: 80px;">계정구분</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>
-                    <td><input type="text" name="" disabled/></td>
+                    <td>
+                    	품번
+                    </td>
+                    <td style="width: 50px;">
+                    	<input type="text" style="width: 100%;" name="" value='${param.Item_Code }' />
+                    </td>
+                    <td>
+                    	<a href="javascript:search1()">
+                    		<i class="fas fa-search" style="color: blue;"></i>
+                    	</a>
+                    </td> 
+                    <td colspan="3">
+                    	<input type="text" name="" value='${param.Item_Name }' disabled style="width: 100%;"/>
+                    </td>
                 </tr>
-                
                 <tr>
                     <td>품목군</td>
                     <td style="width: 50px;"><input type="text" style="width: 100%;"/></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-
-                    <td colspan="5" style="width: 50px;">조달구분</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>                                              
-                    <td><input type="text" name="" disabled/></td>
                 </tr>
-
-
-            </table>
+			</table>
+		</form>
             <ul class="tabs" style="left: 0px; bottom: 0px; position: absolute;">
                 <li class="tab-link current" data-tab="tab-1">구매단가</li>
                 <li class="tab-link" data-tab="tab-2">판매단가</li>
             </ul>
         </container1>
-        <container2 id="contents2">
-            <table id="view1">
+<form id="regIup" method="get" commandName="ListVO">
+	<container2 id="contents2">      
+            <table id="iupTable">
                 <thead>                    
                     <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                    <td style="width:10px;">No</td>
                     <td>품 번</td>
                     <td>품 명</td>
                     <td>규 격</td>
                     <td>재고단위</td>
-                    <td>관리단위</td>
-                    <td>환산계수</td>
-                    <td>환산표준원가</td>
                     <td>구매단가</td>
+                    <td>판매단가</td>
+			<c:forEach var="bom" items="${bomView }">
                 </thead>
                 <tbody id="table1">
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
@@ -184,6 +183,10 @@
 		var Sales_Price = document.getElementById("Sales_Price");
 		var save_button = document.getElementById("save");
 		var update_button = document.getElementById("update");
+		
+		function search1(){
+			openWindowPop('http://localhost:8090/webERP/member/iupcodehelper1.do','iupcodehelper1');
+		}
 		
 		function search2(){
 			openWindowPop('http://localhost:8090/webERP/member/iupcodehelper2.do','iupcodehelper2');
