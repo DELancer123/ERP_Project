@@ -30,7 +30,7 @@ public class ItemViewControllerImpl implements ItemViewController {
 	private ItemViewVO itemviewVO;
 
 	@Override
-	@RequestMapping(value="/member/listMembers.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/sales_manage/popSalePlanItem.do" ,method = RequestMethod.GET)
 	public ModelAndView listItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 //		String viewName = (String)request.getAttribute("viewName");

@@ -186,6 +186,40 @@
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
 	
+	
+		<!--popitem -->
+		
+		 <resultMap id="itemResult" type="itemviewVO">
+		<result property="item_code" column="item_code" />
+        <result property="item_name" column="item_name" />
+        <result property="standard" column="standard" />
+        <result property="inventory_unit" column="inventory_unit" />
+        <result property="inspection_status" column="inspection_status" />
+	</resultMap> 
+
+
+	<select id="selectAllItemList" resultMap="itemResult">
+      <![CDATA[
+         select Item_Code,Item_Name, standard, inventory_unit,inspection_status from SM_BIM_Ite_Reg 
+      ]]>
+	</select>
+    
+     <insert id="insertItem"  parameterType="itemviewVO">
+		<![CDATA[
+		 insert into SM_BIM_Ite_Reg
+		 values(#{item_code}, #{item_name}, #{standard}, #{inventory_unit})
+		]]>   
+	</insert>
+	
+     
+   <delete id="deleteItem"  parameterType="String">
+	<![CDATA[
+	   delete from  SM_BIM_Ite_Reg
+	   where
+	   item_code=#{item_code}
+	]]>      
+  </delete>
+	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

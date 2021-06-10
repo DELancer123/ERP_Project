@@ -18,19 +18,19 @@ public class ItemViewDAOImpl implements ItemViewDAO{
 	@Override
 	public List selectAllItemList() throws DataAccessException {
 		List<ItemViewVO> allItemsList = null;
-		allItemsList = sqlSession.selectList("mapper.member.selectAllItemList");
+		allItemsList = sqlSession.selectList("mappers.erp.selectAllItemList");
 		return allItemsList;
 	}
 
 	@Override
 	public int insertItem(ItemViewVO itemviewVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.member.insertItem", itemviewVO);
+		int result = sqlSession.insert("mappers.erp.insertItem", itemviewVO);
 		return result;
 	}
 
 	@Override
 	public int deleteItem(String item_code) throws DataAccessException {
-		int result = sqlSession.delete("mapper.member.deleteItem", item_code);
+		int result = sqlSession.delete("mappers.erp.deleteItem", item_code);
 		return result;
 	}
 
