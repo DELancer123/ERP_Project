@@ -96,7 +96,7 @@
    	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
-   	  <td><input type="text" value = '${bom.precisionQuantity+bom.loss * 0.1 }' readonly/></td>
+   	  <td><input type="text" value = '${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
@@ -179,7 +179,10 @@
       function updateRow(){
     	  var workOrderTable = document.getElementById('workOrderTable');
           var row = workOrderTable.insertRow(); 
-  			var link = document.location.href;
+          const URLSearch = new URLSearchParams(location.search);
+          URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+		 var link = location.pathname +'?'+newParam;
   			 document.getElementById("precisionQuantity").disabled = true;
   		     document.getElementById("loss").disabled = true;
   		     document.getElementById("outSourcingUnitPrice").disabled = true;
@@ -187,7 +190,11 @@
   		     document.getElementById("no").disabled = true;
   		     document.getElementById("startDate").disabled = true;
   		     document.getElementById("endDate").disabled = true;
-  			 document.getElementById('regBOM').setAttribute('path',link);
+  		   var articleNOInput = document.createElement("input");
+		     articleNOInput.setAttribute("type","hidden");
+		     articleNOInput.setAttribute("name","path");
+		     articleNOInput.setAttribute("value", link);
+		     document.getElementById('regBOM').appendChild(articleNOInput);
            document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
   			document.getElementById('regBOM').submit();  
       }
