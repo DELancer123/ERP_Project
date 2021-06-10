@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.pop.custView.controller;
+package com.myspring.salesmanage.pop.custview.controller;
 
 
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.salesmanage.pop.custView.service.CustViewService;
-import com.myspring.salesmanage.pop.custView.vo.CustViewVO;
+import com.myspring.salesmanage.pop.custview.service.CustViewService;
+import com.myspring.salesmanage.pop.custview.vo.CustViewVO;
 
-@Controller("custViewController")
+@Controller("custviewController")
 public class CustViewControllerImpl implements CustViewController{
 
 	private static final Logger logger = LoggerFactory.getLogger(CustViewControllerImpl.class);
@@ -28,11 +28,6 @@ public class CustViewControllerImpl implements CustViewController{
 	
 	@Autowired
 	private CustViewVO custViewVO;
-
-
-	
-	
-
 
 	@Override
 	@RequestMapping(value="/sales_manage/popCust.do" ,method = RequestMethod.GET)

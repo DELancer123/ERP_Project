@@ -1,10 +1,10 @@
-package com.myspring.salesmanage.pop.custView.dao;
+package com.myspring.salesmanage.pop.custview.dao;
 
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.myspring.salesmanage.pop.custView.vo.CustViewVO;
+import com.myspring.salesmanage.pop.custview.vo.CustViewVO;
 
 public interface CustViewDAO {
 

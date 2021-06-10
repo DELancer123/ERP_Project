@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.pop.custView.vo;
+package com.myspring.salesmanage.pop.custview.vo;
 
 import org.springframework.stereotype.Component;
 

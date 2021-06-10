@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.pop.custView.dao;
+package com.myspring.salesmanage.pop.custview.dao;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.myspring.salesmanage.pop.custView.vo.CustViewVO;
+import com.myspring.salesmanage.pop.custview.vo.CustViewVO;
 
-@Repository("custViewDAO")
+@Repository("custviewDAO")
 public class CustViewDAOImpl implements CustViewDAO {
 	
 

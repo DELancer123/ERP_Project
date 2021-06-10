@@ -200,7 +200,7 @@
 
 	<select id="selectAllItemList" resultMap="itemResult">
       <![CDATA[
-         select Item_Code,Item_Name, standard, inventory_unit,inspection_status from SM_BIM_Ite_Reg 
+         select item_Code,item_Name, standard, inventory_unit,inspection_status from SM_BIM_Ite_Reg 
       ]]>
 	</select>
     
@@ -219,6 +219,38 @@
 	   item_code=#{item_code}
 	]]>      
   </delete>
+	
+	<!--popcust -->
+		
+		 <resultMap id="custResult" type="custviewVO">
+		<result property="custCode" column="general_customer_code" />
+        <result property="custName" column="general_customer_name" />
+        <result property="comnumber" column="company_registration_number" />
+        <result property="repName" column="representativs_name" />
+	</resultMap> 
+
+
+	<select id="selectAllCustList" resultMap="custResult">
+      <![CDATA[
+        select general_customer_code, general_customer_name, company_registration_number, representativs_name from SM_BIM_Gen_Cus_Reg  
+      ]]>
+	</select>
+    
+     <insert id="insertCust"  parameterType="custviewVO">
+		<![CDATA[
+		insert into SM_BIM_Gen_Cus_Reg
+		 values(#{custCode}, #{custName}, #{comnumber}, #{repName})
+		]]>   
+	</insert>
+	
+     
+   <delete id="deleteCust"  parameterType="String">
+	<![CDATA[
+	  delete from  SM_BIM_Gen_Cus_Reg
+	   where
+	   general_customer_code=#{custCode}
+	]]>      
+  </delete>	
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
