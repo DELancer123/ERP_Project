@@ -48,7 +48,7 @@
 	<select id="selectDepartmentList" resultMap="DepartmentViewResult">
 		<![CDATA[select* from SM_CRI_Dep_Reg]]>
 	</select>
-	<!-- <resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
+	<resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="item_code" />
 		<result property="itemName" column="item_Name" />
@@ -62,7 +62,7 @@
 	</resultMap>
 	<select id="selectProductionPlanList" parameterType="CommitOperationInstructionVO" resultMap="selectProductionPlanViewResult">
 		<![CDATA[select * from CPM_PM_Pro_Pla_Reg where scheduleddateofoperation between #{startDate} and #{endDate}]]>
-	</select> -->
+	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />

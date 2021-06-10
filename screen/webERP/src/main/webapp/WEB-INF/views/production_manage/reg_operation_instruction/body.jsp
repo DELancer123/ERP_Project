@@ -71,9 +71,9 @@
                     
                     <tr>
                         <td>지시기간</td>
-                        <td colspan="2" style="width: 50px;"><input type="date" style="width: 100%;"/></td>
+                        <td colspan="2" style="width: 50px;"><input type="date"  id='searchStartDate' style="width: 100%;"/></td>
                         <td>~</td>
-                        <td ><input type="date" style="width: 100%;"/></td>
+                        <td ><input type="date" id='searchEndDate' style="width: 100%;"/></td>
                         <td></td>
     
                         <td colspan="5" style="width: 80px;">사원</td>
@@ -150,6 +150,10 @@
 </body>
 </html>
  <script>
+ /* input date의 현재 날짜 기본값 설정*/
+ document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+ document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+ 
       function search1(){  
     	      	openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
       }
@@ -159,4 +163,6 @@
       function searchPlan(){
     	  openWindowPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
       }
+      
+      
       </script>

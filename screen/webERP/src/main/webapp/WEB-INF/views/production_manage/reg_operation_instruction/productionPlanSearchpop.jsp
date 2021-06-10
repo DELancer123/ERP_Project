@@ -77,7 +77,7 @@
                     <td>비고</td>
                 </tr>
      <c:forEach var="productionPlan" items="${productionPlanView}" >     
-		<tr align="center">
+		<tr align="center" id="insertData">
 			<td><input type="checkbox" name="content" /></td>
       		<td>${productionPlan.itemCode }</td>
       		<td>${productionPlan.itemName}</td>
@@ -134,6 +134,8 @@
             checkbox.checked = selectAll.checked;
            })
     	}
+    	
+    	
     </script>
     </form>
 </body>
