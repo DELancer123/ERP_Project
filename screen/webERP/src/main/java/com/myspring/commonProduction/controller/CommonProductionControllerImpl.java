@@ -39,9 +39,11 @@ import com.myspring.commonProduction.service.CommonProductionService;
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)
   public ModelAndView listOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
+	  String startDate = request.getParameter("startDate");
+	  String endDate = request.getParameter("endDate");
 	  String viewName = (String)request.getAttribute("viewName");
 	  logger.debug("debug �젅諛� : viewName = " + viewName); 
-	  List infoList = productionService.selectAllOperationInfo(); 
+	  List infoList = productionService.selectAllOperationInfo(startDate, endDate); 
 	  ModelAndView mav = new ModelAndView(viewName); 
 	  mav.addObject("infoList", infoList); 
 	  return mav; 

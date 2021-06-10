@@ -26,13 +26,26 @@
 		<result property="inspection" column="Inspection" />
 		<result property="note" column="note" />
 	</resultMap>
+	
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
 		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit, DailyProduction from SM_BIM_Ite_Reg]]>
 	</select>
-	<select id="selectAllOperationRegistInfo" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg]]>
+	
+	<select id="selectAllOperationRegistInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<where>
+			<if test="startDate != '' and startDate != null">
+				instructionDate between #{startDate} and #{endDate}
+			</if>
+			<if test="endDate != '' and endDate != null">
+				and dueDate between #{startDate} and #{endDate}
+			</if>
+		</where>
 	</select>
-
+	
+	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+	</select>
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />
@@ -48,7 +61,7 @@
 	<select id="selectDepartmentList" resultMap="DepartmentViewResult">
 		<![CDATA[select* from SM_CRI_Dep_Reg]]>
 	</select>
-	<!-- <resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
+	<resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="item_code" />
 		<result property="itemName" column="item_Name" />
@@ -62,7 +75,7 @@
 	</resultMap>
 	<select id="selectProductionPlanList" parameterType="CommitOperationInstructionVO" resultMap="selectProductionPlanViewResult">
 		<![CDATA[select * from CPM_PM_Pro_Pla_Reg where scheduleddateofoperation between #{startDate} and #{endDate}]]>
-	</select> -->
+	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />

@@ -31,9 +31,10 @@ import java.util.List;
   return infolist; 
   }
   
-  @Override public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException{ 
+  @Override public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
-	  infolist = ORdao.selectAllOperationInfo(); return infolist; 
+	  infolist = ORdao.selectAllOperationInfo(startDate,endDate); 
+	  return infolist; 
 	  }
 
   @Override

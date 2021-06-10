@@ -61,7 +61,7 @@
             </table>
             <div id="button">
                 <input type="button" id="planSearch" value="조회" onClick="sendData();" />
-                <input type="button" id="submit" onClick="insertList();" value="적용" />
+                <input type="button" id="submit" onClick="setCheckList();" value="적용" />
             </div>
         </div>
         <div id="view">
@@ -77,7 +77,7 @@
                     <td>비고</td>
                 </tr>
      <c:forEach var="productionPlan" items="${productionPlanView}" >     
-		<tr align="center">
+		<tr align="center" id="insertData">
 			<td><input type="checkbox" name="content" /></td>
       		<td>${productionPlan.itemCode }</td>
       		<td>${productionPlan.itemName}</td>
@@ -94,6 +94,7 @@
     <script>
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
+    	/* input date 값 설정 및 가져오기 함수 */
     	var startDate;
     	var endDate;
     	
@@ -118,6 +119,8 @@
     			alert("시작일은 필수 입력 요소입니다!");
     		} else if(endDate == null){
     			alert("종료일은 필수 입력 요소입니다!");
+    		} else if(startDate > endDate){
+    			alert("종료일은 시작일보다 커야합니다!");
     		} else {
     			location.href='${contextPath }/member/productionPlanResponse.do?dateStart='+startDate+'&&dateEnd='+endDate;
     		}
@@ -132,8 +135,23 @@
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
             checkbox.checked = selectAll.checked;
-           })
+           });
     	}
+    	
+   /* 체크 박스 값 가져오기 함수 */
+  /* function setCheckList() {
+	   
+   var checkbox = $("input:checkbox[name=content]:checked");
+   
+   checkbox.each(funtion(i) {
+	   var tr = checkbox.parent().parent().eq(i);
+	   var td = tr.children();
+	   
+	  rowData.push(tr.text());
+   		});
+   
+   	alert(tr);
+   }  */
     </script>
     </form>
 </body>
