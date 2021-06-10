@@ -31,6 +31,14 @@ public class ItemViewDAOImpl implements ItemViewDAO{
 	}//submit를 누르면 table에 들어감
 	
 	@Override
+	public List addItem(String item_code) throws DataAccessException {
+		List<ItemViewVO> addList = null;
+		addList = sqlSession.selectList("mappers.erp.additem",item_code);
+		return addList;
+	}
+
+	
+	@Override
 	public int insertItem(ItemViewVO itemviewVO) throws DataAccessException {
 		int result = sqlSession.insert("mappers.erp.insertItem", itemviewVO);
 		return result;
@@ -42,6 +50,7 @@ public class ItemViewDAOImpl implements ItemViewDAO{
 		return result;
 	}
 
+	
 }
 
 

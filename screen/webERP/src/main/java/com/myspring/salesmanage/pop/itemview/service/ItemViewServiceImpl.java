@@ -24,10 +24,16 @@ public class ItemViewServiceImpl implements ItemViewService{
 	@Override
 	public List submitItem(String item_code) throws DataAccessException {
 		List searchList = null;
-		searchList = itemviewDAO.searchView(item_code);
+		searchList = itemviewDAO.submitView(item_code);
 		return searchList;
 	}
 
+	@Override
+	public List addText(String item_code) throws DataAccessException {
+		List additemList = null;
+		additemList = itemviewDAO.addItem(item_code);
+		return null;
+	}
 	@Override
 	public int addItem(ItemViewVO itemview) throws DataAccessException {
 		return itemviewDAO.insertItem(itemview);

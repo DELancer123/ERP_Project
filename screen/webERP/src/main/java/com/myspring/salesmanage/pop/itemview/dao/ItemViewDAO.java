@@ -14,5 +14,6 @@ public interface ItemViewDAO {
 	 public List submitView(String item_code) throws DataAccessException;
 	 public int insertItem(ItemViewVO itemviewVO) throws DataAccessException ;
 	 public int deleteItem(String item_code) throws DataAccessException;
+	public List addItem(String item_code) throws DataAccessException;
 
 }

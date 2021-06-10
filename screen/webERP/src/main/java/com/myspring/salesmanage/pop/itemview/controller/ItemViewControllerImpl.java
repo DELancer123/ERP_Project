@@ -46,17 +46,17 @@ public class ItemViewControllerImpl implements ItemViewController {
 			return mav;
 		}
 		else if(submit.equals("1")){
-			List submitItem = itemviewService.submitItem(code);
+			List submitItemList = itemviewService.submitItem(code);
 			
 			mav = new ModelAndView(viewName);
-			mav.addObject("bomView", bomView);
+			mav.addObject("submitItemList", submitItemList);
 		}
 		else if(submit.equals("2")) {
-			List submitItem = itemviewService.submitItem(code);
-			List bomInsert = itemviewService.setText(itemNumber);
+			List submitItemList = itemviewService.submitItem(code);
+			List itemInsert = itemviewService.addText(code);//더 만들기
 			mav = new ModelAndView(viewName);
-			mav.addObject("bomView", bomView);
-			mav.addObject("bomInsert",bomInsert);
+			mav.addObject("submitItemList", submitItemList);
+			mav.addObject("itemInsert",itemInsert);
 		}
 		
 		return mav;

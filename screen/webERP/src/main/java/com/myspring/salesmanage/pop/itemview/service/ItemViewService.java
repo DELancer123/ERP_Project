@@ -11,6 +11,7 @@ public interface ItemViewService {
 
 	public List listItems() throws DataAccessException;
 	public List submitItem(String item_code) throws DataAccessException;
+	public List addText(String item_code) throws DataAccessException;
 	public int addItem(ItemViewVO itemviewVO) throws DataAccessException;
 	public int removeItem(String item_code) throws DataAccessException;
 }
