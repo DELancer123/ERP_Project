@@ -207,10 +207,13 @@
 		<result property="date_Of_Establishment" column="Date_Of_Establishment"	/>
 		<result property="whether_To_Use_Status" column="Whether_To_Use_Status"	/>
 	</resultMap>
-	<select id="selectAllcomList" resultMap="comResult">
-		<![CDATA[select * from SM_CRI_Com_Reg]]>
+	<select id="selectcomList" resultMap="comResult">
+		<![CDATA[select company_Code,company_Name,sortation from SM_CRI_Com_Reg]]>	
 	</select>
-
+	<select id="selectAllcomList" resultMap="comResult" parameterType="String">
+		<![CDATA[select * from SM_CRI_Com_Reg where company_code = #{company_Code}]]>	
+	</select>
+	
 
 	
 	<!--기초정보관리파트-->

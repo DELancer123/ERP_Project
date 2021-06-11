@@ -1,5 +1,6 @@
 package com.myspring.systemmag.vo;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -10,8 +11,8 @@ public class SystemmagVO {
 	private String company_Name;
 	private String sortation;
 	private String fiscal_Year_Number;
-	private String fiscal_Year_Dates;
-	private String fiscal_Year_Datee;
+	private Date fiscal_Year_Dates;
+	private Date fiscal_Year_Datee;
 	private String company_Registration_Number;
 	private String corporate_Registration_Number;
 	private String representatives_Name;
@@ -22,7 +23,7 @@ public class SystemmagVO {
 	private String main_Store_Tel;
 	private String upstate;
 	private String industry;
-	private String date_Of_Establishment;
+	private Date date_Of_Establishment;
 	private String whether_To_Use_Status;
 	private List<SystemmagVO> ListVO;
 	
@@ -53,17 +54,21 @@ public class SystemmagVO {
 	public void setFiscal_Year_Number(String fiscal_Year_Number) {
 		this.fiscal_Year_Number = fiscal_Year_Number;
 	}
-	public String getFiscal_Year_Dates() {
+	
+	public Date getFiscal_Year_Dates() {
 		return fiscal_Year_Dates;
 	}
-	public void setFiscal_Year_Dates(String fiscal_Year_Dates) {
+	public void setFiscal_Year_Dates(Date fiscal_Year_Dates) {
 		this.fiscal_Year_Dates = fiscal_Year_Dates;
 	}
-	public String getFiscal_Year_Datee() {
+	public Date getFiscal_Year_Datee() {
 		return fiscal_Year_Datee;
 	}
-	public void setFiscal_Year_Datee(String fiscal_Year_Datee) {
+	public void setFiscal_Year_Datee(Date fiscal_Year_Datee) {
 		this.fiscal_Year_Datee = fiscal_Year_Datee;
+	}
+	public void setDate_Of_Establishment(Date date_Of_Establishment) {
+		this.date_Of_Establishment = date_Of_Establishment;
 	}
 	public String getCompany_Registration_Number() {
 		return company_Registration_Number;
@@ -124,12 +129,6 @@ public class SystemmagVO {
 	}
 	public void setIndustry(String industry) {
 		this.industry = industry;
-	}
-	public String getDate_Of_Establishment() {
-		return date_Of_Establishment;
-	}
-	public void setDate_Of_Establishment(String date_Of_Establishment) {
-		this.date_Of_Establishment = date_Of_Establishment;
 	}
 	public String getWhether_To_Use_Status() {
 		return whether_To_Use_Status;

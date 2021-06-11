@@ -6,7 +6,12 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
+<c:forEach var="com" items="${comcom}" >     
+ 	<c:set var="fiscal_Year_Number" value="${com.fiscal_Year_Number }"/>
+ 	<c:set var="fiscal_Year_Dates" value="${com.fiscal_Year_Dates }"/>
+ 	<c:set var="fiscal_Year_Datee" value="${com.fiscal_Year_Datee }"/>
 
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,12 +77,12 @@
                 </tr>
                 <c:forEach var="com" items="${comView}" >     
                 <tr>
-                    <td id="textbox1">
-                        <input type=text name="company_Code" value='${com.company_Code }'
+                    <td>
+                        <input type="text" id="textbox1" name="company_Code" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" maxlength="12" 
-                        onfocus="textbox1_focus();" />
+                         />
                     </td>
                     <td>
                         <input type=text name="company_Name"  value='${com.company_Name }'
@@ -109,6 +114,7 @@
                     <td>
                         제
                         <input type="text" name="fiscal_Year_Number" id="fiscal_Year_Number" class= "reqInput"
+                        value='${fiscal_Year_Number }'
                         style="width: 60px" pattern="[0-9]{3}" maxlength="3"/>
                         기
                     </td>
@@ -223,14 +229,12 @@
             </table>
         </container>
         <script>
-        view_button.onclic = function(){
-        	const URLSearch = new URLSearchParams(location.search);
-        	URLSearch.set('submit','1');
-        	const newParam = URLSearch.toString();
+        var textbox1 = document.getElementById("textbox1");
+        textbox1.onfocus = function() {
+        	console.log('확인');
+         	window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + textbox1.value; 
         }
-        function textbox1_focus() {
-        	openWindowPop('http://localgost:8090/webERP/member/regcompany.do');
-        }
+        
         </script>
 </form>
 </body>

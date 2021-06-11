@@ -50,12 +50,19 @@ public class SystemmagControllerImpl implements SystemmagController{
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String submit = (String) request.getParameter("submit");
-		
-		List comView = systemmagService.comView();
-		mav = new ModelAndView(viewName);
-		mav.addObject("comView", comView);
-		
-		if (submit.equals("1")) {
+		String code = (String) request.getParameter("com_code");
+		if(code == null || submit == null) {
+			List comView = systemmagService.comView();
+			mav = new ModelAndView(viewName);
+			mav.addObject("comView", comView);
+			return mav;
+		}
+		if(submit.equals("1")) {
+			List comView = systemmagService.comView();
+			List comcom = systemmagService.comcom(code);
+			mav = new ModelAndView(viewName);
+			mav.addObject("comView", comView);
+			mav.addObject("comcom",comcom);
 			
 		}
 		

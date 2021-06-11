@@ -30,4 +30,10 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
+
+	@Override
+	public List comcom(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.allviewCom(com_code);
+		return comList;
+	}
 }
