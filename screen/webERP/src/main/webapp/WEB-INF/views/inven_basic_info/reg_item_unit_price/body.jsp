@@ -129,9 +129,10 @@
             </ul>
         </container1>
 <form id="regIup" method="get" commandName="ListVO">
-	<container2 id="contents2">      
+	<container2 id="contents2">
+		<div id="iupInfo">    
             <table id="iupTable">
-                <thead>                    
+                <thead align="center" style="background-color:gray">                    
                     <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                     <td style="width:10px;">No</td>
                     <td>품 번</td>
@@ -140,9 +141,21 @@
                     <td>재고단위</td>
                     <td>구매단가</td>
                     <td>판매단가</td>
+				</thead>
 			<c:forEach var="bom" items="${bomView }">
-                </thead>
-                <tbody id="table1">
+                <tr id="updateIup" align="center">
+                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].No" value='${iup.No }' readonly style="width:100%"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].Item_Code" value='${iup.Item_Code }' ondbclick="search2()"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].Item_Name" value='${iup.Item_Name }' readonly/></td>
+                    <td><input type="text" name="ListVO[${status.index}].Standard" value='${iup.Standard }' readonly/></td>
+                    <td><input type="text" name="ListVO[${status.index}].Inventory_Unit" value='${iup.Inventory_Unit }' readonly/></td>
+                    <td><input type="text"/></td>
+                    <td><input type="text"/></td>                    
+                    <td><input type="text"/></td>                                        
+                </tr>
+			</c:forEach>
+                <tr id="updateIup" align="center">
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>
@@ -152,9 +165,11 @@
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>                    
                     <td><input type="text"/></td>                                        
-                </tbody>
+                </tr>
             </table>
-        </container2>
+		</div>
+	</container2>
+	
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
         $(document).ready(function(){
