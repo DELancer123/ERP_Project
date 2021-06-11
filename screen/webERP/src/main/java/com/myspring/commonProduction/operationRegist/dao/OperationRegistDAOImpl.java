@@ -14,6 +14,7 @@ import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperati
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 
 
@@ -66,5 +67,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		List<CommitOperationInstructionVO> COIList = null;
 		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList", COIvo);
 		return COIList;
+	}
+	
+	@Override
+	public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
+		int idx = ORVO.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertOperationInstruction",ORVO.getListVO().get(idx));
+		return 0;
 	}
 }

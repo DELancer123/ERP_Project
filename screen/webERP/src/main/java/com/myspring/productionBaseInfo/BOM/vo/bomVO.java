@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component("bomVO")
@@ -21,7 +25,7 @@ public class bomVO {
 	private int outSourcingUnitPrice;
 	private Date startDate;
 	private Date endDate;
-	private String note;
+	private String division;
 	private List<bomVO> ListVO;
 	
 	@Override
@@ -91,11 +95,12 @@ public class bomVO {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getNote() {
-		return note;
+	
+	public String getDivision() {
+		return division;
 	}
-	public void setNote(String note) {
-		this.note = note;
+	public void setDivision(String division) {
+		this.division = division;
 	}
 	public String getStandard() {
 		return standard;
@@ -115,5 +120,4 @@ public class bomVO {
 	public void setListVO(List<bomVO> listVO) {
 		ListVO = new ArrayList();
 	}
-	
 }

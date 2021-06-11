@@ -91,6 +91,11 @@
         </container1>
         
       <script>
+      function openWindowPop(url, name){
+          var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+          window.open(url, name, options);
+      }
+      
       function search1(){
     	  
     	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');

@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -61,7 +62,7 @@
             </table>
             <div id="button">
                 <input type="button" id="planSearch" value="조회" onClick="sendData();" />
-                <input type="button" id="submit" onClick="setCheckList();" value="적용" />
+                <input type="button" id="submit" value="적용" />
             </div>
         </div>
         <div id="view">
@@ -98,6 +99,7 @@
     	var startDate;
     	var endDate;
     	
+    	
     	$('#dateStart').change(function (){
             var date = $('#dateStart').val();
             startDate = date;
@@ -126,11 +128,6 @@
     		}
     	}
     	
-    	function insertList() {
-    		opener.parent.location='${contextPath }/member/regoperins.do?itemNumber='+text_code.value+'&&itemName='+text_name.value;
-    		window.close();
-    	}
-    	
     	function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
@@ -139,19 +136,37 @@
     	}
     	
    /* 체크 박스 값 가져오기 함수 */
-  /* function setCheckList() {
-	   
-   var checkbox = $("input:checkbox[name=content]:checked");
-   
-   checkbox.each(funtion(i) {
-	   var tr = checkbox.parent().parent().eq(i);
-	   var td = tr.children();
-	   
-	  rowData.push(tr.text());
-   		});
-   
-   	alert(tr);
-   }  */
+ 	$("#submit").click(function(){
+    	var rowData = new Array();
+    	var tdArr = new Array();
+   		var checkbox = $("input[name=content]:checked");
+ 		
+   		checkbox.each(function(i) {
+   			var tr = checkbox.parent().parent().eq(i);
+   			var td = tr.children();
+   			
+   			var itemCode = td.eq(1).text();
+   			var itemName = td.eq(2).text();
+   			var standard = td.eq(3).text();
+   			var inventoryUnit = td.eq(4).text();
+   			var quantity = td.eq(5).text();
+   			var workDate = td.eq(6).text();
+   			var note = td.eq(7).text();
+   			
+   			tdArr.push(itemCode);
+   			tdArr.push(itemName);
+   			tdArr.push(standard);
+   			tdArr.push(inventoryUnit);
+   			tdArr.push(quantity);
+   			tdArr.push(workDate);
+   			tdArr.push(note);
+   			
+   			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
+   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6];
+    		window.close();
+
+   		})
+ 	})
     </script>
     </form>
 </body>

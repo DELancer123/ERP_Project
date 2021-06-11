@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory; 
 import org.springframework.beans.factory.annotation.Autowired; 
-import org.springframework.stereotype.Controller; 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestMethod; 
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO; 
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO; 
 import com.myspring.commonProduction.service.CommonProductionService;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  
   @Controller("CommonProductionController") 
   public class CommonProductionControllerImpl implements CommonProductionController{ 
@@ -88,6 +90,21 @@ import com.myspring.commonProduction.service.CommonProductionService;
 	  mav.addObject("productionPlanView", productionPlanView);
 	  return mav;
   }
+  
+  @Override
+	@RequestMapping(value="/member/addOperationInstruction.do" ,method = RequestMethod.GET)
+	public ModelAndView addOperationInstruction(@ModelAttribute("info") OperationRegistVO ORVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = productionService.addOperationInstruction(ORVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+  
   
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 

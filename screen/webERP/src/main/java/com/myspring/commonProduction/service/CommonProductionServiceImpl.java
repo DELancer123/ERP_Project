@@ -16,6 +16,7 @@ import java.util.List;
   CommitOperationInstructionVO; import
   com.myspring.commonProduction.operationRegist.dao.OperationRegistDAO; import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
   
   @Service("CommonProductionService")
@@ -57,5 +58,10 @@ import java.util.List;
 	  popList = ORdao.productionPlanPop(startDate, endDate);
 	  return popList;
   }
+  
+  @Override
+	public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
+		return ORdao.addOperationInstruction(ORVO);
+	}
   }
  

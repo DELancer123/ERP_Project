@@ -93,9 +93,12 @@
     		text_name.value = name;
     	}
     	submit_button.onclick = function(){
+    		
     		text_code.setAttribute("itemNumber",text_code.value);
 			text_name.setAttribute("itemName",text_name.value);
-    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+			var url = window.opener.document.location.href;
+			var url_arr = url.split('?');
+    		opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>
