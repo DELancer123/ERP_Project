@@ -105,13 +105,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type=text name="Employee_Code">
+                        <input type=text name="Employee_Code" style="width:100px;">
                     </td>
                     <td>
                         <input type=text name="Employee_Name">
                     </td>
                    	<td>
-                   		<input type=text name="Department_Code">
+                   		<input type=text name="Department_Code" style="width:100px;">
                     </td>
                     <td>
                     	<input type=text name="Department_Name">
