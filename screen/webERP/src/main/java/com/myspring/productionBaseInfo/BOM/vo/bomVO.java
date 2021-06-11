@@ -5,12 +5,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component("bomVO")
 public class bomVO {
 	private int no;
 	private String parent;
+	@NotNull(message="아이템코드를 입력하세요")
 	private String itemNumber;
 	private String itemName;
 	private String standard;
