@@ -3,7 +3,7 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mappers.erp">
+<mapper namespace="mapperㄴ.erp">
 	<resultMap id="SmBimResult"
 		type="CommitOperationInstructionVO">
 		<result property="itemCode" column="Item_Code" />
@@ -185,7 +185,7 @@
 	<select id="selectAllMrpList" resultMap="mrpResult">
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
-<<<<<<< HEAD
+
 =======
 
 >>>>>>> b5c5502181012c94c73a0ccc8d2f971731275dcd
@@ -213,7 +213,6 @@
 	<select id="selectAllcomList" resultMap="comResult">
 		<![CDATA[select * from SM_CRI_Com_Reg]]>
 	</select>
-<<<<<<< HEAD
 =======
 
 	
