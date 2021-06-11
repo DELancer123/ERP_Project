@@ -38,51 +38,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 	private ItemViewVO itemviewVO;
 	
 	@Override
-	@RequestMapping(value="/member/salesplanstat.do", method= RequestMethod.GET)
-	public ModelAndView listSalesplan(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		System.out.println("viewName: " +viewName);
-		logger.info("viewName:" +viewName);
-		logger.debug("viewName: "+viewName);
-		List salesplanList = salesplanService.listSalesplans();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("salesplanList",salesplanList);
-		return mav;
-	}//mapper.salesplan.
-
-	@Override
-	@RequestMapping(value="/salesmanage/regplanitem.do" ,method = RequestMethod.GET)
-	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = null;
-		String viewName = getViewName(request);
-		String code = (String)request.getParameter("item_code");
-		String name = (String)request.getParameter("item_name");
-		String stan = (String)request.getParameter("standard");
-		String unit = (String)request.getParameter("inventory_unit");
-		String inspect = (String)request.getParameter("inspection_status");
-		String submit = (String)request.getParameter("submit");
-		
-		if(code == null || code.length() == 0 || submit.equals("0")) {
-			mav = new ModelAndView(viewName);
-			return mav;
-		}
-		else if(submit.equals("1")){
-			List submitItemList = salesplanService.submitItem(code);
-			
-			mav = new ModelAndView(viewName);
-			mav.addObject("submitItemList", submitItemList);
-		}
-		else if(submit.equals("2")) {
-			List submitItemList = salesplanService.submitItem(code);
-			List itemInsert = salesplanService.itemText(code);//더 만들기
-			mav = new ModelAndView(viewName);
-			mav.addObject("submitItemList", submitItemList);
-			mav.addObject("itemInsert",itemInsert);
-		}
-		
-		return mav;
-	}
-	@Override
 	@RequestMapping(value="/sales_manage/popItem.do" ,method = RequestMethod.GET)
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
@@ -93,6 +48,48 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		List allItemsList = salesplanService.listItems();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("allItemsList", allItemsList);
+		return mav;
+	}
+//	@Override
+//	@RequestMapping(value="/member/salesplanstat.do", method= RequestMethod.GET)
+//	public ModelAndView listSalesplan(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = getViewName(request);
+//		System.out.println("viewName: " +viewName);
+//		logger.info("viewName:" +viewName);
+//		logger.debug("viewName: "+viewName);
+//		List salesplanList = salesplanService.listSalesplans();
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("salesplanList",salesplanList);
+//		return mav;
+//	}//mapper.salesplan.
+
+	@Override
+	@RequestMapping(value="/member/salesplanstat.do" ,method = RequestMethod.GET)
+	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String code = (String)request.getParameter("item_code");
+		String submit = (String)request.getParameter("submit");
+		int sum = 0;
+		
+		if(code == null || code.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List salesPlanResult = salesplanService.submitItem(code);
+			
+			mav = new ModelAndView(viewName);
+			mav.addObject("salesPlanResult", salesPlanResult);//salesplanVO
+		}
+		else if(submit.equals("2")) {
+			List salesPlanResult = salesplanService.submitItem(code);
+			List itemInsert = salesplanService.itemText(code);//더 만들기
+			mav = new ModelAndView(viewName);
+			mav.addObject("salesPlanResult", salesPlanResult);
+			mav.addObject("itemInsert",itemInsert);
+		}
+		
 		return mav;
 	}
 

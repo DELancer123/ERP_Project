@@ -44,7 +44,6 @@
     </style>
 </head>
 <body>
-<!-- 폼을 수정해여ㅑ할거같음 -->
 <form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
     <div id="wrap">
         <div id="searchBox">
@@ -61,6 +60,7 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
+                <input type="hidden" name="inputNo" value=""/>
                 <input type="reset" id="reset" value="초기화"/>
             </div>
         </div>
@@ -83,16 +83,17 @@
 			</div>
 		</div>
 	 <script>
-    var submit_button = document.getElementById("submit");
+      var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
-    		
     	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+    		text_code.value = code;
+    		text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath}/salesmanage/regplanitem.do?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
+    		text_code.setAttribute("itemNumber",text_code.value);
+			text_name.setAttribute("itemName",text_name.value);
+    		opener.parent.location='${contextPath }/member/salesplanstat.do?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>

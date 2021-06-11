@@ -16,7 +16,7 @@ import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
 public interface SalesplanStaController {
 
-	public ModelAndView listSalesplan(HttpServletRequest request, HttpServletResponse response) throws Exception ;
+//	public ModelAndView listSalesplan(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addItem(@ModelAttribute("info") ItemViewVO itemviewVO,HttpServletRequest request, HttpServletResponse response) throws Exception;

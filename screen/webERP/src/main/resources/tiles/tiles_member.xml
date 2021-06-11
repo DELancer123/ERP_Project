@@ -18,6 +18,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+      <definition name="baseLayout4"  template="/WEB-INF/views/common/layout3.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -206,9 +211,10 @@
       <put-attribute name="body" value="/WEB-INF/views/business_status/quotation_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/salesplanstat" extends="baseLayout">
+   <definition name="/member/salesplanstat" extends="baseLayout4">
       <put-attribute name="title" value="판매계획현황" />
       <put-attribute name="body" value="/WEB-INF/views/business_status/salesplan_status/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/business_status/salesplan_status/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/salesplancont" extends="baseLayout">
