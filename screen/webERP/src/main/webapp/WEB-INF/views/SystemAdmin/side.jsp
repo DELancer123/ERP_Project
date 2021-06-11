@@ -40,7 +40,7 @@
                             <li><a href="http://localhost:8090/webERP/member/regcompany.do">회사등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regbusiness.do">사업장등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regdepartment.do">부서등록</a></li>
-                            
+                            <li><a href="http://localhost:8090/webERP/member/inquiryemployees.do">사원조회</a></li>
                         </ul></li>
                     <li><a href="#" id="side2">기초정보관리</a>
                         <ul id="l_sub2">
