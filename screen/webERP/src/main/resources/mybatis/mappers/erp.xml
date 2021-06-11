@@ -185,7 +185,30 @@
 	<select id="selectAllMrpList" resultMap="mrpResult">
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
-	
+	<!-- 회사등록 파트 -->
+	<resultMap id="comResult" type="SystemmagVO">
+		<result property="company_Code" column="Company_Code"	/>
+		<result property="company_Name" column="Company_Name"	/>
+		<result property="sortation" column="Sortation"	/>
+		<result property="fiscal_Year_Number" column="Fiscal_Year_Number"	/>
+		<result property="fiscal_Year_Dates" column="Fiscal_Year_Dates"	/>
+		<result property="fiscal_Year_Datee" column="Fiscal_Year_Datee"	/>
+		<result property="company_Registration_Number" column="Company_Registration_Number"	/>
+		<result property="corporate_Registration_Number" column="Corporate_Registration_Number"	/>
+		<result property="representatives_Name" column="Representatives_Name"	/>
+		<result property="resident_Registration_Number" column="Resident_Registration_Number"	/>
+		<result property="main_Store_Postal_Code" column="Main_Store_Postal_Code"	/>
+		<result property="main_Store_Address" column="Main_Store_Address"	/>
+		<result property="main_Branch_Number" column="Main_Branch_Number"	/>
+		<result property="main_Store_Tel" column="Main_Store_Tel"	/>
+		<result property="upstate" column="Upstate"	/>
+		<result property="industry" column="Industry"	/>
+		<result property="date_Of_Establishment" column="Date_Of_Establishment"	/>
+		<result property="whether_To_Use_Status" column="Whether_To_Use_Status"	/>
+	</resultMap>
+	<select id="selectAllcomList" resultMap="comResult">
+		<![CDATA[select * from SM_CRI_Com_Reg]]>
+	</select>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

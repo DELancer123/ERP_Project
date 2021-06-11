@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +35,7 @@
             text-align: center; width: 100%; padding-top: 20px;
             padding-right: 10%; padding-left: 2px;
             overflow: hidden;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; 
         }
         #table1 td{
             width: 100%;
@@ -46,37 +53,39 @@
             width: 100%; padding-top: 20px; padding-left: 50px; text-align: left;
             border-collapse: separate; border-spacing: 0 15px; 
         }
-        #reqInput {
+        .reqInput {
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
+        
 </style>
 </head>
 <body>
-<form action="${contextPath }/reg_company/addcompony.do" method="post">
+<form  method="get">
 <container id = contents1 style="overflow: auto;">
+
             <table id="table1">
-                
                 <tr>
                     <td align="center">회사코드</td>
                     <td align="center">회사명</td>
                     <td align="center">구분</td>
                 </tr>
+                <c:forEach var="com" items="${comView}" >     
                 <tr>
                     <td id="textbox1">
-                        <input type=text name="companyCode"
+                        <input type=text name="company_Code" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" maxlength="12" />
                     </td>
                     <td>
-                        <input type=text name="companyName"
+                        <input type=text name="company_Name"  value='${com.company_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select name="companyType"
+                        <select name="sortation" 
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" >
@@ -86,6 +95,7 @@
                         </select>
                     </td>
                 </tr>
+		</c:forEach>
             </table>
         </container>
         <container id="contents2">
@@ -97,27 +107,27 @@
                     <td align="center">회계연도</td>
                     <td>
                         제
-                        <input type="text" name="fiscalYear" id="reqInput"
+                        <input type="text" name="fiscal_Year_Number" id="fiscal_Year_Number" ,class= "reqInput"
                         style="width: 60px" pattern="[0-9]{3}" maxlength="3"/>
                         기
                     </td>
                     <td>
-                        <input type="date" name="startDate" id="reqInput">
+                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates">
                         ~
-                        <input type="date" name="endDate" id="reqInput"/>
+                        <input type="date" name="fiscal_year_Datee" id="fiscal_year_Datee"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="registrationNumber" id="reqInput"
+                        <input type="text" name="company_Registration_Number" id="company_Registration_Number"
                         style="width: 240px;" pattern="[0-9]{13}" maxlength="13"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">법인등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="cooperationNumber"
+                        <input type="text" name="corporate_Registration_Number"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;" pattern="[0-9]{13}" maxlength="13"/>
@@ -127,43 +137,42 @@
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="2">
-                        <input type="text" name="ceoName" id="reqInput"
+                        <input type="text" name="representatives_Name" id="representatives_Name"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="socialNumber"
+                        <input type="text" name="resident_Registration_Number"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;" pattern="[0-9]{13}" maxlength="13"/>
                         개인의 경우 필수입력항목
                     </td>
                 </tr>
-
+				
                 <tr>
                     <td align="center">본점우편번호</td>
                     <td colspan="2">
-                        <input type="text" name="zipCode"
+                        <input type="text" name="main_Store_Postal_Code"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="5"/>
                         <i class="fas fa-search" style="color: blue;"></i>
-
                     </td>
                 </tr>
                 <tr>
                     <td align="center">본점주소</td>
                     <td colspan="2">
-                        <input type="text" name="headAddress" id="reqInput"
+                        <input type="text" name="main_Store_Address" id="main_Store_Address"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">본점번지</td>
                     <td colspan="2">
-                        <input type="text" name="headStreetAddress" 
+                        <input type="text" name="main_Branch_Number" 
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"/>
@@ -172,7 +181,7 @@
                 <tr>
                     <td align="center">본점전화번호</td>
                     <td colspan="2">
-                        <input type="text" name="headPhoneNumber"
+                        <input type="text" name="main_Store_Tel"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
                             text-align: center;" pattern="[0-9]{12}" maxlength="10"/>
@@ -181,21 +190,21 @@
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="2">
-                        <input type="text" name="business" id="reqInput"
+                        <input type="text" name="upstate" id="upstate"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="2">
-                        <input type="text" name="specific" id="reqInput"
+                        <input type="text" name="industry" id="industry"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">설립연월일</td>
                     <td colspan="2">
-                        <input type="date" name="foundationYear"
+                        <input type="date" name="date_Of_Establishment"
                         style="background-color: rgb(235,235,235);
                         border-style: none;
                         text-align: center;"/>
@@ -204,14 +213,24 @@
                 <tr>
                     <td align="center">사용여부</td>
                     <td>
-                        <select name="" id="">
+                        <select name="whether_To_Use_Status" id="whether_To_Use_Status">
                             <option value="1">1.사용</option>
                             <option value="0">0.미사용</option>
                         </select>
                     </td>
                 </tr>
             </table>
+            
         </container>
+        <script>
+        view_button.onclick = function(){
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+
+			  window.open(location.pathname + '?' + newParam, '_self');
+  	}
+        </script>
 </form>
 </body>
 </html>

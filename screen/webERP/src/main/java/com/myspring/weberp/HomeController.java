@@ -35,7 +35,7 @@ public class HomeController {
 }*/
 
 
-//�ٱ��� ��� �ڵ�
+//占쌕깍옙占쏙옙 占쏙옙占� 占쌘듸옙
 
 @Controller
 
@@ -47,7 +47,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		return "main";
 	}
-	@RequestMapping(value = "/member/regcompany.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/regcompany", method = RequestMethod.GET)
 	public String regcompany(Locale locale, Model model) {
 		return "/member/regcompany";
 	}

@@ -23,5 +23,7 @@
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.bomVO" alias="bomVO" />
 		<!-- 외주 파트 -->
 		<!-- <typeAlias type="com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO" alias="RegOutsourcingVO" /> -->
+		<!-- 회사등록 -->
+		<typeAlias type="com.myspring.systemmag.vo.SystemmagVO" alias="SystemmagVO"	/>
 	</typeAliases>
 </configuration>	 

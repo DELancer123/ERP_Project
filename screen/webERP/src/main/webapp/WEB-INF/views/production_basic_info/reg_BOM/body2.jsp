@@ -153,7 +153,13 @@
           var row = workOrderTable.insertRow(); 
           window.location.href = "${contextPath}/member/updateBOM.do";
       }
-      
+      view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+  	}
       
       function newRow(){
           // dao에서 저장

@@ -365,18 +365,19 @@
                 checkbox.checked = selectAll.checked;
             })
         }
-        function openWindowPop(url, name){
-            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
-            window.open(url, name, options);
-        }
-        
-		view_button.onclick = function(){
+        view_button.onclick = function(){
 			  const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();
 
 			  window.open(location.pathname + '?' + newParam, '_self');
-      	}
+    	}
+        function openWindowPop(url, name){
+            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+            window.open(url, name, options);
+        }
+        
+		
     </script>
 </body>
 </html>
