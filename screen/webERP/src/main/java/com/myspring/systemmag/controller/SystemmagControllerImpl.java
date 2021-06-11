@@ -49,10 +49,15 @@ public class SystemmagControllerImpl implements SystemmagController{
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-
-			List comView = systemmagService.comView();
-			mav = new ModelAndView(viewName);
-			mav.addObject("comView", comView);
+		String submit = (String) request.getParameter("submit");
+		
+		List comView = systemmagService.comView();
+		mav = new ModelAndView(viewName);
+		mav.addObject("comView", comView);
+		
+		if (submit.equals("1")) {
+			
+		}
 		
 		return mav;
 	}

@@ -76,7 +76,8 @@
                         <input type=text name="company_Code" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" maxlength="12" />
+                        text-align: center;" maxlength="12" 
+                        onfocus="textbox1_focus();" />
                     </td>
                     <td>
                         <input type=text name="company_Name"  value='${com.company_Name }'
@@ -107,7 +108,7 @@
                     <td align="center">회계연도</td>
                     <td>
                         제
-                        <input type="text" name="fiscal_Year_Number" id="fiscal_Year_Number" ,class= "reqInput"
+                        <input type="text" name="fiscal_Year_Number" id="fiscal_Year_Number" class= "reqInput"
                         style="width: 60px" pattern="[0-9]{3}" maxlength="3"/>
                         기
                     </td>
@@ -120,7 +121,7 @@
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="company_Registration_Number" id="company_Registration_Number"
+                        <input type="text" name="company_Registration_Number" id="company_Registration_Number" class= "reqInput"
                         style="width: 240px;" pattern="[0-9]{13}" maxlength="13"/>
                     </td>
                 </tr>
@@ -137,7 +138,7 @@
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="2">
-                        <input type="text" name="representatives_Name" id="representatives_Name"
+                        <input type="text" name="representatives_Name" id="representatives_Name" class= "reqInput"
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -155,7 +156,7 @@
                 <tr>
                     <td align="center">본점우편번호</td>
                     <td colspan="2">
-                        <input type="text" name="main_Store_Postal_Code"
+                        <input type="text" name="main_Store_Postal_Code" 
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="5"/>
@@ -165,7 +166,7 @@
                 <tr>
                     <td align="center">본점주소</td>
                     <td colspan="2">
-                        <input type="text" name="main_Store_Address" id="main_Store_Address"
+                        <input type="text" name="main_Store_Address" id="main_Store_Address" class= "reqInput"
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -190,14 +191,14 @@
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="2">
-                        <input type="text" name="upstate" id="upstate"
+                        <input type="text" name="upstate" id="upstate" class= "reqInput"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="2">
-                        <input type="text" name="industry" id="industry"
+                        <input type="text" name="industry" id="industry" class= "reqInput"
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -220,16 +221,16 @@
                     </td>
                 </tr>
             </table>
-            
         </container>
         <script>
-        view_button.onclick = function(){
-			  const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '1');
-			  const newParam = URLSearch.toString();
-
-			  window.open(location.pathname + '?' + newParam, '_self');
-  	}
+        view_button.onclic = function(){
+        	const URLSearch = new URLSearchParams(location.search);
+        	URLSearch.set('submit','1');
+        	const newParam = URLSearch.toString();
+        }
+        function textbox1_focus() {
+        	openWindowPop('http://localgost:8090/webERP/member/regcompany.do');
+        }
         </script>
 </form>
 </body>
