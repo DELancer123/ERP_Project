@@ -56,7 +56,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 		return mav;
 	}
+	@Override
+	@RequestMapping(value = "/member/regbasicacc", method = RequestMethod.GET)
+    public ModelAndView home(HttpServletRequest request, HttpServletResponse response) {
+		String viewName = getViewName(request);
 
+        ModelAndView mav = new ModelAndView(viewName);
+        
+        String homeView = systemmagService.home();
+        System.out.println(homeView);
+        mav.addObject("homeView", homeView);
+        
+		
+        
+        return mav; // ∫‰ ∆ƒ¿œ ∏Æ≈œ
+    }
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -88,6 +102,8 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return viewName;
 	}
 	
-	
+
+
+		
 }
 

@@ -225,10 +225,11 @@
 		<result property="ZipCode" column="ZipCode" />
 		<result property="Workplace_Address" column="Workplace_Address" />
 		<result property="GeneralCustomer_Tel" column="GeneralCustomer_Tel" />
-		<result property="Wholesale_Retail_Business_Code" column="Wholesale_Retail_Business_Code" />
-		
-		
+		<result property="Wholesale_Retail_Business_Code" column="Wholesale_Retail_Business_Code" />	
 	</resultMap>
+	<select id="selectGCC" resultType="String">
+		<![CDATA[select general_customer_name from SM_BIM_GEN_CUS_REG where general_customer_code=00001]]>
+	</select>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

@@ -27,5 +27,19 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("comList: "+comList);
 		return comList;
 	}
-
+	
+	//º∫∏Ì¡¶
+	public String home() throws DataAccessException {
+		String temp = "";
+		
+		try {
+		temp = sqlSession.selectOne("mappers.erp.selectGCC");
+		
+		System.out.println(temp);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
 }

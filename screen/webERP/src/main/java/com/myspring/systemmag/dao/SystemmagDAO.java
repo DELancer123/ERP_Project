@@ -10,4 +10,6 @@ public interface SystemmagDAO {
 	public int insertNewCompany (SystemmagVO systemmagVO) throws DataAccessException;
 
 	public List viewCom() throws DataAccessException;
+	
+	public String home() throws DataAccessException;
 }

@@ -14,4 +14,8 @@ public interface SystemmagController {
 	public ModelAndView addCompany (@ModelAttribute("company") SystemmagVO company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//º∫∏Ì¡¶
+	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }

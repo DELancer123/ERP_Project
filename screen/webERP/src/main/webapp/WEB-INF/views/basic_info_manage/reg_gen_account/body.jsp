@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,8 +136,8 @@
             <table id="table2" align="center">
                 <thead>
                     <td><input type="checkbox" id="chec" name="content" onclick="selectAll(this)"/></td>
-                    <td align="center">코드</td>
-                    <td align="center">거래처명</td>
+                    <td align="center">여기는일반거래처등록임</td>
+                    <td align="center">거래처명${homeView }</td>
                     <td align="center">구분</td>
                 </thead>
                 <tbody>

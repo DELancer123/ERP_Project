@@ -30,4 +30,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
+	
+	@Override
+	public String home() throws DataAccessException {
+		String home = null;
+		home = systemmagDAO.home();
+		return home;
+	}
 }
