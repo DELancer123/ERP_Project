@@ -92,6 +92,7 @@
         </container1>
         <container2 id= contents2>
             <div id="workOrderInfo">
+	         <form id="dataForm" commandName="OperationRegistVO">
                 <table id="workOrderTable">
                     <thead>
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -109,44 +110,39 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                    	<c:forEach var="info" items="${infoList}" >   
-                     <tr>
-                     	<td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                     	<td>${info.workOrderNumber}</td>
-                     	<td><input type="date" value="${info.instructionDate}"></td>
-                     	<td><input type="date" value="${info.dueDate}"></td>
-                     	<td>${info.itemCode }</td>
-                     	<td>${info.itemName}</td>
-                     	<td>${info.standard}</td>
-                     	<td>${info.inventoryUnit}</td>
-                     	<td>${info.indicated}</td>
-                     	<td id="status">${info.status}</td>
-                     	<td>
-                     		<select id="inspectionSelector" name="inspectionSelect">
-                     		<option value="" selected disabled hidden>${info.inspection}</option>
-                     		<option value="검사">검사</option>
-                     		<option value="비검사">비검사</option>
-                     		</select>
-                     	</td>
-                     	<td>${info.note}</td>
+                    	<c:forEach var="info" items="${infoList}" varStatus="status">   
+                     <tr id="updateData" align="center">
+                     	<td><input type="checkbox" value = "check1" name="content"/></td>
+                     	<td><input type="text" name="OperationRegistVO[${status.index }].workOrderNumber" value="${info.workOrderNumber}" /></td>
+                     	<td><input type="date" name="OperationRegistVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly /></td>
+                     	<td><input type="date" name="OperationRegistVO[${status.index }].dueDate" value="${info.dueDate}" /></td>
+                     	<td><input tpye="text" name="OperationRegistVO[${status.index }].itemCode" value="${info.itemCode }" /></td>
+                     	<td><input type="text" name="OperationRegistVO[${status.index }].itemName" value="${info.itemName}" /></td>
+                     	<td><input type="text" name="OperationRegistVO[${status.index }].standard" value="${info.standard}" /></td>
+                     	<td><input type="text" name="OperationRegistVO[${status.index }].inventoryUnit" value="${info.inventoryUnit}" /></td>
+                     	<td><input type="text" name="OperationRegistVO[${status.index }].indicated" value="${info.indicated}" /></td>
+                     	<td style="width:13px;"><input type="text" name="OperationRegistVO[${status.index }].status" value="${info.status}" /></td>
+                     	<td style="width:20px;"><input type="text" name="OperationRegistVO[${status.index }].inspection value="${info.inspection}" /></td>
+                     	<td><input type="text" name="OperationRegistVO[${status.index }].note" value="${info.note}" /></td>
                      </tr>
                      </c:forEach>
                      <tr>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" name="workOrderNumber"/></td>
-                        <td><input type="date" name="instructionDate" value="${param.workDate }"/></td>
-                        <td><input type="date" name="dueDate" value="${param.workDate }"/></td>
-                        <td><input type="text" name="itemCode" value="${param.itemCode }"/></td>
-                        <td><input type="text" name="itemName" value="${param.itemName }"/></td>
-                        <td><input type="text" name="standard" value="${param.standard }"/></td>
-                        <td><input type="text" name="inventoryUnit" value="${param.inventoryUnit }"/></td>
-                        <td><input type="text" name="indicated" value="${param.quantity }"/></td>
-                        <td><input type="text" name="status" readonly/></td>
-                        <td><input type="text" name="inspection" readonly/></td>
-                        <td><input type="text" name="note" value="${param.note }"/></td>
+                        <td><input type="checkbox" value = "check1" name="content"/></td>
+                        <td><input type="text" id="workOrderNumber"/></td>
+                        <td><input type="date" id="instructionDate" value="${param.workDate }"/></td>
+                        <td><input type="date" id="dueDate" value="${param.workDate }"/></td>
+                        <td><input type="text" id="itemCode" value="${param.itemCode }"/></td>
+                        <td><input type="text" id="itemName" value="${param.itemName }"/></td>
+                        <td><input type="text" id="standard" value="${param.standard }"/></td>
+                        <td><input type="text" id="inventoryUnit" value="${param.inventoryUnit }"/></td>
+                        <td><input type="text" id="indicated" value="${param.quantity }"/></td>
+                        <td style="width:13px;"><input type="text" id="status" readonly/></td>
+                        <td style="width:20px;"><input type="text" id="inspection" readonly/></td>
+                        <td><input type="text" id="note" value="${param.note }"/></td>
                      </tr>
                     </tbody>
                 </table>
+                </form>
             </div>
         </container2>
       
