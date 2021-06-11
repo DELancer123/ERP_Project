@@ -46,7 +46,7 @@
             top: 25%;
             left: 18%;
         }
-        #view1,#view2{
+        #iupTable1,#view2{
             width: 100%;
             text-align: center;
             border: 1px solid black;
@@ -145,14 +145,13 @@
 			<c:forEach var="bom" items="${bomView }">
                 <tr id="updateIup" align="center">
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" name="ListVO[${status.index}].No" value='${iup.No }' readonly style="width:100%"/></td>
+                    <td style="width:13px;"><input type="text" name="ListVO[${status.index}].No" value='${iup.No }' readonly style="width:100%;"/></td>
                     <td><input type="text" name="ListVO[${status.index}].Item_Code" value='${iup.Item_Code }' ondbclick="search2()"/></td>
                     <td><input type="text" name="ListVO[${status.index}].Item_Name" value='${iup.Item_Name }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].Standard" value='${iup.Standard }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].Inventory_Unit" value='${iup.Inventory_Unit }' readonly/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>                    
-                    <td><input type="text"/></td>                                        
+                    <td><input type="text" name="ListVO[${status.index}].Purchase_Price" value='${iup.Purchase_Price }' /></td>
+                    <td><input type="text" name="ListVo[${status.index}].Sales_Price" value='${iup.Sales_Price }'/></td>                                                                            
                 </tr>
 			</c:forEach>
                 <tr id="updateIup" align="center">
@@ -163,8 +162,7 @@
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>
-                    <td><input type="text"/></td>                    
-                    <td><input type="text"/></td>                                        
+                    <td><input type="text"/></td>                                                           
                 </tr>
             </table>
 		</div>
