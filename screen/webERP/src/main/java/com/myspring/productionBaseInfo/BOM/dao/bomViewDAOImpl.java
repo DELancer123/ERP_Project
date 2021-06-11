@@ -28,9 +28,15 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
-	public List viewPop() throws DataAccessException {
+	public List viewPop1() throws DataAccessException {
 		List<bomVO> popList = null;
-		popList = sqlSession.selectList("mappers.erp.selectPopList");
+		popList = sqlSession.selectList("mappers.erp.selectPopList1");
+		return popList;
+	}
+	@Override
+	public List viewPop2() throws DataAccessException {
+		List<bomVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopList2");
 		return popList;
 	}
 
