@@ -25,9 +25,15 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public List itemView() throws DataAccessException {
+	public List itemView1() throws DataAccessException {
 		List popList = null;
-		popList = bomDAO.viewPop();
+		popList = bomDAO.viewPop1();
+		return popList;
+	}
+	@Override
+	public List itemView2() throws DataAccessException {
+		List popList = null;
+		popList = bomDAO.viewPop2();
 		return popList;
 	}
 

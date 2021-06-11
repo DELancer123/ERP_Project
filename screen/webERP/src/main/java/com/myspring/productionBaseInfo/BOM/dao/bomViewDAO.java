@@ -9,7 +9,8 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 public interface bomViewDAO {
 	public List viewBOM() throws DataAccessException;
 
-	public List viewPop() throws DataAccessException;
+	public List viewPop1() throws DataAccessException;
+	public List viewPop2() throws DataAccessException;
 	public List setText(String itemNumber) throws DataAccessException;
 	public List SearchView(String itemNumber) throws DataAccessException;
 	public int addBOM(bomVO bomVO) throws DataAccessException;

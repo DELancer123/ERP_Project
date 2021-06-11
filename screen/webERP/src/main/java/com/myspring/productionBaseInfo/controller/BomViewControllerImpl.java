@@ -76,7 +76,7 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/codehelper.do" ,method = RequestMethod.GET)
 	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List itemView = viewService.itemView();
+		List itemView = viewService.itemView1();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -85,7 +85,7 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		String itemNumber = (String) request.getParameter("itemCode");
-		List itemView = viewService.itemView();
+		List itemView = viewService.itemView2();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
