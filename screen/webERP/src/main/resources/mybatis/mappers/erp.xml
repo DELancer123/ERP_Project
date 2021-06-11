@@ -98,6 +98,7 @@
 		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
 		<result property="note" column="note" />
+
 	</resultMap>
 	<resultMap id="popView" type="bomVO">
 		<result property="itemNumber" column="item_code" />

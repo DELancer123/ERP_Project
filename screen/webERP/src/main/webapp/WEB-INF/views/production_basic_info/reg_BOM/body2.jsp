@@ -68,7 +68,7 @@
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead align="center" style="background-color:gray">
-                        <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                        <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td style="width:10px;">No</td>
                         <td>葛前格内靛</td>
                         <td>前锅内靛</td>
@@ -133,16 +133,6 @@
         </container2>
       <script>
       var itemNumber = document.getElementById("itemCode");
-      var itemName = document.getElementById("dataoutput");
-      var standard = document.getElementById("dataoutput");
-      var unit = document.getElementById("dataoutput");
-
-      var precisionQuantity = document.getElementById("dataoutput");
-      var loss = document.getElementById("dataoutput");
-      var actualCost = document.getElementById("dataoutput");
-      var outSourcingUnitPrice = document.getElementById("dataoutput");
-      var startDate = document.getElementById("dataoutput");
-      var endDate = document.getElementById("dataoutput");
 
       
       var precisionQuantity = document.getElementById("precisionQuantity");
@@ -241,7 +231,13 @@
     			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
     	  }
       }
+     view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
 
+		  window.open(location.pathname + '?' + newParam, '_self');
+ 	}
       </script>
       </form>
 </body>

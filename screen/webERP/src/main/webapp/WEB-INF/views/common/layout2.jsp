@@ -325,13 +325,7 @@
             })
         }
         
-		view_button.onclick = function(){
-			  const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '1');
-			  const newParam = URLSearch.toString();
-
-			  window.open(location.pathname + '?' + newParam, '_self');
-      	}
+		
     </script>
 </body>
 </html>
