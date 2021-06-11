@@ -37,4 +37,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 		home = systemmagDAO.home();
 		return home;
 	}
+	
+	
 }

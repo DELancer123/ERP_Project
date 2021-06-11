@@ -67,6 +67,8 @@ public class SystemmagControllerImpl implements SystemmagController{
         System.out.println(homeView);
         mav.addObject("homeView", homeView);
         
+        testy();
+        
 		
         
         return mav; // ∫‰ ∆ƒ¿œ ∏Æ≈œ
@@ -102,8 +104,24 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return viewName;
 	}
 	
+	public List testy() {
+		List<String> list = new ArrayList<String>();
+		for(int i=0;i<10;i++) {
+			list.add("≥»≥»"+i);
+		}
+		System.out.println(list.size());
+		System.out.println(list.get(3));
+		
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i));
+		}
+		return null;
+	}
+	
+	
 
 
 		
 }
+
 
