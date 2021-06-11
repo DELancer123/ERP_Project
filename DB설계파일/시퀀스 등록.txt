@@ -1,0 +1,633 @@
+
+일반거래처등록 - 거래처코드 number(5) 00001,00002
+Create table SM_BIM_Gen_Cus_Reg (
+General_Customer_Code varchar2(12) PRIMARY KEY, --거래처코드
+
+--판매계획등록
+create table SM_BIM_Sal_Pla_Reg (Plan_Code varchar2(12) PRIMARY KEY, PL2106000001
+--(없는 코드인데 추가해서 시퀀스 넣어주시면 감사합니다)
+
+
+--견적등록
+
+--테이블 생성
+create table CSM_SM_Est_Reg(
+--견적 번호(PK)
+estimateNum varchar2(12) PRIMARY KEY, ES2106000001
+
+--수주등록
+
+--테이블 생성
+create table CSM_SM_Ord_Reg(
+--주문 번호(PK)
+ordersNum varchar2(12) PRIMARY KEY, SO2106000001
+
+
+--출고의뢰등록
+
+--테이블 생성
+create table  CSM_SM_Req_Reg(
+    --의뢰 번호(PK)
+requestNum varchar2(12) PRIMARY KEY, IR2106000001
+
+
+--테이블 생성
+create table CSM_SM_Rel_Pro(
+--출고 번호(PK)
+releaseNum Varchar2(12) PRIMARY KEY, IS2106000001
+
+
+
+
+주계획서작성(판매,주문계획)
+PMM_PM_MPS_OS
+ordersNum varchar2(12) OS2106000001
+
+
+발주,발주마감처리
+PMM_PM_ORDER
+order_no varchar2(12) P02106000001
+
+청구등록
+PMM_PM_CM
+claim_no varchar2(12) PR2106000001
+
+입고처리
+PMM_PM_RP
+receiving_no varchar2(12)RV2106000001
+PMM_PM_RP_DEAD
+deadline_no varchar2(12) D02106000001
+
+
+입고의뢰등록
+create table PMM_PM_RRR(
+request_no varchar2(12) SR2106000001
+PMM_PM_RRR_CHECK
+check_no varchar2(12) C02106000001
+
+
+재고이동 등록 메인
+PM_SM_Sto_Mov_Main
+Move_Num 	varchar2(12) MV2106000001
+
+
+기초재고/재고조정등록 메인
+PM_SM_Sto_Adj_Main
+Mod_Num 	varchar2(12) IA2106000001
+
+기초재고/재고조정등록 서브
+PM_SM_Sto_Adj_Sub
+No 		varchar2(12)	-- 그냥 번호 NO.SEQ
+
+set품 수불조정등록 자품목
+PM_SM_Set_Man_Sub
+No		varhcar2(12)	--그냥 번호
+
+품목단가등록
+PM_SM_Ite_Pri
+No		varchar2(12)	--그냥 번호
+
+
+
+set품 수불조정등록 모품목
+PM_SM_Set_Man_Main
+Mod_Num	varchar2(12) SM2106000001
+
+
+--생산계획등록
+create table CPM_PM_Pro_Pla_Reg(
+    --생산계획번호(PK)
+    ProductionPlanCode varchar2(12) PRIMARY KEY, PP2106000001
+
+--생산자재출고
+create table CPM_PM_Pro_Mat_For(
+    --출고번호(PK)
+    forwardingNumber varchar(12) PRIMARY KEY, MV2004000001
+
+--생산자재출고 세부사항
+create table CPM_PM_Pro_Mat_For_Det(
+    --순번(PK)
+    NO number(5) NOT NULL,
+
+--작업실적등록
+create table CPM_PM_Ope_Per_Reg(
+    --작업지시번호(PK)
+    workOrderNumber varchar2(12) PRIMARY KEY, W02004000001
+
+--작업실적등록 세부사항
+create table CPM_PM_Ope_Per_Reg_Det(
+    --작업실적번호(PK)
+    OPNumber varchar2(12) PRIMARY KEY, WR2004000001
+
+--외주관리 테이블
+
+--재고이동 등록 메인
+PM_SM_Sto_Mov_Main
+Move_Num 	varchar2(12) MV2106000001
+--생산자재출고
+create table CPM_PM_Pro_Mat_For(
+    --출고번호(PK)
+    forwardingNumber varchar(12) PRIMARY KEY, MV2004000001
+--외주자재출고
+create table CPM_OM_Out_Mat_For(
+    --출고번호(PK)
+    forwardingNumber varchar(12) PRIMARY KEY,MV2004000002
+
+--생산자재출고 세부사항
+create table CPM_PM_Pro_Mat_For_Det(
+    --순번(PK)
+    NO number(5) NOT NULL,
+--외주자재출고 세부사항
+create table CPM_OM_Out_Mat_For_Det(
+    --순번(PK)
+    NO number(5) PRIMARY KEY,
+
+--작업실적등록
+--외주실적등록 -- 금액, 실적수량(외주실적등록 세부사항 데이터 SUM()), 실적잔량 뺌.
+create table CPM_OM_Out_Per_Reg(
+    --작업지시번호(PK)
+    workOrderNumber varchar2(12) PRIMARY KEY,W02004000001
+
+--작업실적등록 세부사항 CPM_PM_Ope_Per_Reg_Det
+--외주실적등록 세부사항
+create table CPM_OM_Out_Per_Reg_Det(
+    --작업실적번호(PK)
+    operationPerformanceNumber varchar2(12) PRIMARY KEY,WR2004000001
+
+--외주마감
+create table CPM_OM_Out_Fin( OC2106000001
+    --외주비마감번호(PK)
+    OutsourcingCostClosingNumber varchar2(12) PRIMARY KEY,OC2106000001
+
+DROP SEQUENCE NO_seq;
+DROP SEQUENCE SEQ_seq;
+DROP SEQUENCE seq_SM_BIM_Gen_Cus_Reg_no;
+DROP SEQUENCE seq_SM_BIM_Sal_Pla_Reg_no;
+DROP SEQUENCE seq_CSM_SM_Est_Reg_no;
+DROP SEQUENCE seq_CSM_SM_Ord_Reg_no;
+DROP SEQUENCE seq_CSM_SM_Req_Reg_no;
+DROP SEQUENCE seq_CSM_SM_Rel_Pro_no;
+DROP SEQUENCE seq_PMM_PM_MPS_OS_no;
+DROP SEQUENCE seq_PMM_PM_ORDER_no;
+DROP SEQUENCE seq_PMM_PM_CM_no;
+DROP SEQUENCE seq_PMM_PM_RP_no;
+DROP SEQUENCE seq_PMM_PM_RP_DEAD_no;
+DROP SEQUENCE seq_PMM_PM_RRR_no;
+DROP SEQUENCE seq_PMM_PM_RRR_CHECK_no;
+DROP SEQUENCE seq_PM_SM_Sto_Mov_Main_no;
+DROP SEQUENCE seq_PM_SM_Sto_Adj_Main_no;
+DROP SEQUENCE seq_PM_SM_Set_Man_Main_no;
+DROP SEQUENCE seq_CPM_PM_Pro_Pla_Reg_no;
+DROP SEQUENCE seq_CPM_PM_Ope_Per_Reg_no;
+DROP SEQUENCE seq_CPM_PM_Ope_Per_Reg_Det_no;
+DROP SEQUENCE seq_CPM_OM_Out_Fin_no;
+
+drop trigger trg_operation_nodml;
+drop trigger trg_outsourcing_nodml;
+
+drop function  func_hou_reg;
+drop function  func_Wor_Reg;
+drop function  func_pro_reg;
+drop function  func_Pro_Wor_Reg;
+drop function  func_Out_Reg;
+drop function  func_Out_Wor_Reg;
+--drop function  func_Ite_Reg;
+
+--NO 자동생성 시퀀스
+CREATE SEQUENCE NO_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+-- 예시 INSERT INTO tmp values(tmp_seq.NEXTVAL, 'tmptmp');
+--순번 sequence 자동생성 시퀀스
+CREATE SEQUENCE SEQ_seq START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_SM_BIM_Gen_Cus_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_SM_BIM_Sal_Pla_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CSM_SM_Est_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CSM_SM_Ord_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CSM_SM_Req_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CSM_SM_Rel_Pro_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_MPS_OS_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_ORDER_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_CM_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_RP_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_RP_DEAD_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_RRR_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PMM_PM_RRR_CHECK_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PM_SM_Sto_Mov_Main_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PM_SM_Sto_Adj_Main_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_PM_SM_Set_Man_Main_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CPM_PM_Pro_Pla_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CPM_PM_Ope_Per_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CPM_PM_Ope_Per_Reg_Det_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+CREATE SEQUENCE seq_CPM_OM_Out_Fin_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
+  
+    CREATE OR REPLACE FUNCTION  F_GET_NEXT_SEQ (p_flag varchar2) 
+    return varchar2
+    IS
+    v_next_no varchar2(200);
+    BEGIN
+        v_next_no := null;
+        IF p_flag = 'NO' THEN
+            SELECT
+                    LPAD(NO_seq.NEXTVAL,5,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'SEQ' THEN
+            SELECT
+                    LPAD(SEQ_seq.NEXTVAL,5,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'SM_BIM_Gen_Cus_Reg' THEN
+            SELECT
+                    LPAD(seq_SM_BIM_Gen_Cus_Reg_no.NEXTVAL,5,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'SM_BIM_Sal_Pla_Reg' THEN
+             SELECT
+                    'PL'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_SM_BIM_Sal_Pla_Reg_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Est_Reg' THEN
+             SELECT
+                    'ES'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Est_Reg_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Ord_Reg' THEN
+             SELECT
+                    'SO'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Ord_Reg_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Req_Reg' THEN
+             SELECT
+                    'IR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Req_Reg_no .NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Rel_Pro' THEN
+             SELECT
+                    'IS'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Rel_Pro_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_MPS_OS' THEN
+             SELECT
+                    'OS'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_MPS_OS_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_ORDER' THEN
+             SELECT
+                    'P0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_ORDER_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_CM' THEN
+             SELECT
+                    'PR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_CM_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RP' THEN
+             SELECT
+                    'RV'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RP_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RP_DEAD' THEN
+             SELECT
+                    'D0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RP_DEAD_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RRR' THEN
+             SELECT
+                    'SR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RRR_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RRR_CHECK' THEN
+             SELECT
+                    'C0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RRR_CHECK_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PM_SM_Sto_Mov_Main' THEN
+             SELECT
+                    'MV'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PM_SM_Sto_Mov_Main_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PM_SM_Sto_Adj_Main' THEN
+             SELECT
+                    'IA'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PM_SM_Sto_Adj_Main_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PM_SM_Set_Man_Main' THEN
+             SELECT
+                    'SM'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PM_SM_Set_Man_Main_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CPM_PM_Pro_Pla_Reg' THEN
+             SELECT
+                    'PP'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_PM_Pro_Pla_Reg_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+
+        ELSIF p_flag = 'CPM_PM_Ope_Per_Reg' THEN
+             SELECT
+                    'W0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_PM_Ope_Per_Reg_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CPM_PM_Ope_Per_Reg_Det' THEN
+             SELECT
+                    'WR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_PM_Ope_Per_Reg_Det_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CPM_OM_Out_Fin' THEN
+             SELECT
+                    'OC'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_OM_Out_Fin_no.NEXTVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        END IF;
+        RETURN v_next_no;
+    END F_GET_NEXT_SEQ;
+    /
+
+ CREATE OR REPLACE FUNCTION  F_GET_CURR_SEQ (p_flag varchar2) 
+    return varchar2
+    IS
+    v_next_no varchar2(200);
+    BEGIN
+        v_next_no := null;
+        IF p_flag = 'NO' THEN
+            SELECT
+                    LPAD(NO_seq.CURRVAL,5,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'SEQ' THEN
+            SELECT
+                    LPAD(SEQ_seq.CURRVAL,5,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'SM_BIM_Gen_Cus_Reg' THEN
+            SELECT
+                    LPAD(seq_SM_BIM_Gen_Cus_Reg_no.CURRVAL,5,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'SM_BIM_Sal_Pla_Reg' THEN
+             SELECT
+                    'PL'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_SM_BIM_Sal_Pla_Reg_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Est_Reg' THEN
+             SELECT
+                    'ES'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Est_Reg_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Ord_Reg' THEN
+             SELECT
+                    'SO'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Ord_Reg_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Req_Reg' THEN
+             SELECT
+                    'IR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Req_Reg_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CSM_SM_Rel_Pro' THEN
+             SELECT
+                    'IS'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CSM_SM_Rel_Pro_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_MPS_OS' THEN
+             SELECT
+                    'OS'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_MPS_OS_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_ORDER' THEN
+             SELECT
+                    'P0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_ORDER_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_CM' THEN
+             SELECT
+                    'PR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_CM_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RP' THEN
+             SELECT
+                    'RV'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RP_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RP_DEAD' THEN
+             SELECT
+                    'D0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RP_DEAD_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RRR' THEN
+             SELECT
+                    'SR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RRR_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PMM_PM_RRR_CHECK' THEN
+             SELECT
+                    'C0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PMM_PM_RRR_CHECK_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PM_SM_Sto_Mov_Main' THEN
+             SELECT
+                    'MV'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PM_SM_Sto_Mov_Main_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PM_SM_Sto_Adj_Main' THEN
+             SELECT
+                    'IA'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PM_SM_Sto_Adj_Main_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'PM_SM_Set_Man_Main' THEN
+             SELECT
+                    'SM'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_PM_SM_Set_Man_Main_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CPM_PM_Pro_Pla_Reg' THEN
+             SELECT
+                    'PP'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_PM_Pro_Pla_Reg_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+
+        ELSIF p_flag = 'CPM_PM_Ope_Per_Reg' THEN
+             SELECT
+                    'W0'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_PM_Ope_Per_Reg_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CPM_PM_Ope_Per_Reg_Det' THEN
+             SELECT
+                    'WR'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_PM_Ope_Per_Reg_Det_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        ELSIF p_flag = 'CPM_OM_Out_Fin' THEN
+             SELECT
+                    'OC'||TO_CHAR(SYSDATE, 'YYMM') || LPAD(seq_CPM_OM_Out_Fin_no.CURRVAL,6,0)
+                    INTO v_next_no
+                FROM DUAL;
+        END IF;
+        RETURN v_next_no;
+    END F_GET_CURR_SEQ;
+    /
+
+CREATE OR REPLACE PROCEDURE P_RESET_SEQ(SEQ_NAME IN VARCHAR2)
+IS
+    L_VAL NUMBER;
+BEGIN
+    EXECUTE IMMEDIATE 'SELECT ' || SEQ_NAME || '.NEXTVAL FROM DUAL ' 
+    INTO L_VAL;
+  
+    EXECUTE IMMEDIATE 'ALTER SEQUENCE ' || SEQ_NAME || ' INCREMENT BY -' || L_VAL ;
+  --ALTER SEQUENCE no_seq INCREMENT BY -1;
+
+    EXECUTE IMMEDIATE 'SELECT ' || SEQ_NAME || '.NEXTVAL FROM DUAL '
+    INTO L_VAL;
+      
+    EXECUTE IMMEDIATE 'ALTER SEQUENCE ' || SEQ_NAME || ' INCREMENT BY 1';
+END;
+/
+
+EXECUTE P_RESET_SEQ('NO_seq');
+EXECUTE P_RESET_SEQ('SEQ_seq');
+EXECUTE P_RESET_SEQ('seq_SM_BIM_Gen_Cus_Reg_no');
+EXECUTE P_RESET_SEQ('seq_SM_BIM_Sal_Pla_Reg_no');
+EXECUTE P_RESET_SEQ('seq_CSM_SM_Est_Reg_no');
+EXECUTE P_RESET_SEQ('seq_CSM_SM_Ord_Reg_no');
+EXECUTE P_RESET_SEQ('seq_CSM_SM_Req_Reg_no');
+EXECUTE P_RESET_SEQ('seq_CSM_SM_Rel_Pro_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_MPS_OS_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_ORDER_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_CM_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_RP_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_RP_DEAD_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_RRR_no');
+EXECUTE P_RESET_SEQ('seq_PMM_PM_RRR_CHECK_no');
+EXECUTE P_RESET_SEQ('seq_PM_SM_Sto_Mov_Main_no');
+EXECUTE P_RESET_SEQ('seq_PM_SM_Sto_Adj_Main_no');
+EXECUTE P_RESET_SEQ('seq_PM_SM_Set_Man_Main_no');
+EXECUTE P_RESET_SEQ('seq_CPM_PM_Pro_Pla_Reg_no');
+EXECUTE P_RESET_SEQ('seq_CPM_PM_Ope_Per_Reg_no');
+EXECUTE P_RESET_SEQ('seq_CPM_PM_Ope_Per_Reg_Det_no');
+EXECUTE P_RESET_SEQ('seq_CPM_OM_Out_Fin_no');
+
+
+
+DECLARE
+    X NUMBER;
+BEGIN
+    SYS.DBMS_JOB.SUBMIT
+    (
+        job         => X
+        ,what       =>
+            'BEGIN
+                P_RESET_SEQ(''seq_SM_BIM_Gen_Cus_Reg_no'');
+                P_RESET_SEQ(''seq_SM_BIM_Sal_Pla_Reg_no'');
+                P_RESET_SEQ(''seq_CSM_SM_Est_Reg_no'');
+                P_RESET_SEQ(''seq_CSM_SM_Ord_Reg_no'');
+                P_RESET_SEQ(''seq_CSM_SM_Req_Reg_no'');
+                P_RESET_SEQ(''seq_CSM_SM_Rel_Pro_no'');
+                P_RESET_SEQ(''seq_PMM_PM_MPS_OS_no'');
+                P_RESET_SEQ(''seq_PMM_PM_ORDER_no'');
+                P_RESET_SEQ(''seq_PMM_PM_CM_no'');
+                P_RESET_SEQ(''seq_PMM_PM_RP_no'');
+                P_RESET_SEQ(''seq_PMM_PM_RP_DEAD_no'');
+                P_RESET_SEQ(''seq_PMM_PM_RRR_no'');
+                P_RESET_SEQ(''seq_PMM_PM_RRR_CHECK_no'');
+                P_RESET_SEQ(''seq_PM_SM_Sto_Mov_Main_no'');
+                P_RESET_SEQ(''seq_PM_SM_Sto_Adj_Main_no'');
+                P_RESET_SEQ(''seq_PM_SM_Set_Man_Main_no'');
+                P_RESET_SEQ(''seq_CPM_PM_Pro_Pla_Reg_no'');
+                P_RESET_SEQ(''seq_CPM_PM_Ope_Per_Reg_no'');
+                P_RESET_SEQ(''seq_CPM_PM_Ope_Per_Reg_Det_no'');
+                P_RESET_SEQ(''seq_CPM_OM_Out_Fin_no'');
+            END;'
+        ,next_date  => to_date('11-06-2021 12:40:00','mm/dd/yyyy hh24:mi:ss')
+        ,interval   => 'TRUNC(SYSDATE+1)'
+        ,no_parse   => FALSE
+    );
+    :JobNumber := to_char(X);
+END;
+/
+
+
+
+ --확인 
+
+ SELECT seq_SM_BIM_Gen_Cus_Reg_no.CURRVAL AS 일반거래처시퀀스 FROM DUAL ; 
+ SELECT seq_SM_BIM_Sal_Pla_Reg_no.CURRVAL  AS 판매계획등록 FROM DUAL; 
+ SELECT seq_CSM_SM_Est_Reg_no.CURRVAL AS 견적등록 FROM DUAL ; 
+ SELECT seq_CSM_SM_Ord_Reg_no.CURRVAL AS 수주등록 FROM DUAL ; 
+ SELECT seq_CSM_SM_Req_Reg_no.CURRVAL AS 출고의뢰등록 FROM DUAL ; 
+ SELECT seq_CSM_SM_Rel_Pro_no.CURRVAL AS 출고처리 FROM DUAL ; 
+ SELECT seq_PMM_PM_MPS_OS_no.CURRVAL AS "주계획서작성(판매,주문계획)" FROM DUAL ; 
+ SELECT seq_PMM_PM_ORDER_no.CURRVAL AS "발주,발주마감처리" FROM DUAL ; 
+ SELECT seq_PMM_PM_CM_no.CURRVAL AS 청구등록 FROM DUAL ; 
+ SELECT seq_PMM_PM_RP_no.CURRVAL AS 입고처리 FROM DUAL ; 
+ SELECT seq_PMM_PM_RP_DEAD_no.CURRVAL AS 입고처리마감 FROM DUAL ; 
+ SELECT seq_PMM_PM_RRR_no.CURRVAL AS 입고의뢰등록 FROM DUAL ; 
+ SELECT seq_PMM_PM_RRR_CHECK_no.CURRVAL AS 입고의뢰등록검사 FROM DUAL ; 
+ SELECT seq_PM_SM_Sto_Mov_Main_no.CURRVAL AS "재고이동 등록 메인" FROM DUAL ; 
+ SELECT seq_PM_SM_Sto_Adj_Main_no.CURRVAL AS "기초재고/재고조정등록 메인" FROM DUAL ; 
+ SELECT seq_PM_SM_Set_Man_Main_no.CURRVAL AS "set품 수불조정등록 모품목" FROM DUAL ; 
+ SELECT seq_CPM_PM_Pro_Pla_Reg_no.CURRVAL AS 생산계획등록 FROM DUAL ; 
+ SELECT seq_CPM_PM_Ope_Per_Reg_no.CURRVAL AS 작업실적등록 FROM DUAL ; 
+ SELECT seq_CPM_PM_Ope_Per_Reg_Det_no.CURRVAL AS "작업실적등록 세부사항" FROM DUAL ; 
+  SELECT seq_CPM_OM_Out_Fin_no.CURRVAL AS 외주마감 FROM DUAL ; 
+  
+select * from user_sequences;
+
+
+	   NO_seq
+	   SEQ_SEQ
+	   seq_SM_BIM_Gen_Cus_Reg_no
+               seq_SM_BIM_Sal_Pla_Reg_no
+               seq_CSM_SM_Est_Reg_no
+               seq_CSM_SM_Ord_Reg_no
+               seq_CSM_SM_Req_Reg_no
+               seq_CSM_SM_Rel_Pro_no
+               seq_PMM_PM_MPS_OS_no
+               seq_PMM_PM_ORDER_no
+               seq_PMM_PM_CM_no
+               seq_PMM_PM_RP_no
+               seq_PMM_PM_RP_DEAD_no
+               seq_PMM_PM_RRR_no
+               seq_PMM_PM_RRR_CHECK_no
+               seq_PM_SM_Sto_Mov_Main_no
+               seq_PM_SM_Sto_Adj_Main_no
+               seq_PM_SM_Set_Man_Main_no
+               seq_CPM_PM_Pro_Pla_Reg_no
+               seq_CPM_PM_Ope_Per_Reg_no
+               seq_CPM_PM_Ope_Per_Reg_Det_no
+               seq_CPM_OM_Out_Fin_no
+CPM_PM_Pro_Pla_Reg
+F_GET_NEXT_SEQ('NO')
+F_GET_NEXT_SEQ('SEQ')
+F_GET_NEXT_SEQ('SM_BIM_Gen_Cus_Reg')
+F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg')
+F_GET_NEXT_SEQ('CSM_SM_Est_Reg')
+F_GET_NEXT_SEQ('CSM_SM_Ord_Reg')
+F_GET_NEXT_SEQ('CSM_SM_Req_Reg')
+F_GET_NEXT_SEQ('CSM_SM_Rel_Pro')
+F_GET_NEXT_SEQ('PMM_PM_MPS_OS')
+F_GET_NEXT_SEQ('PMM_PM_ORDER')
+F_GET_NEXT_SEQ('PMM_PM_CM')
+F_GET_NEXT_SEQ('PMM_PM_RP')
+F_GET_NEXT_SEQ('PMM_PM_RP_DEAD')
+F_GET_NEXT_SEQ('PMM_PM_RRR')
+F_GET_NEXT_SEQ('PMM_PM_RRR_CHECK')
+F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main')
+F_GET_NEXT_SEQ('PM_SM_Sto_Adj_Main')
+F_GET_NEXT_SEQ('PM_SM_Set_Man_Main')
+F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg')
+F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg')
+F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det')
+F_GET_NEXT_SEQ('CPM_OM_Out_Fin')
+
+
+
+
+삭제해야되는거
+
+
+
+
+
+
+
+
+
+
+
