@@ -12,12 +12,14 @@ request.setCharacterEncoding("UTF-8");
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script>
-	function func_Popup(){
-		var url = "applyorder.do";
-		var name = "applyorder";
-		var option = "width = 1500, height= 600, top = 100, left = 200"
-		window.open(url, name, option);
-	}
+var openWin;
+function func_Popup(){
+	window.name = "member/mainplan.do";
+	
+	openWin = window.open("applyorder.do","applyorder",
+			"width=800, height=500, resizable = no, scrollbars = no");
+}
+
 </script>
 <style>
 #contents1 {
@@ -71,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
 </style>
 </head>
 <body>
-	<container1 id=contents1>
+<container1 id=contents1>
 	<table class="con1_search">
 		<tr>
 			<td>사업장</td>
@@ -106,11 +108,10 @@ request.setCharacterEncoding("UTF-8");
 		<input type="button" id="Popup" onclick="func_Popup();" value="주문적용" />
 	</div>
 	</container1>
-	<container2 id=contents2>
+<container2 id=contents2>
+	<form id="reserve">	
 	<table id="view1">
 		<thead align="center" style="background-color: gray">
-			<td><input type="checkbox" name="content"
-				onclick="selectAll(this)" /></td>
 			<td>계획일</td>
 			<td>품번</td>
 			<td>품명</td>
@@ -125,7 +126,6 @@ request.setCharacterEncoding("UTF-8");
 		</thead>
 		<c:forEach var="mainplan" items="${mainplanList}">
 			<tr align="center">
-				<td><input type="checkbox" name="content" /></td>
 				<td>${mainplan.plandate}</td>
 				<td>${mainplan.item_Code}</td>
 				<td>${mainplan.item_Name}</td>
@@ -140,6 +140,7 @@ request.setCharacterEncoding("UTF-8");
 			</tr>
 		</c:forEach>
 	</table>
+	</form>
 	</container2>
 </body>
 </html>
