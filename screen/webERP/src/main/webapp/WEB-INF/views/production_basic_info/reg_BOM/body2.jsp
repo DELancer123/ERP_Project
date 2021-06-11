@@ -17,6 +17,7 @@
  	<c:set var="itemName" value="${bom.itemName }"/>
  	<c:set var="standard" value="${bom.standard }"/>
  	<c:set var="unit" value="${bom.unit }"/>
+ 	<c:set var="division" value="${bom.division }"/>
  </c:forEach>
 
 <!DOCTYPE html>
@@ -82,7 +83,7 @@
                         <td>외주단가</td>
                         <td>시작일자</td>
                         <td>종료일자</td>
-                        <td>비고</td>
+                        <td>계정</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
@@ -101,7 +102,7 @@
    	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].endDate" value = '${bom.endDate }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${bom.note }'/>   </td>
+   	  <td><input type="text" name="ListVO[${status.index}].division" value = '${bom.division }'/>   </td>
     </tr>
     </c:forEach> 
 
@@ -120,7 +121,7 @@
     	<td><input type="text" id="outSourcingUnitPrice" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
     	<td><input type="date" id="startDate" name="ListVO[${fn:length(bomView) }].startDate"/></td>
     	<td><input type="date" id="endDate" name="ListVO[${fn:length(bomView) }].endDate"/></td>
-    	<td><input type="text" id="note" name="ListVO[${fn:length(bomView) }].note"/></td>
+    	<td><input type="text" id="division" name="ListVO[${fn:length(bomView) }].division" value='${division }'/></td>
     </tr>
                 </table>
                  
