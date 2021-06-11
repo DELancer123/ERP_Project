@@ -25,7 +25,7 @@ public class bomVO {
 	private int outSourcingUnitPrice;
 	private Date startDate;
 	private Date endDate;
-	private String note;
+	private String division;
 	private List<bomVO> ListVO;
 	
 	@Override
@@ -95,11 +95,12 @@ public class bomVO {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getNote() {
-		return note;
+	
+	public String getDivision() {
+		return division;
 	}
-	public void setNote(String note) {
-		this.note = note;
+	public void setDivision(String division) {
+		this.division = division;
 	}
 	public String getStandard() {
 		return standard;

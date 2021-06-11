@@ -97,7 +97,7 @@
 		<result property="outSourcingUnitPrice" column="outSourcingUnitPrice" />
 		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
-		<result property="note" column="note" />
+		<result property="division" column="division" />
 
 	</resultMap>
 	<resultMap id="popView" type="bomVO">
@@ -118,7 +118,7 @@
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
+		<![CDATA[select item_code,item_name,standard,inventory_unit,division from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList1" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품']]>
@@ -133,7 +133,7 @@
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
 		 insert into CPM_BIM_BOM_REG
-		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{division})
 		]]>  
 	</insert>
 
@@ -144,31 +144,12 @@
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
-		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
+		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, division=#{division}
 		where  no=#{no}
 		]]>  
 	</update>
 	
-	<!-- <update id="updateBOM" parameterType="bomVO">
-		
-		update CPM_BIM_BOM_REG
-		<set>
-		<if test="no !='' and no != null">no=#{no},</if>
-		<if test="parent !='' and parent != null">parent_item_code=#{parent},</if>
-		<if test="itemName !='' and itemName != null">item_name=#{itemName},</if>
-		 Standard=#{standard}, 
-		 Inventory_Unit=#{unit},
-		<if test="precisionQuantity !='' and precisionQuantity != null">precisionQuantity=#{precisionQuantity},</if>
-		<if test="loss !='' and loss != null">loss=#{loss},</if>
-		<if test="actualCost !='' and actualCost != null">actualCost=#{actualCost}, </if>
-		<if test="outSourcingUnitPrice !='' and outSourcingUnitPrice != null">outSourcingUnitPrice=#{outSourcingUnitPrice}, </if>
-		<if test="startDate !='' and startDate != null">startDate=#{startDate},</if>
-		<if test="endDate !='' and endDate != null">endDate=#{endDate},</if>
-		<if test="note !='' and note != null">note=#{note}</if>
-		</set>
-		where  Item_Code=#{itemNumber}
-		
-	</update> -->
+	
 	
 	
 
