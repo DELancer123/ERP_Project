@@ -134,16 +134,16 @@
                      <tr>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text" name="workOrderNumber"/></td>
-                        <td><input type="date" name="instructionDate"/></td>
-                        <td><input type="date" name="dueDate"/></td>
-                        <td><input type="text" name="itemCode"/></td>
-                        <td><input type="text" name="itemName"/></td>
-                        <td><input type="text" name="standard"/></td>
-                        <td><input type="text" name="inventoryUnit"/></td>
-                        <td><input type="text" name="indicated"/></td>
-                        <td><input type="text" name="status"/></td>
-                        <td><input type="text" name="inspection"/></td>
-                        <td><input type="text" name="note"/></td>
+                        <td><input type="date" name="instructionDate" value="${param.workDate }"/></td>
+                        <td><input type="date" name="dueDate" value="${param.workDate }"/></td>
+                        <td><input type="text" name="itemCode" value="${param.itemCode }"/></td>
+                        <td><input type="text" name="itemName" value="${param.itemName }"/></td>
+                        <td><input type="text" name="standard" value="${param.standard }"/></td>
+                        <td><input type="text" name="inventoryUnit" value="${param.inventoryUnit }"/></td>
+                        <td><input type="text" name="indicated" value="${param.quantity }"/></td>
+                        <td><input type="text" name="status" readonly/></td>
+                        <td><input type="text" name="inspection" readonly/></td>
+                        <td><input type="text" name="note" value="${param.note }"/></td>
                      </tr>
                     </tbody>
                 </table>
