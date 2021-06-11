@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,13 +75,13 @@
                             모품목
                         </td>
                         <Td>
-                            <input type="text" name="factory" style="width: 120px; background-color: yellow;">
+                            <input type="text" name="factory" value='${param.itemNumber }' style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
-                            <i class="fas fa-search" style="color: blue;"></i>
+                            <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
                         </td>
                         <td>
-                            <input type="text" name="ckfactory" style="width: 120px;" disabled>
+                            <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
                         </td>
                         <!-- 모품목 규격 -->
                         <td>
@@ -89,7 +97,7 @@
                             기준일자
                         </td>
                         <td colspan="2">
-                            <input type="date" name="department" style="width: 120px; background-color: yellow;"><a href="#" onclick="showPopup();"></a>
+                            <input type="date" name="department" style="width: 120px;"><a href="#" onclick="showPopup();"></a>
                         </td>
                         
                     </tr>
@@ -106,7 +114,6 @@
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead>
-                        <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td>순번</td>
                         <td>품번코드</td>
                         <td>품명</td>
@@ -125,22 +132,20 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tbody>
                 </table>
             </div>
@@ -150,6 +155,19 @@
             </div>
             <!-- 합계 출력부 종료 -->
         </container2>
+      <script>
+      function openWindowPop(url, name){
+          var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+          window.open(url, name, options);
+      }
       
+      function search1(){
+    	  
+    	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');
+
+    	  
+      }
+      	
+      </script>
 </body>
 </html>

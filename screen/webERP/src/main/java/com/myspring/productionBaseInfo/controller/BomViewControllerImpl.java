@@ -158,4 +158,10 @@ public class BomViewControllerImpl implements BomViewController {
 		return viewName;
 	}
 
+	@Override
+	public ModelAndView rightbom(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -22,7 +22,8 @@ public interface BomViewController {
 
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public ModelAndView rightbom(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 
 
 }
