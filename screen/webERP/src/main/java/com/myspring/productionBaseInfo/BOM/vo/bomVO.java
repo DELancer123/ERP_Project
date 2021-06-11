@@ -119,5 +119,4 @@ public class bomVO {
 	public void setListVO(List<bomVO> listVO) {
 		ListVO = new ArrayList();
 	}
-	
 }
