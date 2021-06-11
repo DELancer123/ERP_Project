@@ -186,9 +186,6 @@
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
 
-=======
-
->>>>>>> b5c5502181012c94c73a0ccc8d2f971731275dcd
 	<!-- 회사등록 파트 -->
 	<resultMap id="comResult" type="SystemmagVO">
 		<result property="company_Code" column="Company_Code"	/>
@@ -213,7 +210,7 @@
 	<select id="selectAllcomList" resultMap="comResult">
 		<![CDATA[select * from SM_CRI_Com_Reg]]>
 	</select>
-=======
+
 
 	
 	<!--기초정보관리파트-->
@@ -233,7 +230,6 @@
 		
 		
 	</resultMap>
->>>>>>> b5c5502181012c94c73a0ccc8d2f971731275dcd
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

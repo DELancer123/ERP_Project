@@ -87,6 +87,34 @@ public class SystemmagControllerImpl implements SystemmagController{
 		}
 		return viewName;
 	}
+	@Override
+	public ModelAndView delCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
+	@Override
+	public ModelAndView adressZip(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
+	@Override
+	public ModelAndView addWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
+	@Override
+	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
+	@Override
+	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
+	@Override
+	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
+	@Override
+	public ModelAndView addDepartment(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+	}
 	
 	
 }
