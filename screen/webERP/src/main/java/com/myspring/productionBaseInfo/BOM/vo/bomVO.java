@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component("bomVO")
@@ -115,5 +119,4 @@ public class bomVO {
 	public void setListVO(List<bomVO> listVO) {
 		ListVO = new ArrayList();
 	}
-	
 }

@@ -159,9 +159,26 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 
 	@Override
+	@RequestMapping(value="/member/rightbom.do" ,method = RequestMethod.GET)
 	public ModelAndView rightbom(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String number = (String) request.getParameter("itemNumber");
+		String submit = (String) request.getParameter("submit");
+		String itemNumber = (String) request.getParameter("itemCode");
+		int sum = 0;
+		if(number == null || number.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List bomView = viewService.SearchView(number);
+			
+			mav = new ModelAndView(viewName);
+			
+			mav.addObject("bomView", bomView);
+		}
+		return mav;
 	}
 
 }

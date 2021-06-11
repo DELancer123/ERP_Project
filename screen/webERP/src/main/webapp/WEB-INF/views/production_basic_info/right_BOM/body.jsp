@@ -51,7 +51,7 @@
         }
         #workOrderTable{
             width: 100%;
-            font-weight: bold;
+
         }
         /* 합계 출력부 */
         #resultWindow{
@@ -113,7 +113,7 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead>
+                    <thead style="font-weight:bold; background-color:gray;">
                         <td>순번</td>
                         <td>품번코드</td>
                         <td>품명</td>
@@ -131,15 +131,16 @@
                         <td>사용여부</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
+                    <c:forEach var="bom" items="${bomView}">  
                     <tbody>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${bom.no }</td>
+                        <td>${bom.itemNumber}</td>
+                        <td>${bom.itemName}</td>
+                        <td>${bom.standard}</td>
+                        <td>${bom.unit }</td>
+                        <td>${bom.precisionQuantity }</td>
+                        <td>${bom.loss }</td>
+                        <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -147,6 +148,7 @@
                         <td></td>
                         <td></td>
                     </tbody>
+                    </c:forEach>
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -167,7 +169,13 @@
 
     	  
       }
-      	
+      view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+ 	}
       </script>
 </body>
 </html>
