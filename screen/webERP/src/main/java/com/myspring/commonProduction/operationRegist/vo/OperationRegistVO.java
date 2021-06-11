@@ -1,6 +1,9 @@
 package com.myspring.commonProduction.operationRegist.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -17,6 +20,12 @@ public class OperationRegistVO {
 	private String status;
 	private String inspection;
 	private String note;
+	private List<OperationRegistVO> ListVO;
+	
+	@Override
+	public String toString() {
+		return Arrays.toString(ListVO.toArray());
+	}
 	
 	public OperationRegistVO() {
 		super();
@@ -109,5 +118,14 @@ public class OperationRegistVO {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+	public List<OperationRegistVO> getListVO() {
+		return ListVO;
+	}
+
+	public void setListVO(List<OperationRegistVO> listVO) {
+		this.ListVO = new ArrayList();
+	}
+	
 	
 }

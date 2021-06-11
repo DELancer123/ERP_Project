@@ -43,9 +43,16 @@
 		</where>
 	</select>
 	
+	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
 	</select>
+	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
+		<![CDATA[
+		 insert into CPM_PM_OPE_REG
+		 values(#{workOrderNumber},#{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, null, null, #{status}, #{inspection}, #{note}, "00001212")
+		]]>  
+	</insert>	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />
