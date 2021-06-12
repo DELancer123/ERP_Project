@@ -85,7 +85,7 @@
 	</select>
 	
 	<delete id="deleteOperationInstruction">
-		delete fromCPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}
+		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
 	</delete>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">

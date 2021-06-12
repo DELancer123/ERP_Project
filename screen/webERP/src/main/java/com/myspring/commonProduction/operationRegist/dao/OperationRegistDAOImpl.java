@@ -79,7 +79,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	@Override
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
-			sqlSession.delete("mappers.erp.deleteOperationInstruction", Integer.parseInt(obj));		
+			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);		
 			System.out.println("DAO.delBOM");
 		}
 	}
