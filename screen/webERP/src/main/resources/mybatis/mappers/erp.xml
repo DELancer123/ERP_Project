@@ -83,6 +83,10 @@
 	<select id="selectProductionPlanList" parameterType="CommitOperationInstructionVO" resultMap="selectProductionPlanViewResult">
 		<![CDATA[select * from CPM_PM_Pro_Pla_Reg where scheduleddateofoperation between #{startDate} and #{endDate}]]>
 	</select>
+	
+	<delete id="deleteOperationInstruction">
+		delete fromCPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}
+	</delete>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />

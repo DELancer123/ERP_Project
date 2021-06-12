@@ -75,4 +75,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		int result = sqlSession.insert("mappers.erp.insertOperationInstruction",ORVO.getListVO().get(idx));
 		return 0;
 	}
+	
+	@Override
+	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
+		for(String obj: numberAry) {
+			sqlSession.delete("mappers.erp.deleteOperationInstruction", Integer.parseInt(obj));		
+			System.out.println("DAO.delBOM");
+		}
+	}
 }
