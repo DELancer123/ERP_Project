@@ -105,6 +105,7 @@ String sequence = (String)request.getAttribute("sequence");
 	<div id="button">
 		<input type="button" onclick="func_Popup();" value="주문적용" />
 		<input type=button value="삭제" onClick="deleteData();">
+		<input type=button value="수정" onClick="func_Popup2();">
 	</div>
 	</container1>
 <container2 id=contents2>
@@ -148,12 +149,17 @@ String sequence = (String)request.getAttribute("sequence");
 <script type="text/javascript">
 var openWin;
 function func_Popup(){
-	window.name = "mainplan.do";
+	window.name = "member/mainplan.do";
 	
 	openWin = window.open("applyorder.do","applyorder",
 			"width=1400, height=500, resizable = no, scrollbars = no");
 }
-
+function func_Popup2(){
+	window.name = "member/mainplan.do";
+	
+	openWin = window.open("modify.do","modify",
+			"width=1400, height=500, resizable = no, scrollbars = no");
+}
 function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";
@@ -167,6 +173,7 @@ function deleteData() {
 			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary;
 	  }
 	}
+
 </script>
 </body>
 </html>

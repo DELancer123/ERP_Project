@@ -33,4 +33,10 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 			sqlSession.delete("mappers.erp.deleteMps", Integer.parseInt(obj));		
 		}
 	}
+	
+	@Override
+	public void modifyMPS(MainPlanVO vo) throws Exception {
+		sqlSession.update("mappers.erp.modifyMps", vo); 
+	}
+	
 }
