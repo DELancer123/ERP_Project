@@ -1,26 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
 request.setCharacterEncoding("UTF-8");
+String sequence = (String)request.getAttribute("sequence");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script>
-var openWin;
-function func_Popup(){
-	window.name = "member/mainplan.do";
-	
-	openWin = window.open("applyorder.do","applyorder",
-			"width=1400, height=500, resizable = no, scrollbars = no");
-}
-
-</script>
 <style>
 #contents1 {
 	position: absolute;
@@ -83,14 +74,14 @@ function func_Popup(){
 <container1 id=contents1>
 	<table class="con1_search">
 		<tr>
-			<td>»ç¾÷Àå</td>
+			<td>ì‚¬ì—…ì¥</td>
 			<td style="width: 50px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 
 			<td colspan="3"><input type="text" name="" disabled
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td colspan="5" style="width: 100px;">ºÎ¼­</td>
+			<td colspan="5" style="width: 100px;">ë¶€ì„œ</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
@@ -98,13 +89,13 @@ function func_Popup(){
 
 		</tr>
 		<tr>
-			<td>°èÈ¹±â°£</td>
+			<td>ê³„íšê¸°ê°„</td>
 			<td colspan="2" style="width: 80px;"><input type="date"
 				id="reqInput" style="width: 100%;" /></td>
 			<td>~</td>
 			<td><input type="date" id="reqInput" style="width: 100%;" /></td>
 			<td></td>
-			<td colspan="5">»ç¿ø</td>
+			<td colspan="5">ì‚¬ì›</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
@@ -112,36 +103,37 @@ function func_Popup(){
 		</tr>
 	</table>
 	<div id="button">
-		<input type="button" onclick="func_Popup();" value="ÁÖ¹®Àû¿ë" />
+		<input type="button" onclick="func_Popup();" value="ì£¼ë¬¸ì ìš©" />
+		<input type=button value="ì‚­ì œ" onClick="deleteData();">
 	</div>
 	</container1>
 <container2 id=contents2>
 <div id="MpsInfo">
 	<table id="view">
 		<thead align="center" style="background-color: gray">
-		<td><input type="checkbox" name="content"/></td>
-			<td>°èÈ¹ÀÏ</td>
-			<td>Ç°¹ø</td>
-			<td>Ç°¸í</td>
-			<td>±Ô°İ</td>
-			<td>´ÜÀ§</td>
-			<td>¼ø¼­</td>
-			<td>ÃâÇÏ¿¹Á¤ÀÏ</td>
-			<td>³³±âÀÏ</td>
-			<td>°èÈ¹¼ö·®</td>
-			<td>°í°´</td>
-			<td>ºñ°í</td>
+		 <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+			<td>ìˆœì„œ</td>
+			<td>ê³„íšì¼</td>
+			<td>í’ˆë²ˆ</td>
+			<td>í’ˆëª…</td>
+			<td>ê·œê²©</td>
+			<td>ë‹¨ìœ„</td>
+			<td>ì¶œí•˜ì˜ˆì •ì¼</td>
+			<td>ë‚©ê¸°ì¼</td>
+			<td>ê³„íšìˆ˜ëŸ‰</td>
+			<td>ê³ ê°</td>
+			<td>ë¹„ê³ </td>
 		</thead>
 		<tbody>
 		<c:forEach var="mainplan" items="${mainplanList}">
 			<tr align="center">
-			<td><input type="checkbox" name="content"/></td>
+			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
+				<td><input type="text" value="${mainplan.sequence}"/></td>
 				<td><input type="text" value="${mainplan.plandate}"/></td>
 				<td><input type="text" value="${mainplan.item_Code}"/></td>
 				<td><input type="text" value="${mainplan.item_Name}"/></td>
 				<td><input type="text" value="${mainplan.standard}"/></td>
 				<td><input type="text" value="${mainplan.unit}"/></td>
-				<td><input type="text" value="${mainplan.sequence}"/></td>
 				<td><input type="text" value="${mainplan.expected_date}"/></td>
 				<td><input type="text" value="${mainplan.due_date}"/></td>
 				<td><input type="text" value="${mainplan.plan_quantity}"/></td>
@@ -153,5 +145,28 @@ function func_Popup(){
 	</table>
 	</div>
 </container2>
+<script type="text/javascript">
+var openWin;
+function func_Popup(){
+	window.name = "mainplan.do";
+	
+	openWin = window.open("applyorder.do","applyorder",
+			"width=1400, height=500, resizable = no, scrollbars = no");
+}
+
+function deleteData() {
+	  var item = document.getElementsByName("content").length;
+	  var no = "";
+	  var ary = [];
+	  for(var i=0; i<item;i++){
+		  if(document.getElementsByName("content")[i].checked==true){
+			  sequence = document.getElementsByName("content")[i].value;
+			  ary.push(sequence);
+		  }
+		  
+			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary;
+	  }
+	}
+</script>
 </body>
 </html>

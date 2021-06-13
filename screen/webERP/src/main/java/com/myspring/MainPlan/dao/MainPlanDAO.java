@@ -10,5 +10,6 @@ public interface MainPlanDAO {
 
 	List selectAllMpsosList() throws Exception;
 
+	void delMps(String[] noary) throws DataAccessException;
 
 }

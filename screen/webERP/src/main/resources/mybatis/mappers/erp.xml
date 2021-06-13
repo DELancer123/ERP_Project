@@ -133,9 +133,13 @@
 	<select id="selectAllMainPlanList" resultMap="mainplanResult">
 		<![CDATA[SELECT * from pmm_pm_mps]]>
 	</select>
+ 	<delete id="deleteMps">
+		delete from pmm_pm_mps where sequence = #{sequence}
+	</delete>
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
+
 
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
@@ -178,6 +182,7 @@
 		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
+	
 
 	<!-- mrp파트 -->
 	<resultMap id="mrpResult" type="requiredamountVO">

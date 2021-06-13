@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Repository("mainplanDAO")
 public class MainPlanDAOImpl implements MainPlanDAO{
@@ -27,5 +26,11 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		List<MpsOSVO>mpsosList = sqlSession.selectList("mappers.erp.selectAllMpsosList");
 		return mpsosList;
 	}
-
+	
+	@Override
+	public void delMps(String[] noary) throws DataAccessException{
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteMps", Integer.parseInt(obj));		
+		}
+	}
 }

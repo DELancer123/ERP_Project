@@ -16,32 +16,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<script type="text/javascript">
-$("#join").click(function(){
-	var rowData = new Array();
-	var tdArr = new Array();
-		var checkbox = $("input[name=content]:checked");
-		
-		checkbox.each(function(i) {
-			var tr = checkbox.parent().parent().eq(i);
-			var td = tr.children();
-			
-			var item_Code = td.eq(1).text();
-			var item_Name = td.eq(2).text();
-			var expected_date = td.eq(3).text();
-			var customer_Name = td.eq(4).text();
-			
-			tdArr.push(itemCode);
-			tdArr.push(itemName);
-			tdArr.push(expected_Date);
-			tdArr.push(customer_Name);
-
-			opener.parent.location='${contextPath}member/mainplan.do?item_Code='+tdArr[0]+'&&item_Name='+tdArr[1]+'&&expected_date='+tdArr[2]+'&&customer_Name='+tdArr[3];
-		window.close();
-
-		});
-	});
-</script>
 <style>
 a {
 	text-decoration: none;
@@ -92,8 +66,8 @@ a {
 				</tr>
 			</table>
 			<div id="button">
-				<button>조회</button>
-				<input type="submit" id="join" value="적용" />
+				<button>조회</button>				
+				<button id="point">적용</button>				
 				<button>취소</button>
 			</div>
 		</div>
@@ -101,8 +75,8 @@ a {
 			<table style="width: 100%;">
 				<thead align="center" style="background-color: gray">
 					<td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-					<td>주문번호</td>
 					<td>순서</td>
+					<td>주문번호</td>
 					<td>주문일자</td>
 					<td>승인일자</td>
 					<td>고객</td>
@@ -118,9 +92,9 @@ a {
 				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center">
-					<td><input type="checkbox" name="content"/></td>
-						<td><a href="#">${MpsOS.ordersno}</a></td>
+					<td><input type="checkbox" name="chk"/></td>
 						<td><a href="#">${MpsOS.sequence}</a></td>
+						<td><a href="#">${MpsOS.ordersno}</a></td>
 						<td><a href="#">${MpsOS.orderdate}</a></td>
 						<td><a href="#">${MpsOS.okeydate}</a></td>
 						<td><a href="#">${MpsOS.customer_Name}</a></td>
@@ -140,5 +114,10 @@ a {
 			</form>
 		</div>
 	</div>
+<script type="text/javascript">
+var point = document.getElementById("point");
+
+
+</script>
 </body>
 </html>

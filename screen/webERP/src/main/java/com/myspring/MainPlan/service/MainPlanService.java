@@ -12,5 +12,6 @@ public interface MainPlanService {
 
 	List<MpsOSVO> selectAllMpsosList() throws Exception;
 
+	void delMps(String[] noary) throws DataAccessException;
 
 }
