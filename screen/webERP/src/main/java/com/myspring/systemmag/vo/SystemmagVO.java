@@ -55,6 +55,9 @@ public class SystemmagVO {
 		this.fiscal_Year_Number = fiscal_Year_Number;
 	}
 	
+	public Date getDate_Of_Establishment() {
+		return date_Of_Establishment;
+	}
 	public Date getFiscal_Year_Dates() {
 		return fiscal_Year_Dates;
 	}

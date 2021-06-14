@@ -20,6 +20,7 @@
  	<c:set var="main_Store_Tel" value="${com.main_Store_Tel }"/>
  	<c:set var="upstate" value="${com.upstate }"/>
  	<c:set var="industry" value="${com.industry }"/>
+ 	<c:set var="date_Of_Establishment" value="${com.date_Of_Establishment }"/>
  	<c:set var="whether_To_Use_Status" value="${com.whether_To_Use_Status }"/>
 
  </c:forEach>
@@ -89,7 +90,7 @@
                 <c:forEach var="com" items="${comView}" >     
                 <tr>
                     <td>
-                        <input type="text" id="textbox1" name="company_Code" value='${com.company_Code }'
+                        <input type="text" id="textbox1" onfocus="searchView(this.value)" name="company_Code" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" maxlength="12" 
@@ -105,7 +106,8 @@
                         <select name="sortation" 
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" >
+                        text-align: center;"
+                        >
                             <option value="default">법인/개인</option>
                             <option value="0">0.법인</option>
                             <option value="1">1.개인</option>
@@ -234,9 +236,11 @@
                     <td align="center">설립연월일</td>
                     <td colspan="2">
                         <input type="date" name="date_Of_Establishment"
+                        value='${date_Of_Establishment }'
                         style="background-color: rgb(235,235,235);
                         border-style: none;
                         text-align: center;" 
+                        
                         />
                     </td>
                 </tr>
@@ -253,9 +257,9 @@
         </container>
         <script>
         var textbox1 = document.getElementById("textbox1");
-        textbox1.onfocus = function() {
+        function searchView(name) {
         	console.log('확인');
-         	window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + textbox1.value; 
+         	window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
         }
         
         </script>
