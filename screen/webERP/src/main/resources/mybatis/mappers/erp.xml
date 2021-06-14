@@ -205,6 +205,59 @@
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
 	
+	<!-- 품목단가등록(재원) 파트 -->
+	<resultMap id="iupView" type="iupVO">
+		<result property="No" column="No" />
+		<result property="Item_Code" column="Item_Code" />
+		<result property="Item_Name" column="Item_Name" />
+		<result property="Standard" column="Standard" />
+		<result property="Inventory_Unit" column="Inventory_Unit" />
+		<result property="Purchase_Price" column="Purchase_Price" />
+		<result property="Sales_Price" column="Sales_Price" />
+	</resultMap>
+	<resultMap id="popView" type="iupVO">
+		<result property="Item_Code" column="Item_Code" />
+		<result property="Item_Name" column="Item_Name" />
+		<result property="Standard" column="Standard" />
+	</resultMap>
+
+	<select id="selectAllMemberList" resultMap="iupView">
+		<![CDATA[select * from CPM_BIM_BOM_REG]]>
+	</select>
+	<select id="searchitem" resultMap="bomView"
+		parameterType="String">
+		<![CDATA[select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}]]>
+	</select>
+	<select id="selectitem" resultMap="bomView"
+		parameterType="String">
+		<![CDATA[select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
+	</select>
+	<select id="selectPopList" resultMap="popView">
+		<![CDATA[select * from CPM_BIM_BOM_REG]]>
+	</select>
+	<insert id="insertBOM" parameterType="bomVO">
+		<![CDATA[
+		 insert into CPM_BIM_BOM_REG
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		]]>  
+	</insert>
+	<!-- 
+		<update id="updateBOM" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set no=#{no}, item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
+		where  item_code=#{itemNumber}
+		]]>  
+	</update>
+	-->
+	<update id="updateBOM" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set item_name=#{itemName}
+		where  item_code=#{itemNumber}
+		]]>  
+	</update>
+	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

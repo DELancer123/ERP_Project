@@ -155,14 +155,13 @@
                 </tr>
 			</c:forEach>
                 <tr id="updateIup" align="center">
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>                                                           
+                    <td><input type="text" id="No" name="ListVO[${fn.length(iupView }].No" value='${inputNo }' readonly style="width:100%"></td>
+                    <td><input type="text" id="Item_Code" name="ListVO[${fn.length(iupView)}].Item_Code" value='${param.Item_Code }' ondbclick="search2()"/></td>
+                    <td><input type="text" id="Item_Name" name="ListVO[${fn.length(iupView)}].Item_Name" value='${param.Item_Name }' readonly/></td>
+                    <td><input type="text" id="Standard" name="ListVO[${fn.length(iupView}].Standard" value='${param.Standard }' readonly/></td>
+                    <td><input type="text" id="Inventory_Unit" name="ListVO[${fn.length(iupView}]" value='${param.Inventory_Unit }' readonly/></td>
+                    <td><input type="text" id="Purchase_Price" name="ListVO[${fn.length(iupView}]" value='${param.Purchase_Price }' readonly/></td>
+                    <td><input type="text" id="Sales_Price" name="ListVO[${fn.length(iupView}]" value='${param.Sales_Price }' readonly/></td>                                                        
                 </tr>
             </table>
 		</div>
