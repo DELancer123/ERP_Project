@@ -103,17 +103,16 @@ public class SystemmagControllerImpl implements SystemmagController{
 	}
 	
 	@Override
-	@RequestMapping(value="/member/deletecompany.do")
+	@RequestMapping(value="/member/regbasicacc.do")//성명제
 	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("딜리트체크중임");
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String submit = (String) request.getParameter("submit");
 		String code = (String) request.getParameter("com_code");
 		String[] delCheck = request.getParameterValues("${com.general_Customer_Code}");
 		
-		for(int i=0;i<delCheck.length;i++) {
-			systemmagService.delcom(delCheck[i]);
-		}
+		
 		
 		if(code == null || submit == null) {
 			List comView = systemmagService.comView();
@@ -122,7 +121,10 @@ public class SystemmagControllerImpl implements SystemmagController{
 			return mav;
 		}
 			
-	    if(submit.equals("1")) { 
+	    if(submit.equals("2")) { 
+	    	for(int i=0;i<delCheck.length;i++) {
+				systemmagService.delcom(delCheck[i]);
+			}
 	    	List comView = systemmagService.comView(); 
 	    	List comcom = systemmagService.comcom(code); 
 	    	mav = new ModelAndView(viewName);
