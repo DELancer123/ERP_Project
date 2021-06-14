@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 
-import com.myspring.invenBasicInfo.regItemUnitPrice.dao.IupViewDAO;
-import com.myspring.invenBasicInfo.regItemUnitPrice.vo.IupVO;
+import com.myspring.invenBasicInfo.regItemUnitPrice.dao.iupViewDAO;
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 
 @Service("iupService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class IupViewServiceImpl implements IupViewService{
+public class iupViewServiceImpl implements iupViewService{
 	@Autowired
-	private IupViewDAO iupDAO;
+	private iupViewDAO iupDAO;
 	
 	@Override
 	public List iupView() throws DataAccessException{
@@ -32,16 +32,16 @@ public class IupViewServiceImpl implements IupViewService{
 	}
 	
 	@Override
-	public List setText(String Item_Code) throws DataAccessException{
+	public List setText(String itemCode) throws DataAccessException{
 		List searchList = null;
-		searchList = iupDAO.setText(Item_Code);
+		searchList = iupDAO.setText(itemCode);
 		return searchList;
 	}
 	
 	@Override
-	public List searchView(String Item_Code) throws DataAccessException{
+	public List searchView(String itemCode) throws DataAccessException{
 		List searchList = null;
-		searchList = iupDAO.searchView(Item_Code);
+		searchList = iupDAO.searchView(itemCode);
 		return searchList;
 	}
 	
@@ -53,7 +53,7 @@ public class IupViewServiceImpl implements IupViewService{
 	}
 	
 	@Override
-	public int addIup(IupVO iupVO) throws DataAccessException{
+	public int addIup(iupVO iupVO) throws DataAccessException{
 		return iupDAO.addIup(iupVO);
 	}
 	
@@ -63,7 +63,7 @@ public class IupViewServiceImpl implements IupViewService{
 	}
 	
 	@Override
-	public int updateIup(IupVO iupVO) throws DataAccessException{
+	public int updateIup(iupVO iupVO) throws DataAccessException{
 		return iupDAO.updateIup(iupVO);
 	}
 	

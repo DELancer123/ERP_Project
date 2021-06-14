@@ -25,33 +25,33 @@ import com.myspring.invenBasicInfo.service.*;
 
 @Controller("iupController")
 //@EnableAspectAutoProxy
-public class IupViewControllerImpl implements IupViewController{
-	private static final Logger logger = LoggerFactory.getLogger(IupViewControllerImpl.class);
+public class iupViewControllerImpl implements iupViewController{
+	private static final Logger logger = LoggerFactory.getLogger(iupViewControllerImpl.class);
 	@Autowired
-	private IupViewService viewService;
+	private iupViewService viewService;
 	@Autowired
-	private IupVO iupVO;
+	private iupVO iupVO;
 	
 	@Override
 	@RequestMapping(value="/member/itemunitprice.do",method=RequestMethod.GET)
 	public ModelAndView viewIup(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String Item_Code = (String)request.getParameter("Item_Code");
+		String itemCode = (String)request.getParameter("itemCode");
 		String submit = (String)request.getParameter("submit");
 //		String parentCode  = (String)request.getParameter("parentCode"); //부모코드값 받아올때
 		int sum = 0;
-		if(Item_Code == null || Item_Code.length() == 0 || submit.equals("0")) {
+		if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
 		else if(submit.equals("1")) {
-			List iupView = viewService.searchView(Item_Code);
+			List iupView = viewService.searchView(itemCode);
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupView",iupView);
 		}
 		else if(submit.equals("2")) {
-			List iupView = viewService.searchView(Item_Code);
+			List iupView = viewService.searchView(itemCode);
 //			List iupInsert = viewService.setText(parentNumber); //부모코드값 받아 올때
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupView",iupView);
@@ -76,7 +76,7 @@ public class IupViewControllerImpl implements IupViewController{
 	@RequestMapping(value="/member/iupcodehelper2.do",method=RequestMethod.GET)
 	public ModelAndView iupCodeHelper2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = getViewName(request);
-		String itemNumber = (String) request.getParameter("Item_Code");
+		String itemNumber = (String) request.getParameter("itemCode");
 		List itemView = viewService.itemView();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView",itemView);
@@ -84,7 +84,7 @@ public class IupViewControllerImpl implements IupViewController{
 	}
 	
 	@RequestMapping(value="/member/addIup.do",method=RequestMethod.GET)
-	public ModelAndView addMember(@ModelAttribute("iup") IupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView addMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		System.out.println("url"+path);
@@ -97,7 +97,7 @@ public class IupViewControllerImpl implements IupViewController{
 	@Override
 	@RequestMapping(value="/member/delIup.do",method=RequestMethod.GET)
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String number = (String) request.getParameter("no"); // 판매단가등록은 no 없음
+		String number = (String) request.getParameter("no");
 		String viewName = getViewName(request);
 		String[] numberary = number.split(",");
 		viewService.delIup(numberary);
@@ -107,14 +107,14 @@ public class IupViewControllerImpl implements IupViewController{
 	
 	@Override
 	@RequestMapping(value="/member/updateIup.do",method=RequestMethod.GET)
-	public ModelAndView updateMember(@ModelAttribute("iup") IupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-9");
+	public ModelAndView updateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = viewService.updateIup(iupVO);
 //		String resulturl = url.toString();
 		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
 //		mav.addObject("itemView",itemView);
-//		System.out.println("Item_Code:"+iupVO.getItem_Code());
+//		System.out.println("itemCode:"+iupVO.getItemCode());
 		return mav;
 	}
 	
