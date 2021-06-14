@@ -9,8 +9,8 @@
     <c:forEach var="wor" items="${worcom}" >
  	<c:set var="worcompany_Registration_Number" value="${wor.worcompany_Registration_Number }"/>
  	<c:set var="worcorporate_Registration_Number" value="${wor.worcorporate_Registration_Number }"/>
- 	<c:set var="worrepresentatives_Name" value="${wor.corporate_Registration_Number }"/>
- 	<c:set var="resident_Registration_Number" value="${wor.worrepresentatives_Name }"/>
+ 	<c:set var="worcorporate_Registration_Number" value="${wor.worcorporate_Registration_Number }"/>
+ 	<c:set var="worrepresentatives_Name" value="${wor.worrepresentatives_Name }"/>
  	<c:set var="workplace_Zipcode" value="${wor.workplace_Zipcode }"/>
  	<c:set var="main_Store_Postal_Code" value="${wor.main_Store_Postal_Code }"/>
  	<c:set var="main_Store_Address" value="${wor.main_Store_Address }"/>
@@ -73,7 +73,7 @@
                 <c:forEach var="wor" items="${worView }" >
                 <tr>
                     <td>
-                        <input type="text" id="textbox2" name="workplace_Code" value='${wor.workplace_Code }'
+                        <input type="text" id="textbox2" onfocus="searchView(this.value)" name="workplace_Code" value='${wor.workplace_Code }'
                         style="background-color: rgb(235, 235, 235);
                         border-style: none; vertical-align: 1px; width: 80px; 
                         text-align: center;" pattern="[0-9]{4}" maxlength="4"
@@ -97,7 +97,8 @@
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="registrationNumber" id="reqInput" 
+                        <input type="text" name="registrationNumber" id="reqInput"
+                        value='${worcorporate_Registration_Number }' 
                         style="width: 240px;" pattern="[0-9]{10}" maxlength="10"/>
                     </td>
                 </tr>
@@ -105,6 +106,7 @@
                     <td align="center">법인등록번호</td>
                     <td colspan="2">
                         <input type="text" name="cooperationNumber"
+                        value='${worrepresentatives_Name }' 
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;" pattern="[0-9]{13}" maxlength="13"/>
@@ -184,7 +186,7 @@
         var textbox1 = document.getElementById("textbox2");
         function searchView(name) {
         	console.log('확인');
-         	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&com_code=" + name; 
+         	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&wor_code=" + name; 
         }
         </script>
         </container>
