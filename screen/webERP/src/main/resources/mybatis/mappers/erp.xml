@@ -215,23 +215,23 @@
 		<result property="Purchase_Price" column="Purchase_Price" />
 		<result property="Sales_Price" column="Sales_Price" />
 	</resultMap>
-	<resultMap id="popView" type="iupVO">
+	<resultMap id="iupPopView" type="iupVO">
 		<result property="Item_Code" column="Item_Code" />
 		<result property="Item_Name" column="Item_Name" />
 		<result property="Standard" column="Standard" />
 	</resultMap>
 
-	<select id="selectAllMemberList" resultMap="iupView">
+	<select id="iupselectAllMemberList" resultMap="iupView">
 		<![CDATA[select * from PM_SM_Ite_Pri]]>
 	</select>
-	<select id="searchitem" resultMap="iupView"
+	<select id="iupsearchitem" resultMap="iupView"
 		parameterType="String">
 		<![CDATA[select * from PM_SM_Ite_Pri where item_code = #{Item_Code}]]>
 	</select>
-	<select id="selectitem" resultMap="iupView" parameterType="String">
+	<select id="iupselectitem" resultMap="iupView" parameterType="String">
 		<![CDATA[select Item_Code,Item_Name,Standard,Inventory_Unit,Purchase_Price,Sales_Price from PM_SM_Ite_Pri where item_code=#{Item_Code}]]>
 	</select>
-	<select id="selectPopList" resultMap="popView">
+	<select id="iupselectPopList" resultMap="iupPopView">
 		<![CDATA[select * from PM_SM_Ite_Pri]]>
 	</select>
 	<insert id="insertIup" parameterType="iupVO">
@@ -249,13 +249,13 @@
 		]]>  
 	</update>
 	-->
-	<!-- <update id="updateIup" parameterType="iupVO">
+	<update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri
 		set item_name=#{Item_Name}
 		where  item_code=#{Item_Code}
 		]]>  
-	</update> -->
+	</update>
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
