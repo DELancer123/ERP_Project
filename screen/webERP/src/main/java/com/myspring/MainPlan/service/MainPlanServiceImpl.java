@@ -1,5 +1,6 @@
 package com.myspring.MainPlan.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,25 @@ public class MainPlanServiceImpl implements MainPlanService{
 	public void delMps(String[] sequenceary) throws DataAccessException{
 		mainplanDAO.delMps(sequenceary);
 	}
-	
-	@Override
-	public MainPlanVO customer_detail(int Sequence) {
-		return mainplanDAO.customer_detail(Sequence);
-	}
 
 	@Override
-	public void customer_update(MainPlanVO vo) {
-		mainplanDAO.customer_update(vo);
+	public boolean updateMps(MainPlanVO vo) {
+		return mainplanDAO.updateMps(vo);
 	}
+	
+	@Override
+	public MainPlanVO viewDetail(int sequence) {
+	  return mainplanDAO.viewDetail(sequence);
+	}
+	
+	@Override
+	public int addMPS(MainPlanVO vo) throws DataAccessException {
+		return mainplanDAO.addMPS(vo);
+	}
+	
+	  @Override public List<MainPlanVO>selectAllMpsList(String startDate, String endDate) throws DataAccessException, ParseException{ 
+		  List<MainPlanVO> infolist = null; 
+		  infolist = mainplanDAO.selectAllMpsList(startDate,endDate); 
+		  return infolist; 
+		  }
 }

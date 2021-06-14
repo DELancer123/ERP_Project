@@ -143,12 +143,15 @@
 		<![CDATA[select * from pmm_pm_mps where sequence= #{sequence}]]>
 	</select>
 	<update id="update" >
-		<![CDATA[
-		update pmm_pm_mps
-		set plandate=#{plandate},plan_quantity=#{plan_quantity}
+		<![CDATA[update pmm_pm_mps
+			set plandate=#{plandate},plan_quantity=#{plan_quantity}
 			where sequence = #{sequence}]]>  
 	</update>
-	
+	<insert id="insertMPS" parameterType="MainPlanVO">
+		<![CDATA[insert into pmm_pm_mps
+			value(#{sequence},#{plandate},#{sequence},#{standard},#{unit},#{due_date},#{plan_quantity},#{note});
+		]]>
+	</insert>
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />

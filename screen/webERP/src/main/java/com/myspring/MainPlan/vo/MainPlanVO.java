@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
-
 @Component("mainplanVO")
 public class MainPlanVO {
 	private Date plandate;
@@ -22,8 +20,9 @@ public class MainPlanVO {
 	private int plan_quantity;
 	private String customer_Name;
 	private String note;
-	
-	public MainPlanVO() {}
+	private List<MainPlanVO> ListVO;
+	private Date startDate;
+	private Date endDate;
 	
 	public MainPlanVO(Date plandate,String item_Code,String item_Name,String standard,String unit,int sequence,
 			Date expected_date,Date due_date,int plan_quantity,String customer_Name,String note) 
@@ -40,6 +39,19 @@ public class MainPlanVO {
 		this.customer_Name=customer_Name;
 		this.note=note;
 	}
+	@Override
+	public String toString() {return Arrays.toString(ListVO.toArray());}
+	
+	public MainPlanVO() {super();}
+	
+	public List<MainPlanVO> getListVO() {return ListVO;}
+	public void setListVO(List<MainPlanVO> listVO) {ListVO = new ArrayList();}
+	
+	public Date getStartDate() {return startDate;}
+	public void setStartDate(Date startDate) {this.startDate = startDate;}
+
+	public Date getEndDate() {return endDate;}
+	public void setEndDate(Date endDate) {this.endDate = endDate;}
 	
 	public Date getPlandate() {return plandate;}
 	public void setPlandate(Date plandate) {this.plandate=plandate;}

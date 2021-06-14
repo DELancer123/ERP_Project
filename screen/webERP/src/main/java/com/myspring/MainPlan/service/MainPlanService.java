@@ -1,5 +1,6 @@
 package com.myspring.MainPlan.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -14,8 +15,12 @@ public interface MainPlanService {
 
 	void delMps(String[] noary) throws DataAccessException;
 
-	MainPlanVO customer_detail(int Sequence);
+	boolean updateMps(MainPlanVO vo);
 
-	void customer_update(MainPlanVO vo);
+	MainPlanVO viewDetail(int sequence);
+
+	int addMPS(MainPlanVO vo) throws DataAccessException;
+
+	List<MainPlanVO> selectAllMpsList(String startDate, String endDate) throws DataAccessException, ParseException;
 
 }

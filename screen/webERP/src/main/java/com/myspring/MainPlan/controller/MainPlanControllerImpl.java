@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 
 @Controller("mainplanController")
 public class MainPlanControllerImpl implements MainPlanController {
@@ -55,26 +57,45 @@ public class MainPlanControllerImpl implements MainPlanController {
 		mainplanService.delMps(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
 		return mav;
+	}	
+	
+	@Override
+	@RequestMapping(value="modify" , method = RequestMethod.GET)
+	public String modify(@RequestParam("sequence")int sequence, Model model) {
+		model.addAttribute("mainPlan", mainplanService.viewDetail(sequence));
+		return "member/Modify";
 	}
 	
-	@RequestMapping("/detail")
-	public String detail(int Sequence, Model model) {
-		MainPlanVO vo = mainplanService.customer_detail(Sequence);
-		model.addAttribute("vo", vo);
-		return "member/detail";
+	@Override
+	@RequestMapping(value="modify" , method = RequestMethod.POST)
+	public String modify(MainPlanVO vo) {
+		mainplanService.updateMps(vo);
+		return "redirect: /detail?sequence="+ vo.getSequence();
 	}
 	
-	@RequestMapping("/modify")
-	public String modify(int Sequence, Model model) {
-		model.addAttribute("vo", mainplanService.customer_detail(Sequence));
-		return "member/modify";
+	@Override
+	@RequestMapping(value="detail", method = RequestMethod.GET)
+	public String viewDetail(Model model,@RequestParam("sequence")int sequence) {
+	  
+	  model.addAttribute("mainplan", mainplanService.viewDetail(sequence));
+
+	  return "mainplan/viewDetail";
 	}
 	
-	@RequestMapping("/update")
-	public String update(MainPlanVO vo) {
-		mainplanService.customer_update(vo);
-		return "redirect:/member/detail?Sequence=" + vo.getSequence();
+	@Override
+	@RequestMapping(value = "/member/addMPS.do", method = RequestMethod.GET)
+	public ModelAndView addMPS(@ModelAttribute("mainplanList") MainPlanVO vo,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = mainplanService.addMPS(vo);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
 	}
+
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

@@ -18,6 +18,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="MPSbaseLayout"  template="/WEB-INF/views/purchase_manage/reg_mainplan/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -269,9 +274,11 @@
       <put-attribute name="body" value="/WEB-INF/views/business_status/rel_return_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/mainplan" extends="baseLayout">
+   <definition name="/member/mainplan" extends="MPSbaseLayout">
       <put-attribute name="title" value="주계획작성" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/reg_mainplan/body.jsp" />
+      <put-attribute name="modify" value="/WEB-INF/views/purchase_manage/reg_mainplan/modify.jsp" />
+      <put-attribute name="detail" value="/WEB-INF/views/purchase_manage/reg_mainplan/detail.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
    <definition name="/member/requiredamount" extends="baseLayout">
