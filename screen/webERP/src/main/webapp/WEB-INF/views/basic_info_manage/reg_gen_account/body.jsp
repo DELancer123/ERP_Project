@@ -157,7 +157,7 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                <c:forEach var="com" items="${comView}" >     
                 <tbody>
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)"></td>
+                    <td><input type="checkbox" name="content" value='${com.general_Customer_Code}'></td>
                     <td>
                         <input type="text" id='textbox1' name="temp" value='${com.general_Customer_Code}'/>
                     </td>

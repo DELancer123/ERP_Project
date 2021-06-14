@@ -102,6 +102,37 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return viewName;
 	}
 	
+	@Override
+	@RequestMapping(value="/member/deletecompany.do")
+	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String submit = (String) request.getParameter("submit");
+		String code = (String) request.getParameter("com_code");
+		String[] delCheck = request.getParameterValues("${com.general_Customer_Code}");
+		
+		for(int i=0;i<delCheck.length;i++) {
+			systemmagService.delcom(delCheck[i]);
+		}
+		
+		if(code == null || submit == null) {
+			List comView = systemmagService.comView();
+			mav = new ModelAndView(viewName);
+			mav.addObject("comView", comView);
+			return mav;
+		}
+			
+	    if(submit.equals("1")) { 
+	    	List comView = systemmagService.comView(); 
+	    	List comcom = systemmagService.comcom(code); 
+	    	mav = new ModelAndView(viewName);
+	    	mav.addObject("comView", comView); 
+	    	mav.addObject("comcom", comcom);
+	    }
+			 
+
+	    return mav; 
+	}
 		
 }
 

@@ -36,6 +36,12 @@ public class SystemmagServiceImpl implements SystemmagService {
 		List comList = systemmagDAO.allviewCom(com_code);
 		return comList;
 	}
+
+	@Override
+	public List delcom(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.deleteCom(com_code);
+		return comList;
+	}
 	
 	
 }
