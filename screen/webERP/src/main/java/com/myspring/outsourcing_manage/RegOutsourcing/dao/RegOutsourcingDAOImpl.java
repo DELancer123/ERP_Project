@@ -1,13 +1,17 @@
 package com.myspring.outsourcing_manage.RegOutsourcing.dao;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Repository("RegOutsourcingDAO")
 public class RegOutsourcingDAOImpl implements RegOutsourcingDAO {
@@ -50,6 +54,19 @@ public class RegOutsourcingDAOImpl implements RegOutsourcingDAO {
 		//}
 		}
 		return result;
+	}
+
+	@Override
+	public List productionPlanPop(String startDate, String endDate) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date start = new Date(sdf.parse(startDate).getTime());
+		Date end = new Date(sdf.parse(endDate).getTime());
+		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+		COIvo.setStartDate(start);
+		COIvo.setEndDate(end);
+		List<CommitOperationInstructionVO> COIList = null;
+		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList", COIvo);
+		return COIList;
 	}
 
 	

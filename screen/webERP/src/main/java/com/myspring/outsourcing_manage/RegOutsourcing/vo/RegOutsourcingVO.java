@@ -24,31 +24,13 @@ public class RegOutsourcingVO {
 	private String status;
 	private String inspection;
 	private String note;
-	private List<bomVO> ListVO;
+	private String productionPlanCode;	
+	private List<RegOutsourcingVO> ListVO;
 	
 	public RegOutsourcingVO() {
 		super();
 	}
 	
-//	public RegOutsourcingVO(String workOrderNumber, String MaterialForwardingStatus,String Workplace_Code,Date instructionDate,Date dueDate, String Item_Code,String Item_Name,String Standard,String Inventory_Unit ,int indicatedQuantity,int unitPrice,int Price,String status,String inspection,String note) {
-//		this.workOrderNumber = workOrderNumber;
-//		this.MaterialForwardingStatus = MaterialForwardingStatus;
-//		this.Workplace_Code = Workplace_Code;
-//		this.instructionDate = instructionDate;
-//		this.dueDate = dueDate;
-//		this.Item_Code = Item_Code;
-//		this.Item_Name = Item_Name;
-//		this.Standard = Standard;
-//		this.Inventory_Unit = Inventory_Unit;
-//		this.indicatedQuantity = indicatedQuantity;
-//		this.unitPrice = unitPrice;
-//		this.Price = indicatedQuantity * unitPrice;
-//		this.status = status;
-//		this.inspection = inspection;
-//		this.note = note;
-//	}
-
-
 	public String getWorkplace_Code() {
 		return Workplace_Code;
 	}
@@ -170,13 +152,22 @@ public class RegOutsourcingVO {
 		Inventory_Unit = inventory_Unit;
 	}
 
-	public List<bomVO> getListVO() {
+	public List<RegOutsourcingVO> getListVO() {
 		return ListVO;
 	}
 
-	public void setListVO(List<bomVO> listVO) {
+	public void setListVO(List<RegOutsourcingVO> listVO) {
 		ListVO = listVO;
 	}
+
+	public String getProductionPlanCode() {
+		return productionPlanCode;
+	}
+
+	public void setProductionPlanCode(String productionPlanCode) {
+		productionPlanCode = productionPlanCode;
+	}
+
 	
 	
 	

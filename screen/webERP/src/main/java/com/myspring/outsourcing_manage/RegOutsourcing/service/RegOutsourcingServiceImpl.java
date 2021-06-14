@@ -1,5 +1,6 @@
 package com.myspring.outsourcing_manage.RegOutsourcing.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.outsourcing_manage.RegOutsourcing.dao.RegOutsourcingDAO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Service("RegOutsourcingService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -38,5 +38,12 @@ public class RegOutsourcingServiceImpl implements RegOutsourcingService {
 	@Override
 	public int updateOutsourcing(RegOutsourcingVO regOutsourcingVO) throws DataAccessException{
 		return regOutsourcingDAO.updateOutsourcing(regOutsourcingVO);
+	}
+
+	@Override
+	public List productionPlanView(String startDate, String endDate) throws ParseException {
+		  List popList = null;
+		  popList = regOutsourcingDAO.productionPlanPop(startDate, endDate);
+		  return popList;
 	}
 }

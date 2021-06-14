@@ -16,5 +16,7 @@ public interface RegOutsourcingController {
 	public ModelAndView removeOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	ModelAndView updateMember(RegOutsourcingVO regOutsourcingVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+	ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView productionPlanSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

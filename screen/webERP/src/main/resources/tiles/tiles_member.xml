@@ -143,7 +143,28 @@
    </definition>
    <!--  -->
    
-
+<!--외주 팝업 -->
+   <definition name="ProductionPlanPopupLayoutOut"  template="/WEB-INF/views/outsourcing_manage/reg_outsourcing/productionPlanSearchpop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/productionPlanSearchOut" extends="ProductionPlanPopupLayoutOut">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+    <definition name="ProductionPlanPopupLayoutOut" template="/WEB-INF/views/outsourcing_manage/reg_outsourcing/productionPlanSearchpop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/productionPlanResponseOut" extends="ProductionPlanPopupLayoutOut">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+<!-- -->
     
    <definition name="/member/regcompany" extends="baseLayout">
       <put-attribute name="title" value="회사등록" />

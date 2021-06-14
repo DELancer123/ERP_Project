@@ -69,7 +69,7 @@
 		<![CDATA[select* from SM_CRI_Dep_Reg]]>
 	</select>
 	<resultMap id="selectProductionPlanViewResult" type="ProductionPalnViewVO">
-		<result property="no" column="no" />
+		<result property="productionPlanCode" column="ProductionPlanCode" />
 		<result property="itemCode" column="item_code" />
 		<result property="itemName" column="item_Name" />
 		<result property="standard" column="standard" />
@@ -129,10 +129,6 @@
 	</select>
 	<select id="selectPopList2" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품']]>
-	</select>
-	<select id="nullitem" resultMap="bomView"
-		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG]]>
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
@@ -312,24 +308,34 @@
 		<result property="unitPrice" column="unitPrice" />				
 		<result property="status" column="status" />
 		<result property="inspection" column="inspection" />
-		<result property="note" column="note" />
+		<result property="note" column="note" />		
+		<result property="productionPlanCode" column="ProductionPlanCode" />
+		
 	</resultMap>
 	
 	
 	<select id="selectAllOutsourcingList" resultMap="outsourcingView">
-		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
+		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note,ProductionPlanCode  from CPM_OM_Out_Per_Reg]]>
 	</select>
 	
 	
-	<delete id="deleteOutsourcing" parameterType="int">
-		<![CDATA[delete from t_member where id=#{id}]]>
+	<delete id="deleteOutsourcing">
+		<![CDATA[delete from CPM_OM_Out_Per_Reg where workOrderNumber=#{workOrderNumber}]]>
 	</delete>
 
-	<insert id="insertOutsourcing" parameterType="regOutsourcingVO">
+	<insert id="insertOutsourcing" parameterType="RegOutsourcingVO">
 		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
-		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		 insert into CPM_OM_Out_Per_Reg
+		 values(#{workOrderNumber},#{instructionDate},#{dueDate}, #{item_Code}, #{item_Name}, #{standard}, #{inventory_Unit}, #{indicatedQuantity}, #{unitPrice}, #{indicatedQuantity*unitPrice}, #{status}, #{inspection}, #{note}, #{ProductionPlanCode})
 		]]>  
 	</insert>
+	
+	<update id="updateOutsourcing" parameterType="RegOutsourcingVO">
+		<![CDATA[
+		update CPM_OM_Out_Per_Reg
+		set instructionDate=#{instructionDate},dueDate=#{dueDate}, Item_Code=#{item_Code},Item_Name=#{Item_Name}, Standard=#{standard}, Inventory_Unit=#{unit},indicatedQuantity=#{indicatedQuantity}, unitPrice=#{loss},status=#{status}, inspection=#{inspection}, note=#{note}, productionCode=#{productionCode}
+		where  workOrderNumber=#{workOrderNumber}
+		]]>  
+	</update>
 
 </mapper>
