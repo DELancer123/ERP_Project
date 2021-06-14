@@ -212,6 +212,25 @@
 		
       }
       
+        function updateRow(){
+  		 var link = location.pathname +'?'+newParam;
+    			 document.getElementById("precisionQuantity").disabled = true;
+    		     document.getElementById("loss").disabled = true;
+    		     document.getElementById("outSourcingUnitPrice").disabled = true;
+    		     document.getElementById("actualCost").disabled = true;
+    		     document.getElementById("no").disabled = true;
+    		     document.getElementById("startDate").disabled = true;
+    		     document.getElementById("endDate").disabled = true;
+    		   var articleNOInput = document.createElement("input");
+  		     articleNOInput.setAttribute("type","hidden");
+  		     articleNOInput.setAttribute("name","path");
+  		     articleNOInput.setAttribute("value", link);
+  		     document.getElementById('reg').appendChild(articleNOInput);
+             document.getElementById('reg').action = "${contextPath}/member/updateOperationInstruction.do";
+    			document.getElementById('regBOM').submit();  
+        }
+        
+      
         function deleteData() {
       	  var item = document.getElementsByName("content").length;
       	  var no = "";
