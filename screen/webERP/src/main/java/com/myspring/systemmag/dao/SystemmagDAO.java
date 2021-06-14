@@ -11,5 +11,5 @@ public interface SystemmagDAO {
 
 	public List viewCom() throws DataAccessException;
 	
-	public String home() throws DataAccessException;
+	public List allviewCom(String com_code) throws DataAccessException;
 }

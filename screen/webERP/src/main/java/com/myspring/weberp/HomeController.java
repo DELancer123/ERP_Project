@@ -35,7 +35,7 @@ public class HomeController {
 }*/
 
 
-//占쌕깍옙占쏙옙 占쏙옙占� 占쌘듸옙
+//�뜝�뙐源띿삕�뜝�룞�삕 �뜝�룞�삕�뜝占� �뜝�뙓�벝�삕
 
 @Controller
 
@@ -59,7 +59,7 @@ public class HomeController {
 	public String regdepartment(Locale locale, Model model) {
 		return "/member/regdepartment";
 	}
-	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/regbasicacc", method = RequestMethod.GET)
 	public String regbasicacc(Locale locale, Model model) {
 		return "/member/regbasicacc";
 	}

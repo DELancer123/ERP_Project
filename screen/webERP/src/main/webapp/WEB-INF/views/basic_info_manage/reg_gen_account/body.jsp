@@ -1,11 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"
+    isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
 request.setCharacterEncoding("UTF-8");
 %>
+<c:forEach var="com" items="${comcom}" >     
+ 	<c:set var="general_customer_code" value="${com.general_customer_code }"/>
+ 	<c:set var="general_customer_name" value="${com.general_customer_name }"/>
+ 	<c:set var="general_customer_division" value="${com.general_customer_division }"/>
+ 	<c:set var="company_Registration_Number" value="${com.company_Registration_Number }"/>
+ 	<c:set var="resident_Registration_Number" value="${com.resident_Registration_Number }"/>
+ 	<c:set var="representativs_Name" value="${com.representativs_Name }"/>>
+ 	<c:set var="upstate" value="${com.upstate }"/>
+ 	<c:set var="industry" value="${com.industry }"/>
+ 	<c:set var="zipcode" value="${com.zipcode }"/>
+ 	<c:set var="workplace_address" value="${com.workplace_address }"/>
+ 	<c:set var="generalcustomer_tel" value="${com.generalcustomer_tel }"/>
+ 	<c:set var="wholesale_retail_business_code" value="${com.wholesale_retail_business_code }"/>
+</c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,22 +151,24 @@ request.setCharacterEncoding("UTF-8");
             <table id="table2" align="center">
                 <thead>
                     <td><input type="checkbox" id="chec" name="content" onclick="selectAll(this)"/></td>
-                    <td align="center">여기는일반거래처등록임</td>
-                    <td align="center">거래처명${homeView }</td>
+                    <td align="center">코드</td>
+                    <td align="center">거래처명</td>
                     <td align="center">구분</td>
                 </thead>
+               <c:forEach var="com" items="${comView}" >     
                 <tbody>
                     <td><input type="checkbox" name="content" onclick="selectAll(this)"></td>
                     <td>
-                        <input type="text" name="temp">
+                        <input type="text" name="temp" value='${com.general_Customer_Code}'/>
                     </td>
                     <td>
-                        <input type="text" name="temp">
+                        <input type="text" name="temp" value='${com.general_Customer_Name}'/>
                     </td>
                     <td>
-                        <input type="text" name="temp">
+                        <input type="text" name="temp" value='${com.general_Customer_Division}'/>
                     </td>
                 </tbody>
+                </c:forEach>
             </table>
         </container2>
         <container3 id="contents3">
@@ -162,38 +179,38 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="registrationNumber" id="reqInput"
+                        <input type="text" name="registrationNumber" id="reqInput" value="${company_Registration_Number}"
                         pattern="[0-9]{10}" maxlength="10"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="socialNumber" pattern="[0-9]{13}" maxlength="13"/>
+                        <input type="text" name="socialNumber" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="3">
-                        <input type="text" name="ceoName">
+                        <input type="text" name="ceoName" value="${representativs_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="3">
-                        <input type="text" name="business">
+                        <input type="text" name="business" value="${upstate }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="3">
-                        <input type="text" name="specific">
+                        <input type="text" name="specific" value="${industry }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" 
+                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipcode }"
                         style="width:150px;"/>
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td>
@@ -201,22 +218,31 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="3">
-                        <input type="text" name="workSpaceAddress">
+                        <input type="text" name="workSpaceAddress" value="${workplace_address }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="3">
-                        <input type="text" name="phoneNumber" pattern="[0-9]{10}" maxlength="10"/>
+                        <input type="text" name="phoneNumber" pattern="[0-9]{10}" maxlength="10" value="${generalcustomer_tel }"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주류코드</td>
                     <td>
-                        <input type="text" name="inchargeManager">
+                        <input type="text" name="inchargeManager" value="${wholesale_retail_business_code }">
                     </td>
                 </tr>
             </table>
         </container3>
+        <script>
+	        var textbox1 = document.getElementById("textbox1");
+	        textbox1.onfocus = function() {
+	        	console.log('확인');
+	         	window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + textbox1.value; 
+	        }
+        
+		</script>
+        
 </body>
 </html>

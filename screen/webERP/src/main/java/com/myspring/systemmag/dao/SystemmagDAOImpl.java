@@ -23,23 +23,18 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	@Override
 	public List viewCom() throws DataAccessException {
 		List<SystemmagVO> comList = null;
-		comList = sqlSession.selectList("mappers.erp.selectAllcomList");
+		comList = sqlSession.selectList("mappers.erp.selectAllBasicList");
 		System.out.println("comList: "+comList);
 		return comList;
 	}
 	
-	//º∫∏Ì¡¶
-	public String home() throws DataAccessException {
-		String temp = "";
-		
-		try {
-		temp = sqlSession.selectOne("mappers.erp.selectGCC");
-		
-		System.out.println(temp);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return temp;
+	@Override
+	public List allviewCom(String com_code) throws DataAccessException {
+		List<SystemmagVO> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectBasicList",com_code);
+		System.out.println("comList12: "+com_code);
+		return comList;
 	}
+	
+	
 }

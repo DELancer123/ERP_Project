@@ -32,10 +32,9 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 	
 	@Override
-	public String home() throws DataAccessException {
-		String home = null;
-		home = systemmagDAO.home();
-		return home;
+	public List comcom(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.allviewCom(com_code);
+		return comList;
 	}
 	
 	

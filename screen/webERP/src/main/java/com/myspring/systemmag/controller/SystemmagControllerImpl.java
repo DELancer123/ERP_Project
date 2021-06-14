@@ -34,7 +34,6 @@ public class SystemmagControllerImpl implements SystemmagController{
 	@RequestMapping(value="/member/addcompany.do")
 	public ModelAndView addCompany(SystemmagVO company, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		System.out.println(systemmagVO.getCompany_Code());
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
@@ -43,36 +42,32 @@ public class SystemmagControllerImpl implements SystemmagController{
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
+	
 	//¡∂»∏
 	@Override
-	@RequestMapping(value="/member/regcompany.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/member/regbasicacc.do" ,method = RequestMethod.GET)
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
+		String submit = (String) request.getParameter("submit");
+		String code = (String) request.getParameter("com_code");
 
 			List comView = systemmagService.comView();
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
-		
-		return mav;
-	}
-	@Override
-	@RequestMapping(value = "/member/regbasicacc", method = RequestMethod.GET)
-    public ModelAndView home(HttpServletRequest request, HttpServletResponse response) {
-		String viewName = getViewName(request);
+			return mav;
 
-        ModelAndView mav = new ModelAndView(viewName);
-        
-        String homeView = systemmagService.home();
-        System.out.println(homeView);
-        mav.addObject("homeView", homeView);
-        
-        testy();
-        
+			/*
+			 * if(submit.equals("1")) { List comView = systemmagService.comView(); List
+			 * comcom = systemmagService.comcom(code); mav = new ModelAndView(viewName);
+			 * mav.addObject("comView", comView); mav.addObject("comcom",comcom);
+			 * 
+			 * }
+			 */
 		
-        
-        return mav; // ∫‰ ∆ƒ¿œ ∏Æ≈œ
-    }
+			/* return mav; */
+	}
+	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -104,23 +99,6 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return viewName;
 	}
 	
-	public List testy() {
-		List<String> list = new ArrayList<String>();
-		for(int i=0;i<10;i++) {
-			list.add("≥»≥»"+i);
-		}
-		System.out.println(list.size());
-		System.out.println(list.get(3));
-		
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
-		return null;
-	}
-	
-	
-
-
 		
 }
 

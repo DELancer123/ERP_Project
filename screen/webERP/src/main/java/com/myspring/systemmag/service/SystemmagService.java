@@ -8,7 +8,8 @@ import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagService {
 	public int addCompany(SystemmagVO systemmagVO) throws Exception;
+	
 	public List comView() throws DataAccessException;
 	
-	public String home() throws DataAccessException;
+	public List comcom(String com_code) throws DataAccessException;
 }

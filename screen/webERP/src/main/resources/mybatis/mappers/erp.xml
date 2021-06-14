@@ -187,7 +187,7 @@
 	</select>
 
 	<!-- 회사등록 파트 -->
-	<resultMap id="comResult" type="SystemmagVO">
+	<!-- <resultMap id="comResult" type="SystemmagVO">
 		<result property="company_Code" column="Company_Code"	/>
 		<result property="company_Name" column="Company_Name"	/>
 		<result property="sortation" column="Sortation"	/>
@@ -209,12 +209,12 @@
 	</resultMap>
 	<select id="selectAllcomList" resultMap="comResult">
 		<![CDATA[select * from SM_CRI_Com_Reg]]>
-	</select>
+	</select> -->
 
 	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">
-		<result property="General_Customer_Code" column="General_Customer_Code" />
+		<result property="General_Customer_Code" column="GENERAL_CUSTOMER_CODE" />
 		<result property="General_Customer_Name" column="General_Customer_Name" />
 		<result property="General_Customer_Division" column="General_Customer_Division" />
 		<result property="Company_Registration_Number" column="Company_Registration_Number" />
@@ -227,8 +227,11 @@
 		<result property="GeneralCustomer_Tel" column="GeneralCustomer_Tel" />
 		<result property="Wholesale_Retail_Business_Code" column="Wholesale_Retail_Business_Code" />	
 	</resultMap>
-	<select id="selectGCC" resultType="String">
-		<![CDATA[select general_customer_name from SM_BIM_GEN_CUS_REG where general_customer_code=00001]]>
+	<select id="selectAllBasicList" resultMap="basicInfoResult">
+		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG]]>
+	</select>
+	<select id="selectBasicList" parameterType="String" resultMap="basicInfoResult">
+		<![CDATA[select * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
 	</select>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
