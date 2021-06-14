@@ -1,8 +1,11 @@
 package com.myspring.outsourcing_manage.RegOutsourcing.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Component("RegOutsourcingVO")
 public class RegOutsourcingVO {
@@ -21,7 +24,8 @@ public class RegOutsourcingVO {
 	private String status;
 	private String inspection;
 	private String note;
-
+	private List<bomVO> ListVO;
+	
 	public RegOutsourcingVO() {
 		super();
 	}
@@ -164,6 +168,14 @@ public class RegOutsourcingVO {
 
 	public void setInventory_Unit(String inventory_Unit) {
 		Inventory_Unit = inventory_Unit;
+	}
+
+	public List<bomVO> getListVO() {
+		return ListVO;
+	}
+
+	public void setListVO(List<bomVO> listVO) {
+		ListVO = listVO;
 	}
 	
 	

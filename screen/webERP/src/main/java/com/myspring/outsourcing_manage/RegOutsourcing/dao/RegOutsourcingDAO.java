@@ -8,5 +8,6 @@ import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
 public interface RegOutsourcingDAO {
 	 public List viewOutsourcingList() throws DataAccessException;
 	 public int insertOutsourcing(RegOutsourcingVO regOutsourcingVO) throws DataAccessException ;
-	 public int deleteOutsourcing(int workOrderNumber) throws DataAccessException;
+	 public void deleteOutsourcing(String[] noary) throws DataAccessException;
+	 public int updateOutsourcing(RegOutsourcingVO regOutsourcingVO) throws DataAccessException;
 }

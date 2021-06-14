@@ -13,6 +13,8 @@ import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
 public interface RegOutsourcingController {
 	public ModelAndView listOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addOutsourcing(@ModelAttribute("info") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView removeOutsourcing(@RequestParam("workOrderNumber") int workOrderNumber, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView removeOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView updateMember(RegOutsourcingVO regOutsourcingVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 	
 }

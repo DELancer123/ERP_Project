@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.outsourcing_manage.RegOutsourcing.service.RegOutsourcingService;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Controller("RegOutsourcingController")
 public class RegOutsourcingControllerImpl implements RegOutsourcingController {
@@ -43,22 +44,40 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 
 	@Override
 	@RequestMapping(value="/member/addOutsourcing.do" ,method = RequestMethod.POST)
-	public ModelAndView addOutsourcing(@ModelAttribute("regOutsourcingVO") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView addOutsourcing(@ModelAttribute("regOutsourcing") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
 		int result = 0;
 		result = regOutsourcingService.addOutsourcing(regOutsourcingVO);
-		ModelAndView mav = new ModelAndView("redirect:/member/regoutsourcing.do");
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 	
 	@Override
 	@RequestMapping(value="/member/removeOutsourcing.do" ,method = RequestMethod.GET)
-	public ModelAndView removeOutsourcing(@RequestParam("workOrderNumber") int workOrderNumber, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView removeOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		regOutsourcingService.removeOutsourcing(workOrderNumber);
-		ModelAndView mav = new ModelAndView("redirect:/member/removeOutsourcing.do");
+		String number = (String) request.getParameter("workOrderNumber");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		regOutsourcingService.removeOutsourcing(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regoutsourcing.do");
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value="/member/updateOutsourcing.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMember(@ModelAttribute("regOutsourcing") RegOutsourcingVO regOutsourcingVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = regOutsourcingService.updateOutsourcing(regOutsourcingVO);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/regoutsourcing.do");
+		return mav;
+	}
+		
 
 
 	private String getViewName(HttpServletRequest request) throws Exception {

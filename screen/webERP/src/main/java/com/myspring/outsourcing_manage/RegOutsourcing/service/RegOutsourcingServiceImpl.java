@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.outsourcing_manage.RegOutsourcing.dao.RegOutsourcingDAO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Service("RegOutsourcingService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -30,7 +31,12 @@ public class RegOutsourcingServiceImpl implements RegOutsourcingService {
 	}
 
 	@Override
-	public int removeOutsourcing(int workOrderNumber) throws DataAccessException{
-		return regOutsourcingDAO.deleteOutsourcing(workOrderNumber);
+	public void removeOutsourcing(String[] noary) throws DataAccessException{
+		regOutsourcingDAO.deleteOutsourcing(noary);
+	}
+	
+	@Override
+	public int updateOutsourcing(RegOutsourcingVO regOutsourcingVO) throws DataAccessException{
+		return regOutsourcingDAO.updateOutsourcing(regOutsourcingVO);
 	}
 }
