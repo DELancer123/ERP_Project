@@ -9,4 +9,7 @@ public interface MainPlanController {
 
 	ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+
 }

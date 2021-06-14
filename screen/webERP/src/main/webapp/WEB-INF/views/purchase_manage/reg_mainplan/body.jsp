@@ -17,7 +17,7 @@ function func_Popup(){
 	window.name = "member/mainplan.do";
 	
 	openWin = window.open("applyorder.do","applyorder",
-			"width=800, height=500, resizable = no, scrollbars = no");
+			"width=1400, height=500, resizable = no, scrollbars = no");
 }
 
 </script>
@@ -45,12 +45,17 @@ function func_Popup(){
 .con1_search {
 	padding: 0;
 	text-align: center;
-	position: absolute;
+ 	position: absolute; 
 	top: 25%;
 	left: 15%;
 }
+#button {
+	margin-top: 3%;
+	margin-right: 3%;
+	text-align: right;
+}
 
-#view1 {
+#view {
 	width: 100%;
 	text-align: center;
 	border: 1px solid black;
@@ -67,8 +72,10 @@ function func_Popup(){
 	background-color: rgb(255, 255, 149);
 	text-align: center;
 }
-#Popup{
-	float: right;
+#MpsInfo{
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
 }
 </style>
 </head>
@@ -104,14 +111,15 @@ function func_Popup(){
 			<td><input type="text" name="" disabled /></td>
 		</tr>
 	</table>
-	<div>
-		<input type="button" id="Popup" onclick="func_Popup();" value="주문적용" />
+	<div id="button">
+		<input type="button" onclick="func_Popup();" value="주문적용" />
 	</div>
 	</container1>
 <container2 id=contents2>
-	<form id="reserve">	
-	<table id="view1">
+<div id="MpsInfo">
+	<table id="view">
 		<thead align="center" style="background-color: gray">
+		<td><input type="checkbox" name="content"/></td>
 			<td>계획일</td>
 			<td>품번</td>
 			<td>품명</td>
@@ -124,23 +132,26 @@ function func_Popup(){
 			<td>고객</td>
 			<td>비고</td>
 		</thead>
+		<tbody>
 		<c:forEach var="mainplan" items="${mainplanList}">
 			<tr align="center">
-				<td>${mainplan.plandate}</td>
-				<td>${mainplan.item_Code}</td>
-				<td>${mainplan.item_Name}</td>
-				<td>${mainplan.standard}</td>
-				<td>${mainplan.unit}</td>
-				<td>${mainplan.sequence}</td>
-				<td>${mainplan.expected_date}</td>
-				<td>${mainplan.due_date}</td>
-				<td>${mainplan.plan_quantity}</td>
-				<td>${mainplan.customer_Name}</td>
-				<td>${mainplan.note}</td>
+			<td><input type="checkbox" name="content"/></td>
+				<td><input type="text" value="${mainplan.plandate}"/></td>
+				<td><input type="text" value="${mainplan.item_Code}"/></td>
+				<td><input type="text" value="${mainplan.item_Name}"/></td>
+				<td><input type="text" value="${mainplan.standard}"/></td>
+				<td><input type="text" value="${mainplan.unit}"/></td>
+				<td><input type="text" value="${mainplan.sequence}"/></td>
+				<td><input type="text" value="${mainplan.expected_date}"/></td>
+				<td><input type="text" value="${mainplan.due_date}"/></td>
+				<td><input type="text" value="${mainplan.plan_quantity}"/></td>
+				<td><input type="text" value="${mainplan.customer_Name}"/></td>
+				<td><input type="text" value="${mainplan.note}"/></td>
 			</tr>
-		</c:forEach>
+		</c:forEach>	
+	</tbody>
 	</table>
-	</form>
-	</container2>
+	</div>
+</container2>
 </body>
 </html>

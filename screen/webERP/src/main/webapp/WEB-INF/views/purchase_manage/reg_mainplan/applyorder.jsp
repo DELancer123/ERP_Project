@@ -5,9 +5,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
-request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
+	String sequence = (String)request.getAttribute("sequence");
 %>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,29 +17,30 @@ request.setCharacterEncoding("UTF-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <script type="text/javascript">
-function Check(){
-	var select = eval("document.select");
-	
-	var cntCheck =0;
-	for(i=0; i<select.content.length; i++){
-		if(select.content[i].checked == true){
-			cntCheck++;			
-		}
-	}
-}
-function setcontent(){
-	var select = eval("document.select");
-	var checked = document.getElementsByName("content");
-	var chkList = "";
-	
-	for(var i=0; i<select.content.length; i++){
-		if(checked[i].checked == true){
-			chkList += checked[i].value+" ";
-		}
-	}
-	opener.document.reserve.item_Code.value = chkList;
-	window.close();
-}
+$("#join").click(function(){
+	var rowData = new Array();
+	var tdArr = new Array();
+		var checkbox = $("input[name=content]:checked");
+		
+		checkbox.each(function(i) {
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+			
+			var item_Code = td.eq(1).text();
+			var item_Name = td.eq(2).text();
+			var expected_date = td.eq(3).text();
+			var customer_Name = td.eq(4).text();
+			
+			tdArr.push(itemCode);
+			tdArr.push(itemName);
+			tdArr.push(expected_Date);
+			tdArr.push(customer_Name);
+
+			opener.parent.location='${contextPath}member/mainplan.do?item_Code='+tdArr[0]+'&&item_Name='+tdArr[1]+'&&expected_date='+tdArr[2]+'&&customer_Name='+tdArr[3];
+		window.close();
+
+		});
+	});
 </script>
 <style>
 a {
@@ -68,14 +69,16 @@ a {
 	margin-left: 30px;
 }
 
-#view {
-	width: 1400px;
-	height: 800px;
-	/* overflow: scroll; */
+#view {	
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+    
 }
 </style>
 </head>
 <body>
+<form name="select" action="member/mainplan.do" method="get">
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
@@ -90,15 +93,14 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>
-				<input type="button" onclick="selectcontent(this.form);" value="적용"/>
+				<input type="submit" id="join" value="적용" />
 				<button>취소</button>
 			</div>
 		</div>
 		<div id="view">
-			<form id="select">
 			<table style="width: 100%;">
 				<thead align="center" style="background-color: gray">
-					<td></td>
+					<td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
 					<td>주문번호</td>
 					<td>순서</td>
 					<td>주문일자</td>
@@ -113,26 +115,27 @@ a {
 					<td>주문잔량</td>
 					<td>출하예정일</td>
 					<td>비고</td>
-				</thead>
+				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center">
 					<td><input type="checkbox" name="content"/></td>
-						<td>${MpsOS.ordersno}</td>
-						<td>${MpsOS.sequence}</td>
-						<td>${MpsOS.orderdate}</td>
-						<td>${MpsOS.okeydate}</a></td>
-						<td>${MpsOS.customer_Name}</td>
-						<td>${MpsOS.item_Code}</td>
-						<td>${MpsOS.item_Name}</td>
-						<td>${MpsOS.standard}</a></td>
-						<td>${MpsOS.unit}</a></td>
-						<td>${MpsOS.order_quantity}</td>
-						<td>${MpsOS.apply_quantity}</td>
-						<td>${MpsOS.order_Balance}</td>
-						<td>${MpsOS.expected_Date}</td>
-						<td>${MpsOS.note}</td>
+						<td><a href="#">${MpsOS.ordersno}</a></td>
+						<td><a href="#">${MpsOS.sequence}</a></td>
+						<td><a href="#">${MpsOS.orderdate}</a></td>
+						<td><a href="#">${MpsOS.okeydate}</a></td>
+						<td><a href="#">${MpsOS.customer_Name}</a></td>
+						<td><a href="#">${MpsOS.item_Code}</a></td>
+						<td><a href="#">${MpsOS.item_Name}</a></td>
+						<td><a href="#">${MpsOS.standard}</a></td>
+						<td><a href="#">${MpsOS.unit}</a></td>
+						<td><a href="#">${MpsOS.order_quantity}</a></td>
+						<td><a href="#">${MpsOS.apply_quantity}</a></td>
+						<td><a href="#">${MpsOS.order_Balance}</a></td>
+						<td><a href="#">${MpsOS.expected_Date}</a></td>
+						<td><a href="#">${MpsOS.note}</a></td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 			</form>
 		</div>

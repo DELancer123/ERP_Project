@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,7 @@ public class MainPlanControllerImpl implements MainPlanController{
 		return mav;
 	}
 	
+	@Override
 	@RequestMapping(value="member/applyorder.do", method=RequestMethod.GET)
 	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
@@ -42,6 +44,7 @@ public class MainPlanControllerImpl implements MainPlanController{
 		mav.addObject("mpsosList", mpsosList);
 		return mav;
 	}
+
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
