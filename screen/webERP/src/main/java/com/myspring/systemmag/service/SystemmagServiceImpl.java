@@ -22,7 +22,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 		int result = systemmagDAO.insertNewCompany(systemmagVO);
 		return result;
 }
-
+	//회사등록 조회
 	@Override
 	public List comView() throws DataAccessException {
 		List comList = null;
@@ -35,5 +35,19 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List comcom(String com_code) throws DataAccessException {
 		List comList = systemmagDAO.allviewCom(com_code);
 		return comList;
+	}
+	//사업자등록 조회
+	@Override
+	public List worView() throws DataAccessException {
+		List worList = null;
+		worList = systemmagDAO.viewWor();
+		System.out.println("sercom= :"+worList);
+		return worList;
+	}
+
+	@Override
+	public List worcom(String wor_code) throws DataAccessException {
+		List worList = systemmagDAO.allviewWor(wor_code);
+		return worList;
 	}
 }

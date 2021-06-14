@@ -43,7 +43,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
-	//조회
+	//회사등록 조회
 	@Override
 	@RequestMapping(value="/member/regcompany.do" ,method = RequestMethod.GET)
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -68,7 +68,31 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 		return mav;
 	}
-
+	//사업장등록 조회
+	@Override
+	@RequestMapping(value="/member/regbusiness.do" ,method = RequestMethod.GET)
+	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String submit = (String) request.getParameter("submit");
+		String code = (String) request.getParameter("wor_code");
+		if(code == null || submit == null) {
+			List worView = systemmagService.worView();
+			mav = new ModelAndView(viewName);
+			mav.addObject("worView", worView); 
+			return mav;
+		}
+		if(submit.equals("1")) {
+			List worView = systemmagService.worView();
+			List worcom = systemmagService.worcom(code);
+			mav = new ModelAndView(viewName);
+			mav.addObject("worView", worView);
+			mav.addObject("worcom",worcom);
+		}
+		
+		return mav;
+	
+	}
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -111,10 +135,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 	public ModelAndView addWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;
 	}
-	@Override
-	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
+	
 	@Override
 	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;

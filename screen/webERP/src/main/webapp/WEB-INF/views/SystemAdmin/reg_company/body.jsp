@@ -97,13 +97,13 @@
                          />
                     </td>
                     <td>
-                        <input type=text name="company_Name"  value='${com.company_Name }'
+                        <input type="text" name="company_Name"  value='${com.company_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select name="sortation" 
+                        <select name="sortation" id="inputsortation"
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;"
@@ -132,9 +132,9 @@
                         ±‚
                     </td>
                     <td>
-                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates">
+                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" value='${fiscal_Year_Dates }'>
                         ~
-                        <input type="date" name="fiscal_year_Datee" id="fiscal_year_Datee"/>
+                        <input type="date" name="fiscal_year_Datee" id="fiscal_year_Datee" value='${fiscal_Year_Datee }'/>
                     </td>
                 </tr>
                 <tr>
@@ -261,7 +261,6 @@
         	console.log('»Æ¿Œ');
          	window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
         }
-        
         </script>
 </form>
 </body>

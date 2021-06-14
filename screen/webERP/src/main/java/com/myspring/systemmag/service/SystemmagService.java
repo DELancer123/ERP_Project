@@ -11,4 +11,6 @@ public interface SystemmagService {
 	public List comView() throws DataAccessException;
 	public List comcom(String com_code) throws DataAccessException;
 	
+	public List worView() throws DataAccessException;
+	public List worcom(String wor_code) throws DataAccessException;
 }

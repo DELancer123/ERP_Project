@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.WorkplaceVO;
 
 @Repository("SystemmagDAO")
 public class SystemmagDAOImpl implements SystemmagDAO {
@@ -19,7 +20,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		int result = sqlSession.insert("mappers.erp.insertNewCompany",systemmagVO);
 		return result;
 	}
-
+	//회사등록 조회
 	@Override
 	public List viewCom() throws DataAccessException {
 		List<SystemmagVO> comList = null;
@@ -35,5 +36,20 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		return comList;
 	}
 	
-
+	
+	//사업장등록 조회
+	@Override
+	public List viewWor() throws DataAccessException {
+		List<WorkplaceVO> worList = null;
+		worList = sqlSession.selectList("mappers.erp.selectworList");
+		System.out.println("worList: "+worList);
+		return worList;
+	}
+	@Override
+	public List allviewWor(String wor_code) throws DataAccessException {
+		List<WorkplaceVO> worList = null;
+		worList = sqlSession.selectList("mappers.erp.selectAllworList",wor_code);
+		System.out.println("worList12: "+wor_code);
+		return worList;
+	}
 }

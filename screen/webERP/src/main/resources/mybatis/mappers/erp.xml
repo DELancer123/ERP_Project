@@ -214,7 +214,27 @@
 		<![CDATA[select * from SM_CRI_Com_Reg where company_code = #{company_Code}]]>	
 	</select>
 	
-
+	<!-- 사업장등록 -->
+		<resultMap id="worResult" type="WorkplaceVO">
+		<result property="workplace_Code" column="Workplace_Code"	/>
+		<result property="workplace_Name" column="Workplace_Name"	/>
+		<result property="company_Registration_Number" column="Company_Registration_Number"	/>
+		<result property="corporate_Registration_Number" column="Corporate_Registration_Number"	/>
+		<result property="representatives_Name" column="Representatives_Name"	/>
+		<result property="workplace_Zipcode" column="Workplace_Zipcode"	/>
+		<result property="workplace_Address" column="Workplace_Address"	/>
+		<result property="workplace_Number" column="Workplace_Number"	/>
+		<result property="workplace_Tel" column="Workplace_Tel"	/>
+		<result property="upstate" column="Upstate"	/>
+		<result property="industry" column="industry"	/>
+		<result property="main_Store_Status" column="Main_Store_Status"	/>
+	</resultMap>
+	<select id="selectworList" resultMap="worResult">
+		<![CDATA[select workplace_Code,workplace_Name from SM_CRI_Wor_Reg]]>	
+	</select>
+	<select id="selectAllworList" resultMap="worResult" parameterType="String">
+		<![CDATA[select * from SM_CRI_Wor_Reg where workplace_Code = #{workplace_Code}]]>	
+	</select>
 	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">

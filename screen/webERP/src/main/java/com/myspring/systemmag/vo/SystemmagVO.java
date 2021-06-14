@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component("SystemmagVO")
 public class SystemmagVO {
+	//회사 등록
 	private String company_Code;
 	private String company_Name;
 	private String sortation;
@@ -26,9 +27,6 @@ public class SystemmagVO {
 	private Date date_Of_Establishment;
 	private String whether_To_Use_Status;
 	private List<SystemmagVO> ListVO;
-	
-	
-
 	
 	public String getCompany_Code() {
 		return company_Code;
@@ -54,10 +52,6 @@ public class SystemmagVO {
 	public void setFiscal_Year_Number(String fiscal_Year_Number) {
 		this.fiscal_Year_Number = fiscal_Year_Number;
 	}
-	
-	public Date getDate_Of_Establishment() {
-		return date_Of_Establishment;
-	}
 	public Date getFiscal_Year_Dates() {
 		return fiscal_Year_Dates;
 	}
@@ -69,9 +63,6 @@ public class SystemmagVO {
 	}
 	public void setFiscal_Year_Datee(Date fiscal_Year_Datee) {
 		this.fiscal_Year_Datee = fiscal_Year_Datee;
-	}
-	public void setDate_Of_Establishment(Date date_Of_Establishment) {
-		this.date_Of_Establishment = date_Of_Establishment;
 	}
 	public String getCompany_Registration_Number() {
 		return company_Registration_Number;
@@ -133,6 +124,12 @@ public class SystemmagVO {
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
+	public Date getDate_Of_Establishment() {
+		return date_Of_Establishment;
+	}
+	public void setDate_Of_Establishment(Date date_Of_Establishment) {
+		this.date_Of_Establishment = date_Of_Establishment;
+	}
 	public String getWhether_To_Use_Status() {
 		return whether_To_Use_Status;
 	}
@@ -145,8 +142,4 @@ public class SystemmagVO {
 	public void setListVO(List<SystemmagVO> listVO) {
 		ListVO = listVO;
 	}
-	
-	
 }
-
-	

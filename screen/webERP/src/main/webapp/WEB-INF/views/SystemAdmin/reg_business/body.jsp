@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
+    <c:forEach var="wor" items="${worcom}" >
+ 	<c:set var="workplace_Code" value="${com.workplace_Code }"/>
+ 	<c:set var="workplace_Name" value="${com.workplace_Name }"/>
+ 	<c:set var="worcompany_Registration_Number" value="${com.worcompany_Registration_Number }"/>
+ 	<c:set var="worcorporate_Registration_Number" value="${com.worcorporate_Registration_Number }"/>
+ 	<c:set var="worrepresentatives_Name" value="${com.corporate_Registration_Number }"/>
+ 	<c:set var="resident_Registration_Number" value="${com.worrepresentatives_Name }"/>
+ 	<c:set var="workplace_Zipcode" value="${com.workplace_Zipcode }"/>
+ 	<c:set var="main_Store_Postal_Code" value="${com.main_Store_Postal_Code }"/>
+ 	<c:set var="main_Store_Address" value="${com.main_Store_Address }"/>
+ 	<c:set var="main_Branch_Number" value="${com.main_Branch_Number }"/>
+ 	<c:set var="main_Store_Tel" value="${com.main_Store_Tel }"/>
+ 	<c:set var="upstate" value="${com.upstate }"/>
+ 	<c:set var="industry" value="${com.industry }"/>
+ 	<c:set var="date_Of_Establishment" value="${com.date_Of_Establishment }"/>
+ 	<c:set var="whether_To_Use_Status" value="${com.whether_To_Use_Status }"/>
+    </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,20 +72,23 @@
                     <td align="center">코드</td>
                     <td align="center">사업장명</td>
                 </tr>
+                <c:forEach var="wor" items="${worView }" >
                 <tr>
                     <td>
-                        <input type=text name="workSpaceCode"
-                        style="background-color: rgb(235, 235, 235); 
-                        border-style: none; vertical-align: 1px; width: 80px;
-                        text-align: center;" pattern="[0-9]{4}" maxlength="4"/>
+                        <input type="text" id="textbox2" name="workSpaceCode" value='${wor.workspace_Code }'
+                        style="background-color: rgb(235, 235, 235);
+                        border-style: none; vertical-align: 1px; width: 80px; 
+                        text-align: center;" pattern="[0-9]{4}" maxlength="4"
+                        />
                     </td>
                     <td>
-                        <input type=text name="workSpaceName"
+                        <input type=text name="workSpaceName" value='${wor.workspace_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; vertical-align: 1px; width: 160px;
-                        text-align: center;"/>
+                        text-align: center;"  />
                     </td>
                 </tr>
+                </c:forEach>
             </table>
         </container>
         <container id="contents2">
@@ -156,6 +182,13 @@
                     </td>
                 </tr>
             </table>
+            <script>
+        var textbox1 = document.getElementById("textbox2");
+        function searchView(name) {
+        	console.log('확인');
+         	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&com_code=" + name; 
+        }
+        </script>
         </container>
 </body>
 </html>
