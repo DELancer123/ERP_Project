@@ -17,6 +17,7 @@ import java.util.List;
   public List itemView() throws DataAccessException;
   public List departmentView() throws DataAccessException;
   public List productionPlanView(String startDate, String endDate) throws DataAccessException, ParseException;
-  public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException;  
+  public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException;
+  public void delOperationInstruction(String[] numberAry) throws DataAccessException;  
   }
  

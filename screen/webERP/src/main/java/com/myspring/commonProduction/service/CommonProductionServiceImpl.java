@@ -63,5 +63,10 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
 		return ORdao.addOperationInstruction(ORVO);
 	}
+  
+  @Override
+	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
+		ORdao.delOperationInstruction(numberAry);
+	}
   }
  
