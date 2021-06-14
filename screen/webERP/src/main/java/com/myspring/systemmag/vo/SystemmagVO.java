@@ -26,92 +26,95 @@ public class SystemmagVO {
 //	private String whether_To_Use_Status;
 //	private List<SystemmagVO> ListVO;
 	
-	private String General_Customer_Code;
-	private String General_Customer_Name;
-	private String General_Customer_Division;
-	private String Company_Registration_Number;
-	private String Resident_Registration_Number;
-	private String Representativs_Name;
-	private String Upstate;
-	private String Industry;
-	private String ZipCode;
-	private String Workplace_Address;
-	private String GeneralCustomer_Tel;
-	private String Wholesale_Retail_Business_Code;
+	private String general_Customer_Code;
+	private String general_Customer_Name;
+	private String general_Customer_Division;
+	private String company_Registration_Number;
+	private String resident_Registration_Number;
+	private String representativs_Name;
+	private String upstate;
+	private String industry;
+	private String zipCode;
+	private String workplace_Address;
+	private String generalCustomer_Tel;
+	private String wholesale_Retail_Business_Code;
 	
 	
 	public String getGeneral_Customer_Code() {
-		return General_Customer_Code;
+		return general_Customer_Code;
 	}
 	public void setGeneral_Customer_Code(String general_Customer_Code) {
-		this.General_Customer_Code = general_Customer_Code;
+		this.general_Customer_Code = general_Customer_Code;
 	}
 	public String getGeneral_Customer_Name() {
-		return General_Customer_Name;
+		return general_Customer_Name;
 	}
 	public void setGeneral_Customer_Name(String general_Customer_Name) {
-		this.General_Customer_Name = general_Customer_Name;
+		this.general_Customer_Name = general_Customer_Name;
 	}
 	public String getGeneral_Customer_Division() {
-		return General_Customer_Division;
+		return general_Customer_Division;
 	}
 	public void setGeneral_Customer_Division(String general_Customer_Division) {
-		this.General_Customer_Division = general_Customer_Division;
+		this.general_Customer_Division = general_Customer_Division;
 	}
 	public String getCompany_Registration_Number() {
-		return Company_Registration_Number;
+		return company_Registration_Number;
 	}
 	public void setCompany_Registration_Number(String company_Registration_Number) {
-		Company_Registration_Number = company_Registration_Number;
+		this.company_Registration_Number = company_Registration_Number;
 	}
 	public String getResident_Registration_Number() {
-		return Resident_Registration_Number;
+		return resident_Registration_Number;
 	}
 	public void setResident_Registration_Number(String resident_Registration_Number) {
-		Resident_Registration_Number = resident_Registration_Number;
+		this.resident_Registration_Number = resident_Registration_Number;
 	}
 	public String getRepresentativs_Name() {
-		return Representativs_Name;
+		return representativs_Name;
 	}
 	public void setRepresentativs_Name(String representativs_Name) {
-		Representativs_Name = representativs_Name;
+		this.representativs_Name = representativs_Name;
 	}
 	public String getUpstate() {
-		return Upstate;
+		return upstate;
 	}
 	public void setUpstate(String upstate) {
-		Upstate = upstate;
+		this.upstate = upstate;
 	}
 	public String getIndustry() {
-		return Industry;
+		return industry;
 	}
 	public void setIndustry(String industry) {
-		Industry = industry;
+		this.industry = industry;
 	}
 	public String getZipCode() {
-		return ZipCode;
+		return zipCode;
 	}
 	public void setZipCode(String zipCode) {
-		ZipCode = zipCode;
+		this.zipCode = zipCode;
 	}
 	public String getWorkplace_Address() {
-		return Workplace_Address;
+		return workplace_Address;
 	}
 	public void setWorkplace_Address(String workplace_Address) {
-		Workplace_Address = workplace_Address;
+		this.workplace_Address = workplace_Address;
 	}
 	public String getGeneralCustomer_Tel() {
-		return GeneralCustomer_Tel;
+		return generalCustomer_Tel;
 	}
 	public void setGeneralCustomer_Tel(String generalCustomer_Tel) {
-		GeneralCustomer_Tel = generalCustomer_Tel;
+		this.generalCustomer_Tel = generalCustomer_Tel;
 	}
 	public String getWholesale_Retail_Business_Code() {
-		return Wholesale_Retail_Business_Code;
+		return wholesale_Retail_Business_Code;
 	}
 	public void setWholesale_Retail_Business_Code(String wholesale_Retail_Business_Code) {
-		Wholesale_Retail_Business_Code = wholesale_Retail_Business_Code;
+		this.wholesale_Retail_Business_Code = wholesale_Retail_Business_Code;
 	}
+	
+	
+	
 
 	
 //	public String getCompany_Code() {

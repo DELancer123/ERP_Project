@@ -8,18 +8,18 @@
 request.setCharacterEncoding("UTF-8");
 %>
 <c:forEach var="com" items="${comcom}" >     
- 	<c:set var="general_customer_code" value="${com.general_customer_code }"/>
- 	<c:set var="general_customer_name" value="${com.general_customer_name }"/>
- 	<c:set var="general_customer_division" value="${com.general_customer_division }"/>
+ 	<c:set var="general_customer_code" value="${com.general_Customer_Code }"/>
+ 	<c:set var="general_customer_name" value="${com.general_Customer_Name }"/>
+ 	<c:set var="general_customer_division" value="${com.general_Customer_Division }"/>
  	<c:set var="company_Registration_Number" value="${com.company_Registration_Number }"/>
  	<c:set var="resident_Registration_Number" value="${com.resident_Registration_Number }"/>
  	<c:set var="representativs_Name" value="${com.representativs_Name }"/>>
  	<c:set var="upstate" value="${com.upstate }"/>
  	<c:set var="industry" value="${com.industry }"/>
- 	<c:set var="zipcode" value="${com.zipcode }"/>
- 	<c:set var="workplace_address" value="${com.workplace_address }"/>
- 	<c:set var="generalcustomer_tel" value="${com.generalcustomer_tel }"/>
- 	<c:set var="wholesale_retail_business_code" value="${com.wholesale_retail_business_code }"/>
+ 	<c:set var="zipCode" value="${com.zipCode }"/>
+ 	<c:set var="workplace_Address" value="${com.workplace_Address }"/>
+ 	<c:set var="generalCustomer_Tel" value="${com.generalCustomer_Tel }"/>
+ 	<c:set var="wholesale_Retail_Business_Code" value="${com.wholesale_Retail_Business_Code }"/>
 </c:forEach>
 <!DOCTYPE html>
 <html>
@@ -159,7 +159,7 @@ request.setCharacterEncoding("UTF-8");
                 <tbody>
                     <td><input type="checkbox" name="content" onclick="selectAll(this)"></td>
                     <td>
-                        <input type="text" name="temp" value='${com.general_Customer_Code}'/>
+                        <input type="textbox1" name="temp" value='${com.general_Customer_Code}'/>
                     </td>
                     <td>
                         <input type="text" name="temp" value='${com.general_Customer_Name}'/>
@@ -210,7 +210,7 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipcode }"
+                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
                         style="width:150px;"/>
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td>
@@ -218,19 +218,19 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="3">
-                        <input type="text" name="workSpaceAddress" value="${workplace_address }">
+                        <input type="text" name="workSpaceAddress" value="${workplace_Address }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="3">
-                        <input type="text" name="phoneNumber" pattern="[0-9]{10}" maxlength="10" value="${generalcustomer_tel }"/>
+                        <input type="text" name="phoneNumber" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주류코드</td>
                     <td>
-                        <input type="text" name="inchargeManager" value="${wholesale_retail_business_code }">
+                        <input type="text" name="inchargeManager" value="${wholesale_Retail_Business_Code }">
                     </td>
                 </tr>
             </table>
