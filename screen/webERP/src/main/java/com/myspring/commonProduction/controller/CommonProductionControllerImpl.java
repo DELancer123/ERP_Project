@@ -105,6 +105,16 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		return mav;
 	}
   
+  @Override
+	@RequestMapping(value="/member/delOperationInstruction.do" ,method = RequestMethod.GET)
+	public ModelAndView delOperationInstruction(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("workOrderNumber");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		productionService.delOperationInstruction(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regoperins.do");
+		return mav;
+		}
   
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 

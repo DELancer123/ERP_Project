@@ -114,7 +114,7 @@
                     <tbody>
                     	<c:forEach var="info" items="${infoList}" varStatus="status">   
                      <tr id="updateData" align="center">
-                     	<td><input type="checkbox" value = "check1" name="content"/></td>
+                     	<td><input type="checkbox" name="content" value="${info.workOrderNumber }" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].workOrderNumber" value="${info.workOrderNumber}" /></td>
                      	<td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly /></td>
                      	<td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" /></td>
@@ -211,4 +211,17 @@
   			document.getElementById('dataForm').submit();  
 		
       }
+      
+        function deleteData() {
+      	  var item = document.getElementsByName("content").length;
+      	  var no = "";
+      	  var ary = [];
+      	  for(var i=0; i<item;i++){
+      		  if(document.getElementsByName("content")[i].checked==true){
+      			  no = document.getElementsByName("content")[i].value;
+      			  ary.push(no);
+      		  }
+      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      	  }
+        }
       </script>

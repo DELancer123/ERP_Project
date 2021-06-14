@@ -113,41 +113,40 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead style="font-weight:bold; background-color:gray;">
+                    <thead align="center" style="font-weight:bold; background-color:gray;">
                         <td>순번</td>
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
                         <td>단위</td>
+                        <td>계정</td>
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <td>필요수량</td>
-                        <td>표준원가</td>
                         <td>실제원가</td>
                         <td>외주단가</td>
                         <td>시작일자</td>
                         <td>종료일자</td>
-                        <td>외주구분</td>
-                        <td>사용여부</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
-                    <tbody>
+                    <tbody align="center">
                         <td>${bom.no }</td>
+                        
                         <td>${bom.itemNumber}</td>
-                        <td>${bom.itemName}</td>
+                        <td><button id="item" onclick="childSearch(this)">${bom.itemName}</button></td>
                         <td>${bom.standard}</td>
                         <td>${bom.unit }</td>
+                        <td>${bom.division }</td>
                         <td>${bom.precisionQuantity }</td>
                         <td>${bom.loss }</td>
                         <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${bom.actualCost }</td>
+                        <td>${bom.outSourcingUnitPrice }</td>
+                        <td>${bom.startDate }</td>
+                        <td>${bom.endDate }</td>
                     </tbody>
+                    	
                     </c:forEach>
                 </table>
             </div>
@@ -176,6 +175,25 @@
 
 		  window.open(location.pathname + '?' + newParam, '_self');
  	}
+      function childSearch(name){
+    	 /*  var no = "";
+    	  var arr = [];
+    	  var item = document.getElementById("item").length;
+    	  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '2');
+		  const newParam = URLSearch.toString(); 
+    	  no = name.innerText;
+    	  arr.push(no);
+    	  for(var i=0; i<item;i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			  no = document.getElementsByName("content")[i].value;
+    			  ary.push(no);
+    		  }
+    		  
+    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
+    	  }
+    	  window.location.href=location.pathname + "?" + newParam + "&&no=" arr; */
+      }
       </script>
 </body>
 </html>
