@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -10,7 +9,6 @@
 	<c:set var="itemCode" value="${iup.itemCode }"/>
 	<c:set var="itemName" value="${iup.itemName }"/>
 	<c:set var="standard" value="${iup.standard }"/>
-	<c:set var="unit" value="${iup.unit }"/>
 </c:forEach>
     
 <!DOCTYPE html>
@@ -142,11 +140,11 @@
                     <td>구매단가</td>
                     <td>판매단가</td>
 				</thead>
-			<c:forEach var="iup" items="${iupView }">
+			<c:forEach var="iup" items="${iupView }" varStatus="status">
                 <tr id="updateIup" align="center">
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td style="width:13px;"><input type="text" name="ListVO[${status.index}].No" value='${iup.no }' readonly style="width:100%;"/></td>
-                    <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemCode }' ondbclick="search2()"/></td>
+                    <td><input type="checkbox" name="content" value="${iup.no }"/></td>
+                    <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemCode }' ondblclick="search2()"/></td>
                     <td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
@@ -154,38 +152,27 @@
                     <td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
                 </tr>
 			</c:forEach>
-                <tr id="updateIup" align="center">
+                <%-- <tr id="insertIup" align="center">
+                	<td></td>
                     <td><input type="text" id="no" name="ListVO[${fn.length(iupView }].no" value='${inputNo }' readonly style="width:100%"></td>
-                    <td><input type="text" id="itemCode" name="ListVO[${fn.length(iupView)}].itemCode" value='${param.itemCode }' ondbclick="search2()"/></td>
-                    <td><input type="text" id="itemName" name="ListVO[${fn.length(iupView)}].itemName" value='${param.itemName }' readonly/></td>
-                    <td><input type="text" id="standard" name="ListVO[${fn.length(iupView}].standard" value='${param.standard }' readonly/></td>
-                    <td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView}]" value='${param.inventoryUnit }' readonly/></td>
-                    <td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView}]" value='${param.purchasePrice }' readonly/></td>
-                    <td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView}]" value='${param.salesPrice }' readonly/></td>                                                        
-                </tr>
+                    <td><input type="text" id="itemCode" name="ListVO[${fn.length(iupView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
+                    <td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
+                    <td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
+                    <td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }]" value='${param.inventoryUnit }' readonly/></td>
+                    <td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
+                    <td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
+                </tr> --%>
             </table>
 		</div>
 	</container2>
 	
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
-        $(document).ready(function(){
-        	$('ul.tabs li').click(function(){
-            	var tab_id = $(this).attr('data-tab');
-    			$('ul.tabs li').removeClass('current');
-            	$('.tab-content').removeClass('current');
-    			$(this).addClass('current');
-            	$("#"+tab_id).addClass('current');
-        	})
-    	})
-    	
-    	var itemCode = document.getElementById("itemCode");
+        var itemCode = document.getElementById("itemCode");
         var itemName = document.getElementById("dataoutput");
         var standard = document.getElementById("dataoutput");
-        var unit = document.getElementById("dataoutput");
-        
+      
         var inventoryUnit = document.getElementById("dataoutput");
-//	 	var Kind = document.getElementById("dataoutput"); //종류구분
 		var purchasePrice = document.getElementById("dataoutput");
 		var salesPrice = document.getElementById("dataoutput");
 
@@ -222,7 +209,6 @@
 			const newParam = URLSearch.toString();
 			var link = location.pathname + '?' + newParam;
 				document.getElementById("inventoryUnit").disabled = true;
-//				document.getElementById("Kind").disabled = true;
 				document.getElementById("purchasePrice").disabled = true;
 				document.getElementById("salesPrice").disabled = true;
 				document.getElementById("no").disabled = true;
@@ -235,7 +221,7 @@
 				document.getElementById('regIup').submit();
 		}
 		
-		function newRow(){ //DAO에서 저장
+		function newRow(){
 			var row = workOrderTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');

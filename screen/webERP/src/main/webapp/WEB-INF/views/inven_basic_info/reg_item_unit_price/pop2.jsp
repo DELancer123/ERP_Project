@@ -76,9 +76,9 @@
                 </tr>
                 <c:forEach var="iup" items="${itemView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${iup.Item_Code }','${iup.Item_Name }')">${iup.Item_Code}</a></td>
-      <td><a href="#">${iup.Item_Name}</a></td>
-      <td><a href="#">${iup.Standard}</a></td>
+      <td><a href="javascript:popFunction('${iup.itemCode }','${iup.itemName }')">${iup.itemCode}</a></td>
+      <td><a href="#">${iup.itemName}</a></td>
+      <td><a href="#">${iup.standard}</a></td>
     </tr>
     </c:forEach> 
             </table>

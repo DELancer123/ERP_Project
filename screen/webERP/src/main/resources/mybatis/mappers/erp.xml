@@ -208,17 +208,17 @@
 	<!-- 품목단가등록(재원) 파트 -->
 	<resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
-		<result property="itemCode" column="itemCode" />
-		<result property="itemName" column="itemName" />
-		<result property="standard" column="standard" />
-		<result property="inventoryUnit" column="inventoryUnit" />
-		<result property="purchasePrice" column="purchasePrice" />
-		<result property="salesPrice" column="salesPrice" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="purchasePrice" column="Purchase_Price" />
+		<result property="salesPrice" column="Sales_Price" />
 	</resultMap>
 	<resultMap id="iupPopView" type="iupVO">
-		<result property="itemCode" column="itemCode" />
-		<result property="itemName" column="itemName" />
-		<result property="standard" column="standard" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
 	</resultMap>
 
 	<select id="iupSelectAllMemberList" resultMap="iupView">
@@ -226,10 +226,10 @@
 	</select>
 	<select id="iupSearchItem" resultMap="iupView"
 		parameterType="String">
-		<![CDATA[select * from PM_SM_Ite_Pri where item_code = #{Item_Code}]]>
+		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemCode}]]>
 	</select>
 	<select id="iupSelectItem" resultMap="iupView" parameterType="String">
-		<![CDATA[select item_Code,item_Name,standard,inventory_Unit,purchase_Price,sales_Price from PM_SM_Ite_Pri where item_Code=#{itemCode}]]>
+		<![CDATA[select Item_Code,Item_Name,Standard,Inventory_Unit,Purchase_Price,Sales_Price from PM_SM_Ite_Pri where Item_Code=#{itemCode}]]>
 	</select>
 	<select id="iupSelectPopList" resultMap="iupPopView">
 		<![CDATA[select * from PM_SM_Ite_Pri]]>
@@ -237,7 +237,7 @@
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
 		 insert into PM_SM_Ite_Pri
-		 values(#{no}, #{item_Code}, #{item_Name}, #{standard}, #{inventory_Unit}, #{purchase_Price}, #{sales_Price} )
+		 values(#{no}, #{itemCode}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
 	<!-- 
@@ -252,8 +252,8 @@
 	<update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri
-		set item_name=#{itemName}
-		where item_code=#{itemCode}
+		set Item_Name=#{itemName}
+		where Item_Code=#{itemCode}
 		]]>  
 	</update>
 	
