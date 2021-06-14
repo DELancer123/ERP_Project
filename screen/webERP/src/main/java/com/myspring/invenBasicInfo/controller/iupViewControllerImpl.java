@@ -39,23 +39,23 @@ public class iupViewControllerImpl implements iupViewController{
 		String viewName = getViewName(request);
 		String itemCode = (String)request.getParameter("itemCode");
 		String submit = (String)request.getParameter("submit");
-//		String parentCode  = (String)request.getParameter("parentCode"); //부모코드값 받아올때
+		String itemCode1  = (String)request.getParameter("itemCode");
 		int sum = 0;
-		if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
+		if(itemCode1 == null || itemCode1.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
 		else if(submit.equals("1")) {
-			List iupView = viewService.searchView(itemCode);
+			List iupView = viewService.searchView(itemCode1);
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupView",iupView);
 		}
 		else if(submit.equals("2")) {
-			List iupView = viewService.searchView(itemCode);
-//			List iupInsert = viewService.setText(parentNumber); //부모코드값 받아 올때
+			List iupView = viewService.searchView(itemCode1);
+			List iupInsert = viewService.setText(itemCode);
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupView",iupView);
-//			mav.addObject("iupInsert",iupInsert); //부모코드값 받아 올때
+			mav.addObject("iupInsert",iupInsert);
 			int inputNo = viewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);

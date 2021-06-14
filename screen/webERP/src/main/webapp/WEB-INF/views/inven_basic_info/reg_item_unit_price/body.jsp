@@ -121,10 +121,6 @@
                 </tr>
 			</table>
 		</form>
-            <ul class="tabs" style="left: 0px; bottom: 0px; position: absolute;">
-                <li class="tab-link current" data-tab="tab-1">구매단가</li>
-                <li class="tab-link" data-tab="tab-2">판매단가</li>
-            </ul>
         </container1>
 <form id="regIup" method="get" commandName="ListVO">
 	<container2 id="contents2">
@@ -141,7 +137,18 @@
                     <td>판매단가</td>
 				</thead>
 			<c:forEach var="iup" items="${iupView }" varStatus="status">
-                <tr id="updateIup" align="center">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			
+                <%-- <tr id="updateIup" align="center">
                     <td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
                     <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemCode }' ondblclick="search2()"/></td>
@@ -150,7 +157,7 @@
                     <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' /></td>
                     <td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
-                </tr>
+                </tr> --%>
 			</c:forEach>
                 <%-- <tr id="insertIup" align="center">
                 	<td></td>
