@@ -10,6 +10,17 @@
  	<c:set var="fiscal_Year_Number" value="${com.fiscal_Year_Number }"/>
  	<c:set var="fiscal_Year_Dates" value="${com.fiscal_Year_Dates }"/>
  	<c:set var="fiscal_Year_Datee" value="${com.fiscal_Year_Datee }"/>
+ 	<c:set var="company_Registration_Number" value="${com.company_Registration_Number }"/>
+ 	<c:set var="corporate_Registration_Number" value="${com.corporate_Registration_Number }"/>
+ 	<c:set var="resident_Registration_Number" value="${com.resident_Registration_Number }"/>
+ 	<c:set var="representatives_Name" value="${com.representatives_Name }"/>
+ 	<c:set var="main_Store_Postal_Code" value="${com.main_Store_Postal_Code }"/>
+ 	<c:set var="main_Store_Address" value="${com.main_Store_Address }"/>
+ 	<c:set var="main_Branch_Number" value="${com.main_Branch_Number }"/>
+ 	<c:set var="main_Store_Tel" value="${com.main_Store_Tel }"/>
+ 	<c:set var="upstate" value="${com.upstate }"/>
+ 	<c:set var="industry" value="${com.industry }"/>
+ 	<c:set var="whether_To_Use_Status" value="${com.whether_To_Use_Status }"/>
 
  </c:forEach>
 <!DOCTYPE html>
@@ -128,6 +139,7 @@
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
                         <input type="text" name="company_Registration_Number" id="company_Registration_Number" class= "reqInput"
+                        value='${company_Registration_Number }'
                         style="width: 240px;" pattern="[0-9]{13}" maxlength="13"/>
                     </td>
                 </tr>
@@ -135,9 +147,10 @@
                     <td align="center">법인등록번호</td>
                     <td colspan="2">
                         <input type="text" name="corporate_Registration_Number"
-                        style="background-color: rgb(235,235,235);
+                        style="background-color: rgb(235,235,235);  
                         border-style: none; width: 240px;
-                        text-align: center;" pattern="[0-9]{13}" maxlength="13"/>
+                        text-align: center;" pattern="[0-9]{13}" maxlength="13" 
+                        value='${corporate_Registration_Number }' />
                         법인의 경우 필수입력항목
                     </td>
                 </tr>
@@ -145,16 +158,19 @@
                     <td align="center">대표자성명</td>
                     <td colspan="2">
                         <input type="text" name="representatives_Name" id="representatives_Name" class= "reqInput"
-                        style="width: 240px;"/>
+                        style="width: 240px;"
+                        value='${representatives_Name }' />
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="resident_Registration_Number"
+                        <input type="text" name="resident_Registration_Number" 
+                        value='${resident_Registration_Number }'
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
-                        text-align: center;" pattern="[0-9]{13}" maxlength="13"/>
+                        text-align: center;" pattern="[0-9]{13}" maxlength="13"
+                         />
                         개인의 경우 필수입력항목
                     </td>
                 </tr>
@@ -165,7 +181,8 @@
                         <input type="text" name="main_Store_Postal_Code" 
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
-                        text-align: center;" pattern="[0-9]{5}" maxlength="5"/>
+                        text-align: center;" pattern="[0-9]{5}" maxlength="5"
+                        value='${main_Store_Postal_Code }' />
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td>
                 </tr>
@@ -173,6 +190,7 @@
                     <td align="center">본점주소</td>
                     <td colspan="2">
                         <input type="text" name="main_Store_Address" id="main_Store_Address" class= "reqInput"
+                        value='${main_Store_Address }'
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -182,7 +200,8 @@
                         <input type="text" name="main_Branch_Number" 
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
-                        text-align: center;"/>
+                        text-align: center;"	
+                        value='${main_Branch_Number }' />
                     </td>
                 </tr>
                 <tr>
@@ -191,13 +210,15 @@
                         <input type="text" name="main_Store_Tel"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
-                            text-align: center;" pattern="[0-9]{12}" maxlength="10"/>
+                            text-align: center;" pattern="[0-9]{12}" maxlength="10"
+                            value='${main_Store_Tel }' />
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="2">
-                        <input type="text" name="upstate" id="upstate" class= "reqInput"
+                        <input type="text" name="upstate" id="upstate" class= "reqInput" 
+                        value='${upstate }'
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -205,6 +226,7 @@
                     <td align="center">종목</td>
                     <td colspan="2">
                         <input type="text" name="industry" id="industry" class= "reqInput"
+                        value='${industry }'
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -214,7 +236,8 @@
                         <input type="date" name="date_Of_Establishment"
                         style="background-color: rgb(235,235,235);
                         border-style: none;
-                        text-align: center;"/>
+                        text-align: center;" 
+                        />
                     </td>
                 </tr>
                 <tr>
