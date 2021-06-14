@@ -51,15 +51,15 @@ public class HomeController {
 	public String regcompany(Locale locale, Model model) {
 		return "/member/regcompany";
 	}
-	@RequestMapping(value = "/member/regbusiness.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/regbusiness", method = RequestMethod.GET)
 	public String regbusiness(Locale locale, Model model) {
 		return "/member/regbusiness";
 	}
-	@RequestMapping(value = "/member/regdepartment.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/regdepartment", method = RequestMethod.GET)
 	public String regdepartment(Locale locale, Model model) {
 		return "/member/regdepartment";
 	}
-	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/regbasicacc", method = RequestMethod.GET)
 	public String regbasicacc(Locale locale, Model model) {
 		return "/member/regbasicacc";
 	}

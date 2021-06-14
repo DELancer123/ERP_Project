@@ -7,21 +7,19 @@
   request.setCharacterEncoding("UTF-8");
 %>
     <c:forEach var="wor" items="${worcom}" >
- 	<c:set var="workplace_Code" value="${com.workplace_Code }"/>
- 	<c:set var="workplace_Name" value="${com.workplace_Name }"/>
- 	<c:set var="worcompany_Registration_Number" value="${com.worcompany_Registration_Number }"/>
- 	<c:set var="worcorporate_Registration_Number" value="${com.worcorporate_Registration_Number }"/>
- 	<c:set var="worrepresentatives_Name" value="${com.corporate_Registration_Number }"/>
- 	<c:set var="resident_Registration_Number" value="${com.worrepresentatives_Name }"/>
- 	<c:set var="workplace_Zipcode" value="${com.workplace_Zipcode }"/>
- 	<c:set var="main_Store_Postal_Code" value="${com.main_Store_Postal_Code }"/>
- 	<c:set var="main_Store_Address" value="${com.main_Store_Address }"/>
- 	<c:set var="main_Branch_Number" value="${com.main_Branch_Number }"/>
- 	<c:set var="main_Store_Tel" value="${com.main_Store_Tel }"/>
- 	<c:set var="upstate" value="${com.upstate }"/>
- 	<c:set var="industry" value="${com.industry }"/>
- 	<c:set var="date_Of_Establishment" value="${com.date_Of_Establishment }"/>
- 	<c:set var="whether_To_Use_Status" value="${com.whether_To_Use_Status }"/>
+ 	<c:set var="worcompany_Registration_Number" value="${wor.worcompany_Registration_Number }"/>
+ 	<c:set var="worcorporate_Registration_Number" value="${wor.worcorporate_Registration_Number }"/>
+ 	<c:set var="worrepresentatives_Name" value="${wor.corporate_Registration_Number }"/>
+ 	<c:set var="resident_Registration_Number" value="${wor.worrepresentatives_Name }"/>
+ 	<c:set var="workplace_Zipcode" value="${wor.workplace_Zipcode }"/>
+ 	<c:set var="main_Store_Postal_Code" value="${wor.main_Store_Postal_Code }"/>
+ 	<c:set var="main_Store_Address" value="${wor.main_Store_Address }"/>
+ 	<c:set var="main_Branch_Number" value="${wor.main_Branch_Number }"/>
+ 	<c:set var="main_Store_Tel" value="${wor.main_Store_Tel }"/>
+ 	<c:set var="upstate" value="${wor.upstate }"/>
+ 	<c:set var="industry" value="${wor.industry }"/>
+ 	<c:set var="date_Of_Establishment" value="${wor.date_Of_Establishment }"/>
+ 	<c:set var="whether_To_Use_Status" value="${wor.whether_To_Use_Status }"/>
     </c:forEach>
 <!DOCTYPE html>
 <html>
@@ -75,14 +73,14 @@
                 <c:forEach var="wor" items="${worView }" >
                 <tr>
                     <td>
-                        <input type="text" id="textbox2" name="workSpaceCode" value='${wor.workspace_Code }'
+                        <input type="text" id="textbox2" name="workplace_Code" value='${wor.workplace_Code }'
                         style="background-color: rgb(235, 235, 235);
                         border-style: none; vertical-align: 1px; width: 80px; 
                         text-align: center;" pattern="[0-9]{4}" maxlength="4"
                         />
                     </td>
                     <td>
-                        <input type=text name="workSpaceName" value='${wor.workspace_Name }'
+                        <input type=text name="workplace_Name" value='${wor.workplace_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; vertical-align: 1px; width: 160px;
                         text-align: center;"  />

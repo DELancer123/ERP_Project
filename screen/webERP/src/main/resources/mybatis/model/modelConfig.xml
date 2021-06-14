@@ -26,6 +26,6 @@
 		<!-- 회사등록 -->
 		<typeAlias type="com.myspring.systemmag.vo.SystemmagVO" alias="SystemmagVO"	/>
 		<!-- 사업장등록 -->
-		<typeAlias type="com.myspring.systemmag.vo.workplaceVO" alias="WorkplaceVO" />
+		<typeAlias type="com.myspring.systemmag.vo.WorkplaceVO" alias="WorkplaceVO" />
 	</typeAliases>
 </configuration>	 

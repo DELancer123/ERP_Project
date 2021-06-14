@@ -218,15 +218,15 @@
 		<resultMap id="worResult" type="WorkplaceVO">
 		<result property="workplace_Code" column="Workplace_Code"	/>
 		<result property="workplace_Name" column="Workplace_Name"	/>
-		<result property="company_Registration_Number" column="Company_Registration_Number"	/>
-		<result property="corporate_Registration_Number" column="Corporate_Registration_Number"	/>
-		<result property="representatives_Name" column="Representatives_Name"	/>
+		<result property="worcompany_Registration_Number" column="Company_Registration_Number"	/>
+		<result property="worcorporate_Registration_Number" column="Corporate_Registration_Number"	/>
+		<result property="worrepresentatives_Name" column="Representatives_Name"	/>
 		<result property="workplace_Zipcode" column="Workplace_Zipcode"	/>
 		<result property="workplace_Address" column="Workplace_Address"	/>
 		<result property="workplace_Number" column="Workplace_Number"	/>
 		<result property="workplace_Tel" column="Workplace_Tel"	/>
-		<result property="upstate" column="Upstate"	/>
-		<result property="industry" column="industry"	/>
+		<result property="worupstate" column="Upstate"	/>
+		<result property="worindustry" column="industry"	/>
 		<result property="main_Store_Status" column="Main_Store_Status"	/>
 	</resultMap>
 	<select id="selectworList" resultMap="worResult">
