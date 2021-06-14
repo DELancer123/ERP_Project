@@ -8,9 +8,9 @@
 request.setCharacterEncoding("UTF-8");
 %>
 <c:forEach var="com" items="${comcom}" >     
- 	<c:set var="general_customer_code" value="${com.general_Customer_Code }"/>
- 	<c:set var="general_customer_name" value="${com.general_Customer_Name }"/>
- 	<c:set var="general_customer_division" value="${com.general_Customer_Division }"/>
+ 	<c:set var="general_Customer_Code" value="${com.general_Customer_Code }"/>
+ 	<c:set var="general_Customer_Name" value="${com.general_Customer_Name }"/>
+ 	<c:set var="general_Customer_Division" value="${com.general_Customer_Division }"/>
  	<c:set var="company_Registration_Number" value="${com.company_Registration_Number }"/>
  	<c:set var="resident_Registration_Number" value="${com.resident_Registration_Number }"/>
  	<c:set var="representativs_Name" value="${com.representativs_Name }"/>>
@@ -159,7 +159,7 @@ request.setCharacterEncoding("UTF-8");
                 <tbody>
                     <td><input type="checkbox" name="content" onclick="selectAll(this)"></td>
                     <td>
-                        <input type="textbox1" name="temp" value='${com.general_Customer_Code}'/>
+                        <input type="text" name="temp" value='${com.general_Customer_Code}'/>
                     </td>
                     <td>
                         <input type="text" name="temp" value='${com.general_Customer_Name}'/>

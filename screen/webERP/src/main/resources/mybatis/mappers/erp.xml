@@ -187,7 +187,7 @@
 	</select>
 
 	<!-- 회사등록 파트 -->
-	<!-- <resultMap id="comResult" type="SystemmagVO">
+	<resultMap id="comResult" type="SystemmagVO">
 		<result property="company_Code" column="Company_Code"	/>
 		<result property="company_Name" column="Company_Name"	/>
 		<result property="sortation" column="Sortation"	/>
@@ -209,7 +209,7 @@
 	</resultMap>
 	<select id="selectAllcomList" resultMap="comResult">
 		<![CDATA[select * from SM_CRI_Com_Reg]]>
-	</select> -->
+	</select>
 
 	
 	<!--기초정보관리파트-->
