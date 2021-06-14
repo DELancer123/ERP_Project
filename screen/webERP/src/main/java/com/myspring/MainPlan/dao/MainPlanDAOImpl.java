@@ -38,17 +38,6 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	}
 
 	@Override
-	public boolean updateMps(MainPlanVO vo) {
-		sqlSession.update("mappers.erp.update",vo);
-		return true;
-	}
-
-	@Override
-	public MainPlanVO viewDetail(int sequence) {
-		return sqlSession.selectOne("mappers.erp.detail", sequence);
-	}
-	
-	@Override
 	public int addMPS(MainPlanVO vo) throws DataAccessException {
 		int idx = vo.getListVO().size()-1;
 		int result = sqlSession.insert("mappers.erp.insertMPS",vo.getListVO().get(idx));
@@ -56,19 +45,16 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	}
 	
 	@Override
-	public List selectAllMpsList(String startDate, String endDate) throws DataAccessException, ParseException {
-		List<MainPlanVO> mainplan = null;
-		
-		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date start = new Date(sdf.parse(startDate).getTime());
-		Date end = new Date(sdf.parse(endDate).getTime());
-		MainPlanVO vo = new MainPlanVO();
-		vo.setStartDate(start);
-		vo.setEndDate(end);
-		mainplan = sqlSession.selectList("mappers.erp.selectAllMpsList", vo);
-		}		
-		return mainplan;
+	public int updateMPS(MainPlanVO vo) throws DataAccessException {
+		int result = 0; 
+
+		int idx = vo.getListVO().size()-1;
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i));		
+		}
+		return result;
 	}
 
 }

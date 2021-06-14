@@ -36,24 +36,15 @@ public class MainPlanServiceImpl implements MainPlanService{
 		mainplanDAO.delMps(sequenceary);
 	}
 
-	@Override
-	public boolean updateMps(MainPlanVO vo) {
-		return mainplanDAO.updateMps(vo);
-	}
-	
-	@Override
-	public MainPlanVO viewDetail(int sequence) {
-	  return mainplanDAO.viewDetail(sequence);
-	}
 	
 	@Override
 	public int addMPS(MainPlanVO vo) throws DataAccessException {
 		return mainplanDAO.addMPS(vo);
 	}
-	
-	  @Override public List<MainPlanVO>selectAllMpsList(String startDate, String endDate) throws DataAccessException, ParseException{ 
-		  List<MainPlanVO> infolist = null; 
-		  infolist = mainplanDAO.selectAllMpsList(startDate,endDate); 
-		  return infolist; 
-		  }
+		  
+	@Override
+	public int updateMPS(MainPlanVO vo) throws DataAccessException {
+		return mainplanDAO.updateMPS(vo);
+	}
+	 
 }

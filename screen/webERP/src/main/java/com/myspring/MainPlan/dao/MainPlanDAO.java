@@ -15,11 +15,7 @@ public interface MainPlanDAO {
 
 	void delMps(String[] noary) throws DataAccessException;
 
-	public boolean updateMps(MainPlanVO vo);
-	
-	public MainPlanVO viewDetail(int sequence);
-
 	int addMPS(MainPlanVO vo) throws DataAccessException;
 
-	List selectAllMpsList(String startDate, String endDate) throws DataAccessException, ParseException;
+	int updateMPS(MainPlanVO vo) throws DataAccessException;
 }

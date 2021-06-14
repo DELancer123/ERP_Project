@@ -4,9 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-request.setCharacterEncoding("UTF-8");
-String sequence = (String)request.getAttribute("sequence");
+	request.setCharacterEncoding("UTF-8");
+	String sequence = (String)request.getAttribute("sequence");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,13 +106,14 @@ String sequence = (String)request.getAttribute("sequence");
 	<div id="button">
 		<input type="button" onclick="func_Popup();" value="주문적용">
 		<input type="button" value="삭제" onClick="deleteData();">
-		<input type="button" value="등록" onClick="newRow();">
-		<input type="button" value="조회" onClick="searchPlan();">	
+		<input type="button" value="등록" onClick="InsertRow();">
+		<input type="button" value="수정" onClick="updateRow();">
+		<input type="button" value="조회" id="view_button">
 	</div>
 	</container1>
 <container2 id=contents2>
 <div id="MpsInfo">
-<form id="dataForm" mehtod="get" commandName="ListVO">
+<form id="MainPlan" mehtod="get" commandName="ListVO">
 	<table id="MPSTable">
 		<thead align="center" style="background-color: gray">
 		 <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -131,22 +133,20 @@ String sequence = (String)request.getAttribute("sequence");
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
-  		 	<td style="width:13px;"><a href="${path}/member/detail?sequence=${mainplan.sequence}" 
-		 	value="${mainplan.sequence}" style="width:100%"/>${mainplan.sequence}</a></td> 		
- 				<td><input type="text" value="${mainplan.plandate}" /></td>				
-				<td><input type="text" id="item_Code" value="${mainplan.item_Code}"  readonly/></td>
-				<td><input type="text" id="item_Name" value="${mainplan.item_Name}"  readonly/></td>
-				<td><input type="text" value="${mainplan.standard}" style="width:100%"/></td>
-				<td><input type="text" value="${mainplan.unit}" style="width:100%"/></td>
-				<td><input type="text" id="expected_Date" value="${mainplan.expected_date}"  readonly/></td>
-				<td><input type="text" value="${mainplan.due_date}" /></td>
-				<td><input type="text" value="${mainplan.plan_quantity}" /></td>
-				<td><input type="text" id="customer_Name" value="${mainplan.customer_Name}" readonly/></td>
-				<td><input type="text" value="${mainplan.note}" /></td>
+  		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${mainplan.sequence}' readonly style="width:100%"/></td> 		
+ 				<td><input type="text" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].unit" value = '${mainplan.unit}' style="width:100%" readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}'/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].customer_Name" value = '${mainplan.customer_Name}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
-		</c:forEach>	
-		
-		 <tr id ="insertTest" align="center">
+		</c:forEach>		
+		<tr id ="insertTest" align="center">
     	<td><input type="checkbox" value = "checkPoint" name="content"/></td>
     	<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' readonly style="width:100%"/></td>
     	<td><input type="text" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${param.plandate}'/></td>
@@ -154,7 +154,7 @@ String sequence = (String)request.getAttribute("sequence");
     	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${param.item_Name}' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${param.standard}' style="width:100%"/></td>
     	<td><input type="text" id="unit" name="ListVO[${fn:length(mainplanList) }].unit" value='${param.unit}' style="width:100%"/></td>
-    	<td><input type="text" id="expected_Date" name="ListVO[${fn:length(mainplanList) }].expected_Date" value='${param.expected_Date}'readonly/></td>
+    	<td><input type="text" id="expected_Date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${param.expected_date}'readonly/></td>
     	<td><input type="text" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${param.due_date}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${param.plan_quantity}'/></td>
     	<td><input type="text" id="customer_Name" name="ListVO[${fn:length(mainplanList) }].customer_Name" value='${param.customer_Name}'readonly/></td>
@@ -202,50 +202,80 @@ function deleteData() {
 	  }
 }
 
-function newRow(){
-    var row = MPSTable.insertRow(); 
-    const URLSearch = new URLSearchParams(location.search);
-	  const newParam = URLSearch.toString();
-	 var link = location.pathname +'?'+newParam;
-		var linkPath = document.createElement("input");
-	     linkPath.setAttribute("type","hidden");
-	     linkPath.setAttribute("name","path");
-	     linkPath.setAttribute("value", link);
-	     document.getElementById('dataForm').appendChild(linkPath);
-      document.getElementById('dataForm').action = "${contextPath}/member/mainplan.do";
-		document.getElementById('dataForm').submit();  
-	
-}
-view_button.onclick = function(){
-	  if(startDate>endDate){
-		  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
-	  } else{
-		  
-	  const URLSearch = new URLSearchParams(location.search);
-	  URLSearch.set('startDate', startDate);
-	  URLSearch.set('endDate', endDate);
-	  const newParam = URLSearch.toString();
+function InsertRow(){
+	var MPSTable = document.getElementById('MPSTable');
+	var row = MPSTable.insertRow();
+		const URLSearch = new URLSearchParams(location.search);
+		const newParam = URLSearch.toString();
+		var link = location.pathname + '?' + newParam;
+		var Input = document.createElement("input");
+		Input.setAttribute("type", "hidden");
+		Input.setAttribute("name", "path");
+		Input.setAttribute("value", link);
+		document.getElementById('MainPlan').appendChild(linkPath);
+		document.getElementById('MainPlan').action = "${contextPath}/member/mainplan.do";
+		document.getElementById('MainPlan').submit();
 
-	  window.open(location.pathname + '?' + newParam, '_self');
-	  }
-}
-document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);
-document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);
+	}
 
-	var startDate = new Date().toISOString().substring(0,10);;
-	var endDate = new Date().toISOString().substring(0,10);;
+
+	function updateRow() {
+
+		var MPSTable = document.getElementById('MPSTable');
+		var row = MPSTable.insertRow();
+			const URLSearch = new URLSearchParams(location.search);
+			const newParam = URLSearch.toString();
+			var link = location.pathname + '?' + newParam;
+		document.getElementById("sequence").disabled = true;
+		document.getElementById("plandate").disabled = true;
+		document.getElementById("item_Code").disabled = true;
+		document.getElementById("item_Name").disabled = true;
+		document.getElementById("standard").disabled = true;
+		document.getElementById("unit").disabled = true;
+		document.getElementById("expected_date").disabled = true;
+		document.getElementById("due_date").disabled = true;
+		document.getElementById("plan_quantity").disabled = true;
+		document.getElementById("customer_Name").disabled = true;
+		document.getElementById("note").disabled = true;
+		var Input = document.createElement("input");
+		Input.setAttribute("type", "hidden");
+		Input.setAttribute("name", "path");
+		Input.setAttribute("value", link);
+		document.getElementById('mainplan').appendChild(Input);
+		document.getElementById('mainplan').action = "${contextPath}/member/updateMPS.do";
+		document.getElementById('mainplan').submit();
+	}
+
+
+	var view_button = document.getElementById("view_button");
 	
-	$('#searchStartDate').change(function (){
-        var date = $('#searchStartDate').val();
-        startDate = date;
-    });
-	$('#searchEndDate').change(function (){
-        var date = $('#searchEndDate').val();
-        endDate = date;
-    });
-function searchPlan(){
-  	  openWindowBroadPop('http://localhost:8090/webERP/member/mainplan.do','mainplan');
-    }
+	document.getElementById('searchStartDate').value = new Date().toISOString()
+			.substring(0, 10);
+	document.getElementById('searchEndDate').value = new Date().toISOString()
+			.substring(0, 10);
+	
+	$('#searchStartDate').change(function() {
+		var date = $('#searchStartDate').val();
+		startDate = date;
+	});
+	$('#searchEndDate').change(function() {
+		var date = $('#searchEndDate').val();
+		endDate = date;
+
+	});
+	view_button.onclick = function() {
+		if (startDate > endDate) {
+			alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
+		} else {
+
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('startDate', startDate);
+			URLSearch.set('endDate', endDate);
+			const newParam = URLSearch.toString();
+
+			window.open(location.pathname + '?' + newParam, '_self');
+		}
+	}
 </script>
 </body>
 </html>

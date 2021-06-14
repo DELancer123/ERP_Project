@@ -60,29 +60,6 @@ public class MainPlanControllerImpl implements MainPlanController {
 	}	
 	
 	@Override
-	@RequestMapping(value="modify" , method = RequestMethod.GET)
-	public String modify(@RequestParam("sequence")int sequence, Model model) {
-		model.addAttribute("mainPlan", mainplanService.viewDetail(sequence));
-		return "member/Modify";
-	}
-	
-	@Override
-	@RequestMapping(value="modify" , method = RequestMethod.POST)
-	public String modify(MainPlanVO vo) {
-		mainplanService.updateMps(vo);
-		return "redirect: /detail?sequence="+ vo.getSequence();
-	}
-	
-	@Override
-	@RequestMapping(value="detail", method = RequestMethod.GET)
-	public String viewDetail(Model model,@RequestParam("sequence")int sequence) {
-	  
-	  model.addAttribute("mainplan", mainplanService.viewDetail(sequence));
-
-	  return "mainplan/viewDetail";
-	}
-	
-	@Override
 	@RequestMapping(value = "/member/addMPS.do", method = RequestMethod.GET)
 	public ModelAndView addMPS(@ModelAttribute("mainplanList") MainPlanVO vo,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -96,6 +73,16 @@ public class MainPlanControllerImpl implements MainPlanController {
 		return mav;
 	}
 
+	@Override
+	@RequestMapping(value="/member/updateMPS.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMPS(@ModelAttribute("mainplan") MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = mainplanService.updateMPS(vo);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
+		return mav;
+	}
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

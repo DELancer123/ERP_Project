@@ -17,12 +17,8 @@ public interface MainPlanController {
 
 	ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	String modify(int sequence, Model model);
-
-	String modify(MainPlanVO vo);
-
-	String viewDetail(Model model, int sequence);
-
 	ModelAndView addMPS(MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView updateMPS(MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
