@@ -123,12 +123,10 @@
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <td>필요수량</td>
-                        <td>표준원가</td>
                         <td>실제원가</td>
                         <td>외주단가</td>
                         <td>시작일자</td>
                         <td>종료일자</td>
-                        <td>외주구분</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
@@ -143,11 +141,10 @@
                         <td>${bom.precisionQuantity }</td>
                         <td>${bom.loss }</td>
                         <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${bom.actualCost }</td>
+                        <td>${bom.outSourcingUnitPrice }</td>
+                        <td>${bom.startDate }</td>
+                        <td>${bom.endDate }</td>
                     </tbody>
                     	
                     </c:forEach>

@@ -53,26 +53,26 @@
                     <tr>
                         <td>사업장</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                        <td> <i class="fas fa-search" style="color: blue;"></i></td> 
+                        <td> <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td> 
+                        <td colspan="2"><input type="text" name="" disabled style="width: 100%;"/></td>
     
-                        <td colspan="5" style="width: 80px;">부서</td>
+                        <td colspan="4" style="width: 80px;">부서</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td> <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
-                        <td><button>검</button></td>
                         
                     </tr>
                     
                     <tr>
                         <td>품목군</td>
-                        <td style="width: 80px;" colspan="3"><input type="text" style="width: 100%;"/></td>
+                        <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
+                        <td>  <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
-                        <td> <i class="fas fa-search" style="color: blue;"></i></td>
     
                         <td colspan="5" style="width: 80px;">사원</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td > <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
-                        <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
                         <td>
                             <input type="button" value="품목전개" style="padding: 5px; margin-left: 30px;"></input>
@@ -119,6 +119,18 @@
                 </table>
             </div>
         </container2>
+        <script>
+      function openWindowPop(url, name){
+          var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+          window.open(url, name, options);
+      }
       
+      function search1(){
+    	  
+    	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');
+
+    	  
+      }
+      </script>
 </body>
 </html>
