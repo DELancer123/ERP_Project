@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Component("IupVO")
 public class IupVO {
-	private String No; //PK걸기 위한 넘버코드(출력하진않음)
+	private String No; //PK걸기 위한 넘버코드
 	private String Item_Code; //품번
 	private String Item_Name; //품명
 	private String Standard; //규격
 	private String Inventory_Unit; //단위
 	private String Kind; // 탭종류(구매단가,판매단가)
 	private int Purchase_Price; //구매 단가
-	private int Sales_price; //판매 단가, 구매단가 입력시 Null
+	private int Sales_Price; //판매 단가, 구매단가 입력시 Null
 	private List<IupVO> ListVO;
 	
 	@Override
@@ -83,12 +83,12 @@ public class IupVO {
 		Purchase_Price = purchase_Price;
 	}
 
-	public int getSales_price() {
-		return Sales_price;
+	public int getSales_Price() {
+		return Sales_Price;
 	}
 
-	public void setSales_price(int sales_price) {
-		Sales_price = sales_price;
+	public void setSales_Price(int sales_price) {
+		Sales_Price = sales_price;
 	}
 
 	public List<IupVO> getListVO() {

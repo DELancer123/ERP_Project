@@ -14,4 +14,5 @@ public interface IupViewDAO {
 	public int addIup(IupVO iupVO) throws DataAccessException;
 	public void delIup(String[] noary) throws DataAccessException;
 	public int updateIup(IupVO iupVO) throws DataAccessException;
+	public int selNo() throws DataAccessException;
 }

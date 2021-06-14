@@ -66,4 +66,9 @@ public class IupViewServiceImpl implements IupViewService{
 	public int updateIup(IupVO iupVO) throws DataAccessException{
 		return iupDAO.updateIup(iupVO);
 	}
+	
+	@Override
+	public int inputNo() throws DataAccessException{
+		return iupDAO.selNo();
+	}
 }

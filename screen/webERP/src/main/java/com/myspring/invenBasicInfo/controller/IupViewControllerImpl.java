@@ -39,8 +39,8 @@ public class IupViewControllerImpl implements IupViewController{
 		String viewName = getViewName(request);
 		String Item_Code = (String)request.getParameter("Item_Code");
 		String submit = (String)request.getParameter("submit");
-//		String parentNumber  = (String)request.getParameter("parentNumber"); //부모코드값 받아올때
-		System.out.println("Item_Code" +Item_Code);
+//		String parentCode  = (String)request.getParameter("parentCode"); //부모코드값 받아올때
+		int sum = 0;
 		if(Item_Code == null || Item_Code.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -56,12 +56,16 @@ public class IupViewControllerImpl implements IupViewController{
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupView",iupView);
 //			mav.addObject("iupInsert",iupInsert); //부모코드값 받아 올때
+			int inputNo = viewService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo);
+			request.setAttribute("inputNo", inNo);
 		}
 		return mav;
 	}
 	
 	@RequestMapping(value="/member/iupcodehelper1.do",method=RequestMethod.GET)
-	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView iupcodeHelper1(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView();
 		ModelAndView mav = new ModelAndView(viewName);
@@ -70,13 +74,10 @@ public class IupViewControllerImpl implements IupViewController{
 	}
 	
 	@RequestMapping(value="/member/iupcodehelper2.do",method=RequestMethod.GET)
-	public ModelAndView IupCodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView iupCodeHelper2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = getViewName(request);
+		String itemNumber = (String) request.getParameter("Item_Code");
 		List itemView = viewService.itemView();
-//		int inputNo = viewService.inputNo(); // 칼럼 앞 number count
-//		String inNo = Integer.toString(inputNo+1); // 칼럼 앞 number count
-//		System.out.println(inNO); // 칼럼 앞 number count
-//		request.setAttribute("inputNo", inNo); //칼럼 앞 number count
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView",itemView);
 		return mav;
