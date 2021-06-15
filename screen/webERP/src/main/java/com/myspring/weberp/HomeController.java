@@ -59,6 +59,10 @@ public class HomeController {
 	public String regdepartment(Locale locale, Model model) {
 		return "/member/regdepartment";
 	}
+	@RequestMapping(value = "/member/inquiryemployees", method = RequestMethod.GET)
+	public String inquiryemployees(Locale locale, Model model) {
+		return "/member/inquiryemployees";
+	}
 	@RequestMapping(value = "/member/regbasicacc", method = RequestMethod.GET)
 	public String regbasicacc(Locale locale, Model model) {
 		return "/member/regbasicacc";

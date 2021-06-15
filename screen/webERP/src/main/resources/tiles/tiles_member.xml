@@ -126,6 +126,12 @@
 	  <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
    
+   <definition name="/member/inquiryemployees" extends="baseLayout">
+      <put-attribute name="title" value="사원조회" />
+      <put-attribute name="body" value="/WEB-INF/views/SystemAdmin/inquiryemployees/body.jsp" />
+	  <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
+   </definition>
+   
    <definition name="/member/regbasicacc" extends="baseLayout">
       <put-attribute name="title" value="일반거래처등록" />
       <put-attribute name="body" value="/WEB-INF/views/basic_info_manage/reg_gen_account/body.jsp" />
