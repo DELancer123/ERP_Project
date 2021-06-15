@@ -171,7 +171,7 @@
                    	<c:forEach var="info" items="${infoList}" >   
                      <tr>
                      	<td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                     	<td>${infoList.itemNumber }</td>
+                     	<td>${infoList.itemCode }</td>
                      	<td>${infoList.itemName }</td>
                      </tr>
                      <tr>
@@ -230,9 +230,9 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                        	<c:forEach var="info" items="${infoList}" >   
+                     <c:forEach var="info" items="${infoList}" >   
                      <tr>
-                     	<td>${info.parentItemCode }</td>
+                     	<td>${info.itemCode }</td>
                      	<td>${info.itemName }</td>
                      	<td>${info.standard }</td>
                      	<td>${info.inventoryUnit }</td>
