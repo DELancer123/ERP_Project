@@ -126,6 +126,7 @@
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].inspection value="${info.inspection}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" /></td>
+                     	<td><input type="hidden" name="ListVO[${status.index }].productionPlanCode" value="${info.productionPlanCode }" /></td>
                      </tr>
                      </c:forEach>
                      <tr>
@@ -141,6 +142,7 @@
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
+                        <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
                      </tr>
                     </tbody>
                 </table>

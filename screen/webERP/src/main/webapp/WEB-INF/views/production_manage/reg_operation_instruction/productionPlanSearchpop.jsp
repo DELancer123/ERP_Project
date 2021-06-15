@@ -76,6 +76,7 @@
                     <td>계획잔량</td>
                     <td>작업예정일</td>
                     <td>비고</td>
+                    <td>생산계획번호</td>
                 </tr>
      <c:forEach var="productionPlan" items="${productionPlanView}" >     
 		<tr align="center" id="insertData">
@@ -87,6 +88,7 @@
       		<td>${productionPlan.quantity }</td>
       		<td>${productionPlan.schedule }</td>
       		<td>${productionPlan.note }</td>
+      		<td>${productionPlan.productionPlanCode }</td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -152,6 +154,7 @@
    			var quantity = td.eq(5).text();
    			var workDate = td.eq(6).text();
    			var note = td.eq(7).text();
+   			var productionPlanCode = td.eq(8).text();
    			
    			tdArr.push(itemCode);
    			tdArr.push(itemName);
@@ -160,9 +163,10 @@
    			tdArr.push(quantity);
    			tdArr.push(workDate);
    			tdArr.push(note);
+   			tdArr.push(productionPlanCode);
    			
    			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6];
+   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7];
     		window.close();
 
    		})

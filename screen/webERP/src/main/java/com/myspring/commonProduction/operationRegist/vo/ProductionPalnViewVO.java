@@ -3,7 +3,7 @@ package com.myspring.commonProduction.operationRegist.vo;
 import java.sql.Date;
 
 public class ProductionPalnViewVO {
-	int no;
+	String productionPlanCode;
 	String itemCode;
 	String itemName;
 	String standard;
@@ -17,12 +17,12 @@ public class ProductionPalnViewVO {
 	public ProductionPalnViewVO() {
 	}
 
-	public int getno() {
-		return no;
+	public String getProductionPlanCode() {
+		return productionPlanCode;
 	}
 
-	public void setno(int no) {
-		no = no;
+	public void setProductionPlanCode(String productionPlanCode) {
+		this.productionPlanCode = productionPlanCode;
 	}
 
 	public String getItemCode() {

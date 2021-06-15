@@ -20,6 +20,7 @@ public class OperationRegistVO {
 	private String status;
 	private String inspection;
 	private String note;
+	private String productionPlanCode;
 	private List<OperationRegistVO> ListVO;
 	
 	@Override
@@ -117,6 +118,14 @@ public class OperationRegistVO {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public String getProductionPlanCode() {
+		return productionPlanCode;
+	}
+
+	public void setProductionPlanCode(String productionPlanCode) {
+		this.productionPlanCode = productionPlanCode;
 	}
 
 	public List<OperationRegistVO> getListVO() {

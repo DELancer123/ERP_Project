@@ -50,7 +50,7 @@
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		 insert into CPM_PM_OPE_PER_REG
-		 values(#{workOrderNumber}, '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, null, null, '계획', '비검사', #{note}, 'JOIN00000009')
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획', '비검사', #{note}, #{productionPlanCode})
 		]]>  
 	</insert>	
 	<!-- 생산 팝업 파트 -->	
@@ -148,9 +148,6 @@
 		where  no=#{no}
 		]]>  
 	</update>
-	
-	
-	
 	
 
 	<!-- mainPaln 파트 -->
