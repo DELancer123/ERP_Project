@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.systemmag.vo.DepartmentVO;
+import com.myspring.systemmag.vo.EmployeeVO;
 import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
@@ -77,4 +79,20 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: ");
 		return itemgList;
 	}
+	//사원조회
+	@Override
+	public List allviewemployee() throws DataAccessException {
+		List<EmployeeVO> employeeList = null;
+		employeeList = sqlSession.selectList("mappers.erp.selectAllemployeeList");
+		System.out.println("employeeList123: ");
+		return employeeList;
+	}
+	//부서등록
+		@Override
+		public List allviewdepartment() throws DataAccessException {
+			List<DepartmentVO> departmentList = null;
+			departmentList = sqlSession.selectList("mappers.erp.selectAlldepartmentList");
+			System.out.println("departmentList123: ");
+			return departmentList;
+		}
 }

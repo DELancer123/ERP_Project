@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,29 +109,31 @@
                     <td>Åð»çÀÏ</td>
                     <td>ºñ»ó¿¬¶ô¸Á</td>
                 </tr>
+                <c:forEach var="employee" items="${employeeView}" > 
                 <tr>
                     <td>
-                        <input type=text name="Employee_Code" style="width:100px;">
+                        <input type=text name="Employee_Code" style="width:100px;" value='${employee.employee_Code }'>
                     </td>
                     <td>
-                        <input type=text name="Employee_Name">
+                        <input type=text name="Employee_Name" value='${employee.employee_Name }'>
                     </td>
                    	<td>
-                   		<input type=text name="Department_Code" style="width:100px;">
+                   		<input type=text name="Department_Code" style="width:100px;" value='${employee.department_Code }'>
                     </td>
                     <td>
-                    	<input type=text name="Department_Name">
+                    	<input type=text name="Department_Name" value='${employee.department_Name }'>
                     </td>
                     <td>
-                    	<input type=date name="JoinDate">
+                    	<input type=date name="JoinDate" value='${employee.joinDate }'>
                     </td>
                     <td>
-                    	<input type=date name="ResignationDate">
+                    	<input type=date name="ResignationDate" value='${employee.resignationDate }'>
                     </td>
                     <td>
-                    	<input type=text name="Emergency_Contact_Network">
+                    	<input type=text name="Emergency_Contact_Network" value='${employee.emergency_Contact_Network }'>
                     </td>
                 </tr>
+                </c:forEach>
             </table>
         </container2>
 </body>

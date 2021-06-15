@@ -6,7 +6,6 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,19 +96,6 @@
                 
                 <tr>
                     <td align="center">검색조건</td>
-                    <td>
-                        <select name="searchCondition">
-                        <option value="0">0. 시작문자열</option>
-                        <option value="1">1. 포함문자열</option>
-                    </td>
-                    <td align="center">품목군코드</td>
-                    <td>
-                        <input type=text name="rangeCode" >
-                    </td>
-                    <td align="center">품목군명</td>
-                    <td>
-                        <input type=text name="rangeName">
-                    </td>
                 </tr>
             </table>
         </container1>

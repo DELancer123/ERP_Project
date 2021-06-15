@@ -73,4 +73,20 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom= :");
 		return itemgList;
 	}
+	//사원조회
+	@Override
+	public List employeeView() throws DataAccessException {
+		List employeeList = null;
+		employeeList = systemmagDAO.allviewemployee();
+		System.out.println("sercom= :");
+		return employeeList;
+	}
+	//부서등록
+		@Override
+		public List departmentView() throws DataAccessException {
+			List departmentList = null;
+			departmentList = systemmagDAO.allviewdepartment();
+			System.out.println("sercom= :");
+			return departmentList;
+		}
 }

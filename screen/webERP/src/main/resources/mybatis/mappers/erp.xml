@@ -264,8 +264,6 @@
 		<![CDATA[select * from SM_BIM_Ite_Reg where item_Code = #{item_Code}]]>	
 	</select>
 	<!-- 품목군등록 -->	
-	
-	<!-- 품목등록 -->
 		<resultMap id="itemgResult" type="ItemgVO">
 		<result property="item_Group_Code" column="Item_Group_Code"	/>
 		<result property="item_Group_Name" column="Item_Group_Code"	/>
@@ -274,6 +272,34 @@
 		</resultMap>
 	<select id="selectAllitemgList" resultMap="itemgResult">
 		<![CDATA[select * from SM_BIM_Ite_gro_Reg]]>	
+	</select>
+	
+	<!-- 사원조회 -->
+	<resultMap id="employeeResult" type="EmployeeVO">
+		<result property="employee_Code" column="Employee_Code"	/>
+		<result property="employee_Name" column="Employee_Name"	/>
+		<result property="department_Code" column="Department_Code"	/>
+		<result property="department_Name" column="Department_Name"	/>
+		<result property="joinDate" column="JoinDate"	/>
+		<result property="resignationDate" column="ResignationDate"	/>
+		<result property="emergency_Contact_Network" column="Emergency_Contact_Network"	/>
+		</resultMap>
+	<select id="selectAllemployeeList" resultMap="employeeResult">
+		<![CDATA[select * from SM_CRI_Emp_Reg]]>	
+	</select>
+	
+	<!-- 부서등록 -->
+	<resultMap id="departmentResult" type="DepartmentVO">
+		<result property="department_Code" column="Department_Code"	/>
+		<result property="department_Name" column="Department_Name"	/>
+		<result property="workplace_Code" column="Workplace_Code"	/>
+		<result property="workplace_Name" column="Workplace_Name"	/>
+		<result property="sector_Code" column="Sector_Code"	/>
+		<result property="sector_Name" column="Sector_Name"	/>
+		<result property="usedate" column="Usedate"	/>
+		</resultMap>
+	<select id="selectAlldepartmentList" resultMap="departmentResult">
+		<![CDATA[select * from SM_CRI_Dep_Reg]]>	
 	</select>
 	
 	<!--기초정보관리파트-->

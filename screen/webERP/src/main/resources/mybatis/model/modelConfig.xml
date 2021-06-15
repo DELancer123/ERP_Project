@@ -31,5 +31,9 @@
 		<typeAlias type="com.myspring.systemmag.vo.itemVO" alias="itemVO" />
 		<!-- 품목군등록 -->
 		<typeAlias type="com.myspring.systemmag.vo.ItemgVO" alias="ItemgVO" />
+		<!-- 사원조회 -->
+		<typeAlias type="com.myspring.systemmag.vo.EmployeeVO" alias="EmployeeVO" />
+		<!-- 부서등록 -->
+		<typeAlias type="com.myspring.systemmag.vo.DepartmentVO" alias="DepartmentVO" />
 	</typeAliases>
 </configuration>	 

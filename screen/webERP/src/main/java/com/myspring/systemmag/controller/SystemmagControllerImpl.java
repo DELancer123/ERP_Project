@@ -128,7 +128,28 @@ public class SystemmagControllerImpl implements SystemmagController{
 				mav.addObject("itemgView", itemgView);
 				return mav;
 		}
-
+		//사원조회
+		@Override
+		@RequestMapping(value="/member/inquiryemployees.do" ,method = RequestMethod.GET)
+		public ModelAndView viewemployee(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = null;
+			String viewName = getViewName(request);
+				List employeeView = systemmagService.employeeView();
+				mav = new ModelAndView(viewName);
+				mav.addObject("employeeView", employeeView);
+				return mav;
+		}
+		//부서등록
+		@Override
+		@RequestMapping(value="/member/regdepartment.do" ,method = RequestMethod.GET)
+		public ModelAndView viewdepartment(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = null;
+			String viewName = getViewName(request);
+				List departmentView = systemmagService.departmentView();
+				mav = new ModelAndView(viewName);
+				mav.addObject("departmentView", departmentView);
+				return mav;
+		}
 		
 	//겟뷰네임
 	

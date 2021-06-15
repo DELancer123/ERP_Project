@@ -19,4 +19,8 @@ public interface SystemmagDAO {
 	public List allviewItem(String item_code) throws DataAccessException;
 	//품목군등록
 	public List allviewItemg() throws DataAccessException;
+	//사원조회
+	public List allviewemployee() throws DataAccessException;
+	//부서등록
+	public List allviewdepartment() throws DataAccessException;
 }

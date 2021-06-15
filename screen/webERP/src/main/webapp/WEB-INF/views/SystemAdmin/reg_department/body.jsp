@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,30 +127,32 @@
                     <td align="center">부문명</td>
                     <td align="center">사용기간 시작</td>
                 </thead>
+                <c:forEach var="department" items="${departmentView}" >
                 <tbody>
                     <td align="center">
-                        <input type=text name="divCode" style="width: 100px;">
+                        <input type=text name="divCode" style="width: 100px;" value='${department.department_Code }'>
                     </td>
                     <td align="center">
-                        <input type=text name="divName">
+                        <input type=text name="divName" value='${department.department_Name }'>
                     </td>
                     <td align="center">
-                        <input type=text name="workSpaceCode" style="width: 100px;">
+                        <input type=text name="workSpaceCode" style="width: 100px;" value='${department.workplace_Code }'>
                     </td>
                     <td align="center">
-                        <input type=text name="workSpaceName">
+                        <input type=text name="workSpaceName" value='${department.workplace_Name }'>
                     </td>
                     <td align="center">
-                        <input type=text name="sectorCode" style="width: 100px;">
+                        <input type=text name="sectorCode" style="width: 100px;" value='${department.sector_Code }'>
                     </td>
                     <td align="center">
-                        <input type=text name="sectorName">
+                        <input type=text name="sectorName" value='${department.sector_Name }'>
                     </td>
                     <td align="center">
-                        <input type="date">
+                        <input type="date" value='${department.usedate }'>
                     </td>
                     </tbody>
                 </tr>
+                </c:forEach>
             </table>
         </container2>
 </body>

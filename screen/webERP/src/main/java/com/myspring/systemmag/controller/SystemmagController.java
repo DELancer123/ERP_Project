@@ -26,5 +26,8 @@ public interface SystemmagController {
 	public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//품목군등록
 	public ModelAndView viewItemg(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
+	//사원조회
+	public ModelAndView viewemployee(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//부서등록
+	public ModelAndView viewdepartment(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

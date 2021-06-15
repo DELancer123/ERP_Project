@@ -19,4 +19,8 @@ public interface SystemmagService {
 	public List comitem(String item_code) throws DataAccessException;
 	//품목군등록
 	public List itemgView() throws DataAccessException;
+	//사원조회
+	public List employeeView() throws DataAccessException;
+	//부서등록
+	public List departmentView() throws DataAccessException;
 }
