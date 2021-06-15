@@ -141,7 +141,7 @@
    <c:forEach var="out" items="${outsourcingView}" varStatus="status" >     
    <tr align="center">
    	  <td><input type="checkbox" name="content" value="${out.workOrderNumber}"/></td>
-   	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${out.workOrderNumber}' readonly style="width:100%"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${out.workOrderNumber}' readonly/></td>
    	  <td><input type="date" name="ListVO[${status.index}].instructionDate" value = '${out.instructionDate}'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].dueDate" value = '${out.dueDate}'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].itemCode" value = '${out.itemCode}' ondblclick="search2()"/></td>
@@ -160,7 +160,7 @@
 
     <tr align="center">
      <td><input type="checkbox" value = "check1" name="content"/></td>
-    	<td style="width:13px;"><input type="text" name="ListVO[${fn:length(outsourcingView) }].workOrderNumber"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].workOrderNumber" readonly/></td>
     	<td><input type="date" id = "instructionDate" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.workDate }'/></td>
     	<td><input type="date" id = "dueDate" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.workDate }'/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
@@ -279,7 +279,7 @@
       			  ary.push(no);
       		  }
       		  
-      			  window.location.href = "${contextPath}/member/removeOutsourcing.do?no="+ary;
+      			  window.location.href = "${contextPath}/member/removeOutsourcing.do?workOrderNumber="+ary;
       	  }
         }
       	

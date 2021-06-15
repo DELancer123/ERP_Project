@@ -35,7 +35,7 @@ public class RegOutsourcingDAOImpl implements RegOutsourcingDAO {
 	@Override
 	public void deleteOutsourcing(String[] noary) throws DataAccessException{
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteOutsourcing", Integer.parseInt(obj));		
+			sqlSession.delete("mappers.erp.deleteOutsourcing", obj);		
 			System.out.println("DAO.deleteOutsourcing");
 		}
 	}
