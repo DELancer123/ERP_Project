@@ -263,8 +263,19 @@
 	<select id="selectAllitemList" resultMap="itemResult" parameterType="String">
 		<![CDATA[select * from SM_BIM_Ite_Reg where item_Code = #{item_Code}]]>	
 	</select>
-		
-		
+	<!-- 품목군등록 -->	
+	
+	<!-- 품목등록 -->
+		<resultMap id="itemgResult" type="ItemgVO">
+		<result property="item_Group_Code" column="Item_Group_Code"	/>
+		<result property="item_Group_Name" column="Item_Group_Code"	/>
+		<result property="use_Status" column="Use_Status"	/>
+		<result property="explanation" column="Explanation"	/>
+		</resultMap>
+	<select id="selectAllitemgList" resultMap="itemgResult">
+		<![CDATA[select * from SM_BIM_Ite_gro_Reg]]>	
+	</select>
+	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">
 		<result property="General_Customer_Code" column="General_Customer_Code" />

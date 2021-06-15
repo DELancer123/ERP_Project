@@ -117,7 +117,18 @@ public class SystemmagControllerImpl implements SystemmagController{
 			
 			return mav;
 		}
-		
+		//Ç°¸ñ±ºµî·Ï
+		@Override
+		@RequestMapping(value="/member/regitemgroup.do" ,method = RequestMethod.GET)
+		public ModelAndView viewItemg(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = null;
+			String viewName = getViewName(request);
+				List itemgView = systemmagService.itemgView();
+				mav = new ModelAndView(viewName);
+				mav.addObject("itemgView", itemgView);
+				return mav;
+		}
+
 		
 	//°Ùºä³×ÀÓ
 	

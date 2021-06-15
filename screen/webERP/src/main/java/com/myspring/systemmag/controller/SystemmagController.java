@@ -24,5 +24,7 @@ public interface SystemmagController {
 	public ModelAndView addDepartment(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//품목등록
 	public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//품목군등록
+	public ModelAndView viewItemg(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

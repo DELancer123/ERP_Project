@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +104,7 @@
                     </td>
                     <td align="center">품목군코드</td>
                     <td>
-                        <input type=text name="rangeCode">
+                        <input type=text name="rangeCode" >
                     </td>
                     <td align="center">품목군명</td>
                     <td>
@@ -117,25 +124,27 @@
                     <td>사용여부</td>
                     <td>품목군설명</td>
                 </tr>
+                <c:forEach var="itemg" items="${itemgView}" >  
                 <tr>
                     <td>
                         <input type="checkbox" name="content" onclick="selectAll(this)"/>
                     </td>
                     <td>
-                        <input type=text name="rangeCode">
+                        <input type=text name="rangeCode" value='${itemg.item_Group_Code }' >
                     </td>
                     <td>
-                        <input type=text name="rangeName">
+                        <input type=text name="rangeName" value='${itemg.item_Group_Name }' >
                     </td>
                     <td>
-                        <select name="usable">
+                        <select name="usable" >
                         <option value="0">사용</option>
                         <option value="1">미사용</option>
                     </td>
                     <td>
-                        <input type=text name="explain">
+                        <input type=text name="explain" value='${itemg.explanation }' >
                     </td>
                 </tr>
+                </c:forEach>
             </table>
         </container2>
 </body>

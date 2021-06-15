@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
 import com.myspring.systemmag.vo.itemVO;
@@ -67,5 +68,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		itemList = sqlSession.selectList("mappers.erp.selectAllitemList",item_code);
 		System.out.println("itemList123: "+item_code);
 		return itemList;
+	}
+	//품목군등록
+	@Override
+	public List allviewItemg() throws DataAccessException {
+		List<ItemgVO> itemgList = null;
+		itemgList = sqlSession.selectList("mappers.erp.selectAllitemgList");
+		System.out.println("itemList123: ");
+		return itemgList;
 	}
 }

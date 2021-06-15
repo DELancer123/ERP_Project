@@ -16,5 +16,7 @@ public interface SystemmagService {
 	public List worcom(String wor_code) throws DataAccessException;
 	//품목등록
 	public List itemView() throws DataAccessException;
-	public List comitem(String wor_code) throws DataAccessException;
+	public List comitem(String item_code) throws DataAccessException;
+	//품목군등록
+	public List itemgView() throws DataAccessException;
 }
