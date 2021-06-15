@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
+import com.myspring.systemmag.vo.itemVO;
 
 @Repository("SystemmagDAO")
 public class SystemmagDAOImpl implements SystemmagDAO {
@@ -51,5 +52,20 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		worList = sqlSession.selectList("mappers.erp.selectAllworList",wor_code);
 		System.out.println("worList12: "+wor_code);
 		return worList;
+	}
+	//품목등록
+	@Override
+	public List viewItem() throws DataAccessException {
+		List<itemVO> itemList = null;
+		itemList = sqlSession.selectList("mappers.erp.selectitemList");
+		System.out.println("worList: "+itemList);
+		return itemList;
+	}
+	@Override
+	public List allviewItem(String item_code) throws DataAccessException {
+		List<itemVO> itemList = null;
+		itemList = sqlSession.selectList("mappers.erp.selectAllitemList",item_code);
+		System.out.println("itemList123: "+item_code);
+		return itemList;
 	}
 }

@@ -1,5 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
+<c:forEach var="item1" items="${comitem}" >     
+ 	<c:set var="item_Code" value="${item1.item_Code  }"/>
+ 	<c:set var="item_Name" value="${item1.item_Name }"/>
+ 	<c:set var="standard" value="${item1.standard }"/>
+ 	<c:set var="inventory_Unit" value="${item1.inventory_Unit }"/>
+ 	<c:set var="whether_LOT" value="${item1.whether_LOT }"/>
+ 	<c:set var="sET_Item" value="${item1.sET_Item }"/>
+ 	<c:set var="inspection_Status" value="${item1.inspection_Status }"/>
+ 	<c:set var="use_Status" value="${item1.use_Status }"/>
+ 	<c:set var="lOT_Quantity" value="${item1.lOT_Quantity }"/>
+ 	<c:set var="drawing_Number" value="${item1.drawing_Number }"/>
+ 	<c:set var="hs_Code" value="${item1.hs_Code }"/>
+ 	<c:set var="width" value="${item1.width }"/>
+ 	<c:set var="length" value="${item1.length }"/>
+ 	<c:set var="height" value="${item1.height }"/>
+ 	<c:set var="cost" value="${item1.cost }"/>
+ 	<c:set var="item_Group_Code " value="${item1.item_Group_Code  }"/>
+ 	<c:set var="division" value="${item1.division }"/> 	
+ 	<c:set var="notes" value="${item1.notes }"/>
+ 	<c:set var="daily_production" value="${item1.daily_production }"/>
+
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,8 +116,8 @@
             width: 100%; 
         }
         #bottom1 {
-            position: absolute;
-            bottom: 0px;
+			position:fixed;
+			bottom:0px;
         }
         
         #reqInput {
@@ -134,23 +162,25 @@
         <container2 id= contents2>
             <table id="table2">
                 <thead>
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                    <td><input type="checkbox" name="content" onclick="selectAll(this)" id="focus1" /></td>
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
                 </thead>
+                <c:forEach var="item" items="${itemView}" > 
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${item.item_Code }' onfocus="searchView(this.value)">
                     </td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${item.item_Name }'>
                     </td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${item.standard }'>
                     </td>
                 </tbody>
+                </c:forEach>
             </table>
             <div id=bottom1>
                 <table>
@@ -164,25 +194,25 @@
                 <tr>
                     <td align="center">품번</td>
                     <td>
-                        <input type="text" disabled>
+                        <input type="text" disabled value='${item_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">품명</td>
                     <td>
-                        <input type="text" disabled>
+                        <input type="text" disabled value='${item_Name }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">규격</td>
                     <td>
-                        <input type="text" disabled>
+                        <input type="text" disabled value='${standard }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">재고단위</td>
                     <td>
-                        <input type="text" id="reqInput">
+                        <input type="text" id="reqInput" value='${inventory_Unit }'>
                     </td>
                 </tr>
                 <!-- <tr>
@@ -232,49 +262,61 @@
                 <tr>
                     <td align="center">LOT수량</td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${lOT_Quantity }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">도면번호</td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${drawing_Number }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">HS CODE</td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${hs_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">폭</td>
                     <td>
-                        <input type="text">
+                        <input type="text"  value='${width }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">길이</td>
                     <td>
-                        <input type="text">
+                        <input type="text"  value='${length } '>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">높이</td>
                     <td>
-                        <input type="text">
+                        <input type="text"  value='${height }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">원가</td>
                     <td>
-                        <input type="text">
+                        <input type="text"  value='${cost }'>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">반/완제품</td>
+                    <td>
+                        <input type="text" value='${division }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">비고</td>
                     <td>
-                        <input type="text">
+                        <input type="text"  value='${notes }'>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">일생산량</td>
+                    <td>
+                        <input type="text" disabled value='${daily_production }'>
                     </td>
                 </tr>
             </table>
@@ -300,6 +342,10 @@
             }
             search_box3.onblur = function(){
                 document.getElementById("search3").value = ' 규격 검색';
+            }
+            function searchView(name) {
+            	console.log('확인');
+             	window.location.href = "${contextPath}/member/regitem.do?submit=1&&item_code=" + name; 
             }
         </script>
         

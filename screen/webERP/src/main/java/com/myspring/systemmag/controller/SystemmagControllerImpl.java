@@ -91,8 +91,36 @@ public class SystemmagControllerImpl implements SystemmagController{
 		}
 		
 		return mav;
-	
 	}
+		//Ç°¸ñµî·Ï
+		@Override
+		@RequestMapping(value="/member/regitem.do" ,method = RequestMethod.GET)
+		public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			ModelAndView mav = null;
+			String viewName = getViewName(request);
+			String submit = (String) request.getParameter("submit");
+			String code = (String) request.getParameter("item_code");
+			if(code == null || submit == null) {
+				List itemView = systemmagService.itemView();
+				mav = new ModelAndView(viewName);
+				mav.addObject("itemView", itemView);
+				return mav;
+			}
+			if(submit.equals("1")) {
+				List itemView = systemmagService.itemView();
+				List comitem = systemmagService.comitem(code);
+				mav = new ModelAndView(viewName);
+				mav.addObject("itemView", itemView);
+				mav.addObject("comitem",comitem);
+				
+			}
+			
+			return mav;
+		}
+		
+		
+	//°Ùºä³×ÀÓ
+	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

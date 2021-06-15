@@ -50,4 +50,18 @@ public class SystemmagServiceImpl implements SystemmagService {
 		List worList = systemmagDAO.allviewWor(wor_code);
 		return worList;
 	}
+	//품목등록
+	@Override
+	public List itemView() throws DataAccessException {
+		List itemList = null;
+		itemList = systemmagDAO.viewItem();
+		System.out.println("sercom= :"+itemList);
+		return itemList;
+	}
+
+	@Override
+	public List comitem(String item_code) throws DataAccessException {
+		List itemList = systemmagDAO.allviewItem(item_code);
+		return itemList;
+	}
 }

@@ -7,10 +7,14 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagDAO {
+	//회사등록
 	public int insertNewCompany (SystemmagVO systemmagVO) throws DataAccessException;
-
 	public List viewCom() throws DataAccessException;
 	public List allviewCom(String com_code) throws DataAccessException;
+	//사업장등록
 	public List viewWor() throws DataAccessException;
-	public List allviewWor(String com_code) throws DataAccessException;
+	public List allviewWor(String wor_code) throws DataAccessException;
+	//품목등록
+	public List viewItem() throws DataAccessException;
+	public List allviewItem(String item_code) throws DataAccessException;
 }

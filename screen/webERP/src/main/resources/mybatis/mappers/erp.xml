@@ -226,7 +226,7 @@
 		<result property="workplace_Number" column="Workplace_Number"	/>
 		<result property="workplace_Tel" column="Workplace_Tel"	/>
 		<result property="worupstate" column="Upstate"	/>
-		<result property="worindustry" column="industry"	/>
+		<result property="worindustry" column="insdustry"	/>
 		<result property="main_Store_Status" column="Main_Store_Status"	/>
 	</resultMap>
 	<select id="selectworList" resultMap="worResult">
@@ -235,7 +235,36 @@
 	<select id="selectAllworList" resultMap="worResult" parameterType="String">
 		<![CDATA[select * from SM_CRI_Wor_Reg where workplace_Code = #{workplace_Code}]]>	
 	</select>
-	
+	<!-- 품목등록 -->
+		<resultMap id="itemResult" type="itemVO">
+		<result property="item_Code" column="Item_Code"	/>
+		<result property="item_Name" column="Item_Name"	/>
+		<result property="standard" column="Standard"	/>
+		<result property="inventory_Unit" column="Inventory_Unit"	/>
+		<result property="whether_LOT" column="Whether_LOT"	/>
+		<result property="sET_Item" column="SET_Item"	/>
+		<result property="inspection_Status" column="Inspection_Status"	/>
+		<result property="use_Status" column="Use_Status"	/>
+		<result property="lOT_Quantity" column="LOT_Quantity"	/>
+		<result property="drawing_Number" column="Drawing_Number"	/>
+		<result property="hs_Code" column="Hs_Code"	/>
+		<result property="width" column="Width"	/>
+		<result property="length" column="Length"	/>
+		<result property="height" column="Height"	/>
+		<result property="cost" column="Cost"	/>
+		<result property="item_Group_Code" column="Item_Group_Code"	/>
+		<result property="division" column="Division"	/>
+		<result property="notes" column="Notes"	/>
+		<result property="daily_production" column="Daily_production"	/>
+		</resultMap>
+		<select id="selectitemList" resultMap="itemResult">
+		<![CDATA[select item_Code,item_Name,standard from SM_BIM_Ite_Reg]]>	
+	</select>
+	<select id="selectAllitemList" resultMap="itemResult" parameterType="String">
+		<![CDATA[select * from SM_BIM_Ite_Reg where item_Code = #{item_Code}]]>	
+	</select>
+		
+		
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">
 		<result property="General_Customer_Code" column="General_Customer_Code" />
