@@ -111,16 +111,17 @@ public class IupViewControllerImpl implements IupViewController {
 		return mav;
 	}
 	
-	@Override
-	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
-	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = iupViewService.updateIup(iupVO);
-		System.out.println("result "+result);
-		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
-		return mav;
-	}
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	 * public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception{
+	 * request.setCharacterEncoding("utf-8"); int result = 0; result =
+	 * iupViewService.updateIup(iupVO); System.out.println("result "+result);
+	 * ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
+	 * return mav; }
+	 */
 		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();

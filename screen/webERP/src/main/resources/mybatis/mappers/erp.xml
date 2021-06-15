@@ -227,7 +227,7 @@
 	<select id="iupSelectAllMemberList" resultMap="iupView">
 		<![CDATA[select * from PM_SM_Ite_Pri]]>
 	</select>
-	<select id="iupSelectNo" resultType="iupView">
+	<select id="iupSelectNo" resultMap="iupView">
 		<![CDATA[select MAX(no) from PM_SM_Ite_Pri]]
 	</select>
 	<select id="iupSearchItem" resultMap="iupView"

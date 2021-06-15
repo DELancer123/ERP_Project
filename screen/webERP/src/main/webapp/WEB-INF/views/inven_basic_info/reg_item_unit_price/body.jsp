@@ -117,7 +117,7 @@
 				</c:forEach>
                 	<tr id="insertIup" align="center">
                 		<td></td>
-                    	<td><input type="text" id="no" name="ListVO[${fn.length(iupView }].no" value='${inputNo }' readonly style="width:100%"></td>
+                    	<td><input type="text" id="no" name="ListVO[${fn.length(iupView) }].no" value='${inputNo }' readonly style="width:100%"></td>
                     	<td><input type="text" id="itemNumber" name="ListVO[${fn.length(iupView) }].itemNumber" value='${param.itemNumber }'/></td>
                     	<td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
