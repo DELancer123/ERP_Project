@@ -262,7 +262,7 @@
             <button id="delete" onclick="deleteData()">삭제</button>
             <button id="view_button">조회</button>
             <button id="save" onClick="newRow();">저장</button>
-            <button id="update">수정</button>
+            <button id="update" onClick="updateRow()">수정</button>
         </nav>
         <div>
             <tiles:insertAttribute name="side"/>

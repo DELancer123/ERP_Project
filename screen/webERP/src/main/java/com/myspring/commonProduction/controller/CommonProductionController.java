@@ -18,5 +18,6 @@ public interface CommonProductionController {
 	public ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addOperationInstruction(OperationRegistVO ORVO, HttpServletRequest request,	HttpServletResponse response) throws Exception;
 	public ModelAndView delOperationInstruction(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updOperationInstruction(OperationRegistVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

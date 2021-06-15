@@ -77,6 +77,22 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	}
 	
 	@Override
+	public int updOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
+		int result = 0; 
+
+		int idx = ORVO.getListVO().size()-1;
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updateOperationInstruction",ORVO.getListVO().get(i));		
+		System.out.println("DAOresult:"+result);
+		//bomList.add(bomVO);
+		//}
+		}
+		return result;
+	}
+	
+	@Override
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
 			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);		

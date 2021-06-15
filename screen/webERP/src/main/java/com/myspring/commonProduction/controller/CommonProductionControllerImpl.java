@@ -38,6 +38,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		  return mav; 
 	  	}
   
+//	작업지시등록 기능 부
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)
   public ModelAndView listOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
@@ -105,7 +106,17 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		return mav;
 	}
   
-  @Override
+  	@Override
+  	@RequestMapping(value="/member/updateOperationInstruction.do" ,method = RequestMethod.GET)
+  	public ModelAndView updOperationInstruction(@ModelAttribute("info") OperationRegistVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	  		request.setCharacterEncoding("utf-8");
+	  		int result = 0;
+	  		result = productionService.updOperationInstruction(ORVO);
+	  		System.out.println("result "+result);
+	  		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+	  		return mav;
+  		}
+  	@Override
 	@RequestMapping(value="/member/delOperationInstruction.do" ,method = RequestMethod.GET)
 	public ModelAndView delOperationInstruction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("workOrderNumber");
@@ -115,6 +126,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		ModelAndView mav = new ModelAndView("redirect:/member/regoperins.do");
 		return mav;
 		}
+  
   
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
