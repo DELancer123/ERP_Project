@@ -137,7 +137,7 @@
                     <td>판매단가</td>
 				</thead>
 			<c:forEach var="iup" items="${iupView }" varStatus="status">
-				<tr>
+				<!-- <tr>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -146,9 +146,9 @@
 					<td></td>
 					<td></td>
 					<td></td>
-				</tr>
+				</tr> -->
 			
-                <%-- <tr id="updateIup" align="center">
+                <tr id="updateIup" align="center">
                     <td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
                     <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemCode }' ondblclick="search2()"/></td>
@@ -157,9 +157,9 @@
                     <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' /></td>
                     <td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
-                </tr> --%>
+                </tr>
 			</c:forEach>
-                <%-- <tr id="insertIup" align="center">
+                <tr id="insertIup" align="center">
                 	<td></td>
                     <td><input type="text" id="no" name="ListVO[${fn.length(iupView }].no" value='${inputNo }' readonly style="width:100%"></td>
                     <td><input type="text" id="itemCode" name="ListVO[${fn.length(iupView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
@@ -168,7 +168,7 @@
                     <td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }]" value='${param.inventoryUnit }' readonly/></td>
                     <td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
                     <td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
-                </tr> --%>
+                </tr>
             </table>
 		</div>
 	</container2>
