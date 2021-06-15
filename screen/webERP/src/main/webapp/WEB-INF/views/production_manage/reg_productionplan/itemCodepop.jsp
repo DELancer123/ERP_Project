@@ -54,20 +54,16 @@
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>검색1</td>
+                    <td>품목</td>
                     <td><input type="text" id="code" /></td>
                 </tr>
                 <tr>
-                    <td>검색2</td>
+                    <td>품명</td>
                     <td><input type="text" id="name"/></td>
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
                 <button id="submit" onclick="submitClick(this.form)">적용</button>
-                <input type="hidden" name="inputNo" value=""/>
-                 
-                <button>버튼3</button>
             </div>
         </div>
         <div id="view">
@@ -75,13 +71,11 @@
                 <tr align="center">
                     <td>품목코드</td>
                     <td>품명</td>
-                    <td>규격</td>
                 </tr>
-                <c:forEach var="bom" items="${itemView}" >     
+                <c:forEach var="item" items="${itemView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${bom.itemNumber }','${bom.itemName }')">${bom.itemNumber}</a></td>
-      <td><a href="#">${bom.itemName}</a></td>
-      <td><a href="#">${bom.standard}</a></td>
+      <td><a href="javascript:popFunction('${item.itemCode }','${item.itemName }')">${item.itemCode}</a></td>
+      <td><a href="#">${item.itemName}</a></td>
     </tr>
     </c:forEach> 
             </table>
@@ -90,7 +84,7 @@
     </div>
     
     <script>
-   		var submit_button = document.getElementById("submit");
+    	var submit_button = document.getElementById("submit");
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
     		
@@ -99,9 +93,10 @@
     			text_name.value = name;
     			
     	}
+    	
     	function submitClick(form){
     		opener.setChildValue(text_code.value)
-			window.close(); 
+			window.close();
     	}
     </script>
     </form>

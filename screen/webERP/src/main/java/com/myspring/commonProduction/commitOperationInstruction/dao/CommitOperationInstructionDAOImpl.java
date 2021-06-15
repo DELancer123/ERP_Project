@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
+import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 
 @Repository("CommitOperationInstructionDAO")
 public class CommitOperationInstructionDAOImpl implements CommitOperationInstructionDAO{
@@ -20,5 +21,12 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 		List<CommitOperationInstructionVO> infoList = null;
 		infoList = sqlSession.selectList("mappers.erp.selectAllProductionPlanInfo");
 		return infoList;
+	}
+	
+	@Override
+	public List itemCodeViewPop() throws DataAccessException {
+		List<DepartmentViewVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectItemCodeView");
+		return popList;
 	}
 }

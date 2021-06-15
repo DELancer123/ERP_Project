@@ -15,6 +15,7 @@
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.FactoryViewVO" alias="FactoryViewVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO" alias="DepartmentViewVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.ProductionPalnViewVO" alias="ProductionPalnViewVO" />
+		<typeAlias type="com.myspring.commonProduction.commitOperationInstruction.vo.ItemCodePopVO" alias="ItemCodePopVO" />
 		<!-- 물류 구매관리 파트 -->
 		<typeAlias type="com.myspring.MainPlan.vo.MainPlanVO" alias="MainPlanVO" />
 		<typeAlias type="com.myspring.MainPlan.MpsOS.vo.MpsOSVO" alias="MpsOSVO" />
