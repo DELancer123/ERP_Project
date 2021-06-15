@@ -229,18 +229,18 @@
 	</select>
 	<select id="iupSearchItem" resultMap="iupView"
 		parameterType="String">
-		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemNumber}]]>
+		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{parent}]]>
 	</select>
 	<select id="iupSelectItem" resultMap="iupView" parameterType="String">
-		<![CDATA[select Item_Code,Item_Name,Standard,Inventory_Unit,Purchase_Price,Sales_Price from PM_SM_Ite_Pri where Item_Code=#{itemCode}]]>
+		<![CDATA[select Item_Code,Item_Name,Standard,Inventory_Unit,Purchase_Price,Sales_Price from SM_BIM_Ite_Reg where Item_Code=#{itemNumber}]]>
 	</select>
 	<select id="iupSelectPopList" resultMap="iupPopView">
-		<![CDATA[select * from PM_SM_Ite_Pri]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
-		 insert into PM_SM_Ite_Pri
-		 values(#{no}, #{itemNumber}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
+		 insert into SM_BIM_Ite_Reg
+		 values(#{no},#{parent}, #{itemNumber}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
 	<!-- 

@@ -25,7 +25,7 @@ import com.myspring.invenBasicInfo.service.IupViewService;
 import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 
-@Controller("memberController")
+@Controller("iupMemberController")
 //@EnableAspectJAutoProxy
 public class IupViewControllerImpl implements IupViewController {
 	private static final Logger logger = LoggerFactory.getLogger(IupViewControllerImpl.class);
@@ -68,7 +68,7 @@ public class IupViewControllerImpl implements IupViewController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/codehelper.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/member/iupcodehelper1.do" ,method = RequestMethod.GET)
 	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = viewService.itemView1();
@@ -76,7 +76,7 @@ public class IupViewControllerImpl implements IupViewController {
 		mav.addObject("itemView", itemView);
 		return mav;
 	}
-	@RequestMapping(value="/member/bomcodehelper.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/member/iupcodehelper2.do" ,method = RequestMethod.GET)
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		String itemNumber = (String) request.getParameter("itemCode");
@@ -86,41 +86,41 @@ public class IupViewControllerImpl implements IupViewController {
 		return mav;
 	}
 	
-//	@Override
-//	@RequestMapping(value="/member/addIup.do" ,method = RequestMethod.GET)
-//	public ModelAndView addMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request,
-//			HttpServletResponse response) throws Exception {
-//		request.setCharacterEncoding("utf-8");
-//		String path = request.getParameter("path");
-//		path = path.replace("/webERP", "");
-//		System.out.println("url" + path);
-//		int result = 0;
-//		result = viewService.addIup(iupVO);
-//		ModelAndView mav = new ModelAndView("redirect:"+path);
-//		return mav;
-//	}
+	@Override
+	@RequestMapping(value="/member/addIup.do" ,method = RequestMethod.GET)
+	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = viewService.addIup(iupVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
 	
-//	@Override
-//	@RequestMapping(value="/member/delIup.do" ,method = RequestMethod.GET)
-//	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String number = (String) request.getParameter("no");
-//		String viewName = getViewName(request);
-//		String[] numberary = number.split(",");
-//		viewService.delIup(numberary);
-//		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
-//		return mav;
-//	}
+	@Override
+	@RequestMapping(value="/member/delIup.do" ,method = RequestMethod.GET)
+	public ModelAndView iupDelMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		viewService.delIup(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		return mav;
+	}
 	
-//	@Override
-//	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
-//	public ModelAndView updateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		request.setCharacterEncoding("utf-8");
-//		int result = 0;
-//		result = viewService.updateIup(iupVO);
-//		System.out.println("result "+result);
-//		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
-//		return mav;
-//	}
+	@Override
+	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
+	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = viewService.updateIup(iupVO);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
+		return mav;
+	}
 		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
@@ -152,12 +152,4 @@ public class IupViewControllerImpl implements IupViewController {
 		}
 		return viewName;
 	}
-
-@Override
-public ModelAndView addMember(com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO iupVO, HttpServletRequest request,
-		HttpServletResponse response) throws Exception {
-	// TODO Auto-generated method stub
-	return null;
-}
-
 }

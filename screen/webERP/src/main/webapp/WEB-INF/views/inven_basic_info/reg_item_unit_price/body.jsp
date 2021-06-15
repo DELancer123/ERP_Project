@@ -3,10 +3,10 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <% String inputNo = (String)request.getAttribute("inputNo"); %>
-<% String itemCode = request.getParameter("itemCode"); %>
+<% String parent = request.getParameter("itemNumber"); %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="iup" items="${iupInsert}">
-	<c:set var="itemCode" value="${iup.itemCode }"/>
+	<c:set var="itemCode" value="${iup.itemNumber }"/>
 	<c:set var="itemName" value="${iup.itemName }"/>
 	<c:set var="standard" value="${iup.standard }"/>
 </c:forEach>
@@ -57,40 +57,6 @@
         #contents2 {
             overflow: scroll;
         }
-
-        /*탭구현 css임*/		
-		ul.tabs{
-			margin: 0px;
-			padding: 0px;
-			list-style: none;
-		}
-		ul.tabs li{
-			background: none;
-			color: black;
-			display: inline-block;
-			padding: 5px 5px;
-			cursor: pointer;
-            width: 80px;
-            text-align: center;
-		}
-
-
-		ul.tabs li.current{
-			border-top: 2px solid skyblue;			
-            background-color: #ddd;        
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-		}
-
-		.tab-content{
-			display: none;	
-			
-		}
-
-		.tab-content.current{
-			display: inherit;
-		}
-        
 </style>
 </head>
 <body>
@@ -137,21 +103,10 @@
                     <td>판매단가</td>
 				</thead>
 			<c:forEach var="iup" items="${iupView }" varStatus="status">
-				<!-- <tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr> -->
-			
-                <tr id="updateIup" align="center">
+				<tr id="updateIup" align="center">
                     <td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemCode }' ondblclick="search2()"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemNumber }' ondblclick="search2()"/></td>
                     <td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
@@ -162,10 +117,10 @@
                 <tr id="insertIup" align="center">
                 	<td></td>
                     <td><input type="text" id="no" name="ListVO[${fn.length(iupView }].no" value='${inputNo }' readonly style="width:100%"></td>
-                    <td><input type="text" id="itemCode" name="ListVO[${fn.length(iupView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
+                    <td><input type="text" id="itemCode" name="ListVO[${fn.length(iupView) }].itemNumber" value='${param.itemNumber }'/></td>
                     <td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
                     <td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
-                    <td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }]" value='${param.inventoryUnit }' readonly/></td>
+                    <td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
                     <td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
                     <td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
                 </tr>
@@ -175,7 +130,7 @@
 	
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
-        var itemCode = document.getElementById("itemCode");
+        var itemNumber = document.getElementById("itemNumber");
         var itemName = document.getElementById("dataoutput");
         var standard = document.getElementById("dataoutput");
       

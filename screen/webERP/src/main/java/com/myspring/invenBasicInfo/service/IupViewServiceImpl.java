@@ -12,7 +12,7 @@ import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 
 import org.springframework.transaction.annotation.Propagation;
 
-@Service("memberService")
+@Service("iupMemberService")
 @Transactional(propagation = Propagation.REQUIRED)
 
 public class IupViewServiceImpl implements IupViewService{

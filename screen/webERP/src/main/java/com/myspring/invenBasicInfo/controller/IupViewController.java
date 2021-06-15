@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface IupViewController {
 	public ModelAndView viewIup(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView addMember(@ModelAttribute("iup") iupVO iupVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	/*
 	 * public ModelAndView removeMember(@RequestParam("id") String id,
@@ -25,7 +25,7 @@ public interface IupViewController {
 	 * Exception;
 	 */
 
-//	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
-//	public ModelAndView updateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView iupDelMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

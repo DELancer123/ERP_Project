@@ -75,7 +75,7 @@
                 </tr>
                 <c:forEach var="iup" items="${itemView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${iup.itemCode }','${iup.itemName }')">${iup.itemCode}</a></td>
+      <td><a href="javascript:popFunction('${iup.itemNumber }','${iup.itemName }')">${iup.itemNumber}</a></td>
       <td><a href="#">${iup.itemName}</a></td>
       <td><a href="#">${iup.standard}</a></td>
     </tr>
@@ -88,13 +88,16 @@
     var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
-    		
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/itemunitprice.do?itemCode='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		text_code.setAttribute("itemNumber",text_code.value);
+    		text_name.setAttribute("itemName",text_name.value);
+    		var url = window.opener.document.location.href;
+    		var url_arr = url.split('?');
+    		opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit'+0;
     		window.close();
     	}
     </script>
