@@ -16,6 +16,7 @@
 		<result property="note" column="note" />
 		<result property="startDate" column="start_Date" />
 		<result property="endDate" column="end_Date" />
+		<result property="productionPlanCode" column="productionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

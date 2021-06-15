@@ -2,12 +2,15 @@
 package com.myspring.commonProduction.commitOperationInstruction.vo;
  
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 @Component("CommitOperationInstructionVO") 
 public class CommitOperationInstructionVO { 
 	private int NO; 
+	private String productionPlanCode;
 	private String itemCode;
 	private String itemName;
 	private String standard;
@@ -19,12 +22,21 @@ public class CommitOperationInstructionVO {
 	private Date startDate;
 	private Date endDate;
 	private String note;
+	private List<CommitOperationInstructionVO> ListVO;
 	
 	public CommitOperationInstructionVO() {
 	}
 
 	public int getNO() {
 		return NO;
+	}
+
+	public List<CommitOperationInstructionVO> getListVO() {
+		return ListVO;
+	}
+
+	public void setListVO(List<CommitOperationInstructionVO> listVO) {
+		ListVO = new ArrayList();
 	}
 
 	public void setNO(int nO) {
@@ -117,6 +129,14 @@ public class CommitOperationInstructionVO {
 
 	public void setDailyProduction(int dailyProduction) {
 		this.dailyProduction = dailyProduction;
+	}
+
+	public String getProductionPlanCode() {
+		return productionPlanCode;
+	}
+
+	public void setProductionPlanCode(String productionPlanCode) {
+		this.productionPlanCode = productionPlanCode;
 	}
  
 	

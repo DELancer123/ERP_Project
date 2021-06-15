@@ -98,6 +98,16 @@
     		opener.setChildValue(text_code.value)
 			window.close();
     	}
+		
+    	submit_button.onclick = function(){
+    		
+    		text_code.setAttribute("itemCode",text_code.value);
+			text_name.setAttribute("itemName",text_name.value);
+			var url = window.opener.document.location.href;
+			var url_arr = url.split('?');
+    		opener.parent.location=url_arr[0] + '?itemCode='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		window.close();
+    	}
     </script>
     </form>
 </body>
