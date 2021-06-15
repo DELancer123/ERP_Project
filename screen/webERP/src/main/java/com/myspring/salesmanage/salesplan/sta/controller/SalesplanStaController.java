@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO;
-import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
-import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
+import com.myspring.salesmanage.itemview.vo.ItemViewVO;
 
 public interface SalesplanStaController {
 

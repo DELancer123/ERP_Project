@@ -195,8 +195,7 @@
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
 	</resultMap> 
-
-	<resultMap id="itemRe" type="ItemViewVO">
+		<resultMap id="itemRe" type="ItemViewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
         <result property="groupcode" column="item_group_code" />

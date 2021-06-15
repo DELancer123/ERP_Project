@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO;
-import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
-import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
+import com.myspring.salesmanage.itemview.vo.ItemViewVO;
 
 @Repository("salesplanDAO")
 public class SalesplanDAOImpl implements SalesplanDAO{

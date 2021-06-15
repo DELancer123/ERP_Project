@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.pop.itemview.vo;
+package com.myspring.salesmanage.itemview.vo;
 
 
 import java.sql.Date;

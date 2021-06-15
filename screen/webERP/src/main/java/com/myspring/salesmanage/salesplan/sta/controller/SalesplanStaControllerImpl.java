@@ -19,10 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO;
-import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
+
+import com.myspring.salesmanage.itemview.vo.ItemViewVO;
 import com.myspring.salesmanage.salesplan.sta.service.SalesplanStaService;
-import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
 @Controller("salesplanStaController")
 public class SalesplanStaControllerImpl implements SalesplanStaController {
@@ -31,8 +30,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 	
 	@Autowired(required=false)
 	private SalesplanStaService salesplanService;
-	@Autowired(required=false)
-	private SalesplanVO salesplanVO;
 	@Autowired
 	private ItemViewVO itemviewVO;
 	

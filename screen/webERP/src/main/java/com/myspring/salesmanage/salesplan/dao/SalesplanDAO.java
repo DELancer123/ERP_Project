@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.salesmanage.pop.itemview.vo.ItemViewVO;
-import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
+import com.myspring.salesmanage.itemview.vo.ItemViewVO;
 
 public interface SalesplanDAO {
 
@@ -23,10 +22,7 @@ public interface SalesplanDAO {
 //		public List selectItemGroupList() throws DataAccessException;
 //		public List submitGroupView(String groupcode) throws DataAccessException;
 //		public List addGroup(String groupcode) throws DataAccessException;
-//
-//		
-		
-		
+
 		
 		public int insertItem(ItemViewVO itemviewVO) throws DataAccessException ;
 		public int deleteItem(String item_code) throws DataAccessException;
