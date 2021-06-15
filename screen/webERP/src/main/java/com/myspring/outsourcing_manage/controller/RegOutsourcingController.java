@@ -1,4 +1,4 @@
-package com.myspring.outsourcing_manage.RegOutsourcing.controller;
+package com.myspring.outsourcing_manage.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +14,10 @@ public interface RegOutsourcingController {
 	public ModelAndView listOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addOutsourcing(@ModelAttribute("info") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView removeOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	ModelAndView updateMember(RegOutsourcingVO regOutsourcingVO, HttpServletRequest request,
+	public ModelAndView updateMember(RegOutsourcingVO regOutsourcingVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
-	ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	ModelAndView productionPlanSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView productionPlanResposne(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView productionPlanSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listComOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

@@ -1,4 +1,4 @@
-package com.myspring.outsourcing_manage.RegOutsourcing.controller;
+package com.myspring.outsourcing_manage.controller;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.outsourcing_manage.RegOutsourcing.service.RegOutsourcingService;
+import com.myspring.outsourcing_manage.service.RegOutsourcingService;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
@@ -41,6 +41,19 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 		mav.addObject("outsourcingView", outsourcingView);
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value="/member/comoutsourcing.do" ,method = RequestMethod.GET)
+	public ModelAndView listComOutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName = getViewName(request);
+		List comOutsourcingView = regOutsourcingService.listComOutsourcing();
+		List comOutsourcingViewDetail = regOutsourcingService.listComOutsourcingDetail();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("comOutsourcingView", comOutsourcingView);
+		mav.addObject("comOutsourcingViewDetail", comOutsourcingViewDetail);
+		return mav;
+	}
+	
 	
 	@Override
 	  @RequestMapping(value="/member/productionPlanSearchOut.do",method = RequestMethod.GET)

@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <c:forEach var="productionPlanView" items="${productionPlanView}" >     
+ 	<c:set var="parentItemCode;" value="${productionPlanView.item_Code }"/>
+ 	<c:set var="itemName" value="${productionPlanView.item_Name }"/>
+ 	<c:set var="standard" value="${productionPlanView.standard }"/>
+ 	<c:set var="inventoryUnit;" value="${productionPlanView.inventory_Unit}"/>
+
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -149,21 +157,44 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+ <c:forEach var="out" items="${outsourcingView}" varStatus="status" >     
+   <tr align="center">
+   	  <td><input type="checkbox" name="content" value="${out.workOrderNumber}"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${out.workOrderNumber}' readonly/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].instructionDate" value = '${out.instructionDate}'/></td>
+   	  <td><input type="date" name="ListVO[${status.index}].dueDate" value = '${out.dueDate}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemCode" value = '${out.itemCode}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${out.itemName}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${out.standard}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value = '${out.inventoryUnit}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].indicatedQuantity" value = '${out.indicatedQuantity}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].unitPrice" value = '${out.unitPrice}'/></td>
+   	  <td><input type="text" value = '${out.indicatedQuantity*out.unitPrice}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].status" value = '${out.status}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].inspection" value = '${out.inspection}'/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${out.note}'/>   </td>
+   	  <td><input type="text" name="ListVO[${status.index}].productionPlanCode" value = '${out.productionPlanCode}'/>   </td>
+    </tr>
+    </c:forEach> 
+
+    <tr align="center">
+     <td><input type="checkbox" value = "check1" name="content"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].workOrderNumber" readonly/></td>
+    	<td><input type="date" id = "instructionDate" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.workDate }'/></td>
+    	<td><input type="date" id = "dueDate" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.workDate }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemName" value='${param.itemName }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].standard" value='${param.standard }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
+    	<td><input type="text" id = "indicatedQuantity" name="ListVO[${fn:length(outsourcingView) }].indicatedQuantity"  value='${param.quantity }'/></td>
+    	<td><input type="text" id = "unitPrice" name="ListVO[${fn:length(outsourcingView) }].unitPrice" /></td>
+    	<td><input type="text" id = "price" readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].status" readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inspection" readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].note" value='${param.note }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].productionPlanCode" value='${param.productionPlanCode}' disabled/></td>
+    </tr>
+
                     </tbody>
                 </table>
             </div>
