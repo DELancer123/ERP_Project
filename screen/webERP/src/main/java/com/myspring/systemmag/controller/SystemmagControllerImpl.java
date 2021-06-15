@@ -120,6 +120,14 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return mav;
 		
 	}
+
+	@Override
+	public ModelAndView updateCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String submit = request.getParameter("submit");
+		String com_code = request.getParameter("com_code");
+		return null;
+	}
 		
 }
 

@@ -16,4 +16,6 @@ public interface SystemmagController {
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView updateCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
