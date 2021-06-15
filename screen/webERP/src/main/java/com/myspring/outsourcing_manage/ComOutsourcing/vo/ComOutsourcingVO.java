@@ -13,17 +13,29 @@ public class ComOutsourcingVO {
 	private String workplaceCode;
 	private Date instructionDate;
 	private Date dueDate;
-	private String itemCode;
-	private String itemName;
-	private String standard;
-	private String inventoryUnit;
+	private String parentItemCode;
+	private String parentItemName;
+	private String parentStandard;
+	private String parentInventoryUnit;
 	private int indicatedQuantity;
 	private int unitPrice;
 	private int price;
 	private String status;
 	private String inspection;
-	private String note;
+	private String ParentNote;
 	private String productionPlanCode;	
+	
+	private int no;
+	private Date billingDate;
+	private String itemCode;
+	private String itemName;
+	private String standard;
+	private String inventoryUnit;
+	private int precisionQuantity;
+	private int loss;
+	private String note;
+	private String forwardingNumber;	
+	
 	private List<ComOutsourcingVO> ListVO;
 	
 	public ComOutsourcingVO() {
@@ -70,36 +82,36 @@ public class ComOutsourcingVO {
 		this.dueDate = dueDate;
 	}
 
-	public String getItemCode() {
-		return itemCode;
+	public String getParentItemCode() {
+		return parentItemCode;
 	}
 
-	public void setItemCode(String itemCode) {
-		this.itemCode = itemCode;
+	public void setParentItemCode(String parentItemCode) {
+		this.parentItemCode = parentItemCode;
 	}
 
-	public String getItemName() {
-		return itemName;
+	public String getParentItemName() {
+		return parentItemName;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setParentItemName(String parentItemName) {
+		this.parentItemName = parentItemName;
 	}
 
-	public String getStandard() {
-		return standard;
+	public String getParentStandard() {
+		return parentStandard;
 	}
 
-	public void setStandard(String standard) {
-		this.standard = standard;
+	public void setParentStandard(String parentStandard) {
+		this.parentStandard = parentStandard;
 	}
 
-	public String getInventoryUnit() {
-		return inventoryUnit;
+	public String getParentInventoryUnit() {
+		return parentInventoryUnit;
 	}
 
-	public void setInventoryUnit(String inventoryUnit) {
-		this.inventoryUnit = inventoryUnit;
+	public void setParentInventoryUnit(String parentInventoryUnit) {
+		this.parentInventoryUnit = parentInventoryUnit;
 	}
 
 	public int getIndicatedQuantity() {
@@ -142,12 +154,12 @@ public class ComOutsourcingVO {
 		this.inspection = inspection;
 	}
 
-	public String getNote() {
-		return note;
+	public String getParentNote() {
+		return ParentNote;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setParentNote(String parentNote) {
+		ParentNote = parentNote;
 	}
 
 	public String getProductionPlanCode() {
@@ -158,6 +170,78 @@ public class ComOutsourcingVO {
 		this.productionPlanCode = productionPlanCode;
 	}
 
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+	public String getItemCode() {
+		return itemCode;
+	}
+
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getStandard() {
+		return standard;
+	}
+
+	public void setStandard(String standard) {
+		this.standard = standard;
+	}
+
+	public String getInventoryUnit() {
+		return inventoryUnit;
+	}
+
+	public void setInventoryUnit(String inventoryUnit) {
+		this.inventoryUnit = inventoryUnit;
+	}
+
+	public int getLoss() {
+		return loss;
+	}
+
+	public void setLoss(int loss) {
+		this.loss = loss;
+	}
+
+	public int getForwardingQuantity() {
+		return forwardingQuantity;
+	}
+
+	public void setForwardingQuantity(int forwardingQuantity) {
+		this.forwardingQuantity = forwardingQuantity;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getForwardingNumber() {
+		return forwardingNumber;
+	}
+
+	public void setForwardingNumber(String forwardingNumber) {
+		this.forwardingNumber = forwardingNumber;
+	}
+
 	public List<ComOutsourcingVO> getListVO() {
 		return ListVO;
 	}
@@ -165,4 +249,22 @@ public class ComOutsourcingVO {
 	public void setListVO(List<ComOutsourcingVO> listVO) {
 		ListVO = listVO;
 	}
+
+	public Date getBillingDate() {
+		return billingDate;
+	}
+
+	public void setBillingDate(Date billingDate) {
+		this.billingDate = billingDate;
+	}
+
+	public int getPrecisionQuantity() {
+		return precisionQuantity;
+	}
+
+	public void setPrecisionQuantity(int precisionQuantity) {
+		this.precisionQuantity = precisionQuantity;
+	}
+
+
 }
