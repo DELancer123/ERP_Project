@@ -30,7 +30,7 @@ import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 public class IupViewControllerImpl implements IupViewController {
 	private static final Logger logger = LoggerFactory.getLogger(IupViewControllerImpl.class);
 	@Autowired
-	private IupViewService viewService;
+	private IupViewService iupViewService;
 	@Autowired
 	private iupVO iupVO ;
 	
@@ -48,19 +48,19 @@ public class IupViewControllerImpl implements IupViewController {
 			return mav;
 		}
 		else if(submit.equals("1")){
-			List iupView = viewService.SearchView(number);
+			List iupView = iupViewService.SearchView(number);
 			
 			mav = new ModelAndView(viewName);
 			
 			mav.addObject("iupView", iupView);
 		}
 		else if(submit.equals("2")) {
-			List iupView = viewService.SearchView(number);
-			List iupInsert = viewService.setText(itemNumber);
+			List iupView = iupViewService.SearchView(number);
+			List iupInsert = iupViewService.setText(itemNumber);
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupView", iupView);
 			mav.addObject("iupInsert",iupInsert);
-			int inputNo = viewService.inputNo();
+			int inputNo = iupViewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);
 			request.setAttribute("inputNo", inNo);
@@ -71,7 +71,7 @@ public class IupViewControllerImpl implements IupViewController {
 	@RequestMapping(value="/member/iupcodehelper1.do" ,method = RequestMethod.GET)
 	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List itemView = viewService.itemView1();
+		List itemView = iupViewService.itemView1();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -80,7 +80,7 @@ public class IupViewControllerImpl implements IupViewController {
 	public ModelAndView BOMcodeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		String itemNumber = (String) request.getParameter("itemCode");
-		List itemView = viewService.itemView2();
+		List itemView = iupViewService.itemView2();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -95,7 +95,7 @@ public class IupViewControllerImpl implements IupViewController {
 		path = path.replace("/webERP", "");
 		System.out.println("url" + path);
 		int result = 0;
-		result = viewService.addIup(iupVO);
+		result = iupViewService.addIup(iupVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
@@ -106,7 +106,7 @@ public class IupViewControllerImpl implements IupViewController {
 		String number = (String) request.getParameter("no");
 		String viewName = getViewName(request);
 		String[] numberary = number.split(",");
-		viewService.delIup(numberary);
+		iupViewService.delIup(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 	}
@@ -116,7 +116,7 @@ public class IupViewControllerImpl implements IupViewController {
 	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
-		result = viewService.updateIup(iupVO);
+		result = iupViewService.updateIup(iupVO);
 		System.out.println("result "+result);
 		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
 		return mav;

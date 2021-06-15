@@ -95,7 +95,6 @@
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
-    			
     	}
     	function submitClick(form){
     		opener.setChildvalue(text_code.value)

@@ -227,6 +227,9 @@
 	<select id="iupSelectAllMemberList" resultMap="iupView">
 		<![CDATA[select * from PM_SM_Ite_Pri]]>
 	</select>
+	<select id="iupSelectNo" resultType="iupView">
+		<![CDATA[select MAX(no) from PM_SM_Ite_Pri]]
+	</select>
 	<select id="iupSearchItem" resultMap="iupView"
 		parameterType="String">
 		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{parent}]]>
@@ -243,22 +246,16 @@
 		 values(#{no},#{parent}, #{itemNumber}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
-	<!-- 
-		<update id="updateIup" parameterType="iupVO">
+	<delete id="deleteIup">
+		delete from PM_SM_Ite_Pri where NO = #{no}
+	</delete>
+	<update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri
-		set no=#{no}, item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
-		where  item_code=#{itemNumber}
-		]]>  
+		set Purchase_Price=#{purchasePrice}, Sales_Price=#{salesPrice}
+		where no=#{no}
+		]]>
 	</update>
-	-->
-	<!-- <update id="updateIup" parameterType="iupVO">
-		<![CDATA[
-		update PM_SM_Ite_Pri
-		set Item_Name=#{itemName}
-		where Item_Code=#{itemCode}
-		]]>  
-	</update> -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
