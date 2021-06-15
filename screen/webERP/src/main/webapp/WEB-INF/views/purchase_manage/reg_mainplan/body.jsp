@@ -5,9 +5,8 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 	request.setCharacterEncoding("UTF-8");
-	String PlanNO = (String)request.getAttribute("PlanNO");
+	String sequence = (String)request.getAttribute("sequence");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,7 +121,7 @@
 		<tbody>
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
-			<td><input type="checkbox" name="content" value="${mainplan.planNO}"/></td>
+			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
   		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
@@ -139,7 +138,7 @@
 		</c:forEach>		
 		<tr id ="insertTest" align="center">
 		<td></td>    	
-    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}'  style="width:100%"/></td>
+    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' style="width:100%"/></td>
     	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
     	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
     	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${item_Code}' readonly/></td>

@@ -6,7 +6,6 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-	String PlanNO = (String)request.getAttribute("PlanNO");
 %>
 
 <!DOCTYPE html>

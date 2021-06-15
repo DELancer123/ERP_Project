@@ -135,7 +135,7 @@
 		<![CDATA[SELECT * from pmm_pm_mps]]>
 	</select>
  	<delete id="deleteMps">
-		delete from pmm_pm_mps where planNO = #{planNO}
+		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
@@ -144,12 +144,12 @@
 		<![CDATA[update pmm_pm_mps
 			set planNO=#{planNO}, plandate=#{plandate}, item_Code=#{item_Code}, item_Name=#{item_Name}, standard=#{standard}, inventory_unit=#{inventory_unit},
 			sequence=#{sequence}, expected_date=#{expected_date}, due_date=#{due_date}, plan_quantity=#{plan_quantity}, buyer=#{buyer}, note=#{note}
-			where planNO = #{planNO}]]>  
+			where sequence = #{sequence}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
 		<![CDATA[insert into pmm_pm_mps
-			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},F_GET_NEXT_SEQ('pmm_pm_mps')
-			,#{expected_date},#{due_date},#{plan_quantity},#{buyer},#{note})
+			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},#{sequence},
+			#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
 		]]>
 	</insert>
 	<!-- billing파트 -->
