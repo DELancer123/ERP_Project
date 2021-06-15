@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 @Component("CommitOperationInstructionVO") 
 public class CommitOperationInstructionVO { 
 	private int NO; 
-	private String parentItemCode;
+	private String itemCode;
 	private String itemName;
 	private String standard;
 	private String inventoryUnit;
 	private int precisionquantity;
+	private int dailyProduction;
 	private Date startDate;
 	private Date endDate;
 	private String note;
@@ -28,12 +29,12 @@ public class CommitOperationInstructionVO {
 		NO = nO;
 	}
 
-	public String getParentItemCode() {
-		return parentItemCode;
+	public String getItemCode() {
+		return itemCode;
 	}
 
-	public void setParentItemCode(String parentItemCode) {
-		this.parentItemCode = parentItemCode;
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
 	}
 
 	public String getItemName() {
@@ -90,6 +91,14 @@ public class CommitOperationInstructionVO {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public int getDailyProduction() {
+		return dailyProduction;
+	}
+
+	public void setDailyProduction(int dailyProduction) {
+		this.dailyProduction = dailyProduction;
 	}
  
 	
