@@ -16,6 +16,7 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 	
 	@Override
 	public List selectAllProductionPlanInfo() throws DataAccessException {
+		System.out.println("dao 진입 확인");
 		List<CommitOperationInstructionVO> infoList = null;
 		infoList = sqlSession.selectList("mappers.erp.selectAllProductionPlanInfo");
 		return infoList;

@@ -29,11 +29,11 @@ public class CommitOperationInstructionVO {
 		NO = nO;
 	}
 
-	public String getitemCode() {
+	public String getItemCode() {
 		return itemCode;
 	}
 
-	public void setitemCode(String itemCode) {
+	public void setItemCode(String itemCode) {
 		this.itemCode = itemCode;
 	}
 

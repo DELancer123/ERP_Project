@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <%
@@ -169,19 +168,6 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
                    	<c:forEach var="info" items="${infoList}" >   
-                     <tr>
-                     	<td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                     	<td>${infoList.itemCode }</td>
-                     	<td>${infoList.itemName }</td>
-                     </tr>
-                     <tr>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                     </tr>
                      	<td>${info.itemCode }</td>
                      	<td><a href="#">${info.itemName }</a></td>
                      	<td>${info.standard }</td>
@@ -232,7 +218,7 @@
                     <tbody>
                      <c:forEach var="info" items="${infoList}" >   
                      <tr>
-                     	<td>${info.itemCode }</td>
+                     	 <td>${info.itemCode }</td>
                      	<td>${info.itemName }</td>
                      	<td>${info.standard }</td>
                      	<td>${info.inventoryUnit }</td>
@@ -243,7 +229,9 @@
                 </table>
             </div>
         </container>
-      <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
+        
+       <!--제이쿼리최신버젼가져옴-->
+      <script src="http://code.jquery.com/jquery-latest.js"></script>
      <script>
          $(document).ready(function(){
          
