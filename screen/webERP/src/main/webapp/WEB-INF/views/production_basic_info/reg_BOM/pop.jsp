@@ -90,9 +90,9 @@
     </div>
     
     <script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
+   		var submit_button = document.getElementById("submit");
+    	var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
     			text_code.value = code;
@@ -101,7 +101,7 @@
     	}
     	function submitClick(form){
     		opener.setChildValue(text_code.value)
-			window.close();
+			window.close(); 
     	}
     </script>
     </form>
