@@ -54,7 +54,7 @@ a {
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
-				<tr>
+ 				<tr>
 					<td>주문기간</td>
 					<td colspan="2" style="width: 80px;"><input type="date"
 						id="reqInput" style="width: 100%;" /></td>
@@ -65,7 +65,7 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>				
-				<button id="point">적용</button>				
+				<button onclick="sendToParent();">적용</button>				
 				<button>취소</button>
 			</div>
 		</div>
@@ -90,21 +90,21 @@ a {
 				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center">
-					<td><input type="checkbox" name="chk"/></td>
-						<td><a href="#">${MpsOS.sequence}</a></td>
-						<td><a href="#">${MpsOS.ordersno}</a></td>
-						<td><a href="#">${MpsOS.orderdate}</a></td>
-						<td><a href="#">${MpsOS.okeydate}</a></td>
-						<td><a href="#">${MpsOS.customer_Name}</a></td>
-						<td><a href="#">${MpsOS.item_Code}</a></td>
-						<td><a href="#">${MpsOS.item_Name}</a></td>
-						<td><a href="#">${MpsOS.standard}</a></td>
-						<td><a href="#">${MpsOS.unit}</a></td>
-						<td><a href="#">${MpsOS.order_quantity}</a></td>
-						<td><a href="#">${MpsOS.apply_quantity}</a></td>
-						<td><a href="#">${MpsOS.order_Balance}</a></td>
-						<td><a href="#">${MpsOS.expected_Date}</a></td>
-						<td><a href="#">${MpsOS.note}</a></td>
+					<td><input type="checkbox" name="content"/></td>
+					<td style="width:13px;"><input type="text" value="${MpsOS.sequence}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.ordersno}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.orderdate}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.okeydate}" style="width:100%"/></td>
+					<td><input type="text" id="customer_Name" value="${MpsOS.customer_Name}" style="width:100%"/></td>
+					<td><input type="text" id="item_Code" value="${MpsOS.item_Code}" style="width:100%"/></td>
+					<td><input type="text" id="item_Name" value="${MpsOS.item_Name}" style="width:100%"/></td>
+					<td style="width:13px;"><input type="text" value="${MpsOS.standard}" style="width:100%"/></td>
+					<td style="width:13px;"><input type="text" value="${MpsOS.unit}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.order_quantity}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.apply_quantity}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.order_Balance}" style="width:100%"/></td>
+					<td><input type="text" id="expected_Date" value="${MpsOS.expected_Date}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.note}" style="width:100%"/></td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -113,9 +113,19 @@ a {
 		</div>
 	</div>
 <script type="text/javascript">
-var point = document.getElementById("point");
-
-
+function sendToParent(){
+        var text_cusName = document.getElementById("customer_Name").value;
+        var text_Code = document.getElementById("item_Code").value;
+        var text_Name = document.getElementById("item_Name").value;
+        var text_expDate = document.getElementById("expected_Date").value;
+        
+        opener.document.getElementById("customer_Name").value=text_cusName;
+        opener.document.getElementById("item_Code").value=text_Code;
+        opener.document.getElementById("item_Name").value=text_Name;
+        opener.document.getElementById("expected_Date").value=text_expDate;
+  
+  	 window.close();
+}        
 </script>
 </body>
 </html>

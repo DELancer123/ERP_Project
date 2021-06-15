@@ -1,5 +1,6 @@
 package com.myspring.MainPlan.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,16 @@ public class MainPlanServiceImpl implements MainPlanService{
 	public void delMps(String[] sequenceary) throws DataAccessException{
 		mainplanDAO.delMps(sequenceary);
 	}
+
 	
 	@Override
-	public void modifyMPS(MainPlanVO vo) throws Exception {
-		mainplanDAO.modifyMPS(vo);
+	public int addMPS(MainPlanVO vo) throws DataAccessException {
+		return mainplanDAO.addMPS(vo);
 	}
-	
+		  
+	@Override
+	public int updateMPS(MainPlanVO vo) throws DataAccessException {
+		return mainplanDAO.updateMPS(vo);
+	}
+	 
 }

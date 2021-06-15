@@ -1,5 +1,6 @@
 package com.myspring.MainPlan.dao;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -14,6 +15,7 @@ public interface MainPlanDAO {
 
 	void delMps(String[] noary) throws DataAccessException;
 
-	void modifyMPS(MainPlanVO vo) throws Exception;
+	int addMPS(MainPlanVO vo) throws DataAccessException;
 
+	int updateMPS(MainPlanVO vo) throws DataAccessException;
 }

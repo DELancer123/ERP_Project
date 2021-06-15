@@ -139,13 +139,16 @@
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
-	<update id="modifyMps" parameterType="MainPlanVO">
-		<![CDATA[
-		update pmm_pm_mps
-		set plandate=#{plandate},plan_quantity=#{plan_quantity}
-			where item_Code = #{item_Code}]]>  
+	<update id="updateMPS" >
+		<![CDATA[update pmm_pm_mps
+			set plandate=#{plandate},plan_quantity=#{plan_quantity}
+			where sequence = #{sequence}]]>  
 	</update>
-
+	<insert id="insertMPS" parameterType="MainPlanVO">
+		<![CDATA[insert into pmm_pm_mps
+			value(#{sequence},#{plandate},#{due_date},#{plan_quantity},#{note});
+		]]>
+	</insert>
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />

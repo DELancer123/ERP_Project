@@ -1,5 +1,8 @@
 package com.myspring.MainPlan.dao;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -33,10 +36,25 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 			sqlSession.delete("mappers.erp.deleteMps", Integer.parseInt(obj));		
 		}
 	}
-	
+
 	@Override
-	public void modifyMPS(MainPlanVO vo) throws Exception {
-		sqlSession.update("mappers.erp.modifyMps", vo); 
+	public int addMPS(MainPlanVO vo) throws DataAccessException {
+		int idx = vo.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertMPS",vo.getListVO().get(idx));
+		return 0;
 	}
 	
+	@Override
+	public int updateMPS(MainPlanVO vo) throws DataAccessException {
+		int result = 0; 
+
+		int idx = vo.getListVO().size()-1;
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i));		
+		}
+		return result;
+	}
+
 }
