@@ -3,7 +3,7 @@ package com.myspring.outsourcing_manage.RegOutsourcing.vo;
 import java.sql.Date;
 
 public class ProductionPalnViewVO {
-	int no;
+	String productionPlanCode;
 	String itemCode;
 	String itemName;
 	String standard;
@@ -13,16 +13,7 @@ public class ProductionPalnViewVO {
 	Date schedule;
 	int quantity;
 	String note;
-	String productionPlanCode;
 	public ProductionPalnViewVO() {
-	}
-
-	public int getno() {
-		return no;
-	}
-
-	public void setno(int no) {
-		no = no;
 	}
 
 	public String getItemCode() {

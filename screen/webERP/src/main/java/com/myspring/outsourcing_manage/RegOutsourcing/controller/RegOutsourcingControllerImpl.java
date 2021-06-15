@@ -63,8 +63,8 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	  }
 
 	@Override
-	@RequestMapping(value="/member/addOutsourcing.do" ,method = RequestMethod.POST)
-	public ModelAndView addOutsourcing(@ModelAttribute("regOutsourcing") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/member/addOutsourcing.do" ,method = RequestMethod.GET)
+	public ModelAndView addOutsourcing(@ModelAttribute("out") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
@@ -89,7 +89,7 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	
 	@Override
 	@RequestMapping(value="/member/updateOutsourcing.do" ,method = RequestMethod.GET)
-	public ModelAndView updateMember(@ModelAttribute("regOutsourcing") RegOutsourcingVO regOutsourcingVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView updateMember(@ModelAttribute("out") RegOutsourcingVO regOutsourcingVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = regOutsourcingService.updateOutsourcing(regOutsourcingVO);

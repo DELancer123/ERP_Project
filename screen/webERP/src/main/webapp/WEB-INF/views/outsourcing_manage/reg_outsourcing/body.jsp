@@ -109,12 +109,7 @@
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
-                        <td>
-                            <input type="button" value="청구조회" style="padding: 5px; margin-left: 30px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="주문조회" style="padding: 5px;"></input>
-                        </td>
+
                         <td>
                             <input type="button" value="생산계획조회" style="padding: 5px;" onClick="searchPlan()"></input>
                         </td>
@@ -124,7 +119,7 @@
         </container1>
         <container2 id= contents2>
             <div id="workOrderInfo">
-            <form id="RegOutsourcing" method="get" commandName = "ListVO">
+            <form id="regOutsourcing" method="get" commandName = "ListVO">
                 <table id="workOrderTable">
 					 <thead align="center" style="background-color:gray">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -149,10 +144,10 @@
    	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${out.workOrderNumber}' readonly style="width:100%"/></td>
    	  <td><input type="date" name="ListVO[${status.index}].instructionDate" value = '${out.instructionDate}'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].dueDate" value = '${out.dueDate}'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].item_Code" value = '${out.item_Code}' ondblclick="search2()"/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].item_Name" value = '${out.item_Name}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemCode" value = '${out.itemCode}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${out.itemName}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${out.standard}' readonly/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].inventory_Unit" value = '${out.inventory_Unit}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value = '${out.inventoryUnit}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].indicatedQuantity" value = '${out.indicatedQuantity}'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].unitPrice" value = '${out.unitPrice}'/></td>
    	  <td><input type="text" value = '${out.indicatedQuantity*out.unitPrice}' readonly/></td>
@@ -166,19 +161,19 @@
     <tr align="center">
      <td><input type="checkbox" value = "check1" name="content"/></td>
     	<td style="width:13px;"><input type="text" name="ListVO[${fn:length(outsourcingView) }].workOrderNumber"/></td>
-    	<td><input type="date" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.instructionDate }'/></td>
-    	<td><input type="date" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.dueDate }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].item_Code" value='${param.item_Code }' ondblclick="search2()"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].item_Name" value='${param.item_Name }' readonly/></td>
+    	<td><input type="date" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.workDate }'/></td>
+    	<td><input type="date" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.workDate }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemName" value='${param.itemName }' readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].standard" value='${param.standard }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inventory_Unit" value='${param.inventory_Unit }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].indicatedQuantity"  value='${param.indicatedQuantity }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].unitPrice" value='${param.unitPrice }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].price" readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].indicatedQuantity"  value='${param.quantity }'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].unitPrice" /></td>
+    	<td><input type="text" id = "price" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].status" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inspection" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].note" value='${param.note }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].productionPlanCode" value='${param.productionPlanCode }' disabled/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].productionPlanCode" value='${param.productionPlanCode}' disabled/></td>
     </tr>
 
                 </table>
@@ -190,7 +185,9 @@
             </div>
             <!-- 합계 출력부 종료 -->
         </container2>
-        
+        </body>
+                  
+</html>
           <script>
           document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
           document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
@@ -214,7 +211,7 @@
       	 
         }
       function searchPlan(){
-    	  openWindowPop('http://localhost:8090/webERP/member/productionPlanSearchOut.do','productionPlanSearchOut');
+    	  openWindowBroadPop('http://localhost:8090/webERP/member/productionPlanSearchOut.do','productionPlanSearchOut');
       }
       view_button.onclick = function(){
 		  if(startDate>endDate){
@@ -232,17 +229,17 @@
         
         function updateRow(){
       	  //var workOrderTable = document.getElementById('workOrderTable');
-          var row = workOrderTable.insertRow(); 
-          const URLSearch = new URLSearchParams(location.search);
-		  const newParam = URLSearch.toString();
-		 var link = location.pathname +'?'+newParam;
-  			var linkPath = document.createElement("input");
-  		     linkPath.setAttribute("type","hidden");
-  		     linkPath.setAttribute("name","path");
-  		     linkPath.setAttribute("value", link);
-  		     document.getElementById('RegOutsourcing').appendChild(linkPath);
-             document.getElementById('RegOutsourcing').action = "${contextPath}/member/updateOutsourcing.do";
-    			document.getElementById('RegOutsourcing').submit();  
+    			 var row = workOrderTable.insertRow(); 
+    	          const URLSearch = new URLSearchParams(location.search);
+    			  const newParam = URLSearch.toString();
+    			 var link = location.pathname +'?'+newParam;
+    	  			var linkPath = document.createElement("input");
+    	  		     linkPath.setAttribute("type","hidden");
+    	  		     linkPath.setAttribute("name","path");
+    	  		     linkPath.setAttribute("value", link);
+    	  		     document.getElementById('regOutsourcing').appendChild(linkPath);
+    	            document.getElementById('regOutsourcing').action = "${contextPath}/member/updateOutsourcing.do";
+    	  			document.getElementById('regOutsourcing').submit();  
         }
         
         
@@ -257,9 +254,9 @@
   		     linkPath.setAttribute("type","hidden");
   		     linkPath.setAttribute("name","path");
   		     linkPath.setAttribute("value", link);
-    		     document.getElementById('RegOutsourcing').appendChild(linkPath);
-              document.getElementById('RegOutsourcing').action = "${contextPath}/member/addOutsourcing.do";
-    			document.getElementById('RegOutsourcing').submit();  
+    		     document.getElementById('regOutsourcing').appendChild(linkPath);
+              document.getElementById('regOutsourcing').action = "${contextPath}/member/addOutsourcing.do";
+    			document.getElementById('regOutsourcing').submit();  
   		
         }
 
@@ -279,5 +276,3 @@
         }
       	
       </script>
-          
-</html>

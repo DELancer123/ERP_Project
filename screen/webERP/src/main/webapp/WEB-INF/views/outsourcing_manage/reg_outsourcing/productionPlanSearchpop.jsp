@@ -63,7 +63,6 @@
             <div id="button">
                 <input type="button" id="planSearch" value="조회" onClick="sendData();" />
                 <input type="button" id="submit" value="적용" />
-                <input type="button" id="submit1" value="외주적용" />
             </div>
         </div>
         <div id="view">
@@ -77,6 +76,7 @@
                     <td>계획잔량</td>
                     <td>작업예정일</td>
                     <td>비고</td>
+                    <td>생산계획번호</td>
                 </tr>
      <c:forEach var="productionPlan" items="${productionPlanView}" >     
 		<tr align="center" id="insertData">
@@ -88,7 +88,7 @@
       		<td>${productionPlan.quantity }</td>
       		<td>${productionPlan.schedule }</td>
       		<td>${productionPlan.note }</td>
-      		<td>${productionPlan.productionCode }</td>
+      		<td>${productionPlan.productionPlanCode }</td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -126,7 +126,7 @@
     		} else if(startDate > endDate){
     			alert("종료일은 시작일보다 커야합니다!");
     		} else {
-    			location.href='${contextPath }/member/productionPlanResponse.do?dateStart='+startDate+'&&dateEnd='+endDate;
+    			location.href='${contextPath }/member/productionPlanResponseOut.do?dateStart='+startDate+'&&dateEnd='+endDate;
     		}
     	}
     	
@@ -154,7 +154,7 @@
    			var quantity = td.eq(5).text();
    			var workDate = td.eq(6).text();
    			var note = td.eq(7).text();
-   			var productionCode = td.eq(8).text();
+   			var productionPlanCode = td.eq(8).text();
    			
    			tdArr.push(itemCode);
    			tdArr.push(itemName);
@@ -163,51 +163,14 @@
    			tdArr.push(quantity);
    			tdArr.push(workDate);
    			tdArr.push(note);
-   			tdArr.push(productionCode);
+   			tdArr.push(productionPlanCode);
    			
-   			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6];
-    		window.close();   				
-
-
-   		})
-   		
-
- 	})
- 	
- 	 	$("#submit1").click(function(){
-    	var rowData = new Array();
-    	var tdArr = new Array();
-   		var checkbox = $("input[name=content]:checked");
- 		
-   		checkbox.each(function(i) {
-   			var tr = checkbox.parent().parent().eq(i);
-   			var td = tr.children();
-   			
-   			var itemCode = td.eq(1).text();
-   			var itemName = td.eq(2).text();
-   			var standard = td.eq(3).text();
-   			var inventoryUnit = td.eq(4).text();
-   			var quantity = td.eq(5).text();
-   			var workDate = td.eq(6).text();
-   			var note = td.eq(7).text();
-
-   			tdArr.push(itemCode);
-   			tdArr.push(itemName);
-   			tdArr.push(standard);
-   			tdArr.push(inventoryUnit);
-   			tdArr.push(quantity);
-   			tdArr.push(workDate);
-   			tdArr.push(note);
-   			
-				
    			opener.parent.location='${contextPath }/member/regoutsourcing.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6];
-    		window.close();   				
+   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7];
+    		window.close();
 
    		})
-   		
- 	 	})
+ 	})
     </script>
     </form>
 </body>

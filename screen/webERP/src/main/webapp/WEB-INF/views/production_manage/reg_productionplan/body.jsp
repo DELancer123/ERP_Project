@@ -232,7 +232,7 @@
                     <tbody>
                         	<c:forEach var="info" items="${infoList}" >   
                      <tr>
-                     	<td>${info.itemCode }</td>
+                     	<td>${info.parentItemCode }</td>
                      	<td>${info.itemName }</td>
                      	<td>${info.standard }</td>
                      	<td>${info.inventoryUnit }</td>

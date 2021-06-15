@@ -304,10 +304,10 @@
 		<result property="workOrderNumber" column="workOrderNumber" />
 		<result property="instructionDate" column="instructionDate" />
 		<result property="dueDate" column="dueDate" />
-		<result property="item_Code" column="Item_Code" />
-		<result property="item_Name" column="Item_Name" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
-		<result property="inventory_Unit" column="Inventory_Unit" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="indicatedQuantity" column="indicatedQuantity" />
 		<result property="unitPrice" column="unitPrice" />				
 		<result property="status" column="status" />
@@ -316,7 +316,6 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 		
 	</resultMap>
-	
 	
 	<select id="selectAllOutsourcingList" resultMap="outsourcingView">
 		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note,ProductionPlanCode  from CPM_OM_Out_Per_Reg]]>
@@ -330,16 +329,50 @@
 	<insert id="insertOutsourcing" parameterType="RegOutsourcingVO">
 		<![CDATA[
 		 insert into CPM_OM_Out_Per_Reg
-		 values(#{workOrderNumber},#{instructionDate},#{dueDate}, #{item_Code}, #{item_Name}, #{standard}, #{inventory_Unit}, #{indicatedQuantity}, #{unitPrice}, #{indicatedQuantity*unitPrice}, #{status}, #{inspection}, #{note}, #{ProductionPlanCode})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','P101',#{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicatedQuantity}, #{unitPrice},'계획', '비검사', #{note},  #{productionPlanCode})
 		]]>  
 	</insert>
 	
 	<update id="updateOutsourcing" parameterType="RegOutsourcingVO">
 		<![CDATA[
 		update CPM_OM_Out_Per_Reg
-		set instructionDate=#{instructionDate},dueDate=#{dueDate}, Item_Code=#{item_Code},Item_Name=#{Item_Name}, Standard=#{standard}, Inventory_Unit=#{unit},indicatedQuantity=#{indicatedQuantity}, unitPrice=#{loss},status=#{status}, inspection=#{inspection}, note=#{note}, productionCode=#{productionCode}
+		set instructionDate=#{instructionDate},dueDate=#{dueDate}, Item_Code=#{itemCode},Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{inventoryUnit},indicatedQuantity=#{indicatedQuantity}, unitPrice=#{unitPrice},status=#{status}, inspection=#{inspection}, note=#{note}, productionPlanCode=#{productionPlanCode}
 		where  workOrderNumber=#{workOrderNumber}
 		]]>  
 	</update>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

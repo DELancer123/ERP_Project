@@ -435,7 +435,7 @@
       <put-attribute name="body" value="/WEB-INF/views/production_manage/operation_ins_closing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
-	<definition name="/member/regoutsourcing" extends="baseLayout">
+	<definition name="/member/regoutsourcing" extends="baseLayout4">
       <put-attribute name="title" value="외주발주등록" />
       <put-attribute name="body" value="/WEB-INF/views/outsourcing_manage/reg_outsourcing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
