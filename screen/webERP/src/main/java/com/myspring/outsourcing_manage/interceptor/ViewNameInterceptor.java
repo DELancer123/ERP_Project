@@ -1,4 +1,4 @@
-package com.myspring.outsourcing_manage.RegOutsourcing.interceptor;
+package com.myspring.outsourcing_manage.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

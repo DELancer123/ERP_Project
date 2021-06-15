@@ -1,12 +1,13 @@
-package com.myspring.outsourcing_manage.RegOutsourcing.vo;
+package com.myspring.outsourcing_manage.ComOutsourcing.vo;
 
 import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-@Component("RegOutsourcingVO")
-public class RegOutsourcingVO {
+
+@Component("ComOutsourcingVO")
+public class ComOutsourcingVO {
 	private String workOrderNumber;
 	private String materialForwardingStatus;
 	private String workplaceCode;
@@ -23,9 +24,9 @@ public class RegOutsourcingVO {
 	private String inspection;
 	private String note;
 	private String productionPlanCode;	
-	private List<RegOutsourcingVO> ListVO;
+	private List<ComOutsourcingVO> ListVO;
 	
-	public RegOutsourcingVO() {
+	public ComOutsourcingVO() {
 		super();
 	}
 
@@ -157,14 +158,11 @@ public class RegOutsourcingVO {
 		this.productionPlanCode = productionPlanCode;
 	}
 
-	public List<RegOutsourcingVO> getListVO() {
+	public List<ComOutsourcingVO> getListVO() {
 		return ListVO;
 	}
 
-	public void setListVO(List<RegOutsourcingVO> listVO) {
+	public void setListVO(List<ComOutsourcingVO> listVO) {
 		ListVO = listVO;
 	}
-
-	
 }
-
