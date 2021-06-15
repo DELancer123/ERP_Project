@@ -1,6 +1,7 @@
 package com.myspring.salesmanage.pop.itemview.vo;
 
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
-@Component("itemviewVO")
+@Component("ItemViewVO")
 public class ItemViewVO {
 
 	private String item_code; //ǰ��
@@ -17,7 +18,13 @@ public class ItemViewVO {
 	private String standard; //�԰�
 	private String inventory_unit; //����
 	private String inspection_status; //�˻翩��
-	private List<SalesplanVO> List;
+	private String plancode;
+	private int planquantity;
+	private int planprice;
+	private int newquabtity;
+	private int newprice;
+	private Date plandate;	
+	private List<ItemViewVO> List;
 
 	@Override
 	public String toString() {
@@ -27,8 +34,6 @@ public class ItemViewVO {
 	public ItemViewVO() {
 		super();
 	}
-
-
 
 	public String getItem_code() {
 		return item_code;
@@ -77,7 +82,61 @@ public class ItemViewVO {
 	public void setInspection_status(String inspection_status) {
 		this.inspection_status = inspection_status;
 	}
-	
-	
+
+	public String getPlancode() {
+		return plancode;
+	}
+
+	public void setPlancode(String plancode) {
+		this.plancode = plancode;
+	}
+
+	public int getPlanquantity() {
+		return planquantity;
+	}
+
+	public void setPlanquantity(int planquantity) {
+		this.planquantity = planquantity;
+	}
+
+	public int getPlanprice() {
+		return planprice;
+	}
+
+	public void setPlanprice(int planprice) {
+		this.planprice = planprice;
+	}
+
+	public int getNewquabtity() {
+		return newquabtity;
+	}
+
+	public void setNewquabtity(int newquabtity) {
+		this.newquabtity = newquabtity;
+	}
+
+	public int getNewprice() {
+		return newprice;
+	}
+
+	public void setNewprice(int newprice) {
+		this.newprice = newprice;
+	}
+
+	public Date getPlandate() {
+		return plandate;
+	}
+
+	public void setPlandate(Date plandate) {
+		this.plandate = plandate;
+	}
+
+	public List<ItemViewVO> getList() {
+		return List;
+	}
+
+	public void setList(List<ItemViewVO> list) {
+		List = list;
+	}
 	
 }

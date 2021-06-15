@@ -62,6 +62,7 @@
                     <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                     <td><input type="text" name="" disabled/></td>
                     <td><i class="fas fa-search"></i></td>
+                    
                 </tr>
             </table>
         </container1>

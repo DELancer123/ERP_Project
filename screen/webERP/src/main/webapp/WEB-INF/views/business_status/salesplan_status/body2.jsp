@@ -134,6 +134,7 @@
             <table id="view1">
                 <thead id="month" style="display: none;">
                     <!-- 월별 -->
+                    
                     <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)"/></th>
                     <th>해당월</th>
                     <th>연초수량</th>
@@ -170,49 +171,24 @@
                     <th>수정원화금액</th>
                     <th>차이원화금액</th>
                 </thead>
-                             <c:forEach var="item" items="${itemRe}" varStatus="status" > 
+                      <c:forEach var="item" items="${itemRe}" varStatus="status" > 
                 <tbody align="center">
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
-                    <td><input type="text" value="${item.item_name}"></td>
-                   <!-- 
-                    <td>${salesplan.name}</td>
-                    <td>${salesplan.stand}</td>
-                    <td>${salesplan.unit}</td>
-                    <td>${salesplan.planquantity}</td>
-                    <td>${salesplan.planprice}</td>
-                    <td>${salesplan.newquabtity}</td>
-                    <td>${salesplan.newprice}</td>
-                         -->           
+                    <td><input type="text" value="${item.item_code}"disabled/></td>
+                    <td><input type="text" value="${item.item_name}" disabled/></td>
+                    <td><input type="text" value="${item.standard}" disabled/></td>
+                    <td><input type="text" value="${item.inventory_unit}" disabled/></td>
+                    <td><input type="text" value="${item.planquantity}" disabled/></td>
+                    <td><input type="text" value="${item.newquabtity}" disabled/></td>
+                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
+                    <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
+                    <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
+                    <td><input type="text" value="${item.planprice-item.newprice}" disabled/></td><!-- ${item.newquabtity} -->
 
-                    <!-- private String plancode;
-                    private String code;		
-                    private String name;	
-                    private String unit;	
-                    private String groupcode;
-                    private int planquantity;		
-                    private int planprice;		
-                    private int newquabtity;	
-                    private int newprice;
-                    private Date plandate;
-                     -->
-
-                </tbody>
-                </c:forEach>
-              <!--  <tbody id="view1" style="display: none;">
-                
-                    <td id="non"><input type="checkbox" value = "check1" name="content"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text" style="display: none;"/></td>
-                    <td><input type="text" style="display: none;"/></td>
-                    <td><input type="text" style="display: none;"/></td>
-                </tbody> -->
-            </table>
+                    
+                    </c:forEach>
+                </tbody>      
+              </table>
             <div id="total1">
                 <table id="v_total1">
                     <tr>
@@ -223,14 +199,16 @@
                         <td>수정원화금액</td>
                         <td>차이원화금액</td>
                     </tr>
+                    <c:forEach var="item" items="${itemRe}" varStatus="status" > 
                     <tr>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
+                        <td><input type="text" value="${item.planquantity}" disabled/></td>
+                        <td><input type="text" value="${item.newquabtity}" disabled/></td>
+                        <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td>
+                        <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
+                        <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
+                        <td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquabtity*item.newprice)}" disabled/></td>
                     </tr>
+                    </c:forEach>
                 </table>
             </div>
         </container2>
@@ -248,6 +226,21 @@
                     <td>수정원화금액</td>
                     <td>차이원화금액</td>
                 </tr>
+                <c:forEach var="item" items="${itemRe}" varStatus="status" > 
+                <tr align="center">
+                    <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
+                    <td><input type="text" value="${item.plandate}"disabled/></td>
+                    <td><input type="text" value="${item.planquantity}" disabled/></td>
+                    <td><input type="text" value="${item.newquabtity}" disabled/></td>
+                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
+                     <td><input type="text" value="${item.planprice}" disabled/></td>
+                    <td><input type="text" value="${item.newprice}" disabled/></td>
+                    <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
+                    <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
+                    <td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquabtity*item.newprice)}" disabled/></td>
+                </c:forEach>
+                    </tr>
+                
                 <tr id="month2" style="display: none;">
                     <td style="width: 3%;"><input type="checkbox" name="content" /></td>
                     <td>품번</td>
@@ -263,46 +256,7 @@
                     <td>수정원화금액</td>
                     <td>차이원화금액</td> -->
                 </tr>
-                <!--<c:forEach var="salesplan" items="${salesplanList}" > 
-                <tr align="center">
-                    <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
-                    <td>${salesplan.code}</td>
-                    <td>${salesplan.name}</td>
-                    <td>${salesplan.stand}</td>
-                    <td>${salesplan.unit}</td>
-                    
-                    <td>${salesplan.planquantity}</td>
-                    <td>${salesplan.planprice}</td>
-                    <td>${salesplan.newquabtity}</td>
-                    <td>${salesplan.newprice}</td>
-                                   
 
-                     private String plancode;
-                    private String code;		
-                    private String name;	
-                    private String unit;	
-                    private String groupcode;
-                    private int planquantity;		
-                    private int planprice;		
-                    private int newquabtity;	
-                    private int newprice;
-                    private Date plandate;
-
-                </tr>
-                </c:forEach>
-                     -->
-                <!-- <tr>
-                    <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                </tr> -->
             </table>
             <div id="total1">
                 <table id="v_total1">
@@ -322,6 +276,7 @@
                         <td><input type="text" disabled/></td>
                         <td><input type="text" disabled/></td>
                         <td><input type="text" disabled/></td>
+                        
                     </tr>
                 </table>
             </div>

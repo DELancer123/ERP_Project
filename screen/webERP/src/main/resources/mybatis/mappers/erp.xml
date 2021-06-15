@@ -188,23 +188,29 @@
 	
 	
 		<!--popitem -->
-	<resultMap id="itemResult" type="itemviewVO">
+	<resultMap id="itemResult" type="ItemViewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
         <result property="groupcode" column="item_group_code" />
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
-        <result property="inspection_status" column="inspection_status" />
 	</resultMap> 
 
-	<resultMap id="itemRe" type="itemviewVO">
+	<resultMap id="itemRe" type="ItemViewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
         <result property="groupcode" column="item_group_code" />
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
-        <result property="inspection_status" column="inspection_status" />
+		<!--<result property="plancode" column="plan_code" />
+         <result property="groupcode" column="item_group_code" /> -->
+        <result property="planquantity" column="plan_item_quantity" />
+        <result property="planprice" column="plan_uint_price" />
+        <result property="newquabtity" column="newplan_item_quantity" />
+        <result property="newprice" column="newplan_unit_price" />
+        <result property="plandate" column="plan_date" />
 	</resultMap> 
+
 
 	<select id="selectAllItemList" resultMap="itemResult">
       <![CDATA[

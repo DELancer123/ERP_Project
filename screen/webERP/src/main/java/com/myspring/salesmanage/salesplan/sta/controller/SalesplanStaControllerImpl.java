@@ -25,7 +25,6 @@ import com.myspring.salesmanage.salesplan.sta.service.SalesplanStaService;
 import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
 @Controller("salesplanStaController")
-//@EnavleAspectJAutoProxy
 public class SalesplanStaControllerImpl implements SalesplanStaController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SalesplanStaControllerImpl.class);
@@ -41,8 +40,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 	@RequestMapping(value="/sales_manage/popItem.do" ,method = RequestMethod.GET)
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-//		String viewName = (String)request.getAttribute("viewName");
-		//System.out.println("viewName: " +viewName);
 		logger.info("viewName: "+ viewName);
 		logger.debug("viewName: "+ viewName);
 		List allItemsList = salesplanService.listItems();
@@ -50,18 +47,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		mav.addObject("allItemsList", allItemsList);
 		return mav;
 	}
-//	@Override
-//	@RequestMapping(value="/member/salesplanstat.do", method= RequestMethod.GET)
-//	public ModelAndView listSalesplan(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String viewName = getViewName(request);
-//		System.out.println("viewName: " +viewName);
-//		logger.info("viewName:" +viewName);
-//		logger.debug("viewName: "+viewName);
-//		List salesplanList = salesplanService.listSalesplans();
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("salesplanList",salesplanList);
-//		return mav;
-//	}//mapper.salesplan.
 
 	@Override
 	@RequestMapping(value="/member/salesplanstat.do" ,method = RequestMethod.GET)
@@ -72,116 +57,18 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		String submit = (String)request.getParameter("submit");
 		int sum = 0;
 		
-		if(code == null || code.length() == 0 || submit.equals("0")) {
+		if(code == null || code.length() == 0) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
-		else if(submit.equals("1")){
-			List salesPlanResult = salesplanService.submitItem(code);
+
+			List itemRe = salesplanService.submitItem(code);
 			
 			mav = new ModelAndView(viewName);
-			mav.addObject("salesPlanResult", salesPlanResult);//salesplanVO
-		}
-		else if(submit.equals("2")) {
-			List itemRe = salesplanService.submitItem(code);
-			List itemInsert = salesplanService.itemText(code);//더 만들기
-			mav = new ModelAndView(viewName);
-			mav.addObject("itemRe", itemRe);
-			mav.addObject("itemInsert",itemInsert);
-			int inputNo = salesplanService.inputNo();
-			String inNO = Integer.toString(inputNo+1);
-			request.setAttribute("inputNo", inNO);
-		}
-		
+			mav.addObject("itemRe", itemRe);//salesplanVO
+
 		return mav;
 	}
-
-	@Override
-	@RequestMapping(value="/itemview/addItem.do" ,method = RequestMethod.POST)
-	public ModelAndView addItem(@ModelAttribute("info") ItemViewVO itemview,HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = salesplanService.addItem(itemview);
-		ModelAndView mav = new ModelAndView("redirect:/member/salesplanstat.do");
-		return mav;
-	}
-	
-
-	@Override
-	@RequestMapping(value="/itemview/removeItem.do" ,method = RequestMethod.GET)
-	public ModelAndView removeItem(String item_code, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
-		request.setCharacterEncoding("utf-8");
-		salesplanService.removeItem(item_code);
-			ModelAndView mav = new ModelAndView("redirect:/member/salesplanstat.do");
-			return mav;
-		}
-
-	
-//	@Override
-//	@RequestMapping(value="/business_status/salesplan_status/body.do", method= RequestMethod.GET)
-//	public ModelAndView submitGroup(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		return null;
-//	}
-//	
-//	@Override
-//	@RequestMapping(value="/business_status/salesplan_status/body.do", method= RequestMethod.GET)
-//	public ModelAndView listAllGroup(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		return null;
-//	}
-//	
-//	@Override
-//	@RequestMapping(value="/business_status/salesplan_status/body.do", method= RequestMethod.GET)
-//	public ModelAndView addGroup(@ModelAttribute("info") ItemGroupVO itemgroupVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		return null;
-//	}
-//	
-//	@Override
-//	@RequestMapping(value="/business_status/salesplan_status/body.do", method= RequestMethod.GET)
-//	public ModelAndView removeGroup(@RequestParam("groupcode") String item_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		return null;
-//	}
-//	
-//	
-//
-//	
-////	@RequestMapping(value = "/salesplan/*Form.do", method =  RequestMethod.GET)
-////	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
-////						       HttpServletRequest request, 
-////						       HttpServletResponse response) throws Exception {
-////		//String viewName = getViewName(request);
-////		String viewName = (String)request.getAttribute("viewName");
-////		ModelAndView mav = new ModelAndView();
-////		mav.addObject("result",result);
-////		mav.setViewName(viewName);
-////		return mav;
-////	}
-////
-////	@Override
-////	public ModelAndView searchCode(String Plan_Item_Code, HttpServletRequest request, HttpServletResponse response)
-////			throws Exception {
-////		// TODO Auto-generated method stub
-////		return null;
-////	}
-////
-////
-////
-////	@Override
-////	public ModelAndView searchPlanDate(Date Plan_Date, HttpServletRequest request, HttpServletResponse response)
-////			throws Exception {
-////		// TODO Auto-generated method stub
-////		return null;
-////	}
-////
-////
-////
-////	@Override
-////	public ModelAndView searchGroup(String Item_Group_Code, HttpServletRequest request, HttpServletResponse response)
-////			throws Exception {
-////		// TODO Auto-generated method stub
-////		return null;
-////	}
 
 	private String getViewName(HttpServletRequest request)  throws Exception{
 		String contextPath = request.getContextPath();
