@@ -212,7 +212,7 @@
 	</select>
 	
 	<!-- 품목단가등록(재원) 파트 -->
-<!--  	<resultMap id="iupView" type="iupVO">
+ 	<resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -261,7 +261,7 @@
 		set Item_Name=#{itemName}
 		where Item_Code=#{itemCode}
 		]]>  
-	</update> -->
+	</update>
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

@@ -155,7 +155,9 @@
 	</table>
 	</div>
 </container2>
-
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 var windowObj;
 
@@ -229,11 +231,32 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
-
-document.getElementById('StartDate').value = new Date().toISOString().substring(0, 10);
-document.getElementById('EndDate').value = new Date().toISOString().substring(0, 10);
 	
+var startDate = new Date().toISOString().substring(0,10);;
+var endDate = new Date().toISOString().substring(0,10);;
 
+$('#searchStartDate').change(function (){
+    var date = $('#searchStartDate').val();
+    startDate = date;
+});
+$('#searchEndDate').change(function (){
+    var date = $('#searchEndDate').val();
+    endDate = date;
+});
+
+view_button.onclick = function(){
+	  if(startDate>endDate){
+		  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
+	  } else{
+		  
+	  const URLSearch = new URLSearchParams(location.search);
+	  URLSearch.set('startDate', startDate);
+	  URLSearch.set('endDate', endDate);
+	  const newParam = URLSearch.toString();
+
+	  window.open(location.pathname + '?' + newParam, '_self');
+	  }
+}
 </script>
 </form>
 </body>

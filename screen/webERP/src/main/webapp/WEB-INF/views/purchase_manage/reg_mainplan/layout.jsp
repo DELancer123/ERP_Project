@@ -334,13 +334,19 @@
             window.open(url, name, options);
         }
         
-		view_button.onclick = function(){
-			  const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '1');
-			  const newParam = URLSearch.toString();
+      	view_button.onclick = function(){
+      	  if(startDate>endDate){
+      		  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
+      	  } else{
+      		  
+      	  const URLSearch = new URLSearchParams(location.search);
+      	  URLSearch.set('startDate', startDate);
+      	  URLSearch.set('endDate', endDate);
+      	  const newParam = URLSearch.toString();
 
-			  window.open(location.pathname + '?' + newParam, '_self');
-      	}
+      	  window.open(location.pathname + '?' + newParam, '_self');
+      	  }
+      }
     </script>
 </body>
 </html>
