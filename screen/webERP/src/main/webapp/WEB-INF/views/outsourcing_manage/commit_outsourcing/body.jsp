@@ -161,6 +161,7 @@
    <tr align="center">
    	  <td><input type="checkbox" name="content" value="${out.workOrderNumber}"/></td>
    	  <td><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${out.workOrderNumber}' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].materialForwardingStatus" value = '${out.materialForwardingStatus}' readonly/></td>
    	  <td><input type="date" name="ListVO[${status.index}].instructionDate" value = '${out.instructionDate}'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].dueDate" value = '${out.dueDate}'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].itemCode" value = '${out.itemCode}' ondblclick="search2()"/></td>
@@ -173,13 +174,13 @@
    	  <td><input type="text" name="ListVO[${status.index}].status" value = '${out.status}'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].inspection" value = '${out.inspection}'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].note" value = '${out.note}'/>   </td>
-   	  <td><input type="text" name="ListVO[${status.index}].productionPlanCode" value = '${out.productionPlanCode}'/>   </td>
     </tr>
     </c:forEach> 
 
     <tr align="center">
      <td><input type="checkbox" value = "check1" name="content"/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].workOrderNumber" readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].materialForwardingStatus" readonly/></td>
     	<td><input type="date" id = "instructionDate" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.workDate }'/></td>
     	<td><input type="date" id = "dueDate" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.workDate }'/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
@@ -192,7 +193,6 @@
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].status" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inspection" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].note" value='${param.note }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].productionPlanCode" value='${param.productionPlanCode}' disabled/></td>
     </tr>
 
                     </tbody>

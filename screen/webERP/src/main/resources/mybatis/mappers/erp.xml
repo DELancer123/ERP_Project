@@ -16,6 +16,7 @@
 		<result property="note" column="note" />
 		<result property="startDate" column="start_Date" />
 		<result property="endDate" column="end_Date" />
+		<result property="productionPlanCode" column="productionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
@@ -352,6 +353,44 @@
 		]]>  
 	</update>
 
+
+	<!-- 외주발주확정 파트 -->
+	<resultMap id="comOutsourcingView" type="ComOutsourcingVO">
+		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialForwardingStatus" column="materialForwardingStatus" />
+		<result property="instructionDate" column="instructionDate" />
+		<result property="dueDate" column="dueDate" />
+		<result property="parentItemCode" column="Item_Code" />
+		<result property="parentItemName" column="Item_Name" />
+		<result property="parentStandard" column="Standard" />
+		<result property="parentInventoryUnit" column="Inventory_Unit" />
+		<result property="unitPrice" column="unitPrice" />				
+		<result property="status" column="status" />
+		<result property="inspection" column="inspection" />
+		<result property="parentNote" column="note" />		
+	</resultMap>
+	
+	<select id="selectAllComOutsourcingList" resultMap="comOutsourcingView">
+		<![CDATA[select workOrderNumber,materialForwardingStatus,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
+	</select>
+	
+	<!-- 외주발주확정 세부사항 파트 -->
+	<resultMap id="comOutsourcingViewDetail" type="ComOutsourcingVO">
+		<result property="no" column="no" />
+		<result property="billingDate" column="billingDate" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="precisionQuantity" column="precisionQuantity" />
+		<result property="loss" column="loss" />				
+		<result property="note" column="note" />
+		<result property="forwardingNumber" column="forwardingNumber" />
+	</resultMap>
+	
+	<select id="selectComOutsourcingListDetail" resultMap="outsourcingView">
+		<![CDATA[select no,billingDate,Item_Code,Item_Name,Standard,Inventory_Unit,precisionQuantity,loss,precisionQuantity*loss,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
+	</select>
 </mapper>
 
 

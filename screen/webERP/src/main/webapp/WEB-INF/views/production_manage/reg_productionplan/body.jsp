@@ -98,7 +98,7 @@
                     <tbody>
                		<c:forEach var="info" items="${infoList}" >    
                      <tr id="updateData" align="center">
-                     	<td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                     	<td><input type="checkbox" value = "${info.productionPlanCode }"  name="content"/></td>
                      	<td><input type="text" value="${info.itemCode }" readonly/></td>
                      	<td><input type="text" value="${info.itemName }" readonly/></td>
                      	<td><input type="text" value="${info.standard }" readonly/></td>
