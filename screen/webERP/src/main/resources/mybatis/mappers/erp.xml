@@ -140,7 +140,7 @@
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
 		 insert into CPM_BIM_BOM_REG
-		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{division})
+		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{startDate}, #{endDate}, #{division})
 		]]>  
 	</insert>
 
@@ -151,7 +151,7 @@
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
-		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, division=#{division}
+		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss}, startDate=#{startDate}, endDate=#{endDate}, division=#{division}
 		where  no=#{no}
 		]]>  
 	</update>
