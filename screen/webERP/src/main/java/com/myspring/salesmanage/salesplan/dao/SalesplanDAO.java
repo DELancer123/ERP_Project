@@ -36,5 +36,6 @@ public interface SalesplanDAO {
 //		public SalesplanVO searchByItemCode(String Item_Code) throws DataAccessException;
 //		public SalesplanVO searchByPlanDate(Date Plan_Date) throws DataAccessException;
 //		public SalesplanVO searchByItemGroup(String Item_Group_Code) throws DataAccessException;
+		public int selNo() throws DataAccessException;
 		
 }	

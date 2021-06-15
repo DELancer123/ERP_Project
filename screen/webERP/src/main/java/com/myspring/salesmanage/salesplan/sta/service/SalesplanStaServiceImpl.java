@@ -94,6 +94,12 @@ public class SalesplanStaServiceImpl implements SalesplanStaService{
 ////		return salesplanDAO.searchByItemGroup(Item_Group_Code);
 ////	}
 
+	@Override
+	public int inputNo() throws DataAccessException {
+		return salesplanDAO.selNo();
+		
+	}
+
 	
 
 

@@ -20,6 +20,7 @@ public interface SalesplanStaService {
 	public List itemText(String item_code) throws DataAccessException;
 	public int addItem(ItemViewVO itemviewVO) throws DataAccessException;
 	public int removeItem(String item_Code) throws DataAccessException;
+	public int inputNo() throws DataAccessException;
 	
 //	//itemgroup
 //	public List listGroups() throws DataAccessException;

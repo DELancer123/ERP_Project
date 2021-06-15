@@ -86,6 +86,11 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 			return result;
 		}
 
+		@Override
+		public int selNo() throws DataAccessException {
+			return sqlSession.selectOne("mappers.erp.selectNo");
+		}
+
 		
 //		@Override
 //		public int insertSalesplan(SalesplanVO salesplanVO) throws DataAccessException {

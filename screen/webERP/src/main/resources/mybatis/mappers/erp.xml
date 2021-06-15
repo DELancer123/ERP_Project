@@ -234,7 +234,7 @@
         <result property="plandate" column="plan_date" />
 	</resultMap> 
 
-
+<!-- 
 
 	<select id="selectAllsalesPlanList" resultMap="salesPlanResult">
       <![CDATA[
@@ -249,7 +249,7 @@
 		 insert into SM_BIM_Ite_Reg
 		 values(#{code}, #{name}, #{unit}, #{groupcode})
 		]]>   
-	</insert>
+	</insert> -->
   
 <!--  ItemGroupPOP 
     <resultMap id="itemGroupResult" type="itemgroupVO">

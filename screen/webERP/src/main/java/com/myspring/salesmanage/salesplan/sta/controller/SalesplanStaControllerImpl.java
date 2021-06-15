@@ -88,6 +88,9 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("salesPlanResult", salesPlanResult);
 			mav.addObject("itemInsert",itemInsert);
+			int inputNo = salesplanService.inputNo();
+			String inNO = Integer.toString(inputNo+1);
+			request.setAttribute("inputNo", inNO);
 		}
 		
 		return mav;
@@ -99,7 +102,7 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = salesplanService.addItem(itemview);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/salesplanstat.do");
 		return mav;
 	}
 	
@@ -111,7 +114,7 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		
 		request.setCharacterEncoding("utf-8");
 		salesplanService.removeItem(item_code);
-			ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+			ModelAndView mav = new ModelAndView("redirect:/member/salesplanstat.do");
 			return mav;
 		}
 
