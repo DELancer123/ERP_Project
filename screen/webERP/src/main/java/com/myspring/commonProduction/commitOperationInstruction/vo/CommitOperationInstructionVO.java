@@ -12,8 +12,10 @@ public class CommitOperationInstructionVO {
 	private String itemName;
 	private String standard;
 	private String inventoryUnit;
-	private int precisionquantity;
 	private int dailyProduction;
+	private int sequence;
+	private Date scheduled;
+	private int quantity;
 	private Date startDate;
 	private Date endDate;
 	private String note;
@@ -61,12 +63,28 @@ public class CommitOperationInstructionVO {
 		this.inventoryUnit = inventoryUnit;
 	}
 
-	public int getPrecisionquantity() {
-		return precisionquantity;
+	public int getSequence() {
+		return sequence;
 	}
 
-	public void setPrecisionquantity(int precisionquantity) {
-		this.precisionquantity = precisionquantity;
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
+	}
+
+	public Date getScheduled() {
+		return scheduled;
+	}
+
+	public void setScheduled(Date scheduled) {
+		this.scheduled = scheduled;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Date getStartDate() {

@@ -10,6 +10,10 @@
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="dailyProduction" column="DailyProduction" />
+		<result property="sequence" column="Sequence" />
+		<result property="scheduled" column="ScheduledDateOfOperation" />
+		<result property="quantity" column="quantity" />
+		<result property="note" column="note" />
 		<result property="startDate" column="start_Date" />
 		<result property="endDate" column="end_Date" />
 	</resultMap>
@@ -28,7 +32,7 @@
 	</resultMap>
 	
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
-		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit, DailyProduction from SM_BIM_Ite_Reg where DIVISION in ('완제품', '반제품')]]>
+		<![CDATA[select * from CPM_PM_PRO_PLA_REG]]>
 	</select>
 	
 	<select id="selectAllOperationRegistInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">

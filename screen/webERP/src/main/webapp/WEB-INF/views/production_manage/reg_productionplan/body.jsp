@@ -107,18 +107,18 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                    		<c:forEach var="info" items="${infoList}" >    
+               		<c:forEach var="info" items="${infoList}" >    
                      <tr id="updateData" align="center">
-                     	 <td><input type="checkbox" value = "check1" id="check" name="content2"/></td>
+                     	<td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                      	<td><input type="text" value="${info.itemCode }" readonly/></td>
                      	<td><input type="text" value="${info.itemName }" readonly/></td>
                      	<td><input type="text" value="${info.standard }" readonly/></td>
                      	<td><input type="text" value="${info.inventoryUnit }" readonly/></td>
                      	<td><input type="text" value="${info.dailyProduction }" readonly/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text" value="${info.sequence }" readonly/></td>
+                        <td><input type="date" value="${info.scheduled }" readonly/></td>
+                        <td><input type="text" value="${info.quantity }" readonly/></td>
+                        <td><input type="text" value="${info.note }" readonly /></td>
                      </tr>
                      </c:forEach>
                      <tr>
