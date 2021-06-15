@@ -91,8 +91,8 @@
     		text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		text_code.setAttribute("itemNumber",text_code.value);
-			text_name.setAttribute("itemName",text_name.value);
+    		text_code.setAttribute("item_code",text_code.value);
+			text_name.setAttribute("item_name",text_name.value);
     		opener.parent.location='${contextPath}/member/salesplanstat.do?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
     		window.close();
     	}

@@ -1,7 +1,12 @@
 package com.myspring.salesmanage.pop.itemview.vo;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
 @Component("itemviewVO")
 public class ItemViewVO {
@@ -12,19 +17,18 @@ public class ItemViewVO {
 	private String standard; //�԰�
 	private String inventory_unit; //����
 	private String inspection_status; //�˻翩��
-	
-	public ItemViewVO() {}
+	private List<SalesplanVO> List;
 
-	public ItemViewVO(String item_code, String item_name, String groupcode, String standard, String inventory_unit,
-			String inspection_status) {
-		super();
-		this.item_code = item_code;
-		this.item_name = item_name;
-		this.groupcode = groupcode;
-		this.standard = standard;
-		this.inventory_unit = inventory_unit;
-		this.inspection_status = inspection_status;
+	@Override
+	public String toString() {
+		return Arrays.toString(List.toArray());
 	}
+	
+	public ItemViewVO() {
+		super();
+	}
+
+
 
 	public String getItem_code() {
 		return item_code;

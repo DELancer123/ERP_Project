@@ -197,36 +197,50 @@
         <result property="inspection_status" column="inspection_status" />
 	</resultMap> 
 
+	<resultMap id="itemRe" type="itemviewVO">
+		<result property="item_code" column="item_code" />
+        <result property="item_name" column="item_name" />
+        <result property="groupcode" column="item_group_code" />
+        <result property="standard" column="standard" />
+        <result property="inventory_unit" column="inventory_unit" />
+        <result property="inspection_status" column="inspection_status" />
+	</resultMap> 
 
 	<select id="selectAllItemList" resultMap="itemResult">
       <![CDATA[
-         select Item_Code,Item_Name, standard, inventory_unit,inspection_status from SM_BIM_Ite_Reg 
+         select * from SM_BIM_Ite_Reg 
       ]]>
 	</select>
+	
+	<select id="selectAllSalesplanList" resultMap="itemRe">
+      <![CDATA[
+         select * from SM_BIM_Sal_Pla_Reg 
+      ]]>
+	</select>
+	
     
-     <insert id="submititemview"  parameterType="itemviewVO">
+     <select id="submititemview" resultMap="itemRe" parameterType="String">
 		<![CDATA[
-		 insert into SM_BIM_Ite_Reg
-		 values(#{item_code}, #{item_name}, #{standard}, #{inventory_unit})
+		 select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code}
 		]]>   
-	</insert>
+	</select>
 	
      
    <delete id="deleteItem"  parameterType="String">
 	<![CDATA[
-	   delete from  SM_BIM_Ite_Reg
+	   delete from  SM_BIM_Sal_Pla_Reg
 	   where
 	   item_code=#{item_code}
 	]]>      
   </delete>
   <!-- salesplans -->
  <resultMap id="salesPlanResult" type="salesplanVO">
-		<result property="plancode" column="plan_code" />
         <result property="code" column="item_code" />
         <result property="name" column="item_name" />
         <result property="stand" column="standard" />
         <result property="unit" column="inventory_Unit" />
-       <!--  <result property="groupcode" column="item_group_code" /> -->
+		<!--<result property="plancode" column="plan_code" />
+         <result property="groupcode" column="item_group_code" /> -->
         <result property="planquantity" column="plan_item_quantity" />
         <result property="planprice" column="plan_uint_price" />
         <result property="newquabtity" column="newplan_item_quantity" />
@@ -234,16 +248,14 @@
         <result property="plandate" column="plan_date" />
 	</resultMap> 
 
-<!-- 
+
 
 	<select id="selectAllsalesPlanList" resultMap="salesPlanResult">
       <![CDATA[
-			select item_code, item_name,standard,inventory_Unit,
-         plan_item_quantity, plan_unit_price, newplan_item_quantity,
-         newplan_unit_price from SM_BIM_Sal_Pla_Reg
+			select * from SM_BIM_Sal_Pla_Reg
       ]]>
 	</select>
-    
+    <!-- 
      <insert id="additem"  parameterType="salesplanVO">
 		<![CDATA[
 		 insert into SM_BIM_Ite_Reg

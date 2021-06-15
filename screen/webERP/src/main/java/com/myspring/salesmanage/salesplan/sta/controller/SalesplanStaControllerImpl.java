@@ -83,10 +83,10 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 			mav.addObject("salesPlanResult", salesPlanResult);//salesplanVO
 		}
 		else if(submit.equals("2")) {
-			List salesPlanResult = salesplanService.submitItem(code);
+			List itemRe = salesplanService.submitItem(code);
 			List itemInsert = salesplanService.itemText(code);//더 만들기
 			mav = new ModelAndView(viewName);
-			mav.addObject("salesPlanResult", salesPlanResult);
+			mav.addObject("itemRe", itemRe);
 			mav.addObject("itemInsert",itemInsert);
 			int inputNo = salesplanService.inputNo();
 			String inNO = Integer.toString(inputNo+1);

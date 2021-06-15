@@ -13,7 +13,7 @@
 %>
 <% String parent = request.getParameter("item_code");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:forEach var="item" items="${itemInsert}"> 
+<c:forEach var="item" items="${itemRe}"> 
 	<c:set var="code" value="${item.item_code}"/>
 	<c:set var="name" value="${item.item_name}"/>
 </c:forEach>
@@ -170,10 +170,11 @@
                     <th>수정원화금액</th>
                     <th>차이원화금액</th>
                 </thead>
-                             <c:forEach var="salesplan" items="${salesPlanResult}" > 
+                             <c:forEach var="item" items="${itemRe}" varStatus="status" > 
                 <tbody align="center">
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
-                    <td>${salesplan.code}</td>
+                    <td><input type="text" value="${item.item_name}"></td>
+                   <!-- 
                     <td>${salesplan.name}</td>
                     <td>${salesplan.stand}</td>
                     <td>${salesplan.unit}</td>
@@ -181,7 +182,7 @@
                     <td>${salesplan.planprice}</td>
                     <td>${salesplan.newquabtity}</td>
                     <td>${salesplan.newprice}</td>
-                                   
+                         -->           
 
                     <!-- private String plancode;
                     private String code;		

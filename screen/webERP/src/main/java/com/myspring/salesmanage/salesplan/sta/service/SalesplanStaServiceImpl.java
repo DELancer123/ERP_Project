@@ -27,7 +27,7 @@ public class SalesplanStaServiceImpl implements SalesplanStaService{
 		List salesplanList = null;
 		salesplanList = salesplanDAO.selectAllSalesplanList();
 		return salesplanList;
-	}
+	}//selectItemList
 	
 	//item
 	@Override
@@ -41,7 +41,7 @@ public class SalesplanStaServiceImpl implements SalesplanStaService{
 		List searchItemList = null;
 		searchItemList = salesplanDAO.submitItemView(item_code);
 		return searchItemList;
-	}
+	}//searchitem
 
 	@Override
 	public List itemText(String item_code) throws DataAccessException {

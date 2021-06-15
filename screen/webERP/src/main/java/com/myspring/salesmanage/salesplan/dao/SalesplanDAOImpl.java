@@ -24,18 +24,18 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 
 		@Override
 		public List selectAllSalesplanList() throws DataAccessException {
-			List<SalesplanVO> salesplansList = null;
-			salesplansList = sqlSession.selectList("mappers.erp.selectAllsalesPlanList");
+			List<ItemViewVO> salesplansList = null;
+			salesplansList = sqlSession.selectList("mappers.erp.selectAllSalesplanList");
 			//mapper.salesplan
 			return salesplansList;
-		}
+		}//selectAllMemberList
 
 		@Override
 		public List selectAllItemList() throws DataAccessException {
 			List<ItemViewVO> allItemsList = null;
 			allItemsList = sqlSession.selectList("mappers.erp.selectAllItemList");
 			return allItemsList;
-		}//allItemsList
+		}//selectPopList
 	
 		@Override
 		public List submitItemView(String item_code) throws DataAccessException {
@@ -43,12 +43,14 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 			searchItemList = sqlSession.selectList("mappers.erp.submititemview",item_code);
 			return searchItemList;
 		}//submit를 누르면 table에 들어감
+		//selectitem
+		
 		@Override
 		public List addItem(String item_code) throws DataAccessException {
 			List<ItemViewVO> addItemList = null;
 			addItemList = sqlSession.selectList("mappers.erp.additem",item_code);
 			return addItemList;
-		}
+		}//insertBOM
 //		
 //		@Override
 //		public List selectItemGroupList() throws DataAccessException {
