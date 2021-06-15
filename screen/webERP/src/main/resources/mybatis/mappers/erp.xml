@@ -333,14 +333,14 @@
 	<insert id="insertOutsourcing" parameterType="RegOutsourcingVO">
 		<![CDATA[
 		 insert into CPM_OM_Out_Per_Reg
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','P101',#{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicatedQuantity}, #{unitPrice},'계획', '비검사', #{note},  #{productionPlanCode})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','P101',#{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicatedQuantity}, #{unitPrice},'계획', '비검사', #{note},F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'))
 		]]>  
 	</insert>
 	
 	<update id="updateOutsourcing" parameterType="RegOutsourcingVO">
 		<![CDATA[
 		update CPM_OM_Out_Per_Reg
-		set instructionDate=#{instructionDate},dueDate=#{dueDate}, Item_Code=#{itemCode},Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{inventoryUnit},indicatedQuantity=#{indicatedQuantity}, unitPrice=#{unitPrice},status=#{status}, inspection=#{inspection}, note=#{note}, productionPlanCode=#{productionPlanCode}
+		set dueDate=#{dueDate},indicatedQuantity=#{indicatedQuantity}, unitPrice=#{unitPrice}, note=#{note}
 		where  workOrderNumber=#{workOrderNumber}
 		]]>  
 	</update>
