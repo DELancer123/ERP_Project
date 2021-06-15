@@ -47,6 +47,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			mav.addObject("itemView", itemView);
 			return mav;
 		}
+	  
 //	작업지시등록 기능 부
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)

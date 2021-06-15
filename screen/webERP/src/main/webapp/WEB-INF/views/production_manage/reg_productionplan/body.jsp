@@ -63,7 +63,7 @@
                 <table class="con1_search">
                     <tr>
                         <td>Ç°¹ø</td>
-                        <td style="width: 80px;"><input type="text" value="${param.itemNumber }" style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" value="${param.itemCode }" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" value="${param.itemName }" disabled style="width: 100%;"/></td>
                         <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td>                        
                     </tr>
