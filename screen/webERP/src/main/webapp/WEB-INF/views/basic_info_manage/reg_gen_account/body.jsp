@@ -157,9 +157,9 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                <c:forEach var="com" items="${comView}" >     
                 <tbody>
-                    <td><input type="checkbox" name="content" value='${com.general_Customer_Code}'></td>
+                    <td><input type="checkbox" name="content" value=''></td>
                     <td>
-                        <input type="text" id='textbox1' name="temp" value='${com.general_Customer_Code}'/>
+                        <input type="text" id='textbox1' onfocus = "searchView(this.value)" name="temp" value='${com.general_Customer_Code}'/>
                     </td>
                     <td>
                         <input type="text" name="temp" value='${com.general_Customer_Name}'/>
@@ -238,11 +238,11 @@ request.setCharacterEncoding("UTF-8");
         <script>
         
         
-        var textbox1 = document.getElementById("textbox1");
+        /* var textbox1 = document.getElementById("textbox1");
         textbox1.onfocus = function() {
         	console.log('확인');
-         	window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + textbox1.value; 
-        }
+         	window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&com_code=" + textbox1.value; 
+        } */
         
 
        	/* var textbox1 = document.getElementsByClassName('textbox1');
@@ -260,11 +260,9 @@ request.setCharacterEncoding("UTF-8");
         } */
 	        
         
-        /* var textbox1 = document.getElementById("textbox1");
         function searchView(name) {
-           console.log('확인');
-            window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
-        } */
+            window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
+        }
         
 	  		
 	       
