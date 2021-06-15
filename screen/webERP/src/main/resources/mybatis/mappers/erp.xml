@@ -68,6 +68,13 @@
 		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
 	</delete>
 	<!-- 생산 팝업 파트 -->	
+	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+	</resultMap>
+	<select id="selectItemCodeView" resultMap="ItemCodeResult">
+		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품', '반제품')]]>
+	</select>
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />
 		<result property="workplaceName" column="workplace_Name" />

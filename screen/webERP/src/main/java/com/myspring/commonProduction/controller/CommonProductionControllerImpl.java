@@ -38,6 +38,15 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		  return mav; 
 	  	}
   
+	  @Override
+	  @RequestMapping(value="/member/itemCodePop.do" ,method = RequestMethod.GET)
+		public ModelAndView itemCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = getViewName(request);
+			List itemView = productionService.itemCodeSearch();
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("itemView", itemView);
+			return mav;
+		}
 //	작업지시등록 기능 부
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)

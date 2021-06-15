@@ -150,13 +150,7 @@
         });
     	
       function search1(){  
-    	  openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
-      }
-      function search2(){  
-	      openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
-		}
-      function searchPlan(){
-    	  openWindowBroadPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
+    	  openWindowPop('http://localhost:8090/webERP/member/itemCodePop.do','itemCodePop');  	  
       }
       
       /* 조회버튼 클릭시 기능 구현 */

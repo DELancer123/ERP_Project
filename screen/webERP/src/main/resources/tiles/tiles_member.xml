@@ -101,6 +101,11 @@
    </definition>
    
    <!-- 생산파트 popup layout -->
+   <definition name="/member/itemCodePop"  template="/WEB-INF/views/production_manage/reg_productionplan/itemCodepop.jsp">
+      <put-attribute name="title" value="아이템코드팝업" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
     <definition name="FactoryPopupLayout"  template="/WEB-INF/views/production_manage/reg_operation_instruction/factorySearchpop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />

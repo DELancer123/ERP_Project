@@ -32,6 +32,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return infolist; 
   }
   
+  @Override
+  public List itemCodeSearch() throws DataAccessException {
+	  List popList = null;
+	  popList = COIdao.itemCodeViewPop();
+	  return popList;
+	}
+  
   @Override public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
 	  infolist = ORdao.selectAllOperationInfo(startDate,endDate); 
