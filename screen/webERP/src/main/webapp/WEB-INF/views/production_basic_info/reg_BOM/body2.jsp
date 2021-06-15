@@ -76,14 +76,12 @@
                         <td>품명</td>
                         <td>규격</td>
                         <td>단위</td>
+                        <td>계정</td>
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <<td>필요수량</td>
-                        <td>원가</td>
-                        <td>외주단가</td>
                         <td>시작일자</td>
                         <td>종료일자</td>
-                        <td>계정</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
@@ -95,14 +93,12 @@
    	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' readonly/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].division" value = '${bom.division }'/>   </td>
    	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
    	  <td><input type="text" value = '${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }' readonly/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].actualCost" value = '${bom.actualCost }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value = '${bom.outSourcingUnitPrice }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
    	  <td><input type="date" name="ListVO[${status.index}].endDate" value = '${bom.endDate }'/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].division" value = '${bom.division }'/>   </td>
     </tr>
     </c:forEach> 
 
@@ -114,14 +110,12 @@
     	<td><input type="text" id="itemName" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
     	<td><input type="text" id="unit" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
+    	<td><input type="text" id="division" name="ListVO[${fn:length(bomView) }].division" value='${division }'/></td>
     	<td><input type="text" id="precisionQuantity" name="ListVO[${fn:length(bomView) }].precisionQuantity" /></td>
     	<td><input type="text" id="loss" name="ListVO[${fn:length(bomView) }].loss" /></td>
     	<td><input type="text" readonly id="actualQuantity"/></td>
-    	<td><input type="text" id="actualCost" name="ListVO[${fn:length(bomView) }].actualCost" /></td>
-    	<td><input type="text" id="outSourcingUnitPrice" name="ListVO[${fn:length(bomView) }].outSourcingUnitPrice"/></td>
     	<td><input type="date" id="startDate" name="ListVO[${fn:length(bomView) }].startDate"/></td>
     	<td><input type="date" id="endDate" name="ListVO[${fn:length(bomView) }].endDate"/></td>
-    	<td><input type="text" id="division" name="ListVO[${fn:length(bomView) }].division" value='${division }'/></td>
     </tr>
                 </table>
                  
