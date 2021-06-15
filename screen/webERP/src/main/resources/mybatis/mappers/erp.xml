@@ -353,6 +353,25 @@
 		]]>  
 	</update>
 
+
+	<!-- 외주발주확정 파트 -->
+<resultMap id="comOutsourcingView" type="ComOutsourcingVO">
+		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialForwardingStatus" column="materialForwardingStatus" />
+		<result property="instructionDate" column="instructionDate" />
+		<result property="dueDate" column="dueDate" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="indicatedQuantity" column="indicatedQuantity" />
+		<result property="unitPrice" column="unitPrice" />				
+		<result property="status" column="status" />
+		<result property="inspection" column="inspection" />
+		<result property="note" column="note" />		
+		<result property="productionPlanCode" column="ProductionPlanCode" />
+		
+	</resultMap>
 </mapper>
 
 
