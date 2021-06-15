@@ -7,6 +7,7 @@ LOGGING PERMANENT EXTENT MANAGEMENT LOCAL AUTOALLOCATE
 BLOCKSIZE 8K SEGMENT SPACE MANAGEMENT MANUAL 
 FLASHBACK ON;
 --Tablespace의 이름을 ERP_DB, 크기를 2G로 설정, 2G 초과시 자동으로 4M 씩 자동 확장 생성한다.
+--
 
 create user erp_admin identified by erp_admin;
 grant DBA, resource, connect to erp_admin WITH ADMIN OPTION;
