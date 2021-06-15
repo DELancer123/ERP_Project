@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface IupViewController {

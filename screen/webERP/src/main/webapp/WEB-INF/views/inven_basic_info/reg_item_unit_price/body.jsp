@@ -147,6 +147,21 @@
 			window.open(url, name, options);
 		}
 		
+		view_button.onclick = function(){
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+
+			  window.open(location.pathname + '?' + newParam, '_self');
+    	}
+		
+		function selectAll(selectAll){
+            const checkbox = document.getElementsByName('content');
+            checkbox.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            })
+        }
+		
 		function search1(){
 			openWindowPop('http://localhost:8090/webERP/member/iupcodehelper1.do','iupcodehelper1');
 		}
@@ -216,6 +231,7 @@
 				window.location.href = "${contextPath}/member/delIup.do?no="+ary;
 			}
 		}
-    </script>
+	</script>
+	</form>
 </body>
 </html>

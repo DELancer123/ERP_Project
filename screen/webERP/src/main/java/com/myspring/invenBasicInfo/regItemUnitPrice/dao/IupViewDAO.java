@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 public interface IupViewDAO {
 	public List viewIup() throws DataAccessException;
