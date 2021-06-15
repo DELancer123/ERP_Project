@@ -233,10 +233,15 @@
 	<select id="selectBasicList" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
 	</select>
-	<select id="deleteBasicList" parameterType="String" resultMap="basicInfoResult">
-		<![CDATA[delete * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
-	</select>
-	
+	<delete id="deleteBasicList">
+		delete from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{no}
+	</delete>
+	<update id="updateBasicList" parameterType="systemmagVO">
+		<![CDATA[
+			update SM_BIM_GEN_CUS_REG
+			set registrationNumber=#{registrationNumber}
+		]]>
+	</update>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

@@ -36,12 +36,19 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		return comList;
 	}
 
+
 	@Override
-	public List deleteCom(String com_code) throws DataAccessException {
-		List<SystemmagVO> comList = null;
-		comList = sqlSession.selectList("mappers.erp.deleteBasicList",com_code);
-		System.out.println("comList12: "+com_code);
-		return comList;
+	public void deleteCom(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteBasicList", Integer.parseInt(obj));	
+		}
+		
+	}
+
+	@Override
+	public int updateCom(SystemmagVO systemmagVO) throws DataAccessException {
+		int result = 0;
+		return 0;
 	}
 	
 	

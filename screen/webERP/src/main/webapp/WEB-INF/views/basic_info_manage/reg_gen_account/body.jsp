@@ -157,7 +157,7 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                <c:forEach var="com" items="${comView}" >     
                 <tbody>
-                    <td><input type="checkbox" name="content" value=''></td>
+                    <td><input type="checkbox" name="checkedContent" value='${com.general_Customer_Code}'></td>
                     <td>
                         <input type="text" id='textbox1' onfocus = "searchView(this.value)" name="temp" value='${com.general_Customer_Code}'/>
                     </td>
@@ -236,32 +236,47 @@ request.setCharacterEncoding("UTF-8");
             </table>
         </container3>
         <script>
+        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+        deleteButton.addEventListener('click', function(){deleteData();}, false);
         
-        
-        /* var textbox1 = document.getElementById("textbox1");
-        textbox1.onfocus = function() {
-        	console.log('확인');
-         	window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&com_code=" + textbox1.value; 
-        } */
-        
+        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateData();}, false);
 
-       	/* var textbox1 = document.getElementsByClassName('textbox1');
-       	
-        textbox1.onfocus = function() {
-        	    	
-	        for(var i = 0; i< textbox1.length; i++) {
-	        	if(textbox1.value === textbox1.item(i)){
-	        		window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + textbox1.value; 
-	        	}
-	        	        		        	
-	        }
-	               
-         	
-        } */
-	        
         
-        function searchView(name) {
+        function searchView(name) { //조회를 담당하는 자바스크립트임
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
+        }
+        
+        
+        
+        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘기는 함수
+        	var item = document.getElementsByName("checkedContent").length;
+        	var no = "";
+        	var ary = [];
+        	
+        	for(var i=0; i<item; i++) {
+        		if(document.getElementsByName("checkedContent")[i].checked==true) {
+        			no = document.getElementsByName("checkedContent")[i].value;
+        			ary.push(no);
+        		}
+        		
+        	}
+        	if(ary.length === 0 || ary === null){
+    			alert('삭제할 목록의 체크박스를 선택해주세요^^')
+    			window.location.href = "${contextPath}/member/regbasicacc.do";
+    		}
+        	else 
+    			window.location.href = "${contextPath}/member/deleteBasicacc.do?no="+ary;
+        	
+        }
+        
+        function updateData() {
+        	alert('업데이트기능 구현중');
+        	
+        	var beforeReplace = window.location.href;
+        	var afterReplace = beforeReplace.replace('regbasicacc', 'updateBasicacc')
+        	
+        	window.location.href = afterReplace;
         }
         
 	  		

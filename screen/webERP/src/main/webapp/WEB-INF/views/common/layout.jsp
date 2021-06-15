@@ -369,15 +369,8 @@
 			  const newParam = URLSearch.toString();
 
 			  window.open(location.pathname + '?' + newParam, '_self');
-    	}
-        delete_button.onclick = function(){//딜리트버튼에 기능추가했습니다 (성명제)
-            //dao에서 체크항목 삭제
-        	  const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '2');
-			  const newParam = URLSearch.toString();
-
-			  window.open(location.pathname + '?' + newParam, '_self');
-        }
+    	} 
+        
         function openWindowPop(url, name){
             var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);

@@ -38,10 +38,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 
 	@Override
-	public List delcom(String com_code) throws DataAccessException {
-		List comList = systemmagDAO.deleteCom(com_code);
-		return comList;
+	public void delCom(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteCom(noary);
 	}
+
+	
 	
 	
 }

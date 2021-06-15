@@ -13,5 +13,7 @@ public interface SystemmagDAO {
 	
 	public List allviewCom(String com_code) throws DataAccessException;
 	
-	public List deleteCom(String com_code) throws DataAccessException;
+	public void deleteCom(String[] noary) throws DataAccessException;
+	
+	public int updateCom(SystemmagVO systemmagVO) throws DataAccessException;
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.myspring.systemmag.dao.SystemmagDAO;
 import com.myspring.systemmag.service.SystemmagService;
 import com.myspring.systemmag.vo.SystemmagVO;
 //회사등록
@@ -30,6 +31,9 @@ public class SystemmagControllerImpl implements SystemmagController{
 	private SystemmagService systemmagService;
 	@Autowired
 	private SystemmagVO systemmagVO;
+	@Autowired
+	private SystemmagDAO systemmagDAO;
+	
 	@Override
 	@RequestMapping(value="/member/addcompany.do")
 	public ModelAndView addCompany(SystemmagVO company, HttpServletRequest request, HttpServletResponse response)
@@ -103,37 +107,18 @@ public class SystemmagControllerImpl implements SystemmagController{
 	}
 	
 	@Override
-	@RequestMapping(value="/member/regbasicacc.do")//성명제
+	@RequestMapping(value="/member/deleteBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("딜리트체크중임");
-		ModelAndView mav = null;
+		String number = (String) request.getParameter("no");
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit");
-		String code = (String) request.getParameter("com_code");
-		String[] delCheck = request.getParameterValues("${com.general_Customer_Code}");
+		String[] numberary = number.split(",");
 		
+		systemmagService.delCom(numberary);
 		
+		ModelAndView mav = new ModelAndView("redirect:/member/regbasicacc.do");
 		
-		if(code == null || submit == null) {
-			List comView = systemmagService.comView();
-			mav = new ModelAndView(viewName);
-			mav.addObject("comView", comView);
-			return mav;
-		}
-			
-	    if(submit.equals("2")) { 
-	    	for(int i=0;i<delCheck.length;i++) {
-				systemmagService.delcom(delCheck[i]);
-			}
-	    	List comView = systemmagService.comView(); 
-	    	List comcom = systemmagService.comcom(code); 
-	    	mav = new ModelAndView(viewName);
-	    	mav.addObject("comView", comView); 
-	    	mav.addObject("comcom", comcom);
-	    }
-			 
-
-	    return mav; 
+		return mav;
+		
 	}
 		
 }
