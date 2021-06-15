@@ -405,7 +405,7 @@
       <put-attribute name="body" value="/WEB-INF/views/inven_basic_info/reg_item_unit_price/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-	<definition name="/member/proplanreg" extends="baseLayout">
+	<definition name="/member/proplanreg" extends="baseLayout4">
       <put-attribute name="title" value="생산계획등록" />
       <put-attribute name="body" value="/WEB-INF/views/production_manage/reg_productionplan/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
