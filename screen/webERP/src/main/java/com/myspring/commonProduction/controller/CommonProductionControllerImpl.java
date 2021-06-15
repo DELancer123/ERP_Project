@@ -113,7 +113,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  		int result = 0;
 	  		result = productionService.updOperationInstruction(ORVO);
 	  		System.out.println("result "+result);
-	  		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+	  		ModelAndView mav = new ModelAndView("redirect:/member/regoperins.do");
 	  		return mav;
   		}
   	@Override

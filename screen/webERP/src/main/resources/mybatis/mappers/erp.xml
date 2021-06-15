@@ -56,8 +56,8 @@
 	<update id="updateOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG
-		set dueDate = ${dueDate}, indicatedQuantity = ${indicated}, note=${note}
-		where  workOrderNumber=#{workOrderNumber}
+		set dueDate = #{dueDate}, indicatedQuantity = #{indicated}, note = #{note}
+		where  workOrderNumber = #{workOrderNumber}
 		]]>  
 	</update>	
 	<delete id="deleteOperationInstruction">
