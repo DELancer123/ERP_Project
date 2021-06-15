@@ -161,14 +161,14 @@
     <tr align="center">
      <td><input type="checkbox" value = "check1" name="content"/></td>
     	<td style="width:13px;"><input type="text" name="ListVO[${fn:length(outsourcingView) }].workOrderNumber"/></td>
-    	<td><input type="date" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.workDate }'/></td>
-    	<td><input type="date" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.workDate }'/></td>
+    	<td><input type="date" id = "instructionDate" name="ListVO[${fn:length(outsourcingView) }].instructionDate"  value='${param.workDate }'/></td>
+    	<td><input type="date" id = "dueDate" name="ListVO[${fn:length(outsourcingView) }].dueDate"  value='${param.workDate }'/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].itemName" value='${param.itemName }' readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].standard" value='${param.standard }' readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].indicatedQuantity"  value='${param.quantity }'/></td>
-    	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].unitPrice" /></td>
+    	<td><input type="text" id = "indicatedQuantity" name="ListVO[${fn:length(outsourcingView) }].indicatedQuantity"  value='${param.quantity }'/></td>
+    	<td><input type="text" id = "unitPrice" name="ListVO[${fn:length(outsourcingView) }].unitPrice" /></td>
     	<td><input type="text" id = "price" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].status" readonly/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].inspection" readonly/></td>
@@ -195,6 +195,10 @@
           /* 검색부 date onChange 함수 설정 */
           		var startDate = new Date().toISOString().substring(0,10);;
              	var endDate = new Date().toISOString().substring(0,10);;
+             	var unitPrice = document.getElementById("unitPrice");
+             	var instructionDate = document.getElementById("instructionDate");
+             	var dueDate = document.getElementById("dueDate");
+             	var indicatedQuantity = document.getElementById("indicatedQuantity");
              	
              	$('#searchStartDate').change(function (){
                      var date = $('#searchStartDate').val();
@@ -233,6 +237,10 @@
     	          const URLSearch = new URLSearchParams(location.search);
     			  const newParam = URLSearch.toString();
     			 var link = location.pathname +'?'+newParam;
+    			 document.getElementById("unitPrice").disabled = true;
+    			 document.getElementById("instructionDate").disabled = true;
+    			 document.getElementById("dueDate").disabled = true;
+    			 document.getElementById("indicatedQuantity").disabled = true;
     	  			var linkPath = document.createElement("input");
     	  		     linkPath.setAttribute("type","hidden");
     	  		     linkPath.setAttribute("name","path");
