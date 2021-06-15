@@ -233,7 +233,7 @@
                     <td><input type="text" value="${item.planquantity}" disabled/></td>
                     <td><input type="text" value="${item.newquabtity}" disabled/></td>
                     <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
-                     <td><input type="text" value="${item.planprice}" disabled/></td>
+                    <td><input type="text" value="${item.planprice}" disabled/></td>
                     <td><input type="text" value="${item.newprice}" disabled/></td>
                     <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
                     <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
@@ -268,16 +268,17 @@
                         <td>수정원화금액</td>
                         <td>차이원화금액</td>
                     </tr>
-                    
+                    <c:forEach var="item" items="${itemRe}" varStatus="status" > 
                     <tr>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        <td><input type="text" disabled/></td>
-                        
+                     	<td><input type="text" value="${item.planquantity}" disabled/></td>
+                    	<td><input type="text" value="${item.newquabtity}" disabled/></td>
+                    	<td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
+                        <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
+                   		<td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
+                    	<td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquabtity*item.newprice)}" disabled/></td>
+               
                     </tr>
+                    </c:forEach>
                 </table>
             </div>
         </container3>
@@ -351,12 +352,6 @@
         })
     
     })
-    </script>
-    <script>
-          function search(){
-    	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItem.do','popupItem');  
-    }
     </script>
 </body>
 </html>

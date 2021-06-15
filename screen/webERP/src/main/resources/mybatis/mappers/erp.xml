@@ -211,7 +211,6 @@
         <result property="plandate" column="plan_date" />
 	</resultMap> 
 
-
 	<select id="selectAllItemList" resultMap="itemResult">
       <![CDATA[
          select * from SM_BIM_Ite_Reg 
@@ -239,89 +238,7 @@
 	   item_code=#{item_code}
 	]]>      
   </delete>
-  <!-- salesplans -->
- <resultMap id="salesPlanResult" type="salesplanVO">
-        <result property="code" column="item_code" />
-        <result property="name" column="item_name" />
-        <result property="stand" column="standard" />
-        <result property="unit" column="inventory_Unit" />
-		<!--<result property="plancode" column="plan_code" />
-         <result property="groupcode" column="item_group_code" /> -->
-        <result property="planquantity" column="plan_item_quantity" />
-        <result property="planprice" column="plan_uint_price" />
-        <result property="newquabtity" column="newplan_item_quantity" />
-        <result property="newprice" column="newplan_unit_price" />
-        <result property="plandate" column="plan_date" />
-	</resultMap> 
 
-
-
-	<select id="selectAllsalesPlanList" resultMap="salesPlanResult">
-      <![CDATA[
-			select * from SM_BIM_Sal_Pla_Reg
-      ]]>
-	</select>
-    <!-- 
-     <insert id="additem"  parameterType="salesplanVO">
-		<![CDATA[
-		 insert into SM_BIM_Ite_Reg
-		 values(#{code}, #{name}, #{unit}, #{groupcode})
-		]]>   
-	</insert> -->
-  
-<!--  ItemGroupPOP 
-    <resultMap id="itemGroupResult" type="itemgroupVO">
-		<result property="groupcode" column="Item_Group_Code" />
-        <result property="groupname" column="Item_Group_Name" />
-	</resultMap> 
-
-
-	<select id="selectItemGroupList" resultMap="itemGroupResult">
-      <![CDATA[
-         select Item_Group_Code,Item_Group_Name from SM_BIM_Ite_gro_Reg 
-      ]]>
-	</select>-->
-	
-	<!--popcust 
-		<resultMap id="custResult" type="custviewVO">
-		<result property="general_customer_code" column="general_customer_code" />
-        <result property="general_customer_name" column="general_customer_name" />
-        <result property="company_registration_number" column="company_registration_number" />
-        <result property="representativs_name" column="representativs_name" />
-	</resultMap>
-		
-		
-		  <resultMap id="custResult" type="custviewVO">
-		<result property="custCode" column="general_customer_code" />
-        <result property="custName" column="general_customer_name" />
-        <result property="comnumber" column="company_registration_number" />
-        <result property="repName" column="representativs_name" />
-	</resultMap>
-
- 
-
-	<select id="selectAllCustList" resultMap="custResult">
-      <![CDATA[
-        select general_customer_code, general_customer_name, company_registration_number, representativs_name from SM_BIM_Gen_Cus_Reg  
-      ]]>
-	</select>
-    
-     <insert id="insertCust"  parameterType="custviewVO">
-		<![CDATA[
-		insert into SM_BIM_Gen_Cus_Reg
-		 values(#{custCode}, #{custName}, #{comnumber}, #{repName})
-		]]>   
-	</insert>
-	
-     
-   <delete id="deleteCust"  parameterType="String">
-	<![CDATA[
-	  delete from  SM_BIM_Gen_Cus_Reg
-	   where
-	   general_customer_code=#{custCode}
-	]]>      
-  </delete>	
-    -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
