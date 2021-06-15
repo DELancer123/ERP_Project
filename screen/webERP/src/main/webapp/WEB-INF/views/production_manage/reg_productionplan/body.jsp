@@ -62,16 +62,10 @@
             <form id="searchForm">
                 <table class="con1_search">
                     <tr>
-                        <td>사업장</td>
+                        <td>품번</td>
                         <td style="width: 80px;"><input type="text" value="${param.itemNumber }" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" value="${param.itemName }" disabled style="width: 100%;"/></td>
-                        <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td> 
-    
-                        <td colspan="5" style="width: 80px;">부서</td>
-                        <td style="width: 80px;"><input type="text" value="${param.departmentCode }" style="width: 100%; background-color: yellow;"/></td>
-                        <td><input type="text" value="${param.departmentName }" disabled/></td>
-                        <td><a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></td>
-                        
+                        <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td>                        
                     </tr>
                     
                     <tr>
@@ -80,11 +74,6 @@
                         <td>~</td>
                         <td ><input type="date" id='searchEndDate' style="width: 100%;"/></td>
                         <td></td>
-    
-                        <td colspan="5" style="width: 80px;">사원</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td><input type="text" name="" disabled/></td>
-                        <td > <i class="fas fa-search" style="color: blue;"></i></td>
                     </tr>
                 </table>
                 </form>

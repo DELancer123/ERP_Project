@@ -1,7 +1,7 @@
 
 package com.myspring.commonProduction.commitOperationInstruction.vo;
  
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
