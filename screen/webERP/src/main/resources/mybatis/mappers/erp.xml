@@ -211,7 +211,7 @@
 	<!-- 품목단가등록(재원) 파트 -->
 	<resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
-		<result property="itemCode" column="Item_Code" />
+		<result property="itemNumber" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
@@ -219,7 +219,7 @@
 		<result property="salesPrice" column="Sales_Price" />
 	</resultMap>
 	<resultMap id="iupPopView" type="iupVO">
-		<result property="itemCode" column="Item_Code" />
+		<result property="itemNumber" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 	</resultMap>
@@ -229,7 +229,7 @@
 	</select>
 	<select id="iupSearchItem" resultMap="iupView"
 		parameterType="String">
-		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemCode}]]>
+		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemNumber}]]>
 	</select>
 	<select id="iupSelectItem" resultMap="iupView" parameterType="String">
 		<![CDATA[select Item_Code,Item_Name,Standard,Inventory_Unit,Purchase_Price,Sales_Price from PM_SM_Ite_Pri where Item_Code=#{itemCode}]]>
@@ -240,7 +240,7 @@
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
 		 insert into PM_SM_Ite_Pri
-		 values(#{no}, #{itemCode}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
+		 values(#{no}, #{itemNumber}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
 	<!-- 
@@ -252,13 +252,13 @@
 		]]>  
 	</update>
 	-->
-	<update id="updateIup" parameterType="iupVO">
+	<!-- <update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri
 		set Item_Name=#{itemName}
 		where Item_Code=#{itemCode}
 		]]>  
-	</update>
+	</update> -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

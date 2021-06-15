@@ -153,4 +153,11 @@ public class IupViewControllerImpl implements IupViewController {
 		return viewName;
 	}
 
+@Override
+public ModelAndView addMember(com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO iupVO, HttpServletRequest request,
+		HttpServletResponse response) throws Exception {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 }

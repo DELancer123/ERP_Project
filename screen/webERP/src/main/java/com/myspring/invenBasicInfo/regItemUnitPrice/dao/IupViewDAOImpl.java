@@ -14,68 +14,68 @@ import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 
 
 @Repository("iupViewDAO")
-public class iupViewDAOImpl implements iupViewDAO{
+public class IupViewDAOImpl implements IupViewDAO{
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
 	public List viewIup() throws DataAccessException {
 		List<iupVO> iupList = null;
-		iupList = sqlSession.selectList("mappers.erp.selectAllMemberList");
+		iupList = sqlSession.selectList("mappers.erp.iupSelectAllMemberList");
 		return iupList;
 	}
 
 	@Override
 	public List viewPop1() throws DataAccessException {
 		List<iupVO> popList = null;
-		popList = sqlSession.selectList("mappers.erp.selectPopList1");
+		popList = sqlSession.selectList("mappers.erp.iupSelectPopList1");
 		return popList;
 	}
 	@Override
 	public List viewPop2() throws DataAccessException {
 		List<iupVO> popList = null;
-		popList = sqlSession.selectList("mappers.erp.selectPopList2");
+		popList = sqlSession.selectList("mappers.erp.iupSelectPopList2");
 		return popList;
 	}
 
 	@Override
 	public List setText(String itemNumber) throws DataAccessException {
 		List<iupVO> textList = null;
-		textList = sqlSession.selectList("mappers.erp.selectitem",itemNumber);
+		textList = sqlSession.selectList("mappers.erp.iupSelectitem",itemNumber);
 		return textList;
 	}
 	@Override
 	public List SearchView(String itemNumber) throws DataAccessException{
 		List<iupVO> searchList = null;
-		searchList = sqlSession.selectList("mappers.erp.searchitem",itemNumber);
+		searchList = sqlSession.selectList("mappers.erp.iupSearchitem",itemNumber);
 		return searchList;
 	}
 
 	@Override
-	public int addBOM(bomVO bomVO) throws DataAccessException {
-		int idx = bomVO.getListVO().size()-1;
-		int result = sqlSession.insert("mappers.erp.insertBOM",bomVO.getListVO().get(idx));
+	public int addIup(iupVO iupVO) throws DataAccessException {
+		int idx = iupVO.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertIup",iupVO.getListVO().get(idx));
 		return 0;
 	}
 	
 	@Override
-	public void delBOM(String[] noary) throws DataAccessException{
+	public void delIup(String[] noary) throws DataAccessException{
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteBOM", Integer.parseInt(obj));		
-			System.out.println("DAO.delBOM");
+			sqlSession.delete("mappers.erp.deleteIup", Integer.parseInt(obj));		
+			System.out.println("DAO.delIup");
 		}
 	}
 
 
 	@Override
-	public int updBOM(bomVO bomVO) throws DataAccessException {
+	public int updIup(iupVO iupVO) throws DataAccessException {
 		int result = 0; 
 
-		int idx = bomVO.getListVO().size()-1;
+		int idx = iupVO.getListVO().size()-1;
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.updateIup",iupVO.getListVO().get(i));		
 		System.out.println("DAOresult:"+result);
 		//bomList.add(bomVO);
 		//}
@@ -87,7 +87,5 @@ public class iupViewDAOImpl implements iupViewDAO{
 	public int selNo() throws DataAccessException {
 		return sqlSession.selectOne("mappers.erp.selectNo");
 	}
-	
-
 
 }
