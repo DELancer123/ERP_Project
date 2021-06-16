@@ -355,7 +355,7 @@
 
 
 	<!-- 외주발주확정 파트 -->
-	<resultMap id="comOutsourcingView" type="ComOutsourcingVO">
+	<!-- <resultMap id="comOutsourcingView" type="ComOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
 		<result property="materialForwardingStatus" column="materialForwardingStatus" />
 		<result property="instructionDate" column="instructionDate" />
@@ -372,10 +372,10 @@
 	
 	<select id="selectAllComOutsourcingList" resultMap="comOutsourcingView">
 		<![CDATA[select workOrderNumber,materialForwardingStatus,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
-	</select>
+	</select> -->
 	
 	<!-- 외주발주확정 세부사항 파트 -->
-	<resultMap id="comOutsourcingViewDetail" type="ComOutsourcingVO">
+	<!-- <resultMap id="comOutsourcingViewDetail" type="ComOutsourcingVO">
 		<result property="no" column="no" />
 		<result property="billingDate" column="billingDate" />
 		<result property="itemCode" column="Item_Code" />
@@ -390,7 +390,7 @@
 	
 	<select id="selectComOutsourcingListDetail" resultMap="outsourcingView">
 		<![CDATA[select no,billingDate,Item_Code,Item_Name,Standard,Inventory_Unit,precisionQuantity,loss,precisionQuantity*loss,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
-	</select>
+	</select> -->
 </mapper>
 
 
