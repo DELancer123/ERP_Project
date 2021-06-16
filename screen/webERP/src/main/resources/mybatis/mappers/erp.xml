@@ -115,7 +115,7 @@
 		<result property="note" column="note" />
 	</resultMap>
 	<resultMap type="mpsosVO" id="MpsOSResult">
-		<result column="ordersno" property="ordersno" />
+		<result column="orderno" property="orderno" />
 		<result column="sequence" property="sequence" />
 		<result column="orderdate" property="orderdate" />
 		<result column="okeydate" property="okeydate" />
