@@ -174,18 +174,17 @@
                       <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                 <tbody align="center">
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
-                    <td><input type="text" value="${item.item_code}"disabled/></td>
-                    <td><input type="text" value="${item.item_name}" disabled/></td>
-                    <td><input type="text" value="${item.standard}" disabled/></td>
-                    <td><input type="text" value="${item.inventory_unit}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity}" disabled/></td>
-                    <td><input type="text" value="${item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
-                    <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
-                    <td><input type="text" value="${item.planprice-item.newprice}" disabled/></td>
-
-                    
+                    <td><input type="text" value="${item.item_code}"readonly/></td>
+                    <td><input type="text" value="${item.item_name}" readonly/></td>
+                    <td><input type="text" value="${item.standard}" readonly/></td>
+                    <td><input type="text" value="${item.inventory_unit}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity}" readonly/></td>
+                    <td><input type="text" value="${item.newquantity}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity-item.newquantity}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity*item.planprice}" readonly/></td>
+                    <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
+                    <td><input type="text" value="${item.planprice-item.newprice}" readonly/></td>
+             
                     </c:forEach>
                 </tbody>      
               </table>
@@ -201,12 +200,12 @@
                     </tr>
                     <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                     <tr>
-                        <td><input type="text" value="${item.planquantity}" disabled/></td>
-                        <td><input type="text" value="${item.newquabtity}" disabled/></td>
-                        <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td>
-                        <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
-                        <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
-                        <td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquabtity*item.newprice)}" disabled/></td>
+                        <td><input type="text" value="${item.planquantity}" readonly/></td>
+                        <td><input type="text" value="${item.newquantity}" readonly/></td>
+                        <td><input type="text" value="${item.planquantity-item.newquantity}" readonly/></td>
+                        <td><input type="text" value="${item.planquantity*item.planprice}" readonly/></td>
+                        <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
+                        <td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquantity*item.newprice)}" readonly/></td>
                     </tr>
                     </c:forEach>
                 </table>
@@ -229,15 +228,15 @@
                 <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                 <tr align="center">
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
-                    <td><input type="text" value="${item.plandate}"disabled/></td>
-                    <td><input type="text" value="${item.planquantity}" disabled/></td>
-                    <td><input type="text" value="${item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.planprice}" disabled/></td>
-                    <td><input type="text" value="${item.newprice}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
-                    <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
-                    <td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquabtity*item.newprice)}" disabled/></td>
+                    <td><input type="text" value="${item.plandate}"readonly/></td>
+                    <td><input type="text" value="${item.planquantity}" readonly/></td>
+                    <td><input type="text" value="${item.newquantity}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity-item.newquantity}" readonly/></td>
+                    <td><input type="text" value="${item.planprice}" readonly/></td>
+                    <td><input type="text" value="${item.newprice}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity*item.planprice}" readonly/></td>
+                    <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
+                    <td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquantity*item.newprice)}" readonly/></td>
                 </c:forEach>
                     </tr>
                 
@@ -270,12 +269,12 @@
                     </tr>
                     <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                     <tr>
-                     	<td><input type="text" value="${item.planquantity}" disabled/></td>
-                    	<td><input type="text" value="${item.newquabtity}" disabled/></td>
-                    	<td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
-                        <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
-                   		<td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
-                    	<td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquabtity*item.newprice)}" disabled/></td>
+                     	<td><input type="text" value="${item.planquantity}" readonly/></td>
+                    	<td><input type="text" value="${item.newquantity}" readonly/></td>
+                    	<td><input type="text" value="${item.planquantity-item.newquantity}" readonly/></td>
+                        <td><input type="text" value="${item.planquantity*item.planprice}" readonly/></td>
+                   		<td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
+                    	<td><input type="text" value="${(item.planquantity*item.planprice)-(item.newquantity*item.newprice)}" readonly/></td>
                
                     </tr>
                     </c:forEach>

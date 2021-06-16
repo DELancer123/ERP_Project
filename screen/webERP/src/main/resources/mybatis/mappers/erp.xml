@@ -204,8 +204,8 @@
         <result property="inventory_unit" column="inventory_unit" />
 
         <result property="planquantity" column="plan_item_quantity" />
-        <result property="planprice" column="plan_uint_price" />
-        <result property="newquabtity" column="newplan_item_quantity" />
+        <result property="planprice" column="plan_unit_price" />
+        <result property="newquantity" column="newplan_item_quantity" />
         <result property="newprice" column="newplan_unit_price" />
         <result property="plandate" column="plan_date" />
 	</resultMap> 

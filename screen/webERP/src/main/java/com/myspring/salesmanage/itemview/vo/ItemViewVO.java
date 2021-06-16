@@ -21,7 +21,7 @@ public class ItemViewVO {
 	private String plancode;
 	private int planquantity;
 	private int planprice;
-	private int newquabtity;
+	private int newquantity;
 	private int newprice;
 	private Date plandate;	
 	private List<ItemViewVO> List;
@@ -107,12 +107,12 @@ public class ItemViewVO {
 		this.planprice = planprice;
 	}
 
-	public int getNewquabtity() {
-		return newquabtity;
+	public int getNewquantity() {
+		return newquantity;
 	}
 
-	public void setNewquabtity(int newquabtity) {
-		this.newquabtity = newquabtity;
+	public void setNewquantity(int newquantity) {
+		this.newquantity = newquantity;
 	}
 
 	public int getNewprice() {

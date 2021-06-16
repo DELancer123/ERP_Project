@@ -72,11 +72,11 @@
       					<td><b>규격</b></td>
   					</tr>
    
- 					<c:forEach var="item" items="${allItemList}" >
+ 					<c:forEach var="items" items="${allItemList}" >
    						<tr align="center">
-      						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
-      						<td>${item.item_name}</td>
-      						<td>${item.standard}</td>
+      						<td><a href="javascript:popFunction('${items.item_code}','${items.item_name}')">${items.item_code}</td>
+      						<td>${items.item_name}</td>
+      						<td>${items.standard}</td>
 						</tr>
   					</c:forEach>   
 				</table>

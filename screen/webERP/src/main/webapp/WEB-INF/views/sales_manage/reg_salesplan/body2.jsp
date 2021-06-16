@@ -14,8 +14,17 @@
 <% String parent = request.getParameter("item_code");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="item" items="${salesplan}"> 
-	<c:set var="code" value="${item.item_code}"/>
+    <c:set var="code" value="${item.item_code}"/>
 	<c:set var="name" value="${item.item_name}"/>
+	<c:set var="standard" value="${item.standard}"/>
+	<c:set var="unit" value="${item.inventory_unit}"/>
+	<c:set var="status" value="${item.inspection_status}"/>
+	<c:set var="plancode" value="${item.plancode}"/>
+	<c:set var="planquan" value="${item.planquantity}"/>
+	<c:set var="price" value="${item.planprice}"/>
+	<c:set var="newquan" value="${item.newquantity}"/>
+	<c:set var="newprice" value="${item.newprice}"/>
+	<c:set var="plandate" value="${item.plandate}"/>
 </c:forEach>
 <!DOCTYPE html>
 <html>
@@ -104,16 +113,16 @@
 		<tbody>
 			<td style="width: 5%;"><input type="checkbox" value="check"
 				id="check" name="content" /></td>
-					<td><input type="text" value="${item.item_code}"disabled/></td>
-                    <td><input type="text" value="${item.item_name}" disabled/></td>
-                    <td><input type="text" value="${item.standard}" disabled/></td>
-                    <td><input type="text" value="${item.inventory_unit}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity}" disabled/></td>
-                    <td><input type="text" value="${item.planprice}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
-                    <td><input type="text" value="${item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.newprice}" disabled/></td>
-                    <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
+					<td><input type="text" value="${item.item_code}" ondblclick="search12345()"/></td>
+                    <td><input type="text" value="${item.item_name}" ondblclick="search12345()"/></td>
+                    <td><input type="text" value="${item.standard}" readonly/></td>
+                    <td><input type="text" value="${item.inventory_unit}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity}" readonly/></td>
+                    <td><input type="text" value="${item.planprice}" readonly/></td>
+                    <td><input type="text" value="${item.planquantity*item.planprice}" readonly/></td>
+                    <td><input type="text" value="${item.newquantity}" readonly/></td>
+                    <td><input type="text" value="${item.newprice}" readonly/></td>
+                    <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
 
 		</tbody>
 		</c:forEach>
@@ -122,7 +131,7 @@
 	   <script>
           function search12345(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemReg.do','popupItemReg');  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemBySalesReg.do','popItemBySalesReg');  
     }
     </script>
 </body>
