@@ -124,12 +124,12 @@
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
   		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
- 				<td><input type="date" id="searchStartDate" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
- 				<td><input type="date" id="searchEndDate" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' readonly/></td>				

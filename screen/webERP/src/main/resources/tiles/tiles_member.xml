@@ -23,6 +23,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="OrderClosingbaseLayout"  template="/WEB-INF/views/purchase_manage/order_closing/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -309,7 +314,7 @@
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/receive_process/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-	<definition name="/member/orderclosing" extends="baseLayout">
+	<definition name="/member/orderclosing" extends="OrderClosingbaseLayout">
       <put-attribute name="title" value="발주마감처리" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/order_closing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />

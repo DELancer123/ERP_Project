@@ -98,8 +98,8 @@
 		]]>  
 	</update>
 	
-
-	<!-- mainPaln 파트 -->
+<!-- 구매관리파트 -->
+	<!-- mainPaln 주계획 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="planNO" column="planNO" />
 		<result property="plandate" column="plandate" />
@@ -153,7 +153,7 @@
 		]]>
 	</insert>
 	
-	<!-- billing파트 -->
+	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />
 		<result property="claim_date" column="claim_date" />
@@ -196,7 +196,7 @@
 	</select>
 	
 
-	<!-- mrp파트 -->
+	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
@@ -215,6 +215,33 @@
 		<![CDATA[update pmm_pm_mrp
 			set expected_order= to_char(sysdate, 'YYYY-MM-DD')]]>  
 	</update>
+	
+	<!-- orderclosing 발주마감 -->
+	<resultMap id="orderclosingResult" type="orderclosingVO">
+		<result property="sequence" column="sequence" />
+		<result property="order_no" column="order_no" />
+		<result property="order_date" column="order_date" />
+		<result property="code" column="code" />
+		<result property="buyer" column="buyer" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
+		<result property="standard" column="standard" />
+		<result property="inventory_unit" column="inventory_unit" />
+		<result property="order_quantity" column="order_quantity" />
+		<result property="order_balance" column="order_balance" />
+		<result property="deadline" column="deadline" />
+	</resultMap>
+	
+	<select id="selectAllClosingList" resultMap="orderclosingResult">
+		<![CDATA[select * from PMM_PM_ORDER]]>
+	</select>
+	
+	<update id="updateOrderClosing">
+		<![CDATA[update PMM_PM_ORDER
+			set deadline= #{deadline}
+			where order_no=#{order_no}]]>
+	</update>
+	
 	<!-- 품목단가등록(재원) 파트 -->
  	<!-- <resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
