@@ -70,9 +70,9 @@
                     
                     <tr>
                         <td>작업예정일</td>
-                        <td colspan="2" style="width: 50px;"><input type="date"  id='searchStartDate' style="width: 100%;"/></td>
+                        <td colspan="2" style="width: 50px;"><input type="date"  id='searchStartDate' style="width: 100%; background-color: yellow;"/></td>
                         <td>~</td>
-                        <td ><input type="date" id='searchEndDate' style="width: 100%;"/></td>
+                        <td ><input type="date" id='searchEndDate' style="width: 100%; background-color: yellow;"/></td>
                         <td></td>
                     </tr>
                 </table>
@@ -96,32 +96,31 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-               		<c:forEach var="info" items="${infoList}" >    
+               		<c:forEach var="info" items="${infoList}" varStatus="status">    
                      <tr id="updateData" align="center">
                      	<td><input type="checkbox" value = "${info.productionPlanCode }"  name="content"/></td>
-                     	<td><input type="text" value="${info.itemCode }" readonly/></td>
-                     	<td><input type="text" value="${info.itemName }" readonly/></td>
-                     	<td><input type="text" value="${info.standard }" readonly/></td>
-                     	<td><input type="text" value="${info.inventoryUnit }" readonly/></td>
-                     	<td><input type="text" value="${info.dailyProduction }" readonly/></td>
-                        <td><input type="text" value="${info.sequence }" readonly/></td>
-                        <td><input type="date" value="${info.scheduled }" readonly/></td>
-                        <td><input type="text" value="${info.quantity }" readonly/></td>
-                        <td><input type="text" value="${info.note }" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index}].itemCode" value="${info.itemCode }" readonly/></td>
+                     	<td><input type="text" name="ListVO[${status.index}].itemName" value="${info.itemName }" readonly/></td>
+                     	<td><input type="text" name="ListVO[${status.index}].standard" value="${info.standard }" readonly/></td>
+                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value="${info.inventoryUnit }" readonly/></td>
+                     	<td><input type="text" name="ListVO[${status.index}].dailyProduction" value="${info.dailyProduction }" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index}].sequence" value="${info.sequence }" readonly/></td>
+                        <td><input type="date" name="ListVO[${status.index}].scheduled" value="${info.scheduled }" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index}].quantity" value="${info.quantity }" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index}].note" value="${info.note }" readonly /></td>
                      </tr>
                      </c:forEach>
                      <tr>
                         <td><input type="checkbox" value = "check1" name="content"/></td>
-                        <td><input type="text" id="workOrderNumber" name="ListVO[${fn:length(infoList)}].workOrderNumber" readonly /></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].itemName" value="${param.itemName }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].standard" value="${param.standard }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].inventoryUnit" value="${param.inventoryUnit }"/></td>
-                        <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
-                        <td><input type="date" name="ListVO[${fn:length(infoList)}].status" /></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].dailyProduction" readonly /></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].sequence" /></td>
+                        <td><input type="date" name="ListVO[${fn:length(infoList)}].scheduled" /></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].quantity" value="${param.quantity }" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
-                        <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
                      </tr>
                     </tbody>
                 </table>
@@ -160,6 +159,7 @@
 		  } else{
 			  
     	  const URLSearch = new URLSearchParams(location.search);
+    	  URLSearch.set('submit', '1');
 		  URLSearch.set('startDate', startDate);
 		  URLSearch.set('endDate', endDate);
 		  const newParam = URLSearch.toString();
@@ -182,7 +182,7 @@
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
   		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
+            document.getElementById('dataForm').action = "${contextPath}/member/addProductionPlan.do";
   			document.getElementById('dataForm').submit();  
 		
       }
@@ -214,7 +214,7 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      			  window.location.href = "${contextPath}/member/delProductionPlan.do?productionPlanCode="+ary;
       	  }
         }
       </script>

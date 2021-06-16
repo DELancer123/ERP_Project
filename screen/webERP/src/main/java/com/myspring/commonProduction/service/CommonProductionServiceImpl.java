@@ -26,9 +26,9 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   @Autowired private CommitOperationInstructionDAO COIdao;
   @Autowired private OperationRegistDAO ORdao;
   
-  @Override public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException {
+  @Override public List selectAllProductionPlanInfo(String info,String startDate, String endDate) throws DataAccessException, ParseException {
 	  List<CommitOperationInstructionVO> infolist = null; 
-	  infolist = COIdao.selectAllProductionPlanInfo();
+	  infolist = COIdao.selectAllProductionPlanInfo(info,startDate,endDate);
 	  return infolist; 
   }
   
@@ -39,6 +39,17 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return popList;
 	}
   
+//  생산계획 CUD
+  @Override
+ 	public void delProductionPlan(String[] numberAry) throws DataAccessException{
+ 		COIdao.delProductionPlan(numberAry);
+ 	}
+  
+  @Override
+ 	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
+ 		return COIdao.addProductionPlan(COIVO);
+ 	}
+//  작업지시 CRUD
   @Override public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
 	  infolist = ORdao.selectAllOperationInfo(startDate,endDate); 

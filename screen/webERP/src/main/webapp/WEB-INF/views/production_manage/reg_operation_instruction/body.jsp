@@ -63,8 +63,8 @@
                 <table class="con1_search">
                     <tr>
                         <td>사업장</td>
-                        <td style="width: 80px;"><input type="text" value="${param.itemNumber }" style="width: 100%; background-color: yellow;"/></td>
-                        <td colspan="3"><input type="text" value="${param.itemName }" disabled style="width: 100%;"/></td>
+                        <td style="width: 80px;"><input type="text" value="${param.factoryNumber }" style="width: 100%; background-color: yellow;"/></td>
+                        <td colspan="3"><input type="text" value="${param.factoryName }" disabled style="width: 100%;"/></td>
                         <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td> 
     
                         <td colspan="5" style="width: 80px;">부서</td>

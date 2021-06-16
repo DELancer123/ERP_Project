@@ -134,7 +134,7 @@
                         <td>${bom.no }</td>
                         
                         <td>${bom.itemNumber}</td>
-                        <td><button id="item" onclick="childSearch(this)">${bom.itemName}</button></td>
+                        <td><button name="item" onclick="childSearch(this)">${bom.itemName}</button></td>
                         <td>${bom.standard}</td>
                         <td>${bom.unit }</td>
                         <td>${bom.division }</td>
@@ -147,7 +147,27 @@
                         <td>${bom.endDate }</td>
                     </tbody>
                     	
+                    <c:forEach var="child" items="${childView}">  
+                    <tbody align="center">
+                        <td>${child.no }</td>
+                        
+                        <td>${child.itemNumber}</td>
+                        <td><button name="item" onclick="childSearch(this)">${child.itemName}</button></td>
+                        <td>${child.standard}</td>
+                        <td>${child.unit }</td>
+                        <td>${child.division }</td>
+                        <td>${child.precisionQuantity }</td>
+                        <td>${child.loss }</td>
+                        <td>${child.precisionQuantity+(child.precisionQuantity * (child.loss * 0.01)) }</td>
+                        <td>${child.actualCost }</td>
+                        <td>${child.outSourcingUnitPrice }</td>
+                        <td>${child.startDate }</td>
+                        <td>${child.endDate }</td>
+                    </tbody>
+                    	
                     </c:forEach>
+                    </c:forEach>
+                    
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -176,23 +196,12 @@
 		  window.open(location.pathname + '?' + newParam, '_self');
  	}
       function childSearch(name){
-    	 /*  var no = "";
-    	  var arr = [];
-    	  var item = document.getElementById("item").length;
     	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '2');
-		  const newParam = URLSearch.toString(); 
-    	  no = name.innerText;
-    	  arr.push(no);
-    	  for(var i=0; i<item;i++){
-    		  if(document.getElementsByName("content")[i].checked==true){
-    			  no = document.getElementsByName("content")[i].value;
-    			  ary.push(no);
-    		  }
-    		  
-    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
-    	  }
-    	  window.location.href=location.pathname + "?" + newParam + "&&no=" arr; */
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+		 
       }
       </script>
 </body>

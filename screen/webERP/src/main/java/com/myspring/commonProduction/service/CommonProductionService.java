@@ -12,7 +12,7 @@ import java.util.List;
   
   public interface CommonProductionService {
   
-  public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException; 
+  public List selectAllProductionPlanInfo(String itemNumber, String startDate, String endDate) throws DataAccessException, ParseException; 
   public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
   public List itemView() throws DataAccessException;
   public List departmentView() throws DataAccessException;
@@ -20,6 +20,8 @@ import java.util.List;
   public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException;
   public void delOperationInstruction(String[] numberAry) throws DataAccessException;
   public int updOperationInstruction(OperationRegistVO ORVO) throws DataAccessException;
-  public List itemCodeSearch() throws DataAccessException;  
+  public List itemCodeSearch() throws DataAccessException;
+  public void delProductionPlan(String[] numberAry) throws DataAccessException;
+  public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;  
   }
  

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 
 public interface CommonProductionController {
@@ -20,5 +21,8 @@ public interface CommonProductionController {
 	public ModelAndView delOperationInstruction(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updOperationInstruction(OperationRegistVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView itemCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delProductionPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addProductionPlan(CommitOperationInstructionVO COIVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 
 }

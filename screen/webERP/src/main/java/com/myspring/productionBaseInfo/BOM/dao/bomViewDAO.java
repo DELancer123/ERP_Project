@@ -18,4 +18,6 @@ public interface bomViewDAO {
 	public int updBOM(bomVO bomVO) throws DataAccessException;
 	public int selNo() throws DataAccessException;
 
+	public List childView() throws DataAccessException;
+
 }
