@@ -243,13 +243,9 @@
 	</update>
 	
 	<!-- 품목단가등록(재원) 파트 -->
-<<<<<<< HEAD
+
 	<resultMap id="iupView" type="iupVO">
 		<result property="no" column="No" />
-=======
- <resultMap id="iupView" type="iupVO">
-		<result property="no" column="no" />
->>>>>>> 8b78b4bc0e670f6ca1fa0fbd81c8d3e33ec804c6
 		<result property="itemNumber" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
