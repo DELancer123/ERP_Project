@@ -218,13 +218,7 @@ public class ComOutsourcingVO {
 		this.loss = loss;
 	}
 
-	public int getForwardingQuantity() {
-		return forwardingQuantity;
-	}
-
-	public void setForwardingQuantity(int forwardingQuantity) {
-		this.forwardingQuantity = forwardingQuantity;
-	}
+	
 
 	public String getNote() {
 		return note;
