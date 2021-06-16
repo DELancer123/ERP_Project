@@ -15,7 +15,7 @@
 	<c:set var="itemNumber" value="${iup.itemNumber }"/>
 	<c:set var="itemName" value="${iup.itemName }"/>
 	<c:set var="standard" value="${iup.standard }"/>
-	<c:set var="unit" value="${iup.unit }"/>
+	<c:set var="inventoryUnit" value="${iup.inventoryUnit }"/>
 </c:forEach>
     
 <!DOCTYPE html>
@@ -107,7 +107,7 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
@@ -118,7 +118,7 @@
                 	<tr id="insertIup" align="center">
                 		<td></td>
                     	<td><input type="text" id="no" name="ListVO[${fn.length(iupView) }].no" value='${inputNo }' readonly style="width:100%"></td>
-                    	<td><input type="text" id="itemNumber" name="ListVO[${fn.length(iupView) }].itemNumber" value='${param.itemNumber }'/></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn.length(iupView) }].itemNumber" value='${param.itemNumber }' ondblclick="search2()" /></td>
                     	<td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
                     	<td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
@@ -143,7 +143,7 @@
 		var update_button = document.getElementById("update");
 		
 		function openWindowPop(url, name){
-			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no,toolbar=no, resizable=no';
+			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
 			window.open(url, name, options);
 		}
 		
