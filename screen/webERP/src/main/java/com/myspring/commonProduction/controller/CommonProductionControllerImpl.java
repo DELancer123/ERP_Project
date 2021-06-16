@@ -34,13 +34,15 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			String viewName = getViewName(request);
 			String submit = (String) request.getParameter("submit");
 			String itemCode = (String) request.getParameter("itemCode");
+			String startDate = request.getParameter("dateStart");
+			String endDate = request.getParameter("dateEnd");
 			int sum = 0;
 			if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
 				mav = new ModelAndView(viewName);
 				return mav;
 			}
 			else if(submit.equals("1")){
-				List infoList = productionService.selectAllProductionPlanInfo(itemCode);
+				List infoList = productionService.selectAllProductionPlanInfo(itemCode,startDate,endDate);
 				mav = new ModelAndView(viewName);				
 				mav.addObject("infoList", infoList);
 			}				
