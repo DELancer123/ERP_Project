@@ -152,7 +152,7 @@
                         <td>${child.no }</td>
                         
                         <td>${child.itemNumber}</td>
-                        <td><button name="item" onclick="childSearch(this)">${child.itemName}</button></td>
+                        <td>${child.itemName}</td>
                         <td>${child.standard}</td>
                         <td>${child.unit }</td>
                         <td>${child.division }</td>
