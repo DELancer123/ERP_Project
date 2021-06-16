@@ -45,6 +45,10 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		COIdao.delProductionPlan(numberAry);
  	}
   
+  @Override
+ 	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
+ 		return COIdao.addProductionPlan(COIVO);
+ 	}
 //  작업지시 CRUD
   @Override public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 

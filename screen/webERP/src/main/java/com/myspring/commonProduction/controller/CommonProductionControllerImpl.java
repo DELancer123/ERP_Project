@@ -59,7 +59,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			return mav;
 		}
 //	생산계획 등록 CRUD
-	  @Override
+	  	@Override
 		@RequestMapping(value="/member/delProductionPlan.do" ,method = RequestMethod.GET)
 		public ModelAndView delProductionPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String number = (String) request.getParameter("productionPlanCode");
@@ -69,6 +69,20 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			ModelAndView mav = new ModelAndView("redirect:/member/proplanreg.do");
 			return mav;
 			}
+	  
+	  	@Override
+		@RequestMapping(value="/member/addProductionPlan.do" ,method = RequestMethod.GET)
+		public ModelAndView addProductionPlan(@ModelAttribute("info") CommitOperationInstructionVO COIVO, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			String path = request.getParameter("path");
+			path = path.replace("/webERP", "");
+			System.out.println("url" + path);
+			int result = 0;
+			result = productionService.addProductionPlan(COIVO);
+			ModelAndView mav = new ModelAndView("redirect:"+path);
+			return mav;
+		}
 //	작업지시등록 기능 부
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)
@@ -123,7 +137,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return mav;
   }
   
-  @Override
+  	@Override
 	@RequestMapping(value="/member/addOperationInstruction.do" ,method = RequestMethod.GET)
 	public ModelAndView addOperationInstruction(@ModelAttribute("info") OperationRegistVO ORVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

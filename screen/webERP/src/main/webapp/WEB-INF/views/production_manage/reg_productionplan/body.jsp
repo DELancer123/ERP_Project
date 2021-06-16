@@ -182,7 +182,7 @@
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
   		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
+            document.getElementById('dataForm').action = "${contextPath}/member/addProductionPlan.do";
   			document.getElementById('dataForm').submit();  
 		
       }

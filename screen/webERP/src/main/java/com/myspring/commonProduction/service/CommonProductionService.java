@@ -21,6 +21,7 @@ import java.util.List;
   public void delOperationInstruction(String[] numberAry) throws DataAccessException;
   public int updOperationInstruction(OperationRegistVO ORVO) throws DataAccessException;
   public List itemCodeSearch() throws DataAccessException;
-  public void delProductionPlan(String[] numberAry) throws DataAccessException;  
+  public void delProductionPlan(String[] numberAry) throws DataAccessException;
+  public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;  
   }
  
