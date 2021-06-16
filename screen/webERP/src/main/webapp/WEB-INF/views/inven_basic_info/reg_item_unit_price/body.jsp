@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<% request.setCharacterEncoding("UTF-8"); %>
-<% String inputNo = (String)request.getAttribute("inputNo"); %>
-<% String itemCode = request.getParameter("itemCode"); %>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<% 
+	String inputNo = (String)request.getAttribute("inputNo");
+%>
+<% 
+	String itemNumber = request.getParameter("itemNumber");
+%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="iup" items="${iupInsert}">
-	<c:set var="itemCode" value="${iup.itemCode }"/>
+	<c:set var="itemNumber" value="${iup.itemNumber }"/>
 	<c:set var="itemName" value="${iup.itemName }"/>
 	<c:set var="standard" value="${iup.standard }"/>
+	<c:set var="unit" value="${iup.unit }"/>
 </c:forEach>
     
 <!DOCTYPE html>
@@ -57,40 +64,6 @@
         #contents2 {
             overflow: scroll;
         }
-
-        /*탭구현 css임*/		
-		ul.tabs{
-			margin: 0px;
-			padding: 0px;
-			list-style: none;
-		}
-		ul.tabs li{
-			background: none;
-			color: black;
-			display: inline-block;
-			padding: 5px 5px;
-			cursor: pointer;
-            width: 80px;
-            text-align: center;
-		}
-
-
-		ul.tabs li.current{
-			border-top: 2px solid skyblue;			
-            background-color: #ddd;        
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-		}
-
-		.tab-content{
-			display: none;	
-			
-		}
-
-		.tab-content.current{
-			display: inherit;
-		}
-        
 </style>
 </head>
 <body>
@@ -102,7 +75,7 @@
                     	품번
                     </td>
                     <td style="width: 50px;">
-                    	<input type="text" style="width: 100%;" name="" value='${param.itemCode }' />
+                    	<input type="text" style="width: 100%;" name="" value='${param.itemNumber }' />
                     </td>
                     <td>
                     	<a href="javascript:search1()">
@@ -113,69 +86,52 @@
                     	<input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/>
                     </td>
                 </tr>
-                <tr>
-                    <td>품목군</td>
-                    <td style="width: 50px;"><input type="text" style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>
-                    <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                </tr>
 			</table>
 		</form>
         </container1>
-<form id="regIup" method="get" commandName="ListVO">
-	<container2 id="contents2">
-		<div id="iupInfo">    
-            <table id="iupTable">
-                <thead align="center" style="background-color:gray">                    
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                    <td style="width:10px;">No</td>
-                    <td>품 번</td>
-                    <td>품 명</td>
-                    <td>규 격</td>
-                    <td>재고단위</td>
-                    <td>구매단가</td>
-                    <td>판매단가</td>
-				</thead>
-			<c:forEach var="iup" items="${iupView }" varStatus="status">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			
-                <%-- <tr id="updateIup" align="center">
-                    <td><input type="checkbox" name="content" value="${iup.no }"/></td>
-                    <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    <td><input type="text" name="ListVO[${status.index}].itemCode" value='${iup.itemCode }' ondblclick="search2()"/></td>
-                    <td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
-                    <td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
-                    <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
-                    <td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' /></td>
-                    <td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
-                </tr> --%>
-			</c:forEach>
-                <%-- <tr id="insertIup" align="center">
-                	<td></td>
-                    <td><input type="text" id="no" name="ListVO[${fn.length(iupView }].no" value='${inputNo }' readonly style="width:100%"></td>
-                    <td><input type="text" id="itemCode" name="ListVO[${fn.length(iupView) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
-                    <td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
-                    <td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
-                    <td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }]" value='${param.inventoryUnit }' readonly/></td>
-                    <td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
-                    <td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
-                </tr> --%>
-            </table>
-		</div>
-	</container2>
+	<form id="regIup" method="get" commandName="ListVO">
+		<container2 id="contents2">
+			<div id="iupInfo">    
+            	<table id="iupTable">
+                	<thead align="center" style="background-color:gray">                    
+                    	<td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                    	<td style="width:10px;">No</td>
+                    	<td>품 번</td>
+                    	<td>품 명</td>
+                    	<td>규 격</td>
+                    	<td>재고단위</td>
+                    	<td>구매단가</td>
+                    	<td>판매단가</td>
+					</thead>
+				<c:forEach var="iup" items="${iupView }" varStatus="status">
+					<tr id="updateIup" align="center">
+                    	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
+                    	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' readonly/></td>
+                    	<td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }' readonly/></td>                                                                            
+                	</tr>
+				</c:forEach>
+                	<tr id="insertIup" align="center">
+                		<td></td>
+                    	<td><input type="text" id="no" name="ListVO[${fn.length(iupView) }].no" value='${inputNo }' readonly style="width:100%"></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn.length(iupView) }].itemNumber" value='${param.itemNumber }'/></td>
+                    	<td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
+                    	<td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
+                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
+                    	<td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
+                    	<td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
+                	</tr>
+            	</table>
+			</div>
+		</container2>
 	
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
-        var itemCode = document.getElementById("itemCode");
+        var itemNumber = document.getElementById("itemNumber");
         var itemName = document.getElementById("dataoutput");
         var standard = document.getElementById("dataoutput");
       
@@ -185,6 +141,26 @@
 
 		var save_button = document.getElementById("save");
 		var update_button = document.getElementById("update");
+		
+		function openWindowPop(url, name){
+			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no,toolbar=no, resizable=no';
+			window.open(url, name, options);
+		}
+		
+		view_button.onclick = function(){
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+
+			  window.open(location.pathname + '?' + newParam, '_self');
+    	}
+		
+		function selectAll(selectAll){
+            const checkbox = document.getElementsByName('content');
+            checkbox.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            })
+        }
 		
 		function search1(){
 			openWindowPop('http://localhost:8090/webERP/member/iupcodehelper1.do','iupcodehelper1');
@@ -255,6 +231,7 @@
 				window.location.href = "${contextPath}/member/delIup.do?no="+ary;
 			}
 		}
-    </script>
+	</script>
+	</form>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>    
-    
-
+<%
+	String inputNo = (String)request.getAttribute("inputNo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +62,8 @@
             </table>
             <div id="button">
                 <button id="search">조회</button>
-                <button id="submit">적용</button>
+                <button id="submit" onclick="submitClick(this.form)">적용</button>
+                <input type="hidden" name="inputNo" value=""/>
                  
                 <button>버튼3</button>
             </div>
@@ -76,7 +77,7 @@
                 </tr>
                 <c:forEach var="iup" items="${itemView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${iup.itemCode }','${iup.itemName }')">${iup.itemCode}</a></td>
+      <td><a href="javascript:popFunction('${iup.itemNumber }','${iup.itemName }')">${iup.itemNumber}</a></td>
       <td><a href="#">${iup.itemName}</a></td>
       <td><a href="#">${iup.standard}</a></td>
     </tr>
@@ -87,18 +88,18 @@
     </div>
     
     <script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
+    	var submit_button = document.getElementById("submit");
+    	var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
-    			
+    		text_code.value = code;
+    		text_name.value = name;
     	}
-    	submit_button.onclick = function(){
-    		opener.setChildValue(text_code.value);
-			window.close();
+    	
+    	function submitClick(form){
+    		opener.setChildvalue(text_code.value)
+    		window.close();
     	}
     </script>
     </form>
