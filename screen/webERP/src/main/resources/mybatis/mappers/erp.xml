@@ -413,9 +413,11 @@
 	</resultMap>
 	
 	<select id="selectComOutsourcingListDetail" resultMap="comOutsourcingViewDetail">
-		<![CDATA[select OUT.billingDate,OUT.Item_Code,OUT.Item_Name,OUT.Standard,OUT.Inventory_Unit,OUT.precisionQuantity,OUT.loss,OUT.precisionQuantity+(OUT.precisionQuantity*OUT.loss*0.01) as 확정수량,bom.outsourcingunitprice as 외주단가,
+		<![CDATA[select distinct(OUT.Item_Code),OUT.billingDate,OUT.Item_Name,OUT.Standard,OUT.Inventory_Unit,OUT.precisionQuantity,OUT.loss,OUT.precisionQuantity+(OUT.precisionQuantity*OUT.loss*0.01) as 확정수량,bom.outsourcingunitprice as 외주단가,
 OUT.precisionQuantity+(OUT.precisionQuantity*OUT.loss*0.01)*bom.outsourcingunitprice as 금액 ,OUT.note  
-from CPM_OM_Out_Mat_For_Det OUT,cpm_bim_bom_reg BOM]]>
+from CPM_OM_Out_Mat_For_Det OUT,cpm_bim_bom_reg BOM
+where out.item_code=bom.item_code
+order by item_code]]>
 	</select>
 </mapper>
 

@@ -37,7 +37,7 @@ public class ComOutsourcingDAOImpl implements ComOutsourcingDAO {
 //		for(int i = 0; i<idx;i++) {
 //			System.out.println("i"+i);
 //		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateComOutsourcing",comOutsourcingVO);		
+		result = sqlSession.update("mappers.erp.updateComOutsourcing",comOutsourcingVO.getListVO().get(idx));		
 		System.out.println("DAOresult:"+result);
 //		}
 		return result;
