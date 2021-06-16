@@ -47,22 +47,22 @@ public class SalesplanStaServiceImpl implements SalesplanStaService{
 //	@Override
 //	public List itemText(String item_code) throws DataAccessException {
 //		List additemList = null;
-//		additemList = salesplanDAO.addItem(item_code);
+//		additemList = salesplanDAO.salesText(item_code);
 //		return additemList;
 //	}
-////	@Override
-////	public int addItem(ItemViewVO itemview) throws DataAccessException {
-////		return salesplanDAO.insertItem(itemview);
-////	}
-////
-////	@Override
-////	public int removeItem(String item_code) throws DataAccessException {
-////		return salesplanDAO.deleteItem(item_code);
-////	}
-////	@Override
-////	public int inputNo() throws DataAccessException {
-////		return salesplanDAO.selNo();
-////		
-////	}
+//	@Override
+//	public int inputNo() throws DataAccessException {
+//		return salesplanDAO.selNo();
+//		
+//	}
+//////	@Override
+//////	public int addItem(ItemViewVO itemview) throws DataAccessException {
+//////		return salesplanDAO.insertItem(itemview);
+//////	}
+//////
+//////	@Override
+//////	public int removeItem(String item_code) throws DataAccessException {
+//////		return salesplanDAO.deleteItem(item_code);
+//////	}
 
 }

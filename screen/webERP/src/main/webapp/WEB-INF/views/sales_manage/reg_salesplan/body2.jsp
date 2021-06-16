@@ -120,7 +120,7 @@
 	</table>
 	</container2>
 	   <script>
-          function search1(){
+          function search12345(){
     	  
         	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemReg.do','popupItemReg');  
     }

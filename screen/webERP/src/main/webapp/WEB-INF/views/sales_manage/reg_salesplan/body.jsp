@@ -76,8 +76,8 @@
 		<tr>
 	
 			<td align="center">품번</td>
-			<td><input type="text" name="Plan_Item_Code" id="piCodeSearch"></td>
-			<td><i class="fas fa-search" style="color: blue;"></i></td>
+			<td><input type="text" name="item" value='${param.item_name}' /></td>
+			<td><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
 			<td><input type="text" disabled></td>
 			<form name="frmSearchDate" method="get"  action="${contextPath}/member/searchdate.do">
 			<td align="right" colspan="2">대상년월</td>
@@ -104,9 +104,9 @@
 		</tr>
 		<tr>
 
-			<td align="center">품명</td>
-			<td><input type="text" name="item" value='${param.item_name}' /></td>
-			<td><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
+			<td align="center">품목군</td>
+			<td><input type="text" name="Plan_Item_Code" id="piCodeSearch"></td>
+			<td><i class="fas fa-search" style="color: blue;"></i></td>
 			<td><input type="text" disabled></td>
 			<td align="center">판매 계획 수량</td>
 			<td><input type="text" name="Plan_Item_Quantity"></td>
@@ -118,7 +118,7 @@
 	   <script>
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemReg.do','popupItemReg');  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemBySalesList.do','popItemBySalesList');  
     }
     </script>
 </body>
