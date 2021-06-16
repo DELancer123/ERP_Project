@@ -91,7 +91,7 @@ a {
 					<tr align="center">
 					<td><input type="checkbox" name="content"/></td>
 					<td style="width:13px;"><input type="text" value="${MpsOS.sequence}" style="width:100%"/></td>
-						<td><input type="text" value="${MpsOS.ordersno}" /></td>
+						<td><input type="text" value="${MpsOS.orderno}" /></td>
 						<td><input type="text" value="${MpsOS.orderdate}"/></td>
 						<td><input type="text" value="${MpsOS.okeydate}"/></td>
 						<td><input type="text" id="buyer" value="${MpsOS.buyer}" /></td>

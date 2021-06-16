@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("mpsosVO")
 public class MpsOSVO {
-	private String ordersno;
+	private String orderno;
 	private int sequence;
 	private Date orderdate;
 	private Date okeydate;
@@ -23,10 +23,10 @@ public class MpsOSVO {
 
 public MpsOSVO() {}
 
-public MpsOSVO(String ordersno,int sequence,Date orderdate, Date okeydate,String buyer,String item_Code,
+public MpsOSVO(String orderno,int sequence,Date orderdate, Date okeydate,String buyer,String item_Code,
 		String item_Name,String standard,String inventory_unit,int order_quantity,int apply_quantity,int order_Balance,Date expected_Date,String note) 
 {
-	this.ordersno=ordersno;
+	this.orderno=orderno;
 	this.sequence=sequence;
 	this.orderdate=orderdate;
 	this.okeydate=okeydate;
@@ -43,8 +43,8 @@ public MpsOSVO(String ordersno,int sequence,Date orderdate, Date okeydate,String
 	
 }
 
-public String getOrdersno() {return ordersno;}
-public void setOrdersno(String ordersno) {this.ordersno=ordersno;}
+public String getOrderno() {return orderno;}
+public void setOrderno(String orderno) {this.orderno=orderno;}
 
 public int getSequence() {return sequence;}
 public void setSequence(int sequence) {this.sequence=sequence;}
