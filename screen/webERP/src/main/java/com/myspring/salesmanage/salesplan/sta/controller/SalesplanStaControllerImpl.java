@@ -39,9 +39,12 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);
 		logger.debug("viewName: "+ viewName);
-		List allItemsList = salesplanService.listItems();
+		System.out.println("dididi1");
+		List allItemList = salesplanService.listItems();
+		System.out.println("dididi2");
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("allItemsList", allItemsList);
+		System.out.println("dididi3");
+		mav.addObject("allItemList", allItemList);
 		return mav;
 	}
 
@@ -95,9 +98,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
 	}
 	return viewName;
-}
-
-
-
+	}
 
 }

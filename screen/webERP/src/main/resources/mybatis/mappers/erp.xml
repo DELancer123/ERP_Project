@@ -39,6 +39,7 @@
 	<select id="selectFactoryList" resultMap="FactoryViewResult">
 		<![CDATA[select * from SM_CRI_Wor_Reg]]>
 	</select>
+	 
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
@@ -187,22 +188,20 @@
 	</select>
 	
 	
-		<!--popitem -->
-	<resultMap id="itemResult" type="ItemViewVO">
+		<!--popitem-->
+	<resultMap id="itemResult" type="itemviewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
-        <result property="groupcode" column="item_group_code" />
+        
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
 	</resultMap> 
-		<resultMap id="itemRe" type="ItemViewVO">
+		<resultMap id="itemRe" type="itemviewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
-        <result property="groupcode" column="item_group_code" />
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
-		<!--<result property="plancode" column="plan_code" />
-         <result property="groupcode" column="item_group_code" /> -->
+
         <result property="planquantity" column="plan_item_quantity" />
         <result property="planprice" column="plan_uint_price" />
         <result property="newquabtity" column="newplan_item_quantity" />
@@ -227,49 +226,6 @@
 		<![CDATA[
 		 select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code}
 		]]>   
-	</select>
+	</select> 
 	
-     
-   <delete id="deleteItem"  parameterType="String">
-	<![CDATA[
-	   delete from  SM_BIM_Sal_Pla_Reg
-	   where
-	   item_code=#{item_code}
-	]]>      
-  </delete>
-
-	
-	<!-- 외주발주등록 파트 -->
-	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
-		<result property="workOrderNumber" column="workOrderNumber" />
-		<result property="instructionDate" column="instructionDate" />
-		<result property="dueDate" column="dueDate" />
-		<result property="Item_Code" column="Item_Code" />
-		<result property="Item_Name" column="Item_Name" />
-		<result property="Standard" column="Standard" />
-		<result property="Inventory_Unit" column="Inventory_Unit" />
-		<result property="indicatedQuantity" column="indicatedQuantity" />
-		<result property="unitPrice" column="unitPrice" />		
-		<result property="Price" column="indicatedQuantity*unitPrice" />		
-		<result property="status" column="status" />
-		<result property="inspection" column="inspection" />
-		<result property="note" column="note" />
-	</resultMap> -->
-	
-	
-	<!-- <select id="selectAllOutsourcingList" resultMap="outsourcingView">
-		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
-	</select>
-	
-	
-	<insert id="insertOutsourcing" parameterType="regOutsourcingVO">
-		<![CDATA[insert into CPM_OM_Out_Per_Reg(id,pwd,name,email) values(#{id}, #{pwd}, #{name}, #{email}]]>
-	</insert>
-
-	
-	<delete id="deleteOutsourcing" parameterType="int">
-		<![CDATA[delete from t_member where id=#{id}]]>
-	</delete> -->
-
-
 </mapper>

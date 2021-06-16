@@ -32,9 +32,10 @@ public class SalesplanStaServiceImpl implements SalesplanStaService{
 	//item
 	@Override
 	public List listItems() throws DataAccessException {
-		List allItemsList = null;
-		allItemsList = salesplanDAO.selectAllItemList();
-		return allItemsList;
+		List allItemList = null;
+		System.out.println("리스트아이템"); 
+		allItemList = salesplanDAO.selectAllItemList();
+		return allItemList;
 	}
 	@Override
 	public List submitItem(String item_code) throws DataAccessException {
@@ -49,19 +50,19 @@ public class SalesplanStaServiceImpl implements SalesplanStaService{
 		additemList = salesplanDAO.addItem(item_code);
 		return additemList;
 	}
-	@Override
-	public int addItem(ItemViewVO itemview) throws DataAccessException {
-		return salesplanDAO.insertItem(itemview);
-	}
-
-	@Override
-	public int removeItem(String item_code) throws DataAccessException {
-		return salesplanDAO.deleteItem(item_code);
-	}
-	@Override
-	public int inputNo() throws DataAccessException {
-		return salesplanDAO.selNo();
-		
-	}
+//	@Override
+//	public int addItem(ItemViewVO itemview) throws DataAccessException {
+//		return salesplanDAO.insertItem(itemview);
+//	}
+//
+//	@Override
+//	public int removeItem(String item_code) throws DataAccessException {
+//		return salesplanDAO.deleteItem(item_code);
+//	}
+//	@Override
+//	public int inputNo() throws DataAccessException {
+//		return salesplanDAO.selNo();
+//		
+//	}
 
 }

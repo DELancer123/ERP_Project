@@ -72,7 +72,7 @@
       					<td><b>규격</b></td>
   					</tr>
    
- 					<c:forEach var="item" items="${allItemsList}" >
+ 					<c:forEach var="item" items="${allItemList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
       						<td>${item.item_name}</td>

@@ -2,14 +2,14 @@ package com.myspring.salesmanage.itemview.vo;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
-@Component("ItemViewVO")
+@Component("itemviewVO")
 public class ItemViewVO {
 
 	private String item_code; //ǰ��
@@ -136,7 +136,7 @@ public class ItemViewVO {
 	}
 
 	public void setList(List<ItemViewVO> list) {
-		List = list;
+		List = new ArrayList();
 	}
 	
 }

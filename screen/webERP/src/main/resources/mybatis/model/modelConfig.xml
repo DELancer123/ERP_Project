@@ -22,9 +22,9 @@
 		<!-- BOM 모델 -->
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.bomVO" alias="bomVO" />
 		<!-- salesplan pop구현용 -->
-			<typeAlias type="com.myspring.salesmanage.salesplan.vo.SalesplanVO"  alias="salesplanVO" />
-			<typeAlias type="com.myspring.salesmanage.pop.itemview.vo.ItemViewVO" alias="itemviewVO" />
-			<!-- <typeAlias type="com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO"  alias="itemgroupVO" />
+			<typeAlias type="com.myspring.salesmanage.itemview.vo.ItemViewVO" alias="itemviewVO" />
+			<!-- <typeAlias type="com.myspring.salesmanage.salesplan.vo.SalesplanVO"  alias="salesplanVO" />
+			<typeAlias type="com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO"  alias="itemgroupVO" />
 	 <typeAlias type="com.myspring.salesmanage.pop.custview.vo.CustViewVO" alias="custviewVO" /> -->
 		<!-- 외주 파트 -->
 		<!-- <typeAlias type="com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO" alias="RegOutsourcingVO" /> -->

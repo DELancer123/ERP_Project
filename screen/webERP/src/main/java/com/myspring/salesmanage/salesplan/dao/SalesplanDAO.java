@@ -23,15 +23,15 @@ public interface SalesplanDAO {
 //		public List submitGroupView(String groupcode) throws DataAccessException;
 //		public List addGroup(String groupcode) throws DataAccessException;
 
-		
-		public int insertItem(ItemViewVO itemviewVO) throws DataAccessException ;
-		public int deleteItem(String item_code) throws DataAccessException;
-//		public int insertSalesplan(SalesplanVO salesplanVO) throws DataAccessException;
-//		public int updateNewSalesplan(String Item_Code) throws DataAccessException;
-//		public int deleteSalesplan(String Item_Code) throws DataAccessException;
-//		public SalesplanVO searchByItemCode(String Item_Code) throws DataAccessException;
-//		public SalesplanVO searchByPlanDate(Date Plan_Date) throws DataAccessException;
-//		public SalesplanVO searchByItemGroup(String Item_Group_Code) throws DataAccessException;
-		public int selNo() throws DataAccessException;
-		
+//		
+//		public int insertItem(ItemViewVO itemviewVO) throws DataAccessException ;
+//		public int deleteItem(String item_code) throws DataAccessException;
+////		public int insertSalesplan(SalesplanVO salesplanVO) throws DataAccessException;
+////		public int updateNewSalesplan(String Item_Code) throws DataAccessException;
+////		public int deleteSalesplan(String Item_Code) throws DataAccessException;
+////		public SalesplanVO searchByItemCode(String Item_Code) throws DataAccessException;
+////		public SalesplanVO searchByPlanDate(Date Plan_Date) throws DataAccessException;
+////		public SalesplanVO searchByItemGroup(String Item_Group_Code) throws DataAccessException;
+//		public int selNo() throws DataAccessException;
+//		
 }	
