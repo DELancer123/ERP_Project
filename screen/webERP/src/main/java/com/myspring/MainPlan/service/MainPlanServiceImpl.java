@@ -32,8 +32,8 @@ public class MainPlanServiceImpl implements MainPlanService{
 	}
 	
 	@Override
-	public void delMps(String[] sequenceary) throws DataAccessException{
-		mainplanDAO.delMps(sequenceary);
+	public void delMps(String[] noary) throws DataAccessException{
+		mainplanDAO.delMps(noary);
 	}
 
 	
@@ -46,5 +46,5 @@ public class MainPlanServiceImpl implements MainPlanService{
 	public int updateMPS(MainPlanVO vo) throws DataAccessException {
 		return mainplanDAO.updateMPS(vo);
 	}
-	 
+	
 }

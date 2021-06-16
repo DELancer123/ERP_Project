@@ -89,7 +89,7 @@ a {
 						<td><a href="#">${mrp.item_Code}</a></td>
 						<td><a href="#">${mrp.item_Name}</a></td>
 						<td><a href="#">${mrp.standard}</a></td>
-						<td><a href="#">${mrp.unit}</a></td>
+						<td><a href="#">${mrp.inventory_unit}</a></td>
 						<td><a href="#">${mrp.expected_quantity}</a></td>
 					</tr>
 				</c:forEach>

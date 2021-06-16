@@ -1,98 +1,189 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+request.setCharacterEncoding("UTF-8");
+String sequence = (String) request.getAttribute("sequence");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
- #contents1{
-            position: absolute;
-            left: 15%;
-            top: 15%;
-            width: 85%;
-            height: 10%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-        #contents2{
-            position: absolute;
-            left: 15%;
-            top: 25%;
-            width: 85%;
-            height: 70%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-         .con1_search{
-            padding:0;
-            text-align: center;
-            position: absolute;
-            top: 25%;
-            left: 15%;
-        }
-        #view1{
-            width: 100%;
-            text-align: center;
-            border: 1px solid black;
-        }
-        #contents2 div{
-            position: absolute;
-            right: 0;
-            bottom: 0;
-        }
+#contents1 {
+	position: absolute;
+	left: 15%;
+	top: 15%;
+	width: 85%;
+	height: 10%;
+	border: 1px solid black;
+	z-index: 1;
+}
+
+#contents2 {
+	position: absolute;
+	left: 15%;
+	top: 25%;
+	width: 85%;
+	height: 70%;
+	border: 1px solid black;
+	z-index: 1;
+}
+
+.con1_search {
+	padding: 0;
+	text-align: center;
+	position: absolute;
+	top: 25%;
+	left: 15%;
+}
+
+#OrderClosingTable {
+	width: 100%;
+	text-align: center;
+	border: 1px solid black;
+}
+
+#contents2 div {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#button {
+	margin-top: 3%;
+	margin-right: 3%;
+	text-align: right;
+}
+
+#view {
+	overflow: scroll;
+	height: 100%;
+	width: 100%;
+}
 </style>
 </head>
 <body>
-<container1 id = contents1>
-            <table class="con1_search">
-                <tr>
-                    <td>»ç¾÷Àå</td>
-                    <td style="width: 50px;"><input type="text" id="reqInput" style="width: 100%;"/></td>
+	<container1 id=contents1>
+	<table class="con1_search">
+		<tr>
+			<td>ì‚¬ì—…ì¥</td>
+			<td style="width: 50px;"><input type="text" id="reqInput"
+				style="width: 100%;" /></td>
 
-                    <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></td>
-                    <td colspan="5" style="width: 100px;">°Å·¡±¸ºĞ</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                    <td><input type="text" name="" disabled/></td>
-                    <td ><i class="fas fa-search" style="color: blue;"></td>
-                    
-                </tr> 
-                <tr>
-                    <td>¹ßÁÖ±â°£</td>
-                    <td colspan="2" style="width: 80px;"><input type="date" style="width: 100%;"/></td>
-                    <td>~</td>
-                    <td><input type="date" style="width: 100%;"/></td>
-                    <td></td>
-                    <td colspan="5">»ç¿ø</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                    <td><input type="text" name="" disabled/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></td>
-                </tr>
-            </table>
-        </container1>
-        <container2 id= contents2>
-            <table id="view1">
-                <tr>
-                    <td><input type="checkbox" name="content"/></td>
-                    <td>¹ßÁÖ¹øÈ£</td>
-                    <td>¹ßÁÖÀÏÀÚ</td>
-                    <td>ÄÚµå</td>
-                    <td>°Å·¡Ã³¸í</td>
-                    <td>No</td>
-                    <td>Ç°¹ø</td>
-                    <td>Ç°¸í</td>
-                    <td>±Ô°İ</td>
-                    <td>´ÜÀ§</td>
-                    <td>¹ßÁÖ¼ö·®</td>
-                    <td>¹ßÁÖÀÜ·®</td>
-                    <td>¸¶°¨</td>
-                </tr>
-            </table>
-            <div>
-                ´ã´çÀÚ: <input type="text" disabled/>
-                
-            </div>
-        </container2>
+			<td colspan="3"><input type="text" name="" disabled
+				style="width: 100%;" /></td>
+			<td><i class="fas fa-search" style="color: blue;"></td>
+			<td colspan="5" style="width: 100px;">ê±°ë˜êµ¬ë¶„</td>
+			<td style="width: 80px;"><input type="text" style="width: 100%;" /></td>
+			<td><input type="text" name="" disabled /></td>
+			<td><i class="fas fa-search" style="color: blue;"></td>
+
+		</tr>
+		<tr>
+			<td>ë°œì£¼ê¸°ê°„</td>
+			<td colspan="2" style="width: 80px;"><input type="date"
+				style="width: 100%;" /></td>
+			<td>~</td>
+			<td><input type="date" style="width: 100%;" /></td>
+			<td></td>
+			<td colspan="5">ì‚¬ì›</td>
+			<td style="width: 80px;"><input type="text" style="width: 100%;" /></td>
+			<td><input type="text" name="" disabled /></td>
+			<td><i class="fas fa-search" style="color: blue;"></td>
+		</tr>
+	</table>
+	</container1>
+	<container2 id=contents2>
+	<div id=view>
+		<form id="OrderClosing" mehtod="get" commandName="ListVO">
+			<table id="OrderClosingTable">
+				<thead align="center" style="background-color: gray">
+					<td><input type="checkbox" name="content" /></td>
+					<td>No</td>
+					<td>ë°œì£¼ë²ˆí˜¸</td>
+					<td>ë°œì£¼ì¼ì</td>
+					<td>ì½”ë“œ</td>
+					<td>ê±°ë˜ì²˜ëª…</td>
+					<td>í’ˆë²ˆ</td>
+					<td>í’ˆëª…</td>
+					<td>ê·œê²©</td>
+					<td>ë‹¨ìœ„</td>
+					<td>ë°œì£¼ìˆ˜ëŸ‰</td>
+					<td>ë°œì£¼ì”ëŸ‰</td>
+					<td>ë§ˆê°</td>
+				</thead>
+				<tbody>
+					<c:forEach var="OrderClosing" items="${ClosingList}"
+						varStatus="status">
+						<tr align="center">
+				<td><input type="checkbox" name="content" value="${OrderClosing.sequence}" /></td>
+			<td style="width: 13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
+				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
+				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
+				<td><input type="text" name="ListVO[${status.index}].code" value='${OrderClosing.code}' style="width: 100%" readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].buyer" value='${OrderClosing.buyer}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].order_balance" value='${OrderClosing.order_balance}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].deadline" value='${OrderClosing.deadline}' /></td>
+						</tr>
+					</c:forEach>
+				<tr align="center">
+					<td></td>
+				<td><input type="text" id="sequence" name="ListVO[${fn:length(ClosingList) }].sequence" value='${sequence}' style="width: 100%" /></td>
+				<td><input type="text" id="order_no" name="ListVO[${fn:length(ClosingList) }].order_no" value='${order_no}' readonly /></td>
+				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
+				<td><input type="text" id="code" name="ListVO[${fn:length(ClosingList) }].code" value='${code}' readonly style="width: 100%" /></td>
+				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}' readonly /></td>
+				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' readonly /></td>
+				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' readonly /></td>
+				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" readonly /></td>
+				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" readonly /></td>
+				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' readonly /></td>
+				<td><input type="text" id="order_balance" name="ListVO[${fn:length(ClosingList) }].order_balance" value='${order_balance}' readonly /></td>
+				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' /></td>
+				</tr>
+				</tbody>
+			</table>
+	</div>
+	<div>
+		ë‹´ë‹¹ì: <input type="text" disabled />
+
+	</div>
+	</container2>
+	</form>
 </body>
+<script type="text/javascript">
+function updateRow() {
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+document.getElementById("sequence").disabled = true;
+document.getElementById("order_no").disabled = true;		
+document.getElementById("order_date").disabled = true;
+document.getElementById("code").disabled = true;
+document.getElementById("buyer").disabled = true;
+document.getElementById("item_Code").disabled = true;
+document.getElementById("item_Name").disabled = true;
+document.getElementById("standard").disabled = true;
+document.getElementById("inventory_unit").disabled = true;
+document.getElementById("order_quantity").disabled = true;
+document.getElementById("order_balance").disabled = true;
+document.getElementById("deadline").disabled = true;
+var Input = document.createElement("input");
+Input.setAttribute("type", "hidden");
+Input.setAttribute("name", "path");
+Input.setAttribute("value", link);
+document.getElementById('OrderClosing').appendChild(Input);
+document.getElementById('OrderClosing').action = "${contextPath}/member/updateOrderClosing.do";
+document.getElementById('OrderClosing').submit();
+}
+</script>
 </html>

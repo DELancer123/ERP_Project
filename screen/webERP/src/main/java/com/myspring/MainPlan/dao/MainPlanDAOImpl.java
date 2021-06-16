@@ -52,7 +52,7 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i));
 		}
 		return result;
 	}

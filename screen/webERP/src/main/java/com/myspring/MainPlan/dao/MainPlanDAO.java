@@ -18,4 +18,5 @@ public interface MainPlanDAO {
 	int addMPS(MainPlanVO vo) throws DataAccessException;
 
 	int updateMPS(MainPlanVO vo) throws DataAccessException;
+
 }

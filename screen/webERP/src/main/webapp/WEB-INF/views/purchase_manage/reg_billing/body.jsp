@@ -178,7 +178,7 @@ function func_Popup(){
 					<td>${btm.inventory_qty}</td>
 					<td>${btm.claim_unit}</td>
 					<td>${btm.claim_quantity}</td>
-					<td>${btm.customer_Name}</td>
+					<td>${btm.buyer}</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -10,11 +10,11 @@ public class MpsOSVO {
 	private int sequence;
 	private Date orderdate;
 	private Date okeydate;
-	private String customer_Name;
+	private String buyer;
 	private String item_Code;
 	private String item_Name;
 	private String standard;
-	private String unit;
+	private String inventory_unit;
 	private int order_quantity;
 	private int apply_quantity;
 	private int order_Balance;
@@ -23,18 +23,18 @@ public class MpsOSVO {
 
 public MpsOSVO() {}
 
-public MpsOSVO(String ordersno,int sequence,Date orderdate, Date okeydate,String customer_Name,String item_Code,
-		String item_Name,String standard,String unit,int order_quantity,int apply_quantity,int order_Balance,Date expected_Date,String note) 
+public MpsOSVO(String ordersno,int sequence,Date orderdate, Date okeydate,String buyer,String item_Code,
+		String item_Name,String standard,String inventory_unit,int order_quantity,int apply_quantity,int order_Balance,Date expected_Date,String note) 
 {
 	this.ordersno=ordersno;
 	this.sequence=sequence;
 	this.orderdate=orderdate;
 	this.okeydate=okeydate;
-	this.customer_Name=customer_Name;
+	this.buyer=buyer;
 	this.item_Code=item_Code;
 	this.item_Name=item_Name;
 	this.standard=standard;
-	this.unit=unit;
+	this.inventory_unit=inventory_unit;
 	this.order_quantity=order_quantity;
 	this.apply_quantity=apply_quantity;
 	this.order_Balance=order_Balance;
@@ -55,8 +55,8 @@ public void setOrderdate(Date orderdate) {this.orderdate=orderdate;}
 public Date getOkeydate() {return okeydate;}
 public void setOkeydate(Date okeydate) {this.okeydate=okeydate;}
 
-public String getCustomer_Name() {return customer_Name;}
-public void setCustomer_Name(String customer_Name) {this.customer_Name=customer_Name;}
+public String getBuyer() {return buyer;}
+public void setBuyer(String buyer) {this.buyer=buyer;}
 
 public String getItem_Code() {return item_Code;}
 public void getItem_Code(String item_Code) {this.item_Code=item_Code;}
@@ -67,8 +67,8 @@ public void setItem_Name(String item_Name) {this.item_Name=item_Name;}
 public String getStandard() {return standard;}
 public void setStandard(String standard) {this.standard=standard;}
 
-public String getUnit() {return unit;}
-public void setUnit(String unit) {this.unit=unit;}
+public String getInventory_unit() {return inventory_unit;}
+public void setInventory_unit(String inventory_unit) {this.inventory_unit=inventory_unit;}
 
 public int getApply_quantity() {return apply_quantity;}
 public void setApply_quantity(int apply_quantity) {this.apply_quantity=apply_quantity;}

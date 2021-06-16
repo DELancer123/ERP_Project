@@ -76,6 +76,12 @@
 				class="com.myspring.Billing.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
 		
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*.do" />
+			<beans:bean
+				class="com.myspring.order_closing.interceptor.ViewNameInterceptor" />
+		</mvc:interceptor>
+		
 		<!-- <mvc:interceptor>
 			<mvc:mapping path="/*/*.do" />
 			<beans:bean

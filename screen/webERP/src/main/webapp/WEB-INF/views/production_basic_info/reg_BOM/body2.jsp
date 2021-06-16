@@ -129,6 +129,7 @@
             </div>
             <!-- 합계 출력부 종료 -->
         </container2>
+        
       <script>
       var itemNumber = document.getElementById("itemCode");
       var itemName = document.getElementById("dataoutput");
@@ -174,18 +175,7 @@
   			console.log(document.getElementById.value);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
-		/* window.location.href = "${contextPath}/member/addBOM.do"; */
-         /*  var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          var cell4 = row.insertCell(3);
-          var cell5 = row.insertCell(4);
-          cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-          cell2.innerHTML = "<input type='text'/>";
-          cell4.innerHTML = "<input type='text' />";
-          cell5.innerHTML = "<input type='text' />";
-          cell3.innerHTML =  "<input type='date' />";
-           */
+		
       }
 
       
