@@ -33,7 +33,16 @@
 	</resultMap>
 	
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
+		<![CDATA[select * from CPM_PM_PRO_PLA_REG where Item_Code = #{itemCode}]]>
+	</select>
+	
+	<select id="selectAllProductionPlanInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="SmBimResult">
 		<![CDATA[select * from CPM_PM_PRO_PLA_REG]]>
+		<where>
+			<if test="startDate != '' and startDate != null">
+				itemCode = #{itemCode} and SCHEDULEDDATEOFOPERATION between #{startDate} and #{endDate}
+			</if>
+		</where>
 	</select>
 	
 	<select id="selectAllOperationRegistInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
