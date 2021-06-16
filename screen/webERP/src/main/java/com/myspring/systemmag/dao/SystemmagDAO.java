@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagDAO {
 	//회사등록
-	public int insertNewCompany (SystemmagVO systemmagVO) throws DataAccessException;
+	public int addCom(SystemmagVO systemmagVO) throws DataAccessException;
 	public List viewCom() throws DataAccessException;
 	public List allviewCom(String com_code) throws DataAccessException;
 	//사업장등록

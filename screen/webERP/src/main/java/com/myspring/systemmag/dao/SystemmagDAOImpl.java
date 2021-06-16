@@ -19,11 +19,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	//회사등록
 	@Override
-	public int insertNewCompany (SystemmagVO systemmagVO) throws DataAccessException{
-		int result = sqlSession.insert("mappers.erp.insertNewCompany",systemmagVO);
-		return result;
+	public int addCom(SystemmagVO systemmagVO) throws DataAccessException{
+		int result = sqlSession.insert("mappers.erp.insertCom",systemmagVO);
+		return 0;
 	}
+	
 	//회사등록 조회
 	@Override
 	public List viewCom() throws DataAccessException {

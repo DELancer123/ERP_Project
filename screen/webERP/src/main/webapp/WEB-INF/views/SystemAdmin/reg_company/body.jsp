@@ -78,7 +78,7 @@
 </style>
 </head>
 <body>
-<form  method="get">
+<form  method="get" id="regcompany">
 <container id = contents1 style="overflow: auto;">
 
             <table id="table1">
@@ -87,14 +87,14 @@
                     <td align="center">회사명</td>
                     <td align="center">구분</td>
                 </tr>
+   
                 <c:forEach var="com" items="${comView}" >     
                 <tr>
                     <td>
-                        <input type="text" id="textbox1" onfocus="searchView(this.value)" name="company_Code" value='${com.company_Code }'
+                        <input type="text"  onfocus="searchView(this.value)" name="company_Code" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" maxlength="12" 
-                         />
+                        text-align: center;" maxlength="12" />
                     </td>
                     <td>
                         <input type="text" name="company_Name"  value='${com.company_Name }'
@@ -103,11 +103,10 @@
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select name="sortation" id="inputsortation"
+                        <select name="sortation" 
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;"
-                        >
+                        text-align: center;">
                             <option value="default">법인/개인</option>
                             <option value="0">0.법인</option>
                             <option value="1">1.개인</option>
@@ -115,6 +114,30 @@
                     </td>
                 </tr>
 		</c:forEach>
+		             <tr>
+                    <td>
+                        <input type="text"  name="company_Code_input"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none;
+                        text-align: center;" maxlength="12" />
+                    </td>
+                    <td>
+                        <input type="text" name="company_Name_input"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none;
+                        text-align: center;"/>
+                    </td>
+                    <td>
+                        <select name="sortation" 
+                        style="background-color:rgb(235, 235, 235); 
+                        border-style: none;
+                        text-align: center;">
+                            <option value="default">법인/개인</option>
+                            <option value="0">0.법인</option>
+                            <option value="1">1.개인</option>
+                        </select>
+                    </td>
+                </tr>
             </table>
         </container>
         <container id="contents2">
@@ -132,7 +155,7 @@
                         기
                     </td>
                     <td>
-                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" value='${fiscal_Year_Dates }'>
+                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" value='${fiscal_Year_Dates }'/>
                         ~
                         <input type="date" name="fiscal_year_Datee" id="fiscal_year_Datee" value='${fiscal_Year_Datee }'/>
                     </td>
@@ -255,13 +278,29 @@
                 </tr>
             </table>
         </container>
-        <script>
-        var textbox1 = document.getElementById("textbox1");
-        function searchView(name) {
-        	console.log('확인');
-         	window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
-        }
-        </script>
 </form>
+<script>
+	function searchView(name) {
+		console.log('확인');
+ 		window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
+	}
+
+	function newRow(){
+		const URLSearch = new URLSearchParams(location.search);
+		URLSearch.set('submit','1');
+		const newParam = URLSearch.toString();
+		var link = location.pathname +'?'+newParam;
+		var articleNOInput = document.createElement("input");
+		articleNOInput.setAttribute("type","hidden");
+		articleNOInput.setAttribute("name","path");
+		articleNOInput.setAttribute("value", link);
+		document.getElementById('regcompany').appendChild(articleNOInput);
+		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
+		document.getElementById('regcompany').submit();
+		document.getElementById("company_Code").disabled = true;
+		document.getElementById("company_Name").disabled = true;
+		document.getElementById("sortation").disabled = true;
+		}
+</script>
 </body>
 </html>

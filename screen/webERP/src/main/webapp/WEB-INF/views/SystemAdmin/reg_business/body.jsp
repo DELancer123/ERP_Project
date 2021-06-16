@@ -185,6 +185,7 @@
         	console.log('»Æ¿Œ');
          	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&wor_code=" + name; 
         }
+        
         </script>
         </container>
 </body>

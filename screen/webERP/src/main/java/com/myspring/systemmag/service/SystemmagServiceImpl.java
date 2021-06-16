@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.dao.SystemmagDAO;
 import com.myspring.systemmag.vo.SystemmagVO;
 
@@ -18,9 +19,8 @@ public class SystemmagServiceImpl implements SystemmagService {
 	private SystemmagDAO systemmagDAO;
 	
 	@Override
-	public int addCompany (SystemmagVO systemmagVO) throws Exception{
-		int result = systemmagDAO.insertNewCompany(systemmagVO);
-		return result;
+	public int addCom(SystemmagVO systemmagVO) throws DataAccessException{
+		return systemmagDAO.addCom(systemmagVO);
 }
 	//회사등록 조회
 	@Override

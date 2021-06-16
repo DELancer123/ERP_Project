@@ -8,7 +8,7 @@ import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagService {
 	//회사등록
-	public int addCompany(SystemmagVO systemmagVO) throws Exception;
+	public int addCom(SystemmagVO systemmagVO) throws Exception;
 	public List comView() throws DataAccessException;
 	public List comcom(String com_code) throws DataAccessException;
 	//사업장등록

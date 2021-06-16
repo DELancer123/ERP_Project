@@ -23,24 +23,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.systemmag.service.SystemmagService;
 import com.myspring.systemmag.vo.SystemmagVO;
-//회사등록
+
 @Controller("SystemmagController")
 public class SystemmagControllerImpl implements SystemmagController{
 	@Autowired
 	private SystemmagService systemmagService;
 	@Autowired
 	private SystemmagVO systemmagVO;
+	
+	//회사등록
 	@Override
-	@RequestMapping(value="/member/addcompany.do")
-	public ModelAndView addCompany(SystemmagVO company, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/member/addcompany.do" ,method = RequestMethod.GET)
+	public ModelAndView addCompany(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		System.out.println(systemmagVO.getCompany_Code());
 		request.setCharacterEncoding("utf-8");
-		StringBuffer url = request.getRequestURL();
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
 		int result = 0;
-		result = systemmagService.addCompany(systemmagVO);
-		String resulturl = url.toString();
-		ModelAndView mav = new ModelAndView();
+		result = systemmagService.addCom(systemmagVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 	//회사등록 조회

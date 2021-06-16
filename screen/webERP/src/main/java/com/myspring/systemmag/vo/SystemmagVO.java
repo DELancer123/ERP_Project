@@ -26,7 +26,6 @@ public class SystemmagVO {
 	private String industry;
 	private Date date_Of_Establishment;
 	private String whether_To_Use_Status;
-	private List<SystemmagVO> ListVO;
 	
 	public String getCompany_Code() {
 		return company_Code;
@@ -135,11 +134,5 @@ public class SystemmagVO {
 	}
 	public void setWhether_To_Use_Status(String whether_To_Use_Status) {
 		this.whether_To_Use_Status = whether_To_Use_Status;
-	}
-	public List<SystemmagVO> getListVO() {
-		return ListVO;
-	}
-	public void setListVO(List<SystemmagVO> listVO) {
-		ListVO = listVO;
 	}
 }
