@@ -92,7 +92,7 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regoperins.do?itemNumber='+text_code.value+'&&itemName='+text_name.value;
+    		opener.parent.location='${contextPath }/member/regoperins.do?factoryNumber='+text_code.value+'&&factoryName='+text_name.value;
     		window.close();
     	}
     </script>
