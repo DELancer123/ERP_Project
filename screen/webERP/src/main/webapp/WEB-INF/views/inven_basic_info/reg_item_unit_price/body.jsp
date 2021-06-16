@@ -8,7 +8,7 @@
 	String inputNo = (String)request.getAttribute("inputNo");
 %>
 <% 
-	String parent = request.getParameter("itemNumber");
+	String itemNumber = request.getParameter("itemNumber");
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="iup" items="${iupInsert}">
@@ -107,12 +107,12 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' ondblclick="search2()"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' /></td>
-                    	<td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
+                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' readonly/></td>
+                    	<td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }' readonly/></td>                                                                            
                 	</tr>
 				</c:forEach>
                 	<tr id="insertIup" align="center">

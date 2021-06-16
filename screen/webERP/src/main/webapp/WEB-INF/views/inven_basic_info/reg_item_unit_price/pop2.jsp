@@ -8,7 +8,7 @@
 %>    
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
-%>  
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,14 +88,15 @@
     </div>
     
     <script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
+    	var submit_button = document.getElementById("submit");
+    	var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+    		text_code.value = code;
+    		text_name.value = name;
     	}
+    	
     	function submitClick(form){
     		opener.setChildvalue(text_code.value)
     		window.close();
