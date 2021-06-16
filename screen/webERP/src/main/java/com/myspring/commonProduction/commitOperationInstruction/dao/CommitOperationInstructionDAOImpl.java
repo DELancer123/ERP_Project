@@ -46,4 +46,11 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 		popList = sqlSession.selectList("mappers.erp.selectItemCodeView");
 		return popList;
 	}
+	
+	@Override
+	public void delProductionPlan(String[] numberAry) throws DataAccessException{
+		for(String obj: numberAry) {
+			sqlSession.delete("mappers.erp.deleteProductionPlan", obj);	
+		}
+	}
 }

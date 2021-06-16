@@ -214,7 +214,7 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      			  window.location.href = "${contextPath}/member/delProductionPlan.do?productionPlanCode="+ary;
       	  }
         }
       </script>

@@ -32,6 +32,7 @@
 		<result property="note" column="note" />
 	</resultMap>
 	
+	<!-- 생산계획 CRUD -->
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
 		<![CDATA[select * from CPM_PM_PRO_PLA_REG where Item_Code = #{itemCode}]]>
 	</select>
@@ -56,6 +57,10 @@
 			</if>
 		</where>
 	</select>
+	
+	<delete id="deleteProductionPlan">
+		delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}
+	</delete>
 	
 	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">

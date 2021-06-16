@@ -20,5 +20,6 @@ public interface CommonProductionController {
 	public ModelAndView delOperationInstruction(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updOperationInstruction(OperationRegistVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView itemCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delProductionPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

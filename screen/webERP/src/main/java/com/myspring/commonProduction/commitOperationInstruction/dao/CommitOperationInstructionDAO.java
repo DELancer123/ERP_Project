@@ -10,5 +10,6 @@ import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperati
 public interface CommitOperationInstructionDAO {
 	public List selectAllProductionPlanInfo(String itemNumber,String startDate, String endDate) throws DataAccessException, ParseException;
 	public List itemCodeViewPop() throws DataAccessException;
+	public void delProductionPlan(String[] numberAry) throws DataAccessException;
 
 }

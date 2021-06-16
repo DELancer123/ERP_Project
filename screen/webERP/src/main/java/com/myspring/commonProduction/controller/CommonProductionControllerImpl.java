@@ -58,7 +58,17 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			mav.addObject("itemView", itemView);
 			return mav;
 		}
-	  
+//	생산계획 등록 CRUD
+	  @Override
+		@RequestMapping(value="/member/delProductionPlan.do" ,method = RequestMethod.GET)
+		public ModelAndView delProductionPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String number = (String) request.getParameter("productionPlanCode");
+			String viewName = getViewName(request);
+			String[] codeArary = number.split(",");
+			productionService.delProductionPlan(codeArary);
+			ModelAndView mav = new ModelAndView("redirect:/member/proplanreg.do");
+			return mav;
+			}
 //	작업지시등록 기능 부
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)
@@ -137,6 +147,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  		ModelAndView mav = new ModelAndView("redirect:/member/regoperins.do");
 	  		return mav;
   		}
+  	
   	@Override
 	@RequestMapping(value="/member/delOperationInstruction.do" ,method = RequestMethod.GET)
 	public ModelAndView delOperationInstruction(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -147,7 +158,6 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		ModelAndView mav = new ModelAndView("redirect:/member/regoperins.do");
 		return mav;
 		}
-  
   
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
