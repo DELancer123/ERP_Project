@@ -58,11 +58,11 @@ public class iupVO {
 		this.standard = standard;
 	}
 
-	public String getInventory_Unit() {
+	public String getInventoryUnit() {
 		return inventoryUnit;
 	}
 
-	public void setInventory_Unit(String inventory_Unit) {
+	public void setInventoryUnit(String inventoryUnit) {
 		this.inventoryUnit = inventoryUnit;
 	}
 

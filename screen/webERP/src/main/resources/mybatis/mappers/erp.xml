@@ -279,7 +279,7 @@
 	</select>
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
-		 insert into PM_SM_Ite_Pri values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
+		 insert into PM_SM_Ite_Pri values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
 

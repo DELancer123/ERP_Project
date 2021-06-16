@@ -111,8 +111,8 @@
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' readonly/></td>
-                    	<td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }' readonly/></td>                                                                            
+                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }'/></td>
+                    	<td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
                 	</tr>
 				</c:forEach>
                 	<tr id="insertIup" align="center">
@@ -122,8 +122,8 @@
                     	<td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
                     	<td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
-                    	<td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
-                    	<td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
+                    	<td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }'/></td>
+                    	<td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }'/></td>                                                        
                 	</tr>
             	</table>
 			</div>
@@ -141,6 +141,7 @@
 
 		var save_button = document.getElementById("save");
 		var update_button = document.getElementById("update");
+		var view_botton = document.getElementById("view");
 		
 		function openWindowPop(url, name){
 			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
@@ -174,11 +175,11 @@
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','2');
 			const newParam = URLSearch.toString();
-			if(URLSearch.get('itemCode') == null){
-				window.location.href = location.pathname + '?' + newParam + '&itemCode=' + name;
+			if(URLSearch.get('itemNumber') == null){
+				window.location.href = location.pathname + '?' + newParam + '&itemNumber=' + name;
 			}
 			else{
-				URLSearch.set('itemCode',name);
+				URLSearch.set('itemNumber',name);
 				const newParam = URLSearch.toString();
 				window.location.href = location.pathname + '?' +newParam;
 			}
