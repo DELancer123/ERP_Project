@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.outsourcing_manage.service.RegOutsourcingService;
+import com.myspring.outsourcing_manage.ComOutsourcing.vo.ComOutsourcingVO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Controller("RegOutsourcingController")
 public class RegOutsourcingControllerImpl implements RegOutsourcingController {
@@ -30,6 +30,8 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	private RegOutsourcingService regOutsourcingService;
 	@Autowired
 	private RegOutsourcingVO regOutsourcingVO;
+	@Autowired
+	private ComOutsourcingVO comOutsourcingVO;
 	
 
 	@Override
@@ -102,7 +104,7 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	
 	@Override
 	@RequestMapping(value="/member/updateOutsourcing.do" ,method = RequestMethod.GET)
-	public ModelAndView updateMember(@ModelAttribute("out") RegOutsourcingVO regOutsourcingVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView updateOutsourcing(@ModelAttribute("out") RegOutsourcingVO regOutsourcingVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = regOutsourcingService.updateOutsourcing(regOutsourcingVO);
@@ -111,6 +113,16 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 		return mav;
 	}
 		
+	@Override
+	@RequestMapping(value="/member/updateComOutsourcing.do" ,method = RequestMethod.GET)
+	public ModelAndView updateComOutsourcing(@ModelAttribute("comOut") ComOutsourcingVO comOutsourcingVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = regOutsourcingService.updateComOutsourcing(comOutsourcingVO);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/comoutsourcing.do");
+		return mav;
+	}
 
 
 	private String getViewName(HttpServletRequest request) throws Exception {

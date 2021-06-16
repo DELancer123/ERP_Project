@@ -19,7 +19,7 @@ public class ComOutsourcingVO {
 	private String parentInventoryUnit;
 	private int indicatedQuantity;
 	private int unitPrice;
-	private int price;
+	private int parentPrice;
 	private String status;
 	private String inspection;
 	private String ParentNote;
@@ -32,9 +32,11 @@ public class ComOutsourcingVO {
 	private String standard;
 	private String inventoryUnit;
 	private int precisionQuantity;
-	private int loss;
+	private int loss;	
+	private int comfirmQuantity;
+	private int outsourcingUnitPrice;
+	private int price;
 	private String note;
-	private String forwardingNumber;	
 	
 	private List<ComOutsourcingVO> ListVO;
 	
@@ -218,8 +220,6 @@ public class ComOutsourcingVO {
 		this.loss = loss;
 	}
 
-	
-
 	public String getNote() {
 		return note;
 	}
@@ -228,13 +228,6 @@ public class ComOutsourcingVO {
 		this.note = note;
 	}
 
-	public String getForwardingNumber() {
-		return forwardingNumber;
-	}
-
-	public void setForwardingNumber(String forwardingNumber) {
-		this.forwardingNumber = forwardingNumber;
-	}
 
 	public List<ComOutsourcingVO> getListVO() {
 		return ListVO;
@@ -258,6 +251,30 @@ public class ComOutsourcingVO {
 
 	public void setPrecisionQuantity(int precisionQuantity) {
 		this.precisionQuantity = precisionQuantity;
+	}
+
+	public int getParentPrice() {
+		return parentPrice;
+	}
+
+	public void setParentPrice(int parentPrice) {
+		this.parentPrice = parentPrice;
+	}
+
+	public int getComfirmQuantity() {
+		return comfirmQuantity;
+	}
+
+	public void setComfirmQuantity(int comfirmQuantity) {
+		this.comfirmQuantity = comfirmQuantity;
+	}
+
+	public int getOutsourcingUnitPrice() {
+		return outsourcingUnitPrice;
+	}
+
+	public void setOutsourcingUnitPrice(int outsourcingUnitPrice) {
+		this.outsourcingUnitPrice = outsourcingUnitPrice;
 	}
 
 

@@ -31,16 +31,16 @@ public class RegOutsourcingServiceImpl implements RegOutsourcingService {
 	
 	@Override
 	public List listComOutsourcing() throws DataAccessException{
-		List outsourcingList = null;
-		outsourcingList = comOutsourcingDAO.viewComOutsourcingList();
-		return outsourcingList;
+		List comOutsourcingView = null;
+		comOutsourcingView = comOutsourcingDAO.viewComOutsourcingList();
+		return comOutsourcingView;
 	}
 	
 	@Override
 	public List listComOutsourcingDetail() throws DataAccessException{
-		List outsourcingList = null;
-		outsourcingList = comOutsourcingDAO.viewComOutsourcingListDetail();
-		return outsourcingList;
+		List comOutsourcingViewDetail = null;
+		comOutsourcingViewDetail = comOutsourcingDAO.viewComOutsourcingListDetail();
+		return comOutsourcingViewDetail;
 	}
 	
 	@Override
