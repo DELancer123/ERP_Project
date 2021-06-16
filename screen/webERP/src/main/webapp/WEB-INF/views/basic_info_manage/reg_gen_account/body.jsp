@@ -172,7 +172,7 @@ request.setCharacterEncoding("UTF-8");
             </table>
         </container2>
         <container3 id="contents3">
-        <form action="updateBasicacc.do" method="get">
+        <form id="rightSideForm" method="get" commandName="ListVO">
             <table id="table3" align="center">
                 <tr>
                     <p><td colspan = "4" span style="color:black" align="center">기본등록사항</td></p>
@@ -241,8 +241,8 @@ request.setCharacterEncoding("UTF-8");
         var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
         deleteButton.addEventListener('click', function(){deleteData();}, false);
         
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false);  
+       /*  var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateRow();}, false);  */ 
 
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
@@ -272,14 +272,37 @@ request.setCharacterEncoding("UTF-8");
         	
         }
         
-        function updateRow() {
+        /* function updateRow() {
         	alert('업데이트기능 구현중');
         	
         	var beforeReplace = window.location.href;
         	var afterReplace = beforeReplace.replace('regbasicacc', 'updateBasicacc')
         	
         	window.location.href = afterReplace;
-        } 
+        }  */
+
+        function updateRow(){
+            	  var workOrderTable = document.getElementById('table3');
+                  var row = workOrderTable.insertRow(); 
+                  const URLSearch = new URLSearchParams(location.search);
+                  URLSearch.set('submit', '1');
+        		  const newParam = URLSearch.toString();
+        		  var link = location.pathname +'?'+newParam;
+          			 document.getElementById("precisionQuantity").disabled = true;
+          		     document.getElementById("loss").disabled = true;
+          		     document.getElementById("outSourcingUnitPrice").disabled = true;
+          		     document.getElementById("actualCost").disabled = true;
+          		     document.getElementById("no").disabled = true;
+          		     document.getElementById("startDate").disabled = true;
+          		     document.getElementById("endDate").disabled = true;
+          		  var articleNOInput = document.createElement("input");
+        		     articleNOInput.setAttribute("type","hidden");
+        		     articleNOInput.setAttribute("name","path");
+        		     articleNOInput.setAttribute("value", link);
+        		     document.getElementById('regBOM').appendChild(articleNOInput);
+                     document.getElementById('regBOM').action = "${contextPath}/member/updateBasicacc.do";
+          			 document.getElementById('regBOM').submit();  
+              }
         
 	  		
 	       
