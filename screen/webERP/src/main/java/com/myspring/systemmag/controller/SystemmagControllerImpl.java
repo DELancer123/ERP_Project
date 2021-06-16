@@ -37,6 +37,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 	public ModelAndView addCompany(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
+		
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		System.out.println("url" + path);

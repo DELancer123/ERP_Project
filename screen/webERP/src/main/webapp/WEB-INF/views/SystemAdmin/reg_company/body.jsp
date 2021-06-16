@@ -91,19 +91,19 @@
                 <c:forEach var="com" items="${comView}" >     
                 <tr>
                     <td>
-                        <input type="text"  onfocus="searchView(this.value)" name="company_Code" value='${com.company_Code }'
+                        <input type="text"  onfocus="searchView(this.value)" id="company_Code1" name="company_Code" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" maxlength="12" />
                     </td>
                     <td>
-                        <input type="text" name="company_Name"  value='${com.company_Name }'
+                        <input type="text" name="company_Name" id="company_Name1" value='${com.company_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select name="sortation" 
+                        <select name="sortation" id="sortation"
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;">
@@ -116,13 +116,13 @@
 		</c:forEach>
 		             <tr>
                     <td>
-                        <input type="text"  name="company_Code_input"
+                        <input type="text"  name="company_Code"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" maxlength="12" />
                     </td>
                     <td>
-                        <input type="text" name="company_Name_input"
+                        <input type="text" name="company_Name"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;"/>
@@ -157,7 +157,7 @@
                     <td>
                         <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" value='${fiscal_Year_Dates }'/>
                         ~
-                        <input type="date" name="fiscal_year_Datee" id="fiscal_year_Datee" value='${fiscal_Year_Datee }'/>
+                        <input type="date" name="fiscal_Year_Datee" id="fiscal_year_Datee" value='${fiscal_Year_Datee }'/>
                     </td>
                 </tr>
                 <tr>
@@ -286,6 +286,9 @@
 	}
 
 	function newRow(){
+		document.getElementById("company_Code1").disabled = true;
+		document.getElementById("company_Name1").disabled = true;
+		document.getElementById("sortation").disabled = 'disabled';
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit','1');
 		const newParam = URLSearch.toString();
@@ -297,9 +300,6 @@
 		document.getElementById('regcompany').appendChild(articleNOInput);
 		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
 		document.getElementById('regcompany').submit();
-		document.getElementById("company_Code").disabled = true;
-		document.getElementById("company_Name").disabled = true;
-		document.getElementById("sortation").disabled = true;
 		}
 </script>
 </body>
