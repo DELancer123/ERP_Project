@@ -34,8 +34,8 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			String viewName = getViewName(request);
 			String submit = (String) request.getParameter("submit");
 			String itemCode = (String) request.getParameter("itemCode");
-			String startDate = request.getParameter("dateStart");
-			String endDate = request.getParameter("dateEnd");
+			String startDate = request.getParameter("startDate");
+			String endDate = request.getParameter("endDate");			
 			int sum = 0;
 			if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
 				mav = new ModelAndView(viewName);

@@ -28,6 +28,7 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 		String item = itemCode;
 		Date start = new Date(sdf.parse(startDate).getTime());
 		Date end = new Date(sdf.parse(endDate).getTime());
+		System.out.println(start);
 		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
 		COIvo.setStartDate(start);
 		COIvo.setEndDate(end);
