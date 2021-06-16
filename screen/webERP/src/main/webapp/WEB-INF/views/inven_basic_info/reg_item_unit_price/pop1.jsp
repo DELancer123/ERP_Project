@@ -3,12 +3,9 @@
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-    
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,7 +96,7 @@
     		text_name.setAttribute("itemName",text_name.value);
     		var url = window.opener.document.location.href;
     		var url_arr = url.split('?');
-    		opener.parent.location=url_arr[0] + '?itemNumber=' + text_code.value + '&&itemName=' + text_name.value + '&&submit' + 0;
+    		opener.parent.location=url_arr[0] + '?itemNumber=' + text_code.value + '&&itemName=' + text_name.value + '&&submit=' + 0;
     		window.close();
     	}
     </script>

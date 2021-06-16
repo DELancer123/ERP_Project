@@ -210,7 +210,7 @@
 	
 	<!-- 품목단가등록(재원) 파트 -->
 	<resultMap id="iupView" type="iupVO">
-		<result property="no" column="no" />
+		<result property="no" column="No" />
 		<result property="itemNumber" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
@@ -234,25 +234,27 @@
 		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemNumber}]]>
 	</select>
 	<select id="iupSelectItem" resultMap="iupView" parameterType="String">
-		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code=#{itemNumber}]]>
+		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
 	</select>
 	<select id="iupSelectPopList1" resultMap="iupPopView">
 		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
+	<select id="iupSelectPopList2" resultMap="iupPopView">
+		<![CDATA[select * from SM_BIM_Ite_Reg]]>
+	</select>
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
-		 insert into PM_SM_Ite_Pri 
-		 values(#{no},#{parent}, #{itemNumber}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
+		 insert into PM_SM_Ite_Pri values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
 	<delete id="deleteIup">
-		delete from PM_SM_Ite_Pri where NO = #{no}
+		delete from PM_SM_Ite_Pri where No = #{no}
 	</delete>
 	<update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri
-		set Purchase_Price=#{purchasePrice}, Sales_Price=#{salesPrice}
-		where no=#{no}
+		set Purchase_Price = #{purchasePrice}, Sales_Price = #{salesPrice}
+		where no = #{no}
 		]]>
 	</update>
 	
