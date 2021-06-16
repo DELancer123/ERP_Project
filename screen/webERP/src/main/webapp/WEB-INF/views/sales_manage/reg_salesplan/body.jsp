@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" 
+    isELIgnored="false"  %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,17 +23,7 @@
             border: 1px solid black;
             z-index: 1;
         }
-        #contents2{
-            position: absolute;
-            left: 15%;
-            top: 25%;
-            width: 85%;
-            height: 70%;
-            border: 1px solid black;
-            z-index: 1;
-            overflow: scroll;
-        }
-        .con1_search{
+          .con1_search{
             padding:0;
             text-align: center;
             position: absolute;
@@ -107,8 +105,8 @@
 		<tr>
 
 			<td align="center">품명</td>
-			<td><input type="text" name="Plan_Item_Name"></td>
-			<td><i class="fas fa-search" style="color: blue;"></i></td>
+			<td><input type="text" name="item" value='${param.item_name}' /></td>
+			<td><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
 			<td><input type="text" disabled></td>
 			<td align="center">판매 계획 수량</td>
 			<td><input type="text" name="Plan_Item_Quantity"></td>
@@ -117,41 +115,11 @@
 		</tr>
 	</table>
 	</container1>
-	<container2 id="contents2">
-	<form name="frmsalesplanList" method="post"  action="${contextPath}/member/addsalesplan.do">
-	<table id="view">
-		<thead>
-			<td style="width: 5%;"><input type="checkbox" name="content"
-				onclick="selectAll(this)"></td>
-			<td align="center">품번</td>
-			<td align="center">품명</td>
-			<td align="center">규격</td>
-			<td align="center">단위(관리)</td>
-			<td align="center">판매 계획 수량</td>
-			<td align="center">판매 계획단가</td>
-			<td align="center">판매 계획 금액</td>
-			<td align="center">계획 수정 수량</td>
-			<td align="center">계획 수정 단가</td>
-			<td align="center">계획 수정 금액</td>
-			
-			
-		</thead>
-		<tbody>
-			<td style="width: 5%;"><input type="checkbox" value="check"
-				id="check" name="content" /></td>
-                    <td><input type="text" name="Plan_Item_Code" id="piCodeInput"></td>
-                    <td><input type="text" name="Plan_Item_Name" id="piNameInput"></td>
-                    <td><input type="text" name="Plan_Item_Standard" id="piStandardInput"></td>
-                    <td><input type="text" name="Plan_Item_Unit" id="piUnitInput"></td>
-                    <td><input type="text" name="Plan_Item_Quantity" id="piQuanInput"></td>
-                    <td><input type="text" name="Plan_Unit_Price" id="unitPriceInput"></td>
-                    <td><input type="text" name="Plan_Sum_Price" id="sumPriceInput"></td>
-                    <td><input type="text" name="Newplan_Item_Quantity" id="piNewQuanInput"></td>
-                    <td><input type="text" name="Newplan_Unit_Price" id="newUnitPriceInput"></td>
-                    <td><input type="text" name="Newplan_Sum_Price" id="NewSumPriceInput"></td>
-		</tbody>
-	</table>
-	</form>
-	</container2>
+	   <script>
+          function search1(){
+    	  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemReg.do','popupItemReg');  
+    }
+    </script>
 </body>
 </html>

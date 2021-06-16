@@ -196,9 +196,10 @@
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
 	</resultMap> 
-		<resultMap id="itemRe" type="itemviewVO">
+		<resultMap id="salesplan" type="itemviewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
+
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
 
@@ -215,14 +216,14 @@
       ]]>
 	</select>
 	
-	<select id="selectAllSalesplanList" resultMap="itemRe">
+	<select id="selectAllSalesplanList" resultMap="salesplan">
       <![CDATA[
          select * from SM_BIM_Sal_Pla_Reg 
       ]]>
 	</select>
 	
     
-     <select id="submititemview" resultMap="itemRe" parameterType="String">
+     <select id="submititemview" resultMap="salesplan" parameterType="String">
 		<![CDATA[
 		 select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code}
 		]]>   

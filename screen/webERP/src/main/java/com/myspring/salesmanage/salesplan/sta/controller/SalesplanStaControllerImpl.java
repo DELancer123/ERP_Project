@@ -54,7 +54,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String code = (String)request.getParameter("item_code");
-		String submit = (String)request.getParameter("submit");
 		int sum = 0;
 		
 		if(code == null || code.length() == 0) {
@@ -62,10 +61,10 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 			return mav;
 		}
 
-			List itemRe = salesplanService.submitItem(code);
+			List salesplan = salesplanService.submitItem(code);
 			
 			mav = new ModelAndView(viewName);
-			mav.addObject("itemRe", itemRe);//salesplanVO
+			mav.addObject("salesplan", salesplan);//salesplanVO
 
 		return mav;
 	}

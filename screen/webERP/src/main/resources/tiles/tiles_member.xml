@@ -176,9 +176,10 @@
       <put-attribute name="body" value="/WEB-INF/views/basic_info_manage/reg_setcomponent/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
-   <definition name="/member/regsalesplan" extends="baseLayout">
+   <definition name="/member/regsalesplan" extends="baseLayout3">
       <put-attribute name="title" value="판매계획등록" />
 	<put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_salesplan/body.jsp" />
+	<put-attribute name="body2" value="/WEB-INF/views/sales_manage/reg_salesplan/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/regestimate" extends="baseLayout">

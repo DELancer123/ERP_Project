@@ -13,7 +13,7 @@
 %>
 <% String parent = request.getParameter("item_code");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:forEach var="item" items="${itemRe}"> 
+<c:forEach var="item" items="${salesplan}"> 
 	<c:set var="code" value="${item.item_code}"/>
 	<c:set var="name" value="${item.item_name}"/>
 </c:forEach>
@@ -171,7 +171,7 @@
                     <th>수정원화금액</th>
                     <th>차이원화금액</th>
                 </thead>
-                      <c:forEach var="item" items="${itemRe}" varStatus="status" > 
+                      <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                 <tbody align="center">
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
                     <td><input type="text" value="${item.item_code}"disabled/></td>
@@ -180,10 +180,10 @@
                     <td><input type="text" value="${item.inventory_unit}" disabled/></td>
                     <td><input type="text" value="${item.planquantity}" disabled/></td>
                     <td><input type="text" value="${item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
+                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td>
                     <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
                     <td><input type="text" value="${item.newquabtity*item.newprice}" disabled/></td>
-                    <td><input type="text" value="${item.planprice-item.newprice}" disabled/></td><!-- ${item.newquabtity} -->
+                    <td><input type="text" value="${item.planprice-item.newprice}" disabled/></td>
 
                     
                     </c:forEach>
@@ -199,7 +199,7 @@
                         <td>수정원화금액</td>
                         <td>차이원화금액</td>
                     </tr>
-                    <c:forEach var="item" items="${itemRe}" varStatus="status" > 
+                    <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                     <tr>
                         <td><input type="text" value="${item.planquantity}" disabled/></td>
                         <td><input type="text" value="${item.newquabtity}" disabled/></td>
@@ -226,13 +226,13 @@
                     <td>수정원화금액</td>
                     <td>차이원화금액</td>
                 </tr>
-                <c:forEach var="item" items="${itemRe}" varStatus="status" > 
+                <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                 <tr align="center">
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
                     <td><input type="text" value="${item.plandate}"disabled/></td>
                     <td><input type="text" value="${item.planquantity}" disabled/></td>
                     <td><input type="text" value="${item.newquabtity}" disabled/></td>
-                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td><!-- ${item.newquabtity} -->
+                    <td><input type="text" value="${item.planquantity-item.newquabtity}" disabled/></td>
                     <td><input type="text" value="${item.planprice}" disabled/></td>
                     <td><input type="text" value="${item.newprice}" disabled/></td>
                     <td><input type="text" value="${item.planquantity*item.planprice}" disabled/></td>
@@ -268,7 +268,7 @@
                         <td>수정원화금액</td>
                         <td>차이원화금액</td>
                     </tr>
-                    <c:forEach var="item" items="${itemRe}" varStatus="status" > 
+                    <c:forEach var="item" items="${salesplan}" varStatus="status" > 
                     <tr>
                      	<td><input type="text" value="${item.planquantity}" disabled/></td>
                     	<td><input type="text" value="${item.newquabtity}" disabled/></td>

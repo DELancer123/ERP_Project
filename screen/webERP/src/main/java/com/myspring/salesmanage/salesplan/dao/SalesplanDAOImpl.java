@@ -18,6 +18,8 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 
 		@Autowired
 		private SqlSession sqlSession;
+		
+		List<ItemViewVO> itemList;
 
 
 		@Override
@@ -42,15 +44,32 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 			searchItemList = sqlSession.selectList("mappers.erp.submititemview",item_code);
 			return searchItemList;
 		}//submit를 누르면 table에 들어감
-		//selectitem
 		
 		@Override
-		public List addItem(String item_code) throws DataAccessException {
-			List<ItemViewVO> addItemList = null;
-			addItemList = sqlSession.selectList("mappers.erp.additem",item_code);
-			return addItemList;
-		}//insertBOM
-//		
+		public int addItem(ItemViewVO itemview) throws DataAccessException {
+			int idx = itemview.getList().size()-1;
+			int result = sqlSession.insert("mappers.erp.additem",itemview.getList().get(idx));
+			return result;
+		}
+
+		@Override
+		public int updNewSalesplan(String item_code) throws DataAccessException {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public void delSalesplan(String[] noary) throws DataAccessException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public int selNo() throws DataAccessException {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
 //		@Override
 //		public List selectItemGroupList() throws DataAccessException {
 //			List<ItemGroupVO> allItemGroupList = null;
@@ -70,6 +89,8 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 //			addGroupList = sqlSession.selectList("mappers.erp.addgroup",groupcode);
 //			return addGroupList;
 //		}
+
+
 		
 		
 		
