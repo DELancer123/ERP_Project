@@ -48,7 +48,7 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 		@Override
 		public int addItem(ItemViewVO itemview) throws DataAccessException {
 			int idx = itemview.getList().size()-1;
-			int result = sqlSession.insert("mappers.erp.additem",itemview.getList().get(idx));
+			int result = sqlSession.insert("mappers.erp.insertsalesplan",itemview.getList().get(idx));
 			return result;
 		}
 
@@ -60,14 +60,15 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 
 		@Override
 		public void delSalesplan(String[] noary) throws DataAccessException {
-			// TODO Auto-generated method stub
-			
+//			for(String obj: noary) {
+//				sqlSession.delete("mappers.erp.delsalesplan", Integer.parseInt(obj));		
+//				System.out.println("DAO.delsalesplan");
+//			}
 		}
 
 		@Override
-		public int selNo() throws DataAccessException {
-			// TODO Auto-generated method stub
-			return 0;
+		public String selPlanCode(String nextPlanCode) throws DataAccessException {
+			return sqlSession.selectOne("mappers.erp.selplancode");
 		}
 		
 //		@Override

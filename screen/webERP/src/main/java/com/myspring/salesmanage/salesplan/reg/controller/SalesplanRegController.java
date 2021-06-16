@@ -12,9 +12,11 @@ import com.myspring.salesmanage.salesplan.vo.SalesplanVO;
 
 public interface SalesplanRegController {
 	
+	//sta, reg
 	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	//reg
 
 //	public ModelAndView listSalesplans(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 //	public ModelAndView addSalesplan(@ModelAttribute("info")SalesplanVO salesplan,HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -35,6 +37,6 @@ public interface SalesplanRegController {
 ////	public ModelAndView searchDate(@ModelAttribute("salesplan") SalesplanVO salesplan,
 ////            RedirectAttributes rAttr,
 ////            HttpServletRequest request, HttpServletResponse response) throws Exception;
-//	
+	
 	
 }

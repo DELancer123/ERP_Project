@@ -39,11 +39,8 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);
 		logger.debug("viewName: "+ viewName);
-		System.out.println("dididi1");
 		List allItemList = salesplanService.listItems();
-		System.out.println("dididi2");
 		ModelAndView mav = new ModelAndView(viewName);
-		System.out.println("dididi3");
 		mav.addObject("allItemList", allItemList);
 		return mav;
 	}

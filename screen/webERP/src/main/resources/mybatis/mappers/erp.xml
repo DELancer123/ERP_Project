@@ -222,11 +222,23 @@
       ]]>
 	</select>
 	
-    
+	<select id="selplancode" resultMap="salesplan">
+      <![CDATA[
+         select * from SM_BIM_Sal_Pla_Reg
+      ]]>
+	</select>
+	
      <select id="submititemview" resultMap="salesplan" parameterType="String">
 		<![CDATA[
 		 select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code}
 		]]>   
 	</select> 
+	
+		<!-- <insert id="insertsalesplan" parameterType="itemviewVO">
+		<![CDATA[
+		 insert into SM_BIM_Sal_Pla_Reg
+		 values(#{F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg')}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
+		]]>  
+	</insert> -->
 	
 </mapper>
