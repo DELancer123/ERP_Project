@@ -14,4 +14,6 @@ public interface SystemmagService {
 	public List comcom(String com_code) throws DataAccessException;
 	
 	public void delCom(String[] noary) throws DataAccessException;
+	
+	public List updCom(List updElement) throws Exception;
 }

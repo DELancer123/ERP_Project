@@ -122,11 +122,18 @@ public class SystemmagControllerImpl implements SystemmagController{
 	}
 
 	@Override
-	public ModelAndView updateCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/member/updateBasicacc.do", method = RequestMethod.GET)
+	public ModelAndView updateCompany(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		String submit = request.getParameter("submit");
 		String com_code = request.getParameter("com_code");
-		return null;
+		
+		List<SystemmagVO> updElement = systemmagDAO.allviewCom(com_code);
+		
+		systemmagService.updCom(updElement);
+		
+		return mav;
 	}
 		
 }

@@ -42,6 +42,12 @@ public class SystemmagServiceImpl implements SystemmagService {
 		systemmagDAO.deleteCom(noary);
 	}
 
+	@Override
+	public List updCom(List updElement) throws Exception {
+		systemmagDAO.updateCom(updElement);
+		return null;
+	}
+
 	
 	
 	
