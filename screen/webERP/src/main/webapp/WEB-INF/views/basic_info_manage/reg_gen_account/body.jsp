@@ -172,6 +172,7 @@ request.setCharacterEncoding("UTF-8");
             </table>
         </container2>
         <container3 id="contents3">
+        <form action="updateBasicacc.do" method="get">
             <table id="table3" align="center">
                 <tr>
                     <p><td colspan = "4" span style="color:black" align="center">기본등록사항</td></p>
@@ -179,38 +180,38 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="registrationNumber" id="reqInput" value="${company_Registration_Number}"
+                        <input type="text" name="rightSideContent" id="reqInput" value="${company_Registration_Number}"
                         pattern="[0-9]{10}" maxlength="10"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="socialNumber" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
+                        <input type="text" name="rightSideContent" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="3">
-                        <input type="text" name="ceoName" value="${representativs_Name }">
+                        <input type="text" name="rightSideContent" value="${representativs_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="3">
-                        <input type="text" name="business" value="${upstate }">
+                        <input type="text" name="rightSideContent" value="${upstate }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="3">
-                        <input type="text" name="specific" value="${industry }">
+                        <input type="text" name="rightSideContent" value="${industry }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
+                        <input type="text" name="rightSideContent" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
                         style="width:150px;"/>
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td>
@@ -218,29 +219,30 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="3">
-                        <input type="text" name="workSpaceAddress" value="${workplace_Address }">
+                        <input type="text" name="rightSideContent" value="${workplace_Address }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="3">
-                        <input type="text" name="phoneNumber" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
+                        <input type="text" name="rightSideContent" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
                     </td>
                 </tr>
                 <tr>
-                    <td align="center">주류코드</td>
+                    <%-- <td align="center">주류코드</td>
                     <td>
-                        <input type="text" name="inchargeManager" value="${wholesale_Retail_Business_Code }">
-                    </td>
+                        <input type="text" name="rightSideContent" value="${wholesale_Retail_Business_Code }">
+                    </td> --%>
                 </tr>
             </table>
+        </form>
         </container3>
         <script>
         var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
         deleteButton.addEventListener('click', function(){deleteData();}, false);
         
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateData();}, false);
+        updateButton.addEventListener('click', function(){updateRow();}, false);  
 
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
@@ -270,14 +272,14 @@ request.setCharacterEncoding("UTF-8");
         	
         }
         
-        function updateData() {
+        function updateRow() {
         	alert('업데이트기능 구현중');
         	
         	var beforeReplace = window.location.href;
         	var afterReplace = beforeReplace.replace('regbasicacc', 'updateBasicacc')
         	
         	window.location.href = afterReplace;
-        }
+        } 
         
 	  		
 	       
