@@ -30,12 +30,21 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  @Override
 	  @RequestMapping(value="/member/proplanreg.do" ,method = RequestMethod.GET)
   		public ModelAndView listProductInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
-		  String viewName = (String)request.getAttribute("viewName");
-		  logger.debug("debug �젅諛� : viewName = " + viewName); 
-		  List infoList = productionService.selectAllProductionPlanInfo();
-		  ModelAndView mav = new ModelAndView(viewName); 
-		  mav.addObject("infoList", infoList); 
-		  return mav; 
+		  ModelAndView mav = null;
+			String viewName = getViewName(request);
+			String submit = (String) request.getParameter("submit");
+			String itemCode = (String) request.getParameter("itemCode");
+			int sum = 0;
+			if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
+				mav = new ModelAndView(viewName);
+				return mav;
+			}
+			else if(submit.equals("1")){
+				List infoList = productionService.selectAllProductionPlanInfo(itemCode);
+				mav = new ModelAndView(viewName);				
+				mav.addObject("infoList", infoList);
+			}				
+			return mav;
 	  	}
   
 	  @Override

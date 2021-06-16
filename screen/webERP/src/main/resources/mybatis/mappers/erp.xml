@@ -33,7 +33,7 @@
 	</resultMap>
 	
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
-		<![CDATA[select * from CPM_PM_PRO_PLA_REG]]>
+		<![CDATA[select * from CPM_PM_PRO_PLA_REG where Item_Code = #{itemCode}]]>
 	</select>
 	
 	<select id="selectAllOperationRegistInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">

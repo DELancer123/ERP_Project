@@ -26,9 +26,9 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   @Autowired private CommitOperationInstructionDAO COIdao;
   @Autowired private OperationRegistDAO ORdao;
   
-  @Override public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException {
+  @Override public List selectAllProductionPlanInfo(String info) throws DataAccessException {
 	  List<CommitOperationInstructionVO> infolist = null; 
-	  infolist = COIdao.selectAllProductionPlanInfo();
+	  infolist = COIdao.selectAllProductionPlanInfo(info);
 	  return infolist; 
   }
   
