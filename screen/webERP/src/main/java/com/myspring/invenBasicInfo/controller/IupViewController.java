@@ -26,9 +26,7 @@ public interface IupViewController {
 	 */
 
 	public ModelAndView iupDelMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	/*
-	 * public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 */
+	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	 
 
 }
