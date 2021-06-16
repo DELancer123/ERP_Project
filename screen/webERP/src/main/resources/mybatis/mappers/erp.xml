@@ -236,7 +236,7 @@
 	<delete id="deleteBasicList">
 		delete from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{no}
 	</delete>
-	<select id="updateBasicList" resultMap="basicInfoResult">
+	<update id="updateBasicList" parameterType="SystemmagVO">
 		<![CDATA[
 			update SM_BIM_GEN_CUS_REG
 			set	general_Customer_Name=#{general_Customer_Name},
@@ -253,7 +253,7 @@
 			where general_Customer_Code=#{general_Customer_Code}
 			
 		]]>
-	</select>
+	</update>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

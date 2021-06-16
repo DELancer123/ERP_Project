@@ -15,5 +15,5 @@ public interface SystemmagDAO {
 	
 	public void deleteCom(String[] noary) throws DataAccessException;
 	
-	public int updateCom(List updElement) throws DataAccessException;
+	public int updateCom(SystemmagVO systemmagVO) throws DataAccessException;
 }

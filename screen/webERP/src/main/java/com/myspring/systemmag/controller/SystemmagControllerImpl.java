@@ -120,33 +120,19 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return mav;
 		
 	}
-
+	
 	@Override
-	@RequestMapping(value="/member/updateBasicacc.do", method = RequestMethod.GET)
-	public ModelAndView updateCompany(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("업데이트컨트롤러 입장");
-		request.setCharacterEncoding("utf-8");
-		ModelAndView mav = new ModelAndView();
-		String submit = request.getParameter("submit");
-		String com_code = request.getParameter("com_code");
-		
-		
-		
-		
-			
-		
-		
-		
-		
-		
-//		List<SystemmagVO> updElement = systemmagDAO.allviewCom(com_code);
-//		
-//		systemmagService.updCom(updElement);
-		
-		mav = new ModelAndView("redirect:/member/regbasicacc.do?submit=1&&com_code="+com_code);
-		
-		return mav;
-	}
+	@RequestMapping(value="/member/updateBasicacc.do" ,method = RequestMethod.GET)
+    public ModelAndView updateCompany(@ModelAttribute("bom") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		  request.setCharacterEncoding("utf-8");
+		  int result = 0;
+		  result = systemmagService.updCom(systemmagVO);
+		  System.out.println("result "+result);
+		  ModelAndView mav = new ModelAndView("redirect:/member/regbasicacc.do");
+		  return mav;
+    }
+
+	
 
 	
 		

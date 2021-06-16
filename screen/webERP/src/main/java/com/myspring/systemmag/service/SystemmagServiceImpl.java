@@ -43,10 +43,14 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 
 	@Override
-	public List updCom(List updElement) throws Exception {
-		systemmagDAO.updateCom(updElement);
-		return null;
+	public int updCom(SystemmagVO systemmagVO) throws DataAccessException {
+		
+		return systemmagDAO.updateCom(systemmagVO);
 	}
+
+	
+
+	
 
 	
 	

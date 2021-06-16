@@ -38,7 +38,7 @@ public class SystemmagVO {
 	private String workplace_Address;
 	private String generalCustomer_Tel;
 	private String wholesale_Retail_Business_Code;
-	
+	private List<SystemmagVO> ListVO;
 	
 	public String getGeneral_Customer_Code() {
 		return general_Customer_Code;
@@ -111,6 +111,12 @@ public class SystemmagVO {
 	}
 	public void setWholesale_Retail_Business_Code(String wholesale_Retail_Business_Code) {
 		this.wholesale_Retail_Business_Code = wholesale_Retail_Business_Code;
+	}
+	public List<SystemmagVO> getListVO() {
+		return ListVO;
+	}
+	public void setListVO(List<SystemmagVO> listVO) {
+		ListVO = listVO;
 	}
 	
 	
