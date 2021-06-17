@@ -163,8 +163,8 @@
 	<select id="selectPopList2" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품']]>
 	</select>
-	<select id="childView" resultMap="bomView">
-		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code = 'PCSET01') pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code]]>
+	<select id="childView" resultMap="bomView" parameterType="String">
+		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{itemNumber}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code]]>
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[

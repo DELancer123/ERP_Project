@@ -91,8 +91,8 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
-	public List childView() throws DataAccessException {
-		return sqlSession.selectList("mappers.erp.childView");
+	public List childView(String itemNumber) throws DataAccessException {
+		return sqlSession.selectList("mappers.erp.childView",itemNumber);
 	}
 	
 
