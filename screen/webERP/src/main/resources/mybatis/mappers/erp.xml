@@ -313,9 +313,17 @@
 		<result property="sector_Name" column="Sector_Name"	/>
 		<result property="usedate" column="Usedate"	/>
 		</resultMap>
+	<!-- 조회 -->
 	<select id="selectAlldepartmentList" resultMap="departmentResult">
 		<![CDATA[select * from SM_CRI_Dep_Reg]]>	
 	</select>
+	<!-- 등록 -->
+	<insert id="insertDep" parameterType="DepartmentVO">
+	<![CDATA[
+	insert into SM_CRI_Dep_Reg
+	values(#{department_Code},#{department_Name}, #{workplace_Code}, #{workplace_Name}, #{sector_Code}, #{sector_Name},
+	 #{usedate})]]>
+	</insert>
 	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">

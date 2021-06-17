@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+import com.myspring.systemmag.vo.DepartmentVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
 
@@ -26,4 +27,5 @@ public interface SystemmagDAO {
 	public List allviewemployee() throws DataAccessException;
 	//부서등록
 	public List allviewdepartment() throws DataAccessException;
+	public int addDep(DepartmentVO departmentVO) throws DataAccessException;
 }

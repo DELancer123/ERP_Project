@@ -113,7 +113,7 @@
                 <c:forEach var="itemg" items="${itemgView}" >  
                 <tr>
                     <td>
-                        <input type="checkbox" name="content" onclick="selectAll(this)"/>
+                        <input type="checkbox" name="content"/>
                     </td>
                     <td>
                         <input type=text name="rangeCode" value='${itemg.item_Group_Code }' >

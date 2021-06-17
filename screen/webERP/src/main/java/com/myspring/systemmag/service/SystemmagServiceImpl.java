@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.dao.SystemmagDAO;
+import com.myspring.systemmag.vo.DepartmentVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
 
@@ -87,7 +88,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom= :");
 		return employeeList;
 	}
-	//부서등록
+	//부서등록(조회)
 		@Override
 		public List departmentView() throws DataAccessException {
 			List departmentList = null;
@@ -95,4 +96,9 @@ public class SystemmagServiceImpl implements SystemmagService {
 			System.out.println("sercom= :");
 			return departmentList;
 		}
+	//부서등록
+		@Override
+		public int addDep(DepartmentVO departmentVO) throws DataAccessException{
+			return systemmagDAO.addDep(departmentVO);
+	}
 }

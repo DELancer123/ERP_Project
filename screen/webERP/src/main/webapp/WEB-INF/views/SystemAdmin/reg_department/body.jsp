@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"    
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
   request.setCharacterEncoding("UTF-8");
@@ -83,6 +84,7 @@
 </style>
 </head>
 <body>
+<form method="get" id="regdepartment">
 <container1 id = contents1>
             <table id="table1" align="center">
                 <tr>
@@ -119,6 +121,7 @@
         <container2 id= contents2>
             <table id="table2" align="center">
                 <thead>
+                	<td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                     <td align="center">부서코드</td>
                     <td align="center">부서명</td>
                     <td align="center">사업장코드</td>
@@ -128,7 +131,9 @@
                     <td align="center">사용기간 시작</td>
                 </thead>
                 <c:forEach var="department" items="${departmentView}" >
+               
                 <tbody>
+                <td><input type="checkbox" name="content" /></td>
                     <td align="center">
                         <input type=text name="divCode" style="width: 100px;" value='${department.department_Code }'>
                     </td>
@@ -153,7 +158,35 @@
                     </tbody>
                 </tr>
                 </c:forEach>
+                <tbody>
+                 <tr id ="insertTest" align="center">
+    <td></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" /></td>
+    	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" /></td>
+    </tr>
+                  </tr>
             </table>
         </container2>
+        </form>
+        <script>
+        function newRow(){
+    		const URLSearch = new URLSearchParams(location.search);
+    		URLSearch.set('submit','1');
+    		const newParam = URLSearch.toString();
+    		var link = location.pathname +'?'+newParam;
+    		var articleNOInput = document.createElement("input");
+    		articleNOInput.setAttribute("type","hidden");
+    		articleNOInput.setAttribute("name","path");
+    		articleNOInput.setAttribute("value", link);
+    		document.getElementById('regdepartment').appendChild(articleNOInput);
+    		document.getElementById('regdepartment').action = "${contextPath}/member/adddepartment.do";
+    		document.getElementById('regdepartment').submit();
+    		}
+        </script>
 </body>
 </html>

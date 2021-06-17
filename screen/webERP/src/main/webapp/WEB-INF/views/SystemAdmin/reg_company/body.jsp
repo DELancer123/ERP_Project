@@ -119,11 +119,10 @@
 		</c:forEach>
 		             <tr>
                     <td colspan="3">
-                        <input type="button" onclick="searchView(this.value)"
-                        value="새로등록"
+                        <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%" maxlength="12"  />
+                        text-align: center; width:99%" maxlength="12">새로등록</button>
                     </td>
                     
                 </tr>

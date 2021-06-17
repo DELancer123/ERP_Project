@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.systemmag.service.SystemmagService;
+import com.myspring.systemmag.vo.DepartmentVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
 
@@ -159,7 +160,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 				mav.addObject("employeeView", employeeView);
 				return mav;
 		}
-		//부서등록
+		//부서등록(조회)
 		@Override
 		@RequestMapping(value="/member/regdepartment.do" ,method = RequestMethod.GET)
 		public ModelAndView viewdepartment(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -170,7 +171,20 @@ public class SystemmagControllerImpl implements SystemmagController{
 				mav.addObject("departmentView", departmentView);
 				return mav;
 		}
-		
+		//부서등록
+		@Override
+		@RequestMapping(value="/member/adddepartment.do" ,method = RequestMethod.GET)
+		public ModelAndView adddepartment(@ModelAttribute("department") DepartmentVO departmentVO, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			request.setCharacterEncoding("utf-8");
+			String path = request.getParameter("path");
+			path = path.replace("/webERP", "");
+			System.out.println("url" + path);
+			int result = 0;
+			result = systemmagService.addDep(departmentVO);
+			ModelAndView mav = new ModelAndView("redirect:"+path);
+			return mav;
+		}
 	//겟뷰네임
 	
 	private String getViewName(HttpServletRequest request) {
@@ -219,10 +233,6 @@ public class SystemmagControllerImpl implements SystemmagController{
 	}
 	@Override
 	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
-	@Override
-	public ModelAndView addDepartment(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;
 	}
 	

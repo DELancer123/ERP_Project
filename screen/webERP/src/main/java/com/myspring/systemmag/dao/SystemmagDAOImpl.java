@@ -95,12 +95,19 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("employeeList123: ");
 		return employeeList;
 	}
-	//부서등록
+	//부서등록 (조회)
 		@Override
 		public List allviewdepartment() throws DataAccessException {
 			List<DepartmentVO> departmentList = null;
 			departmentList = sqlSession.selectList("mappers.erp.selectAlldepartmentList");
 			System.out.println("departmentList123: ");
 			return departmentList;
+		}
+	//부서등록
+		@Override
+		public int addDep(DepartmentVO departmentVO) throws DataAccessException{
+			int idx = departmentVO.getListVO().size()-1;
+			int result = sqlSession.insert("mappers.erp.insertDep",departmentVO.getListVO().get(idx));
+			return 0;
 		}
 }

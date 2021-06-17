@@ -87,21 +87,12 @@
                     </td>
                 </tr>
                 </c:forEach>
-                <tr>
-                    <td>
-                        <input type="text"  id="workplace_Code2"
-                        style="background-color: rgb(235, 235, 235);
-                        border-style: none; vertical-align: 1px; width: 80px; 
-                        text-align: center;" pattern="[0-9]{4}" maxlength="4"
-                        />
-                    </td>
-                    <td>
-                        <input type=text  id="workplace_Name2"
+                <td colspan="3">
+                        <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
-                        border-style: none; vertical-align: 1px; width: 160px;
-                        text-align: center;"  />
+                        border-style: none; 
+                        text-align: center; width:99%" maxlength="12">새로등록</button>
                     </td>
-                </tr>
             </table>
         </container>
         <container id="contents2">
