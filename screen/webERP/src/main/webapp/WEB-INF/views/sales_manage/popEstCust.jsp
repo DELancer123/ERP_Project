@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
+<form name="popForm" method="get" action="${contextPath}/member/quotationstatus" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -67,16 +67,18 @@
         	<div id="view">
             	<table style="width: 100%;">
                 	<tr align="center">
-      					<td><b>품번</b></td>
-      					<td><b>품명</b></td>
-      					<td><b>규격</b></td>
+      					<td><b>코드</b></td>
+      					<td><b>거래처명</b></td>
+      					<td><b>사업자번호</b></td>
+      					<td><b>대표자명</b></td>
   					</tr>
    
  					<c:forEach var="cust" items="${custList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</td>
       						<td>${cust.custName}</td>
-      						<td>${cust.standard}</td>
+      						<td>${cust.comNum}</td>
+      						<td>${cust.repName}</td>
 						</tr>
   					</c:forEach>   
 				</table>
@@ -93,7 +95,7 @@
     	submit_button.onclick = function(){
     		text_code.setAttribute("custCode",text_code.value);
 			text_name.setAttribute("custName",text_name.value);
-    		opener.parent.location='${contextPath}/member/salesplanstat.do?custCode='+text_code.value+'&&custName='+text_name.value;
+    		opener.parent.location='${contextPath}/member/quotationstatus.do?custCode='+text_code.value+'&&custName='+text_name.value;
     		window.close();
     	}
     </script>

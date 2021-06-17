@@ -19,6 +19,11 @@ public class EstimateVO {
 	private int price;
 	private Date estDate;
 	private Date dueDate;
+	
+	//cust
+	private String custName;
+	private String comNum;
+	private String repName;
 	private List<EstimateVO> ListEst;
 	
 	@Override
@@ -126,12 +131,38 @@ public class EstimateVO {
 		this.dueDate = dueDate;
 	}
 
+	public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+	public String getComNum() {
+		return comNum;
+	}
+
+	public void setComNum(String comNum) {
+		this.comNum = comNum;
+	}
+
+	public String getRepName() {
+		return repName;
+	}
+
+	public void setRepName(String repName) {
+		this.repName = repName;
+	}
+
 	public List<EstimateVO> getListEst() {
 		return ListEst;
 	}
 
 	public void setListEst(List<EstimateVO> listEst) {
-		ListEst = new ArrayList();
+		ListEst = listEst;
 	}
+
+	
 	
 }
