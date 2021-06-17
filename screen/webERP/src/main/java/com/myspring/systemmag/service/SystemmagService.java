@@ -15,5 +15,5 @@ public interface SystemmagService {
 	
 	public void delCom(String[] noary) throws DataAccessException;
 	
-	public int updCom(SystemmagVO systemmagVO) throws DataAccessException;
+	public void updCom(SystemmagVO systemmagVO) throws DataAccessException;
 }

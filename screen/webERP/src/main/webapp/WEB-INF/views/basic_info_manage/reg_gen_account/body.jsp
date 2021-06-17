@@ -26,6 +26,7 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리CDN -->
 <style>
  #contents1{
             position: absolute;
@@ -147,7 +148,7 @@ request.setCharacterEncoding("UTF-8");
                 </tr>
             </table>
         </container1>
-        <form id="rightSideForm" method="get" commandName="SystemmagVO">
+        <form name="update" method="get" commandName="SystemmagVO">
         <container2 id= contents2>
             <table id="table2" align="center">
                 <thead>
@@ -177,6 +178,24 @@ request.setCharacterEncoding("UTF-8");
             <table id="table3" align="center">
                 <tr>
                     <p><td colspan = "4" span style="color:black" align="center">기본등록사항</td></p>
+                </tr>
+                <tr>
+                    <td align="center">코드</td>
+                    <td colspan="3">
+                        <input type="text" name="ceoName" value="${general_Customer_Code }">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">거래처명</td>
+                    <td colspan="3">
+                        <input type="text" name="ceoName" value="${general_Customer_Name }">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">구분</td>
+                    <td colspan="3">
+                        <input type="text" name="ceoName" value="${general_Customer_Division }">
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
@@ -273,8 +292,17 @@ request.setCharacterEncoding("UTF-8");
         	
         }
         
+        function updateRow() {
+        	alert('업데이트 구현중');
+        	
+    	
+        	window.location.href = "${contextPath}/member/updateBasicacc.do";
+        }
+        
+                	
+        
       
-        function updateRow(){
+        /* function updateRow(){
               alert('업데이트구현중');
           	  var workOrderTable = document.getElementById('table3');
               var row = workOrderTable.insertRow(); 
@@ -282,13 +310,13 @@ request.setCharacterEncoding("UTF-8");
               URLSearch.set('submit', '1');
       		  const newParam = URLSearch.toString();
       		  var link = location.pathname +'?'+newParam;
-       			 /* document.getElementById("registrationNumber").disabled = true;
+       			 document.getElementById("registrationNumber").disabled = true;
        		     document.getElementById("loss").disabled = true;
        		     document.getElementById("outSourcingUnitPrice").disabled = true;
        		     document.getElementById("actualCost").disabled = true;
        		     document.getElementById("no").disabled = true;
        		     document.getElementById("startDate").disabled = true;
-       		     document.getElementById("endDate").disabled = true; */
+       		     document.getElementById("endDate").disabled = true; 
         		 document.getElementById("inchargerManager").disabled = true;
        		 var articleNOInput = document.createElement("input");
      		     articleNOInput.setAttribute("type","hidden");
@@ -297,7 +325,7 @@ request.setCharacterEncoding("UTF-8");
      		     document.getElementById('rightSideForm').appendChild(articleNOInput);
                  document.getElementById('rightSideForm').action = "${contextPath}/member/updateBasicacc.do";
        			 document.getElementById('rightSideForm').submit();  
-        }
+        } */
         
 	  		
 	       
