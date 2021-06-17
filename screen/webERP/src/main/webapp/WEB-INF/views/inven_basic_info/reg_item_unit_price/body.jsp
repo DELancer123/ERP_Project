@@ -107,7 +107,7 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
@@ -141,7 +141,7 @@
 
 		var save_button = document.getElementById("save");
 		var update_button = document.getElementById("update");
-		var view_botton = document.getElementById("view");
+		var view_button = document.getElementById("view_button");
 		
 		function openWindowPop(url, name){
 			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
@@ -175,13 +175,13 @@
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','2');
 			const newParam = URLSearch.toString();
-			if(URLSearch.get('itemNumber') == null){
-				window.location.href = location.pathname + '?' + newParam + '&itemNumber=' + name;
+			if(URLSearch.get('itemCode') == null){
+				window.location.href = location.pathname + '?' + newParam + '&itemCode=' + name;
 			}
 			else{
-				URLSearch.set('itemNumber',name);
+				URLSearch.set('itemCode',name);
 				const newParam = URLSearch.toString();
-				window.location.href = location.pathname + '?' +newParam;
+				window.location.href = location.pathname + '?' + newParam;
 			}
 		}
 		
@@ -206,7 +206,7 @@
 		}
 		
 		function newRow(){
-			var row = workOrderTable.insertRow();
+			var row = iupTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
 			const newParam = URLSearch.toString();

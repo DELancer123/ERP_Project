@@ -48,8 +48,7 @@ a {
 </style>
 </head>
 <body>
-	<form name="popForm" method="get"
-		action="${contextPath }/member/itemunitprice">
+
 		<div id="wrap">
 			<div id="searchBox">
 				<table id="search">
@@ -98,14 +97,12 @@ a {
     	}
     	
     	submit_button.onclick = function(){
-    		text_code.setAttribute("itemNumber",text_code.value);
-    		text_name.setAttribute("itemName",text_name.value);
-    		var url = window.opener.document.location.href;
+			var url = window.opener.document.location.href;
     		var url_arr = url.split('?');
     		opener.parent.location=url_arr[0] + '?itemNumber=' + text_code.value + '&&itemName=' + text_name.value + '&&submit=' + 0;
-    		window.close();
+    		window.close(); 
     	}
     </script>
-	</form>
+
 </body>
 </html>
