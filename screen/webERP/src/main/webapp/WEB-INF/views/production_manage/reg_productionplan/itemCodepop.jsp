@@ -60,6 +60,8 @@
                 <tr>
                     <td>품명</td>
                     <td><input type="text" id="name"/></td>
+                    <input type="hidden" id="unit" />
+                    <input type="hidden" id="dp" />
                 </tr>
             </table>
             <div id="button">
@@ -74,7 +76,7 @@
                 </tr>
                 <c:forEach var="item" items="${itemView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${item.itemCode }','${item.itemName }')">${item.itemCode}</a></td>
+      <td><a href="javascript:popFunction('${item.itemCode }','${item.itemName }','${item.inventoryUnit }','${item.dailyProduction }')">${item.itemCode}</a></td>
       <td><a href="#">${item.itemName}</a></td>
     </tr>
     </c:forEach> 
@@ -87,11 +89,14 @@
     	var submit_button = document.getElementById("submit");
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
+    	var text_unit = document.getElementById("unit");
+    	var text_dp = document.getElementById("dp");
     		
-    	function popFunction(code,name){
+    	function popFunction(code,name,unit,dp){
     			text_code.value = code;
     			text_name.value = name;
-    			
+    			text_unit.value = unit;
+    			text_dp.value = dp;
     	}
     	
     	function submitClick(form){
@@ -105,7 +110,7 @@
 			text_name.setAttribute("itemName",text_name.value);
 			var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url_arr[0] + '?itemCode='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		opener.parent.location=url_arr[0] + '?itemCode='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0+'&&inventoryUnit='+text_unit.value+'&&dailyProduction='+text_dp.value;
     		window.close();
     	}
     </script>
