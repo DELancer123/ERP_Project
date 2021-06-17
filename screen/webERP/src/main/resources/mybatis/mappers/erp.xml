@@ -58,6 +58,13 @@
 		</where>
 	</select>
 	
+	<insert id="insertProductionPlan" parameterType="CommitOperationInstructionVO">
+		<![CDATA[
+		 insert into CPM_PM_PRO_PLA_REG
+		 values(F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{dailyProduction}, F_GET_NEXT_SEQ('SEQ'), #{scheduled}, #{quantity}, #{note}, '생산')
+		]]>  
+	</insert>
+	
 	<delete id="deleteProductionPlan">
 		delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}
 	</delete>
@@ -86,6 +93,8 @@
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
+		<result property="inventoryUnit" column="inventory_Unit" />
+		<result property="dailyProduction" column="dailyProduction" />
 	</resultMap>
 	<select id="selectItemCodeView" resultMap="ItemCodeResult">
 		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품', '반제품')]]>
