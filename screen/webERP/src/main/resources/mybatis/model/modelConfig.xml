@@ -19,6 +19,7 @@
 		<typeAlias type="com.myspring.Billing.vo.BIllIngVO" alias="BIllIngVO" />
  		<typeAlias type="com.myspring.Billing.List.vo.ListVO" alias="ListVO" />
 		<typeAlias type="com.myspring.Requiredamount.vo.RequiredamountVO" alias="RequiredamountVO" />
+		<typeAlias type="com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO" alias="iupVO" />
 		<!-- BOM 모델 -->
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.bomVO" alias="bomVO" />
 		<!-- 외주 파트 -->
