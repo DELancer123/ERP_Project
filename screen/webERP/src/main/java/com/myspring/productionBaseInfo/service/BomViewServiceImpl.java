@@ -79,8 +79,8 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public List ChildView() throws DataAccessException {
-		return bomDAO.childView();
+	public List ChildView(String itemNumber) throws DataAccessException {
+		return bomDAO.childView(itemNumber);
 	}
 
 }

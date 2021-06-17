@@ -114,6 +114,7 @@
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead align="center" style="font-weight:bold; background-color:gray;">
+                    	<td><input type="checkbox"/></td>
                         <td>순번</td>
                         <td>품번코드</td>
                         <td>품명</td>
@@ -131,6 +132,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
                     <tbody align="center">
+                    	<td><input type="checkbox"/></td>
                         <td>${bom.no }</td>
                         
                         <td>${bom.itemNumber}</td>
@@ -149,6 +151,7 @@
                     	
                     <c:forEach var="child" items="${childView}">  
                     <tbody align="center">
+                    	<td></td>
                         <td>${child.no }</td>
                         
                         <td>${child.itemNumber}</td>
@@ -201,7 +204,7 @@
 		  const newParam = URLSearch.toString();
 
 		  window.open(location.pathname + '?' + newParam, '_self');
-		 
+		  
       }
       </script>
 </body>

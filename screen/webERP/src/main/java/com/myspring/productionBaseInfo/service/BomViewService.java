@@ -17,6 +17,6 @@ public interface BomViewService {
 	public void delBOM(String[] noary) throws DataAccessException;
 	public int updateBOM(bomVO bomVO) throws DataAccessException;
 	public int inputNo() throws DataAccessException;
-	public List ChildView() throws DataAccessException;
+	public List ChildView(String itemNumber) throws DataAccessException;
 
 }
