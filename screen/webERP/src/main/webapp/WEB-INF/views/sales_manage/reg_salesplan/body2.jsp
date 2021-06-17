@@ -69,25 +69,8 @@
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
-#reqInput {
-	background-color: rgb(255, 255, 149);
-	text-align: center;
-}
-</style>
-<script>
-		var plus_button = document.getElementById('plus');
-		var minus_button = document.getElementById('minus');
 
-		plus_button.onclick = function() {
-			var year = document.getElementById('year');
-			year.value = Number(year.value) + 1;
-		}
-		minus_button.onclick = function() {
-			var year = document.getElementById('year');
-			year.value = Number(year.value) - 1;
-		}
-		function sumPrice
-</script>
+</style>
 </head>
 <body>
 	<container2 id="contents2">
