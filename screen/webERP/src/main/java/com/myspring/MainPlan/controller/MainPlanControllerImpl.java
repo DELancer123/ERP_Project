@@ -4,49 +4,50 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
 
 @Controller("mainplanController")
-public class MainPlanControllerImpl implements MainPlanController{
+public class MainPlanControllerImpl implements MainPlanController {
 	private static final Logger logger = LoggerFactory.getLogger(MainPlanControllerImpl.class);
 	@Autowired
 	private MainPlanService mainplanService;
 	@Autowired
 	private MainPlanVO mainplanVO;
-	
+
 	@Override
-	@RequestMapping(value="member/mainplan.do", method = RequestMethod.GET)
-	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		String viewName = (String)request.getAttribute("viewName");
+	@RequestMapping(value = "member/mainplan.do", method = RequestMethod.GET)
+	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
 		List mainplanList = mainplanService.selectAllMainPlanList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mainplanList", mainplanList);
 		return mav;
 	}
-	
+
 	@Override
-	@RequestMapping(value="member/applyorder.do", method=RequestMethod.GET)
-	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		String viewName = (String)request.getAttribute("viewName");
+	@RequestMapping(value = "member/applyorder.do", method = RequestMethod.GET)
+	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
 		List mpsosList = mainplanService.selectAllMpsosList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mpsosList", mpsosList);
 		return mav;
 	}
-	
+
 	@Override
-	@RequestMapping(value="/member/delMps.do" ,method = RequestMethod.GET)
+	@RequestMapping(value = "/member/delMps.do", method = RequestMethod.GET)
 	public ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("sequence");
 		String viewName = getViewName(request);
@@ -54,13 +55,25 @@ public class MainPlanControllerImpl implements MainPlanController{
 		mainplanService.delMps(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
 		return mav;
-		}
+	}
 	
-	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
-	public String registerUpdate(MainPlanVO vo, HttpSession session) throws Exception{
-		mainplanService.modifyMPS(vo);		
-		session.invalidate();	
-		return "redirect:/member/mainplan.do";
+	@RequestMapping("/detail")
+	public String detail(int Sequence, Model model) {
+		MainPlanVO vo = mainplanService.customer_detail(Sequence);
+		model.addAttribute("vo", vo);
+		return "member/detail";
+	}
+	
+	@RequestMapping("/modify")
+	public String modify(int Sequence, Model model) {
+		model.addAttribute("vo", mainplanService.customer_detail(Sequence));
+		return "member/modify";
+	}
+	
+	@RequestMapping("/update")
+	public String update(MainPlanVO vo) {
+		mainplanService.customer_update(vo);
+		return "redirect:/member/detail?Sequence=" + vo.getSequence();
 	}
 	
 	private String getViewName(HttpServletRequest request) throws Exception {

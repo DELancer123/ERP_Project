@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
 <%
 request.setCharacterEncoding("UTF-8");
 String sequence = (String)request.getAttribute("sequence");
@@ -103,9 +102,8 @@ String sequence = (String)request.getAttribute("sequence");
 		</tr>
 	</table>
 	<div id="button">
-		<input type="button" onclick="func_Popup();" value="주문적용" />
-		<input type=button value="삭제" onClick="deleteData();">
-		<input type=button value="수정" onClick="func_Popup2();">
+		<input type="button" onclick="func_Popup();" value="주문적용">
+		<input type="button" value="삭제" onClick="deleteData();">
 	</div>
 	</container1>
 <container2 id=contents2>
@@ -129,17 +127,18 @@ String sequence = (String)request.getAttribute("sequence");
 		<c:forEach var="mainplan" items="${mainplanList}">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
-				<td><input type="text" value="${mainplan.sequence}"/></td>
-				<td><input type="text" value="${mainplan.plandate}"/></td>
-				<td><input type="text" value="${mainplan.item_Code}"/></td>
-				<td><input type="text" value="${mainplan.item_Name}"/></td>
-				<td><input type="text" value="${mainplan.standard}"/></td>
-				<td><input type="text" value="${mainplan.unit}"/></td>
-				<td><input type="text" value="${mainplan.expected_date}"/></td>
-				<td><input type="text" value="${mainplan.due_date}"/></td>
-				<td><input type="text" value="${mainplan.plan_quantity}"/></td>
-				<td><input type="text" value="${mainplan.customer_Name}"/></td>
-				<td><input type="text" value="${mainplan.note}"/></td>
+		 	<td style="width:13px;"><a href="${path}/member/detail.do?sequence=${mainplan.sequence}" 
+		 	value="${mainplan.sequence}" style="width:100%"/>${mainplan.sequence}</a></td>		
+ 				<td><input type="text" value="${mainplan.plandate}" style="width:100%"/></td>				
+				<td><input type="text" value="${mainplan.item_Code}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.item_Name}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.standard}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.unit}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.expected_date}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.due_date}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.plan_quantity}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.customer_Name}" style="width:100%"/></td>
+				<td><input type="text" value="${mainplan.note}" style="width:100%"/></td>
 			</tr>
 		</c:forEach>	
 	</tbody>
@@ -147,19 +146,14 @@ String sequence = (String)request.getAttribute("sequence");
 	</div>
 </container2>
 <script type="text/javascript">
-var openWin;
+
 function func_Popup(){
 	window.name = "member/mainplan.do";
 	
 	openWin = window.open("applyorder.do","applyorder",
 			"width=1400, height=500, resizable = no, scrollbars = no");
 }
-function func_Popup2(){
-	window.name = "member/mainplan.do";
-	
-	openWin = window.open("modify.do","modify",
-			"width=1400, height=500, resizable = no, scrollbars = no");
-}
+
 function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";
@@ -172,8 +166,7 @@ function deleteData() {
 		  
 			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary;
 	  }
-	}
-
+}
 </script>
 </body>
 </html>

@@ -1,105 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt %>
 <%
-	request.setCharacterEncoding("UTF-8");
-	String sequence = (String)request.getAttribute("sequence");
+request.setCharacterEncoding("UTF-8");
+String sequence = (String)request.getAttribute("sequence");
 %>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
-<style>
-a {
-	text-decoration: none;
-}
-
-#wrap {
-	width: 1400px;
-	height: 450px;
-	border: 1px solid black;
-}
-
-#searchBox {
-	width: 100%;
-	height: 23%;
-	border: 1px solid black;
-}
-
-#button {
-	margin-top: 3%;
-	margin-right: 3%;
-	text-align: right;
-}
-
-#search {
-	margin-left: 30px;
-}
-
-#view {	
-    overflow: scroll;
-    height: 100%;
-    width: 100%;
-    
-}
-</style>
+<title>수정</title>
 </head>
 <body>
-<form name="modify" action="${contextPath}/member/mainplan.do?action=modifyMPS" method="get">
-<h1  class="text_center">수정창</h1>
-	<table  align="center">
-	   <tr>
-	      <td width="200"><p align="right">순서</td>
-	      <td width="400"><p><input type="text" name="sequence" value="${mainplan.sequence}" readonly="readonly"/></td>
-	   </tr>
-	   <tr>
-	      <td width="200"><p align="right">계획일</td>
-	      <td width="400"><p><input type="text" name="plandate"  value="${mainplan.plandate}"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">품번</td>
-	       <td width="400"><p><input type="text" name="item_Code" value="${mainplan.item_Code}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">품명</td>
-	       <td width="400"><p><input type="text" name="item_Name" value="${mainplan.item_Name}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">규격</td>
-	       <td width="400"><p><input type="text" name="standard" value="${mainplan.standard}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">단위</td>
-	       <td width="400"><p><input type="text" name="unit"  value="${mainplan.unit}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">출하예정일</td>
-	       <td width="400"><p><input type="text" name="expected_date" value="${mainplan.expected_date}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">납기일</td>
-	       <td width="400"><p><input type="text" name="due_date" value="${mainplan.due_date}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">계획수량</td>
-	       <td width="400"><p><input type="text" name="plan_quantity" value="${mainplan.plan_quantity}"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">고객</td>
-	       <td width="400"><p><input type="text" name="customer_Name" value="${mainplan.customer_Name}" readonly="readonly"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p align="right">비고</td>
-	       <td width="400"><p><input type="text" name="note" value="${mainplan.note}"/></td>
-	    </tr>
-	    <tr>
-	       <td width="200"><p>&nbsp;</p></td>
-	       <td width="400"><input type="submit" value="수정하기">
-	       <input type="reset" value="다시입력"></td>
-	    </tr>
+	<form name="updateform" method="post" action="/member/update">
+
+		<div>순서</div>
+		<div>
+			<input type="hidden" name="sequence" value="${vo.sequence}" />
+		</div>
+
+		<div>계획일</div>
+		<div>
+			<input name="plandate" value="${vo.plandate}" type="text" />
+		</div>
+
+		<div>품명</div>
+		<div>
+			<input name="item_Code" value="${vo.item_Code}" type="text"
+				readonly="readonly" />
+		</div>
+
+		<div>품번</div>
+		<div>
+			<input name="item_Name" value="${vo.item_Name}" type="text"
+				readonly="readonly" />
+		</div>
+
+		<div>규격</div>
+		<div>
+			<input name="standard" value="${vo.standard}" type="text"
+				readonly="readonly" />
+		</div>
+
+		<div>단위</div>
+		<div>
+			<input name="unit" value="${vo.unit}" type="text"
+				readonly="readonly" />
+		</div>
+
+		<div>출하예정일</div>
+		<div>
+			<input name="expected_date" value="${vo.expected_date}"
+				type="text" readonly="readonly" />
+		</div>
+
+		<div>납기일</div>
+		<div>
+			<input name="due_date" value="${vo.due_date}" type="text"
+				readonly="readonly" />
+		</div>
+
+		<div>계획수량</div>
+		<div>
+			<input name="plan_quantity" value="${vo.plan_quantity}"
+				type="text" />
+		</div>
+
+		<div>고객</div>
+		<div>
+			<input name="customer_Name" value="${vo.customer_Name}"
+				type="text" readonly="readonly" />
+		</div>
+
+		<div>비고</div>
+		<div>
+			<input name="note" value="${vo.note}" type="text"
+				readonly="readonly" />
+		</div>
+		<div class='btnSet'>
+		<a class="btn-fill" onclick="$('form').submit()">저장</a>
+		<a class="btn-empty" href="detail.do?sequence=${vo.sequence}">취소</a>
+	</div>
+	</form>
 </body>
 </html>

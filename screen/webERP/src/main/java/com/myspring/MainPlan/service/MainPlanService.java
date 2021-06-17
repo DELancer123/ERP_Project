@@ -14,6 +14,8 @@ public interface MainPlanService {
 
 	void delMps(String[] noary) throws DataAccessException;
 
-	void modifyMPS(MainPlanVO vo) throws Exception;
+	MainPlanVO customer_detail(int Sequence);
+
+	void customer_update(MainPlanVO vo);
 
 }

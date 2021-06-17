@@ -36,8 +36,12 @@ public class MainPlanServiceImpl implements MainPlanService{
 	}
 	
 	@Override
-	public void modifyMPS(MainPlanVO vo) throws Exception {
-		mainplanDAO.modifyMPS(vo);
+	public MainPlanVO customer_detail(int Sequence) {
+		return mainplanDAO.customer_detail(Sequence);
 	}
-	
+
+	@Override
+	public void customer_update(MainPlanVO vo) {
+		mainplanDAO.customer_update(vo);
+	}
 }

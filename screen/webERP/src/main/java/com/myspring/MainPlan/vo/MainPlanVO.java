@@ -1,8 +1,13 @@
 package com.myspring.MainPlan.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Component("mainplanVO")
 public class MainPlanVO {

@@ -54,18 +54,34 @@ a {
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
-				<tr>
+<!-- 				<tr>
 					<td>주문기간</td>
 					<td colspan="2" style="width: 80px;"><input type="date"
 						id="reqInput" style="width: 100%;" /></td>
 					<td>~</td>
 					<td><input type="date" id="reqInput" style="width: 100%;" /></td>
 					<td></td>
-				</tr>
+				</tr> -->
+				<tr>
+                    <td>검색1</td>
+                    <td><input type="text" id="cusName" /></td>
+                </tr>
+                <tr>
+                    <td>검색2</td>
+                    <td><input type="text" id="Code"/></td>
+                </tr>
+                <tr>
+                    <td>검색3</td>
+                    <td><input type="text" id="Name" /></td>
+                </tr>
+                <tr>
+                    <td>검색4</td>
+                    <td><input type="text" id="expDate"/></td>
+                </tr>
 			</table>
 			<div id="button">
 				<button>조회</button>				
-				<button id="point">적용</button>				
+				<button id="clickme">적용</button>				
 				<button>취소</button>
 			</div>
 		</div>
@@ -91,20 +107,20 @@ a {
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center">
 					<td><input type="checkbox" name="chk"/></td>
-						<td><a href="#">${MpsOS.sequence}</a></td>
-						<td><a href="#">${MpsOS.ordersno}</a></td>
-						<td><a href="#">${MpsOS.orderdate}</a></td>
-						<td><a href="#">${MpsOS.okeydate}</a></td>
-						<td><a href="#">${MpsOS.customer_Name}</a></td>
-						<td><a href="#">${MpsOS.item_Code}</a></td>
-						<td><a href="#">${MpsOS.item_Name}</a></td>
-						<td><a href="#">${MpsOS.standard}</a></td>
-						<td><a href="#">${MpsOS.unit}</a></td>
-						<td><a href="#">${MpsOS.order_quantity}</a></td>
-						<td><a href="#">${MpsOS.apply_quantity}</a></td>
-						<td><a href="#">${MpsOS.order_Balance}</a></td>
-						<td><a href="#">${MpsOS.expected_Date}</a></td>
-						<td><a href="#">${MpsOS.note}</a></td>
+					<td style="width:13px;"><input type="text" value="${MpsOS.sequence}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.ordersno}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.orderdate}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.okeydate}" style="width:100%"/></td>
+					<td id="customer_Name"><input type="text" value="${MpsOS.customer_Name}" style="width:100%"/></td>
+					<td id="item_Code"><input type="text" value="${MpsOS.item_Code}" style="width:100%"/></td>
+					<td id="item_Name"><input type="text" value="${MpsOS.item_Name}" style="width:100%"/></td>
+					<td style="width:13px;"><input type="text" value="${MpsOS.standard}" style="width:100%"/></td>
+					<td style="width:13px;"><input type="text" value="${MpsOS.unit}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.order_quantity}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.apply_quantity}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.order_Balance}" style="width:100%"/></td>
+					<td id="expected_Date"><input type="text" value="${MpsOS.expected_Date}" style="width:100%"/></td>
+						<td><input type="text" value="${MpsOS.note}" style="width:100%"/></td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -113,9 +129,26 @@ a {
 		</div>
 	</div>
 <script type="text/javascript">
-var point = document.getElementById("point");
-
-
+var submit_button = document.getElementById("submit");
+        var text_cusName = document.getElementById("cusName").value;
+        var text_Code = document.getElementById("Code").value;
+        var text_Name = document.getElementById("Name").value;
+        var text_expDate = document.getElementById("expDate").value;
+   function popFunction(customer_Name,item_Code,item_Name,expected_Date){
+	   text_cusName.value = cusName;
+	   text_Code.value = Code;
+	   text_Name.value = Name;
+	   text_expDate.value = expDate;
+   }  
+submit_button.onclick = function(){
+	text_cusName.setAttribute("customer_Name",text_cusName.value);
+	text_Code.setAttribute("item_Code",text_Code.value);
+	text_Name.setAttribute("item_Name",text_Name.value);
+	text_expDate.setAttribute("expected_Date",text_expDate.value);
+	opener.parent.location='${contextPath}/member/mainplan.do?customer_Name='+text_cusName.value+'&&item_Code='+text_Code.value+
+						'&&item_Name'+text_Name.value+'&&expected_Date'+text_expDate.value+'&&submit='+0;
+  	 window.close();
+}        
 </script>
 </body>
 </html>

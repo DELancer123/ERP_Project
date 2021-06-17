@@ -98,16 +98,7 @@
       <put-attribute name="side" value="" />
    </definition>
    
-    <definition name="MPSPopupLayout2"  template="/WEB-INF/views/purchase_manage/reg_mainplan/modify.jsp">
-      <put-attribute name="title" value="" />
-      <put-attribute name="side" value="" />
-      <put-attribute name="body" value="" />
-   </definition>
-    <definition name="/member/modify" extends="MPSPopupLayout2">
-      <put-attribute name="title" value="팝업" />
-      <put-attribute name="body" value="" />
-      <put-attribute name="side" value="" />
-   </definition>
+
    
    
    <!-- 생산파트 popup layout -->

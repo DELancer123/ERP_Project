@@ -35,8 +35,13 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	}
 	
 	@Override
-	public void modifyMPS(MainPlanVO vo) throws Exception {
-		sqlSession.update("mappers.erp.modifyMps", vo); 
+	public MainPlanVO customer_detail(int Sequence) {
+		return sqlSession.selectOne("mappers.erp.detail", Sequence);
 	}
-	
+
+	@Override
+	public void customer_update(MainPlanVO vo) {
+		sqlSession.update("mappers.erp.update", vo);
+	}
+
 }
