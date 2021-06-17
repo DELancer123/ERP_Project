@@ -17,26 +17,23 @@ public class EstimateDAOImpl implements EstimateDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectEstimateList() throws DataAccessException {
+	public List selectEstList() throws DataAccessException {
 		List<EstimateVO> allEstList = null;
-//		allEstList = sqlSession.selectList("mappers.erp.selectEstimateList");
-//		System.out.println("확인1"+allEstList);
+		allEstList = sqlSession.selectList("mappers.erp.selectEstimateList");
 		return allEstList;
 	}
 
 	@Override
 	public List selectAllCustList() throws DataAccessException {
 		List<EstimateVO> allCustList = null;
-//		allCustList = sqlSession.selectList("mappers.erp.selectAllCustList");
-//		System.out.println("확인2"+allCustList);
+		allCustList = sqlSession.selectList("mappers.erp.selectCustList");
 		return allCustList;
 	}
 
 	@Override
 	public List submitCust(String custCode) throws DataAccessException {
 		List<EstimateVO> submitCust= null;
-//		submitCust = sqlSession.selectList("mappers.erp.submitCust");
-//		System.out.println("확인3"+submitCust);
+		submitCust = sqlSession.selectList("mappers.erp.submitCust");
 		return submitCust;
 	}
 

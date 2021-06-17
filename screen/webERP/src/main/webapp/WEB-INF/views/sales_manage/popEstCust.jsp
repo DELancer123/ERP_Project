@@ -44,7 +44,6 @@
     </style>
 </head>
 <body>
-<!-- 폼을 수정해여ㅑ할거같음 -->
 <form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
     <div id="wrap">
         <div id="searchBox">
@@ -61,6 +60,7 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
+                <input type="hidden" name="inputNo" value=""/>
                 <input type="reset" id="reset" value="초기화"/>
             </div>
         </div>
@@ -70,31 +70,30 @@
       					<td><b>품번</b></td>
       					<td><b>품명</b></td>
       					<td><b>규격</b></td>
-      					<td><b>사업자명</b></td>
   					</tr>
    
- 					<c:forEach var="item" items="${allCustsList}" >
+ 					<c:forEach var="cust" items="${custList}" >
    						<tr align="center">
-      						<td><a href="javascript:popFunction('${item.custCode}','${item.custName}')">${item.custCode}</td>
-      						<td>${item.custName}</td>
-      						<td>${item.comnumber}</td>
-      						<td>${item.repName}</td>
+      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</td>
+      						<td>${cust.custName}</td>
+      						<td>${cust.standard}</td>
 						</tr>
   					</c:forEach>   
 				</table>
 			</div>
 		</div>
 	 <script>
-    var submit_button = document.getElementById("submit");
+      var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
-    		
     	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+    		text_code.value = code;
+    		text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath}/salesmanage/regplanitem.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+0;
+    		text_code.setAttribute("custCode",text_code.value);
+			text_name.setAttribute("custName",text_name.value);
+    		opener.parent.location='${contextPath}/member/salesplanstat.do?custCode='+text_code.value+'&&custName='+text_name.value;
     		window.close();
     	}
     </script>
