@@ -58,6 +58,13 @@
 		</where>
 	</select>
 	
+	<insert id="insertProductionPlan" parameterType="CommitOperationInstructionVO">
+		<![CDATA[
+		 insert into CPM_PM_PRO_PLA_REG
+		 values(F_GET_NEXT_SEQ('CPM_PM_PRO_PLA_REG'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{dailyProduction}, F_GET_NEXT_SEQ(seq_SEQ), #{scheduled}, #{inventoryUnit}, #{indicated}, #{note}, '생산')
+		]]>  
+	</insert>
+	
 	<delete id="deleteProductionPlan">
 		delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}
 	</delete>
