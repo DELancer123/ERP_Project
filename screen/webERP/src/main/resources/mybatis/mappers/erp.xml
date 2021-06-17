@@ -93,6 +93,8 @@
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
+		<result property="inventoryUnit" column="inventory_Unit" />
+		<result property="dailyProduction" column="dailyProduction" />
 	</resultMap>
 	<select id="selectItemCodeView" resultMap="ItemCodeResult">
 		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품', '반제품')]]>
