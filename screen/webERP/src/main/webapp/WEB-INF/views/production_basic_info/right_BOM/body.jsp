@@ -114,7 +114,6 @@
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead align="center" style="font-weight:bold; background-color:gray;">
-                    	<td><input type="checkbox"/></td>
                         <td>순번</td>
                         <td>품번코드</td>
                         <td>품명</td>
@@ -132,11 +131,10 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
                     <tbody align="center">
-                    	<td><input type="checkbox"/></td>
                         <td>${bom.no }</td>
                         
                         <td>${bom.itemNumber}</td>
-                        <td><button name="item" onclick="childSearch(this)">${bom.itemName}</button></td>
+                        <td><a href="#" name="item"  onclick="childSearch(this)">${bom.itemName}</a></td>
                         <td>${bom.standard}</td>
                         <td>${bom.unit }</td>
                         <td>${bom.division }</td>
@@ -148,10 +146,10 @@
                         <td>${bom.startDate }</td>
                         <td>${bom.endDate }</td>
                     </tbody>
+                    </c:forEach>
                     	
                     <c:forEach var="child" items="${childView}">  
                     <tbody align="center">
-                    	<td></td>
                         <td>${child.no }</td>
                         
                         <td>${child.itemNumber}</td>
@@ -168,7 +166,6 @@
                         <td>${child.endDate }</td>
                     </tbody>
                     	
-                    </c:forEach>
                     </c:forEach>
                     
                 </table>
@@ -202,9 +199,14 @@
     	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '2');
 		  const newParam = URLSearch.toString();
-
-		  window.open(location.pathname + '?' + newParam, '_self');
-		  
+		  if(URLSearch.get('childCode') == null)
+		  window.open(location.pathname + '?' + newParam + "&&childCode=" + name.innerText, '_self');
+		  else{
+			  URLSearch.set('childCode',name.innerText);
+			  const newParam = URLSearch.toString();
+	          window.location.href = location.pathname +'?'+newParam;
+		  }
+			  
       }
       </script>
 </body>

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -91,8 +92,11 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
-	public List childView(String itemNumber) throws DataAccessException {
-		return sqlSession.selectList("mappers.erp.childView",itemNumber);
+	public List childView(String itemNumber,String childCode) throws DataAccessException {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("0", itemNumber);
+		map.put("1", childCode);
+		return sqlSession.selectList("mappers.erp.childView",map);
 	}
 	
 
