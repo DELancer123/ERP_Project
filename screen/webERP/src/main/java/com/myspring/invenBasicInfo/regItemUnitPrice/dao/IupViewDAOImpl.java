@@ -87,5 +87,10 @@ public class IupViewDAOImpl implements IupViewDAO{
 	public int selNo() throws DataAccessException {
 		return sqlSession.selectOne("mappers.erp.selectNo");
 	}
+	
+	@Override
+	public List iupChildView() throws DataAccessException {
+		return sqlSession.selectList("mappers.erp.childView");
+	}
 
 }

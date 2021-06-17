@@ -107,7 +107,7 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
@@ -191,11 +191,13 @@
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
 			const newParam = URLSearch.toString();
+			
 			var link = location.pathname + '?' + newParam;
 				document.getElementById("inventoryUnit").disabled = true;
 				document.getElementById("purchasePrice").disabled = true;
 				document.getElementById("salesPrice").disabled = true;
 				document.getElementById("no").disabled = true;
+				
 			var articleNoInput = document.createElement("input");
 				articleNoInput.setAttribute("type","hidden");
 				articleNoInput.setAttribute("name","path");

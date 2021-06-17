@@ -12,7 +12,7 @@ public class iupVO {
 	private String itemName; //품명
 	private String standard; //규격
 	private String inventoryUnit; //단위
-	private String kind; // 탭종류(구매단가,판매단가)
+//	private String kind; // 탭종류(구매단가,판매단가)
 	private int purchasePrice; //구매 단가
 	private int salesPrice; //판매 단가, 구매단가 입력시 Null
 	private List<iupVO> ListVO;
@@ -66,13 +66,13 @@ public class iupVO {
 		this.inventoryUnit = inventoryUnit;
 	}
 
-	public String getKind() {
-		return kind;
-	}
+//	public String getKind() {
+//		return kind;
+//	}
 
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
+//	public void setKind(String kind) {
+//		this.kind = kind;
+//	}
 
 	public int getPurchasePrice() {
 		return purchasePrice;
