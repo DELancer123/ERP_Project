@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.WorkplaceVO;
 
 public interface SystemmagService {
 	//회사등록
@@ -12,6 +13,7 @@ public interface SystemmagService {
 	public List comView() throws DataAccessException;
 	public List comcom(String com_code) throws DataAccessException;
 	//사업장등록
+	public int addWor(WorkplaceVO workplaceVO) throws Exception;
 	public List worView() throws DataAccessException;
 	public List worcom(String wor_code) throws DataAccessException;
 	//품목등록

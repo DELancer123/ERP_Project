@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.systemmag.service.SystemmagService;
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.WorkplaceVO;
 
 @Controller("SystemmagController")
 public class SystemmagControllerImpl implements SystemmagController{
@@ -37,7 +38,6 @@ public class SystemmagControllerImpl implements SystemmagController{
 	public ModelAndView addCompany(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
-		
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		System.out.println("url" + path);
@@ -71,6 +71,23 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 		return mav;
 	}
+	
+	//사업장등록
+	@Override
+	@RequestMapping(value="/member/addbusiness.do" ,method = RequestMethod.GET)
+	public ModelAndView addWorkplace(@ModelAttribute("workplace") WorkplaceVO workplaceVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = systemmagService.addWor(workplaceVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+	
 	//사업장등록 조회
 	@Override
 	@RequestMapping(value="/member/regbusiness.do" ,method = RequestMethod.GET)
@@ -194,10 +211,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 	public ModelAndView adressZip(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;
 	}
-	@Override
-	public ModelAndView addWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
+	
 	
 	@Override
 	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {

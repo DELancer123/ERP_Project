@@ -11,13 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.dao.SystemmagDAO;
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.WorkplaceVO;
 
 @Service("SystemmagService")
 @Transactional(propagation=Propagation.REQUIRED)
 public class SystemmagServiceImpl implements SystemmagService {
 	@Autowired
 	private SystemmagDAO systemmagDAO;
-	
+	//회사등록
 	@Override
 	public int addCom(SystemmagVO systemmagVO) throws DataAccessException{
 		return systemmagDAO.addCom(systemmagVO);
@@ -35,6 +36,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List comcom(String com_code) throws DataAccessException {
 		List comList = systemmagDAO.allviewCom(com_code);
 		return comList;
+	}
+	//사업장등록
+		@Override
+		public int addWor(WorkplaceVO workplaceVO) throws DataAccessException{
+			return systemmagDAO.addWor(workplaceVO);
 	}
 	//사업자등록 조회
 	@Override

@@ -7,6 +7,9 @@
   request.setCharacterEncoding("UTF-8");
 %>    
 <c:forEach var="com" items="${comcom}" >     
+ 	<c:set var="company_Code" value="${com.company_Code }"/>
+ 	<c:set var="company_Name" value="${com.company_Name }"/>
+ 	<c:set var="sortation" value="${com.sortation }"/>
  	<c:set var="fiscal_Year_Number" value="${com.fiscal_Year_Number }"/>
  	<c:set var="fiscal_Year_Dates" value="${com.fiscal_Year_Dates }"/>
  	<c:set var="fiscal_Year_Datee" value="${com.fiscal_Year_Datee }"/>
@@ -91,19 +94,19 @@
                 <c:forEach var="com" items="${comView}" >     
                 <tr>
                     <td>
-                        <input type="text"  onfocus="searchView(this.value)" id="company_Code1" name="company_Code" value='${com.company_Code }'
+                        <input type="text"  ondblclick="searchView(this.value)" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" maxlength="12" />
                     </td>
                     <td>
-                        <input type="text" name="company_Name" id="company_Name1" value='${com.company_Name }'
+                        <input type="text" value='${com.company_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select name="sortation" id="sortation"
+                        <select id="sortation"
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;">
@@ -115,28 +118,14 @@
                 </tr>
 		</c:forEach>
 		             <tr>
-                    <td>
-                        <input type="text"  name="company_Code"
+                    <td colspan="3">
+                        <input type="button" onclick="searchView(this.value)"
+                        value="새로등록"
                         style="background-color: rgb(235, 235, 235); 
-                        border-style: none;
-                        text-align: center;" maxlength="12" />
+                        border-style: none; 
+                        text-align: center; width:99%" maxlength="12"  />
                     </td>
-                    <td>
-                        <input type="text" name="company_Name"
-                        style="background-color: rgb(235, 235, 235); 
-                        border-style: none;
-                        text-align: center;"/>
-                    </td>
-                    <td>
-                        <select name="sortation" 
-                        style="background-color:rgb(235, 235, 235); 
-                        border-style: none;
-                        text-align: center;">
-                            <option value="default">법인/개인</option>
-                            <option value="0">0.법인</option>
-                            <option value="1">1.개인</option>
-                        </select>
-                    </td>
+                    
                 </tr>
             </table>
         </container>
@@ -145,6 +134,37 @@
                 <tr>
                     <p><td colspan = "3" span style="color:black" align="center">기본정보등록</td></p>
                 </tr>
+                <tr>
+                    <td align="center">코드</td>
+                    <td colspan="2">
+                        <input type="text" name="company_Code" id="company_Code" class= "reqInput"
+                        value='${company_Code }'
+                        style="width: 240px;" pattern="[0-9]{13}" maxlength="12"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">회사명</td>
+                    <td colspan="2">
+                        <input type="text" name="company_Name" id="company_Name" class= "reqInput"
+                        value='${company_Name }'
+                        style="width: 240px;" pattern="[0-9]{13}" maxlength="50"/>
+                    </td>
+                        
+                </tr>
+                <tr align="center">
+                    <td>구분</td>
+                 <td>
+                <select name="sortation" id="sortation"
+                        style="background-color:rgb(235, 235, 235); 
+                        border-style: none;
+                        text-align: center;">
+                            <option value="default">법인/개인</option>
+                            <option value="0">0.법인</option>
+                            <option value="1">1.개인</option>
+                        </select>
+                        </td>
+                </tr>
+                
                 <tr>
                     <td align="center">회계연도</td>
                     <td>
@@ -286,9 +306,9 @@
 	}
 
 	function newRow(){
-		document.getElementById("company_Code1").disabled = true;
-		document.getElementById("company_Name1").disabled = true;
-		document.getElementById("sortation").disabled = 'disabled';
+		document.getElementsByName("company_Code").disabled = true;
+		document.getElementsByName("company_Name").disabled = true;
+		document.getElementsByName("sortation").disabled = true;
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit','1');
 		const newParam = URLSearch.toString();

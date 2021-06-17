@@ -42,7 +42,12 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("comList12: "+com_code);
 		return comList;
 	}
-	
+	//회사등록
+		@Override
+		public int addWor(WorkplaceVO workplaceVO) throws DataAccessException{
+			int result = sqlSession.insert("mappers.erp.insertWor",workplaceVO);
+			return 0;
+		}
 	
 	//사업장등록 조회
 	@Override

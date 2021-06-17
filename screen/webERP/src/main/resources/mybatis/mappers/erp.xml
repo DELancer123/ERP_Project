@@ -236,12 +236,20 @@
 		<result property="worindustry" column="insdustry"	/>
 		<result property="main_Store_Status" column="Main_Store_Status"	/>
 	</resultMap>
+	<!-- 조회 -->
 	<select id="selectworList" resultMap="worResult">
 		<![CDATA[select workplace_Code,workplace_Name from SM_CRI_Wor_Reg]]>	
 	</select>
 	<select id="selectAllworList" resultMap="worResult" parameterType="String">
 		<![CDATA[select * from SM_CRI_Wor_Reg where workplace_Code = #{workplace_Code}]]>	
 	</select>
+	<!-- 등록 -->
+	<insert id="insertWor" parameterType="workplaceVO">
+	<![CDATA[
+	insert into SM_CRI_Wor_Reg
+	values(#{workplace_Code},#{workplace_Name}, #{worcompany_Registration_Number}, #{worcorporate_Registration_Number}, #{worrepresentatives_Name}, #{workplace_Zipcode},
+	 #{workplace_Address},#{workplace_Number}, #{workplace_Tel}, #{worupstate}, #{worindustry}, #{main_Store_Status})]]>
+	</insert>
 	<!-- 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
 		<result property="item_Code" column="Item_Code"	/>

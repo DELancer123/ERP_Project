@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.WorkplaceVO;
 //회사등록
 public interface SystemmagController {
 	public ModelAndView addCompany (@ModelAttribute("company") SystemmagVO company,HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -16,7 +17,7 @@ public interface SystemmagController {
 	public ModelAndView delCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView adressZip(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//사업장등록
-	public ModelAndView addWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addWorkplace(@ModelAttribute("workplace") WorkplaceVO workplaceVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;

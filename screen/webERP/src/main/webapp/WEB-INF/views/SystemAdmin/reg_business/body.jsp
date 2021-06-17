@@ -7,7 +7,9 @@
   request.setCharacterEncoding("UTF-8");
 %>
     <c:forEach var="wor" items="${worcom}" >
- 	<c:set var="worcompany_Registration_Number" value="${wor.worcompany_Registration_Number }"/>
+  	<c:set var="workplace_Code" value="${wor.workplace_Code }"/>
+  	<c:set var="workplace_Name" value="${wor.workplace_Name }"/>
+  	<c:set var="worcompany_Registration_Number" value="${wor.worcompany_Registration_Number }"/>
  	<c:set var="worcorporate_Registration_Number" value="${wor.worcorporate_Registration_Number }"/>
  	<c:set var="worrepresentatives_Name" value="${wor.worrepresentatives_Name }"/>
  	<c:set var="workplace_Zipcode" value="${wor.workplace_Zipcode }"/>
@@ -58,6 +60,7 @@
 </style>
 </head>
 <body>
+<form method="get" id="regworkplace">
 <container id = contents1>
             <table id="table1">
                 <tr>
@@ -70,20 +73,35 @@
                 <c:forEach var="wor" items="${worView }" >
                 <tr>
                     <td>
-                        <input type="text" id="textbox2" onfocus="searchView(this.value)" name="workplace_Code" value='${wor.workplace_Code }'
+                        <input type="text" ondblclick="searchView(this.value)"  value='${wor.workplace_Code }'
                         style="background-color: rgb(235, 235, 235);
                         border-style: none; vertical-align: 1px; width: 80px; 
                         text-align: center;" pattern="[0-9]{4}" maxlength="4"
                         />
                     </td>
                     <td>
-                        <input type=text name="workplace_Name" value='${wor.workplace_Name }'
+                        <input type=text  value='${wor.workplace_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; vertical-align: 1px; width: 160px;
                         text-align: center;"  />
                     </td>
                 </tr>
                 </c:forEach>
+                <tr>
+                    <td>
+                        <input type="text"  id="workplace_Code2"
+                        style="background-color: rgb(235, 235, 235);
+                        border-style: none; vertical-align: 1px; width: 80px; 
+                        text-align: center;" pattern="[0-9]{4}" maxlength="4"
+                        />
+                    </td>
+                    <td>
+                        <input type=text  id="workplace_Name2"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none; vertical-align: 1px; width: 160px;
+                        text-align: center;"  />
+                    </td>
+                </tr>
             </table>
         </container>
         <container id="contents2">
@@ -92,9 +110,25 @@
                     <p><td colspan = "2" span style="color:black" align="center">기본등록사항</td></p>
                 </tr>
                 <tr>
+                    <td align="center">코드</td>
+                    <td colspan="2" >
+                        <input type="text" name="workplace_Code" id="reqInput"
+                        value='${workplace_Code }' 
+                        style="width: 240px;" pattern="[0-9]{10}" maxlength="10"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" >사업장명</td>
+                    <td colspan="2" >
+                        <input type="text"  name="workplace_Name" id="reqInput"
+                        value='${workplace_Name }' 
+                        style="width: 240px;" pattern="[0-9]{10}" maxlength="10"/>
+                    </td>
+                </tr>
+                <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="registrationNumber" id="reqInput"
+                        <input type="text" name="worcompany_Registration_Number" id="reqInput"
                         value='${worcompany_Registration_Number }' 
                         style="width: 240px;" pattern="[0-9]{10}" maxlength="10"/>
                     </td>
@@ -102,7 +136,7 @@
                 <tr>
                     <td align="center">법인등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="cooperationNumber"
+                        <input type="text" name="worcorporate_Registration_Number"
                         value="${worcorporate_Registration_Number }"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
@@ -112,14 +146,14 @@
                 <tr>
                     <td align="center">대표자명</td>
                     <td colspan="2">
-                        <input type="text" name="ceoName" id="reqInput" value="${worrepresentatives_Name }"
+                        <input type="text" name="worrepresentatives_Name" id="reqInput" value="${worrepresentatives_Name }"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업장우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" value="${workplace_Zipcode }"
+                        <input type="text" name="workplace_Zipcode" value="${workplace_Zipcode }"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="5"/>
@@ -129,14 +163,14 @@
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="2">
-                        <input type="text" name="workSpaceAddress" id="reqInput" value="${workplace_Address }"
+                        <input type="text" name="workplace_Address" id="reqInput" value="${workplace_Address }"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업장번지</td>
                     <td colspan="2">
-                        <input type="text" name="workStreetAddress"  value="${workplace_Number }"
+                        <input type="text" name="workplace_Number"  value="${workplace_Number }"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"/>
@@ -145,7 +179,7 @@
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="2">
-                        <input type="text" name="phoneNumber" value="${workplace_Tel }"
+                        <input type="text" name="workplace_Tel" value="${workplace_Tel }"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
                             text-align: center;" pattern="[0-9]{10}" maxlength="10"/>
@@ -154,21 +188,21 @@
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="2">
-                        <input type="text" name="business" id="reqInput" value="${worupstate }"
+                        <input type="text" name="worupstate" id="reqInput" value="${worupstate }"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="2">
-                        <input type="text" name="specific" id="reqInput" value="${worindustry }"
+                        <input type="text" name="worindustry" id="reqInput" value="${worindustry }"
                         style="width: 240px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">본점여부</td>
                     <td>
-                        <select name="headOfficeType" value="${main_Store_Status }"
+                        <select name="main_Store_Status" value="${main_Store_Status }"
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none; width: 100px;
                         text-align: center;" >
@@ -179,14 +213,29 @@
                     </td>
                 </tr>
             </table>
+        </container>
+        </form>
             <script>
-        var textbox1 = document.getElementById("textbox2");
         function searchView(name) {
         	console.log('확인');
          	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&wor_code=" + name; 
         }
         
+        function newRow(){
+    		document.getElementsByName("workplace_Code").disabled = true;
+    		document.getElementsByName("workplace_Name").disabled = true;
+    		const URLSearch = new URLSearchParams(location.search);
+    		URLSearch.set('submit','1');
+    		const newParam = URLSearch.toString();
+    		var link = location.pathname +'?'+newParam;
+    		var articleNOInput = document.createElement("input");
+    		articleNOInput.setAttribute("type","hidden");
+    		articleNOInput.setAttribute("name","path");
+    		articleNOInput.setAttribute("value", link);
+    		document.getElementById('regworkplace').appendChild(articleNOInput);
+    		document.getElementById('regworkplace').action = "${contextPath}/member/addbusiness.do";
+    		document.getElementById('regworkplace').submit();
+    		}
         </script>
-        </container>
 </body>
 </html>
