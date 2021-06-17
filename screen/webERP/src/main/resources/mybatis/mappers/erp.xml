@@ -61,7 +61,7 @@
 	<insert id="insertProductionPlan" parameterType="CommitOperationInstructionVO">
 		<![CDATA[
 		 insert into CPM_PM_PRO_PLA_REG
-		 values(F_GET_NEXT_SEQ('CPM_PM_PRO_PLA_REG'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{dailyProduction}, F_GET_NEXT_SEQ(seq_SEQ), #{scheduled}, #{inventoryUnit}, #{quantity}, #{note}, '생산')
+		 values(F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{dailyProduction}, F_GET_NEXT_SEQ('SEQ'), #{scheduled}, #{quantity}, #{note}, '생산')
 		]]>  
 	</insert>
 	
