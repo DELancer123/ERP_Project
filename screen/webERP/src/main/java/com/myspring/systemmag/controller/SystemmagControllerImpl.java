@@ -1,5 +1,6 @@
 package com.myspring.systemmag.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -122,9 +123,9 @@ public class SystemmagControllerImpl implements SystemmagController{
 	}
 	
 	@Override
-	@RequestMapping(value="/member/updateBasicacc.do", method = RequestMethod.POST)
-	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response){
-		
+	@RequestMapping(value="/member/updateBasicacc.do", method = RequestMethod.GET)
+	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
 		
 		systemmagService.updCom(systemmagVO);
 		
