@@ -28,7 +28,7 @@ public class OrderClosingDAOImpl implements OrderClosingDAO{
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateOrderClosing",vo.getListVO().get(i).getDeadline());
+		result = sqlSession.update("mappers.erp.updateOrderClosing",vo.getListVO().get(i));
 		}
 		return result;
 	}

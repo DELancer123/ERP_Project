@@ -231,31 +231,7 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
-	
-		var plandate = new Date().toISOString().substring(0,10);;
-    	var due_date = new Date().toISOString().substring(0,10);;
-    	
-    	$('#searchStartDate').change(function (){
-            var date = $('#searchStartDate').val();
-            plandate = date;
-        });
-    	$('#searchEndDate').change(function (){
-            var date = $('#searchEndDate').val();
-            due_date = date;
-        });
-view_button.onclick = function(){
-	  if(plandate>due_date){
-		  alert("계획기간이 납기일보다 크게 설정됨");
-	  } else{
-		  
-	  const URLSearch = new URLSearchParams(location.search);
-	  URLSearch.set('plandate', plandate);
-	  URLSearch.set('due_date', due_date);
-	  const newParam = URLSearch.toString();
 
-	  window.open(location.pathname + '?' + newParam, '_self');
-	  }
-}
 </script>
 </form>
 </body>

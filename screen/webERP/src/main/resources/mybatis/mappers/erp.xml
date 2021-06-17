@@ -142,8 +142,7 @@
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps
-			set planNO=#{planNO}, plandate=#{plandate}, item_Code=#{item_Code}, item_Name=#{item_Name}, standard=#{standard}, inventory_unit=#{inventory_unit},
-			sequence=#{sequence}, expected_date=#{expected_date}, due_date=#{due_date}, plan_quantity=#{plan_quantity}, buyer=#{buyer}, note=#{note}
+			set  plandate=#{plandate},due_date=#{due_date},plan_quantity=#{plan_quantity},note=#{note}
 			where sequence = #{sequence}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
