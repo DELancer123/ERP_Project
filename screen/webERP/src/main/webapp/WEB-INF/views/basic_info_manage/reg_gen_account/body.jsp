@@ -182,56 +182,56 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">코드</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Code" value="${general_Customer_Code }">
+                        <input type="text" name="general_Customer_Code" id="general_Customer_Code" value="${general_Customer_Code }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">거래처명</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Name" value="${general_Customer_Name }">
+                        <input type="text" name="general_Customer_Name" id="general_Customer_Name" value="${general_Customer_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">구분</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Division" value="${general_Customer_Division }">
+                        <input type="text" name="general_Customer_Division" id="general_Customer_Division" value="${general_Customer_Division }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="company_Registration_Number" id="reqInput" value="${company_Registration_Number}"
+                        <input type="text" name="company_Registration_Number" id="company_Registration_Number" value="${company_Registration_Number}"
                         pattern="[0-9]{10}" maxlength="10"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="resident_Registration_Number" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
+                        <input type="text" name="resident_Registration_Number" id="resident_Registration_Number" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="3">
-                        <input type="text" name="representativs_Name" value="${representativs_Name }">
+                        <input type="text" name="representativs_Name" id="representativs_Name" value="${representativs_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="3">
-                        <input type="text" name="upstate" value="${upstate }">
+                        <input type="text" name="upstate" id="upstate" value="${upstate }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="3">
-                        <input type="text" name="industry" value="${industry }">
+                        <input type="text" name="industry" id="industry" value="${industry }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
+                        <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
                         style="width:150px;"/>
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td>
@@ -239,19 +239,19 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="3">
-                        <input type="text" name="workplace_Address" value="${workplace_Address }">
+                        <input type="text" name="workplace_Address" id="workplace_Address" value="${workplace_Address }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="3">
-                        <input type="text" name="generalCustomer_Tel" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
+                        <input type="text" name="generalCustomer_Tel" id="generalCustomer_Tel" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주류코드</td>
                     <td>
-                        <input type="text" name="wholesale_Retail_Business_Code" value="${wholesale_Retail_Business_Code }">
+                        <input type="text" name="wholesale_Retail_Business_Code" id="wholesale_Retail_Business_Code" value="${wholesale_Retail_Business_Code }">
                     </td>
                 </tr>
             </table>
