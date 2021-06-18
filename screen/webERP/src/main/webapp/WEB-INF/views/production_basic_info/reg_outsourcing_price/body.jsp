@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+ <c:forEach var="set" items="${setText}" >     
+ 	<c:set var="itemNumber" value="${set.itemNumber }"/>
+ 	<c:set var="itemName" value="${set.itemName }"/>
+ 	<c:set var="standard" value="${set.standard }"/>
+ 	<c:set var="unit" value="${set.unit }"/>
+ 	<c:set var="actual" value="${set.cost }"/>
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +56,9 @@
             height: 100%;
             width: 100%;
         }
-
+		input{
+			text-align: center;
+		}
 </style>
 </head>
 <body>
@@ -87,7 +102,7 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead>
+                    <thead align="center">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td>품번</td>
                         <td>품명</td>
@@ -95,19 +110,26 @@
                         <td>단위</td>
                         <td>원가</td>
                         <td>외주단가</td>
-                        <td>시작일</td>
-                        <td>종료일</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
+                    <c:forEach var="out" items='${outpriceView }'>
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text" value='${out.itemNumber }'/></td>
+                        <td><input type="text" value='${out.itemName }' ondblclick="search3()"/></td>
+                        <td><input type="text" value='${out.standard }'/></td>
+                        <td><input type="text" value='${out.unit }'/></td>
+                        <td><input type="text" value='${out.actualCost }'/></td>
+                        <td><input type="text" value='${out.outSourcingUnitPrice }'/></td>
+                    </tbody>
+                    </c:forEach>
+                    <tbody>
+                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                        <td><input type="text" value='${itemNumber} '/></td>
+                        <td><input type="text" ondblclick="search3()" value='${itemName }'/></td>
+                        <td><input type="text" value='${standard }' /></td>
+                        <td><input type="text" value='${unit }'/></td>
+                        <td><input type="text" value='${actual }'/></td>
                         <td><input type="text"/></td>
                     </tbody>
                 </table>
@@ -124,9 +146,30 @@
       }
       function search2(){
     	  var outcode = document.getElementById('outcode');
-    	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=2&&itemNumber='+outcode.value,'codehelper');
+    	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=2&&itemNumber='+outcode.value,'codehelper1');
       }
+	  function search3(){
+		  openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+	  }
+		function setChildValue(name){
+    	  
+    	  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '2');
+		  const newParam = URLSearch.toString();
+        if(URLSearch.get('itemCode') == null){
+		window.location.href = location.pathname +'?'+newParam + '&itemCode=' + name;
+        }
+        else{
+        	URLSearch.set('itemCode', name);
+        	const newParam = URLSearch.toString();
+        	window.location.href = location.pathname +'?'+newParam;
+        }
+        
+    }
 		
+		function newRow(){
+			
+		}
       </script>
 </body>
 </html>

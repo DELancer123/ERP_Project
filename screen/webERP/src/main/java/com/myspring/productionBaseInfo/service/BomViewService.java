@@ -20,4 +20,5 @@ public interface BomViewService {
 	public List ChildView(String itemNumber,String childCode) throws DataAccessException;
 	public List SearchOutView() throws DataAccessException;
 	public List SearchOutView1(String itemNumber) throws DataAccessException;
+	public List getoutprice(String itemNumber) throws DataAccessException;
 }

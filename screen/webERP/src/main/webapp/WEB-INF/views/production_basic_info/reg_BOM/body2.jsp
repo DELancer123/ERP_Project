@@ -193,7 +193,6 @@
       function newRow(){
           // dao에서 저장
     	 
-          var row = workOrderTable.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '1');
 		  const newParam = URLSearch.toString();

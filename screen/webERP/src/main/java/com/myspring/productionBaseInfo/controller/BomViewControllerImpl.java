@@ -193,7 +193,23 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
+		String itemNumber = request.getParameter("itemNumber");
+		String submit = request.getParameter("submit");
+		String itemCode = request.getParameter("itemCode");
 		mav = new ModelAndView(viewName);
+		if(itemNumber == null || submit == null || submit.equals("0")) {
+			return mav;
+		}
+		else if(submit.equals("1")) {
+			List outpriceView = viewService.getoutprice(itemNumber);
+			mav.addObject("outpriceView",outpriceView);
+		}
+		else if(submit.equals("2")) {
+			List outpriceView = viewService.getoutprice(itemNumber);
+			List outpriceText = viewService.setText(itemCode);
+			mav.addObject("outpriceView",outpriceView);
+			mav.addObject("setText",outpriceText);
+		}
 		return mav;
 	}
 	@RequestMapping(value="/member/outsourcingPop.do" ,method = RequestMethod.GET)
@@ -202,6 +218,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String div = request.getParameter("div");
 		String viewName = getViewName(request);
 		String itemNumber = request.getParameter("itemNumber");
+		
 		mav = new ModelAndView(viewName);
 		if(itemNumber == null || div.equals("1")) {
 			List outView = viewService.SearchOutView();
@@ -209,8 +226,10 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		else if(div.equals("2")) {
 			List outView = viewService.SearchOutView1(itemNumber);
+			
 			mav.addObject("outView",outView);
 		}
+		
 		return mav;
 	}
 }

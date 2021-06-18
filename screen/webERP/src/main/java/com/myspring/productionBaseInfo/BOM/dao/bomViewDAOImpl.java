@@ -22,9 +22,7 @@ public class bomViewDAOImpl implements bomViewDAO{
 	@Override
 	public List viewBOM() throws DataAccessException {
 		List<bomVO> bomList = null;
-		//System.out.println("�뜝�럥堉꾢뜝�럩沅� �뜝�럥六삣뜝�럩�굚 : " + bomList);
 		bomList = sqlSession.selectList("mappers.erp.selectAllMemberList");
-		//System.out.println("�뜝�럥堉꾢뜝�럩沅� 占쎈꽞占쎄턁筌앾옙 : " + bomList);
 		return bomList;
 	}
 
@@ -65,7 +63,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 	public void delBOM(String[] noary) throws DataAccessException{
 		for(String obj: noary) {
 			sqlSession.delete("mappers.erp.deleteBOM", Integer.parseInt(obj));		
-			System.out.println("DAO.delBOM");
 		}
 	}
 
@@ -79,9 +76,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
 		result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
-		System.out.println("DAOresult:"+result);
-		//bomList.add(bomVO);
-		//}
 		}
 		return result;
 	}
@@ -110,8 +104,14 @@ public class bomViewDAOImpl implements bomViewDAO{
 	public List searchOutView1(String itemNumber) throws DataAccessException {
 		List<bomVO> outList1 = null;
 		outList1 = sqlSession.selectList("mappers.erp.outViewex");
-		System.out.println(outList1.size());
 		return outList1;
+	}
+
+	@Override
+	public List getoutprice(String itemNumber) throws DataAccessException {
+		List<bomVO> outpriceView = null;
+		outpriceView = sqlSession.selectList("mappers.erp.outpriceView",itemNumber);
+		return outpriceView;
 	}
 	
 
