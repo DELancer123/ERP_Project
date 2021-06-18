@@ -208,8 +208,8 @@
 </html>
 <script>
  /* 검색부 date onChange 함수 설정 */
- 		var startDate = null;
-    	var endDate = null;
+ 		var startDate = "";
+    	var endDate = "";
     	
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
