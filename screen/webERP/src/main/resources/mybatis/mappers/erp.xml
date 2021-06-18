@@ -68,8 +68,8 @@
 	<update id="updateProductionPlan" parameterType="CommitOperationInstructionVO">
 		<![CDATA[
 		update CPM_PM_PRO_PLA_REG
-		set scheduledDateOfOperation = #{scheduled}, quantity = #{quantity}, note = #{note}
-		where  productionPlanCode = #{productionPlanCode}
+		set SCHEDULEDDATEOFOPERATION = #{scheduled}, quantity = #{quantity}, note = #{note}
+		where productionPlanCode = #{productionPlanCode}
 		]]>  
 	</update>	
 	
