@@ -427,10 +427,11 @@
 		<result property="precisionQuantity" column="precisionQuantity" />
 		<result property="loss" column="loss" />				
 		<result property="note" column="note" />
+		<collection property="bomView" column="itemCode" select="selectAllMemberList"></collection>
 	</resultMap>
 	
 	<select id="selectComOutsourcingListDetail" resultMap="comOutsourcingViewDetail">
-		<![CDATA[select distinct(OUT.Item_Code),OUT.billingDate,OUT.Item_Name,OUT.Standard,OUT.Inventory_Unit,OUT.precisionQuantity,OUT.loss,OUT.precisionQuantity+(OUT.precisionQuantity*OUT.loss*0.01) as 확정수량,bom.outsourcingunitprice as 외주단가,
+		<![CDATA[select distinct(OUT.Item_Code),OUT.billingDate,OUT.Item_Name,OUT.Standard,OUT.Inventory_Unit,OUT.precisionQuantity,OUT.loss,OUT.precisionQuantity+(OUT.precisionQuantity*OUT.loss*0.01) as 확정수량,bom.outsourcingunitprice,
 OUT.precisionQuantity+(OUT.precisionQuantity*OUT.loss*0.01)*bom.outsourcingunitprice as 금액 ,OUT.note  
 from CPM_OM_Out_Mat_For_Det OUT,cpm_bim_bom_reg BOM
 where out.item_code=bom.item_code
