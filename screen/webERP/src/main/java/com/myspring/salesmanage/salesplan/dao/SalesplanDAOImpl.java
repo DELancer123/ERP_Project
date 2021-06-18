@@ -51,12 +51,12 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 		return sqlSession.selectOne("mappers.erp.selectNo");
 	}
 		
-//		@Override
-//		public int addItem(ItemViewVO itemview) throws DataAccessException {
-//			int idx = itemview.getList().size()-1;
-//			int result = sqlSession.insert("mappers.erp.insertsalesplan",itemview.getList().get(idx));
-//			return result;
-//		}
+		@Override
+		public int addItem(ItemViewVO itemview) throws DataAccessException {
+			int idx = itemview.getList().size()-1;
+			int result = sqlSession.insert("mappers.erp.insertsalesplan",itemview.getList().get(idx));
+			return result;
+		}
 //
 //		@Override
 //		public int updNewSalesplan(String item_code) throws DataAccessException {

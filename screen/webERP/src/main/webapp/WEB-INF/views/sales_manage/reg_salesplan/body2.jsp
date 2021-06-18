@@ -9,7 +9,6 @@
 %> 
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
-	
 %>
 <% String parent = request.getParameter("item_code");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -49,14 +48,14 @@
             top: 25%;
             left: 15%;
         }
-       /* #view1{
+        #view1{
             width: 150%;
             text-align: center;
             border: 1px solid black;
         }
         #view1 th{
             width: 30px;
-        }*/
+        }
         #contents2 div{
             position: absolute;
             bottom: 0;
@@ -70,8 +69,8 @@
 <body>
 	<container2 id="contents2">
 	<!-- <form name="frmsalesplanList" method="post"  action="${contextPath}/member/addsalesplan.do"> -->
-	<table id="view">
-		<thead>
+	<table id="view1">
+		<thead align="center">
 			<td style="width: 5%;"><input type="checkbox" name="content"
 				onclick="selectAll(this)"></td>
 			<td align="center">품번</td>
@@ -83,14 +82,27 @@
 			<td align="center">판매 계획 금액</td>
 			<td align="center">계획 수정 수량</td>
 			<td align="center">계획 수정 단가</td>
-			<td align="center">계획 수정 금액</td>
-			
-			
+			<td align="center">계획 수정 금액</td>			
 		</thead>
-		<c:forEach var="item" items="${salesplan}" varStatus="status" >
-		<tbody>
-			<td style="width: 5%;"><input type="checkbox" value="check"
-				id="check" name="content" /></td>
+		<c:if test="0" var="submit">
+			<tbody align="center">
+				<td style="width: 5%;"><input type="checkbox" value="check" id="check" name="content" /></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>
+				<td><input type="text"/></td>				
+			</tbody>
+		</c:if>
+		<c:if test ="1" var="submit">
+			<c:forEach var="item" items="${salesplan}" varStatus="status" >
+				<tbody align="center">
+					<td style="width: 5%;"><input type="checkbox" value="check" id="check" name="content" /></td>
 					<td><input type="text" value="${item.item_code}" ondblclick="search12345()"/></td>
                     <td><input type="text" value="${item.item_name}" ondblclick="search12345()"/></td>
                     <td><input type="text" value="${item.standard}" readonly/></td>
@@ -101,8 +113,9 @@
                     <td><input type="text" value="${item.newquantity}" readonly/></td>
                     <td><input type="text" value="${item.newprice}" readonly/></td>
                     <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
-            </tbody>
-		</c:forEach>
+            	</tbody>
+			</c:forEach>
+		</c:if>
 	</table>
 	</container2>
 	   <script>

@@ -195,7 +195,7 @@
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
 	</resultMap> 
-		<resultMap id="salesplan" type="itemviewVO">
+	<resultMap id="salesplan" type="itemviewVO">
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
 
@@ -218,12 +218,6 @@
 	<select id="selectAllSalesplanList" resultMap="salesplan">
       <![CDATA[
          select * from SM_BIM_Sal_Pla_Reg 
-      ]]>
-	</select>
-	
-	<select id="selplancode" resultMap="salesplan">
-      <![CDATA[
-         select * from SM_BIM_Sal_Pla_Reg
       ]]>
 	</select>
 	

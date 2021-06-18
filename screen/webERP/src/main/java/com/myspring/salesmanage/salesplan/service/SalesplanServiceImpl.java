@@ -51,16 +51,16 @@ public class SalesplanServiceImpl implements SalesplanService{
 		
 	}
 	
-//	@Override
-//	public List itemText(String item_code) throws DataAccessException {
-//		List additemList = null;
+	@Override
+	public List itemText(String item_code) throws DataAccessException {
+		List additemList = null;
 //		additemList = salesplanDAO.salesText(item_code);
-//		return additemList;
+		return additemList;
+	}
+//	@Override
+//	public int addItem(ItemViewVO itemview) throws DataAccessException {
+//		return salesplanDAO.insertItem(itemview);
 //	}
-//////	@Override
-//////	public int addItem(ItemViewVO itemview) throws DataAccessException {
-//////		return salesplanDAO.insertItem(itemview);
-//////	}
 //////
 //////	@Override
 //////	public int removeItem(String item_code) throws DataAccessException {

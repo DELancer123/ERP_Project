@@ -60,30 +60,23 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String code = (String)request.getParameter("item_code");
-		String submit = (String) request.getParameter("submit");
+		String submit = (String)request.getParameter("submit");
 		int sum = 0;
 		
-		if(code == null || code.length() == 0|| submit.equals("0")) {
+		if(code == null || code.length() == 0||submit.equals("0")) {
 			mav = new ModelAndView(viewName);
-			
 			return mav;
-		}else if(submit.equals("1")){
+		}else if(submit.equals("1")) {
 			
-				List salesplan = salesplanService.submitItem(code);
-				
-				mav = new ModelAndView(viewName);
-				mav.addObject("salesplan", salesplan);
-			}else if(submit.equals("2")) {
-				List salesplan = salesplanService.submitItem(code);
-				
-				mav = new ModelAndView(viewName);
-				mav.addObject("salesplan", salesplan);
-				int inputNo = salesplanService.inputNo();
-				String inNo = Integer.toString(inputNo+1);
-				System.out.println(inNo);
-				request.setAttribute("inputNo", inNo);
-			}
-
+			List salesplan = salesplanService.submitItem(code);			
+			mav = new ModelAndView(viewName);
+			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg
+			int inputNo = salesplanService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo);
+			request.setAttribute("inputNo", inNo);
+		
+		}
 		return mav;
 	}
 	@RequestMapping(value="/member/reg.do" ,method = RequestMethod.GET)
@@ -111,7 +104,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg->list
 //			mav.addObject("addSalesplanList", addSalesplanList);//SM_BIM_Sal_Pla_Reg->insert
 			
-//			int inputNo = salesplanService.inputNO();
+//			int inputNo = salesplanService.inputNo();
 //			String inNo = Integer.toString(inputNo+1);
 //			System.out.println(inNo);
 //			request.setAttribute("inputNo", inNo);

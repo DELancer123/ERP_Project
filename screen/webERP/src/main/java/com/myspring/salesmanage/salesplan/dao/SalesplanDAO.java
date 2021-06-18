@@ -22,7 +22,7 @@ public interface SalesplanDAO {
 		
 		//reg
 		public int selNo() throws DataAccessException;
-//		public int addItem(ItemViewVO itemview) throws DataAccessException;
+		public int addItem(ItemViewVO itemview) throws DataAccessException;
 //		public int updNewSalesplan(String item_code) throws DataAccessException;
 //		public void delSalesplan(String[] noary) throws DataAccessException;		
 //		public int selPlanCode() throws DataAccessException;
