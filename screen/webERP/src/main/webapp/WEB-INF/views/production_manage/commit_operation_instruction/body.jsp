@@ -147,6 +147,7 @@
                         <td>규격</td>
                         <td>단위</td>
                         <td>정미수량</td>
+                        <td>LOSS</td>
                         <td>확정수량</td>
                         <td>관리구분</td>
                         <td>비고</td>
@@ -158,6 +159,7 @@
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="date"/></td>
+                        <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
@@ -196,8 +198,8 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
    	  openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
      }
      function search2(){  
-	      openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
-		}
+	  openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
+	 }
      function searchPlan(){
    	  openWindowBroadPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
      }
