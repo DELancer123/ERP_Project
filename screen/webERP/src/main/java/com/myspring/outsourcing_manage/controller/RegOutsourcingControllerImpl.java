@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myspring.outsourcing_manage.service.RegOutsourcingService;
 import com.myspring.outsourcing_manage.ComOutsourcing.vo.ComOutsourcingVO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
+import com.myspring.outsourcing_manage.OutRelease.vo.OutReleaseVO;
 
 @Controller("RegOutsourcingController")
 public class RegOutsourcingControllerImpl implements RegOutsourcingController {
@@ -32,6 +33,8 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	private RegOutsourcingVO regOutsourcingVO;
 	@Autowired
 	private ComOutsourcingVO comOutsourcingVO;
+	@Autowired
+	private OutReleaseVO outReleaseVO;
 	
 
 	@Override
@@ -53,6 +56,33 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("comOutsourcingView", comOutsourcingView);
 		mav.addObject("comOutsourcingViewDetail", comOutsourcingViewDetail);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/member/outrelease.do" ,method = RequestMethod.GET)
+	public ModelAndView listOutRelease(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName = getViewName(request);
+		List outReleaseView = regOutsourcingService.listOutRelease();
+		List outReleaseViewDetail = regOutsourcingService.listOutReleaseDetail();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("outReleaseView", outReleaseView);
+		mav.addObject("outReleaseViewDetail", outReleaseViewDetail);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/member/addOutrelease.do" ,method = RequestMethod.GET)
+	public ModelAndView addOutrelease(@ModelAttribute("outRelease") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = regOutsourcingService.addOutRelease(outReleaseVO);
+		int result1 = 0;
+		result1 = regOutsourcingService.addOutReleaseDetail(outReleaseVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 	

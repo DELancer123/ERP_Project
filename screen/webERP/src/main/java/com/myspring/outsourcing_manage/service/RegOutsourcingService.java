@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.outsourcing_manage.ComOutsourcing.vo.ComOutsourcingVO;
+import com.myspring.outsourcing_manage.OutRelease.vo.OutReleaseVO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
 
 public interface RegOutsourcingService {
@@ -17,4 +18,8 @@ public interface RegOutsourcingService {
 	public List listComOutsourcing() throws DataAccessException;
 	public List listComOutsourcingDetail() throws DataAccessException;
 	public int updateComOutsourcing(ComOutsourcingVO comOutsourcingVO) throws DataAccessException;
+	public List listOutRelease() throws DataAccessException;
+	public List listOutReleaseDetail() throws DataAccessException;
+	public int addOutRelease(OutReleaseVO outReleaseVO) throws DataAccessException;
+	public int addOutReleaseDetail(OutReleaseVO outReleaseVO) throws DataAccessException;
 }

@@ -1,5 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+   request.setCharacterEncoding("UTF-8");
+%> 
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <c:forEach var="productionPlanView" items="${productionPlanView}" >     
+ 	<c:set var="parentItemCode;" value="${productionPlanView.item_Code }"/>
+ 	<c:set var="itemName" value="${productionPlanView.item_Name }"/>
+ 	<c:set var="standard" value="${productionPlanView.standard }"/>
+ 	<c:set var="inventoryUnit;" value="${productionPlanView.inventory_Unit}"/>
+
+ </c:forEach>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +54,7 @@
         .con1_search{
             padding:0;
             text-align: center;
-            /* position: absolute; Ä­ ¸ðÀß¶ó¼­ Áö¿ò*/
+            /* position: absolute; ì¹¸ ëª¨ìž˜ë¼ì„œ ì§€ì›€*/
             top: 25%;
             left: 5%;
         }
@@ -48,14 +65,14 @@
             text-align: center;
         }
 
-        /* Å×ÀÌºí css */
+        /* í…Œì´ë¸” css */
         #MDTable,#MDDetailTable{
             width: 100%;
             text-align: center;
             border: 1px solid black;
         }
         
-        /* ÄÁÅ×ÀÌ³Ê ÆÄÆ® */
+        /* ì»¨í…Œì´ë„ˆ íŒŒíŠ¸ */
         #MDDetail {
             width: 100%;
             height: 100%;
@@ -73,15 +90,15 @@
             display: block;
             clear: both;
         }
-         /* ÇÕ°è Ãâ·ÂºÎ */
+         /* í•©ê³„ ì¶œë ¥ë¶€ */
          #resultWindow{
             height: 5%;
             background-color: gray;
             line-height: 5%;
         }
-        /* ÄÁÅ×ÀÌ³Ê ÆÄÆ® Á¾·á */
+        /* ì»¨í…Œì´ë„ˆ íŒŒíŠ¸ ì¢…ë£Œ */
 
-        /* Ãâ·ÂºÎ ½ºÅ¸ÀÏ*/
+        /* ì¶œë ¥ë¶€ ìŠ¤íƒ€ì¼*/
         #detailPrint1{
             border: 1px solid;
         }
@@ -94,16 +111,16 @@
 </head>
 <body>
 <container1 id = contents1>
-            <!-- Á¶È¸°Ë»ö Æû -->
+            <!-- ì¡°íšŒê²€ìƒ‰ í¼ -->
             <form id="searchForm">
                 <table class="con1_search">
                     <tr>
-                        <td>»ç¾÷Àå</td>
+                        <td>ì‚¬ì—…ìž¥</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td> 
     
-                        <td colspan="5" style="width: 80px;">ºÎ¼­</td>
+                        <td colspan="5" style="width: 80px;">ë¶€ì„œ</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
@@ -111,25 +128,25 @@
                     </tr>
                     
                     <tr>
-                        <td>Ãâ°í±â°£</td>
+                        <td>ì¶œê³ ê¸°ê°„</td>
                         <td colspan="2" style="width: 50px;"><input type="date" style="width: 100%; background-color: yellow;"/></td>
                         <td>~</td>
                         <td ><input type="date" style="width: 100%; background-color: yellow;"/></td>
                         <td></td>
     
-                        <td colspan="5" style="width: 80px;">»ç¿ø</td>
+                        <td colspan="5" style="width: 80px;">ì‚¬ì›</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
                         <td>
-                            <input type="button" value="Ãâ°í¿äÃ»" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="ì¶œê³ ìš”ì²­" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="ÀÏ°ýÀû¿ë" style="padding: 5px;"></input>
+                            <input type="button" value="ì¼ê´„ì ìš©" style="padding: 5px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="Àç°íÈ®ÀÎ" style="padding: 5px;"></input>
+                            <input type="button" value="ìž¬ê³ í™•ì¸" style="padding: 5px;"></input>
                         </td>
                     </tr>
                 </table>
@@ -137,49 +154,66 @@
         </container1>
 
         <container2 id="contents2">
-            <!-- µðÅ×ÀÏºÎ -->
+            <!-- ë””í…Œì¼ë¶€ -->
             <div id="MDDetail">
                 <table id="MDDetailTable">
                     <thead>
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>Ãâ°í¹øÈ£</td>
-                        <td>Ãâ°íÀÏÀÚ</td>
-                        <td>Ãâ°íÃ¢°í</td>
-                        <td>Ãâ°íÀå¼Ò</td>
-                        <td>°øÁ¤</td>
-                        <td>ÀÛ¾÷Àå</td>
-                        <td>ºñ°í</td>
+                        <td>ì¶œê³ ë²ˆí˜¸</td>
+                        <td>ì¶œê³ ì¼ìž</td>
+                        <td>ì¶œê³ ì°½ê³ </td>
+                        <td>ì¶œê³ ìž¥ì†Œ</td>
+                        <td>ê³µì •</td>
+                        <td>ìž‘ì—…ìž¥</td>
+                        <td>ë¹„ê³ </td>
                     </thead>
-                    <!-- Å×½ºÆ®¿ë µ¥ÀÌÅÍ, ÃßÈÄ Ç¥Çö½ÄÀ¸·Î ¼öÁ¤ÇÊ¿ä -->
+                    <!-- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°, ì¶”í›„ í‘œí˜„ì‹ìœ¼ë¡œ ìˆ˜ì •í•„ìš” -->
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <c:forEach var="outRelease" items="${outReleaseView}" varStatus="status" >     
+						   <tr align="center">
+						   	  <td><input type="checkbox" name="content" value="${outRelease.forwardingNumber}"/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].forwardingNumber" value = '${outRelease.forwardingNumber}' /></td>
+						   	  <td><input type="date" name="ListVO[${status.index}].forwardingDate" value = '${outRelease.forwardingDate}' /></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].houseCode" value = '${outRelease.houseCode}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].locationCode" value = '${outRelease.locationCode}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].outsourcingCode" value = '${outRelease.outsourcingCode}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].workplaceCode" value = '${outRelease.workplaceCode}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${outRelease.note}'/></td>
+						    </tr>
+						    </c:forEach> 
+						
+						    <tr align="center">
+						     <td><input type="checkbox" value = "check1" name="content"/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(outReleaseView) }].forwardingNumber" /></td>
+						    	<td><input type="date" name="ListVO[${fn:length(outReleaseView) }].forwardingDate" /></td>
+						    	<td><input type="text" name="ListVO[${fn:length(outReleaseView) }].houseCode"  value='${param.houseCode }'/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(outReleaseView) }].locationCode"  value='${param.locationCode }'/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(outReleaseView) }].outsourcingCode" value='${param.outsourcingCode }' /></td>
+						    	<td><input type="text" name="ListVO[${fn:length(outReleaseView) }].workplaceCode" value='${param.workplaceCode }' /></td>
+						    	<td><input type="text" name="ListVO[${fn:length(outReleaseView) }].note" value='${param.note }' /></td>
+						    </tr>
                     </tbody>
                 </table>
             </div>
-                <!-- µðÅ×ÀÏºÎ Á¾·á -->
+                <!-- ë””í…Œì¼ë¶€ ì¢…ë£Œ -->
             </container2>
+            <!-- 
             <container3 id="contents3">
                 <div id="MDInfo">
                     <table id="MDTable">
                         <thead>
                             <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                             <td>NO.</td>
-                            <td>Ç°¹ø</td>
-                            <td>Ç°¸í</td>
-                            <td>±Ô°Ý</td>
-                            <td>´ÜÀ§</td>
-                            <td>¿äÃ»¼ö·®</td>
-                            <td>Ãâ°í¼ö·®</td>
-                            <td>ºñ°í</td>
+                            <td>í’ˆë²ˆ</td>
+                            <td>í’ˆëª…</td>
+                            <td>ê·œê²©</td>
+                            <td>ë‹¨ìœ„</td>
+                            <td>ìš”ì²­ìˆ˜ëŸ‰</td>
+                            <td>ì¶œê³ ìˆ˜ëŸ‰</td>
+                            <td>ë¹„ê³ </td>
                         </thead>
-                        <!-- Å×½ºÆ®¿ë µ¥ÀÌÅÍ, ÃßÈÄ Ç¥Çö½ÄÀ¸·Î ¼öÁ¤ÇÊ¿ä -->
+                        <!-- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°, ì¶”í›„ í‘œí˜„ì‹ìœ¼ë¡œ ìˆ˜ì •í•„ìš” -->
+                        <!--  
                         <tbody>
                             <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                             <td><input type="text"/></td>
@@ -192,27 +226,32 @@
                             <td><input type="text"/></td>
                         </tbody>
                     </table>
-                    <!-- Ãâ·ÂºÎ 1 -->
+                    <!-- ì¶œë ¥ë¶€ 1 -->
+                    <!--
                 </div>
-                 <!-- ÇÕ°è Ãâ·ÂºÎ -->
+                 <!-- í•©ê³„ ì¶œë ¥ë¶€ -->
+                 <!--
                  <div id="resultWindow">
-                    ¿äÃ»¼ö·® <span style="margin-left: 100px;"></span>Ãâ°í¼ö·® <input type="text"><span style="margin-left: 100px;"></span>
+                    ìš”ì²­ìˆ˜ëŸ‰ <span style="margin-left: 100px;"></span>ì¶œê³ ìˆ˜ëŸ‰ <input type="text"><span style="margin-left: 100px;"></span>
                 </div>
-                    <!-- ÇÕ°è Ãâ·ÂºÎ Á¾·á -->
+                    <!-- í•©ê³„ ì¶œë ¥ë¶€ ì¢…ë£Œ -->
+                    <!--
                     <div id="detailPrint1">
-                        °ü¸®±¸ºÐ <input type="text" name="controlCondition" style="width: 75px;"><input type="button" value="°Ë"><input type="text" name="ckfactory" style="width: 75px;" disabled>
-                        Áö½Ã¼ö·® <input type="text" name="printQuantity" disabled><br>
-                        ¸ðÇ°¸ñ <input type="text" name="parentItem" disabled><input type="button" value="°Ë">
-                        ¸ðÇ°¸ñ¸í <input type="text" name="parentItemName" disabled> Áö½Ã¹øÈ£ <input type="text" name="num" disabled>
+                        ê´€ë¦¬êµ¬ë¶„ <input type="text" name="controlCondition" style="width: 75px;"><input type="button" value="ê²€"><input type="text" name="ckfactory" style="width: 75px;" disabled>
+                        ì§€ì‹œìˆ˜ëŸ‰ <input type="text" name="printQuantity" disabled><br>
+                        ëª¨í’ˆëª© <input type="text" name="parentItem" disabled><input type="button" value="ê²€">
+                        ëª¨í’ˆëª©ëª… <input type="text" name="parentItemName" disabled> ì§€ì‹œë²ˆí˜¸ <input type="text" name="num" disabled>
                     </div>
-                    <!-- Ãâ·ÂºÎ 1 Á¾·á -->
-                    <!-- Ãâ·ÂºÎ 2 -->
+                    <!-- ì¶œë ¥ë¶€ 1 ì¢…ë£Œ -->
+                    <!-- ì¶œë ¥ë¶€ 2 -->
+                    <!--
             <div id="detailPrint2">
-                Àç°í    »ç¾÷Àåº° ÇöÀç°í <input type="text" name="stockPerFactory">
-                Ã¢°í/Àå¼Òº° ÇöÀç°í <input type="text" name="stockPerCargo">
+                ìž¬ê³     ì‚¬ì—…ìž¥ë³„ í˜„ìž¬ê³  <input type="text" name="stockPerFactory">
+                ì°½ê³ /ìž¥ì†Œë³„ í˜„ìž¬ê³  <input type="text" name="stockPerCargo">
             </div>
-            <!-- Ãâ·ÂºÎ 2 Á¾·á -->
+            <!-- ì¶œë ¥ë¶€ 2 ì¢…ë£Œ -->
+            <!--
         </container3>
-      
+       -->
 </body>
 </html>

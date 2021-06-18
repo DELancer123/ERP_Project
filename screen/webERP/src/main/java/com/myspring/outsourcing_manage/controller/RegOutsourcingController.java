@@ -22,5 +22,8 @@ public interface RegOutsourcingController {
 			HttpServletResponse response) throws Exception;
 	public ModelAndView updateComOutsourcing(ComOutsourcingVO comOutsourcingVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+	public ModelAndView listOutRelease(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addOutrelease(RegOutsourcingVO regOutsourcingVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
 	
 }

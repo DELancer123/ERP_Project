@@ -452,6 +452,64 @@ where out.item_code=bom.item_code
 AND mat.workordernumber=out.workordernumber
 order by workordernumber]]>
 	</select>
+	
+	<!-- 외주자재출고 파트 -->
+	<resultMap id="outReleaseView" type="OutReleaseVO">
+		<result property="forwardingNumber" column="forwardingNumber" />
+		<result property="forwardingDate" column="forwardingDate" />
+		<result property="houseCode" column="House_Code" />
+		<result property="houseName" column="House_Name" />
+		<result property="locationCode" column="Location_Code" />
+		<result property="locationName" column="Location_Name" />
+		<result property="outsourcingCode" column="Outsourcing_Code" />
+		<result property="outsourcingName" column="Outsourcing_Name" />
+		<result property="workplaceCode" column="Workplace_Code" />
+		<result property="workplaceName" column="Workplace_Name" />
+		<result property="note" column="note" />	
+	</resultMap>
+
+	<select id="selectAllOutReleaseList" resultMap="outReleaseView">
+		<![CDATA[select forwardingNumber,forwardingDate,func_hou_reg(House_Code),func_Wor_Reg(Location_Code),func_Out_Reg(Outsourcing_Code),func_Out_Wor_Reg(Workplace_Code),note  from CPM_OM_Out_Mat_For]]>
+	</select>
+	
+	<insert id="insertOutRelease" parameterType="OutReleaseVO">
+		<![CDATA[
+		INSERT INTO CPM_OM_Out_Mat_For
+		VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),#{forwardingDate}, #{houseCode}, #{locationCode}, #{outsourcingCode}, #{workplaceCode},#{note});
+		]]>  
+	</insert>
+
+	
+	<!-- 외주자재출고 세부사항 파트 -->
+	<resultMap id="outReleaseViewDetail" type="OutReleaseVO">
+		<result property="no" column="no" />
+		<result property="billingDate" column="billingDate" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="precisionQuantity" column="precisionQuantity" />
+		<result property="loss" column="loss" />
+		<result property="forwardingQuantity" column="forwardingQuantity" />				
+		<result property="noteDetail" column="note" />
+		<result property="forwardingNumber" column="forwardingNumber" />
+		<result property="workOrderNumber" column="workOrderNumber" />
+		<collection property="comOutsourcingView" column="workOrderNumber" select="selectAllMemberList"></collection>
+	</resultMap>
+	
+	<select id="selectAllOutReleaseListDetail" resultMap="outReleaseViewDetail">
+		<![CDATA[SELECT NO,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,PRECISIONQUANTITY,FORWARDINGQUANTITY
+FROM CPM_OM_Out_Mat_For MAT, CPM_OM_Out_Mat_For_Det MAF
+WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
+	</select>
+	
+	<insert id="insertOutReleaseDetail" parameterType="OutReleaseVO">
+		<![CDATA[
+		INSERT INTO CPM_OM_Out_Mat_For_Det
+		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber});
+		]]>  
+	</insert>
+
 </mapper>
 
 
