@@ -51,14 +51,14 @@
             <form id="searchForm">
                 <table class="con1_search">
                     <tr>
-                        <td>사업장</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td>외주처</td>
+                        <td style="width: 80px;"><input type="text" value='${param.itemNumber }' id="outcode"style="width: 100%; background-color: yellow;"/></td>
                         <td> <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td> 
-                        <td colspan="2"><input type="text" name="" disabled style="width: 100%;"/></td>
+                        <td colspan="2"><input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/></td>
     
-                        <td colspan="4" style="width: 80px;">부서</td>
+                        <td colspan="4" style="width: 80px;">외주작업장</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td> <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
+                        <td> <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
                         
                     </tr>
@@ -120,11 +120,13 @@
       }
       
       function search1(){
-    	  
-    	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');
-
-    	  
+    	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=1','codehelper');
       }
+      function search2(){
+    	  var outcode = document.getElementById('outcode');
+    	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=2&&itemNumber='+outcode.value,'codehelper');
+      }
+		
       </script>
 </body>
 </html>
