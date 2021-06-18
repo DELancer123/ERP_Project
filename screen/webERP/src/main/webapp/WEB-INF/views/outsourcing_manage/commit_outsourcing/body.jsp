@@ -235,7 +235,7 @@
                             <td>비고</td>
                         </thead>
                         <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                        <
+                        
                         <tbody>
                             <c:forEach var="comOut" items="${comOutsourcingViewDetail}" varStatus="status" >     
 							   <tr align="center">
@@ -249,7 +249,7 @@
 							   	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${comOut.loss}'/></td>
 							   	  <td><input type="text" value = '${comOut.precisionQuantity+(comOut.precisionQuantity*comOut.loss*0.01)}' readonly/></td>
 							   	  <td><input type="text" value = '${comOut.outsourcingUnitPrice}'/></td>
-							   	  <td><input type="text" value = '${comOut.precisionQuantity+(comOut.precisionQuantity*comOut.loss*0.01)*comOut.outsourcingUnitPrice}'/></td>
+							   	  <td><input type="text" value = '${(comOut.precisionQuantity+(comOut.precisionQuantity*comOut.loss*0.01))*comOut.outsourcingUnitPrice}'/></td>
 							   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${comOut.note}'/>   </td>
 							    </tr>
 							    </c:forEach> 
@@ -364,9 +364,9 @@
     	  		     linkPath.setAttribute("type","hidden");
     	  		     linkPath.setAttribute("name","path");
     	  		     linkPath.setAttribute("value", link);
-    	  		     document.getElementById('regOutsourcing').appendChild(linkPath);
-    	            document.getElementById('regOutsourcing').action = "${contextPath}/member/updateOutsourcing.do";
-    	  			document.getElementById('regOutsourcing').submit();  
+    	  		     document.getElementById('comOutsourcing').appendChild(linkPath);
+    	            document.getElementById('comOutsourcing').action = "${contextPath}/member/updateOutsourcing.do";
+    	  			document.getElementById('comOutsourcing').submit();  
         }
         
         
@@ -381,9 +381,9 @@
   		     linkPath.setAttribute("type","hidden");
   		     linkPath.setAttribute("name","path");
   		     linkPath.setAttribute("value", link);
-    		     document.getElementById('regOutsourcing').appendChild(linkPath);
-              document.getElementById('regOutsourcing').action = "${contextPath}/member/addOutsourcing.do";
-    			document.getElementById('regOutsourcing').submit();  
+    		     document.getElementById('comOutsourcing').appendChild(linkPath);
+              document.getElementById('comOutsourcing').action = "${contextPath}/member/addOutsourcing.do";
+    			document.getElementById('comOutsourcing').submit();  
   		
         }
 
