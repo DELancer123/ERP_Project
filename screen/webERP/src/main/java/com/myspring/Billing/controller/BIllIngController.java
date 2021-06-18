@@ -11,4 +11,6 @@ public interface BIllIngController {
 
 	ModelAndView mrpamount(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView delbilling(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

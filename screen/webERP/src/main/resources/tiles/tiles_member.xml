@@ -289,7 +289,7 @@
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/required_amount/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-   <definition name="/member/regbilling" extends="baseLayout">
+   <definition name="/member/regbilling" extends="MPSbaseLayout">
       <put-attribute name="title" value="청구등록" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/reg_billing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />

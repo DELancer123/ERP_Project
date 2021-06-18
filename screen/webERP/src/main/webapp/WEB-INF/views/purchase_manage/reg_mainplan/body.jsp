@@ -88,11 +88,15 @@
 			<td>~</td>
 			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
 			<td></td>
-			<td colspan="5">사원</td>
+			<!-- <td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" name="" disabled /></td>
+			<td><input type="text" name="" disabled /></td> -->
+			<td colspan="5">검색</td>
+			<td style="width: 80px;">
+			<input type='text' id='txtFilter' onkeyup='{filter();return false}' 			
+			onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}'>
 		</tr>
 	</table>
 	<div id="button">
@@ -118,7 +122,7 @@
 			<td>고객</td>
 			<td>비고</td>
 		</thead>
-		<tbody>
+		<tbody id="languageTBody">
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
@@ -155,10 +159,7 @@
 	</table>
 	</div>
 </container2>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'>
 var windowObj;
 
 function func_Popup(){
@@ -231,7 +232,15 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
-
+	function filter(){
+		if($('#txtFilter').val()=="")
+			$("#languageTBody tr").css('display','');
+			else{
+			$("#languageTBody tr").css('display','none');
+			$("#languageTBody tr[name*='"+$('#txtFilter').val()+"']").css('display','');
+		}
+		return false;
+	}
 </script>
 </form>
 </body>

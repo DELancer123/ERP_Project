@@ -5,20 +5,13 @@
 
 <%
 request.setCharacterEncoding("UTF-8");
+String sequence = (String)request.getAttribute("sequence");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script>
-function func_Popup(){
-	var url = "mrpamount.do";
-	var name = "mrpamount";
-	var option = "width = 1500, height= 600, top = 100, left = 200"
-	window.open(url, name, option);
-}
-</script>
 <style>
 #contents1 {
 	position: absolute;
@@ -59,7 +52,7 @@ function func_Popup(){
 	left: 18%;
 }
 
-#view1, #view2 {
+ #view2 {
 	width: 100%;
 	text-align: center;
 	border: 1px solid black;
@@ -79,6 +72,7 @@ function func_Popup(){
 
 #contents3 {
 	/* overflow: scroll; */
+	
 }
 
 #total td {
@@ -92,6 +86,22 @@ function func_Popup(){
 #reqInput {
 	background-color: rgb(255, 255, 149);
 	text-align: center;
+}
+
+#BillingInfo,#BottomInfo {
+/* 	overflow: scroll; */
+	height: 70%;
+	width: 70%;
+}
+#BottomInfo {
+	overflow: scroll;
+	height: 100%;
+	width: 100%;
+}
+#BillingTable,#BottomTable {
+	width: 100%;
+	text-align: center;
+	border: 1px solid black;
 }
 </style>
 </head>
@@ -132,27 +142,33 @@ function func_Popup(){
 	</div>
 	</container1>
 	<container2 id="contents2">
-	<table id="view1">
+<div id="BillingInfo">
+<form id="Billing" mehtod="get" commandName="ListVO">
+	<table id="BillingTable">
 		<thead align="center" style="background-color: gray">
 			<td><input type="checkbox" name="content"/></td>
+			<td>순서</td>
 			<td>청구번호</td>
 			<td>청구일자</td>
 			<td>청구구분</td>
 			<td>비고</td>
 		</thead>
-		<c:forEach var="cm" items="${cmList}">
+		<c:forEach var="cm" items="${cmList}" varStatus="status">
 			<tr align="center">
-				<td><input type="checkbox" name="content" /></td>
-				<td>${cm.claim_no}</td>
-				<td>${cm.claim_date}</td>
-				<td>${cm.claim_division}</td>
-				<td>${cm.note}</td>
+				<td><input type="checkbox" name="content" value="${cm.sequence}"/></td>
+		<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${cm.sequence}' readonly style="width:100%"/></td>
+		<td><input type="text" name="ListVO[${status.index}].claim_no" value = '${cm.claim_no}' readonly style="width:100%"/></td>
+		<td><input type="date" name="ListVO[${status.index}].claim_date" value = '${cm.claim_date}' readonly style="width:100%"/></td>
+		<td style="width:33px;"><input type="text" name="ListVO[${status.index}].claim_division" value = '${cm.claim_division}' style="width:100%"/></td>
+		<td><input type="text" name="ListVO[${status.index}].note" value = '${cm.note}' style="width:100%"/></td>
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 	</container2>
 	<container3 id="contents3">
-	<table id="view2">
+<div id="BottomInfo">
+	<table id="BottomTable">
 				<thead align="center" style="background-color: gray">
 			<td><input type="checkbox" name="content"/></td>
 			<td>순서</td>
@@ -169,19 +185,20 @@ function func_Popup(){
 		<c:forEach var="btm" items="${bottomList}">
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
-				<td>${btm.sequence}</td>
-					<td>${btm.item_Code}</td>
-					<td>${btm.item_Name}</td>
-					<td>${btm.standard}</td>
-					<td>${btm.requestdate}</td>
-					<td>${btm.inventory_unit}</td>
-					<td>${btm.inventory_qty}</td>
-					<td>${btm.claim_unit}</td>
-					<td>${btm.claim_quantity}</td>
-					<td>${btm.buyer}</td>
+					<td style="width:13px;"><input type="text" value="${btm.sequence}" readonly style="width:100%"/></td>
+					<td><input type="text" value="${btm.item_Code}" readonly/></td>
+					<td><input type="text" value="${btm.item_Name}" readonly/></td>
+					<td style="width:13px;"><input type="text" value="${btm.standard}" readonly style="width:100%"/></td>
+					<td><input type="text" value="${btm.requestdate}" readonly/></td>
+					<td style="width:33px;"><input type="text" value="${btm.inventory_unit}" readonly style="width:100%"/></td>
+					<td><input type="text" value="${btm.inventory_qty}" readonly/></td>
+					<td style="width:33px;"><input type="text" value="${btm.claim_unit}" readonly style="width:100%"/></td>
+					<td><input type="text" value="${btm.claim_quantity}" readonly/></td>
+					<td><input type="text" value="${btm.buyer}" readonly/></td>
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 	<div id="total">
 		<table>
 			<tr>
@@ -207,5 +224,41 @@ function func_Popup(){
 		</table>
 	</div>
 	</container3>
+<script type="text/javascript" src="jquery-2.2.2.min.js"></script>
+<script type="text/javascript">
+var windowObj;
+
+function func_Popup(){	
+	window.name = "member/regbilling.do";
+	var settings ='width=1400, height=500, resizable = no, scrollbars = no';
+
+	windowObj = window.open("mrpamount.do","mrpamount",settings);
+	
+	var txt_requestdate = document.getelementById("requestdate");
+	var txt_code = document.getelementById("item_Code");
+	var txt_Name = document.getelementById("item_Name");
+	var txt_claim_Qty = document.getelementById("claim_quantity");
+	
+	document.getElementById('requestdate').value= windowObj.document.getElementById("need_date").value; 
+	document.getElementById('item_Code').value= windowObj.document.getElementById("item_Code").value;  
+	document.getElementById('item_Name').value= windowObj.document.getElementById("item_Name").value;  
+	document.getElementById('claim_quantity').value= windowObj.document.getElementById("expected_quantity").value; 
+}
+
+function deleteRow() {
+	  var item = document.getElementsByName("content").length;
+	  var no = "";
+	  var ary = [];
+	  for(var i=0; i<item;i++){
+		  if(document.getElementsByName("content")[i].checked==true){
+			  sequence = document.getElementsByName("content")[i].value;
+			  ary.push(sequence);
+		  }
+		  
+			  window.location.href = "${contextPath}/member/delbilling.do?sequence="+ary;
+	  }
+}
+</script>
+</form>
 </body>
 </html>

@@ -154,6 +154,7 @@
 	
 	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
+ 		<result property="sequence" column="sequence" />
 		<result property="claim_no" column="claim_no" />
 		<result property="claim_date" column="claim_date" />
 		<result property="claim_division" column="claim_division" />
@@ -193,7 +194,9 @@
 		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,inventory_unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
-	
+	<delete id="delbilling">
+		delete from PMM_PM_CM where sequence = #{sequence}
+	</delete>
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">

@@ -1,8 +1,13 @@
 package com.myspring.Billing.List.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.myspring.MainPlan.vo.MainPlanVO;
 
 @Component("listVO")
 public class ListVO {
@@ -16,10 +21,7 @@ public class ListVO {
 	private String claim_unit;
 	private int claim_quantity;
 	private String buyer;
-
-
-	public ListVO() {
-	}
+	private List<ListVO> ListVO;
 
 	public ListVO(int sequence, String item_Code, String item_Name, String standard, Date requestdate,
 			String inventory_unit, int inventory_qty, String claim_unit, int claim_quantity, String buyer) {
@@ -34,6 +36,14 @@ public class ListVO {
 		this.claim_quantity=claim_quantity;
 		this.buyer=buyer;
 	}
+	
+	@Override
+	public String toString() {return Arrays.toString(ListVO.toArray());}
+	
+	public ListVO() {super();}
+	
+	public List<ListVO> getListVO() {return ListVO;}
+	public void setListVO(List<ListVO> listVO) {ListVO = new ArrayList();}
 
 	public int getSequence() {return sequence;}
 	public void setSequence(int sequence) {this.sequence = sequence;}

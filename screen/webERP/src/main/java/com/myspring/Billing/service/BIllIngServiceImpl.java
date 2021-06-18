@@ -3,6 +3,7 @@ package com.myspring.Billing.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,5 +34,9 @@ public class BIllIngServiceImpl implements BIllIngService{
 	public List<RequiredamountVO>selectAllMrpaMount()throws Exception{
 		List<RequiredamountVO>mrpamount = billingDAO.selectAllMrpaMount();
 		return mrpamount;
+	}
+	@Override
+	public void delbilling(String[] noary) throws DataAccessException{
+		billingDAO.delbilling(noary);
 	}
 }

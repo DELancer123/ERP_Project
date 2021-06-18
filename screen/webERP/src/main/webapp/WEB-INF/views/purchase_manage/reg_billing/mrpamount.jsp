@@ -51,6 +51,7 @@ a {
 </style>
 </head>
 <body>
+<form name="select" action=member/regbilling.do" method="get">
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
@@ -65,14 +66,14 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>
-				<button>선택적용</button>
+				<button onClick="sendToParent();">적용</button>	
 				<button>취소</button>
 			</div>
 		</div>
 		<div id="view">
 			<table style="width: 100%;">
 				<thead align="center" style="background-color: gray">
-					<td><input type="checkbox" name="content" /></td>
+					<td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
 					<td>소요일자</td>
 					<td>발주예정일</td>
 					<td>품번</td>
@@ -84,18 +85,33 @@ a {
 				<c:forEach var="mrp" items="${mrpamount}">
 					<tr align="center">
 						<td><input type="checkbox" name="content" /></td>
-						<td><a href="#">${mrp.need_date}</a></td>
-						<td><a href="#">${mrp.expected_order}</a></td>
-						<td><a href="#">${mrp.item_Code}</a></td>
-						<td><a href="#">${mrp.item_Name}</a></td>
-						<td><a href="#">${mrp.standard}</a></td>
-						<td><a href="#">${mrp.inventory_unit}</a></td>
-						<td><a href="#">${mrp.expected_quantity}</a></td>
+						<td><input type="date" value="${mrp.need_date}" /></td>
+						<td><input type="text" value="${mrp.expected_order}" /></td>
+						<td><input type="text" value="${mrp.item_Code}" /></td>
+						<td><input type="text" value="${mrp.item_Name}" /></td>
+					<td style="width:33%"><input type="text" value="${mrp.standard}" style="width:100%"/></td>
+					<td style="width:33%"><input type="text" value="${mrp.inventory_unit}" style="width:100%"/></td>
+						<td><input type="text" value="${mrp.expected_quantity}" /></td>
 					</tr>
 				</c:forEach>
 			</table>
+			</form>
 		</div>
 	</div>
-
+<script type="text/javascript">
+function sendToParent(){
+    var text_ndDate = document.getElementById("need_date").value;
+    var text_Code = document.getElementById("item_Code").value;
+    var text_Name = document.getElementById("item_Name").value;
+    var text_expQty = document.getElementById("expected_quantity").value;
+    
+    opener.document.getElementById("need_date").value=txt_requestdate;
+    opener.document.getElementById("item_Code").value=text_Code;
+    opener.document.getElementById("item_Name").value=text_Name;
+    opener.document.getElementById("expected_quantity").value=txt_claim_Qty;
+    
+    window.close();
+}   
+</script>
 </body>
 </html>

@@ -41,6 +41,17 @@ public class BIllIngControllerImpl implements BIllIngController{
 		mav.addObject("mrpamount", mrpamount);
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value = "/member/delbilling.do", method = RequestMethod.GET)
+	public ModelAndView delbilling(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String no = (String) request.getParameter("sequence");
+		String viewName = getViewName(request);
+		String[] numberary  = no.split(",");
+		billingService.delbilling(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbilling.do");
+		return mav;
+	}	
 		
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

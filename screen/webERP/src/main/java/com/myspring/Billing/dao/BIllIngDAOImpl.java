@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.Billing.List.vo.ListVO;
@@ -29,5 +30,11 @@ public class BIllIngDAOImpl implements BIllIngDAO {
 	public List selectAllMrpaMount() throws Exception{
 		List<RequiredamountVO>mrpamount = sqlSession.selectList("mappers.erp.selectAllMrpaMount");
 		return mrpamount;
+	}
+	@Override
+	public void delbilling(String[] noary) throws DataAccessException{
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.delbilling", Integer.parseInt(obj));		
+		}
 	}
 }
