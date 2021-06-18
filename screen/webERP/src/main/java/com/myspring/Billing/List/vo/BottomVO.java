@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.myspring.MainPlan.vo.MainPlanVO;
 
-@Component("listVO")
-public class ListVO {
+@Component("bottomVO")
+public class BottomVO {
 	private int sequence;
 	private String item_Code;
 	private String item_Name;
@@ -21,9 +21,9 @@ public class ListVO {
 	private String claim_unit;
 	private int claim_quantity;
 	private String buyer;
-	private List<ListVO> ListVO;
+	private List<BottomVO> ListVO;
 
-	public ListVO(int sequence, String item_Code, String item_Name, String standard, Date requestdate,
+	public BottomVO(int sequence, String item_Code, String item_Name, String standard, Date requestdate,
 			String inventory_unit, int inventory_qty, String claim_unit, int claim_quantity, String buyer) {
 		this.sequence = sequence;
 		this.item_Code = item_Code;
@@ -40,10 +40,10 @@ public class ListVO {
 	@Override
 	public String toString() {return Arrays.toString(ListVO.toArray());}
 	
-	public ListVO() {super();}
+	public BottomVO() {super();}
 	
-	public List<ListVO> getListVO() {return ListVO;}
-	public void setListVO(List<ListVO> listVO) {ListVO = new ArrayList();}
+	public List<BottomVO> getListVO() {return ListVO;}
+	public void setListVO(List<BottomVO> listVO) {ListVO = new ArrayList();}
 
 	public int getSequence() {return sequence;}
 	public void setSequence(int sequence) {this.sequence = sequence;}

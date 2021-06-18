@@ -97,7 +97,7 @@
 			<td style="width: 80px;">
 			<input type='text' id='txtFilter' onkeyup='{filter();return false}' 			
 			onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}'>
-		</tr>
+		</tr> 
 	</table>
 	<div id="button">
 		<input type="button" onclick="func_Popup();" value="주문조회">
@@ -140,7 +140,7 @@
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
 		</c:forEach>		
-		<tr id ="insertTest" align="center">
+		<tr id="insertTest" align="center">
 		<td></td>    	
     	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' style="width:100%"/></td>
     	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
@@ -159,7 +159,8 @@
 	</table>
 	</div>
 </container2>
-<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'>
+<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+<script type="text/javascript">
 var windowObj;
 
 function func_Popup(){
@@ -232,7 +233,7 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
-	function filter(){
+ 	function filter(){
 		if($('#txtFilter').val()=="")
 			$("#languageTBody tr").css('display','');
 			else{
@@ -240,7 +241,7 @@ function InsertRow(){
 			$("#languageTBody tr[name*='"+$('#txtFilter').val()+"']").css('display','');
 		}
 		return false;
-	}
+	} 
 </script>
 </form>
 </body>

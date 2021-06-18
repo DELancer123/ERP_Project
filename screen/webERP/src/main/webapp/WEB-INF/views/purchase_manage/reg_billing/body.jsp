@@ -2,6 +2,7 @@
 	pageEncoding="EUC-KR" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -153,22 +154,32 @@ String sequence = (String)request.getAttribute("sequence");
 			<td>청구구분</td>
 			<td>비고</td>
 		</thead>
+		<tbody>
 		<c:forEach var="cm" items="${cmList}" varStatus="status">
 			<tr align="center">
-				<td><input type="checkbox" name="content" value="${cm.sequence}"/></td>
-		<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${cm.sequence}' readonly style="width:100%"/></td>
-		<td><input type="text" name="ListVO[${status.index}].claim_no" value = '${cm.claim_no}' readonly style="width:100%"/></td>
-		<td><input type="date" name="ListVO[${status.index}].claim_date" value = '${cm.claim_date}' readonly style="width:100%"/></td>
-		<td style="width:33px;"><input type="text" name="ListVO[${status.index}].claim_division" value = '${cm.claim_division}' style="width:100%"/></td>
-		<td><input type="text" name="ListVO[${status.index}].note" value = '${cm.note}' style="width:100%"/></td>
+				<td><input type="checkbox"name="content" value="${cm.sequence}"/></td>
+			<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${cm.sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].claim_no" value = '${cm.claim_no}' readonly style="width:100%"/></td>
+			<td><input type="date" name="ListVO[${status.index}].claim_date" value = '${cm.claim_date}' style="width:100%"/></td>
+			<td style="width:33px;"><input type="text" name="ListVO[${status.index}].claim_division" value = '${cm.claim_division}' style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].note" value = '${cm.note}' style="width:100%"/></td>
 			</tr>
 		</c:forEach>
+		<tr align="center">
+		<td></td>
+			<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(cmList) }].sequence" value='${sequence}' style="width:100%"/></td>
+			<td><input type="text" id="claim_no" name="ListVO[${fn:length(cmList) }].claim_no" value='${claim_no}' readonly style="width:100%"/></td>
+			<td><input type="date" id="claim_date" name="ListVO[${fn:length(cmList) }].claim_date" value='${claim_date}' style="width:100%"/></td>
+			<td><input type="text" id="claim_division" name="ListVO[${fn:length(cmList) }].claim_division" value='${claim_division}' style="width:100%"/></td>
+			<td style="width:33px;"><input type="text" id="note" name="ListVO[${fn:length(cmList) }].note" value='${note}'/></td>
+		</tr>
+	</tbody>
 	</table>
 	</div>
 	</container2>
 	<container3 id="contents3">
 <div id="BottomInfo">
-	<table id="BottomTable">
+	 <table id="BottomTable">
 				<thead align="center" style="background-color: gray">
 			<td><input type="checkbox" name="content"/></td>
 			<td>순서</td>
@@ -182,21 +193,35 @@ String sequence = (String)request.getAttribute("sequence");
 			<td>청구단위수량</td>
 			<td>주거래처</td>
 		</thead>
+		<tbody>
 		<c:forEach var="btm" items="${bottomList}">
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
-					<td style="width:13px;"><input type="text" value="${btm.sequence}" readonly style="width:100%"/></td>
-					<td><input type="text" value="${btm.item_Code}" readonly/></td>
-					<td><input type="text" value="${btm.item_Name}" readonly/></td>
-					<td style="width:13px;"><input type="text" value="${btm.standard}" readonly style="width:100%"/></td>
-					<td><input type="text" value="${btm.requestdate}" readonly/></td>
-					<td style="width:33px;"><input type="text" value="${btm.inventory_unit}" readonly style="width:100%"/></td>
-					<td><input type="text" value="${btm.inventory_qty}" readonly/></td>
-					<td style="width:33px;"><input type="text" value="${btm.claim_unit}" readonly style="width:100%"/></td>
-					<td><input type="text" value="${btm.claim_quantity}" readonly/></td>
-					<td><input type="text" value="${btm.buyer}" readonly/></td>
+				<td style="width:13px;"><input type="text" value="${btm.sequence}" readonly style="width:100%"/></td>
+				<td><input type="text" value="${btm.item_Code}" readonly/></td>
+				<td><input type="text" value="${btm.item_Name}" readonly/></td>
+				<td style="width:13px;"><input type="text" value="${btm.standard}" readonly style="width:100%"/></td>
+				<td><input type="text" value="${btm.requestdate}" readonly/></td>
+				<td style="width:33px;"><input type="text" value="${btm.inventory_unit}" readonly style="width:100%"/></td>
+				<td><input type="text" value="${btm.inventory_qty}" readonly/></td>
+				<td style="width:33px;"><input type="text" value="${btm.claim_unit}" readonly style="width:100%"/></td>
+				<td><input type="text" value="${btm.claim_quantity}" readonly/></td>
+				<td><input type="text" value="${btm.buyer}" readonly/></td>
 			</tr>
+			</tbody>
 		</c:forEach>
+		<tr align="center">
+			<td></td>
+			<td><input type="text" id="sequence" name="ListVO[${fn:length(bottomList) }].sequence" value='${sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" id="item_Code" name="ListVO[${fn:length(bottomList) }].item_Code" value='${item_Code}' readonly/></td>
+			<td><input type="text" id="item_Name" name="ListVO[${fn:length(bottomList) }].sequence" value='${item_Name}' readonly/></td>
+			<td style="width:13px;"><input type="text" id="standard" name="ListVO[${fn:length(bottomList) }].standard" value='${standard}' readonly style="width:100%"/></td>
+			<td><input type="text" id="requestdate" name="ListVO[${fn:length(bottomList) }].requestdate" value='${requestdate}' readonly/></td>
+			<td style="width:33px;"><input type="text" id="inventory_unit" name="ListVO[${fn:length(bottomList) }].inventory_unit" value='${inventory_unit}' readonly style="width:100%"/></td>
+			<td><input type="text" id="inventory_qty" name="ListVO[${fn:length(bottomList) }].inventory_qty" value='${inventory_qty}' readonly/></td>
+			<td style="width:33px;"><input type="text" id="claim_unit" name="ListVO[${fn:length(bottomList) }].claim_unit" value='${claim_unit}' readonly style="width:100%"/></td>
+			<td><input type="text" id="claim_quantity" name="ListVO[${fn:length(bottomList) }].claim_quantity" value='${claim_quantity}' readonly/></td>		
+			<td><input type="text" id="buyer" name="ListVO[${fn:length(bottomList) }].buyer" value='${buyer}' readonly/></td>		
 	</table>
 	</div>
 	<div id="total">
@@ -224,7 +249,6 @@ String sequence = (String)request.getAttribute("sequence");
 		</table>
 	</div>
 	</container3>
-<script type="text/javascript" src="jquery-2.2.2.min.js"></script>
 <script type="text/javascript">
 var windowObj;
 
@@ -257,6 +281,24 @@ function deleteRow() {
 		  
 			  window.location.href = "${contextPath}/member/delbilling.do?sequence="+ary;
 	  }
+}
+
+function updateRow() {
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+document.getElementById("sequence").disabled = true;
+document.getElementById("claim_no").disabled = true;		
+document.getElementById("claim_date").disabled = true;
+document.getElementById("claim_division").disabled = true;
+document.getElementById("note").disabled = true;
+var Input = document.createElement("input");
+Input.setAttribute("type", "hidden");
+Input.setAttribute("name", "path");
+Input.setAttribute("value", link);
+document.getElementById('Billing').appendChild(Input);
+document.getElementById('Billing').action = "${contextPath}/member/updatebilling.do";
+document.getElementById('Billing').submit();
 }
 </script>
 </form>

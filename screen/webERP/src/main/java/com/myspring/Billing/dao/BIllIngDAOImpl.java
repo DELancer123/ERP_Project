@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.myspring.Billing.List.vo.ListVO;
+import com.myspring.Billing.List.vo.BottomVO;
 import com.myspring.Billing.vo.BIllIngVO;
+import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.Requiredamount.vo.RequiredamountVO;
 
 @Repository("billingDAO")
@@ -22,8 +23,8 @@ public class BIllIngDAOImpl implements BIllIngDAO {
 		return cmList;
 	}
 	@Override
-	public List<ListVO>selectAllBottomList()throws Exception{
-		List<ListVO>bottomList = sqlSession.selectList("mappers.erp.selectAllBottomList");
+	public List<BottomVO>selectAllBottomList()throws Exception{
+		List<BottomVO>bottomList = sqlSession.selectList("mappers.erp.selectAllBottomList");
 		return bottomList;
 	}
 	@Override
@@ -36,5 +37,17 @@ public class BIllIngDAOImpl implements BIllIngDAO {
 		for(String obj: noary) {
 			sqlSession.delete("mappers.erp.delbilling", Integer.parseInt(obj));		
 		}
+	}
+	@Override
+	public int updatebilling(BIllIngVO vo) throws DataAccessException {
+		int result = 0; 
+
+		int idx = vo.getListVO().size()-1;
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updatebilling",vo.getListVO().get(i));
+		}
+		return result;
 	}
 }

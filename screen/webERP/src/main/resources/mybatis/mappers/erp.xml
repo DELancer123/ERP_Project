@@ -160,7 +160,7 @@
 		<result property="claim_division" column="claim_division" />
 		<result property="note" column="note" />
 	</resultMap>
-	<resultMap id="ListResult" type="listVO">
+	<resultMap id="bottomResult" type="bottomVO">
 		<result column="sequence" property="sequence" />
 		<result column="item_Code" property="item_Code" />
 		<result column="item_Name" property="item_Name" />
@@ -186,7 +186,7 @@
 		<![CDATA[SELECT * from PMM_PM_CM]]>
 	</select>
 	
-	<select id="selectAllBottomList" resultMap="ListResult">
+	<select id="selectAllBottomList" resultMap="bottomResult">
 		<![CDATA[select * from pmm_pm_cm_list]]>
 	</select>
 	
@@ -197,6 +197,11 @@
 	<delete id="delbilling">
 		delete from PMM_PM_CM where sequence = #{sequence}
 	</delete>
+	<update id="updatebilling" >
+		<![CDATA[update PMM_PM_CM
+			set sequence=#{sequence},claim_no=#{claim_no},claim_date=#{claim_date},claim_division=#{claim_division},note=#{note}
+			where sequence = #{sequence}]]>  
+	</update>
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">

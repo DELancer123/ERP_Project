@@ -51,7 +51,7 @@ a {
 </style>
 </head>
 <body>
-<form name="select" action=member/regbilling.do" method="get">
+<form name="select" action="member/regbilling.do" method="get">
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
@@ -66,7 +66,7 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>
-				<button onClick="sendToParent();">적용</button>	
+				<button onClick="sendToParent()">적용</button>	
 				<button>취소</button>
 			</div>
 		</div>
@@ -89,7 +89,7 @@ a {
 						<td><input type="text" value="${mrp.expected_order}" /></td>
 						<td><input type="text" value="${mrp.item_Code}" /></td>
 						<td><input type="text" value="${mrp.item_Name}" /></td>
-					<td style="width:33%"><input type="text" value="${mrp.standard}" style="width:100%"/></td>
+					<td style="width:33%"><input type="text" value="${mrp.standard}"style="width:100%"/></td>
 					<td style="width:33%"><input type="text" value="${mrp.inventory_unit}" style="width:100%"/></td>
 						<td><input type="text" value="${mrp.expected_quantity}" /></td>
 					</tr>
