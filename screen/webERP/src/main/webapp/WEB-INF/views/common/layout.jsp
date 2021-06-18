@@ -372,7 +372,7 @@
     	} 
         
         function openWindowPop(url, name){
-            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+            var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
         }
         

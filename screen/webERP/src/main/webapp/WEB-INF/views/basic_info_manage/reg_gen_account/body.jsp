@@ -129,7 +129,7 @@ request.setCharacterEncoding("UTF-8");
                 <tr align="center">
                     <td align="center" style="width:80px;">거래처코드</td>
                     <td style="width:50px;">
-                        <input type=text name="customerCode" style="width:100%;" pattern="[0-9]{4}" maxlength="5"/>
+                        <input type=text name="customerCode" style="width:100%;" value="" pattern="[0-9]{4}" maxlength="5"/>
                     </td>
      				<td style="width:8px;">
      					<div style="text-align:center; width:100%;"><a href="javascript:search1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
@@ -185,9 +185,9 @@ request.setCharacterEncoding("UTF-8");
         </container2>
         <container3 id="contents3">
         <form  method="get" id="reg_gen_account"> <!-- ****폼태그**** -->
-            <table id="table3" align="center">
+            <table id="table3" align="center" style="margin-top:10px;">
                 <tr>
-                    <p><td colspan = "4" span style="color:black" align="center">기본등록사항</td></p>
+                    <p><td colspan = "4" style="color:black;" align="center">기본등록사항</td></p>
                 </tr>
                 <tr>
                     <td align="center">코드</td>
@@ -317,32 +317,12 @@ request.setCharacterEncoding("UTF-8");
         	}      	
         } 
          
+        function search1() {
+        	
+        	openWindowPop("localhost:8090/webERP/member/codehelper.do", "codehelper");
+        }
       
-        /* $(document).ready(function() {
-            $("#customerCodeSearch").keyup(function() {
-            	var k = $(this).val();
-            	alert(k);
-            	$("#table2 > tbody > tr").hide();
-            	var temp = $("#table2 > tbody > tr > td:nth-child(2):contains('"+k+"')");
-            	alert(temp);
-				console.log(temp);
-				
-                $(temp).parent().show();
-            })
-        })
-        $(document).ready(function() {
-            $("#customerNameSearch").keyup(function() {
-            	var k = $(this).val();
-            	$("#table2 > tbody > tr").hide();
-            	var temp = $("#table2 > tbody > tr > td:nth-child(3):contains('"+k+"')");
-
-                $(temp).parents().show();
-            })
-        })  */
-        
-        
-
-        
+  
 		</script>
         
 </body>
