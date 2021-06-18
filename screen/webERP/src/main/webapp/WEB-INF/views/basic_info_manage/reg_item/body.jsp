@@ -236,8 +236,8 @@
                     <td align="center">LOT여부</td>
                     <td>
                         <select name="whether_LOT" id="whether_LOT">
-                            <option value="0">0.미사용</option>
-                            <option value="1">1.사용</option>
+                            <option value=0 <c:if test="${whether_LOT == 0}">selected</c:if>>0.미사용</option>
+                            <option value=1 <c:if test="${whether_LOT == 1}">selected</c:if>>1.사용</option>
                         </select>
                     </td>
                 </tr>
@@ -245,8 +245,8 @@
                     <td align="center">SET품목</td>
                     <td>
                         <select name="sET_Item" id="sET_Item">
-                            <option value="0">0.부</option>
-                            <option value="1">1.여</option>
+                            <option value=0 <c:if test="${sET_Item == 0}">selected</c:if>>0.부</option>
+                            <option value=1 <c:if test="${sET_Item == 1}">selected</c:if>>1.여</option>
                         </select>
                     </td>
                 </tr>
@@ -254,8 +254,8 @@
                     <td align="center">검사여부</td>
                     <td>
                         <select name="inspection_Status" id="inspection_Status">
-                            <option value="0">0.무검사</option>
-                            <option value="1">1.검사</option>
+                            <option value=0 <c:if test="${inspection_Status == 0}">selected</c:if>>0.무검사</option>
+                            <option value=1 <c:if test="${inspection_Status == 1}">selected</c:if>>1.검사</option>
                         </select>
                     </td>
                 </tr>
@@ -263,8 +263,8 @@
                     <td align="center">사용여부</td>
                     <td>
                         <select name="use_Status" id="use_Status">
-                            <option value="0.">0.부</option>
-                            <option value="1">1.여</option>
+                            <option value=0 <c:if test="${use_Status == 0}">selected</c:if>>0.부</option>
+                            <option value=1 <c:if test="${use_Status == 1}">selected</c:if>>1.여</option>
                         </select>
                     </td>
                 </tr>

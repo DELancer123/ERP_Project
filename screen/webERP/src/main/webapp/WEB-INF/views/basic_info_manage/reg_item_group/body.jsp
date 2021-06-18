@@ -125,8 +125,8 @@
                     </td>
                     <td>
                         <select name="usable" >
-                        <option value="0">0.미사용</option>
-                        <option value="1">1.사용</option>
+                        <option value=0 <c:if test="${itemg.use_Status == 0}">selected</c:if>>0.부</option>
+    					<option value=1 <c:if test="${itemg.use_Status == 1}">selected</c:if>>1.여</option>
                     </td>
                     <td>
                         <input type=text name="explain" value='${itemg.explanation }' >
@@ -139,9 +139,10 @@
     	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Code" /></td>
     	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Name" /></td>
     	<td>
-    	<select name="ListVO[${fn:length(itemgView) }].use_Status" />
-    	<option value="0">0.미사용</option>
-    	<option value="1">1.사용</option>
+    	<select name="ListVO[${fn:length(itemgView) }].use_Status">
+    	<option value=0 <c:if test="${itemg.use_Status == 0}">selected</c:if>>0.부</option>
+    	<option value=1 <c:if test="${itemg.use_Status == 1}">selected</c:if>>1.여</option>
+    	</select>
     	</td>
     	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" /></td>
     </tr>

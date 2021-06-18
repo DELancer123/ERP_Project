@@ -193,13 +193,12 @@
                 <tr>
                     <td align="center">본점여부</td>
                     <td>
-                        <select name="main_Store_Status" value="${main_Store_Status }"
+                        <select name="main_Store_Status"
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none; width: 100px;
                         text-align: center;" >
-                            <option value="default">여/부</option>
-                            <option value="0">1.여</option>
-                            <option value="1">2.부</option>
+                            <option value=0 <c:if test="${main_Store_Status == 0}">selected</c:if>>0.부</option>
+                            <option value=1 <c:if test="${main_Store_Status == 1}">selected</c:if>>1.여</option>
                         </select>
                     </td>
                 </tr>

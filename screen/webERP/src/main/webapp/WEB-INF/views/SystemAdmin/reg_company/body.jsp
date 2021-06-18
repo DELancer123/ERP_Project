@@ -106,13 +106,12 @@
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select id="sortation" onchange="selectBox(this.value);" 
+                        <select id="sortation1" name="sortation1"
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;">
-                            <option value="default">법인/개인</option>
-                            <option value="0">0.법인</option>
-                            <option value="1">1.개인</option>
+                            <option value=0 <c:if test="${com.sortation == 0}">selected</c:if>>법인</option>
+                            <option value=1 <c:if test="${com.sortation == 1}">selected</c:if>>개인</option>
                         </select>
                     </td>
                 </tr>
@@ -156,10 +155,10 @@
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;">
-                            <option value="default">법인/개인</option>
-                            <option value="0">0.법인</option>
-                            <option value="1">1.개인</option>
+                            <option value=0>법인</option>
+                            <option value=1>개인</option>
                         </select>
+                        
                         </td>
                 </tr>
                 
@@ -226,7 +225,7 @@
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="5"
                         value='${main_Store_Postal_Code }' />
-                        <i class="fas fa-search" style="color: blue;"></i>
+                        <a href='#'><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -302,7 +301,7 @@
 		console.log('확인');
  		window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
 	}
-
+	
 	function newRow(){
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit','1');
