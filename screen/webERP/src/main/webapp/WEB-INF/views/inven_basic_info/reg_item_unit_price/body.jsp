@@ -16,7 +16,9 @@
 	<c:set var="itemName" value="${iup.itemName }"/>
 	<c:set var="standard" value="${iup.standard }"/>
 	<c:set var="inventoryUnit" value="${iup.inventoryUnit }"/>
-</c:forEach>
+	<c:set var="purchasePrice" value="${iup.purchasePrice }"/>
+	<c:set var="salesPrice" value="${iup.salesPrice }"/>
+	</c:forEach>
     
 <!DOCTYPE html>
 <html>
@@ -107,7 +109,7 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${param.itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
@@ -118,12 +120,12 @@
                 	<tr id="insertIup" align="center">
                 		<td></td>
                     	<td><input type="text" name="ListVO[${fn:length(iupView) }].no" id="no" value='${inputNo }' readonly style="width:100%"></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView) }].itemNumber" id="itemNumber" value='${itemNumber }' ondblclick="search2()" readonly/></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView) }].itemName" id="itemName" value='${itemName }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView) }].standard" id="standard" value='${standard }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView) }].inventoryUnit" id="inventoryUnit" value='${inventoryUnit }' readonly/></td>
-                    	<td><input type="text" id="purchasePrice" value='${purchasePrice }'/></td>
-                    	<td><input type="text" id="salesPrice" value='${salesPrice }'/></td>                                                        
+                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].itemNumber1" id="itemNumber1" value='${itemNumber1 }' ondblclick="search2()" readonly/></td>
+                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].itemName1" id="itemName1" value='${itemName1 }' readonly/></td>
+                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].standard1" id="standard1" value='${standard1 }' readonly/></td>
+                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].inventoryUnit1" id="inventoryUnit1" value='${inventoryUnit1 }' readonly/></td>
+                    	<td><input type="text" id="purchasePrice"/></td>
+                    	<td><input type="text" id="salesPrice"/></td>                                                        
                 	</tr>
             	</table>
 			</div>
@@ -138,6 +140,11 @@
       	var inventoryUnit = document.getElementById("inventoryUnit");
 		var purchasePrice = document.getElementById("purchasePrice");
 		var salesPrice = document.getElementById("salesPrice");
+		
+        var itemNumber1 = document.getElementById("itemCode1");
+        var itemName1 = document.getElementById("itemName1");
+        var standard1 = document.getElementById("standard1");
+      	var inventoryUnit1 = document.getElementById("inventoryUnit1");
 
 		var view_button = document.getElementById("view_button");
 		var save_button = document.getElementById("save");
@@ -194,10 +201,8 @@
 			
 			var link = location.pathname + '?' + newParam;
 				document.getElementById("no").disabled = true;
-				document.getElementById("itemNumber").disabled = true;
-				document.getElementById("itemName").disabled = true;
-				document.getElementById("standard").disabled = true;
-				document.getElementById("inventoryUnit").disabled = true;
+				document.getElementById("purchasePrice").disabled = true;
+				document.getElementById("salesPrice").disabled = true;
 				
 			var articleNoInput = document.createElement("input");
 				articleNoInput.setAttribute("type","hidden");

@@ -71,11 +71,11 @@ public class IupViewDAOImpl implements IupViewDAO{
 	public int updIup(iupVO iupVO) throws DataAccessException {
 		int result = 0; 
 
-		int idx = iupVO.getListVO().size()-1;
-		for(int i = 0; i<idx;i++) {
-			System.out.println("i"+i);
-		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateIup",iupVO.getListVO().get(i));		
+		int idx = iupVO.getListVO().size();
+		for(int i = 0; i<idx; i++) {
+			System.out.println("i" + i);
+		System.out.println("idx : " + idx);
+		result = sqlSession.update("mappers.erp.updateIup", iupVO.getListVO().get(i));		
 		System.out.println("DAOresult:"+result);
 		}
 		return result;

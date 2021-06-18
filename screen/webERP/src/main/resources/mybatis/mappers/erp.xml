@@ -253,6 +253,12 @@
 		<result property="purchasePrice" column="Purchase_Price" />
 		<result property="salesPrice" column="Sales_Price" />
 	</resultMap>
+	<resultMap id="iupView1" type="iupVO">
+		<result property="itemNumber1" column="Item_Code" />
+		<result property="itemName1" column="Item_Name" />
+		<result property="standard1" column="Standard" />
+		<result property="inventoryUnit1" column="Inventory_Unit" />
+	</resultMap>
 	<resultMap id="iupPopView" type="iupVO">
 		<result property="itemNumber" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -277,8 +283,8 @@
 	<select id="iupSelectPopList2" resultMap="iupPopView">
 		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
-	<select id="iupChildView" resultMap="iupView" >
-		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	<select id="iupChildView" resultMap="iupView1" >
+		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
 	</select>
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
@@ -293,7 +299,7 @@
 		<![CDATA[
 		update PM_SM_Ite_Pri
 		set Purchase_Price = #{purchasePrice}, Sales_Price = #{salesPrice}
-		where no = #{no}
+		where No = #{no}
 		]]>
 	</update>
 

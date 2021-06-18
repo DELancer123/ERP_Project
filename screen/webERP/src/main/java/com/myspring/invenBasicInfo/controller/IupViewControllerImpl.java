@@ -115,7 +115,9 @@ public class IupViewControllerImpl implements IupViewController {
 	@Override
 	@RequestMapping(value="/member/updateIup.do" ,method = RequestMethod.GET)
 	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8"); int result = 0; result = iupViewService.updateIup(iupVO);
+		request.setCharacterEncoding("utf-8"); 
+		int result = 0; 
+		result = iupViewService.updateIup(iupVO);
 		System.out.println("result "+result);
 		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
 		return mav; 
