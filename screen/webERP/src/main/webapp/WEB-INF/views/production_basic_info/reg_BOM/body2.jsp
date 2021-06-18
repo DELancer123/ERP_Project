@@ -132,14 +132,12 @@
       
       var precisionQuantity = document.getElementById("precisionQuantity");
       var loss = document.getElementById("loss");
-      var outSourcingUnitPrice = document.getElementById("outSourcingUnitPrice");
       var startDate = document.getElementById("startDate");
       var endDate = document.getElementById("endDate");
      	  var actualQuantity = document.getElementById('actualQuantity');
 
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
-      var actualCost = document.getElementById('actualCost');
       actualQuantity.onfocus = function(){
     	  var loss = document.getElementById('loss');
     	  var precisionQuantity = document.getElementById('precisionQuantity');
@@ -179,8 +177,6 @@
 		 var link = location.pathname +'?'+newParam;
   			 document.getElementById("precisionQuantity").disabled = true;
   		     document.getElementById("loss").disabled = true;
-  		     document.getElementById("outSourcingUnitPrice").disabled = true;
-  		     document.getElementById("actualCost").disabled = true;
   		     document.getElementById("no").disabled = true;
   		     document.getElementById("startDate").disabled = true;
   		     document.getElementById("endDate").disabled = true;

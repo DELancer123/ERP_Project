@@ -185,7 +185,7 @@
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
+		 insert into CPM_BIM_BOM_REG(NO,PARENT_ITEM_CODE,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,PRECISIONQUANTITY,LOSS,STARTDATE,ENDDATE,DIVISION)
 		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{startDate}, #{endDate}, #{division})
 		]]>  
 	</insert>

@@ -93,13 +93,10 @@
                         <td>품명</td>
                         <td>규격</td>
                         <td>단위</td>
-                        <td>표준원가</td>
-                        <td>실제원가</td>
-                        <td>외주단가</td>
+                        <td>원가</td>
                         <td>외주단가</td>
                         <td>시작일</td>
                         <td>종료일</td>
-                        <td>사용</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
@@ -111,9 +108,6 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="date"/></td>
                         <td><input type="text"/></td>
                     </tbody>
                 </table>
