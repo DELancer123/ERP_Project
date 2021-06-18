@@ -47,25 +47,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 
 	@Override
 	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException {
-		
 		sqlSession.update("mappers.erp.updateBasicList", systemmagVO);
 	}
 
-//	@Override
-//	public int updateCom(SystemmagVO systemmagVO) throws DataAccessException {
-//		int result = 0; 
-//
-//		int idx = systemmagVO.getListVO().size()-1;
-//		for(int i = 0; i<idx;i++) {
-//			System.out.println("i"+i);
-//		System.out.println("idx : "+idx);
-//		result = sqlSession.update("mappers.erp.updateBasicList",systemmagVO.getListVO().get(i));		
-//		System.out.println("DAOresult:"+result);
-//		//bomList.add(bomVO);
-//		//}
-//		}
-//		return result;
-//	}
-	
-	
 }

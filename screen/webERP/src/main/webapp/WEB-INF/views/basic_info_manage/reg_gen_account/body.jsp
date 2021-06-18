@@ -26,7 +26,7 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리CDN -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
  #contents1{
             position: absolute;
@@ -130,7 +130,7 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">거래처코드</td>
                     <td>
                         <input type=text name="customerCode"
-                        pattern="[0-9]{4}" maxlength="4"/>
+                        pattern="[0-9]{4}" maxlength="5"/>
                     </td>
                     <td align="center">거래처명</td>
                     <td>
@@ -174,7 +174,7 @@ request.setCharacterEncoding("UTF-8");
             </table>
         </container2>
         <container3 id="contents3">
-        <form  method="get" id="reg_gen_account">
+        <form  method="get" id="reg_gen_account"> <!-- ****폼태그**** -->
             <table id="table3" align="center">
                 <tr>
                     <p><td colspan = "4" span style="color:black" align="center">기본등록사항</td></p>
@@ -269,9 +269,8 @@ request.setCharacterEncoding("UTF-8");
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
         }
         
-        
-        
-        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘기는 함수
+                
+        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("checkedContent").length;
         	var no = "";
         	var ary = [];
@@ -291,43 +290,23 @@ request.setCharacterEncoding("UTF-8");
         }
         
         
-        function updateRow() {       	
-        	document.getElementById('reg_gen_account').action = "${contextPath}/member/updateBasicacc.do";
-    		document.getElementById('reg_gen_account').submit();
-    		alert('수정되었습니다');
-        }
-        
-                	
-        
-      
-        /* function updateRow(){
-              alert('업데이트구현중');
-          	  var workOrderTable = document.getElementById('table3');
-              var row = workOrderTable.insertRow(); 
-              const URLSearch = new URLSearchParams(location.search);
-              URLSearch.set('submit', '1');
-      		  const newParam = URLSearch.toString();
-      		  var link = location.pathname +'?'+newParam;
-       			 document.getElementById("registrationNumber").disabled = true;
-       		     document.getElementById("loss").disabled = true;
-       		     document.getElementById("outSourcingUnitPrice").disabled = true;
-       		     document.getElementById("actualCost").disabled = true;
-       		     document.getElementById("no").disabled = true;
-       		     document.getElementById("startDate").disabled = true;
-       		     document.getElementById("endDate").disabled = true; 
-        		 document.getElementById("inchargerManager").disabled = true;
-       		 var articleNOInput = document.createElement("input");
-     		     articleNOInput.setAttribute("type","hidden");
-     		     articleNOInput.setAttribute("name","path");
-     		     articleNOInput.setAttribute("value", link);
-     		     document.getElementById('rightSideForm').appendChild(articleNOInput);
-                 document.getElementById('rightSideForm').action = "${contextPath}/member/updateBasicacc.do";
-       			 document.getElementById('rightSideForm').submit();  
-        } */
-        
-	  		
-	       
-   
+         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#reg_gen_account').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) {
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});       	 
+        	if(is_empty) {
+        	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+        	}
+        	else{
+	        	document.getElementById('reg_gen_account').action = "${contextPath}/member/updateBasicacc.do";
+	    		document.getElementById('reg_gen_account').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+	    		alert('수정되었습니다'); 
+        	}      	
+        } 
+           
         
 		</script>
         

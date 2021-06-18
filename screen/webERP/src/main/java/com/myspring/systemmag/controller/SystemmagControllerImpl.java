@@ -123,7 +123,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 	}
 	
-	@Override
+	@Override 
 	@RequestMapping(value="/member/updateBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");				
