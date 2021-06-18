@@ -144,23 +144,6 @@
                         <td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly/></td>
                     </tr>
                     </c:forEach>
-                    <%--  <tr>
-                        <td><input type="checkbox" value = "check1" name="content"/></td>
-                        <td><input type="text" id="workOrderNumber" name="ListVO[${fn:length(infoList)}].workOrderNumber" readonly /></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].materialstatus" readonly/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].workPlaceCode" readonly/></td>
-                        <td><input type="date" id="instructionDate" name="ListVO[${fn:length(infoList)}].instructionDate" value="${param.workDate }"/></td>
-                        <td><input type="date" id="dueDate" name="ListVO[${fn:length(infoList)}].dueDate" value="${param.workDate }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].itemName" value="${param.itemName }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].standard" value="${param.standard }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].inventoryUnit" value="${param.inventoryUnit }"/></td>
-                        <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
-                        <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
-                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
-                        <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
-                     </tr> --%>
                     </tbody>
                 </table>
                 </form>
@@ -229,7 +212,7 @@
       
       /* 조회버튼 클릭시 기능 구현 */
       view_button.onclick = function(){
-		  if(startDate>endDate){
+		 if(startDate>endDate){
 			  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
 		  } else{
 			  
