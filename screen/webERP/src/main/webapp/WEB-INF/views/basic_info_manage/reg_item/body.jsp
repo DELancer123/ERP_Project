@@ -120,13 +120,14 @@
 			bottom:0px;
         }
         
-        #reqInput {
+        .reqInput {
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
 </style>
 </head>
 <body>
+<form  method="get" id="regitem">
 <container1 id = contents1>
             <table id="table1">
                 <tr>
@@ -171,7 +172,7 @@
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td>
-                        <input type="text" value='${item.item_Code }' onfocus="searchView(this.value)">
+                        <input type="text" value='${item.item_Code }' ondblclick="searchView(this.value)">
                     </td>
                     <td>
                         <input type="text" value='${item.item_Name }'>
@@ -181,6 +182,14 @@
                     </td>
                 </tbody>
                 </c:forEach>
+                <tr>
+                    <td colspan="3">
+                        <button onclick="searchView(this.value)"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none; 
+                        text-align: center; width:150%">새로등록</button>
+                    </td>
+                </tr>
             </table>
             <div id=bottom1>
                 <table>
@@ -194,25 +203,25 @@
                 <tr>
                     <td align="center">품번</td>
                     <td>
-                        <input type="text" disabled value='${item_Code }'>
+                        <input type="text" name="item_Code" id=item_Code class="reqInput" value='${item_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">품명</td>
                     <td>
-                        <input type="text" disabled value='${item_Name }'>
+                        <input type="text" name="item_Name" id=item_Name class="reqInput" value='${item_Name }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">규격</td>
                     <td>
-                        <input type="text" disabled value='${standard }'>
+                        <input type="text" name="standard" id=standard value='${standard }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">재고단위</td>
                     <td>
-                        <input type="text" id="reqInput" value='${inventory_Unit }'>
+                        <input type="text" name="inventory_Unit" id=inventory_Unit  value='${inventory_Unit }'>
                     </td>
                 </tr>
                 <!-- <tr>
@@ -226,16 +235,16 @@
                 <tr>
                     <td align="center">LOT여부</td>
                     <td>
-                        <select name="" id="reqInput">
+                        <select name="whether_LOT" id="whether_LOT">
                             <option value="0">0.미사용</option>
-                            <option value="1">1.미사용</option>
+                            <option value="1">1.사용</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">SET품목</td>
                     <td>
-                        <select name="" id="reqInput">
+                        <select name="sET_Item" id="sET_Item">
                             <option value="0">0.부</option>
                             <option value="1">1.여</option>
                         </select>
@@ -244,7 +253,7 @@
                 <tr>
                     <td align="center">검사여부</td>
                     <td>
-                        <select name="" id="reqInput">
+                        <select name="inspection_Status" id="inspection_Status">
                             <option value="0">0.무검사</option>
                             <option value="1">1.검사</option>
                         </select>
@@ -253,7 +262,7 @@
                 <tr>
                     <td align="center">사용여부</td>
                     <td>
-                        <select id="reqInput">
+                        <select name="use_Status" id="use_Status">
                             <option value="0.">0.부</option>
                             <option value="1">1.여</option>
                         </select>
@@ -262,65 +271,66 @@
                 <tr>
                     <td align="center">LOT수량</td>
                     <td>
-                        <input type="text" value='${lOT_Quantity }'>
+                        <input type="text" name="lOT_Quantity" id="lOT_Quantity" value='${lOT_Quantity }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">도면번호</td>
                     <td>
-                        <input type="text" value='${drawing_Number }'>
+                        <input type="text" name="drawing_Number" id="drawing_Number" value='${drawing_Number }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">HS CODE</td>
                     <td>
-                        <input type="text" value='${hs_Code }'>
+                        <input type="text" name="hs_Code" id="hs_Code" value='${hs_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">폭</td>
                     <td>
-                        <input type="text"  value='${width }'>
+                        <input type="text" name="width" id="width" value='${width }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">길이</td>
                     <td>
-                        <input type="text"  value='${length } '>
+                        <input type="text" name="length" id="length" value='${length } '>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">높이</td>
                     <td>
-                        <input type="text"  value='${height }'>
+                        <input type="text" name="height" id="height" value='${height }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">원가</td>
                     <td>
-                        <input type="text"  value='${cost }'>
+                        <input type="text" name="cost" id="cost" value='${cost }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">반/완제품</td>
                     <td>
-                        <input type="text" value='${division }'>
+                        <input type="text" name="division" id="division" value='${division }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">비고</td>
                     <td>
-                        <input type="text"  value='${notes }'>
+                        <input type="text" name="notes" id="notes" value='${notes }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">일생산량</td>
                     <td>
-                        <input type="text" disabled value='${daily_production }'>
+                        <input type="text" name="daily_production" id="daily_production" class="reqInput" value='${daily_production }'>
                     </td>
                 </tr>
             </table>
         </container3>
+        </form>
         <script>
         	var search_box1 = document.getElementById('search1');
         	var search_box2 = document.getElementById('search2');
@@ -343,10 +353,25 @@
             search_box3.onblur = function(){
                 document.getElementById("search3").value = ' 규격 검색';
             }
+            
             function searchView(name) {
             	console.log('확인');
              	window.location.href = "${contextPath}/member/regitem.do?submit=1&&item_code=" + name; 
             }
+            
+            function newRow(){
+        		const URLSearch = new URLSearchParams(location.search);
+        		URLSearch.set('submit','1');
+        		const newParam = URLSearch.toString();
+        		var link = location.pathname +'?'+newParam;
+        		var articleNOInput = document.createElement("input");
+        		articleNOInput.setAttribute("type","hidden");
+        		articleNOInput.setAttribute("name","path");
+        		articleNOInput.setAttribute("value", link);
+        		document.getElementById('regitem').appendChild(articleNOInput);
+        		document.getElementById('regitem').action = "${contextPath}/member/additem.do";
+        		document.getElementById('regitem').submit();
+        		}
         </script>
         
 </body>

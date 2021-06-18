@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.dao.SystemmagDAO;
 import com.myspring.systemmag.vo.DepartmentVO;
+import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
+import com.myspring.systemmag.vo.itemVO;
 
 @Service("SystemmagService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -32,7 +34,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
-
 	@Override
 	public List comcom(String com_code) throws DataAccessException {
 		List comList = systemmagDAO.allviewCom(com_code);
@@ -43,7 +44,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 		public int addWor(WorkplaceVO workplaceVO) throws DataAccessException{
 			return systemmagDAO.addWor(workplaceVO);
 	}
-	//사업자등록 조회
+	//사업자등록(조회)
 	@Override
 	public List worView() throws DataAccessException {
 		List worList = null;
@@ -51,13 +52,12 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom= :"+worList);
 		return worList;
 	}
-
 	@Override
 	public List worcom(String wor_code) throws DataAccessException {
 		List worList = systemmagDAO.allviewWor(wor_code);
 		return worList;
 	}
-	//품목등록
+	//품목등록(조회)
 	@Override
 	public List itemView() throws DataAccessException {
 		List itemList = null;
@@ -65,14 +65,17 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom= :"+itemList);
 		return itemList;
 	}
-
 	@Override
 	public List comitem(String item_code) throws DataAccessException {
 		List itemList = systemmagDAO.allviewItem(item_code);
 		return itemList;
 	}
-	//품목군등록
-
+	//품목등록
+		@Override
+		public int addItem(itemVO itemVO) throws DataAccessException{
+			return systemmagDAO.addItem(itemVO);
+	}
+	//품목군등록(조회)
 	@Override
 	public List itemgView() throws DataAccessException {
 		List itemgList = null;
@@ -80,7 +83,12 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom= :");
 		return itemgList;
 	}
-	//사원조회
+	//부서등록
+			@Override
+			public int addItemg(ItemgVO itemgVO) throws DataAccessException{
+				return systemmagDAO.addItemg(itemgVO);
+		}
+	//사원조회(조회)
 	@Override
 	public List employeeView() throws DataAccessException {
 		List employeeList = null;

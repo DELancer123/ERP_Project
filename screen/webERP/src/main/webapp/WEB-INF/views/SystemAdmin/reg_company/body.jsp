@@ -106,7 +106,7 @@
                         text-align: center;"/>
                     </td>
                     <td>
-                        <select id="sortation"
+                        <select id="sortation" onchange="selectBox(this.value);" 
                         style="background-color:rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;">
@@ -117,15 +117,14 @@
                     </td>
                 </tr>
 		</c:forEach>
-		             <tr>
+		            <tr>
                     <td colspan="3">
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%" maxlength="12">새로등록</button>
+                        text-align: center; width:99%">새로등록</button>
                     </td>
-                    
-                </tr>
+                	</tr>
             </table>
         </container>
         <container id="contents2">
@@ -305,9 +304,6 @@
 	}
 
 	function newRow(){
-		document.getElementsByName("company_Code").disabled = true;
-		document.getElementsByName("company_Name").disabled = true;
-		document.getElementsByName("sortation").disabled = true;
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit','1');
 		const newParam = URLSearch.toString();

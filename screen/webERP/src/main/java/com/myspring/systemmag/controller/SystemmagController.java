@@ -9,8 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.DepartmentVO;
+import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
+import com.myspring.systemmag.vo.itemVO;
 //회사등록
 public interface SystemmagController {
 	public ModelAndView addCompany (@ModelAttribute("company") SystemmagVO company,HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -23,8 +25,10 @@ public interface SystemmagController {
 	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//품목등록
+	public ModelAndView addItem (@ModelAttribute("item") itemVO itemVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//품목군등록
+	public ModelAndView addItemg (@ModelAttribute("itemg") ItemgVO itemgVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewItemg(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//사원조회
 	public ModelAndView viewemployee(HttpServletRequest request, HttpServletResponse response) throws Exception;

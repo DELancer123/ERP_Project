@@ -64,7 +64,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("worList12: "+wor_code);
 		return worList;
 	}
-	//품목등록
+	//품목등록(조회)
 	@Override
 	public List viewItem() throws DataAccessException {
 		List<itemVO> itemList = null;
@@ -79,7 +79,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: "+item_code);
 		return itemList;
 	}
-	//품목군등록
+	//품목등록
+		@Override
+		public int addItem(itemVO itemVO) throws DataAccessException{
+			int result = sqlSession.insert("mappers.erp.insertItem",itemVO);
+			return 0;
+		}
+	//품목군등록(조회)
 	@Override
 	public List allviewItemg() throws DataAccessException {
 		List<ItemgVO> itemgList = null;
@@ -87,6 +93,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: ");
 		return itemgList;
 	}
+	//품목군등록
+			@Override
+			public int addItemg(ItemgVO itemgVO) throws DataAccessException{
+				int idx = itemgVO.getListVO().size()-1;
+				int result = sqlSession.insert("mappers.erp.insertItemg",itemgVO.getListVO().get(idx));
+				return 0;
+			}
 	//사원조회
 	@Override
 	public List allviewemployee() throws DataAccessException {

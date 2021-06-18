@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"    
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
   request.setCharacterEncoding("UTF-8");
@@ -91,6 +92,7 @@
 </style>
 </head>
 <body>
+<form method="get" id="regItemg">
 <container1 id = contents1>
             <table id="table1" align="center">
                 
@@ -123,15 +125,44 @@
                     </td>
                     <td>
                         <select name="usable" >
-                        <option value="0">사용</option>
-                        <option value="1">미사용</option>
+                        <option value="0">0.미사용</option>
+                        <option value="1">1.사용</option>
                     </td>
                     <td>
                         <input type=text name="explain" value='${itemg.explanation }' >
                     </td>
                 </tr>
                 </c:forEach>
+                <tbody>
+                 <tr id ="insertTest" align="center" >
+    <td><input type="checkbox" name="content"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Name" /></td>
+    	<td>
+    	<select name="ListVO[${fn:length(itemgView) }].use_Status" />
+    	<option value="0">0.미사용</option>
+    	<option value="1">1.사용</option>
+    	</td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" /></td>
+    </tr>
+                 </tbody>
             </table>
         </container2>
+        </form>
+        <script>
+        function newRow(){
+    		const URLSearch = new URLSearchParams(location.search);
+    		URLSearch.set('submit','1');
+    		const newParam = URLSearch.toString();
+    		var link = location.pathname +'?'+newParam;
+    		var articleNOInput = document.createElement("input");
+    		articleNOInput.setAttribute("type","hidden");
+    		articleNOInput.setAttribute("name","path");
+    		articleNOInput.setAttribute("value", link);
+    		document.getElementById('regItemg').appendChild(articleNOInput);
+    		document.getElementById('regItemg').action = "${contextPath}/member/additemg.do";
+    		document.getElementById('regItemg').submit();
+    		}
+        </script>
 </body>
 </html>

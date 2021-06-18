@@ -133,6 +133,7 @@
                 <c:forEach var="department" items="${departmentView}" >
                
                 <tbody>
+                <tr>
                 <td><input type="checkbox" name="content" /></td>
                     <td align="center">
                         <input type=text name="divCode" style="width: 100px;" value='${department.department_Code }'>
@@ -155,21 +156,21 @@
                     <td align="center">
                         <input type="date" value='${department.usedate }'>
                     </td>
-                    </tbody>
                 </tr>
+                    </tbody>
                 </c:forEach>
                 <tbody>
-                 <tr id ="insertTest" align="center">
+                 <tr id ="insertTest" align="center" >
     <td></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Code" style="width: 100px;"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px;"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px;"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" /></td>
     	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" /></td>
     </tr>
-                  </tr>
+                 </tbody>
             </table>
         </container2>
         </form>

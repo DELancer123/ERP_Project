@@ -6,8 +6,10 @@ import org.springframework.dao.DataAccessException;
 
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.DepartmentVO;
+import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
+import com.myspring.systemmag.vo.itemVO;
 
 public interface SystemmagDAO {
 	//회사등록
@@ -19,9 +21,11 @@ public interface SystemmagDAO {
 	public List viewWor() throws DataAccessException;
 	public List allviewWor(String wor_code) throws DataAccessException;
 	//품목등록
+	public int addItem(itemVO itemVO) throws DataAccessException;
 	public List viewItem() throws DataAccessException;
 	public List allviewItem(String item_code) throws DataAccessException;
 	//품목군등록
+	public int addItemg(ItemgVO itemgVO) throws DataAccessException;
 	public List allviewItemg() throws DataAccessException;
 	//사원조회
 	public List allviewemployee() throws DataAccessException;

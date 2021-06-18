@@ -23,8 +23,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.systemmag.service.SystemmagService;
 import com.myspring.systemmag.vo.DepartmentVO;
+import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
+import com.myspring.systemmag.vo.itemVO;
 
 @Controller("SystemmagController")
 public class SystemmagControllerImpl implements SystemmagController{
@@ -113,7 +115,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 		return mav;
 	}
-		//품목등록
+		//품목등록(조회)
 		@Override
 		@RequestMapping(value="/member/regitem.do" ,method = RequestMethod.GET)
 		public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -138,7 +140,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 			
 			return mav;
 		}
-		//품목군등록
+		//품목등록
+		@Override
+		@RequestMapping(value="/member/additem.do" ,method = RequestMethod.GET)
+		public ModelAndView addItem(@ModelAttribute("item") itemVO itemVO, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			request.setCharacterEncoding("utf-8");
+			String path = request.getParameter("path");
+			path = path.replace("/webERP", "");
+			System.out.println("url" + path);
+			int result = 0;
+			result = systemmagService.addItem(itemVO);
+			ModelAndView mav = new ModelAndView("redirect:"+path);
+			return mav;
+		}
+		//품목군등록(조회)
 		@Override
 		@RequestMapping(value="/member/regitemgroup.do" ,method = RequestMethod.GET)
 		public ModelAndView viewItemg(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -148,6 +164,20 @@ public class SystemmagControllerImpl implements SystemmagController{
 				mav = new ModelAndView(viewName);
 				mav.addObject("itemgView", itemgView);
 				return mav;
+		}
+		//품목군등록
+		@Override
+		@RequestMapping(value="/member/additemg.do" ,method = RequestMethod.GET)
+		public ModelAndView addItemg(@ModelAttribute("itemg") ItemgVO itemgVO, HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			request.setCharacterEncoding("utf-8");
+			String path = request.getParameter("path");
+			path = path.replace("/webERP", "");
+			System.out.println("url" + path);
+			int result = 0;
+			result = systemmagService.addItemg(itemgVO);
+			ModelAndView mav = new ModelAndView("redirect:"+path);
+			return mav;
 		}
 		//사원조회
 		@Override
