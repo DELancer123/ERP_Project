@@ -28,7 +28,7 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
- #contents1{
+ 		#contents1{
             position: absolute;
             left: 15%;
             top: 15%;
@@ -126,21 +126,23 @@ request.setCharacterEncoding("UTF-8");
 <body>
 <container1 id = contents1>
             <table id="table1" align="center">
-                <tr>
-                    <td align="center">거래처코드</td>
-                    <td>
-                        <input type=text name="customerCode"
-                        pattern="[0-9]{4}" maxlength="5"/>
+                <tr align="center">
+                    <td align="center" style="width:80px;">거래처코드</td>
+                    <td style="width:50px;">
+                        <input type=text name="customerCode" style="width:100%;" pattern="[0-9]{4}" maxlength="5"/>
                     </td>
-                    <td align="center">거래처명</td>
-                    <td>
-                        <input type=text name="customerName">
-                    </td>
-                    <td align="center">거래처구분</td>
-                    <td>
+     				<td style="width:8px;">
+     					<div style="text-align:center; width:100%;"><a href="javascript:search1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+     				</td>
+                    <td style="width:80px; text-align:left;">
+                    	<input type=text name="ckcustomerCode" value="" style="width:100%;" disabled/>
+                    </td>	
+                    
+                    
+                    <td align="center" style="width:100px; padding-right:7px;">거래처구분</td>
+                    <td style="width:100px; text-align:left" >
                         <select name="customerType" >
-                            <option value="default">일반/무역/주민</option>
-                            <option value="1">1.일반</option>
+                            <option value="default">1.일반</option>
                             <option value="2">2.무역</option>
                             <option value="3">3.주민</option>
                         </select>
@@ -157,20 +159,28 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">거래처명</td>
                     <td align="center">구분</td>
                 </thead>
-               <c:forEach var="com" items="${comView}" >     
+                    
                 <tbody>
-                    <td><input type="checkbox" name="checkedContent" value='${com.general_Customer_Code}'></td>
-                    <td>
-                        <input type="text" id='textbox1' onfocus = "searchView(this.value)" name="temp" value='${com.general_Customer_Code}'/>
-                    </td>
-                    <td>
-                        <input type="text" name="temp" value='${com.general_Customer_Name}'/>
-                    </td>
-                    <td>
-                        <input type="text" name="temp" value='${com.general_Customer_Division}'/>
-                    </td>
-                </tbody>
+                <c:forEach var="com" items="${comView}" >
+	                
+	                <tr class="repeatedRow">
+	                    <td>
+	                    	<input type="checkbox" name="checkedContent" value="${com.general_Customer_Code}"/>
+	                    </td>                   
+	                    <td>
+	                        <input type="text" onfocus = "searchView(this.value)" value="${com.general_Customer_Code}"/>
+	                    </td>     
+	                    <td>
+	                        <input type="text" value="${com.general_Customer_Name}"/>
+	                    </td>                    
+	                    <td>
+	                        <input type="text" value="${com.general_Customer_Division}"/>
+	                    </td>
+	                </tr>
+	               
                 </c:forEach>
+                </tbody>
+                
             </table>
         </container2>
         <container3 id="contents3">
@@ -293,7 +303,7 @@ request.setCharacterEncoding("UTF-8");
          function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
         	$('#reg_gen_account').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-        	    if(!$(this).val()) {
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
         	    	is_empty = true;      	    	
         	    }      	 
         	});       	 
@@ -306,7 +316,32 @@ request.setCharacterEncoding("UTF-8");
 	    		alert('수정되었습니다'); 
         	}      	
         } 
-           
+         
+      
+        /* $(document).ready(function() {
+            $("#customerCodeSearch").keyup(function() {
+            	var k = $(this).val();
+            	alert(k);
+            	$("#table2 > tbody > tr").hide();
+            	var temp = $("#table2 > tbody > tr > td:nth-child(2):contains('"+k+"')");
+            	alert(temp);
+				console.log(temp);
+				
+                $(temp).parent().show();
+            })
+        })
+        $(document).ready(function() {
+            $("#customerNameSearch").keyup(function() {
+            	var k = $(this).val();
+            	$("#table2 > tbody > tr").hide();
+            	var temp = $("#table2 > tbody > tr > td:nth-child(3):contains('"+k+"')");
+
+                $(temp).parents().show();
+            })
+        })  */
+        
+        
+
         
 		</script>
         
