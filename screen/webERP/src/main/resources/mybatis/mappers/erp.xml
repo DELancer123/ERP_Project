@@ -142,7 +142,8 @@
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps
-			set plandate=#{plandate},due_date=#{due_date},plan_quantity=#{plan_quantity},note=#{note}
+			set planNO=#{planNO}, plandate=#{plandate}, item_Code=#{item_Code}, item_Name=#{item_Name}, standard=#{standard}, inventory_unit=#{inventory_unit},
+			sequence=#{sequence}, expected_date=#{expected_date}, due_date=#{due_date}, plan_quantity=#{plan_quantity}, buyer=#{buyer}, note=#{note}
 			where planNO = #{planNO}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
@@ -211,7 +212,7 @@
 	</select>
 	
 	<!-- 품목단가등록(재원) 파트 -->
- 	<resultMap id="iupView" type="iupVO">
+<!--  	<resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -260,7 +261,7 @@
 		set Item_Name=#{itemName}
 		where Item_Code=#{itemCode}
 		]]>  
-	</update>
+	</update> -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

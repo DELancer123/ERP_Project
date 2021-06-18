@@ -5,7 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 	request.setCharacterEncoding("UTF-8");
-	String sequence = (String)request.getAttribute("sequence");
+	String PlanNO = (String)request.getAttribute("PlanNO");
 %>
 
 <!DOCTYPE html>

@@ -53,8 +53,8 @@ public class MainPlanControllerImpl implements MainPlanController {
 	public ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("planNO");
 		String viewName = getViewName(request);
-		String[] numberary  = number.split(",");
-		mainplanService.delMps(numberary);
+		String[] noary  = number.split(",");
+		mainplanService.delMps(noary);
 		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
 		return mav;
 	}	
