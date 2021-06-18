@@ -20,6 +20,8 @@
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialstatus" column="MATERIALFORWARDINGSTATUS" />
+		<result property="workPlaceCode" column="WORKPLACE_CODE" />
 		<result property="instructionDate" column="InstructionDate" />
 		<result property="dueDate" column="dueDate" />
 		<result property="itemCode" column="Item_Code" />
@@ -30,6 +32,7 @@
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
 		<result property="note" column="note" />
+		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
@@ -97,6 +100,8 @@
 	<delete id="deleteOperationInstruction">
 		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
 	</delete>
+	<!-- 작업지시 확정 CRUD -->
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
@@ -152,6 +157,9 @@
 		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
 		<result property="division" column="division" />
+		<result property="outsourcing_code" column="OUTSOURCING_CODE" />
+		<result property="workplace_code" column="WORKPLACE_CODE" />
+		<result property="cost" column="cost" />
 
 	</resultMap>
 	<resultMap id="popView" type="bomVO">
@@ -162,7 +170,6 @@
 	<resultMap id="outpopView" type="bomVO">
 		<result property="itemNumber" column="outSourcing_code" />
 		<result property="itemName" column="outsourcing_name" />
-		
 	</resultMap>
 	<resultMap id="outpopViewex" type="bomVO">
 		<result property="itemNumber" column="Workplace_Code" />
@@ -181,7 +188,11 @@
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit,division from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
+		<![CDATA[select item_code,item_name,standard,inventory_unit,division,COST from SM_BIM_Ite_Reg where item_code=#{itemNumber}]]>
+	</select>
+	<select id="inputItem" resultMap="bomView"
+		parameterType="String">
+		<![CDATA[select no,item_code,item_name,standard,inventory_unit,ACTUALCOST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList1" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품']]>
@@ -194,8 +205,8 @@
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
-		 insert into CPM_BIM_BOM_REG(NO,PARENT_ITEM_CODE,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,PRECISIONQUANTITY,LOSS,STARTDATE,ENDDATE,DIVISION)
-		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{startDate}, #{endDate}, #{division})
+		 insert into CPM_BIM_BOM_REG(NO,PARENT_ITEM_CODE,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,PRECISIONQUANTITY,LOSS,DIVISION)
+		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{division})
 		]]>  
 	</insert>
 
@@ -206,7 +217,7 @@
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
-		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss}, startDate=#{startDate}, endDate=#{endDate}, division=#{division}
+		set Item_Name=#{itemName}, Standard=#{standard}, Inventory_Unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss}, division=#{division}
 		where  no=#{no}
 		]]>  
 	</update>
@@ -214,9 +225,25 @@
 		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg]]>
 	</select>
 	<select id="outViewex" resultMap="outpopViewex" parameterType="String">
-		<![CDATA[select Workplace_Code,Workplace_Name from sm_bim_out_wor_reg]]>
+		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg]]>
 	</select>
-
+	<select id="outpriceView" resultMap="bomView" parameterType="String">
+		<![CDATA[select * from cpm_bim_bom_reg where outsourcing_code = #{itemNumber}]]>
+	</select>
+	<update id="addoutprice" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate},OUTSOURCING_CODE=#{parent}
+		where  no=#{no}
+		]]>  
+	</update>
+	<update id="udpoutprice" parameterType="bomVO">
+		<![CDATA[
+		update CPM_BIM_BOM_REG
+		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
+		where  no=#{no}
+		]]>  
+	</update>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

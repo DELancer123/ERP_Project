@@ -80,8 +80,6 @@
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <<td>필요수량</td>
-                        <td>시작일자</td>
-                        <td>종료일자</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
@@ -97,8 +95,6 @@
    	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
    	  <td><input type="text" value = '${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }' readonly/></td>
-   	  <td><input type="date" name="ListVO[${status.index}].startDate" value = '${bom.startDate }'/></td>
-   	  <td><input type="date" name="ListVO[${status.index}].endDate" value = '${bom.endDate }'/></td>
     </tr>
     </c:forEach> 
 
@@ -114,8 +110,6 @@
     	<td><input type="text" id="precisionQuantity" name="ListVO[${fn:length(bomView) }].precisionQuantity" /></td>
     	<td><input type="text" id="loss" name="ListVO[${fn:length(bomView) }].loss" /></td>
     	<td><input type="text" readonly id="actualQuantity"/></td>
-    	<td><input type="date" id="startDate" name="ListVO[${fn:length(bomView) }].startDate"/></td>
-    	<td><input type="date" id="endDate" name="ListVO[${fn:length(bomView) }].endDate"/></td>
     </tr>
                 </table>
                  
@@ -178,8 +172,6 @@
   			 document.getElementById("precisionQuantity").disabled = true;
   		     document.getElementById("loss").disabled = true;
   		     document.getElementById("no").disabled = true;
-  		     document.getElementById("startDate").disabled = true;
-  		     document.getElementById("endDate").disabled = true;
   		   var articleNOInput = document.createElement("input");
 		     articleNOInput.setAttribute("type","hidden");
 		     articleNOInput.setAttribute("name","path");
@@ -193,7 +185,6 @@
       function newRow(){
           // dao에서 저장
     	 
-          var row = workOrderTable.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '1');
 		  const newParam = URLSearch.toString();

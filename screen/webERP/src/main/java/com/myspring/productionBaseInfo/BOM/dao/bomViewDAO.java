@@ -24,4 +24,13 @@ public interface bomViewDAO {
 
 	public List searchOutView1(String itemNumber) throws DataAccessException;
 
+	public List getoutprice(String itemNumber) throws DataAccessException;
+
+	public int addoutprice(bomVO bomVO) throws DataAccessException;
+
+	public List inputText(String itemCode)throws DataAccessException;
+
+	public int updoutprice(bomVO bomVO)throws DataAccessException;
+
+
 }
