@@ -112,7 +112,7 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                    	<c:forEach var="info" items="${infoList}" varStatus="status">   
+                    <c:forEach var="info" items="${infoList}" varStatus="status">   
                      <tr id="updateData" align="center">
                      	<td><input type="checkbox" name="content" value="${info.workOrderNumber }" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].workOrderNumber" value="${info.workOrderNumber}" readonly /></td>
