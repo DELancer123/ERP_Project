@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 @Component("OperationRegistVO")
 public class OperationRegistVO {
 	private String workOrderNumber;
+	private String materialstatus;
+	private String workPlaceCode;
 	private Date instructionDate;
 	private Date dueDate;
 	private String itemCode;
@@ -23,6 +25,22 @@ public class OperationRegistVO {
 	private String productionPlanCode;
 	private List<OperationRegistVO> ListVO;
 	
+	public String getMaterialstatus() {
+		return materialstatus;
+	}
+
+	public void setMaterialstatus(String materialstatus) {
+		this.materialstatus = materialstatus;
+	}
+
+	public String getWorkPlaceCode() {
+		return workPlaceCode;
+	}
+
+	public void setWorkPlaceCode(String workPlaceCode) {
+		this.workPlaceCode = workPlaceCode;
+	}
+
 	@Override
 	public String toString() {
 		return Arrays.toString(ListVO.toArray());
