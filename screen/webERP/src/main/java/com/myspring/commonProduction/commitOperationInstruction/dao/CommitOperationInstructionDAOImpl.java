@@ -55,6 +55,21 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 	}
 	
 	@Override
+	public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
+		int result = 0; 
+		int idx = COIVO.getListVO().size()-1;
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updateProductionPlan",COIVO.getListVO().get(i));		
+		System.out.println("DAOresult:"+result);
+		//bomList.add(bomVO);
+		//}
+		}
+		return result;
+	}
+	
+	@Override
 	public void delProductionPlan(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
 			sqlSession.delete("mappers.erp.deleteProductionPlan", obj);	

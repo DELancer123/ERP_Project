@@ -216,7 +216,7 @@
             </div>
                 <!-- 디테일부 종료 -->
             </container2>
-            <!-- 
+            
             <container3 id="contents3">
                 <div id="MDInfo">
                     <table id="MDTable">
@@ -235,7 +235,7 @@
                             <td>비고</td>
                         </thead>
                         <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                        <!-- 
+                        <
                         <tbody>
                             <c:forEach var="comOut" items="${comOutsourcingViewDetail}" varStatus="status" >     
 							   <tr align="center">
@@ -249,7 +249,7 @@
 							   	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${comOut.loss}'/></td>
 							   	  <td><input type="text" value = '${comOut.precisionQuantity+(comOut.precisionQuantity*comOut.loss*0.01)}' readonly/></td>
 							   	  <td><input type="text" value = '${comOut.outsourcingUnitPrice}'/></td>
-							   	  <td><input type="text" value = '${comOut.price}'/></td>
+							   	  <td><input type="text" value = '${comOut.precisionQuantity+(comOut.precisionQuantity*comOut.loss*0.01)*comOut.outsourcingUnitPrice}'/></td>
 							   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${comOut.note}'/>   </td>
 							    </tr>
 							    </c:forEach> 
@@ -271,7 +271,7 @@
 							    </tr>
                         </tbody>
                     </table>
-                    -->
+                    
                     <!-- 출력부 1 -->
                 </div>
                  <!-- 합계 출력부 -->
@@ -310,6 +310,18 @@
       	 
         }
       function confirm(){
+    	  var item = document.getElementsByName("content").length;
+
+    	  for(var i=0; i<item;i++){
+    		  
+    	  if(document.getElementsByName("content")[i].checked){
+    		  alert(document.getElementsByName("status")[i].value);
+    		  document.getElementsByName("status")[i].value='확정';
+    	  	}
+    	  }
+    	  document.getElementById('comOutsourcing').action = "${contextPath}/member/updateComOutsourcing.do";
+			document.getElementById('comOutsourcing').submit();  
+    	  /*
     	  var workOrderTable = document.getElementById('MDDetailTable');
 			 var row = workOrderTable.insertRow(); 
 	          const URLSearch = new URLSearchParams(location.search);
@@ -322,6 +334,7 @@
 	  		     document.getElementById('comOutsourcing').appendChild(linkPath);
 	            document.getElementById('comOutsourcing').action = "${contextPath}/member/updateComOutsourcing.do";
 	  			document.getElementById('comOutsourcing').submit();  
+	  			*/
       }
       view_button.onclick = function(){
 		  if(startDate>endDate){

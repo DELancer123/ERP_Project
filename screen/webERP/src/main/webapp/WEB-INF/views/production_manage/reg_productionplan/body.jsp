@@ -105,22 +105,23 @@
                      	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value="${info.inventoryUnit }" readonly/></td>
                      	<td><input type="text" name="ListVO[${status.index}].dailyProduction" value="${info.dailyProduction }" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index}].sequence" value="${info.sequence }" readonly/></td>
-                        <td><input type="date" name="ListVO[${status.index}].scheduled" value="${info.scheduled }" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index}].quantity" value="${info.quantity }" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index}].note" value="${info.note }" readonly /></td>
+                        <td><input type="date" name="ListVO[${status.index}].scheduled" value="${info.scheduled }" /></td>
+                        <td><input type="text" name="ListVO[${status.index}].quantity" value="${info.quantity }" /></td>
+                        <td><input type="text" name="ListVO[${status.index}].note" value="${info.note }" /></td>
+                        <td><input type="hidden" name="ListVO[${status.index }].productionPlanCode" value="${info.productionPlanCode }" /></td>
                      </tr>
                      </c:forEach>
                      <tr>
                         <td><input type="checkbox" value = "check1" name="content"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].itemName" value="${param.itemName }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].standard" value="${param.standard }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].inventoryUnit" value="${param.inventoryUnit }" readonly /></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].dailyProduction" value="${param.dailyProduction }" readonly /></td>
+                        <td><input type="text" id="itemCode" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
+                        <td><input type="text" id="itemName" name="ListVO[${fn:length(infoList)}].itemName" value="${param.itemName }"/></td>
+                        <td><input type="text" id="standard" name="ListVO[${fn:length(infoList)}].standard" value="${param.standard }"/></td>
+                        <td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(infoList)}].inventoryUnit" value="${param.inventoryUnit }" readonly /></td>
+                        <td><input type="text" id="dailyProduction" name="ListVO[${fn:length(infoList)}].dailyProduction" value="${param.dailyProduction }" readonly /></td>
                         <td><input type="text" disabled /></td>
-                        <td><input type="date" name="ListVO[${fn:length(infoList)}].scheduled" /></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].quantity" /></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].note" /></td>
+                        <td><input type="date" id="scheduled" name="ListVO[${fn:length(infoList)}].scheduled" /></td>
+                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" /></td>
+                        <td><input type="text" id="note" name="ListVO[${fn:length(infoList)}].note" /></td>
                      </tr>
                     </tbody>
                 </table>
@@ -192,15 +193,16 @@
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
   		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
+  		 	document.getElementById("scheduled").disabled = true;
+		    document.getElementById("quantity").disabled = true;
+		    document.getElementById("standard").disabled = true;
+		    document.getElementById("note").disabled = true;
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
   		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+            document.getElementById('dataForm').action = "${contextPath}/member/updateProductionPlan.do";
     		document.getElementById('dataForm').submit();  
         }
         
