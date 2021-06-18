@@ -291,13 +291,10 @@ request.setCharacterEncoding("UTF-8");
         }
         
         
-        function updateRow() {
-        	alert('업데이트 구현중');
-        		
-    	
-        	
+        function updateRow() {       	
         	document.getElementById('reg_gen_account').action = "${contextPath}/member/updateBasicacc.do";
     		document.getElementById('reg_gen_account').submit();
+    		alert('수정되었습니다');
         }
         
                 	

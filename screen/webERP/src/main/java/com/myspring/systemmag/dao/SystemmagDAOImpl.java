@@ -48,7 +48,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	@Override
 	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException {
 		
-		sqlSession.update("mapper.erp.updateBasicList", systemmagVO);
+		sqlSession.update("mappers.erp.updateBasicList", systemmagVO);
 	}
 
 //	@Override
