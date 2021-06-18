@@ -191,8 +191,7 @@
 		<!--popitem-->
 	<resultMap id="itemResult" type="itemviewVO">
 		<result property="item_code" column="item_code" />
-        <result property="item_name" column="item_name" />
-        
+        <result property="item_name" column="item_name" />        
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
 	</resultMap> 
@@ -234,8 +233,57 @@
 		]]>   
 	</select> 
 	
+			<!--popcust-->
+	<resultMap id="custResult" type="estimateVO">
+		<result property="custCode" column="General_Customer_Code" />
+        <result property="custName" column="General_Customer_Name" />
+        <result property="comNum" column="Company_Registration_Number" />
+        <result property="repName" column="Representativs_Name" />	
+	</resultMap> 
+	
+		<select id="selectCustList" resultMap="custResult">
+      <![CDATA[
+         select * from SM_BIM_Gen_Cus_Reg 
+      ]]>
+	</select>
+	
+	<!-- estimate&cor (join) -->
+	<resultMap id="estList" type="estimateVO">
+		<id property="estCode" column="estimateNum" />
+        <result property="estDate" column="estimateDate" />
+        <result property="custCode" column="customerCode" />
+        <result property="tax" column="tax" />
+        <result property="note" column="note" />
+        <collection property="corVO" javaType="CorVO">
+        <id property="custCode" column="customerCode" />
+        <result property="item_code" column="item_code" />
+        <result property="item_name" column="item_name" />        
+        <result property="stand" column="standard" />
+        <result property="unit" column="inventory_unit" />
+        <result property="dueDate" column="dueDate" />
+        <result property="orderQuant" column="ordersQuantity" />
+        <result property="price" column="productPrice" />
+        </collection>
+	</resultMap> 
+	
+		<select id="selectEstCorList" resultMap="estList">
+      <![CDATA[
+        select * from CSM_SM_Est_Reg EST,CSM_SM_COR_Reg COR
+		 where EST.customerCode = COR.customerCode
+        ]]>
+	</select>
+	
+	<select id="submitEstSta" resultMap="estList">
+      <![CDATA[
+        select * from CSM_SM_Est_Reg EST,CSM_SM_COR_Reg COR
+		 where EST.customerCode = COR.customerCode
+		 and COR.customerCode = #{custCode}
+        ]]>
+	</select>
+
+	
 		<!-- <insert id="insertsalesplan" parameterType="itemviewVO">
-		<![CDATA[
+		<![CDATA[ 
 		 insert into SM_BIM_Sal_Pla_Reg
 		 values(#{F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg')}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  

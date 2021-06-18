@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.myspring.salesmanage.estimate.dao.EstimateDAO;
+import com.myspring.salesmanage.estimate.vo.EstimateVO;
 
 @Service("estimateService")
 public class EstimateServiceImpl implements EstimateService{
@@ -16,25 +17,47 @@ public class EstimateServiceImpl implements EstimateService{
 	@Autowired
 	private EstimateDAO estimateDAO;
 	
+	public EstimateVO getOneCust(String custCode) {
+		return estimateDAO.getSubmit(custCode);
+	}
+	
+	@Override
+	public List submitCust(EstimateVO custCode) {
+		List estList = null;
+		estList = estimateDAO.submitEstSta(custCode);
+		return estList;
+	}
+
 	@Override
 	public List listEst() throws DataAccessException {
 		List estList = null;
 		estList = estimateDAO.selectEstList();
 		return estList;
 	}
+	@Override
+	public List listCor() throws DataAccessException {
+		List corList = null;
+		corList = estimateDAO.selectCorList();
+		return corList;
+	}
 
 	@Override
 	public List listCust() throws DataAccessException {
-		List custList = null;
-		custList = estimateDAO.selectAllCustList();
-		return custList;
+		List allCustList = null;
+		allCustList = estimateDAO.selectAllCustList();
+		return allCustList;
 	}
 
 	@Override
-	public List submitCust(String custCode) throws DataAccessException {
+	public List submitEstCust(String custCode) throws DataAccessException {
 		List searchCustList = null;
-		searchCustList = estimateDAO.submitCust(custCode);
+		searchCustList = estimateDAO.submitEstCust(custCode);
 		return searchCustList;
 	}
-
+	@Override
+	public List submitCorCust(String custCode) throws DataAccessException {
+		List searchCorList = null;
+		searchCorList = estimateDAO.submitCorCust(custCode);
+		return searchCorList;
+	}
 }

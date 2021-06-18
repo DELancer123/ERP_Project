@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>판매계획 현황</title>
 <style>
 #contents1{
             position: absolute;

@@ -51,7 +51,6 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String code = (String)request.getParameter("item_code");
-		int sum = 0;
 		
 		if(code == null || code.length() == 0) {
 			mav = new ModelAndView(viewName);

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,33 +40,36 @@ public class EstimateStaControllerImpl implements EstimateStaController{
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);
 		logger.debug("viewName: "+ viewName);
-		List custList = estimateService.listCust();
+		List allCustList = estimateService.listCust();
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("custList", custList);
+		mav.addObject("allCustList", allCustList);
 		return mav;
 	}
+	
 	@Override
 	@RequestMapping(value="/member/quotationstatus.do" ,method = RequestMethod.GET)
-	public ModelAndView submitEst(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView submitEst(HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String code = (String)request.getParameter("custCode");
-		int sum = 0;
 		
 		if(code == null || code.length() == 0) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
 
-			List estList = estimateService.submitCust(code);
-			
+			EstimateVO est = estimateService.getOneCust(code);
+			List estList = estimateService.submitCust(est);
+						
 			mav = new ModelAndView(viewName);
-			mav.addObject("estList", estList);//salesplanVO
-
+			mav.addObject("estList", estList);
+//			mav.addObject("est",est);
 		return mav;
+		
 	}
 	
-
+	
+	
 
 	private String getViewName(HttpServletRequest request)  throws Exception{
 		String contextPath = request.getContextPath();

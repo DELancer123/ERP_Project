@@ -207,9 +207,10 @@
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/transaction_issue/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/quotationstatus" extends="baseLayout">
+   <definition name="/member/quotationstatus" extends="baseLayout3">
       <put-attribute name="title" value="견적현황" />
       <put-attribute name="body" value="/WEB-INF/views/business_status/quotation_status/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/business_status/quotation_status/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/salesplanstat" extends="baseLayout4">

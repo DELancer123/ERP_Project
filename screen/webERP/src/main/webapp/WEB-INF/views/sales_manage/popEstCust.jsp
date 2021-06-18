@@ -73,7 +73,7 @@
       					<td><b>대표자명</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${custList}" >
+ 					<c:forEach var="cust" items="${allCustList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</td>
       						<td>${cust.custName}</td>

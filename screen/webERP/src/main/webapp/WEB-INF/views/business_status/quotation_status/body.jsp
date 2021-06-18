@@ -1,131 +1,77 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" 
+    isELIgnored="false"  %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<style>
-#contents1{
-            position: absolute;
-            left: 15%;
-            top: 15%;
-            width: 85%;
-            height: 10%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-        #contents2{
-            position: absolute;
-            left: 15%;
-            top: 25%;
-            width: 85%;
-            height: 70%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-         .con1_search{
-            padding:0;
-            text-align: center;
-            position: absolute;
-            top: 25%;
-            left: 18%;
-        }
-        #view1{
-            width: 100%;
-            text-align: center;
-            border: 1px solid black;
-        }
-        #total{
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-        }
-        #total input{
-
-            width: 7.7%;
-            text-align: justify;
-            border-style: none;
-            background-color: rgb(223, 223, 223);
-            
-        }
-        #total td{
-            margin: 0;
-            padding: 0;
-        }
-        #view1 td:not(#non){
-            width: 8%;
-        }
-        #view1 td input{
-            width: 100%;
-        }
-        #reqInput {
-            background-color: rgb(255, 255, 149);
-            text-align: center;
-        }
-</style>
-</head>
-<body>
-<container1 id = contents1>
-            <table class="con1_search">
+	<head>
+		<meta charset="UTF-8">
+		<title>Í≤¨Ï†Å ÌòÑÌô©</title>
+		<style>
+			#contents1{
+            	position: absolute;
+            	left: 15%;
+            	top: 15%;
+            	width: 85%;
+            	height: 10%;
+            	border: 1px solid black;
+            	z-index: 1;
+        	}
+        	input{
+        		width: 100%;
+        	}
+        	i{
+        		color: blue;
+        	}
+        	.codeInput{
+        	width: 80px;
+        	}
+        	.nameInput{
+        	width: 150px;
+        	}
+        	
+		</style>
+	</head>
+	<body>
+		<container1 id = contents1>
+       		<table class="con1_search">
                 <tr>
-                    <td>ªÁæ˜¿Â</td>
-                    <td style="width: 50px;"><input type="text" id="reqInput" style="width: 100%;"/></td>
-
-                    <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></td>
-                    <td colspan="5" style="width: 50px;">∫Œº≠</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
+                    <td>ÏÇ¨ÏóÖÏû•</td>
+                    <td class="nameInput"><input type="text" id="reqInput"/></td>
+					<td colspan="3"><input type="text" name="" disabled/></td>                    
+                    <td><i class="fas fa-search" ></td>
+                    
+                    <td colspan="5" style="width: 50px;">Î∂ÄÏÑú</td>
+                    <td class="codeInput"><input type="text"/></td>
                     <td><input type="text" name="" disabled/></td>
-                    <td ><i class="fas fa-search" style="color: blue;"></td>
+                    <td ><i class="fas fa-search"></td>
                     
                 </tr> 
                 <tr>
-                    <td>∞ﬂ¿˚±‚∞£</td>
-                    <td colspan="2" style="width: 80px;"><input type="date" id="reqInput" style="width: 100%;"/></td>
+                    <td>Í≤¨Ï†ÅÍ∏∞Í∞Ñ</td>
+                    <td colspan="2" style="width: 80px;"><input type="date" id="reqInput"/></td>
                     <td>~</td>
-                    <td><input type="date" id="reqInput" style="width: 100%;"/></td>
+                    <td><input type="date" id="reqInput"/></td>
                     <td></td>
-                    <td colspan="5">ªÁø¯</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                    <td><input type="text" name="" disabled/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></td>
+                    <td colspan="5">Í±∞ÎûòÏ≤ò Î™Ö</td>
+                    <td class="codeInput"><input type="text" name="cust" value='${param.custCode}'disabled /></td>
+                    <td class="nameInput"><input type="text" name="cust" value='${param.custName}'disabled /></td>
+                    <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
+
                 </tr>
-            </table>
-        </container1>
-        <container2 id= contents2>
-            <table id="view1">
-                <thead>
-                    <td id="non"><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                    <td>∞ﬂ¿˚π¯»£</td>
-                    <td>∞ﬂ¿˚¿œ¿⁄</td>
-                    <td>∞Ì∞¥∏Ì</td>
-                    <td>No</td>
-                    <td>«∞π¯</td>
-                    <td>«∞∏Ì</td>
-                    <td>¥‹¿ß</td>
-                    <td>∞ﬂ¿˚ºˆ∑Æ</td>
-                    <td>¥‹∞°</td>
-                    <td>∞¯±ﬁ∞°</td>
-                    <td>∫Œ∞°ºº</td>
-                    <td>«’∞Ëæ◊</td>
-                </thead>
-               
-            </table>
-            <div id="total">
-                <td>∞ﬂ¿˚«’∞Ë:</td>
-                <td>&nbsp;<input type="text" disabled/></td>
-                <td>∞ﬂ¿˚ºˆ∑Æ √—«’: </td>
-                <td>&nbsp;<input type="text" disabled/></td>
-                <td>∞¯±ﬁ∞° √—æ◊: </td>
-                <td>&nbsp;<input type="text" disabled/></td>
-                <td>∫Œ∞°ºº √—«’: </td>
-                <td>&nbsp;<input type="text" disabled/></td>
-                <td>«’∞Ëæ◊: </td>
-                <td>&nbsp;<input type="text" disabled/></td>
-            </div>
-        </container2>
-</body>
+        	</table>
+		</container1>
+		         <script>
+          function search1(){
+    	  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popEstCust.do','popEstCust');  
+    }
+    </script>
+	</body>
 </html>
