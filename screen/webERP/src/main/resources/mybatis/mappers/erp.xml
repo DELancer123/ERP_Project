@@ -277,8 +277,8 @@
 	<select id="iupSelectPopList2" resultMap="iupPopView">
 		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
-	<select id="iupChildView" resultMap="iupView">
-		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	<select id="iupChildView" resultMap="iupView" >
+		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
 	</select>
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
