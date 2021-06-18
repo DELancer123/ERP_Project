@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 
 @Component("iupVO")
 public class iupVO {
-	private String no; //PK걸기 위한 넘버코드
-	private String itemNumber; //품번
-	private String itemName; //품명
-	private String standard; //규격
-	private String inventoryUnit; //단위
-	private int purchasePrice; //구매 단가
-	private int salesPrice; //판매 단가, 구매단가 입력시 Null
+	private String no;
+	private String itemNumber;
+	private String itemName;
+	private String standard;
+	private String inventoryUnit;
+	private int purchasePrice;
+	private int salesPrice;
 	private List<iupVO> ListVO;
 	
 	@Override

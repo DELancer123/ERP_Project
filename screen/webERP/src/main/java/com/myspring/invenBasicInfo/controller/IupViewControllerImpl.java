@@ -89,8 +89,7 @@ public class IupViewControllerImpl implements IupViewController {
 	 
 	@Override
 	@RequestMapping(value="/member/addIup.do" ,method = RequestMethod.GET)
-	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");

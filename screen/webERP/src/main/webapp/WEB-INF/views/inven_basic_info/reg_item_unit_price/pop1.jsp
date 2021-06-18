@@ -92,8 +92,8 @@ a {
     	var text_name = document.getElementById("name");
     	
     	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+    		text_code.value = code;
+    		text_name.value = name;
     	}
     	
     	submit_button.onclick = function(){

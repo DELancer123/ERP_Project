@@ -102,7 +102,7 @@ a {
     	}
     	
     	function submitClick(form){
-    		opener.setChildvalue(text_code.value)
+    		opener.setChildValue(text_code.value)
     		window.close();
     	}
     </script>

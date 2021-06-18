@@ -41,13 +41,13 @@ public class IupViewDAOImpl implements IupViewDAO{
 	@Override
 	public List setText(String itemNumber) throws DataAccessException {
 		List<iupVO> textList = null;
-		textList = sqlSession.selectList("mappers.erp.iupSelectitem",itemNumber);
+		textList = sqlSession.selectList("mappers.erp.iupSelectItem",itemNumber);
 		return textList;
 	}
 	@Override
 	public List SearchView(String itemNumber) throws DataAccessException{
 		List<iupVO> searchList = null;
-		searchList = sqlSession.selectList("mappers.erp.iupSearchitem",itemNumber);
+		searchList = sqlSession.selectList("mappers.erp.iupSearchItem",itemNumber);
 		return searchList;
 	}
 
@@ -77,20 +77,18 @@ public class IupViewDAOImpl implements IupViewDAO{
 		System.out.println("idx : "+idx);
 		result = sqlSession.update("mappers.erp.updateIup",iupVO.getListVO().get(i));		
 		System.out.println("DAOresult:"+result);
-		//bomList.add(bomVO);
-		//}
 		}
 		return result;
 	}
 
 	@Override
 	public int selNo() throws DataAccessException {
-		return sqlSession.selectOne("mappers.erp.selectNo");
+		return sqlSession.selectOne("mappers.erp.iupSelectNo");
 	}
 	
 	@Override
 	public List iupChildView() throws DataAccessException {
-		return sqlSession.selectList("mappers.erp.childView");
+		return sqlSession.selectList("mappers.erp.iupChildView");
 	}
 
 }
