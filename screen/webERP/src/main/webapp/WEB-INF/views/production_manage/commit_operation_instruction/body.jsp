@@ -59,29 +59,28 @@
                 <table class="con1_search">
                     <tr>
                         <td>사업장</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                        <td> <i class="fas fa-search" style="color: blue;"></i></td> 
+                        <td style="width: 80px;"><input type="text" value="${param.factoryNumber }" style="width: 100%; background-color: yellow;"/></td>
+                        <td colspan="3"><input type="text" value="${param.factoryName }" disabled style="width: 100%;"/></td>
+                        <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td> 
     
                         <td colspan="5" style="width: 80px;">부서</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
-                        <td><input type="text" name="" disabled/></td>
-                        <td> <i class="fas fa-search" style="color: blue;"></i></td>
+                        <td style="width: 80px;"><input type="text" value="${param.departmentCode }" style="width: 100%; background-color: yellow;"/></td>
+                        <td><input type="text" value="${param.departmentName }" disabled/></td>
+                        <td><a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></td>
                         
                     </tr>
                     
                     <tr>
                         <td>지시기간</td>
-                        <td colspan="2" style="width: 50px;"><input type="date" style="width: 100%;"/></td>
+                        <td colspan="2" style="width: 50px;"><input type="date"  id='searchStartDate' style="width: 100%;"/></td>
                         <td>~</td>
-                        <td ><input type="date" style="width: 100%;"/></td>
+                        <td ><input type="date" id='searchEndDate' style="width: 100%;"/></td>
                         <td></td>
     
                         <td colspan="5" style="width: 80px;">사원</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
-
                         <td>
                             <input type="button" value="자재출고" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
@@ -175,3 +174,32 @@
       
 </body>
 </html>
+<script>
+/* input date의 현재 날짜 기본값 설정*/
+document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+
+/* 검색부 date onChange 함수 설정 */
+		var startDate = new Date().toISOString().substring(0,10);;
+   	var endDate = new Date().toISOString().substring(0,10);;
+   	
+   	$('#searchStartDate').change(function (){
+           var date = $('#searchStartDate').val();
+           startDate = date;
+       });
+   	$('#searchEndDate').change(function (){
+           var date = $('#searchEndDate').val();
+           endDate = date;
+       });
+   	
+     function search1(){  
+   	  openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
+     }
+     function search2(){  
+	      openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
+		}
+     function searchPlan(){
+   	  openWindowBroadPop('http://localhost:8090/webERP/member/productionPlanSearch.do','productionPlanSearch');
+     }
+     
+</script>

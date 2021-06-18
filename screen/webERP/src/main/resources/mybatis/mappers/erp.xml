@@ -68,8 +68,8 @@
 	<update id="updateProductionPlan" parameterType="CommitOperationInstructionVO">
 		<![CDATA[
 		update CPM_PM_PRO_PLA_REG
-		set scheduledDateOfOperation = #{scheduled}, quantity = #{quantity}, note = #{note}
-		where  productionPlanCode = #{productionPlanCode}
+		set SCHEDULEDDATEOFOPERATION = #{scheduled}, quantity = #{quantity}, note = #{note}
+		where productionPlanCode = #{productionPlanCode}
 		]]>  
 	</update>	
 	
@@ -159,6 +159,15 @@
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
 	</resultMap>
+	<resultMap id="outpopView" type="bomVO">
+		<result property="itemNumber" column="outSourcing_code" />
+		<result property="itemName" column="outsourcing_name" />
+		
+	</resultMap>
+	<resultMap id="outpopViewex" type="bomVO">
+		<result property="itemNumber" column="Workplace_Code" />
+		<result property="itemName" column="Workplace_Name" />
+	</resultMap>
 	
 	<select id="selectAllMemberList" resultMap="bomView">
 		<![CDATA[select * from CPM_BIM_BOM_REG]]>
@@ -201,7 +210,12 @@
 		where  no=#{no}
 		]]>  
 	</update>
-	
+	<select id="outView" resultMap="outpopView">
+		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg]]>
+	</select>
+	<select id="outViewex" resultMap="outpopViewex" parameterType="String">
+		<![CDATA[select Workplace_Code,Workplace_Name from sm_bim_out_wor_reg]]>
+	</select>
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">

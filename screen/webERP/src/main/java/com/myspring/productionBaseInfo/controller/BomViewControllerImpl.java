@@ -191,8 +191,26 @@ public class BomViewControllerImpl implements BomViewController {
 	@Override
 	@RequestMapping(value="/member/outprice.do" ,method = RequestMethod.GET)
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		mav = new ModelAndView(viewName);
+		return mav;
 	}
-
+	@RequestMapping(value="/member/outsourcingPop.do" ,method = RequestMethod.GET)
+	public ModelAndView outsourcingPop(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String div = request.getParameter("div");
+		String viewName = getViewName(request);
+		String itemNumber = request.getParameter("itemNumber");
+		mav = new ModelAndView(viewName);
+		if(itemNumber == null || div.equals("1")) {
+			List outView = viewService.SearchOutView();
+			mav.addObject("outView",outView);
+		}
+		else if(div.equals("2")) {
+			List outView = viewService.SearchOutView1(itemNumber);
+			mav.addObject("outView",outView);
+		}
+		return mav;
+	}
 }

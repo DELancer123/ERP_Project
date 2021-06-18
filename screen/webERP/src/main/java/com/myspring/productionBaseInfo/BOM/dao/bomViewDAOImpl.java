@@ -98,6 +98,21 @@ public class bomViewDAOImpl implements bomViewDAO{
 		map.put("1", childCode);
 		return sqlSession.selectList("mappers.erp.childView",map);
 	}
+
+	@Override
+	public List SearchOutView() throws DataAccessException {
+		List<bomVO> outList = null;
+		outList = sqlSession.selectList("mappers.erp.outView");
+		return outList;
+	}
+
+	@Override
+	public List searchOutView1(String itemNumber) throws DataAccessException {
+		List<bomVO> outList1 = null;
+		outList1 = sqlSession.selectList("mappers.erp.outViewex");
+		System.out.println(outList1.size());
+		return outList1;
+	}
 	
 
 

@@ -18,5 +18,6 @@ public interface BomViewService {
 	public int updateBOM(bomVO bomVO) throws DataAccessException;
 	public int inputNo() throws DataAccessException;
 	public List ChildView(String itemNumber,String childCode) throws DataAccessException;
-
+	public List SearchOutView() throws DataAccessException;
+	public List SearchOutView1(String itemNumber) throws DataAccessException;
 }

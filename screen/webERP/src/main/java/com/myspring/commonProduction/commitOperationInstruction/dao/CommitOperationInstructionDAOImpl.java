@@ -57,7 +57,6 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 	@Override
 	public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
 		int result = 0; 
-
 		int idx = COIVO.getListVO().size()-1;
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);

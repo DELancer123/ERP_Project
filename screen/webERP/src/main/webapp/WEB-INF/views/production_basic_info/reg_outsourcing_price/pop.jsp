@@ -8,7 +8,9 @@
   request.setCharacterEncoding("UTF-8");
 %>    
     
-
+<%
+	String inputNo = (String)request.getAttribute("inputNo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +49,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/regbom" >
+<form name="popForm" method="get" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -57,45 +59,52 @@
                 </tr>
                 <tr>
                     <td>검색2</td>
-                    <td><input type="text" id="name" /></td>
+                    <td><input type="text" id="name"/></td>
                 </tr>
             </table>
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
+                <input type="hidden" name="inputNo" value=""/>
+                 
                 <button>버튼3</button>
             </div>
         </div>
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>부서코드</td>
-                    <td>부서명</td>
+                    <td>품목코드</td>
+                    <td>품명</td>
+                    <td>규격</td>
                 </tr>
-    <c:forEach var="department" items="${departmentView}" >     
-		<tr align="center">
-      		<td><a href="javascript:popFunction('${department.departmentCode }','${department.departmentName }')">${department.departmentCode}</a></td>
-      		<td><a href="#">${department.departmentName}</a></td>
-    	</tr> 
+                <c:forEach var="out" items="${outView}" >     
+   <tr align="center">
+      <td><a href="javascript:popFunction('${out.itemNumber }','${out.itemName }')">${out.itemNumber}</a></td>
+      <td><a href="#">${out.itemName}</a></td>
+    </tr>
     </c:forEach> 
             </table>
+            
         </div>
     </div>
     
     <script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
-    		
+   		var submit_button = document.getElementById("submit");
+    	var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
+    			
     	}
-    	submit_button.onclick = function(){
-    		var url = window.opener.document.location.href;
+		submit_button.onclick = function(){
+    		
+    		text_code.setAttribute("itemNumber",text_code.value);
+			text_name.setAttribute("itemName",text_name.value);
+			var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url_arr[0]+'?departmentCode='+text_code.value+'&&departmentName='+text_name.value;
+    		opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>
