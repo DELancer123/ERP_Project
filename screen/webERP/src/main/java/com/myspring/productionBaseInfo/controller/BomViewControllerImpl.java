@@ -253,6 +253,7 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 
 	@Override
+	@RequestMapping(value="/member/updoutprice.do" ,method = RequestMethod.GET)
 	public ModelAndView updoutprice(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -260,7 +261,7 @@ public class BomViewControllerImpl implements BomViewController {
 		path = path.replace("/webERP", "");
 		int result = 0;
 		result = viewService.updoutprice(bomVO);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 }
