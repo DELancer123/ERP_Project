@@ -20,4 +20,8 @@ public interface bomViewDAO {
 
 	public List childView(String itemNumber,String childCode) throws DataAccessException;
 
+	public List SearchOutView() throws DataAccessException;
+
+	public List searchOutView1(String itemNumber) throws DataAccessException;
+
 }

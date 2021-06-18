@@ -159,6 +159,15 @@
 		<result property="itemName" column="item_name" />
 		<result property="standard" column="standard" />
 	</resultMap>
+	<resultMap id="outpopView" type="bomVO">
+		<result property="itemNumber" column="outSourcing_code" />
+		<result property="itemName" column="outsourcing_name" />
+		
+	</resultMap>
+	<resultMap id="outpopView1" type="bomVO">
+		<result property="itemNumber" column="Workplace_Code" />
+		<result property="itemName" column="Workplace_Name" />
+	</resultMap>
 	
 	<select id="selectAllMemberList" resultMap="bomView">
 		<![CDATA[select * from CPM_BIM_BOM_REG]]>
@@ -201,7 +210,12 @@
 		where  no=#{no}
 		]]>  
 	</update>
-	
+	<select id="outView" resultMap="outpopView">
+		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg]]>
+	</select>
+	<select id="outView1" resultMap="outpopView1" parameterType="String">
+		<![CDATA[select Workplace_Code,Workplace_Name from SM_BIM_Out_Wor_Reg where outsourcing_Code = #{itemNumber}]]>
+	</select>
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
