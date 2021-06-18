@@ -120,8 +120,9 @@ public class bomVO {
 	public List<bomVO> getListVO() {
 		return ListVO;
 	}
+	
 	public void setListVO(List<bomVO> listVO) {
-		ListVO = new ArrayList();
+		ListVO = listVO;
 	}
 	public String getOutsourcing_code() {
 		return outsourcing_code;

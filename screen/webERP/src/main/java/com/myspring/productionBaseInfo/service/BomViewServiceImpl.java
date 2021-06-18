@@ -102,4 +102,23 @@ public class BomViewServiceImpl implements BomViewService{
 		return outpriceView;
 	}
 
+	@Override
+	public int addoutprice(bomVO bomVO) throws DataAccessException {
+		return bomDAO.addoutprice(bomVO);
+	}
+
+	@Override
+	public List inputText(String itemCode) throws DataAccessException {
+		List searchList = null;
+		searchList = bomDAO.inputText(itemCode);
+		return searchList;
+	}
+
+	@Override
+	public int updoutprice(bomVO bomVO) throws DataAccessException {
+		int updList = 0;
+		updList = bomDAO.updoutprice(bomVO);
+		return updList;
+	}
+
 }

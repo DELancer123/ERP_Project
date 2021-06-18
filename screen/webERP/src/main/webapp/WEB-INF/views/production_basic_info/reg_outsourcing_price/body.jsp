@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"    
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
   request.setCharacterEncoding("UTF-8");
@@ -11,7 +12,8 @@
  	<c:set var="itemName" value="${set.itemName }"/>
  	<c:set var="standard" value="${set.standard }"/>
  	<c:set var="unit" value="${set.unit }"/>
- 	<c:set var="actual" value="${set.cost }"/>
+ 	<c:set var="actual" value="${set.actualCost }"/>
+ 	<c:set var="no" value="${set.no }"/>
  </c:forEach>
 <!DOCTYPE html>
 <html>
@@ -62,12 +64,12 @@
 </style>
 </head>
 <body>
+            <form id="searchForm" method="get" commandName = "ListVO">
  <container1 id = contents1>
-            <form id="searchForm">
                 <table class="con1_search">
                     <tr>
                         <td>외주처</td>
-                        <td style="width: 80px;"><input type="text" value='${param.itemNumber }' id="outcode"style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" name="ListVO[${fn:length(outpriceView) }].parent" value='${param.itemNumber }' id="outcode"style="width: 100%; background-color: yellow;"/></td>
                         <td> <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td> 
                         <td colspan="2"><input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/></td>
     
@@ -97,7 +99,7 @@
                         </td>
                     </tr>
                 </table>
-            </form>
+            
         </container1>
         <container2 id= contents2>
             <div id="workOrderInfo">
@@ -110,32 +112,43 @@
                         <td>단위</td>
                         <td>원가</td>
                         <td>외주단가</td>
+                        <td>시작일</td>
+                        <td>종료일</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                    <c:forEach var="out" items='${outpriceView }'>
+                    <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" value='${out.itemNumber }'/></td>
-                        <td><input type="text" value='${out.itemName }' ondblclick="search3()"/></td>
-                        <td><input type="text" value='${out.standard }'/></td>
-                        <td><input type="text" value='${out.unit }'/></td>
-                        <td><input type="text" value='${out.actualCost }'/></td>
-                        <td><input type="text" value='${out.outSourcingUnitPrice }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].itemNumber" value='${out.itemNumber }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].itemName" value='${out.itemName }' ondblclick="search3()"/></td>
+                        <td><input type="text" name="ListVO[${status.index}].standard" value='${out.standard }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].unit" value='${out.unit }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].actualCost" value='${out.actualCost }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value='${out.outSourcingUnitPrice }'/></td>
+                        <td><input type="date" name="ListVO[${status.index}].startDate" value='${out.startDate }'/></td>
+                        <td><input type="date" name="ListVO[${status.index}].endDate" value='${out.endDate }'/></td>
+                        <input type="hidden" name="ListVO[${status.index }].no" value='${out.no }'/>
                     </tbody>
                     </c:forEach>
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" value='${itemNumber} '/></td>
-                        <td><input type="text" ondblclick="search3()" value='${itemName }'/></td>
-                        <td><input type="text" value='${standard }' /></td>
-                        <td><input type="text" value='${unit }'/></td>
-                        <td><input type="text" value='${actual }'/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text" id="itemNumber" name="ListVO[${fn:length(outpriceView) }].itemNumber" value='${itemNumber} '/></td>
+                        <td><input type="text" id="itemName" name="ListVO[${fn:length(outpriceView) }].itemName" ondblclick="search3()" value='${itemName }'/></td>
+                        <td><input type="text" id="standard" name="ListVO[${fn:length(outpriceView) }].standard" value='${standard }' /></td>
+                        <td><input type="text" id="unit" name="ListVO[${fn:length(outpriceView) }].unit" value='${unit }'/></td>
+                        <td><input type="text" id="actual" name="ListVO[${fn:length(outpriceView) }].actualCost" value='${actual }'/></td>
+                        <td><input type="text" id="price" name="ListVO[${fn:length(outpriceView) }].outSourcingUnitPrice"/></td>
+                        <td><input type="date" id="start" name="ListVO[${fn:length(outpriceView) }].startDate"/></td>
+                        <td><input type="date" id="end" name="ListVO[${fn:length(outpriceView) }].endDate"/></td>
+                        <input type="hidden" id="no" name="ListVO[${fn:length(outpriceView) }].no" value='${no }'/>
                     </tbody>
                 </table>
             </div>
+            </form>
         </container2>
         <script>
+        var save_button = document.getElementById('save');
+        var update_button = document.getElementById('update');
       function openWindowPop(url, name){
           var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
           window.open(url, name, options);
@@ -149,7 +162,7 @@
     	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=2&&itemNumber='+outcode.value,'codehelper1');
       }
 	  function search3(){
-		  openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+		  openWindowPop('http://localhost:8090/webERP/member/outpricehelper.do','codehelper2');
 	  }
 		function setChildValue(name){
     	  
@@ -166,10 +179,42 @@
         }
         
     }
-		
-		function newRow(){
-			
+		save_button.onclick = function(){
+			const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+			 var link = location.pathname +'?'+newParam;
+	  			var articleNOInput = document.createElement("input");
+	  		     articleNOInput.setAttribute("type","hidden");
+	  		     articleNOInput.setAttribute("name","path");
+	  		     articleNOInput.setAttribute("value", link);
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/addoutprice.do";
+	  			document.getElementById('searchForm').submit();  
+		}
+		update_button.onclick = function(){
+			document.getElementById("itemNumber").disabled = true;
+ 		     document.getElementById("itemName").disabled = true;
+ 		     document.getElementById("standard").disabled = true;
+ 		     document.getElementById("unit").disabled = true;
+ 		     document.getElementById("actual").disabled = true;
+ 		     document.getElementById("price").disabled = true;
+ 		     document.getElementById("start").disabled = true;
+ 		     document.getElementById("end").disabled = true;
+ 		     document.getElementById("no").disabled = true;
+ 		    const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+			 var link = location.pathname +'?'+newParam;
+	  			var articleNOInput = document.createElement("input");
+	  		     articleNOInput.setAttribute("type","hidden");
+	  		     articleNOInput.setAttribute("name","path");
+	  		     articleNOInput.setAttribute("value", link);
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/updoutprice.do";
+	  			document.getElementById('searchForm').submit();  
 		}
       </script>
+      
 </body>
 </html>

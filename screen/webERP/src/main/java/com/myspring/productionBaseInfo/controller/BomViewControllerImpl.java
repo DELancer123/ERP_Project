@@ -206,7 +206,7 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		else if(submit.equals("2")) {
 			List outpriceView = viewService.getoutprice(itemNumber);
-			List outpriceText = viewService.setText(itemCode);
+			List outpriceText = viewService.inputText(itemCode);
 			mav.addObject("outpriceView",outpriceView);
 			mav.addObject("setText",outpriceText);
 		}
@@ -229,7 +229,38 @@ public class BomViewControllerImpl implements BomViewController {
 			
 			mav.addObject("outView",outView);
 		}
-		
+
+		return mav;
+	}
+	@RequestMapping(value="/member/outpricehelper.do" ,method = RequestMethod.GET)
+	public ModelAndView outpriceHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List bomList = viewService.bomView();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("bomlist",bomList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/member/addoutprice.do" ,method = RequestMethod.GET)
+	public ModelAndView addoutprice(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = viewService.addoutprice(bomVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+
+	@Override
+	public ModelAndView updoutprice(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = viewService.updoutprice(bomVO);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 	}
 }

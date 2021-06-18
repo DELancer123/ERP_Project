@@ -71,10 +71,8 @@ public class bomViewDAOImpl implements bomViewDAO{
 	public int updBOM(bomVO bomVO) throws DataAccessException {
 		int result = 0; 
 
-		int idx = bomVO.getListVO().size()-1;
+		int idx = bomVO.getListVO().size();
 		for(int i = 0; i<idx;i++) {
-			System.out.println("i"+i);
-		System.out.println("idx : "+idx);
 		result = sqlSession.update("mappers.erp.updateBOM",bomVO.getListVO().get(i));		
 		}
 		return result;
@@ -112,6 +110,32 @@ public class bomViewDAOImpl implements bomViewDAO{
 		List<bomVO> outpriceView = null;
 		outpriceView = sqlSession.selectList("mappers.erp.outpriceView",itemNumber);
 		return outpriceView;
+	}
+
+	@Override
+	public int addoutprice(bomVO bomVO) throws DataAccessException {
+		int result = 0;
+		int idx = bomVO.getListVO().size()-1;
+			result = sqlSession.update("mappers.erp.addoutprice",bomVO.getListVO().get(idx));	
+		
+		return 0;
+	}
+
+	@Override
+	public List inputText(String itemCode) throws DataAccessException {
+		List<bomVO> textList = null;
+		textList = sqlSession.selectList("mappers.erp.inputItem",itemCode);
+		return textList;
+	}
+
+	@Override
+	public int updoutprice(bomVO bomVO) throws DataAccessException {
+		int result = 0; 
+		int idx = bomVO.getListVO().size();
+		for(int i = 0; i<idx;i++) {
+		result = sqlSession.update("mappers.erp.udpoutprice",bomVO.getListVO().get(i));		
+		}
+		return result;
 	}
 	
 
