@@ -32,14 +32,18 @@ public class ComOutsourcingDAOImpl implements ComOutsourcingDAO {
 	@Override
 	public int updateComOutsourcing(ComOutsourcingVO comOutsourcingVO) throws DataAccessException {
 		int result = 0; 
-
+		//String str = "W021060000"; 
 		int idx = comOutsourcingVO.getListVO().size()-1;
-//		for(int i = 0; i<idx;i++) {
-//			System.out.println("i"+i);
-//		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateComOutsourcing",comOutsourcingVO.getListVO().get(idx));		
-		System.out.println("DAOresult:"+result);
-//		}
+		for(int i = 0; i<idx;i++) {
+			
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		
+			//if(str.concat(String.valueOf(i))==comOutsourcingVO.getListVO().get(i).getWorkOrderNumber()) {
+				result = sqlSession.update("mappers.erp.updateComOutsourcing",comOutsourcingVO.getListVO().get(i));		
+				System.out.println("DAOresult:"+result);
+			//}
+		}
 		return result;
 	}
 }
