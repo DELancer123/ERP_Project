@@ -119,13 +119,13 @@
 				</c:forEach>
                 	<tr id="insertIup" align="center">
                 		<td></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView) }].no" id="no" value='${inputNo }' readonly style="width:100%"></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].itemNumber1" id="itemNumber1" value='${itemNumber1 }' ondblclick="search2()" readonly/></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].itemName1" id="itemName1" value='${itemName1 }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].standard1" id="standard1" value='${standard1 }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${fn:length(iupView1) }].inventoryUnit1" id="inventoryUnit1" value='${inventoryUnit1 }' readonly/></td>
-                    	<td><input type="text" id="purchasePrice"/></td>
-                    	<td><input type="text" id="salesPrice"/></td>                                                        
+                    	<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%"></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemName }' ondblclick="search2()" /></td>
+                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(iupView) }].itemName" value='${itemName }' /></td>
+                    	<td><input type="text" id="standard" name="ListVO[${fn:length(iupView) }].standard" value='${standard }' /></td>
+                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(iupView) }].inventoryUnit" value='${inventoryUnit }' /></td>
+                    	<td><input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }'/></td>
+                    	<td><input type="text" id="salesPrice" name="ListVO[${fn:length(iupView) }].salesPrice" value='${salesPrice }'/></td>                                                        
                 	</tr>
             	</table>
 			</div>
@@ -141,11 +141,6 @@
 		var purchasePrice = document.getElementById("purchasePrice");
 		var salesPrice = document.getElementById("salesPrice");
 		
-        var itemNumber1 = document.getElementById("itemCode1");
-        var itemName1 = document.getElementById("itemName1");
-        var standard1 = document.getElementById("standard1");
-      	var inventoryUnit1 = document.getElementById("inventoryUnit1");
-
 		var view_button = document.getElementById("view_button");
 		var save_button = document.getElementById("save");
 		var update_button = document.getElementById("update");
@@ -182,6 +177,11 @@
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','2');
 			const newParam = URLSearch.toString();
+			/*
+			document.getElementById("no").disabled = true;
+			document.getElementById("purchasePrice").disabled = true;
+			document.getElementById("salesPrice").disabled = true;
+			*/
 			if(URLSearch.get('itemCode') == null){
 				window.location.href = location.pathname + '?' + newParam + '&itemCode=' + name;
 			}

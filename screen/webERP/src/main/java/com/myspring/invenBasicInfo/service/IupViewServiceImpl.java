@@ -56,7 +56,6 @@ public class IupViewServiceImpl implements IupViewService{
 	@Override
 	public List itemSet() throws DataAccessException {
 		List itemSet = null;
-		/* itemSet = iupDAO.itemSet(); */
 		return null;
 	}
 
