@@ -24,6 +24,6 @@ import java.util.List;
   public void delProductionPlan(String[] numberAry) throws DataAccessException;
   public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
   public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
-  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate)	throws DataAccessException, ParseException;  
+  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate, String number) throws DataAccessException, ParseException;  
   }
  

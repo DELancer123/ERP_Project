@@ -100,9 +100,9 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
 //  작업지시 확정 등록부
   @Override 
-  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
+  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate, String number) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
-	  infolist = ORdao.selectAllCommitOperationInfo(startDate,endDate); 
+	  infolist = ORdao.selectAllCommitOperationInfo(startDate,endDate,number); 
 	  return infolist; 
 	  }
   }

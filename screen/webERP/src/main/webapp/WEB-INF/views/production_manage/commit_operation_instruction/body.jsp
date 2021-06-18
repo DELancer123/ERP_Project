@@ -216,9 +216,20 @@
 			  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
 		  } else{
 			  
+		var item = document.getElementsByName("content").length;
+	    var no = "";
+	    var ary = [];
+	    for(var i=0; i<item;i++){
+	    	if(document.getElementsByName("content")[i].checked==true){
+	      		no = document.getElementsByName("content")[i].value;
+	      		ary.push(no);
+	      	  }
+	     }
+	      
     	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('startDate', startDate);
 		  URLSearch.set('endDate', endDate);
+		  URLSearch.set('searchNumber', ary);
 		  const newParam = URLSearch.toString();
 
 		  window.open(location.pathname + '?' + newParam, '_self');

@@ -192,9 +192,10 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   	  public ModelAndView listCommitOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
   		  String startDate = request.getParameter("startDate");
   		  String endDate = request.getParameter("endDate");
+  		  String number = request.getParameter("searchNumber");
   		  String viewName = (String)request.getAttribute("viewName");
   		  logger.debug("debug �젅諛� : viewName = " + viewName); 
-  		  List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
+  		  List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate, number); 
   		  ModelAndView mav = new ModelAndView(viewName); 
   		  mav.addObject("infoList", infoList); 
   		  return mav; 
