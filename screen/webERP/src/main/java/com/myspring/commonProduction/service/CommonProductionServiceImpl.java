@@ -46,6 +46,11 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	}
   
   @Override
+ 	public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
+ 		return COIdao.updProductionPlan(COIVO);
+ 	}
+  
+  @Override
  	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
  		return COIdao.addProductionPlan(COIVO);
  	}

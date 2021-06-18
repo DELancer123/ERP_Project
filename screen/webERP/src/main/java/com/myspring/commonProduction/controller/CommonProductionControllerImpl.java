@@ -71,6 +71,19 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			}
 	  
 	  	@Override
+	  	@RequestMapping(value="/member/updateProductionPlan.do" ,method = RequestMethod.GET)
+	  	public ModelAndView updProductionPlan(@ModelAttribute("info") CommitOperationInstructionVO COIVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		  		request.setCharacterEncoding("utf-8");
+		  		String path = request.getParameter("path");
+				path = path.replace("/webERP", "");
+		  		int result = 0;
+		  		result = productionService.updProductionPlan(COIVO);
+		  		System.out.println("result "+result);
+		  		ModelAndView mav = new ModelAndView("redirect:"+path);
+		  		return mav;
+	  		}
+	  	
+	  	@Override
 		@RequestMapping(value="/member/addProductionPlan.do" ,method = RequestMethod.GET)
 		public ModelAndView addProductionPlan(@ModelAttribute("info") CommitOperationInstructionVO COIVO, HttpServletRequest request,
 				HttpServletResponse response) throws Exception {

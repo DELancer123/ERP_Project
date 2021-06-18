@@ -12,5 +12,6 @@ public interface CommitOperationInstructionDAO {
 	public List itemCodeViewPop() throws DataAccessException;
 	public void delProductionPlan(String[] numberAry) throws DataAccessException;
 	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
+	public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
 
 }
