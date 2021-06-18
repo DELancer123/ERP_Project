@@ -27,13 +27,13 @@ public class IupViewServiceImpl implements IupViewService{
 	}
 
 	@Override
-	public List itemView1() throws DataAccessException {
+	public List popView1() throws DataAccessException {
 		List popList = null;
 		popList = iupDAO.viewPop1();
 		return popList;
 	}
 	@Override
-	public List itemView2() throws DataAccessException {
+	public List popView2() throws DataAccessException {
 		List popList = null;
 		popList = iupDAO.viewPop2();
 		return popList;

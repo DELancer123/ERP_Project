@@ -8,8 +8,8 @@ import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 public interface IupViewService {
 	public List iupView() throws DataAccessException;
-	public List itemView1() throws DataAccessException;
-	public List itemView2() throws DataAccessException;
+	public List popView1() throws DataAccessException;
+	public List popView2() throws DataAccessException;
 	public List setText(String itemNumber)throws DataAccessException;
 	public List SearchView(String itemNumber) throws DataAccessException;
 	public List itemSet() throws DataAccessException;

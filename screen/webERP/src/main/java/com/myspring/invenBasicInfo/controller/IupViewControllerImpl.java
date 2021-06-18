@@ -71,7 +71,7 @@ public class IupViewControllerImpl implements IupViewController {
 	@RequestMapping(value="/member/iupcodehelper1.do" ,method = RequestMethod.GET)
 	public ModelAndView iupCodeHelper1(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List itemView = iupViewService.itemView1();
+		List itemView = iupViewService.popView1();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -81,7 +81,7 @@ public class IupViewControllerImpl implements IupViewController {
 	public ModelAndView iupCodeHelper2(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		String itemNumber = (String)request.getParameter("itemCode");
-		List itemView = iupViewService.itemView2();
+		List itemView = iupViewService.popView2();
 		ModelAndView mav = new ModelAndView(viewName); 
 		mav.addObject("itemView", itemView); 
 		return mav;
