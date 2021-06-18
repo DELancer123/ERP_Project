@@ -65,6 +65,14 @@
 		]]>  
 	</insert>
 	
+	<update id="updateProductionPlan" parameterType="CommitOperationInstructionVO">
+		<![CDATA[
+		update CPM_PM_PRO_PLA_REG
+		set scheduledDateOfOperation = #{scheduled}, quantity = #{quantity}, note = #{note}
+		where  productionPlanCode = #{productionPlanCode}
+		]]>  
+	</update>	
+	
 	<delete id="deleteProductionPlan">
 		delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}
 	</delete>
@@ -177,7 +185,7 @@
 	</select>
 	<insert id="insertBOM" parameterType="bomVO">
 		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
+		 insert into CPM_BIM_BOM_REG(NO,PARENT_ITEM_CODE,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,PRECISIONQUANTITY,LOSS,STARTDATE,ENDDATE,DIVISION)
 		 values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{startDate}, #{endDate}, #{division})
 		]]>  
 	</insert>

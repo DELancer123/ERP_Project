@@ -105,7 +105,7 @@
                      	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value="${info.inventoryUnit }" readonly/></td>
                      	<td><input type="text" name="ListVO[${status.index}].dailyProduction" value="${info.dailyProduction }" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index}].sequence" value="${info.sequence }" readonly/></td>
-                        <td><input type="date" name="ListVO[${status.index}].scheduled" value="${info.scheduled }" readonly/></td>
+                        <td><input type="date" name="ListVO[${status.index}].scheduled" value="${info.scheduled }" /></td>
                         <td><input type="text" name="ListVO[${status.index}].quantity" value="${info.quantity }" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index}].note" value="${info.note }" readonly /></td>
                      </tr>
@@ -192,15 +192,17 @@
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
   		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
+  		 	document.getElementById("itemCode").disabled = true;
+		    document.getElementById("itemName").disabled = true;
+		    document.getElementById("standard").disabled = true;
+		    document.getElementById("inventoryUnit").disabled = true;
+		    document.getElementById("sequence").disabled = true;
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
   		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+            document.getElementById('dataForm').action = "${contextPath}/member/updateProductionPlan.do";
     		document.getElementById('dataForm').submit();  
         }
         
