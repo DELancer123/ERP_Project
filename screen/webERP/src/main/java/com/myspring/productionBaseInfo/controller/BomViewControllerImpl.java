@@ -188,4 +188,11 @@ public class BomViewControllerImpl implements BomViewController {
 		return mav;
 	}
 
+	@Override
+	@RequestMapping(value="/member/outprice.do" ,method = RequestMethod.GET)
+	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
