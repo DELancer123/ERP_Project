@@ -24,4 +24,6 @@ public interface bomViewDAO {
 
 	public List searchOutView1(String itemNumber) throws DataAccessException;
 
+	public List getoutprice(String itemNumber) throws DataAccessException;
+
 }

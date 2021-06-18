@@ -28,6 +28,7 @@ public class bomVO {
 	private String division;
 	private String outsourcing_code;
 	private String workplace_code;
+	private String cost;
 	private List<bomVO> ListVO;
 	
 	@Override
@@ -133,6 +134,12 @@ public class bomVO {
 	}
 	public void setWorkplace_code(String workplace_code) {
 		this.workplace_code = workplace_code;
+	}
+	public String getCost() {
+		return cost;
+	}
+	public void setCost(String cost) {
+		this.cost = cost;
 	}
 	
 }

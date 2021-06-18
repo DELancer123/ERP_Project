@@ -95,4 +95,11 @@ public class BomViewServiceImpl implements BomViewService{
 		return outView;
 	}
 
+	@Override
+	public List getoutprice(String itemNumber) throws DataAccessException {
+		List outpriceView = null;
+		outpriceView = bomDAO.getoutprice(itemNumber);
+		return outpriceView;
+	}
+
 }
