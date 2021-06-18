@@ -17,21 +17,25 @@ public class EstimateServiceImpl implements EstimateService{
 	@Autowired
 	private EstimateDAO estimateDAO;
 	
-	public EstimateVO getOneCust(String custCode) {
-		return estimateDAO.getSubmit(custCode);
+
+	@Override
+	public List listCust() throws DataAccessException {
+		List allCustList = null;
+		allCustList = estimateDAO.selectAllCustList();
+		return allCustList;
 	}
 	
 	@Override
-	public List submitCust(EstimateVO custCode) {
-		List estList = null;
-		estList = estimateDAO.submitEstSta(custCode);
-		return estList;
-	}
-
-	@Override
 	public List listEst() throws DataAccessException {
 		List estList = null;
-		estList = estimateDAO.selectEstList();
+//		estList = estimateDAO.selectEstList();
+		return estList;
+	}
+	
+	@Override
+	public List submitCust(String custCode) {
+		List estList = null;
+		estList = estimateDAO.submitEstSta(custCode);
 		return estList;
 	}
 	@Override
@@ -41,12 +45,7 @@ public class EstimateServiceImpl implements EstimateService{
 		return corList;
 	}
 
-	@Override
-	public List listCust() throws DataAccessException {
-		List allCustList = null;
-		allCustList = estimateDAO.selectAllCustList();
-		return allCustList;
-	}
+
 
 	@Override
 	public List submitEstCust(String custCode) throws DataAccessException {
@@ -60,4 +59,26 @@ public class EstimateServiceImpl implements EstimateService{
 		searchCorList = estimateDAO.submitCorCust(custCode);
 		return searchCorList;
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public EstimateVO getOneCust(String custCode) {
+//	return estimateDAO.getSubmit(custCode);
+//}
+//
+//@Override
+//public List submitCust(EstimateVO custCode) {
+//	List estList = null;
+//	estList = estimateDAO.submitEstSta(custCode);
+//	return estList;
+//}
 }

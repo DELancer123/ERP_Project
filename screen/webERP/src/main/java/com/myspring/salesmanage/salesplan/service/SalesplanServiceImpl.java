@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.salesplan.sta.service;
+package com.myspring.salesmanage.salesplan.service;
 
 import java.sql.Date;
 import java.util.List;
@@ -14,9 +14,9 @@ import com.myspring.salesmanage.salesplan.dao.SalesplanDAO;
 
 
 
-@Service("salesplanStaService")
+@Service("salesplanService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class SalesplanStaServiceImpl implements SalesplanStaService{
+public class SalesplanServiceImpl implements SalesplanService{
 
 	@Autowired
 	private SalesplanDAO salesplanDAO;

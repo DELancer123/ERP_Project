@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.myspring.salesmanage.itemview.vo.ItemViewVO;
-import com.myspring.salesmanage.salesplan.sta.service.SalesplanStaService;
+import com.myspring.salesmanage.salesplan.service.SalesplanService;
 
 @Controller("salesplanStaController")
 public class SalesplanStaControllerImpl implements SalesplanStaController {
@@ -29,7 +29,7 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 	private static final Logger logger = LoggerFactory.getLogger(SalesplanStaControllerImpl.class);
 	
 	@Autowired(required=false)
-	private SalesplanStaService salesplanService;
+	private SalesplanService salesplanService;
 	@Autowired
 	private ItemViewVO itemviewVO;
 	

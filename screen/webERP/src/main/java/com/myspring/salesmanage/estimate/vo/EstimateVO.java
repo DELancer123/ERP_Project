@@ -34,8 +34,8 @@ public class EstimateVO {
 	
 //	@Override
 //	public String toStringCorVO() {
-//		return Arrays.toString(CorVO.toArray());
-//	}
+//		return Arrays.toString(corVO.toArray());
+//	}if문으로 수정해서 사용해보기
 	
 	public EstimateVO() {
 		super();
@@ -120,5 +120,8 @@ public class EstimateVO {
 	public void setCorVO(CorVO corVO) {
 		this.corVO = corVO;
 	}
+
+
+
 
 }

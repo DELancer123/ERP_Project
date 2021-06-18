@@ -100,13 +100,15 @@
                     <td><input type="text" value="${cust.estDate}" readonly/></td>
                     <td><input type="text" value="${cust.custCode}" readonly/></td>
                     <td><input type="text" value="${cust.tax}" readonly/></td>
-                    <td><input type="text" value="${cust.note}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.item_code}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.item_name}" readonly/></td>
-                    <td><input type="text" value="${cust.corVO.stand}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.unit}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.orderQuant}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.price}" readonly/></td>                    
+                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
+                    <td><input type="text" value="${(cust.corVO.orderQuant*cust.corVO.price)*01}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
+                 
 	                </tbody>
                    </c:forEach>
                

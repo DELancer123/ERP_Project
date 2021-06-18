@@ -33,17 +33,33 @@ public class EstimateDAOImpl extends SqlSessionDaoSupport implements EstimateDAO
 		return estCorList;
 	}
 	@Override
-	public EstimateVO getSubmit(String custCode) throws DataAccessException{
-		return getSqlSession().selectOne("mappers.erp.submitEstSta",custCode);
-	}
-
-	@Override
-	public List submitEstSta(EstimateVO custCode) throws DataAccessException {
+	public List submitEstSta(String custCode) throws DataAccessException {
 		List<EstimateVO> estList = null;
 		estList = getSqlSession().selectList("mappers.erp.submitEstSta",custCode);
 		return estList;
-	}
+	}	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@Override
+//	public EstimateVO getSubmit(String custCode) throws DataAccessException{
+//		return getSqlSession().selectOne("mappers.erp.submitEstSta",custCode);
+//	}
+
+//	@Override
+//	public List submitEstSta(EstimateVO custCode) throws DataAccessException {
+//		List<EstimateVO> estList = null;
+//		estList = getSqlSession().selectList("mappers.erp.submitEstSta",custCode);
+//		return estList;
+//	}
+
 	
 	
 	

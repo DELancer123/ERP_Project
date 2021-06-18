@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.myspring.salesmanage.estimate.vo.EstimateVO;
 
 public interface EstimateService {
 
-	public EstimateVO getOneCust(String custCode); //tester List
-	public List submitCust(EstimateVO custCode);
+//	public EstimateVO getOneCust(String custCode); //tester List
+//	public List submitCust(EstimateVO custCode);
+	public List submitCust(String custCode);
 	//estimate
 	public List listEst() throws DataAccessException;
 	public List listCor() throws DataAccessException;

@@ -12,8 +12,9 @@ public interface EstimateDAO {
 	
 	//all->list
 	public List selectEstCorList() throws DataAccessException;
-	public EstimateVO getSubmit(String custCode) throws DataAccessException;
-	public List submitEstSta(EstimateVO custCode) throws DataAccessException;
+	public List submitEstSta(String custCode) throws DataAccessException;
+//	public EstimateVO getSubmit(String custCode) throws DataAccessException;
+//	public List submitEstSta(EstimateVO custCode) throws DataAccessException;
 
 
 	

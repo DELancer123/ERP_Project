@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.salesmanage.itemview.vo.ItemViewVO;
-import com.myspring.salesmanage.salesplan.sta.service.SalesplanStaService;
+import com.myspring.salesmanage.salesplan.service.SalesplanService;
 
 @Controller("salesplanRegController")
 //@EnavleAspectJAutoProxy
@@ -27,7 +27,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SalesplanRegControllerImpl.class);
 	@Autowired
-	private SalesplanStaService salesplanService;
+	private SalesplanService salesplanService;
 	@Autowired
 	private ItemViewVO itemviewVO;
 	

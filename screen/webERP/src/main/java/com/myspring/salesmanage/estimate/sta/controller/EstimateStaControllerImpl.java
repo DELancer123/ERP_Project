@@ -58,12 +58,10 @@ public class EstimateStaControllerImpl implements EstimateStaController{
 			return mav;
 		}
 
-			EstimateVO est = estimateService.getOneCust(code);
-			List estList = estimateService.submitCust(est);
+			List estList = estimateService.submitCust(code);
 						
 			mav = new ModelAndView(viewName);
 			mav.addObject("estList", estList);
-//			mav.addObject("est",est);
 		return mav;
 		
 	}
