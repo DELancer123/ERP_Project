@@ -425,7 +425,7 @@
       <put-attribute name="body" value="/WEB-INF/views/production_manage/reg_operation_instruction/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
-	<definition name="/member/comoperins" extends="baseLayout">
+	<definition name="/member/comoperins" extends="baseLayout4">
       <put-attribute name="title" value="작업지시확정" />
       <put-attribute name="body" value="/WEB-INF/views/production_manage/commit_operation_instruction/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />

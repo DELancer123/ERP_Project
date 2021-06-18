@@ -20,6 +20,8 @@
 	</resultMap>
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialstatus" column="MATERIALFORWARDINGSTATUS" />
+		<result property="workPlaceCode" column="WORKPLACE_CODE" />
 		<result property="instructionDate" column="InstructionDate" />
 		<result property="dueDate" column="dueDate" />
 		<result property="itemCode" column="Item_Code" />
@@ -30,6 +32,7 @@
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
 		<result property="note" column="note" />
+		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
@@ -97,6 +100,8 @@
 	<delete id="deleteOperationInstruction">
 		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
 	</delete>
+	<!-- 작업지시 확정 CRUD -->
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />

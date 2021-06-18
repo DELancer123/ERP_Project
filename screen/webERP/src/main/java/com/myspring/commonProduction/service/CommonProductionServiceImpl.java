@@ -97,5 +97,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
 		ORdao.delOperationInstruction(numberAry);
 	}
+  
+//  작업지시 확정 등록부
+  @Override 
+  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
+	  List<OperationRegistVO> infolist = null; 
+	  infolist = ORdao.selectAllCommitOperationInfo(startDate,endDate); 
+	  return infolist; 
+	  }
   }
  

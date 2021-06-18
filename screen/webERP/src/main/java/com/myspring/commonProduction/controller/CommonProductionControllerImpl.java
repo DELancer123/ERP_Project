@@ -194,11 +194,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   		  String endDate = request.getParameter("endDate");
   		  String viewName = (String)request.getAttribute("viewName");
   		  logger.debug("debug �젅諛� : viewName = " + viewName); 
-  		  List infoList = productionService.selectAllOperationInfo(startDate, endDate); 
+  		  List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
   		  ModelAndView mav = new ModelAndView(viewName); 
   		  mav.addObject("infoList", infoList); 
   		  return mav; 
   	  	}
+  	 
+  	 
   
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 

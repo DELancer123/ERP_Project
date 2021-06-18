@@ -3,10 +3,16 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>Insert title here</title>
 <style>
 #contents1{
@@ -122,8 +128,8 @@
                     <tbody>
                     <c:forEach var="info" items="${infoList}" varStatus="status"> 
                     <tr id="updateData" align="center">
-                        <td><input type="checkbox" value="${info.workOrderNubmer }" name="content"/></td>
-                        <td><input type="text" name="ListVO[${status.index }].workOrderNumber" value="${info.workOrderNumber}" readonly /></td>
+                        <td><input type="checkbox" value="${info.workOrderNumber }" name="content"/></td>
+                        <td><input type="text" name="ListVO[${status.index }].workOrderNubmer" value="${info.workOrderNumber}" readonly /></td>
                         <td><input type="text" name="ListVO[${status.index }].materialstatus" value="${info.materialstatus}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].workPlaceCode" value="${info.workPlaceCode}" readonly/></td>
                         <td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly/></td>
@@ -138,11 +144,11 @@
                         <td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly/></td>
                     </tr>
                     </c:forEach>
-                     <tr>
+                    <%--  <tr>
                         <td><input type="checkbox" value = "check1" name="content"/></td>
                         <td><input type="text" id="workOrderNumber" name="ListVO[${fn:length(infoList)}].workOrderNumber" readonly /></td>
-                        <td><input type="text" name="ListVO[${status.index }].materialstatus" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index }].workPlaceCode" readonly/></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].materialstatus" readonly/></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].workPlaceCode" readonly/></td>
                         <td><input type="date" id="instructionDate" name="ListVO[${fn:length(infoList)}].instructionDate" value="${param.workDate }"/></td>
                         <td><input type="date" id="dueDate" name="ListVO[${fn:length(infoList)}].dueDate" value="${param.workDate }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
@@ -154,7 +160,7 @@
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
                         <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
-                     </tr>
+                     </tr> --%>
                     </tbody>
                 </table>
                 </form>
@@ -201,92 +207,88 @@
 </body>
 </html>
 <script>
-/* input date의 현재 날짜 기본값 설정*/
-document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
-document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
-
-/* 검색부 date onChange 함수 설정 */
-	var startDate = new Date().toISOString().substring(0,10);;
-   	var endDate = new Date().toISOString().substring(0,10);;
-   	
-   	$('#searchStartDate').change(function (){
-           var date = $('#searchStartDate').val();
-           startDate = date;
-       });
-   	$('#searchEndDate').change(function (){
-           var date = $('#searchEndDate').val();
-           endDate = date;
-       });
-   	
-     function search1(){  
-   	  openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
-     }
-     function search2(){  
-	  openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
-	 }
-    
-     /* 조회버튼 클릭시 기능 구현 */
-     view_button.onclick = function(){
+ /* 검색부 date onChange 함수 설정 */
+ 		var startDate = null;
+    	var endDate = null;
+    	
+    	$('#searchStartDate').change(function (){
+            var date = $('#searchStartDate').val();
+            startDate = date;
+        });
+    	$('#searchEndDate').change(function (){
+            var date = $('#searchEndDate').val();
+            endDate = date;
+        });
+    	
+      function search1(){  
+    	  openWindowPop('http://localhost:8090/webERP/member/factorySearch.do','factorySearch');  	  
+      }
+      function search2(){  
+	      openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
+		}
+      
+      /* 조회버튼 클릭시 기능 구현 */
+      view_button.onclick = function(){
 		  if(startDate>endDate){
 			  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
 		  } else{
 			  
-   	  const URLSearch = new URLSearchParams(location.search);
+    	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('startDate', startDate);
 		  URLSearch.set('endDate', endDate);
 		  const newParam = URLSearch.toString();
 
 		  window.open(location.pathname + '?' + newParam, '_self');
 		  }
- 	}
-     
-     /* 저장 버튼 기능 구현 */
-     
-       function newRow(){
-         // dao에서 저장
-   	 
-       	var row = workOrderTable.insertRow(); 
-         	const URLSearch = new URLSearchParams(location.search);
+  	}
+      
+      /* 저장 버튼 기능 구현 */
+      
+        function newRow(){
+          // dao에서 저장
+    	 
+        	var row = workOrderTable.insertRow(); 
+          	const URLSearch = new URLSearchParams(location.search);
 		 	const newParam = URLSearch.toString();
 			var link = location.pathname +'?'+newParam;
- 			var linkPath = document.createElement("input");
- 		    linkPath.setAttribute("type","hidden");
- 		    linkPath.setAttribute("name","path");
- 		    linkPath.setAttribute("value", link);
- 		    document.getElementById('dataForm').appendChild(linkPath);
-           document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
- 			document.getElementById('dataForm').submit();  
+  			var linkPath = document.createElement("input");
+  		    linkPath.setAttribute("type","hidden");
+  		    linkPath.setAttribute("name","path");
+  		    linkPath.setAttribute("value", link);
+  		    document.getElementById('dataForm').appendChild(linkPath);
+            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
+  			document.getElementById('dataForm').submit();  
 		
-     }
-     
-       function updateRow() {
-       	var row = workOrderTable.insertRow(); 
-       	const URLSearch = new URLSearchParams(location.search);
-       	const newParam = URLSearch.toString();
- 		 	var link = location.pathname +'?'+newParam;
- 		 	document.getElementById("dueDate").disabled = true;
+      }
+      
+        function updateRow() {
+        	var row = workOrderTable.insertRow(); 
+        	const URLSearch = new URLSearchParams(location.search);
+        	const newParam = URLSearch.toString();
+  		 	var link = location.pathname +'?'+newParam;
+  		 	document.getElementById("dueDate").disabled = true;
 		    document.getElementById("indicated").disabled = true;
 		    document.getElementById("instructionDate").disabled = true;
-   		var linkPath = document.createElement("input");
-   		linkPath.setAttribute("type","hidden");
-   		linkPath.setAttribute("name","path");
-   		linkPath.setAttribute("value", link);
- 		    document.getElementById('dataForm').appendChild(linkPath);
-           document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
-   		document.getElementById('dataForm').submit();  
-       }
-       
-     
-       function deleteData() {
-     	  var item = document.getElementsByName("content").length;
-     	  var no = "";
-     	  var ary = [];
-     	  for(var i=0; i<item;i++){
-     		  if(document.getElementsByName("content")[i].checked==true){
-     			  no = document.getElementsByName("content")[i].value;
-     			  ary.push(no);
-     		  }
-     			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
-     	  }
-       }
-</script>
+    		var linkPath = document.createElement("input");
+    		linkPath.setAttribute("type","hidden");
+    		linkPath.setAttribute("name","path");
+    		linkPath.setAttribute("value", link);
+  		    document.getElementById('dataForm').appendChild(linkPath);
+            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+    		document.getElementById('dataForm').submit();  
+        }
+        
+      
+        function deleteData() {
+      	  var item = document.getElementsByName("content").length;
+      	  var no = "";
+      	  var ary = [];
+      	  for(var i=0; i<item;i++){
+      		  if(document.getElementsByName("content")[i].checked==true){
+      			  no = document.getElementsByName("content")[i].value;
+      			  ary.push(no);
+      		  }
+      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      	  }
+        }
+      </script>
