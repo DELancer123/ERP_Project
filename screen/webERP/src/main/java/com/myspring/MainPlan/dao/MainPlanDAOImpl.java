@@ -31,8 +31,8 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	}
 	
 	@Override
-	public void delMps(String[] noary) throws DataAccessException{
-		for(String obj: noary) {
+	public void delMps(String[] numberary) throws DataAccessException{
+		for(String obj: numberary) {
 			sqlSession.delete("mappers.erp.deleteMps", Integer.parseInt(obj));		
 		}
 	}
@@ -52,7 +52,7 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i).getPlanNO());
 		}
 		return result;
 	}

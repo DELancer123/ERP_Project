@@ -101,16 +101,17 @@
 
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
+		<result property="planNO" column="planNO" />
 		<result property="plandate" column="plandate" />
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="unit" column="unit" />
+		<result property="inventory_unit" column="inventory_unit" />
 		<result property="sequence" column="sequence" />
 		<result property="expected_date" column="expected_date" />
 		<result property="due_date" column="due_date" />
 		<result property="plan_quantity" column="plan_quantity" />
-		<result property="customer_Name" column="customer_Name" />
+		<result property="buyer" column="buyer" />
 		<result property="note" column="note" />
 	</resultMap>
 	<resultMap type="mpsosVO" id="MpsOSResult">
@@ -118,11 +119,11 @@
 		<result column="sequence" property="sequence" />
 		<result column="orderdate" property="orderdate" />
 		<result column="okeydate" property="okeydate" />
-		<result column="customer_Name" property="customer_Name" />
+		<result column="buyer" property="buyer" />
 		<result column="item_Code" property="item_Code" />
 		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
-		<result column="unit" property="unit" />
+		<result column="inventory_unit" property="inventory_unit" />
 		<result column="order_quantity" property="order_quantity" />
 		<result column="apply_quantity" property="apply_quantity" />
 		<result column="order_Balance" property="order_Balance" />
@@ -134,19 +135,20 @@
 		<![CDATA[SELECT * from pmm_pm_mps]]>
 	</select>
  	<delete id="deleteMps">
-		delete from pmm_pm_mps where sequence = #{sequence}
+		delete from pmm_pm_mps where planNO = #{planNO}
 	</delete>
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps
-			set plandate=#{plandate},plan_quantity=#{plan_quantity}
-			where sequence = #{sequence}]]>  
+			set plandate=#{plandate},due_date=#{due_date},plan_quantity=#{plan_quantity},note=#{note}
+			where planNO = #{planNO}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
 		<![CDATA[insert into pmm_pm_mps
-			value(#{sequence},#{plandate},#{due_date},#{plan_quantity},#{note});
+			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},F_GET_NEXT_SEQ('pmm_pm_mps')
+			,#{expected_date},#{due_date},#{plan_quantity},#{buyer},#{note})
 		]]>
 	</insert>
 	<!-- billing파트 -->
@@ -166,7 +168,7 @@
 		<result column="inventory_qty" property="inventory_qty" />
 		<result column="claim_unit" property="claim_unit" />
 		<result column="claim_quantity" property="claim_quantity" />
-		<result column="customer_Name" property="customer_Name" />		
+		<result column="buyer" property="buyer" />		
 	</resultMap>
 	<resultMap id="mrpamountResult" type="requiredamountVO">
 		<result property="need_date" column="need_date" />
@@ -174,7 +176,7 @@
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="unit" column="unit" />
+		<result property="inventory_unit" column="inventory_unit" />
 		<result property="expected_quantity" column="expected_quantity" />
 	</resultMap>
 
@@ -187,7 +189,7 @@
 	</select>
 	
 	<select id="selectAllMrpaMount" resultMap="mrpamountResult">
-		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,unit,expected_quantity
+		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,inventory_unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
 	
@@ -201,7 +203,7 @@
 		<result property="sequence" column="sequence" />
 		<result property="expected_order" column="expected_order" />
 		<result property="expected_quantity" column="expected_quantity" />
-		<result property="unit" column="unit" />
+		<result property="inventory_unit" column="inventory_unit" />
 	</resultMap>
 
 	<select id="selectAllMrpList" resultMap="mrpResult">
@@ -209,7 +211,7 @@
 	</select>
 	
 	<!-- 품목단가등록(재원) 파트 -->
-	<resultMap id="iupView" type="iupVO">
+ 	<resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -243,7 +245,7 @@
 		 values(#{no}, #{itemCode}, #{ItemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
 		]]>  
 	</insert>
-	<!-- 
+	
 		<update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri
@@ -251,7 +253,7 @@
 		where  item_code=#{itemNumber}
 		]]>  
 	</update>
-	-->
+	
 	<update id="updateIup" parameterType="iupVO">
 		<![CDATA[
 		update PM_SM_Ite_Pri

@@ -51,9 +51,9 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@Override
 	@RequestMapping(value = "/member/delMps.do", method = RequestMethod.GET)
 	public ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("sequence");
+		String number = (String) request.getParameter("planNO");
 		String viewName = getViewName(request);
-		String[] numberary = number.split(",");
+		String[] numberary  = number.split(",");
 		mainplanService.delMps(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
 		return mav;

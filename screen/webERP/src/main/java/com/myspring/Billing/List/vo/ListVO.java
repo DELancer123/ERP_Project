@@ -15,14 +15,14 @@ public class ListVO {
 	private int inventory_qty;
 	private String claim_unit;
 	private int claim_quantity;
-	private String customer_Name;
+	private String buyer;
 
 
 	public ListVO() {
 	}
 
 	public ListVO(int sequence, String item_Code, String item_Name, String standard, Date requestdate,
-			String inventory_unit, int inventory_qty, String claim_unit, int claim_quantity, String customer_Name) {
+			String inventory_unit, int inventory_qty, String claim_unit, int claim_quantity, String buyer) {
 		this.sequence = sequence;
 		this.item_Code = item_Code;
 		this.item_Name = item_Name;
@@ -32,7 +32,7 @@ public class ListVO {
 		this.inventory_qty = inventory_qty;
 		this.claim_unit = claim_unit;
 		this.claim_quantity=claim_quantity;
-		this.customer_Name=customer_Name;
+		this.buyer=buyer;
 	}
 
 	public int getSequence() {return sequence;}
@@ -62,6 +62,6 @@ public class ListVO {
 	public int getClaim_quantity() {return claim_quantity;}
 	public void setClaim_quantity(int claim_quantity) {this.claim_quantity = claim_quantity;}
 
-	public String getCustomer_Name() {return customer_Name;}
-	public void setCustomer_Name(String customer_Name) {this.customer_Name = customer_Name;}
+	public String getBuyer() {return buyer;}
+	public void setBuyer(String buyer) {this.buyer = buyer;}
 }

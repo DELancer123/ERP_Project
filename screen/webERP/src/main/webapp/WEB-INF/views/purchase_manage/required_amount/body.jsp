@@ -131,7 +131,7 @@ request.setCharacterEncoding("UTF-8");
 				<td>${mrp.sequence}</td>
 				<td>${mrp.expected_order}</td>
 				<td>${mrp.expected_quantity}</td>
-				<td>${mrp.unit}</td>
+				<td>${mrp.inventory_unit}</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -53,13 +53,6 @@
 	border: 1px solid black;
 }
 
-#contents1 div button {
-	width: 80px;
-	position: absolute;
-	right: 20px;
-	top: 10px;
-}
-
 #reqInput {
 	background-color: rgb(255, 255, 149);
 	text-align: center;
@@ -104,11 +97,7 @@
 		</tr>
 	</table>
 	<div id="button">
-		<input type="button" onclick="func_Popup();" value="주문적용">
-		<input type="button" value="삭제" onClick="deleteData();">
-		<input type="button" value="등록" onClick="InsertRow();">
-		<input type="button" value="수정" onClick="updateRow();">
-		<input type="button" value="조회" id="view_button">
+		<input type="button" onclick="func_Popup();" value="주문조회">
 	</div>
 	</container1>
 <container2 id=contents2>
@@ -118,6 +107,7 @@
 		<thead align="center" style="background-color: gray">
 		 <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
 			<td>순서</td>
+			<td>계획번호</td>
 			<td>계획일</td>
 			<td>품번</td>
 			<td>품명</td>
@@ -132,42 +122,41 @@
 		<tbody>
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
-			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
-  		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${mainplan.sequence}' readonly style="width:100%"/></td> 		
- 				<td><input type="text" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
+			<td><input type="checkbox" name="content" value="${mainplan.planNO}"/></td>
+  		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
+ 				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
- 				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" readonly/></td>				
- 				<td><input type="text" name="ListVO[${status.index}].unit" value = '${mainplan.unit}' style="width:100%" readonly/></td>				
- 				<td><input type="text" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
- 				<td><input type="text" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}'/></td>				
- 				<td><input type="text" name="ListVO[${status.index}].customer_Name" value = '${mainplan.customer_Name}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
 		</c:forEach>		
 		<tr id ="insertTest" align="center">
-    	<td><input type="checkbox" value = "checkPoint" name="content"/></td>
-    	<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' readonly style="width:100%"/></td>
-    	<td><input type="text" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${param.plandate}'/></td>
-    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${param.item_Code}' "readonly/></td>
-    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${param.item_Name}' readonly/></td>
-    	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${param.standard}' style="width:100%"/></td>
-    	<td><input type="text" id="unit" name="ListVO[${fn:length(mainplanList) }].unit" value='${param.unit}' style="width:100%"/></td>
-    	<td><input type="text" id="expected_Date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${param.expected_date}'readonly/></td>
-    	<td><input type="text" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${param.due_date}'/></td>
-    	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${param.plan_quantity}'/></td>
-    	<td><input type="text" id="customer_Name" name="ListVO[${fn:length(mainplanList) }].customer_Name" value='${param.customer_Name}'readonly/></td>
-    	<td><input type="text" id="note" name="ListVO[${fn:length(mainplanList) }].note"value='${param.note}'/></td>
+		<td></td>    	
+    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}'  style="width:100%"/></td>
+    	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
+    	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
+    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${item_Code}' readonly/></td>
+    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${item_Name}' readonly/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${standard}' style="width:100%"/></td>
+    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${inventory_unit}' style="width:100%" /></td>
+    	<td><input type="date" id="expected_date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${expected_date}'readonly/></td>
+    	<td><input type="date" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${due_date}'/></td>
+    	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${plan_quantity}' /></td>
+    	<td><input type="text" id="buyer" name="ListVO[${fn:length(mainplanList) }].buyer" value='${buyer}'readonly/></td>
+    	<td><input type="text" id="note" name="ListVO[${fn:length(mainplanList) }].note"value='${note}'/></td>
     </tr>
 	</tbody>
 	</table>
-	</form>
 	</div>
 </container2>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script type="text/javascript">
 var windowObj;
 
@@ -179,16 +168,16 @@ function func_Popup(){
 	
 	var txt_code = document.getelementById("item_Code");
 	var txt_Name = document.getelementById("item_Name");
-	var txt_CusName = document.getelementById("customer_Name");
+	var txt_buyer = document.getelementById("buyer");
 	var txt_expDate = document.getelementById("expected_date");
 	
 	document.getElementById('item_Code').value= windowObj.document.getElementById("item_Code").value;  
 	document.getElementById('item_Name').value= windowObj.document.getElementById("item_Name").value;  
-	document.getElementById('customer_Name').value= windowObj.document.getElementById("customer_Name").value; 
-	document.getElementById('expected_date').value= windowObj.document.getElementById("expected_date").value; 
+	document.getElementById('buyer').value= windowObj.document.getElementById("buyer").value; 
+	document.getElementById('expected_date').value= windowObj.document.getElementById("expected_Date").value; 
 }
 
-function deleteData() {
+function deleteRow() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";
 	  var ary = [];
@@ -203,8 +192,6 @@ function deleteData() {
 }
 
 function InsertRow(){
-	var MPSTable = document.getElementById('MPSTable');
-	var row = MPSTable.insertRow();
 		const URLSearch = new URLSearchParams(location.search);
 		const newParam = URLSearch.toString();
 		var link = location.pathname + '?' + newParam;
@@ -212,70 +199,43 @@ function InsertRow(){
 		Input.setAttribute("type", "hidden");
 		Input.setAttribute("name", "path");
 		Input.setAttribute("value", link);
-		document.getElementById('MainPlan').appendChild(linkPath);
-		document.getElementById('MainPlan').action = "${contextPath}/member/mainplan.do";
+		document.getElementById('MainPlan').appendChild(Input);
+		document.getElementById('MainPlan').action = "${contextPath}/member/addMPS.do";
 		document.getElementById('MainPlan').submit();
 
 	}
 
 
 	function updateRow() {
-
-		var MPSTable = document.getElementById('MPSTable');
-		var row = MPSTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			const newParam = URLSearch.toString();
 			var link = location.pathname + '?' + newParam;
 		document.getElementById("sequence").disabled = true;
+		document.getElementById("planNO").disabled = true;		
 		document.getElementById("plandate").disabled = true;
 		document.getElementById("item_Code").disabled = true;
 		document.getElementById("item_Name").disabled = true;
 		document.getElementById("standard").disabled = true;
-		document.getElementById("unit").disabled = true;
+		document.getElementById("inventory_unit").disabled = true;
 		document.getElementById("expected_date").disabled = true;
 		document.getElementById("due_date").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
-		document.getElementById("customer_Name").disabled = true;
+		document.getElementById("buyer").disabled = true;
 		document.getElementById("note").disabled = true;
 		var Input = document.createElement("input");
 		Input.setAttribute("type", "hidden");
 		Input.setAttribute("name", "path");
 		Input.setAttribute("value", link);
-		document.getElementById('mainplan').appendChild(Input);
-		document.getElementById('mainplan').action = "${contextPath}/member/updateMPS.do";
-		document.getElementById('mainplan').submit();
+		document.getElementById('MainPlan').appendChild(Input);
+		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
+		document.getElementById('MainPlan').submit();
 	}
 
-
-	var view_button = document.getElementById("view_button");
+document.getElementById('StartDate').value = new Date().toISOString().substring(0, 10);
+document.getElementById('EndDate').value = new Date().toISOString().substring(0, 10);
 	
-	document.getElementById('searchStartDate').value = new Date().toISOString()
-			.substring(0, 10);
-	document.getElementById('searchEndDate').value = new Date().toISOString()
-			.substring(0, 10);
-	
-	$('#searchStartDate').change(function() {
-		var date = $('#searchStartDate').val();
-		startDate = date;
-	});
-	$('#searchEndDate').change(function() {
-		var date = $('#searchEndDate').val();
-		endDate = date;
 
-	});
-	view_button.onclick = function() {
-		if (startDate > endDate) {
-			alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
-		} else {
-
-			const URLSearch = new URLSearchParams(location.search);
-			URLSearch.set('startDate', startDate);
-			URLSearch.set('endDate', endDate);
-			const newParam = URLSearch.toString();
-
-			window.open(location.pathname + '?' + newParam, '_self');
-		}
-	}
 </script>
+</form>
 </body>
 </html>
