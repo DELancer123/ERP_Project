@@ -70,7 +70,7 @@
 		         <script>
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popEstCust.do','popEstCust');  
+        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/popEstCust.do','popEstCust');  
     }
     </script>
 	</body>

@@ -49,14 +49,14 @@
             top: 25%;
             left: 15%;
         }
-        #view1{
+       /* #view1{
             width: 150%;
             text-align: center;
             border: 1px solid black;
         }
         #view1 th{
             width: 30px;
-        }
+        }*/
         #contents2 div{
             position: absolute;
             bottom: 0;
@@ -65,11 +65,6 @@
         #contents2 div input{
             width: 11%;
         }
-        #reqInput {
-            background-color: rgb(255, 255, 149);
-            text-align: center;
-        }
-
 </style>
 </head>
 <body>
@@ -106,15 +101,14 @@
                     <td><input type="text" value="${item.newquantity}" readonly/></td>
                     <td><input type="text" value="${item.newprice}" readonly/></td>
                     <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
-
-		</tbody>
+            </tbody>
 		</c:forEach>
 	</table>
 	</container2>
 	   <script>
           function search12345(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemBySalesReg.do','popItemBySalesReg');  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/pop/popItemBySalesReg.do','popItemBySalesReg');  
     }
     </script>
 </body>

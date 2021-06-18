@@ -34,7 +34,7 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 	private ItemViewVO itemviewVO;
 	
 	@Override
-	@RequestMapping(value="/sales_manage/popItem.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/business_status/pop/popItem.do" ,method = RequestMethod.GET)
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);

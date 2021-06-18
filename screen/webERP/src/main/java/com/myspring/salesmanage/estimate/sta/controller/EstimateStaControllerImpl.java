@@ -33,7 +33,7 @@ public class EstimateStaControllerImpl implements EstimateStaController{
 	private EstimateVO estimateVO;
 
 	@Override
-	@RequestMapping(value="/sales_manage/popEstCust.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/business_status/pop/popEstCust.do" ,method = RequestMethod.GET)
 	public ModelAndView listCust(EstimateVO estimateVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {		
 		

@@ -32,7 +32,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 	private ItemViewVO itemviewVO;
 	
 	@Override
-	@RequestMapping(value="/sales_manage/popItemBySalesList.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/sales_manage/pop/popItemBySalesList.do" ,method = RequestMethod.GET)
 	public ModelAndView listItemBySales(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);
@@ -43,7 +43,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/sales_manage/popItemBySalesReg.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/sales_manage/pop/popItemBySalesReg.do" ,method = RequestMethod.GET)
 	public ModelAndView AllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);
@@ -60,17 +60,29 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String code = (String)request.getParameter("item_code");
+		String submit = (String) request.getParameter("submit");
 		int sum = 0;
 		
-		if(code == null || code.length() == 0) {
+		if(code == null || code.length() == 0|| submit.equals("0")) {
 			mav = new ModelAndView(viewName);
-			return mav;
-		}
-
-			List salesplan = salesplanService.submitItem(code);
 			
-			mav = new ModelAndView(viewName);
-			mav.addObject("salesplan", salesplan);//salesplanVO
+			return mav;
+		}else if(submit.equals("1")){
+			
+				List salesplan = salesplanService.submitItem(code);
+				
+				mav = new ModelAndView(viewName);
+				mav.addObject("salesplan", salesplan);
+			}else if(submit.equals("2")) {
+				List salesplan = salesplanService.submitItem(code);
+				
+				mav = new ModelAndView(viewName);
+				mav.addObject("salesplan", salesplan);
+				int inputNo = salesplanService.inputNo();
+				String inNo = Integer.toString(inputNo+1);
+				System.out.println(inNo);
+				request.setAttribute("inputNo", inNo);
+			}
 
 		return mav;
 	}

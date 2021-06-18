@@ -45,6 +45,12 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 			return searchItemList;
 		}//submit를 누르면 table에 들어감
 		
+		
+	@Override
+	public int selNo() throws DataAccessException {
+		return sqlSession.selectOne("mappers.erp.selectNo");
+	}
+		
 //		@Override
 //		public int addItem(ItemViewVO itemview) throws DataAccessException {
 //			int idx = itemview.getList().size()-1;
@@ -109,10 +115,7 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 ////			return result;
 ////		}
 ////
-////		@Override
-////		public int selNo() throws DataAccessException {
-////			return sqlSession.selectOne("mappers.erp.selectNo");
-////		}
+
 ////
 ////		
 //////		@Override

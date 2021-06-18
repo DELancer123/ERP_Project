@@ -44,16 +44,18 @@ public class SalesplanServiceImpl implements SalesplanService{
 		return searchItemList;
 	}//searchitem
 
+
+	@Override
+	public int inputNo() throws DataAccessException {
+		return salesplanDAO.selNo();
+		
+	}
+	
 //	@Override
 //	public List itemText(String item_code) throws DataAccessException {
 //		List additemList = null;
 //		additemList = salesplanDAO.salesText(item_code);
 //		return additemList;
-//	}
-//	@Override
-//	public int inputNo() throws DataAccessException {
-//		return salesplanDAO.selNo();
-//		
 //	}
 //////	@Override
 //////	public int addItem(ItemViewVO itemview) throws DataAccessException {

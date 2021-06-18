@@ -30,30 +30,18 @@
             top: 25%;
             left: 15%;
         }
-        #view1{
+       /* #view1{
             width: 150%;
             text-align: center;
             border: 1px solid black;
         }
         #view1 th{
             width: 30px;
-        }
-        #contents2 div{
-            position: absolute;
-            bottom: 0;
-            text-align: right;
-        }
-        #contents2 div input{
-            width: 11%;
-        }
+        }*/
         #reqInput {
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
-#reqInput {
-	background-color: rgb(255, 255, 149);
-	text-align: center;
-}
 </style>
 <script>
 		var plus_button = document.getElementById('plus');
@@ -118,7 +106,7 @@
 	   <script>
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/popItemBySalesList.do','popItemBySalesList');  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/pop/popItemBySalesList.do','popItemBySalesList');  
     }
     </script>
 </body>
