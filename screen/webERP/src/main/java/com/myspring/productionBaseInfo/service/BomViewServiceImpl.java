@@ -90,7 +90,9 @@ public class BomViewServiceImpl implements BomViewService{
 
 	@Override
 	public List SearchOutView1(String itemNumber) throws DataAccessException {
-		return bomDAO.searchOutView1(itemNumber);
+		List outView = null;
+		outView = bomDAO.searchOutView1(itemNumber);
+		return outView;
 	}
 
 }
