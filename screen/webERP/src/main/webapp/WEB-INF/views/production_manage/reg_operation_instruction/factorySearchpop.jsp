@@ -92,7 +92,9 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regoperins.do?factoryNumber='+text_code.value+'&&factoryName='+text_name.value;
+    		var url = window.opener.document.location.href;
+			var url_arr = url.split('?');
+    		opener.parent.location=url_arr[0]+'?factoryNumber='+text_code.value+'&&factoryName='+text_name.value;
     		window.close();
     	}
     </script>

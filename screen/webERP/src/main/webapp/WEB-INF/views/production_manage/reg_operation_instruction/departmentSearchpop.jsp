@@ -87,12 +87,15 @@
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
     		
+    		
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regoperins.do?departmentCode='+text_code.value+'&&departmentName='+text_name.value;
+    		var url = window.opener.document.location.href;
+			var url_arr = url.split('?');
+    		opener.parent.location=url_arr[0]+'?departmentCode='+text_code.value+'&&departmentName='+text_name.value;
     		window.close();
     	}
     </script>
