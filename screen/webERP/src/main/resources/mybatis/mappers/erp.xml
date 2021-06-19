@@ -152,6 +152,7 @@
 			#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
 		]]>
 	</insert>
+	
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />
@@ -210,9 +211,12 @@
 	<select id="selectAllMrpList" resultMap="mrpResult">
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
-	
+	<update id="updateMRP" >
+		<![CDATA[update pmm_pm_mrp
+			set expected_order= to_char(sysdate, 'YYYY-MM-DD')]]>  
+	</update>
 	<!-- 품목단가등록(재원) 파트 -->
- 	<resultMap id="iupView" type="iupVO">
+ 	<!-- <resultMap id="iupView" type="iupVO">
 		<result property="no" column="no" />
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -261,7 +265,7 @@
 		set Item_Name=#{itemName}
 		where Item_Code=#{itemCode}
 		]]>  
-	</update>
+	</update> -->
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

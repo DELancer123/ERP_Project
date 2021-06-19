@@ -3,6 +3,7 @@ package com.myspring.Requiredamount.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,5 +21,10 @@ public class RequiredamountServiceImpl implements RequiredamountService{
 	public List<RequiredamountVO>selectAllMrpList() throws Exception{
 		List<RequiredamountVO>mrpList = mrpDAO.selectAllMrpList();
 		return mrpList;
+	}
+	
+	@Override
+	public int updateMRP(RequiredamountVO vo) throws DataAccessException {
+		return mrpDAO.updateMRP(vo);
 	}
 }

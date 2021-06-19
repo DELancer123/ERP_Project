@@ -1,8 +1,13 @@
 package com.myspring.Requiredamount.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.myspring.MainPlan.vo.MainPlanVO;
 
 @Component("mrpVO")
 public class RequiredamountVO {
@@ -14,8 +19,8 @@ private int sequence;
 private Date expected_order;
 private int expected_quantity;
 private String inventory_unit;
+private List<RequiredamountVO> ListVO;
 
-public RequiredamountVO() {}
 
 public RequiredamountVO(String item_Code,String item_Name,String standard,Date need_date,int sequence,Date expected_order,
 		int expected_quantity,String inventory_unit)
@@ -29,6 +34,13 @@ public RequiredamountVO(String item_Code,String item_Name,String standard,Date n
 	this.expected_quantity=expected_quantity;
 	this.inventory_unit=inventory_unit;
 }
+@Override
+public String toString() {return Arrays.toString(ListVO.toArray());}
+
+public RequiredamountVO() {super();}
+
+public List<RequiredamountVO> getListVO() {return ListVO;}
+public void setListVO(List<RequiredamountVO> listVO) {ListVO = new ArrayList();}
 
 public String getItem_Code() {return item_Code;}
 public void setItem_Code(String item_Code) {this.item_Code=item_Code;}

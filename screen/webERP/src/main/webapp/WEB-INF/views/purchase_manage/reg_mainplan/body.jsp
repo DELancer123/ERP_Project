@@ -124,12 +124,12 @@
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
   		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
- 				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
+ 				<td><input type="date" id="searchStartDate" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
- 				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
+ 				<td><input type="date" id="searchEndDate" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' readonly/></td>				
@@ -232,26 +232,25 @@ function InsertRow(){
 		document.getElementById('MainPlan').submit();
 	}
 	
-var startDate = new Date().toISOString().substring(0,10);;
-var endDate = new Date().toISOString().substring(0,10);;
-
-$('#searchStartDate').change(function (){
-    var date = $('#searchStartDate').val();
-    startDate = date;
-});
-$('#searchEndDate').change(function (){
-    var date = $('#searchEndDate').val();
-    endDate = date;
-});
-
+		var plandate = new Date().toISOString().substring(0,10);;
+    	var due_date = new Date().toISOString().substring(0,10);;
+    	
+    	$('#searchStartDate').change(function (){
+            var date = $('#searchStartDate').val();
+            plandate = date;
+        });
+    	$('#searchEndDate').change(function (){
+            var date = $('#searchEndDate').val();
+            due_date = date;
+        });
 view_button.onclick = function(){
-	  if(startDate>endDate){
-		  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
+	  if(plandate>due_date){
+		  alert("계획기간이 납기일보다 크게 설정됨");
 	  } else{
 		  
 	  const URLSearch = new URLSearchParams(location.search);
-	  URLSearch.set('startDate', startDate);
-	  URLSearch.set('endDate', endDate);
+	  URLSearch.set('plandate', plandate);
+	  URLSearch.set('due_date', due_date);
 	  const newParam = URLSearch.toString();
 
 	  window.open(location.pathname + '?' + newParam, '_self');

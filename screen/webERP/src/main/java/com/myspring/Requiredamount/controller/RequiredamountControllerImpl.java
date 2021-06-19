@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,16 @@ public class RequiredamountControllerImpl implements RequiredamountController{
 		return mav;
 	}
 	
+	@Override
+	@RequestMapping(value="/member/updateMRP.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMRP(@ModelAttribute("mrp") RequiredamountVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = mrpService.updateMRP(vo);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/requiredamount.do");
+		return mav;
+	}
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

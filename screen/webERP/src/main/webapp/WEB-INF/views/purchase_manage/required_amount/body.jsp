@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
@@ -40,7 +41,7 @@ request.setCharacterEncoding("UTF-8");
 	left: 18%;
 }
 
-#view1 {
+#MRPTable {
 	width: 100%;
 	text-align: center;
 	border: 1px solid black;
@@ -70,6 +71,16 @@ request.setCharacterEncoding("UTF-8");
 	position: absolute;
 	right: 20px;
 	top: 10px;
+}
+#MrpInfo{
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+}
+#button {
+	margin-top: 3%;
+	margin-right: 3%;
+	text-align: right;
 }
 </style>
 </head>
@@ -103,38 +114,81 @@ request.setCharacterEncoding("UTF-8");
 			</td>
 		</tr>
 	</table>
-	<div>
-		<button>소요량전개</button>
+	<div id="button">
+		<!-- <button id="btn">소요량전개</button> -->
+		<input type="submit" id="btn" value="소요량전개" />
 	</div>
 	</container1>
 	<container2 id=contents2>
-	<table id="view1">
+	<div id="MrpInfo">
+<form id="MRP" mehtod="get" commandName="ListVO">
+	<table id="MRPTable">
 		<thead align="center" style="background-color: gray">
 			<td><input type="checkbox" name="content"
 				onclick="selectAll(this)" /></td>
+			<td>순서</td>
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
 			<td>소요일자</td>
-			<td>순서</td>
 			<td>예정발주일</td>
 			<td>예정수량</td>
 			<td>단위</td>
 		</thead>
-		<c:forEach var="mrp" items="${mrpList}">
+		<tbody>
+		<c:forEach var="mrp" items="${mrpList}" varStatus="status">
 			<tr align="center">
-				<td><input type="checkbox" name="content" /></td>
-				<td>${mrp.item_Code}</td>
-				<td>${mrp.item_Name}</td>
-				<td>${mrp.standard}</td>
-				<td>${mrp.need_date}</td>
-				<td>${mrp.sequence}</td>
-				<td>${mrp.expected_order}</td>
-				<td>${mrp.expected_quantity}</td>
-				<td>${mrp.inventory_unit}</td>
-			</tr>
+				<td ><input type="checkbox" name="content" value="${mrp.sequence}"/></td>
+		<td style="width:13px;"><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.item_Code}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.item_Name}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.standard}' readonly style="width:100%"/></td>
+				<td><input type="date" name="ListVO[${status.index}].need_date" value='${mrp.need_date}' readonly/></td>
+				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].expected_quantity" value='${mrp.expected_quantity}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.inventory_unit}' readonly style="width:100%"/></td>
+			</tr>	
 		</c:forEach>
+		<tr id ="insertTest" align="center">
+		<td></td>    	
+    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mrp) }].sequence" value='${sequence}' style="width:100%"/></td>
+    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mrp) }].item_Code" value='${item_Code}' readonly/></td>
+    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mrp) }].item_Name" value='${item_Name}' readonly/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(mrp) }].standard" value='${standard}' style="width:100%"/></td>
+    	<td><input type="date" id="need_date" name="ListVO[${fn:length(mrp) }].need_date" value='${need_date}' style="width:100%" /></td>
+    	<td><input type="date" id="expected_order" name="ListVO[${fn:length(mrp) }].expected_order" value='${expected_order}'readonly/></td>
+    	<td><input type="text" id="expected_quantity" name="ListVO[${fn:length(mrp) }].expected_quantity" value='${expected_quantity}'/></td>
+    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mrp) }].inventory_unit" value='${inventory_unit}' /></td>
+    	</tr>
+		</tbody>
 	</table>
+	</div>
 	</container2>
+<script type="text/javascript">
+var Upd_Btn = document.getElementById('btn');
+
+Upd_Btn.onclick = function() {
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+document.getElementById("sequence").disabled = true;
+document.getElementById("item_Code").disabled = true;		
+document.getElementById("item_Name").disabled = true;
+document.getElementById("standard").disabled = true;
+document.getElementById("need_date").disabled = true;
+document.getElementById("expected_order").disabled = true;
+document.getElementById("expected_quantity").disabled = true;
+document.getElementById("inventory_unit").disabled = true;
+var Input = document.createElement("input");
+Input.setAttribute("type", "hidden");
+Input.setAttribute("name", "path");
+Input.setAttribute("value", link);
+document.getElementById('MRP').appendChild(Input);
+document.getElementById('MRP').action = "${contextPath}/member/updateMRP.do";
+document.getElementById('MRP').submit();
+console.log('error');
+}
+</script>
+</form>
 </body>
 </html>
