@@ -121,21 +121,9 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	}
 	
 	@Override
-	public List selectAllCommitOperationInfoDetail(String startDate, String endDate, String number) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;
-		
-		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date start = new Date(sdf.parse(startDate).getTime());
-		Date end = new Date(sdf.parse(endDate).getTime());
-		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
-		COIvo.setStartDate(start);
-		COIvo.setEndDate(end);
-		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
-		} else {
-			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
-		}
-		
+	public List selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException {
+		List<OperationRegistVO> infoList = null;		
+		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
 		return infoList;
 	}
 }

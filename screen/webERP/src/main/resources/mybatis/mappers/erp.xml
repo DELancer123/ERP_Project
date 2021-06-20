@@ -101,7 +101,9 @@
 		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
 	</delete>
 	<!-- 작업지시 확정 CRUD -->
-	
+	<select id="selectAllOperationRegistDetail" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+	</select>
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
