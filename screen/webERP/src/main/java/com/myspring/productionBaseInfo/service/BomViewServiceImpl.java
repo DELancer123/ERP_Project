@@ -122,4 +122,11 @@ public class BomViewServiceImpl implements BomViewService{
 		return updList;
 	}
 
+	@Override
+	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
+		int delList = 0;
+		delList = bomDAO.deloutprice(outVO);
+		return delList;
+	}
+
 }

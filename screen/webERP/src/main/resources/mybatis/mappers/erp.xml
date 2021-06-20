@@ -252,6 +252,9 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		where  outsourcing_Code=#{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
 		]]>  
 	</update>
+	<delete id="deloutprice" parameterType="outpriVO">
+		delete from CPM_BIM_OUT_PRI where  outsourcing_Code=#{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
+	</delete>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

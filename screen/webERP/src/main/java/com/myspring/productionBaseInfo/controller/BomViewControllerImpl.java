@@ -23,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.productionBaseInfo.service.*;
 import com.myspring.productionBaseInfo.BOM.vo.*;
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 
 
@@ -261,6 +260,19 @@ public class BomViewControllerImpl implements BomViewController {
 		path = path.replace("/webERP", "");
 		int result = 0;
 		result = viewService.updoutprice(outVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/member/deleteoutprice.do" ,method = RequestMethod.GET)
+	public ModelAndView deleteoutprice(RegOutSourcingPriceVO outVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		/* result = viewService.doutprice(outVO); */
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}

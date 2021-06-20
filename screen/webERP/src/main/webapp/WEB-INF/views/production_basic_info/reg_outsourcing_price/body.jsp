@@ -118,7 +118,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                        <td><input type="checkbox" value = "check1" id="check" name="content" value='${out.item_code }'/></td>
                         <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
                         <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
                         <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }' readonly/></td>
@@ -151,6 +151,7 @@
         <script>
         var save_button = document.getElementById('save');
         var update_button = document.getElementById('update');
+        var delete_button = document.getElementById('delete');
       function openWindowPop(url, name){
           var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
           window.open(url, name, options);
@@ -216,6 +217,19 @@
 	  		     document.getElementById('searchForm').appendChild(articleNOInput);
 	            document.getElementById('searchForm').action = "${contextPath}/member/updoutprice.do";
 	  			document.getElementById('searchForm').submit();  
+		}
+		delete_button.onclick = function(){
+			 var item = document.getElementsByName("content").length;
+	    	  var no = "";
+	    	  var ary = [];
+	    	  for(var i=0; i<item;i++){
+	    		  if(document.getElementsByName("content")[i].checked==true){
+	    			  no = document.getElementsByName("content")[i].value;
+	    			  ary.push(no);
+	    		  }
+	    		  
+	    			  window.location.href = "${contextPath}/member/deloutprice.do?no="+ary;
+	    	  }
 		}
       </script>
       
