@@ -246,7 +246,6 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
-		System.out.println("url" + path);
 		int result = 0;
 		result = viewService.addoutprice(outVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);

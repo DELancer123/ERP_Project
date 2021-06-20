@@ -240,7 +240,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
 		 insert into CPM_BIM_OUT_PRI
-		 values(#{outsourcing_Code},#{outcustomer}, #{item_code}, #{outprice}, #{startDate}, #{endDate}, #{"endDate"})
+		 values(#{outsourcing_Code},#{outcustomer}, #{item_code}, #{outprice}, #{startDate}, #{endDate})
 		]]>  
 	</insert>
 	<update id="udpoutprice" parameterType="outpriVO">
