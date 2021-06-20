@@ -22,5 +22,21 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		
 		return defList;
 	}
+	@Override
+	public int addoutprice(DefectiveTypeVO defVO) throws DataAccessException {
+		int idx = defVO.getDefList().size()-1;
+		int result = sqlSession.insert("mappers.erp.addDefType",defVO.getDefList().get(idx));
+		return 0;
+	}
+	@Override
+	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException {
+		int result = 0; 
+
+		int idx = defVO.getDefList().size();
+		for(int i = 0; i<idx;i++) {
+		result = sqlSession.update("mappers.erp.updDefType",defVO.getDefList().get(i));		
+		}
+		return result;
+	}
 
 }

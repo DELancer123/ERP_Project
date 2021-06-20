@@ -12,6 +12,7 @@ public class DefectiveTypeVO {
 	private String defectiveItemGroup;
 	private String usageStatus;
 	private String defectiveDescription;
+	private String oridefectCode;
 	private List<DefectiveTypeVO> defList;
 	public String getDefectCode() {
 		return defectCode;
@@ -54,6 +55,12 @@ public class DefectiveTypeVO {
 	}
 	public void setDefList(List<DefectiveTypeVO> defList) {
 		this.defList = defList;
+	}
+	public String getOridefectCode() {
+		return oridefectCode;
+	}
+	public void setOridefectCode(String oridefectCode) {
+		this.oridefectCode = oridefectCode;
 	}
 	
 	

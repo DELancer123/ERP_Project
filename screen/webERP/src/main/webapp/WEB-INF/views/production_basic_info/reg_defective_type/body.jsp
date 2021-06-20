@@ -52,9 +52,7 @@
 </style>
 </head>
 <body>
-<form id="defTypeForm" method="get" commandName = "defList">
 <container1 id = contents1>
-            <form id="searchForm">
                 <table>
                     <tr>
                         <td>
@@ -88,6 +86,7 @@
             </form>
         </container1>
         <container2 id= contents2>
+            <form id="searchForm" method="get" commandName = "defList">
             <div id="workOrderInfo">
                 <table id="workOrderTable">
               
@@ -108,21 +107,23 @@
                         <td><input type="text" name="defList[${status.index }].usageStatus" value='${def.usageStatus }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveDescription" value='${def.defectiveDescription }'/></td>
                         <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${def.defectiveItemGroupCode }'/>
+                        <input type="hidden" name="defList[${status.index }].oridefectCode" value='${def.defectCode }'/>
                     </tbody>
                     </c:forEach>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" name="defList[${fn:length(outpriceView) }].defectCode"/></td>
-                        <td><input type="text" name="defList[${fn:length(outpriceView) }].defectiveTypeName"/></td>
-                        <td><input type="text" name="defList[${fn:length(outpriceView) }].defectiveItemGroup"/></td>
-                        <td><input type="text" name="defList[${fn:length(outpriceView) }].usageStatus"/></td>
-                        <td><input type="text" name="defList[${fn:length(outpriceView) }].defectiveDescription"/></td>
-                        <input type="hidden" name="defList[${fn:length(outpriceView) }].defectiveItemGroupCode"/>
+                        <td><input type="text" id="defCode" name="defList[${fn:length(defectiveList) }].defectCode"/></td>
+                        <td><input type="text" id="defName" name="defList[${fn:length(defectiveList) }].defectiveTypeName"/></td>
+                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"/></td>
+                        <td><input type="text" id="usage" name="defList[${fn:length(defectiveList) }].usageStatus"/></td>
+                        <td><input type="text" id="defDes" name="defList[${fn:length(defectiveList) }].defectiveDescription"/></td>
+                        <input type="hidden" id="groupCode" name="defList[${fn:length(defectiveList) }].defectiveItemGroupCode"/>
                 </table>
             </div>
-        </container2>
         </form>
+        </container2>
       <script>
       	var save_button = document.getElementById("save");
+      	var upd_button = document.getElementById("update");
       	
       	save_button.onclick = function(){
 			const URLSearch = new URLSearchParams(location.search);
@@ -133,9 +134,28 @@
 	  		     articleNOInput.setAttribute("type","hidden");
 	  		     articleNOInput.setAttribute("name","path");
 	  		     articleNOInput.setAttribute("value", link);
-	  		     document.getElementById('defTypeForm').appendChild(articleNOInput);
-	            document.getElementById('defTypeForm').action = "${contextPath}/member/adddefType.do";
-	  			document.getElementById('defTypeForm').submit();  
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/adddefType.do";
+	  			document.getElementById('searchForm').submit();  
+		}
+      	upd_button.onclick = function(){
+			document.getElementById("defCode").disabled = true;
+ 		     document.getElementById("defName").disabled = true;
+ 		     document.getElementById("defgroup").disabled = true;
+ 		     document.getElementById("usage").disabled = true;
+ 		     document.getElementById("defDes").disabled = true;
+ 		     document.getElementById("groupCode").disabled = true;
+ 		    const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+			 var link = location.pathname +'?'+newParam;
+	  			var articleNOInput = document.createElement("input");
+	  		     articleNOInput.setAttribute("type","hidden");
+	  		     articleNOInput.setAttribute("name","path");
+	  		     articleNOInput.setAttribute("value", link);
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/upddefType.do";
+	  			document.getElementById('searchForm').submit();  
 		}
       </script>
 </body>

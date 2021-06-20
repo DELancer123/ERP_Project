@@ -12,6 +12,7 @@ import com.myspring.productionBaseInfo.BOM.dao.bomViewDAO;
 import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.productionBaseInfo.regDefectiveType.dao.DefectiveTypeDAO;
+import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
 
@@ -137,6 +138,18 @@ public class BomViewServiceImpl implements BomViewService{
 		List defView = null;
 		defView = defDAO.viewDefective();
 		return defView;
+	}
+
+	@Override
+	public int addDefType(DefectiveTypeVO defVO) throws DataAccessException {
+		return defDAO.addoutprice(defVO);
+	}
+
+	@Override
+	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException {
+		int updList = 0;
+		updList = defDAO.updDefType(defVO);
+		return updList;
 	}
 
 }

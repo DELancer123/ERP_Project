@@ -282,6 +282,19 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<select id="defectiveView" resultMap="defTypeView" >
 		<![CDATA[select * from cpm_bim_def_typ_reg]]>
 	</select>
+	<insert id="addDefType" parameterType="defVO">
+		<![CDATA[
+		 insert into cpm_bim_def_typ_reg
+		 values(#{defectCode},#{defectiveTypeName}, #{defectiveItemGroupCode}, #{defectiveItemGroup}, #{usageStatus}, #{defectiveDescription})
+		]]>  
+	</insert>
+	<update id="updDefType" parameterType="defVO">
+		<![CDATA[
+		update cpm_bim_def_typ_reg
+		set DEFECTCODE = #{defectCode}, DEFECTIVETYPENAME=#{defectiveTypeName},DEFECTIVEITEMGROUPCODE=#{defectiveItemGroupCode},DEFECTIVEITEMGROUP=#{defectiveItemGroup},USAGESTATUS=#{usageStatus},DEFECTIVEDESCRIPTION=#{defectiveDescription}
+		where DEFECTCODE=#{oridefectCode}
+		]]>  
+	</update>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

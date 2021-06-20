@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 public interface BomViewController {
 	public ModelAndView viewBOM(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -29,5 +30,6 @@ public interface BomViewController {
 	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView deleteoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewDefectiveType(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public ModelAndView adddefType(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updoutprice(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
