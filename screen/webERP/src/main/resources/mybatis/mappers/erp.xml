@@ -248,6 +248,7 @@
 		<result property="endDate" column="ENDDATE" />
 		<collection property="bomVO" resultMap="bomView"></collection>
 	</resultMap>
+	
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
 		<![CDATA[select out.*, ite.item_name,ite.STANDARD,ite.INVENTORY_UNIT,ite.COST
 from cpm_bim_out_pri out, sm_bim_ite_reg ite
@@ -269,6 +270,18 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<delete id="deloutprice" parameterType="outpriVO">
 		delete from CPM_BIM_OUT_PRI where  outsourcing_Code=#{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
 	</delete>
+	<!-- 불량유형등록 -->
+	<resultMap id="defTypeView" type="defVO">
+		<result property="defectCode" column="DEFECTCODE" />
+		<result property="defectiveTypeName" column = "DEFECTIVETYPENAME"/>
+		<result property="defectiveItemGroupCode" column="DEFECTIVEITEMGROUPCODE" />
+		<result property="defectiveItemGroup" column="DEFECTIVEITEMGROUP" />
+		<result property="usageStatus" column="USAGESTATUS" />
+		<result property="defectiveDescription" column="DEFECTIVEDESCRIPTION" />
+	</resultMap>
+	<select id="defectiveView" resultMap="defTypeView" >
+		<![CDATA[select * from cpm_bim_def_typ_reg]]>
+	</select>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

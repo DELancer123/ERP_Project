@@ -283,6 +283,17 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		mav = new ModelAndView(viewName);
+		String submit = (String) request.getParameter("submit");
+		int sum = 0;
+		if(submit == null || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List defectiveList = null;
+			defectiveList =  viewService.viewDefective();
+			mav.addObject("defectiveList",defectiveList);
+		}
 		return mav;
 	}
 }
