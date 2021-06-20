@@ -276,4 +276,13 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
+
+	@Override
+	@RequestMapping(value="/member/deftype.do" ,method = RequestMethod.GET)
+	public ModelAndView viewDefectiveType(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		mav = new ModelAndView(viewName);
+		return mav;
+	}
 }

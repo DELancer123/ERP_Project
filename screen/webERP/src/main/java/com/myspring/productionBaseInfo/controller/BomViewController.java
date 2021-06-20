@@ -28,4 +28,6 @@ public interface BomViewController {
 	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView deleteoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView viewDefectiveType(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

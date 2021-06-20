@@ -199,7 +199,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   		  
   		  if(number != null && number != "") {
   			  List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate);
-  			  List detailList = productionService.selectAllCommitOperationInfoDetail(startDate, endDate, number)
+  			  List detailList = productionService.selectAllCommitOperationInfoDetail(startDate, endDate, number);
   			  mav.addObject("infoList", infoList); 
   			  mav.addObject("detailList", detailList);
   		  } else {

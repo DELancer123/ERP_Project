@@ -107,6 +107,7 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
+                        <input type="hidden"/>
                     </tbody>
                 </table>
             </div>
