@@ -107,9 +107,9 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  }
   
   @Override 
-  public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String startDate, String endDate, String number) throws DataAccessException, ParseException{ 
+  public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
-	  infolist = ORdao.selectAllCommitOperationInfoDetail(startDate,endDate, number); 
+	  infolist = ORdao.selectAllCommitOperationInfoDetail(number); 
 	  return infolist; 
 	  }
   }
