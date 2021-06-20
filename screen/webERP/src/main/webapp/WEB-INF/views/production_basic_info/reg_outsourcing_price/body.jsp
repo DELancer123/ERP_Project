@@ -12,7 +12,7 @@
  	<c:set var="itemName" value="${set.itemName }"/>
  	<c:set var="standard" value="${set.standard }"/>
  	<c:set var="unit" value="${set.unit }"/>
- 	<c:set var="actual" value="${set.actualCost }"/>
+ 	<c:set var="actual" value="${set.cost }"/>
  	<c:set var="no" value="${set.no }"/>
  </c:forEach>
 <!DOCTYPE html>

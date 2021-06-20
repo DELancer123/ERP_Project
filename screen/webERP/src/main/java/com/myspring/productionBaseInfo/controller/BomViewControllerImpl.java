@@ -243,25 +243,25 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 	@Override
 	@RequestMapping(value="/member/addoutprice.do" ,method = RequestMethod.GET)
-	public ModelAndView addoutprice(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		System.out.println("url" + path);
 		int result = 0;
-		result = viewService.addoutprice(bomVO);
+		result = viewService.addoutprice(outVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 
 	@Override
 	@RequestMapping(value="/member/updoutprice.do" ,method = RequestMethod.GET)
-	public ModelAndView updoutprice(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
+	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		int result = 0;
-		result = viewService.updoutprice(bomVO);
+		result = viewService.updoutprice(outVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}

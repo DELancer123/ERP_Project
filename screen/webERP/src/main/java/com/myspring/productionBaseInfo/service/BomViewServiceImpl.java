@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 
 import com.myspring.productionBaseInfo.BOM.dao.bomViewDAO;
+import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -103,8 +104,8 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public int addoutprice(bomVO bomVO) throws DataAccessException {
-		return bomDAO.addoutprice(bomVO);
+	public int addoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
+		return bomDAO.addoutprice(outVO);
 	}
 
 	@Override
@@ -115,9 +116,9 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public int updoutprice(bomVO bomVO) throws DataAccessException {
+	public int updoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
 		int updList = 0;
-		updList = bomDAO.updoutprice(bomVO);
+		updList = bomDAO.updoutprice(outVO);
 		return updList;
 	}
 

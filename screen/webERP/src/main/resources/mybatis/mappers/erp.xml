@@ -185,7 +185,7 @@
 	</select>
 	<select id="inputItem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select no,item_code,item_name,standard,inventory_unit,ACTUALCOST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
+		<![CDATA[select no,item_code,item_name,standard,inventory_unit,COST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList1" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품']]>
@@ -221,20 +221,7 @@
 		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg]]>
 	</select>
 	
-	<update id="addoutprice" parameterType="bomVO">
-		<![CDATA[
-		update CPM_BIM_out_pri
-		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate},OUTSOURCING_CODE=#{parent}
-		where  no=#{no}
-		]]>  
-	</update>
-	<update id="udpoutprice" parameterType="bomVO">
-		<![CDATA[
-		update CPM_BIM_BOM_REG
-		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
-		where  no=#{no}
-		]]>  
-	</update>
+	
 	<!-- 외주단가등록 -->
 	<resultMap id="outpriView" type="outpriVO">
 		<result property="outsourcing_Code" column="OUTSOURCING_CODE" />
@@ -250,6 +237,19 @@
 from cpm_bim_out_pri out, sm_bim_ite_reg ite
 where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1}]]>
 	</select>
+	<insert id="addoutprice" parameterType="outpriVO">
+		<![CDATA[
+		 insert into CPM_BIM_OUT_PRI
+		 values(#{outsourcing_Code},#{outcustomer}, #{item_code}, #{outprice}, #{startDate}, #{endDate}, #{"endDate"})
+		]]>  
+	</insert>
+	<update id="udpoutprice" parameterType="outpriVO">
+		<![CDATA[
+		update CPM_BIM_OUT_PRI
+		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
+		where  no=#{no}
+		]]>  
+	</update>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />
