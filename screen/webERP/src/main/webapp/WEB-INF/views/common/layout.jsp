@@ -214,7 +214,9 @@
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
-
+		input{
+			text-align: center;
+		}
     </style>    
 </head>
 <body>
@@ -228,7 +230,7 @@
                 <li><a href="#">기타메뉴2</a></li>
                 <li><a href="#">기타메뉴3</a></li>
             </ul>
-            <input type="text" value=" 메뉴 검색" id="search"/>
+            <input type="text" value=" 메뉴 검색" id="search" style="text-align:left"/>
             <input type="button" value="검색" class="search_button"/>
         </header>
         <nav id = nav1>

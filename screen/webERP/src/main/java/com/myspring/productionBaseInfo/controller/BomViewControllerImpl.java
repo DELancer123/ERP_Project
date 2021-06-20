@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.productionBaseInfo.service.*;
 import com.myspring.productionBaseInfo.BOM.vo.*;
+import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 
 
 
@@ -283,6 +284,42 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		mav = new ModelAndView(viewName);
+		String submit = (String) request.getParameter("submit");
+		int sum = 0;
+		if(submit == null || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List defectiveList = null;
+			defectiveList =  viewService.viewDefective();
+			mav.addObject("defectiveList",defectiveList);
+		}
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/member/adddefType.do" ,method = RequestMethod.GET)
+	public ModelAndView adddefType(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = viewService.addDefType(defVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/member/upddefType.do" ,method = RequestMethod.GET)
+	public ModelAndView updoutprice(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = viewService.updDefType(defVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 }

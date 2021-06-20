@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 
 public interface BomViewService {
 	public List bomView() throws DataAccessException;
@@ -26,4 +27,7 @@ public interface BomViewService {
 	public List inputText(String itemCode)throws DataAccessException;
 	public int updoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
 	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
+	public List viewDefective() throws DataAccessException;
+	public int addDefType(DefectiveTypeVO defVO) throws DataAccessException;
+	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException;
 }

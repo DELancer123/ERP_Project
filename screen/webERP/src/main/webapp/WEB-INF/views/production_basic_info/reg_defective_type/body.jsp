@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +53,6 @@
 </head>
 <body>
 <container1 id = contents1>
-            <form id="searchForm">
                 <table>
                     <tr>
                         <td>
@@ -75,23 +81,16 @@
                         <td>
                             <input type="text" name="ckdepartment" style="width: 130px;" disabled >
                         </td>
-                        <td>
-                            불량설명
-                        </td>
-                        <td>
-                            <input type="text" name="department" style="width: 250px;">
-                        </td>
-                        <td>
-                            <input type="button" value="생산계획조회" style="padding: 5px; margin-left: 30px;" />
-                        </td>
                     </tr>
                 </table>
             </form>
         </container1>
         <container2 id= contents2>
+            <form id="searchForm" method="get" commandName = "defList">
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead>
+              
+                    <thead align="center">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td>불량코드</td>
                         <td>불량유형명</td>
@@ -99,19 +98,65 @@
                         <td>사용여부</td>
                         <td>불량설명</td>
                     </thead>
-                    <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
+                    <c:forEach var = "def" items='${defectiveList }' varStatus="status" >
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <input type="hidden"/>
+                        <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
+                        <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
+                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }'/></td>
+                        <td><input type="text" name="defList[${status.index }].usageStatus" value='${def.usageStatus }'/></td>
+                        <td><input type="text" name="defList[${status.index }].defectiveDescription" value='${def.defectiveDescription }'/></td>
+                        <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${def.defectiveItemGroupCode }'/>
+                        <input type="hidden" name="defList[${status.index }].oridefectCode" value='${def.defectCode }'/>
                     </tbody>
+                    </c:forEach>
+                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                        <td><input type="text" id="defCode" name="defList[${fn:length(defectiveList) }].defectCode"/></td>
+                        <td><input type="text" id="defName" name="defList[${fn:length(defectiveList) }].defectiveTypeName"/></td>
+                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"/></td>
+                        <td><input type="text" id="usage" name="defList[${fn:length(defectiveList) }].usageStatus"/></td>
+                        <td><input type="text" id="defDes" name="defList[${fn:length(defectiveList) }].defectiveDescription"/></td>
+                        <input type="hidden" id="groupCode" name="defList[${fn:length(defectiveList) }].defectiveItemGroupCode"/>
                 </table>
             </div>
+        </form>
         </container2>
-      
+      <script>
+      	var save_button = document.getElementById("save");
+      	var upd_button = document.getElementById("update");
+      	
+      	save_button.onclick = function(){
+			const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+			 var link = location.pathname +'?'+newParam;
+	  			var articleNOInput = document.createElement("input");
+	  		     articleNOInput.setAttribute("type","hidden");
+	  		     articleNOInput.setAttribute("name","path");
+	  		     articleNOInput.setAttribute("value", link);
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/adddefType.do";
+	  			document.getElementById('searchForm').submit();  
+		}
+      	upd_button.onclick = function(){
+			document.getElementById("defCode").disabled = true;
+ 		     document.getElementById("defName").disabled = true;
+ 		     document.getElementById("defgroup").disabled = true;
+ 		     document.getElementById("usage").disabled = true;
+ 		     document.getElementById("defDes").disabled = true;
+ 		     document.getElementById("groupCode").disabled = true;
+ 		    const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+			 var link = location.pathname +'?'+newParam;
+	  			var articleNOInput = document.createElement("input");
+	  		     articleNOInput.setAttribute("type","hidden");
+	  		     articleNOInput.setAttribute("name","path");
+	  		     articleNOInput.setAttribute("value", link);
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/upddefType.do";
+	  			document.getElementById('searchForm').submit();  
+		}
+      </script>
 </body>
 </html>

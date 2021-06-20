@@ -11,12 +11,16 @@ import org.springframework.transaction.annotation.Propagation;
 import com.myspring.productionBaseInfo.BOM.dao.bomViewDAO;
 import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+import com.myspring.productionBaseInfo.regDefectiveType.dao.DefectiveTypeDAO;
+import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
 
 public class BomViewServiceImpl implements BomViewService{
 	@Autowired
 	private bomViewDAO bomDAO;
+	@Autowired
+	private DefectiveTypeDAO defDAO;
 	
 	@Override
 	public List bomView() throws DataAccessException {
@@ -127,6 +131,25 @@ public class BomViewServiceImpl implements BomViewService{
 		int delList = 0;
 		delList = bomDAO.deloutprice(outVO);
 		return delList;
+	}
+
+	@Override
+	public List viewDefective() throws DataAccessException {
+		List defView = null;
+		defView = defDAO.viewDefective();
+		return defView;
+	}
+
+	@Override
+	public int addDefType(DefectiveTypeVO defVO) throws DataAccessException {
+		return defDAO.addoutprice(defVO);
+	}
+
+	@Override
+	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException {
+		int updList = 0;
+		updList = defDAO.updDefType(defVO);
+		return updList;
 	}
 
 }
