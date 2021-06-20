@@ -74,7 +74,7 @@
                         <td colspan="2"><input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/></td>
     
                         <td colspan="4" style="width: 80px;">외주작업장</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" value='${param.placeCode }' style="width: 100%; background-color: yellow;"/></td>
                         <td> <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
                         
@@ -82,7 +82,7 @@
                     
                     <tr>
                         <td>품목군</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
+                        <td style="width: 80px;"><input type="text"  style="width: 100%;"/></td>
                         <td>  <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
     
@@ -119,28 +119,24 @@
                     <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" name="ListVO[${status.index}].itemNumber" value='${out.itemNumber }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].itemName" value='${out.itemName }' ondblclick="search3()"/></td>
-                        <td><input type="text" name="ListVO[${status.index}].standard" value='${out.standard }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].unit" value='${out.unit }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].actualCost" value='${out.actualCost }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value='${out.outSourcingUnitPrice }'/></td>
-                        <td><input type="date" name="ListVO[${status.index}].startDate" value='${out.startDate }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].outcustomer" value='${out.outcustomer }' ondblclick="search3()"/></td>
+                        <td><input type="text" name="ListVO[${status.index}].item_code" value='${out.item_code }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].cost" value='${out.cost }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].outprice" value='${out.outprice }'/></td>
+                        <td><input type="text" name="ListVO[${status.index}].startDate" value='${out.startDate }'/></td>
                         <td><input type="date" name="ListVO[${status.index}].endDate" value='${out.endDate }'/></td>
-                        <input type="hidden" name="ListVO[${status.index }].no" value='${out.no }'/>
                     </tbody>
                     </c:forEach>
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" id="itemNumber" name="ListVO[${fn:length(outpriceView) }].itemNumber" value='${itemNumber} '/></td>
-                        <td><input type="text" id="itemName" name="ListVO[${fn:length(outpriceView) }].itemName" ondblclick="search3()" value='${itemName }'/></td>
-                        <td><input type="text" id="standard" name="ListVO[${fn:length(outpriceView) }].standard" value='${standard }' /></td>
-                        <td><input type="text" id="unit" name="ListVO[${fn:length(outpriceView) }].unit" value='${unit }'/></td>
-                        <td><input type="text" id="actual" name="ListVO[${fn:length(outpriceView) }].actualCost" value='${actual }'/></td>
-                        <td><input type="text" id="price" name="ListVO[${fn:length(outpriceView) }].outSourcingUnitPrice"/></td>
-                        <td><input type="date" id="start" name="ListVO[${fn:length(outpriceView) }].startDate"/></td>
+                        <td><input type="text" id="itemNumber" name="ListVO[${fn:length(outpriceView) }].outsourcing_Code" value='${itemNumber} '/></td>
+                        <td><input type="text" id="itemName" name="ListVO[${fn:length(outpriceView) }].outcustomer" ondblclick="search3()" value='${itemName }'/></td>
+                        <td><input type="text" id="standard" name="ListVO[${fn:length(outpriceView) }].item_code" value='${standard }' /></td>
+                        <td><input type="text" id="unit" name="ListVO[${fn:length(outpriceView) }].cost" value='${unit }'/></td>
+                        <td><input type="text" id="actual" name="ListVO[${fn:length(outpriceView) }].outprice" value='${actual }'/></td>
+                        <td><input type="text" id="start" name="ListVO[${fn:length(outpriceView) }].startDate"/></td>
                         <td><input type="date" id="end" name="ListVO[${fn:length(outpriceView) }].endDate"/></td>
-                        <input type="hidden" id="no" name="ListVO[${fn:length(outpriceView) }].no" value='${no }'/>
                     </tbody>
                 </table>
             </div>
@@ -198,10 +194,8 @@
  		     document.getElementById("standard").disabled = true;
  		     document.getElementById("unit").disabled = true;
  		     document.getElementById("actual").disabled = true;
- 		     document.getElementById("price").disabled = true;
  		     document.getElementById("start").disabled = true;
  		     document.getElementById("end").disabled = true;
- 		     document.getElementById("no").disabled = true;
  		    const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();

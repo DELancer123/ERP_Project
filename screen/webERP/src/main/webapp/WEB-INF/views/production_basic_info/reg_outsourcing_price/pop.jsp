@@ -9,7 +9,7 @@
 %>    
     
 <%
-	String inputNo = (String)request.getAttribute("inputNo");
+	String div = (String)request.getAttribute("div");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,6 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
-                <input type="hidden" name="inputNo" value=""/>
                  
                 <button>버튼3</button>
             </div>
@@ -79,7 +78,7 @@
                 </tr>
                 <c:forEach var="out" items="${outView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${out.itemNumber }','${out.itemName }')">${out.itemNumber}</a></td>
+      <td><a href="javascript:popFunction('${out.itemNumber }','${out.itemName }' )">${out.itemNumber}</a></td>
       <td><a href="#">${out.itemName}</a></td>
     </tr>
     </c:forEach> 
@@ -99,13 +98,22 @@
     			
     	}
 		submit_button.onclick = function(){
+			const URLSearch = new URLSearchParams(location.search);
+			var div =  URLSearch.get('div');
+			console.log(div);
+    		if(div == 1){
+				var url = window.opener.document.location.href;
+				var url_arr = url.split('?');
+    			opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&submit='+0;
+    			window.close();
+    		}
+    		if(div == 2){
+    			var url = window.opener.document.location.href;
+				var url_arr = url.split('&');
+    			opener.parent.location=url_arr[0] + '&&placeCode='+text_code.value+'&&submit='+0;
+    			window.close();
+    		}
     		
-    		text_code.setAttribute("itemNumber",text_code.value);
-			text_name.setAttribute("itemName",text_name.value);
-			var url = window.opener.document.location.href;
-			var url_arr = url.split('?');
-    		opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
-    		window.close();
     	}
     </script>
     </form>

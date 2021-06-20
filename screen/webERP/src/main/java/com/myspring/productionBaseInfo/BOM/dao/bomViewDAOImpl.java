@@ -106,9 +106,12 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
-	public List getoutprice(String itemNumber) throws DataAccessException {
+	public List getoutprice(String itemNumber,String placeCode) throws DataAccessException {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("0", itemNumber);
+		map.put("1", itemNumber);
 		List<bomVO> outpriceView = null;
-		outpriceView = sqlSession.selectList("mappers.erp.outpriceView",itemNumber);
+		outpriceView = sqlSession.selectList("mappers.erp.outpriceView",map);
 		return outpriceView;
 	}
 

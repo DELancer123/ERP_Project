@@ -96,9 +96,9 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public List getoutprice(String itemNumber) throws DataAccessException {
+	public List getoutprice(String itemNumber,String placeCode) throws DataAccessException {
 		List outpriceView = null;
-		outpriceView = bomDAO.getoutprice(itemNumber);
+		outpriceView = bomDAO.getoutprice(itemNumber,placeCode);
 		return outpriceView;
 	}
 

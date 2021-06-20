@@ -196,16 +196,17 @@ public class BomViewControllerImpl implements BomViewController {
 		String itemNumber = request.getParameter("itemNumber");
 		String submit = request.getParameter("submit");
 		String itemCode = request.getParameter("itemCode");
+		String placeCode = request.getParameter("placeCode");
 		mav = new ModelAndView(viewName);
 		if(itemNumber == null || submit == null || submit.equals("0")) {
 			return mav;
 		}
 		else if(submit.equals("1")) {
-			List outpriceView = viewService.getoutprice(itemNumber);
+			List outpriceView = viewService.getoutprice(itemNumber,placeCode);
 			mav.addObject("outpriceView",outpriceView);
 		}
 		else if(submit.equals("2")) {
-			List outpriceView = viewService.getoutprice(itemNumber);
+			List outpriceView = viewService.getoutprice(itemNumber,placeCode);
 			List outpriceText = viewService.inputText(itemCode);
 			mav.addObject("outpriceView",outpriceView);
 			mav.addObject("setText",outpriceText);
