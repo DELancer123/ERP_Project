@@ -10,10 +10,10 @@ public class RegOutSourcingPriceVO {
 	private String outsourcing_Code;
 	private String outcustomer;
 	private String item_code;
-	private String cost;
 	private String outprice;
 	private Date startDate;
 	private Date endDate;
+	bomVO bomVO;
 	List<RegOutSourcingPriceVO> outpriveVO;
 	public String getOutsourcing_Code() {
 		return outsourcing_Code;
@@ -32,12 +32,6 @@ public class RegOutSourcingPriceVO {
 	}
 	public void setItem_code(String item_code) {
 		this.item_code = item_code;
-	}
-	public String getCost() {
-		return cost;
-	}
-	public void setCost(String cost) {
-		this.cost = cost;
 	}
 	public String getOutprice() {
 		return outprice;
@@ -62,6 +56,12 @@ public class RegOutSourcingPriceVO {
 	}
 	public void setOutpriveVO(List<RegOutSourcingPriceVO> outpriveVO) {
 		this.outpriveVO = outpriveVO;
+	}
+	public bomVO getBomVO() {
+		return bomVO;
+	}
+	public void setBomVO(bomVO bomVO) {
+		this.bomVO = bomVO;
 	}
 	
 }

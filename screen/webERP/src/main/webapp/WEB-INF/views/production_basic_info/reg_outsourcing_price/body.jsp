@@ -119,24 +119,30 @@
                     <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" name="ListVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].outcustomer" value='${out.outcustomer }' ondblclick="search3()"/></td>
-                        <td><input type="text" name="ListVO[${status.index}].item_code" value='${out.item_code }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].cost" value='${out.cost }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].outprice" value='${out.outprice }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].startDate" value='${out.startDate }'/></td>
-                        <td><input type="date" name="ListVO[${status.index}].endDate" value='${out.endDate }'/></td>
+                        <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
+                        <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
+                        <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }'/></td>
+                        <td><input type="text" value='${out.bomVO.itemName }' ondblclick="search3()"/></td>
+                        <td><input type="text" value='${out.bomVO.standard }'/></td>
+                        <td><input type="text" value='${out.bomVO.unit }'/></td>
+                        <td><input type="text" value='${out.bomVO.cost }'/></td>
+                        <td><input type="text" name="outpriveVO[${status.index}].outprice" value='${out.outprice }'  /></td>
+                        <td><input type="date" name="outpriveVO[${status.index}].startDate" value='${out.startDate }'/></td>
+                        <td><input type="date" name="outpriveVO[${status.index}].endDate" value='${out.endDate }'/></td>
                     </tbody>
                     </c:forEach>
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" id="itemNumber" name="ListVO[${fn:length(outpriceView) }].outsourcing_Code" value='${itemNumber} '/></td>
-                        <td><input type="text" id="itemName" name="ListVO[${fn:length(outpriceView) }].outcustomer" ondblclick="search3()" value='${itemName }'/></td>
-                        <td><input type="text" id="standard" name="ListVO[${fn:length(outpriceView) }].item_code" value='${standard }' /></td>
-                        <td><input type="text" id="unit" name="ListVO[${fn:length(outpriceView) }].cost" value='${unit }'/></td>
-                        <td><input type="text" id="actual" name="ListVO[${fn:length(outpriceView) }].outprice" value='${actual }'/></td>
-                        <td><input type="text" id="start" name="ListVO[${fn:length(outpriceView) }].startDate"/></td>
-                        <td><input type="date" id="end" name="ListVO[${fn:length(outpriceView) }].endDate"/></td>
+                        <input type="hidden" id="outsoucing" name="outpriveVO[${fn:length(outpriceView) }].outsourcing_Code" value='${param.itemNumber} '/>
+                        <input type="hidden" id="placecode" name="outpriveVO[${fn:length(outpriceView) }].outcustomer" ondblclick="search3()" value='${param.placeCode }'/>
+                        <td><input type="text" id="itemCode" name="outpriveVO[${fn:length(outpriceView) }].item_code" value='${itemNumber }' /></td>
+                        <td><input type="text" id="itemName"value='${itemName }' /></td>
+                        <td><input type="text" id="standard"value='${standard }' /></td>
+                        <td><input type="text" id="unit"value='${unit }' /></td>
+                        <td><input type="text" id="cost"value='${actual }' /></td>
+                        <td><input type="text" id="outprice" name="outpriveVO[${fn:length(outpriceView) }].outprice"/></td>
+                        <td><input type="date" id="start" name="outpriveVO[${fn:length(outpriceView) }].startDate"/></td>
+                        <td><input type="date" id="end" name="outpriveVO[${fn:length(outpriceView) }].endDate"/></td>
                     </tbody>
                 </table>
             </div>
@@ -189,11 +195,14 @@
 	  			document.getElementById('searchForm').submit();  
 		}
 		update_button.onclick = function(){
-			document.getElementById("itemNumber").disabled = true;
+			document.getElementById("outsoucing").disabled = true;
+ 		     document.getElementById("placecode").disabled = true;
+ 		     document.getElementById("itemCode").disabled = true;
  		     document.getElementById("itemName").disabled = true;
  		     document.getElementById("standard").disabled = true;
  		     document.getElementById("unit").disabled = true;
- 		     document.getElementById("actual").disabled = true;
+ 		     document.getElementById("cost").disabled = true;
+ 		     document.getElementById("outprice").disabled = true;
  		     document.getElementById("start").disabled = true;
  		     document.getElementById("end").disabled = true;
  		    const URLSearch = new URLSearchParams(location.search);

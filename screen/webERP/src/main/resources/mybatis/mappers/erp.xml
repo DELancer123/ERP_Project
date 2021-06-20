@@ -153,7 +153,7 @@
 		<result property="precisionQuantity" column="precisionQuantity" />
 		<result property="loss" column="loss" />
 		<result property="division" column="division" />
-
+		<result property="cost" column="cost"/>
 	</resultMap>
 	<resultMap id="popView" type="bomVO">
 		<result property="itemNumber" column="item_code" />
@@ -240,14 +240,15 @@
 		<result property="outsourcing_Code" column="OUTSOURCING_CODE" />
 		<result property="outcustomer" column = "OUTCUSTOMER"/>
 		<result property="item_code" column="ITEM_CODE" />
-		<result property="cost" column="COST" />
 		<result property="outprice" column="OUTSOURCINGUNITPRICE" />
 		<result property="startDate" column="STARTDATE" />
 		<result property="endDate" column="ENDDATE" />
-
+		<collection property="bomVO" resultMap="bomView"></collection>
 	</resultMap>
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
-		<![CDATA[select * from cpm_bim_out_pri where outsourcing_code = #{0} and OUTCUSTOMER = #{1}]]>
+		<![CDATA[select out.*, ite.item_name,ite.STANDARD,ite.INVENTORY_UNIT,ite.COST
+from cpm_bim_out_pri out, sm_bim_ite_reg ite
+where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1}]]>
 	</select>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
