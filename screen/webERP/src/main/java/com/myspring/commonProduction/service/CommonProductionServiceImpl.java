@@ -39,7 +39,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return popList;
 	}
   
-//  생산계획 CUD
+//  �깮�궛怨꾪쉷 CUD
   @Override
  	public void delProductionPlan(String[] numberAry) throws DataAccessException{
  		COIdao.delProductionPlan(numberAry);
@@ -54,7 +54,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
  		return COIdao.addProductionPlan(COIVO);
  	}
-//  작업지시 CRUD
+//  �옉�뾽吏��떆 CRUD
   @Override public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
 	  infolist = ORdao.selectAllOperationInfo(startDate,endDate); 
@@ -98,11 +98,18 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		ORdao.delOperationInstruction(numberAry);
 	}
   
-//  작업지시 확정 등록부
+//  작업지시확정 기능부
   @Override 
-  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate, String number) throws DataAccessException, ParseException{ 
+  public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
-	  infolist = ORdao.selectAllCommitOperationInfo(startDate,endDate,number); 
+	  infolist = ORdao.selectAllCommitOperationInfo(startDate,endDate); 
+	  return infolist; 
+	  }
+  
+  @Override 
+  public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String startDate, String endDate, String number) throws DataAccessException, ParseException{ 
+	  List<OperationRegistVO> infolist = null; 
+	  infolist = ORdao.selectAllCommitOperationInfoDetail(startDate,endDate, number); 
 	  return infolist; 
 	  }
   }
