@@ -34,6 +34,18 @@
 		<result property="note" column="note" />
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
+	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
+		<result property="OperationNumber" column="OPNUMBER" />
+		<result property="materialStatus" column="MATERIALUSESTATUS" />
+		<result property="performanceDate" column="PERFORMANCEDATE" />
+		<result property="processCode" column="PROCESS_CODE" />
+		<result property="workplaceCode" column="WORKPLACE_CODE" />
+		<result property="sortation" column="SORTATION" />
+		<result property="performanceQuantity" column="PERFORMANCEQUANTITY" />
+		<result property="inspection" column="inspection" />
+		<result property="note" column="note" />
+		<result property="workOrderNumber" column="WORKORDERNUMBER" />
+	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
 	<select id="selectAllProductionPlanInfo" resultMap="SmBimResult">
@@ -100,10 +112,12 @@
 	<delete id="deleteOperationInstruction">
 		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
 	</delete>
+	
 	<!-- 작업지시 확정 CRUD -->
-	<select id="selectAllOperationRegistDetail" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det ]]>
 	</select>
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />

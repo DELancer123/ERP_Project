@@ -6,7 +6,7 @@ public class OperationDetailVO {
 	private String OperationNumber;
 	private String materialStatus;
 	private Date performanceDate;
-	private String outsourcingCode;
+	private String processCode;
 	private String workplaceCode;
 	private String sortation;
 	private String performanceQuantity;
@@ -41,12 +41,12 @@ public class OperationDetailVO {
 		this.performanceDate = performanceDate;
 	}
 
-	public String getOutsourcingCode() {
-		return outsourcingCode;
+	public String getProcessCode() {
+		return processCode;
 	}
 
-	public void setOutsourcingCode(String outsourcingCode) {
-		this.outsourcingCode = outsourcingCode;
+	public void setProcessCode(String processCode) {
+		this.processCode = processCode;
 	}
 
 	public String getWorkplaceCode() {
