@@ -1,9 +1,12 @@
 package com.myspring.commonProduction.operationRegist.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class OperationDetailVO {
-	private String OperationNumber;
+	private String operationNumber;
 	private String materialStatus;
 	private Date performanceDate;
 	private String processCode;
@@ -13,16 +16,22 @@ public class OperationDetailVO {
 	private String inspection;
 	private String note;
 	private String workOrderNumber;
+	private List<OperationDetailVO> DetailVO;
 	
 	public OperationDetailVO() {
 	}
 
+	@Override
+	public String toString() {
+		return Arrays.toString(DetailVO.toArray());
+	}
+	
 	public String getOperationNumber() {
-		return OperationNumber;
+		return operationNumber;
 	}
 
 	public void setOperationNumber(String operationNumber) {
-		OperationNumber = operationNumber;
+		this.operationNumber = operationNumber;
 	}
 
 	public String getMaterialStatus() {
@@ -95,6 +104,14 @@ public class OperationDetailVO {
 
 	public void setWorkOrderNumber(String workOrderNumber) {
 		this.workOrderNumber = workOrderNumber;
+	}
+
+	public List<OperationDetailVO> getDetailVO() {
+		return DetailVO;
+	}
+
+	public void setDetailVO(List<OperationDetailVO> detailVO) {
+		DetailVO = new ArrayList();
 	}
 	
 	

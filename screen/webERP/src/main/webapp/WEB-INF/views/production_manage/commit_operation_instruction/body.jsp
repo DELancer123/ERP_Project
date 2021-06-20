@@ -167,8 +167,21 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                    <tr>
-                    </tr>
+  					<c:forEach var="detail" items="${detailList}" varStatus="status">
+  					 <tr>
+  					 	<td><input type="checkbox" value="${detail.operationNumber }" name="content2"/></td>
+                        <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" readonly /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" /></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+  					 </tr>
+                    </c:forEach>
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="date"/></td>
