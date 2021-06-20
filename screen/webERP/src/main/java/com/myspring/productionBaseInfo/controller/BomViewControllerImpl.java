@@ -196,16 +196,17 @@ public class BomViewControllerImpl implements BomViewController {
 		String itemNumber = request.getParameter("itemNumber");
 		String submit = request.getParameter("submit");
 		String itemCode = request.getParameter("itemCode");
+		String placeCode = request.getParameter("placeCode");
 		mav = new ModelAndView(viewName);
 		if(itemNumber == null || submit == null || submit.equals("0")) {
 			return mav;
 		}
 		else if(submit.equals("1")) {
-			List outpriceView = viewService.getoutprice(itemNumber);
+			List outpriceView = viewService.getoutprice(itemNumber,placeCode);
 			mav.addObject("outpriceView",outpriceView);
 		}
 		else if(submit.equals("2")) {
-			List outpriceView = viewService.getoutprice(itemNumber);
+			List outpriceView = viewService.getoutprice(itemNumber,placeCode);
 			List outpriceText = viewService.inputText(itemCode);
 			mav.addObject("outpriceView",outpriceView);
 			mav.addObject("setText",outpriceText);
@@ -242,25 +243,24 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 	@Override
 	@RequestMapping(value="/member/addoutprice.do" ,method = RequestMethod.GET)
-	public ModelAndView addoutprice(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
-		System.out.println("url" + path);
 		int result = 0;
-		result = viewService.addoutprice(bomVO);
+		result = viewService.addoutprice(outVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 
 	@Override
 	@RequestMapping(value="/member/updoutprice.do" ,method = RequestMethod.GET)
-	public ModelAndView updoutprice(com.myspring.productionBaseInfo.BOM.vo.bomVO bomVO, HttpServletRequest request,
+	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		int result = 0;
-		result = viewService.updoutprice(bomVO);
+		result = viewService.updoutprice(outVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}

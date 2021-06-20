@@ -12,7 +12,7 @@
  	<c:set var="itemName" value="${set.itemName }"/>
  	<c:set var="standard" value="${set.standard }"/>
  	<c:set var="unit" value="${set.unit }"/>
- 	<c:set var="actual" value="${set.actualCost }"/>
+ 	<c:set var="actual" value="${set.cost }"/>
  	<c:set var="no" value="${set.no }"/>
  </c:forEach>
 <!DOCTYPE html>
@@ -74,7 +74,7 @@
                         <td colspan="2"><input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/></td>
     
                         <td colspan="4" style="width: 80px;">외주작업장</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" value='${param.placeCode }' style="width: 100%; background-color: yellow;"/></td>
                         <td> <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
                         
@@ -82,12 +82,12 @@
                     
                     <tr>
                         <td>품목군</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
+                        <td style="width: 80px;"><input type="text"  style="width: 100%;"/></td>
                         <td>  <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
     
                         <td colspan="5" style="width: 80px;">사원</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                         <td > <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
 
@@ -119,28 +119,30 @@
                     <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" name="ListVO[${status.index}].itemNumber" value='${out.itemNumber }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].itemName" value='${out.itemName }' ondblclick="search3()"/></td>
-                        <td><input type="text" name="ListVO[${status.index}].standard" value='${out.standard }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].unit" value='${out.unit }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].actualCost" value='${out.actualCost }'/></td>
-                        <td><input type="text" name="ListVO[${status.index}].outSourcingUnitPrice" value='${out.outSourcingUnitPrice }'/></td>
-                        <td><input type="date" name="ListVO[${status.index}].startDate" value='${out.startDate }'/></td>
-                        <td><input type="date" name="ListVO[${status.index}].endDate" value='${out.endDate }'/></td>
-                        <input type="hidden" name="ListVO[${status.index }].no" value='${out.no }'/>
+                        <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
+                        <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
+                        <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }' readonly/></td>
+                        <td><input type="text" value='${out.bomVO.itemName }' ondblclick="search3()" readonly/></td>
+                        <td><input type="text" value='${out.bomVO.standard }' readonly/></td>
+                        <td><input type="text" value='${out.bomVO.unit }' readonly/></td>
+                        <td><input type="text" value='${out.bomVO.cost }' readonly/></td>
+                        <td><input type="text" name="outpriveVO[${status.index}].outprice" value='${out.outprice }'  /></td>
+                        <td><input type="date" name="outpriveVO[${status.index}].startDate" value='${out.startDate }'/></td>
+                        <td><input type="date" name="outpriveVO[${status.index}].endDate" value='${out.endDate }'/></td>
                     </tbody>
                     </c:forEach>
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text" id="itemNumber" name="ListVO[${fn:length(outpriceView) }].itemNumber" value='${itemNumber} '/></td>
-                        <td><input type="text" id="itemName" name="ListVO[${fn:length(outpriceView) }].itemName" ondblclick="search3()" value='${itemName }'/></td>
-                        <td><input type="text" id="standard" name="ListVO[${fn:length(outpriceView) }].standard" value='${standard }' /></td>
-                        <td><input type="text" id="unit" name="ListVO[${fn:length(outpriceView) }].unit" value='${unit }'/></td>
-                        <td><input type="text" id="actual" name="ListVO[${fn:length(outpriceView) }].actualCost" value='${actual }'/></td>
-                        <td><input type="text" id="price" name="ListVO[${fn:length(outpriceView) }].outSourcingUnitPrice"/></td>
-                        <td><input type="date" id="start" name="ListVO[${fn:length(outpriceView) }].startDate"/></td>
-                        <td><input type="date" id="end" name="ListVO[${fn:length(outpriceView) }].endDate"/></td>
-                        <input type="hidden" id="no" name="ListVO[${fn:length(outpriceView) }].no" value='${no }'/>
+                        <input type="hidden" id="outsoucing" name="outpriveVO[${fn:length(outpriceView) }].outsourcing_Code" value='${param.itemNumber}'/>
+                        <input type="hidden" id="placecode" name="outpriveVO[${fn:length(outpriceView) }].outcustomer" value='${param.placeCode }'/>
+                        <td><input type="text" id="itemCode" name="outpriveVO[${fn:length(outpriceView) }].item_code" value='${itemNumber }' readonly /></td>
+                        <td><input type="text" id="itemName"value='${itemName }'  ondblclick="search3()" readonly/></td>
+                        <td><input type="text" id="standard"value='${standard }' readonly /></td>
+                        <td><input type="text" id="unit"value='${unit }' readonly /></td>
+                        <td><input type="text" id="cost"value='${actual }' readonly /></td>
+                        <td><input type="text" id="outprice" name="outpriveVO[${fn:length(outpriceView) }].outprice"/></td>
+                        <td><input type="date" id="start" name="outpriveVO[${fn:length(outpriceView) }].startDate"/></td>
+                        <td><input type="date" id="end" name="outpriveVO[${fn:length(outpriceView) }].endDate"/></td>
                     </tbody>
                 </table>
             </div>
@@ -193,15 +195,16 @@
 	  			document.getElementById('searchForm').submit();  
 		}
 		update_button.onclick = function(){
-			document.getElementById("itemNumber").disabled = true;
+			document.getElementById("outsoucing").disabled = true;
+ 		     document.getElementById("placecode").disabled = true;
+ 		     document.getElementById("itemCode").disabled = true;
  		     document.getElementById("itemName").disabled = true;
  		     document.getElementById("standard").disabled = true;
  		     document.getElementById("unit").disabled = true;
- 		     document.getElementById("actual").disabled = true;
- 		     document.getElementById("price").disabled = true;
+ 		     document.getElementById("cost").disabled = true;
+ 		     document.getElementById("outprice").disabled = true;
  		     document.getElementById("start").disabled = true;
  		     document.getElementById("end").disabled = true;
- 		     document.getElementById("no").disabled = true;
  		    const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();

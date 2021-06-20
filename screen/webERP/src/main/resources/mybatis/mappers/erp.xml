@@ -152,15 +152,8 @@
 		<result property="unit" column="inventory_unit" />
 		<result property="precisionQuantity" column="precisionQuantity" />
 		<result property="loss" column="loss" />
-		<result property="actualCost" column="actualCost" />
-		<result property="outSourcingUnitPrice" column="outSourcingUnitPrice" />
-		<result property="startDate" column="startDate" />
-		<result property="endDate" column="endDate" />
 		<result property="division" column="division" />
-		<result property="outsourcing_code" column="OUTSOURCING_CODE" />
-		<result property="workplace_code" column="WORKPLACE_CODE" />
-		<result property="cost" column="cost" />
-
+		<result property="cost" column="cost"/>
 	</resultMap>
 	<resultMap id="popView" type="bomVO">
 		<result property="itemNumber" column="item_code" />
@@ -192,7 +185,7 @@
 	</select>
 	<select id="inputItem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select no,item_code,item_name,standard,inventory_unit,ACTUALCOST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
+		<![CDATA[select no,item_code,item_name,standard,inventory_unit,COST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList1" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품']]>
@@ -227,21 +220,34 @@
 	<select id="outViewex" resultMap="outpopViewex" parameterType="String">
 		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg]]>
 	</select>
-	<select id="outpriceView" resultMap="bomView" parameterType="String">
-		<![CDATA[select * from cpm_bim_bom_reg where outsourcing_code = #{itemNumber}]]>
+	
+	
+	<!-- 외주단가등록 -->
+	<resultMap id="outpriView" type="outpriVO">
+		<result property="outsourcing_Code" column="OUTSOURCING_CODE" />
+		<result property="outcustomer" column = "OUTCUSTOMER"/>
+		<result property="item_code" column="ITEM_CODE" />
+		<result property="outprice" column="OUTSOURCINGUNITPRICE" />
+		<result property="startDate" column="STARTDATE" />
+		<result property="endDate" column="ENDDATE" />
+		<collection property="bomVO" resultMap="bomView"></collection>
+	</resultMap>
+	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
+		<![CDATA[select out.*, ite.item_name,ite.STANDARD,ite.INVENTORY_UNIT,ite.COST
+from cpm_bim_out_pri out, sm_bim_ite_reg ite
+where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1}]]>
 	</select>
-	<update id="addoutprice" parameterType="bomVO">
+	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
-		update CPM_BIM_BOM_REG
-		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate},OUTSOURCING_CODE=#{parent}
-		where  no=#{no}
+		 insert into CPM_BIM_OUT_PRI
+		 values(#{outsourcing_Code},#{outcustomer}, #{item_code}, #{outprice}, #{startDate}, #{endDate})
 		]]>  
-	</update>
-	<update id="udpoutprice" parameterType="bomVO">
+	</insert>
+	<update id="udpoutprice" parameterType="outpriVO">
 		<![CDATA[
-		update CPM_BIM_BOM_REG
-		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
-		where  no=#{no}
+		update CPM_BIM_OUT_PRI
+		set OUTSOURCINGUNITPRICE = #{outprice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
+		where  outsourcing_Code=#{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
 		]]>  
 	</update>
 	<!-- mainPaln 파트 -->

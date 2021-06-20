@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 public interface BomViewController {
 	public ModelAndView viewBOM(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -24,8 +25,8 @@ public interface BomViewController {
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView rightbom(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView addoutprice(@ModelAttribute("bom") bomVO bomVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView updoutprice(@ModelAttribute("bom") bomVO bomVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 
 

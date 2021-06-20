@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 public interface BomViewService {
@@ -20,8 +21,8 @@ public interface BomViewService {
 	public List ChildView(String itemNumber,String childCode) throws DataAccessException;
 	public List SearchOutView() throws DataAccessException;
 	public List SearchOutView1(String itemNumber) throws DataAccessException;
-	public List getoutprice(String itemNumber) throws DataAccessException;
-	public int addoutprice(bomVO bomVO) throws DataAccessException;
+	public List getoutprice(String itemNumber, String placeCode) throws DataAccessException;
+	public int addoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
 	public List inputText(String itemCode)throws DataAccessException;
-	public int updoutprice(bomVO bomVO)throws DataAccessException;
+	public int updoutprice(RegOutSourcingPriceVO outVO)throws DataAccessException;
 }
