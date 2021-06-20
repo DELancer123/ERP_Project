@@ -16,4 +16,5 @@ public interface OperationRegistDAO {
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException;
 	public int updOperationInstruction(OperationRegistVO ORVO) throws DataAccessException;
 	public List selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
+	public List selectAllCommitOperationInfoDetail(String startDate, String endDate, String number) throws DataAccessException, ParseException;
 }
