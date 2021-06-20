@@ -75,8 +75,8 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	@RequestMapping(value="/member/regoutper.do" ,method = RequestMethod.GET)
 	public ModelAndView listRegOutPerformance(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = getViewName(request);
-		List regOutPerformanceView = regOutsourcingService.listOutRelease();
-		List regOutPerformanceViewDetail = regOutsourcingService.listOutReleaseDetail();
+		List regOutPerformanceView = regOutsourcingService.listRegOutPerformance();
+		List regOutPerformanceViewDetail = regOutsourcingService.listRegOutPerformanceDetail();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("regOutPerformanceView", regOutPerformanceView);
 		mav.addObject("regOutPerformanceViewDetail", regOutPerformanceViewDetail);

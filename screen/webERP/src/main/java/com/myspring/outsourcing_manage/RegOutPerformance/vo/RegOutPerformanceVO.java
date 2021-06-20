@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component("RegOutPerformanceVO")
 public class RegOutPerformanceVO {
 	private String workOrderNumber;
-	private String materialForwarding;
+	private String materialForwardingStatus;
 	private String workplaceCode;
 	private Date instructionDate;
 	private Date dueDate;
@@ -26,7 +26,7 @@ public class RegOutPerformanceVO {
 	private String productionPlanCode;	
 	
 	private int operationPerformanceNumber;
-	private String materialForwardingStatus;
+	private String materialUseStatus;
 	private Date performanceDate;
 	private String outsourcingCode;
 	private String sortation;
@@ -41,12 +41,6 @@ public class RegOutPerformanceVO {
 	}
 	public void setWorkOrderNumber(String workOrderNumber) {
 		this.workOrderNumber = workOrderNumber;
-	}
-	public String getMaterialForwarding() {
-		return materialForwarding;
-	}
-	public void setMaterialForwarding(String materialForwarding) {
-		this.materialForwarding = materialForwarding;
 	}
 	public String getWorkplaceCode() {
 		return workplaceCode;
@@ -197,6 +191,12 @@ public class RegOutPerformanceVO {
 	}
 	public void setListVO(List<RegOutPerformanceVO> listVO) {
 		ListVO = listVO;
+	}
+	public String getMaterialUseStatus() {
+		return materialUseStatus;
+	}
+	public void setMaterialUseStatus(String materialUseStatus) {
+		this.materialUseStatus = materialUseStatus;
 	}
 	
 	

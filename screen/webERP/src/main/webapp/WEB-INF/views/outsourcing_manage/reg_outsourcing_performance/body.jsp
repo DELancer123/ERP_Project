@@ -148,11 +148,12 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
+                    <!-- 
                         <c:forEach var="regOutPer" items="${regOutPerformanceView}" varStatus="status" >     
 						   <tr align="center">
 						   	  <td><input type="checkbox" name="content" value="${regOutPer.workOrderNumber}"/></td>
 						   	  <td><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${regOutPer.workOrderNumber}' readonly/></td>
-						   	  <td><input type="text" name="ListVO[${status.index}].materialForwarding" value = '${regOutPer.materialForwarding}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].materialForwardingStatus" value = '${regOutPer.materialForwardingStatus}' readonly/></td>
 						   	  <td><input type="text" name="ListVO[${status.index}].workplaceCode" value = '${regOutPer.workplaceCode}' readonly/></td>
 						   	  <td><input type="date" name="ListVO[${status.index}].instructionDate" value = '${regOutPer.instructionDate}'/></td>
 						   	  <td><input type="date" name="ListVO[${status.index}].dueDate" value = '${regOutPer.dueDate}'/></td>
@@ -167,14 +168,14 @@
 						   	  <td><input type="text" name="ListVO[${status.index}].remainingPerformance" value = '${regOutPer.remainingPerformance}'/></td>
 						   	  <td><input type="text" name="ListVO[${status.index}].status" value = '${regOutPer.status}'/></td>
 						   	  <td><input type="text" name="ListVO[${status.index}].parentInspection" value = '${regOutPer.parentInspection}'/></td>
-						   	  <td><input type="text" name="ListVO[${status.index}].noteDetail" value = '${regOutPer.noteDetail}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].parentNote" value = '${regOutPer.note}'/></td>
 						    </tr>
 						    </c:forEach> 
 						
 						    <tr align="center">
 						     <td><input type="checkbox" value = "check1" name="content"/></td>
 						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].workOrderNumber" readonly/></td>
-						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].materialForwarding" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].materialForwardingStatus" readonly/></td>
 						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].workplaceCode" value='${param.workplaceCode }' /></td>
 						    	<td><input type="date" id = "instructionDate" name="ListVO[${fn:length(regOutPerformanceView) }].instructionDate"  value='${param.workDate }'/></td>
 						    	<td><input type="date" id = "dueDate" name="ListVO[${fn:length(regOutPerformanceView) }].dueDate"  value='${param.workDate }'/></td>
@@ -191,7 +192,7 @@
 						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentInspection" readonly/></td>
 						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].noteDetail" value='${param.note }'/></td>
 						    </tr>
-
+-->
                     </tbody>
                 </table>
             </div>
