@@ -121,11 +121,11 @@
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
                         <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
-                        <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }'/></td>
-                        <td><input type="text" value='${out.bomVO.itemName }' ondblclick="search3()"/></td>
-                        <td><input type="text" value='${out.bomVO.standard }'/></td>
-                        <td><input type="text" value='${out.bomVO.unit }'/></td>
-                        <td><input type="text" value='${out.bomVO.cost }'/></td>
+                        <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }' readonly/></td>
+                        <td><input type="text" value='${out.bomVO.itemName }' ondblclick="search3()" readonly/></td>
+                        <td><input type="text" value='${out.bomVO.standard }' readonly/></td>
+                        <td><input type="text" value='${out.bomVO.unit }' readonly/></td>
+                        <td><input type="text" value='${out.bomVO.cost }' readonly/></td>
                         <td><input type="text" name="outpriveVO[${status.index}].outprice" value='${out.outprice }'  /></td>
                         <td><input type="date" name="outpriveVO[${status.index}].startDate" value='${out.startDate }'/></td>
                         <td><input type="date" name="outpriveVO[${status.index}].endDate" value='${out.endDate }'/></td>
@@ -134,12 +134,12 @@
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <input type="hidden" id="outsoucing" name="outpriveVO[${fn:length(outpriceView) }].outsourcing_Code" value='${param.itemNumber} '/>
-                        <input type="hidden" id="placecode" name="outpriveVO[${fn:length(outpriceView) }].outcustomer" ondblclick="search3()" value='${param.placeCode }'/>
-                        <td><input type="text" id="itemCode" name="outpriveVO[${fn:length(outpriceView) }].item_code" value='${itemNumber }' /></td>
-                        <td><input type="text" id="itemName"value='${itemName }' /></td>
-                        <td><input type="text" id="standard"value='${standard }' /></td>
-                        <td><input type="text" id="unit"value='${unit }' /></td>
-                        <td><input type="text" id="cost"value='${actual }' /></td>
+                        <input type="hidden" id="placecode" name="outpriveVO[${fn:length(outpriceView) }].outcustomer" value='${param.placeCode }'/>
+                        <td><input type="text" id="itemCode" name="outpriveVO[${fn:length(outpriceView) }].item_code" value='${itemNumber }' readonly /></td>
+                        <td><input type="text" id="itemName"value='${itemName }'  ondblclick="search3()" readonly/></td>
+                        <td><input type="text" id="standard"value='${standard }' readonly /></td>
+                        <td><input type="text" id="unit"value='${unit }' readonly /></td>
+                        <td><input type="text" id="cost"value='${actual }' readonly /></td>
                         <td><input type="text" id="outprice" name="outpriveVO[${fn:length(outpriceView) }].outprice"/></td>
                         <td><input type="date" id="start" name="outpriveVO[${fn:length(outpriceView) }].startDate"/></td>
                         <td><input type="date" id="end" name="outpriveVO[${fn:length(outpriceView) }].endDate"/></td>
