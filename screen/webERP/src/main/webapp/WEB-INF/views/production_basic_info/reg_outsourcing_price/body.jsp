@@ -87,7 +87,7 @@
                         <td><input type="text" name="" disabled/></td>
     
                         <td colspan="5" style="width: 80px;">»ç¿ø</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                         <td > <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
 

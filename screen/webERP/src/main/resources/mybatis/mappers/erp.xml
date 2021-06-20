@@ -246,8 +246,8 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<update id="udpoutprice" parameterType="outpriVO">
 		<![CDATA[
 		update CPM_BIM_OUT_PRI
-		set OUTSOURCINGUNITPRICE = #{outSourcingUnitPrice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
-		where  no=#{no}
+		set OUTSOURCINGUNITPRICE = #{outprice}, STARTDATE=#{startDate},ENDDATE=#{endDate}
+		where  outsourcing_Code=#{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
 		]]>  
 	</update>
 	<!-- mainPaln 파트 -->
