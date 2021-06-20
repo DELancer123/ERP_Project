@@ -123,16 +123,11 @@
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <td>필요수량</td>
-                        <td>실제원가</td>
-                        <td>외주단가</td>
-                        <td>시작일자</td>
-                        <td>종료일자</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
                     <tbody align="center">
                         <td>${bom.no }</td>
-                        
                         <td>${bom.itemNumber}</td>
                         <td><a href="#" name="item"  onclick="childSearch(this)">${bom.itemName}</a></td>
                         <td>${bom.standard}</td>
@@ -141,10 +136,6 @@
                         <td>${bom.precisionQuantity }</td>
                         <td>${bom.loss }</td>
                         <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
-                        <td>${bom.actualCost }</td>
-                        <td>${bom.outSourcingUnitPrice }</td>
-                        <td>${bom.startDate }</td>
-                        <td>${bom.endDate }</td>
                     </tbody>
                     </c:forEach>
                     	
@@ -160,10 +151,6 @@
                         <td>${child.precisionQuantity }</td>
                         <td>${child.loss }</td>
                         <td>${child.precisionQuantity+(child.precisionQuantity * (child.loss * 0.01)) }</td>
-                        <td>${child.actualCost }</td>
-                        <td>${child.outSourcingUnitPrice }</td>
-                        <td>${child.startDate }</td>
-                        <td>${child.endDate }</td>
                     </tbody>
                     	
                     </c:forEach>

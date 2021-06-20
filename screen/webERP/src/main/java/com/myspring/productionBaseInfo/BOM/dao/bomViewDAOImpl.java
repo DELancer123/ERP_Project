@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.productionBaseInfo.service.BomViewService;
 
@@ -106,17 +107,21 @@ public class bomViewDAOImpl implements bomViewDAO{
 	}
 
 	@Override
-	public List getoutprice(String itemNumber) throws DataAccessException {
+	public List getoutprice(String itemNumber,String placeCode) throws DataAccessException {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("0", itemNumber);
+		map.put("1", placeCode);
 		List<bomVO> outpriceView = null;
-		outpriceView = sqlSession.selectList("mappers.erp.outpriceView",itemNumber);
+		outpriceView = sqlSession.selectList("mappers.erp.outpriceView",map);
+		System.out.println(map.get("1") + outpriceView.size());
 		return outpriceView;
 	}
 
 	@Override
-	public int addoutprice(bomVO bomVO) throws DataAccessException {
+	public int addoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
 		int result = 0;
-		int idx = bomVO.getListVO().size()-1;
-			result = sqlSession.update("mappers.erp.addoutprice",bomVO.getListVO().get(idx));	
+		int idx = outVO.getOutpriveVO().size()-1;
+			result = sqlSession.update("mappers.erp.addoutprice",outVO.getOutpriveVO().get(idx));	
 		
 		return 0;
 	}
@@ -124,16 +129,26 @@ public class bomViewDAOImpl implements bomViewDAO{
 	@Override
 	public List inputText(String itemCode) throws DataAccessException {
 		List<bomVO> textList = null;
-		textList = sqlSession.selectList("mappers.erp.inputItem",itemCode);
+		textList = sqlSession.selectList("mappers.erp.selectitem",itemCode);
 		return textList;
 	}
 
 	@Override
-	public int updoutprice(bomVO bomVO) throws DataAccessException {
+	public int updoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
 		int result = 0; 
-		int idx = bomVO.getListVO().size();
+		int idx = outVO.getOutpriveVO().size();
 		for(int i = 0; i<idx;i++) {
-		result = sqlSession.update("mappers.erp.udpoutprice",bomVO.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.udpoutprice",outVO.getOutpriveVO().get(i));		
+		}
+		return result;
+	}
+
+	@Override
+	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
+		int result = 0; 
+		int idx = outVO.getOutpriveVO().size();
+		for(int i = 0; i<idx;i++) {
+		result = sqlSession.update("mappers.erp.deloutprice",outVO.getOutpriveVO().get(i));		
 		}
 		return result;
 	}

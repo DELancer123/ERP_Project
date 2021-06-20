@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 
 import com.myspring.productionBaseInfo.BOM.dao.bomViewDAO;
+import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 @Service("memberService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -96,15 +97,15 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public List getoutprice(String itemNumber) throws DataAccessException {
+	public List getoutprice(String itemNumber,String placeCode) throws DataAccessException {
 		List outpriceView = null;
-		outpriceView = bomDAO.getoutprice(itemNumber);
+		outpriceView = bomDAO.getoutprice(itemNumber,placeCode);
 		return outpriceView;
 	}
 
 	@Override
-	public int addoutprice(bomVO bomVO) throws DataAccessException {
-		return bomDAO.addoutprice(bomVO);
+	public int addoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
+		return bomDAO.addoutprice(outVO);
 	}
 
 	@Override
@@ -115,10 +116,17 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public int updoutprice(bomVO bomVO) throws DataAccessException {
+	public int updoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
 		int updList = 0;
-		updList = bomDAO.updoutprice(bomVO);
+		updList = bomDAO.updoutprice(outVO);
 		return updList;
+	}
+
+	@Override
+	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
+		int delList = 0;
+		delList = bomDAO.deloutprice(outVO);
+		return delList;
 	}
 
 }
