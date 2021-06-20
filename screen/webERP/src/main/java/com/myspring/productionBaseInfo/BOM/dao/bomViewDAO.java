@@ -33,5 +33,7 @@ public interface bomViewDAO {
 
 	public int updoutprice(RegOutSourcingPriceVO outVO)throws DataAccessException;
 
+	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
+
 
 }
