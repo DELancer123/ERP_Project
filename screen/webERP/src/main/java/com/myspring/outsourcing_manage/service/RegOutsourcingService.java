@@ -22,4 +22,6 @@ public interface RegOutsourcingService {
 	public List listOutReleaseDetail() throws DataAccessException;
 	public int addOutRelease(OutReleaseVO outReleaseVO) throws DataAccessException;
 	public int addOutReleaseDetail(OutReleaseVO outReleaseVO) throws DataAccessException;
+	public List listRegOutPerformance() throws DataAccessException;
+	public List listRegOutPerformanceDetail() throws DataAccessException;
 }

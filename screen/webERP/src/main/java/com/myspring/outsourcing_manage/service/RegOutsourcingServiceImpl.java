@@ -13,6 +13,7 @@ import com.myspring.outsourcing_manage.ComOutsourcing.dao.ComOutsourcingDAO;
 import com.myspring.outsourcing_manage.ComOutsourcing.vo.ComOutsourcingVO;
 import com.myspring.outsourcing_manage.OutRelease.dao.OutReleaseDAO;
 import com.myspring.outsourcing_manage.OutRelease.vo.OutReleaseVO;
+import com.myspring.outsourcing_manage.RegOutPerformance.dao.RegOutPerformanceDAO;
 import com.myspring.outsourcing_manage.RegOutsourcing.dao.RegOutsourcingDAO;
 import com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO;
 
@@ -25,6 +26,9 @@ public class RegOutsourcingServiceImpl implements RegOutsourcingService {
 	private ComOutsourcingDAO comOutsourcingDAO;
 	@Autowired
 	private OutReleaseDAO outReleaseDAO;
+	@Autowired
+	private RegOutPerformanceDAO regOutPerformanceDAO;
+	
 	
 	@Override
 	public List listOutsourcing() throws DataAccessException{
@@ -59,6 +63,20 @@ public class RegOutsourcingServiceImpl implements RegOutsourcingService {
 		List outReleaseListDetail = null;
 		outReleaseListDetail = outReleaseDAO.viewOutReleaseListDetail();
 		return outReleaseListDetail;
+	}
+	
+	@Override
+	public List listRegOutPerformance() throws DataAccessException{
+		List regOutPerformanceList = null;
+		regOutPerformanceList = regOutPerformanceDAO.viewRegOutPerformanceList();
+		return regOutPerformanceList;
+	}
+	
+	@Override
+	public List listRegOutPerformanceDetail() throws DataAccessException{
+		List regOutPerformanceListDetail = null;
+		regOutPerformanceListDetail = regOutPerformanceDAO.viewRegOutPerformanceListDetail();
+		return regOutPerformanceListDetail;
 	}
 	
 	@Override

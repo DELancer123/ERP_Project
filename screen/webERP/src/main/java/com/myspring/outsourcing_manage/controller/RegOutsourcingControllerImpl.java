@@ -72,6 +72,18 @@ private static final Logger logger = LoggerFactory.getLogger(RegOutsourcingContr
 	}
 	
 	@Override
+	@RequestMapping(value="/member/regoutper.do" ,method = RequestMethod.GET)
+	public ModelAndView listRegOutPerformance(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName = getViewName(request);
+		List regOutPerformanceView = regOutsourcingService.listOutRelease();
+		List regOutPerformanceViewDetail = regOutsourcingService.listOutReleaseDetail();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("regOutPerformanceView", regOutPerformanceView);
+		mav.addObject("regOutPerformanceViewDetail", regOutPerformanceViewDetail);
+		return mav;
+	}
+	
+	@Override
 	@RequestMapping(value="/member/addOutrelease.do" ,method = RequestMethod.GET)
 	public ModelAndView addOutrelease(@ModelAttribute("outRelease") RegOutsourcingVO regOutsourcingVO,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");

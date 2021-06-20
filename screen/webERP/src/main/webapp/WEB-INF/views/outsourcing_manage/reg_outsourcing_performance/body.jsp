@@ -1,5 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+   request.setCharacterEncoding("UTF-8");
+%> 
+
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <c:forEach var="productionPlanView" items="${productionPlanView}" >     
+ 	<c:set var="parentItemCode;" value="${productionPlanView.item_Code }"/>
+ 	<c:set var="itemName" value="${productionPlanView.item_Name }"/>
+ 	<c:set var="standard" value="${productionPlanView.standard }"/>
+ 	<c:set var="inventoryUnit;" value="${productionPlanView.inventory_Unit}"/>
+
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +53,7 @@
         .con1_search{
             padding:0;
             text-align: center;
-            /* position: absolute; Ä­ ¸ðÀß¶ó¼­ Áö¿ò*/
+            /* position: absolute; ì¹¸ ëª¨ìž˜ë¼ì„œ ì§€ì›€*/
             top: 25%;
             left: 5%;
         }
@@ -48,7 +64,7 @@
             text-align: center;
         }
 
-        /* ÄÁÅ×ÀÌ³Ê ½ºÅ¸ÀÏºÎ */
+        /* ì»¨í…Œì´ë„ˆ ìŠ¤íƒ€ì¼ë¶€ */
         #workOrderDetail{
             overflow: scroll;
             height: 100%;
@@ -58,8 +74,8 @@
             overflow: scroll;
             height: 94%;
         }
-        /* ÄÁÅ×ÀÌ³Ê ½ºÅ¸ÀÏºÎ Á¾·á */
-       /* ÇÕ°è Ãâ·ÂºÎ */
+        /* ì»¨í…Œì´ë„ˆ ìŠ¤íƒ€ì¼ë¶€ ì¢…ë£Œ */
+       /* í•©ê³„ ì¶œë ¥ë¶€ */
        #resultWindow{
             height: 6%;
             background-color: gray;
@@ -73,12 +89,12 @@
             <form id="searchForm">
                 <table class="con1_search">
                     <tr>
-                        <td>»ç¾÷Àå</td>
+                        <td>ì‚¬ì—…ìž¥</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td> 
     
-                        <td colspan="5" style="width: 80px;">ºÎ¼­</td>
+                        <td colspan="5" style="width: 80px;">ë¶€ì„œ</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
@@ -86,22 +102,22 @@
                     </tr>
                     
                     <tr>
-                        <td>Áö½ÃÀÏ</td>
+                        <td>ì§€ì‹œì¼</td>
                         <td colspan="2" style="width: 50px;"><input type="date" style="width: 100%;"/></td>
                         <td>~</td>
                         <td ><input type="date" style="width: 100%;"/></td>
                         <td></td>
     
-                        <td colspan="5" style="width: 80px;">»ç¿ø</td>
+                        <td colspan="5" style="width: 80px;">ì‚¬ì›</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
                         <td>
-                            <input type="button" value="ÀÚÀç»ç¿ë" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="ìžìž¬ì‚¬ìš©" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="°Ë»ö»ó¼¼" style="padding: 5px;"></input>
+                            <input type="button" value="ê²€ìƒ‰ìƒì„¸" style="padding: 5px;"></input>
                         </td>
                     </tr>
                 </table>
@@ -112,44 +128,70 @@
                 <table id="workOrderDetailTable">
                     <thead> 
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>ÀÛ¾÷Áö½Ã¹øÈ£</td>
-                        <td>ÀÚÀçÃâ°í»óÅÂ</td>
-                        <td>¿ÜÁÖÃ³</td>
-                        <td>Áö½ÃÀÏ</td>
-                        <td>¿Ï·áÀÏ</td>
-                        <td>Ç°¹ø</td>
-                        <td>Ç°¸í</td>
-                        <td>±Ô°Ý</td>
-                        <td>´ÜÀ§</td>
-                        <td>Áö½Ã¼ö·®</td>
-                        <td>´Ü°¡</td>
-                        <td>±Ý¾×</td>
-                        <td>½ÇÀû¼ö·®</td>
-                        <td>½ÇÀûÀÜ·®</td>
-                        <td>»óÅÂ</td>
-                        <td>°Ë»ç</td>
-                        <td>ºñ°í</td>
+                        <td>ìž‘ì—…ì§€ì‹œë²ˆí˜¸</td>
+                        <td>ìžìž¬ì¶œê³ ìƒíƒœ</td>
+                        <td>ì™¸ì£¼ì²˜</td>
+                        <td>ì§€ì‹œì¼</td>
+                        <td>ì™„ë£Œì¼</td>
+                        <td>í’ˆë²ˆ</td>
+                        <td>í’ˆëª…</td>
+                        <td>ê·œê²©</td>
+                        <td>ë‹¨ìœ„</td>
+                        <td>ì§€ì‹œìˆ˜ëŸ‰</td>
+                        <td>ë‹¨ê°€</td>
+                        <td>ê¸ˆì•¡</td>
+                        <td>ì‹¤ì ìˆ˜ëŸ‰</td>
+                        <td>ì‹¤ì ìž”ëŸ‰</td>
+                        <td>ìƒíƒœ</td>
+                        <td>ê²€ì‚¬</td>
+                        <td>ë¹„ê³ </td>
                     </thead>
-                    <!-- Å×½ºÆ®¿ë µ¥ÀÌÅÍ, ÃßÈÄ Ç¥Çö½ÄÀ¸·Î ¼öÁ¤ÇÊ¿ä -->
+                    <!-- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°, ì¶”í›„ í‘œí˜„ì‹ìœ¼ë¡œ ìˆ˜ì •í•„ìš” -->
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <c:forEach var="regOutPer" items="${regOutPerformanceView}" varStatus="status" >     
+						   <tr align="center">
+						   	  <td><input type="checkbox" name="content" value="${regOutPer.workOrderNumber}"/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${regOutPer.workOrderNumber}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].materialForwarding" value = '${regOutPer.materialForwarding}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].workplaceCode" value = '${regOutPer.workplaceCode}' readonly/></td>
+						   	  <td><input type="date" name="ListVO[${status.index}].instructionDate" value = '${regOutPer.instructionDate}'/></td>
+						   	  <td><input type="date" name="ListVO[${status.index}].dueDate" value = '${regOutPer.dueDate}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].parentItemCode" value = '${regOutPer.parentItemCode}' ondblclick="search2()"/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].parentItemName" value = '${regOutPer.parentItemName}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].parentStandard" value = '${regOutPer.parentStandard}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].parentInventoryUnit" value = '${regOutPer.parentInventoryUnit}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].indicatedQuantity" value = '${regOutPer.indicatedQuantity}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].unitPrice" value = '${regOutPer.unitPrice}'/></td>
+						   	  <td><input type="text" value = '${regOutPer.indicatedQuantity*regOutPer.unitPrice}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].sumPerformanceQuantity" value = '${regOutPer.sumPerformanceQuantity}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].remainingPerformance" value = '${regOutPer.remainingPerformance}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].status" value = '${regOutPer.status}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].parentInspection" value = '${regOutPer.parentInspection}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].noteDetail" value = '${regOutPer.noteDetail}'/></td>
+						    </tr>
+						    </c:forEach> 
+						
+						    <tr align="center">
+						     <td><input type="checkbox" value = "check1" name="content"/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].workOrderNumber" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].materialForwarding" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].workplaceCode" value='${param.workplaceCode }' /></td>
+						    	<td><input type="date" id = "instructionDate" name="ListVO[${fn:length(regOutPerformanceView) }].instructionDate"  value='${param.workDate }'/></td>
+						    	<td><input type="date" id = "dueDate" name="ListVO[${fn:length(regOutPerformanceView) }].dueDate"  value='${param.workDate }'/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentItemCode" value='${param.parentItemCode }' ondblclick="search2()"/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentItemName" value='${param.parentItemName }' readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentStandard" value='${param.parentStandard }' readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentInventoryUnit" value='${param.parentInventoryUnit }' readonly/></td>
+						    	<td><input type="text" id = "indicatedQuantity" name="ListVO[${fn:length(regOutPerformanceView) }].indicatedQuantity"  value='${param.quantity }'/></td>
+						    	<td><input type="text" id = "unitPrice" name="ListVO[${fn:length(regOutPerformanceView) }].unitPrice" /></td>
+						    	<td><input type="text" id = "price" readonly/></td>
+						    	<td><input type="text" id = "sumPerformanceQuantity" readonly/></td>
+						    	<td><input type="text" id = "remainingPerformance" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].status" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentInspection" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].noteDetail" value='${param.note }'/></td>
+						    </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -159,17 +201,17 @@
                 <table id="workOrderTable">
                     <thead>
                         <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
-                        <td>ÀÛ¾÷½ÇÀû¹øÈ£</td>
-                        <td>ÀÚÀç»ç¿ëÀ¯¹«</td>
-                        <td>½ÇÀûÀÏ</td>
-                        <td>°øÁ¤</td>
-                        <td>ÀÛ¾÷Àå</td>
-                        <td>±¸ºÐ</td>
-                        <td>½ÇÀû¼ö·®</td>
-                        <td>°Ë»ç</td>
-                        <td>ºñ°í</td>
+                        <td>ìž‘ì—…ì‹¤ì ë²ˆí˜¸</td>
+                        <td>ìžìž¬ì‚¬ìš©ìœ ë¬´</td>
+                        <td>ì‹¤ì ì¼</td>
+                        <td>ê³µì •</td>
+                        <td>ìž‘ì—…ìž¥</td>
+                        <td>êµ¬ë¶„</td>
+                        <td>ì‹¤ì ìˆ˜ëŸ‰</td>
+                        <td>ê²€ì‚¬</td>
+                        <td>ë¹„ê³ </td>
                     </thead>
-                    <!-- Å×½ºÆ®¿ë µ¥ÀÌÅÍ, ÃßÈÄ Ç¥Çö½ÄÀ¸·Î ¼öÁ¤ÇÊ¿ä -->
+                    <!-- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°, ì¶”í›„ í‘œí˜„ì‹ìœ¼ë¡œ ìˆ˜ì •í•„ìš” -->
                     <tbody>
                         <td><input type="checkbox" value = "check1" id="check" name="content2"/></td>
                         <td><input type="text"/></td>
@@ -184,12 +226,12 @@
                     </tbody>
                 </table>
             </div>
-            <!-- ÄÁÅ×ÀÌ³Ê Ãâ·Â Á¾·á -->
-             <!-- ÇÕ°è Ãâ·ÂºÎ -->
+            <!-- ì»¨í…Œì´ë„ˆ ì¶œë ¥ ì¢…ë£Œ -->
+             <!-- í•©ê³„ ì¶œë ¥ë¶€ -->
              <div id="resultWindow">
-                ÇÕ °è <span style="margin-left: 100px;"></span>½ÇÀû¼ö·® <span style="margin-left: 10px;"><input type="text"></span>
+                í•© ê³„ <span style="margin-left: 100px;"></span>ì‹¤ì ìˆ˜ëŸ‰ <span style="margin-left: 10px;"><input type="text"></span>
             </div>
-                <!-- ÇÕ°è Ãâ·ÂºÎ Á¾·á -->
+                <!-- í•©ê³„ ì¶œë ¥ë¶€ ì¢…ë£Œ -->
         </container3>
       
 </body>

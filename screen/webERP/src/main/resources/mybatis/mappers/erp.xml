@@ -484,14 +484,10 @@ order by workordernumber]]>
 	<resultMap id="outReleaseView" type="OutReleaseVO">
 		<result property="forwardingNumber" column="forwardingNumber" />
 		<result property="forwardingDate" column="forwardingDate" />
-		<result property="houseCode" column="House_Code" />
-		<result property="houseName" column="House_Name" />
-		<result property="locationCode" column="Location_Code" />
-		<result property="locationName" column="Location_Name" />
-		<result property="outsourcingCode" column="Outsourcing_Code" />
-		<result property="outsourcingName" column="Outsourcing_Name" />
-		<result property="workplaceCode" column="Workplace_Code" />
-		<result property="workplaceName" column="Workplace_Name" />
+		<result property="houseCode" column="func_hou_reg(House_Code)" />
+		<result property="locationCode" column="func_Wor_Reg(Location_Code)" />
+		<result property="outsourcingCode" column="func_Out_Reg(Outsourcing_Code)" />
+		<result property="workplaceCode" column="func_Out_Wor_Reg(Workplace_Code)" />
 		<result property="note" column="note" />	
 	</resultMap>
 
@@ -510,13 +506,11 @@ order by workordernumber]]>
 	<!-- 외주자재출고 세부사항 파트 -->
 	<resultMap id="outReleaseViewDetail" type="OutReleaseVO">
 		<result property="no" column="no" />
-		<result property="billingDate" column="billingDate" />
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="precisionQuantity" column="precisionQuantity" />
-		<result property="loss" column="loss" />
 		<result property="forwardingQuantity" column="forwardingQuantity" />				
 		<result property="noteDetail" column="note" />
 		<result property="forwardingNumber" column="forwardingNumber" />
@@ -531,6 +525,68 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	</select>
 	
 	<insert id="insertOutReleaseDetail" parameterType="OutReleaseVO">
+		<![CDATA[
+		INSERT INTO CPM_OM_Out_Mat_For_Det
+		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber});
+		]]>  
+	</insert>
+	
+		<!-- 외주실적등록 파트 -->
+	<resultMap id="regOutPerformanceView" type="RegOutPerformanceVO">
+		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialForwarding" column="materialForwarding" />
+		<result property="workplaceCode" column="workplaceCode" />
+		<result property="instructionDate" column="instructionDate" />
+		<result property="dueDate" column="dueDate" />
+		<result property="parentItemCode" column="Item_Code" />
+		<result property="parentItemName" column="Item_Name" />
+		<result property="parentStandard" column="Standard" />
+		<result property="parentInventoryUnit" column="Inventory_Unit" />
+		<result property="indicatedQuantity" column="indicatedQuantity" />
+		<result property="unitPrice" column="unitPrice" />				
+		<result property="parentPrice" column="Price" />				
+		<result property="sumPerfomanceQuantity" column="perfomanceQuantity" />				
+		<result property="remainingPerfomance" column="remainingPerfomance" />				
+		<result property="status" column="status" />
+		<result property="ParentInspection" column="inspection" />
+		<result property="parentNote" column="note" />		
+		<result property="productionPlanCode" column="productionPlanCode" />	
+		<collection property="comOutsourcingView" column="workOrderNumber" select="selectAllComOutsourcingList"></collection>			
+	</resultMap>
+
+		<update id="updateComOutsourcing" parameterType="RegOutPerformanceVO">
+		<![CDATA[
+		update CPM_OM_Out_Per_Reg
+		set status = '확정'
+		where  workOrderNumber=#{workOrderNumber}
+		]]>  
+	</update>
+	
+	<select id="selectAllRegOutPerformanceList" resultMap="regOutPerformanceView">
+		<![CDATA[select workOrderNumber,materialForwarding,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
+	</select>
+	
+	<!-- 외주실적등록 세부사항 파트 -->
+	<resultMap id="regOutPerformanceViewDetail" type="RegOutPerformanceVO">
+		<result property="operationPerformanceNumber" column="operationPerformanceNumber" />
+		<result property="materialForwardingStatus" column="materialForwardingStatus" />
+		<result property="performanceDate" column="performanceDate" />
+		<result property="outsourcingCode" column="func_Out_Reg(Outsourcing_Code)" />
+		<result property="workplaceCode" column="func_Out_Wor_Reg(Workplace_Code)" />
+		<result property="sortation" column="sortation" />
+		<result property="precisionQuantity" column="precisionQuantity" />
+		<result property="PerformanceQuantity" column="PerformanceQuantity" />				
+		<result property="inspection" column="inspection" />
+		<result property="noteDetail" column="note" />
+	</resultMap>
+	
+	<select id="selectAllRegOutPerformanceDetail" resultMap="regOutPerformanceViewDetail">
+		<![CDATA[SELECT NO,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,PRECISIONQUANTITY,FORWARDINGQUANTITY
+FROM CPM_OM_Out_Mat_For MAT, CPM_OM_Out_Mat_For_Det MAF
+WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
+	</select>
+	
+	<insert id="insertRegOutPerformanceDetail" parameterType="RegOutPerformanceVO">
 		<![CDATA[
 		INSERT INTO CPM_OM_Out_Mat_For_Det
 		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber});
