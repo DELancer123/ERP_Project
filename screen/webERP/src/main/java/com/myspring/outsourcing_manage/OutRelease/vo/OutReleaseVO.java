@@ -30,6 +30,7 @@ public class OutReleaseVO {
 	private int precisionQuantity;
 	private int forwardingQuantity;
 	private String noteDetail;
+	private String workOrderNumber;
 	private List<OutReleaseVO> ListVO;
 	
 	public String getForwardingNumber() {
@@ -158,6 +159,12 @@ public class OutReleaseVO {
 	}
 	public void setWorkplaceName(String workplaceName) {
 		this.workplaceName = workplaceName;
+	}
+	public String getWorkOrderNumber() {
+		return workOrderNumber;
+	}
+	public void setWorkOrderNumber(String workOrderNumber) {
+		this.workOrderNumber = workOrderNumber;
 	}
 	
 	

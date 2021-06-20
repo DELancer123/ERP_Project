@@ -197,7 +197,7 @@
             </div>
                 <!-- 디테일부 종료 -->
             </container2>
-            <!-- 
+            
             <container3 id="contents3">
                 <div id="MDInfo">
                     <table id="MDTable">
@@ -213,29 +213,45 @@
                             <td>비고</td>
                         </thead>
                         <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                        <!--  
+                        
                         <tbody>
-                            <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
-                            <td><input type="text"/></td>
+                        <c:forEach var="outReleaseDetail" items="${outReleaseViewDetail}" varStatus="status" >     
+						   <tr align="center">
+						   	  <td><input type="checkbox" name="content" value="${outReleaseDetail.no}"/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].no" value = '${outReleaseDetail.no}' /></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].itemCode" value = '${outReleaseDetail.itemCode}' /></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${outReleaseDetail.itemName}' /></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${outReleaseDetail.standard}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].inventoryUnit" value = '${outReleaseDetail.inventoryUnit}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${outReleaseDetail.precisionQuantity}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].forwardingQuantity" value = '${outReleaseDetail.forwardingQuantity}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].noteDetail" value = '${outReleaseDetail.noteDetail}'/></td>
+						    </tr>
+						    </c:forEach> 
+						
+						    <tr align="center">
+							     <td><input type="checkbox" value = "check1" name="content"/></td>
+							    	<td><input type="text" name="ListVO[${fn:length(outReleaseViewDetail) }].no" readonly/></td>
+							    	<td><input type="text" name="ListVO[${fn:length(outReleaseViewDetail) }].itemCode" value='${param.itemCode }' ondblclick="search2()"/></td>
+							    	<td><input type="text" name="ListVO[${fn:length(outReleaseViewDetail) }].itemName" value='${param.itemName }' readonly/></td>
+							    	<td><input type="text" name="ListVO[${fn:length(outReleaseViewDetail) }].standard" value='${param.standard }' readonly/></td>
+							    	<td><input type="text" name="ListVO[${fn:length(outReleaseViewDetail) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
+							    	<td><input type="text" id = "precisionQuantity" name="ListVO[${fn:length(outReleaseViewDetail) }].precisionQuantity"  value='${param.precisionQuantity}'/></td>
+							    	<td><input type="text" id = "forwardingQuantity" name="ListVO[${fn:length(outReleaseViewDetail) }].forwardingQuantity"  value='${param.forwardingQuantity}'/></td>
+							    	<td><input type="text" name="ListVO[${fn:length(outReleaseViewDetail) }].note" value='${param.noteDetail }'/></td>
+							    </tr>
                         </tbody>
                     </table>
                     <!-- 출력부 1 -->
-                    <!--
+                    
                 </div>
                  <!-- 합계 출력부 -->
-                 <!--
+                 
                  <div id="resultWindow">
                     요청수량 <span style="margin-left: 100px;"></span>출고수량 <input type="text"><span style="margin-left: 100px;"></span>
                 </div>
                     <!-- 합계 출력부 종료 -->
-                    <!--
+                    
                     <div id="detailPrint1">
                         관리구분 <input type="text" name="controlCondition" style="width: 75px;"><input type="button" value="검"><input type="text" name="ckfactory" style="width: 75px;" disabled>
                         지시수량 <input type="text" name="printQuantity" disabled><br>
@@ -244,14 +260,14 @@
                     </div>
                     <!-- 출력부 1 종료 -->
                     <!-- 출력부 2 -->
-                    <!--
+                    
             <div id="detailPrint2">
                 재고    사업장별 현재고 <input type="text" name="stockPerFactory">
                 창고/장소별 현재고 <input type="text" name="stockPerCargo">
             </div>
             <!-- 출력부 2 종료 -->
-            <!--
+            
         </container3>
-       -->
+       
 </body>
 </html>

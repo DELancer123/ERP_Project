@@ -34,6 +34,7 @@
 		<typeAlias type="com.myspring.outsourcing_manage.RegOutsourcing.vo.RegOutsourcingVO" alias="RegOutsourcingVO" />
 		<typeAlias type="com.myspring.outsourcing_manage.ComOutsourcing.vo.ComOutsourcingVO" alias="comOutsourcingVO" /> 
 		<typeAlias type="com.myspring.outsourcing_manage.OutRelease.vo.OutReleaseVO" alias="OutReleaseVO" /> 
-		
+		<typeAlias type="com.myspring.outsourcing_manage.RegOutPerformance.vo.RegOutPerformanceVO" alias="RegOutPerformanceVO" /> 
+
 	</typeAliases>
 </configuration>	 
