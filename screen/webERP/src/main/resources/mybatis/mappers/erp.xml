@@ -35,7 +35,7 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
-		<result property="OperationNumber" column="OPNUMBER" />
+		<result property="operationNumber" column="OPNUMBER" />
 		<result property="materialStatus" column="MATERIALUSESTATUS" />
 		<result property="performanceDate" column="PERFORMANCEDATE" />
 		<result property="processCode" column="PROCESS_CODE" />
@@ -89,7 +89,7 @@
 	</update>	
 	
 	<delete id="deleteProductionPlan">
-		delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}
+		<![CDATA[delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}]]>
 	</delete>
 	
 	<!-- 작업지시 CURD -->
@@ -110,12 +110,12 @@
 		]]>  
 	</update>	
 	<delete id="deleteOperationInstruction">
-		delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}
+		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
 	</delete>
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det ]]>
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
 	<!-- 생산 팝업 파트 -->	
