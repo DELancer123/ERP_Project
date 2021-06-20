@@ -322,4 +322,10 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
+	@RequestMapping(value="/member/deftypepop.do" ,method = RequestMethod.GET)
+	public ModelAndView defTypePop(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
 }

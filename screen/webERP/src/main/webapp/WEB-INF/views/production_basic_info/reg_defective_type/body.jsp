@@ -103,7 +103,7 @@
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
-                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }'/></td>
+                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' ondblclick="search1()"/></td>
                         <td><input type="text" name="defList[${status.index }].usageStatus" value='${def.usageStatus }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveDescription" value='${def.defectiveDescription }'/></td>
                         <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${def.defectiveItemGroupCode }'/>
@@ -157,6 +157,13 @@
 	            document.getElementById('searchForm').action = "${contextPath}/member/upddefType.do";
 	  			document.getElementById('searchForm').submit();  
 		}
+      	function openWindowPop(url, name){
+            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+            window.open(url, name, options);
+        }
+      	function search1(){
+	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
+      	}
       </script>
 </body>
 </html>

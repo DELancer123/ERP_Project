@@ -55,6 +55,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="defPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_defective_type/pop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="main" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
       <put-attribute name="body" value="/WEB-INF/views/SystemAdmin/reg_company/body.jsp" />
@@ -501,6 +506,11 @@
       <put-attribute name="body" value="/WEB-INF/views/production_basic_info/reg_defective_type/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
+	<definition name="/member/deftypepop" extends="defPopupLayout">
+      <put-attribute name="title" value="불량유형등록" />
+      <put-attribute name="body" value="" />
+	  <put-attribute name="side" value="" />
+   </definition>
 
 <!-- 
    <definition name="/member/memberForm" extends="baseLayout">
@@ -517,8 +527,8 @@
    		<put-attribute name="title" value="외주코드검색" />
       	<put-attribute name="body" value="" />
    </definition>
-   <definition name="/member/outpricehelper" extends="outPopupLayout2">
+   <definition name="/member/outpricehelper">
    		<put-attribute name="title" value="외주코드검색" />
-      	<put-attribute name="body" value="" />
+      	<put-attribute name="body" value="/WEB-INF/views/production_basic_info/reg_defective_type/pop.jsp" />
    </definition>
 </tiles-definitions>
