@@ -55,9 +55,11 @@ public class SystemmagControllerImpl implements SystemmagController{
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
+		String number = (String) request.getParameter("itemNumber");
+		String zipNumber = (String) request.getParameter("zipCode");
 		String submit = (String) request.getParameter("submit");
 		String code = (String) request.getParameter("com_code");
-		if(code == null || submit == null) {
+		if(code == null && submit == null) {
 			List comView = systemmagService.comView();
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
@@ -71,7 +73,30 @@ public class SystemmagControllerImpl implements SystemmagController{
 			mav.addObject("comcom",comcom);
 			
 		}
+		else if(submit.equals("2")) {
+			List comView = systemmagService.comView();
+			List comcom = systemmagService.comcom(code);
+			List zipView = systemmagService.zipView(number);
+			List zipInsert = systemmagService.zipText(zipNumber);
+			mav = new ModelAndView(viewName);
+			mav.addObject("comView", comView);
+			mav.addObject("comcom",comcom);
+			mav.addObject("zipView", zipView);
+			mav.addObject("zipInsert",zipInsert);
+		}
 		
+		return mav;
+	}
+		
+	
+	//회사등록(팝업)
+	@RequestMapping(value="/member/zippopup.do" ,method = RequestMethod.GET)
+	public ModelAndView Compopup(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		String zipNumber = (String) request.getParameter("zipCode");
+		List zipView = systemmagService.zipView(zipNumber);
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("zipView", zipView);
 		return mav;
 	}
 	
@@ -137,9 +162,9 @@ public class SystemmagControllerImpl implements SystemmagController{
 				mav.addObject("comitem",comitem);
 				
 			}
-			
 			return mav;
 		}
+			
 		//품목등록
 		@Override
 		@RequestMapping(value="/member/additem.do" ,method = RequestMethod.GET)

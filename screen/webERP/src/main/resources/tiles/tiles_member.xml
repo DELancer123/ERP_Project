@@ -428,7 +428,28 @@
       <put-attribute name="body" value="/WEB-INF/views/production_basic_info/reg_defective_type/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
-
+   <!-- 우편번호 팝업 -->
+<!--    <definition name="/member/regzip" extends="Zippopup">
+   <put-attribute name="title" value="우편번호팝업" />
+   <put-attribute name="side" value="" />
+   <put-attribute name="body" value="" />   
+   </definition> -->
+   
+<!--    <definition name="ZippopupLayout" extends="/WEB_INF/views/SystemAdmin/reg_company/body.jsp">
+   <put-attribute name="title" value="" />
+   <put-attribute name="side" value="" />
+   <put-attribute name="body" value="" />   
+   </definition> -->
+     <definition name="ZippopupLayout"  template="/WEB-INF/views/common/zippopup.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/zippopup" extends="ZippopupLayout">
+   <put-attribute name="title" value="팝업" />
+   <put-attribute name="side" value="" />
+   <put-attribute name="body" value="" />   
+   </definition>
 <!-- 
    <definition name="/member/memberForm" extends="baseLayout">
       <put-attribute name="title" value="회원등록창" />

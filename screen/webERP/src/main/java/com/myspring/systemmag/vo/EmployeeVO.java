@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component("EmployeeVO")
 public class EmployeeVO {
-	private String employee_Code ;
-	private String employee_Name ;
+	private String employee_Code;
+	private String employee_Name;
 	private String department_Code;
 	private String department_Name;
 	private Date joinDate;

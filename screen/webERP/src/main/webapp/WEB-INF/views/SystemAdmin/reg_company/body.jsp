@@ -27,6 +27,11 @@
  	<c:set var="whether_To_Use_Status" value="${com.whether_To_Use_Status }"/>
 
  </c:forEach>
+ <c:forEach var="zip" items='${zipInsert }'>
+ 	<c:set var="zipcode" value="${zip.zipcode }"/>
+ 	<c:set var="road_address" value="${zip.road_address }"/>
+ 	<c:set var="lot_address" value="${zip.lot_address }"/> 	
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -220,18 +225,18 @@
                 <tr>
                     <td align="center">본점우편번호</td>
                     <td colspan="2">
-                        <input type="text" name="main_Store_Postal_Code" 
+                        <input type="text" name="main_Store_Postal_Code" id="zipcode"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="5"
                         value='${main_Store_Postal_Code }' />
-                        <a href='#'><i class="fas fa-search" style="color: blue;"></i></a>
+                        <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">본점주소</td>
                     <td colspan="2">
-                        <input type="text" name="main_Store_Address" id="main_Store_Address" class= "reqInput"
+                        <input type="text" name="main_Store_Address" id="address1" class= "reqInput"
                         value='${main_Store_Address }'
                         style="width: 240px;"/>
                     </td>
@@ -239,7 +244,7 @@
                 <tr>
                     <td align="center">본점번지</td>
                     <td colspan="2">
-                        <input type="text" name="main_Branch_Number" 
+                        <input type="text" name="main_Branch_Number" id="address2"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"	
@@ -315,6 +320,25 @@
 		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
 		document.getElementById('regcompany').submit();
 		}
+	function searchzip(){
+		
+		openWindowPop1('http://localhost:8090/webERP/member/zippopup.do','zippopup');
+	}
+	
+	function setChildValue(name){
+  	  
+  	  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '2');
+		  const newParam = URLSearch.toString();
+      if(URLSearch.get('zipCode') == null){
+		window.location.href = location.pathname +'?'+newParam + '&zipCode=' + name;
+      }
+      else{
+      	URLSearch.set('zipCode', name);
+      	const newParam = URLSearch.toString();
+      	window.location.href = location.pathname +'?'+newParam;
+      }
+  }
 </script>
 </body>
 </html>

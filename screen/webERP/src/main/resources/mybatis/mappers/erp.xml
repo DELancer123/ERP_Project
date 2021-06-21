@@ -221,6 +221,19 @@
 	 #{company_Registration_Number},#{corporate_Registration_Number}, #{representatives_Name}, #{resident_Registration_Number}, #{main_Store_Postal_Code}, #{main_Store_Address},
 	 #{main_Branch_Number},#{main_Store_Tel}, #{upstate}, #{industry}, #{date_Of_Establishment}, #{whether_To_Use_Status})]]>
 	</insert>
+	<!-- 팝업 -->
+	<resultMap id="ZipViewResult" type="ZipcodeVO">
+		<result property="zipcode" column="Zipcode" />
+		<result property="road_address" column="Road_Address" />
+		<result property="lot_address" column="Lot_Address" />
+	</resultMap>
+	<select id="selectZipList" resultMap="ZipViewResult">
+		<![CDATA[select * from SM_CRI_Zip]]>
+	</select>
+	<select id="selectzip" resultMap="ZipViewResult"
+		parameterType="String">
+		<![CDATA[select zipcode,road_address,lot_address from SM_CRI_Zip where zipcode=#{zipNumber}]]>
+	</select>
 	<!-- 사업장등록 -->
 		<resultMap id="worResult" type="WorkplaceVO">
 		<result property="workplace_Code" column="Workplace_Code"	/>

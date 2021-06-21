@@ -15,6 +15,9 @@ public interface SystemmagService {
 	public int addCom(SystemmagVO systemmagVO) throws Exception;
 	public List comView() throws DataAccessException;
 	public List comcom(String com_code) throws DataAccessException;
+	//팝업
+	public List zipView(String zipNumber) throws DataAccessException;
+	public List zipText(String zipNumber) throws DataAccessException;
 	//사업장등록
 	public int addWor(WorkplaceVO workplaceVO) throws Exception;
 	public List worView() throws DataAccessException;

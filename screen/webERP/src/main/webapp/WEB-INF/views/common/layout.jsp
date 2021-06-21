@@ -220,7 +220,7 @@
 <body>
     <div id=wrap>
         <header id = header>
-            <img src="img/ani_spade.png" class="logo"/>
+            <img src="src/main/webapp/resources/image/kingdomlogo.png" class="logo"/>
             <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
             <ul id="etc_menu">
                 <li><a href="#">로그아웃</a></li>
@@ -334,7 +334,10 @@
             var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
         }
-        
+        function openWindowPop1(url, name){
+            var options = 'top=0, left=0, width=1100, height=500, status=no, menubar=no, toolbar=no, resizable=no';
+            window.open(url, name, options);
+        }
 		
     </script>
 </body>

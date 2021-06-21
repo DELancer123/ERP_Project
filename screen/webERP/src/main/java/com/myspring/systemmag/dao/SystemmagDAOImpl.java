@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.DepartmentVO;
 import com.myspring.systemmag.vo.EmployeeVO;
 import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
+import com.myspring.systemmag.vo.ZipcodeVO;
 import com.myspring.systemmag.vo.itemVO;
 
 @Repository("SystemmagDAO")
@@ -42,13 +44,24 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("comList12: "+com_code);
 		return comList;
 	}
-	//회사등록
+	//회사등록(팝업)
 		@Override
 		public int addWor(WorkplaceVO workplaceVO) throws DataAccessException{
 			int result = sqlSession.insert("mappers.erp.insertWor",workplaceVO);
 			return 0;
 		}
-	
+		@Override
+		public List viewZip() throws DataAccessException {
+			List<SystemmagVO> zipList = null;
+			zipList = sqlSession.selectList("mappers.erp.selectZipList");
+			return zipList;
+		}
+		@Override
+		public List zipText(String zipNumber) throws DataAccessException {
+			List<ZipcodeVO> textList = null;
+			textList = sqlSession.selectList("mappers.erp.selectitem",zipNumber);
+			return textList;
+		}
 	//사업장등록 조회
 	@Override
 	public List viewWor() throws DataAccessException {
@@ -123,4 +136,5 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			int result = sqlSession.insert("mappers.erp.insertDep",departmentVO.getListVO().get(idx));
 			return 0;
 		}
+
 }
