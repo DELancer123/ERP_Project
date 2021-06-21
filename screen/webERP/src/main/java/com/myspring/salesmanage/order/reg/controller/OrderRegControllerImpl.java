@@ -27,6 +27,18 @@ public class OrderRegControllerImpl implements OrderRegController{
 	@Autowired
 	private OrderRegService orderService;
 	   
+//	@Override
+//	@RequestMapping(value="/sales_manage/pop/regorderCust.do",method = RequestMethod.GET)
+//	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = getViewName(request);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
+//		List orderCustList = orderService.listCusts();
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("orderCustList", orderCustList);
+//		return mav;
+//	}
+
 	@Override
 	@RequestMapping(value="/sales_manage/pop/regorderCust.do",method = RequestMethod.GET)
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -34,11 +46,12 @@ public class OrderRegControllerImpl implements OrderRegController{
 		logger.info("viewName: "+ viewName);
 		logger.debug("viewName: "+ viewName);
 		List orderCustList = orderService.listCusts();
+		List orderList = orderService.listOrder();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("orderCustList", orderCustList);
+		mav.addObject("orderList", orderList);
 		return mav;
-	}
-
+	}//"selectOrderList"
 	@Override
 	@RequestMapping(value="/member/regorder.do" ,method = RequestMethod.GET)
 	public ModelAndView listAllCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
