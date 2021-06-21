@@ -126,4 +126,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
 		return infoList;
 	}
+	
+//	확정 버튼 기능부
+	@Override
+	public void confirmDetail(String[] numberAry) throws DataAccessException{
+		for(String obj: numberAry) {
+			sqlSession.delete("mappers.erp.confirmDetail", obj);		
+			System.out.println("DAO.delBOM");
+		}
+	}
 }

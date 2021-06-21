@@ -112,5 +112,10 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  infolist = ORdao.selectAllCommitOperationInfoDetail(number); 
 	  return infolist; 
 	  }
+  
+  @Override
+	public void confirmDetail(String[] numberAry) throws DataAccessException{
+		ORdao.confirmDetail(numberAry);
+	}
   }
  
