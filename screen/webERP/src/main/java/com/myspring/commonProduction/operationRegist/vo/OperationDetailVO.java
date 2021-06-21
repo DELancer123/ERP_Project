@@ -6,16 +6,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OperationDetailVO {
-	private String operationNumber;
-	private String materialStatus;
-	private Date performanceDate;
-	private String processCode;
-	private String workplaceCode;
-	private String sortation;
-	private String performanceQuantity;
-	private String inspection;
+	private int no;
+	private Date billingDate;
+	private String itemCode;
+	private String itemName;
+	private String standard;
+	private String inventoryUnit;
+	private int precisionQuantity;
+	private int loss;	
+	private int comfirmQuantity;
 	private String note;
-	private String workOrderNumber;
 	private List<OperationDetailVO> DetailVO;
 	
 	public OperationDetailVO() {
@@ -25,69 +25,77 @@ public class OperationDetailVO {
 	public String toString() {
 		return Arrays.toString(DetailVO.toArray());
 	}
-	
-	public String getOperationNumber() {
-		return operationNumber;
+
+	public int getNo() {
+		return no;
 	}
 
-	public void setOperationNumber(String operationNumber) {
-		this.operationNumber = operationNumber;
+	public void setNo(int no) {
+		this.no = no;
 	}
 
-	public String getMaterialStatus() {
-		return materialStatus;
+	public Date getBillingDate() {
+		return billingDate;
 	}
 
-	public void setMaterialStatus(String materialStatus) {
-		this.materialStatus = materialStatus;
+	public void setBillingDate(Date billingDate) {
+		this.billingDate = billingDate;
 	}
 
-	public Date getPerformanceDate() {
-		return performanceDate;
+	public String getItemCode() {
+		return itemCode;
 	}
 
-	public void setPerformanceDate(Date performanceDate) {
-		this.performanceDate = performanceDate;
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
 	}
 
-	public String getProcessCode() {
-		return processCode;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setProcessCode(String processCode) {
-		this.processCode = processCode;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
-	public String getWorkplaceCode() {
-		return workplaceCode;
+	public String getStandard() {
+		return standard;
 	}
 
-	public void setWorkplaceCode(String workplaceCode) {
-		this.workplaceCode = workplaceCode;
+	public void setStandard(String standard) {
+		this.standard = standard;
 	}
 
-	public String getSortation() {
-		return sortation;
+	public String getInventoryUnit() {
+		return inventoryUnit;
 	}
 
-	public void setSortation(String sortation) {
-		this.sortation = sortation;
+	public void setInventoryUnit(String inventoryUnit) {
+		this.inventoryUnit = inventoryUnit;
 	}
 
-	public String getPerformanceQuantity() {
-		return performanceQuantity;
+	public int getPrecisionQuantity() {
+		return precisionQuantity;
 	}
 
-	public void setPerformanceQuantity(String performanceQuantity) {
-		this.performanceQuantity = performanceQuantity;
+	public void setPrecisionQuantity(int precisionQuantity) {
+		this.precisionQuantity = precisionQuantity;
 	}
 
-	public String getInspection() {
-		return inspection;
+	public int getLoss() {
+		return loss;
 	}
 
-	public void setInspection(String inspection) {
-		this.inspection = inspection;
+	public void setLoss(int loss) {
+		this.loss = loss;
+	}
+
+	public int getComfirmQuantity() {
+		return comfirmQuantity;
+	}
+
+	public void setComfirmQuantity(int comfirmQuantity) {
+		this.comfirmQuantity = comfirmQuantity;
 	}
 
 	public String getNote() {
@@ -96,14 +104,6 @@ public class OperationDetailVO {
 
 	public void setNote(String note) {
 		this.note = note;
-	}
-
-	public String getWorkOrderNumber() {
-		return workOrderNumber;
-	}
-
-	public void setWorkOrderNumber(String workOrderNumber) {
-		this.workOrderNumber = workOrderNumber;
 	}
 
 	public List<OperationDetailVO> getDetailVO() {
