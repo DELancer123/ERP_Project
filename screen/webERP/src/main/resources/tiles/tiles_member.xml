@@ -527,8 +527,8 @@
    		<put-attribute name="title" value="외주코드검색" />
       	<put-attribute name="body" value="" />
    </definition>
-   <definition name="/member/outpricehelper">
+   <definition name="/member/outpricehelper" extends="outPopupLayout2">
    		<put-attribute name="title" value="외주코드검색" />
-      	<put-attribute name="body" value="/WEB-INF/views/production_basic_info/reg_defective_type/pop.jsp" />
+      	<put-attribute name="body" value="" />
    </definition>
 </tiles-definitions>
