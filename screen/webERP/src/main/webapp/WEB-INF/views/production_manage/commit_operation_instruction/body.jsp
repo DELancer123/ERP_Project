@@ -161,8 +161,7 @@
                         <td>단위</td>
                         <td>정미수량</td>
                         <td>LOSS</td>
-                        <td>확정수량</td>
-                        <td>관리구분</td>
+                        <td>확정수량</td>                     
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
@@ -177,8 +176,7 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>                        
                         <td><input type="text"/></td>
   					 </tr>
                     </c:forEach>
@@ -191,8 +189,7 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>                        
                         <td><input type="text"/></td>
                     </tr>
                     </tbody>

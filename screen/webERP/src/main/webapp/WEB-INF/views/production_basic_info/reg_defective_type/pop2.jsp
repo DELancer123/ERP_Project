@@ -9,7 +9,7 @@
 %>    
     
 <%
-	String div = (String)request.getAttribute("div");
+	String inputNo = (String)request.getAttribute("inputNo");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +64,8 @@
             </table>
             <div id="button">
                 <button id="search">조회</button>
-                <button id="submit">적용</button>
+                <button id="submit" onclick="submitClick(this.form)">적용</button>
+                <input type="hidden" name="inputNo" value=""/>
                  
                 <button>버튼3</button>
             </div>
@@ -72,16 +73,15 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
+                    <td>번호</td>
                     <td>품목코드</td>
                     <td>품명</td>
-                    <td>규격</td>
                 </tr>
-                <c:forEach var="out" items="${outView}" >     
    <tr align="center">
-      <td><a href="javascript:popFunction('${out.itemNumber }','${out.itemName }' )">${out.itemNumber}</a></td>
-      <td><a href="#">${out.itemName}</a></td>
+      <td><a href="#"></a></td>
+      <td><a href="javascript:popFunction()"></a></td>
+      <td><a href="#"></a></td>
     </tr>
-    </c:forEach> 
             </table>
             
         </div>
@@ -97,23 +97,9 @@
     			text_name.value = name;
     			
     	}
-		submit_button.onclick = function(){
-			const URLSearch = new URLSearchParams(location.search);
-			var div =  URLSearch.get('div');
-			console.log(div);
-    		if(div == 1){
-				var url = window.opener.document.location.href;
-				var url_arr = url.split('?');
-    			opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&submit='+0;
-    			window.close();
-    		}
-    		if(div == 2){
-    			var url = window.opener.document.location.href;
-				var url_arr = url.split('&');
-    			opener.parent.location=url_arr[0] + '&&placeCode='+text_code.value+'&&submit='+0;
-    			window.close();
-    		}
-    		
+    	function submitClick(form){
+    		opener.setChildValue(text_code.value)
+			window.close(); 
     	}
     </script>
     </form>
