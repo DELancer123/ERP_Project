@@ -2,6 +2,7 @@
 package com.myspring.commonProduction.controller;
   
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
   
 import javax.servlet.http.HttpServletRequest; 
@@ -215,8 +216,10 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		String number = (String) request.getParameter("workOrderNumber");
  		String viewName = getViewName(request);
  		String[] numberary = number.split(",");
- 		productionService.confirmDetail(numberary);
+ 		List<String> message = new ArrayList();
+ 		message = productionService.confirmDetail(numberary);
  		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		mav.addObject("message",message);
  		return mav;
  		}
   	 

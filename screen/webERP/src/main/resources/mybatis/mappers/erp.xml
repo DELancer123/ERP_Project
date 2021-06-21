@@ -124,6 +124,14 @@
 		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
+	<update id="updConfirmDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '확정'
+		where  workOrderNumber = #{workOrderNumber} and status = '계획'
+		]]>  
+	</update>	
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />

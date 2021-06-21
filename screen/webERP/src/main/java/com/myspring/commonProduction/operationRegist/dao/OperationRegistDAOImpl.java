@@ -3,6 +3,7 @@ package com.myspring.commonProduction.operationRegist.dao;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -129,14 +130,20 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	
 //	확정 버튼 기능부
 	@Override
-	public void confirmDetail(String[] numberAry) throws DataAccessException{
+	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
+		List<String> message = new ArrayList();
+		
 		for(String obj: numberAry) {
 			
 			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
 			System.out.println("확정"+check);
-//			
-//			sqlSession.delete("mappers.erp.confirmDetail", obj);		
-//			System.out.println("DAO.delBOM");
+			if(check.equals("계획")) {
+				sqlSession.update("mappers.erp.updConfirmDetail", obj);
+				message.add("업데이트 완료!");
+			} else {
+				message.add("확정, 마감상태의 작업은 변경 할 수 없습니다!");
+			}
 		}
+		return message;
 	}
 }

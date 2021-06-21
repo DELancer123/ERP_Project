@@ -312,4 +312,5 @@
         			window.location.href = "${contextPath}/member/confirmDetail.do?workOrderNumber="+ary;
         	  }
         }
+     
       </script>
