@@ -17,4 +17,6 @@ public interface BIllIngController {
 
 	ModelAndView updatebilling(BIllIngVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView addbilling(BIllIngVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

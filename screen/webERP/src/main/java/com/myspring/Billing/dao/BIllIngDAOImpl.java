@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.myspring.Billing.List.vo.BottomVO;
+
 import com.myspring.Billing.vo.BIllIngVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.Requiredamount.vo.RequiredamountVO;
@@ -21,11 +21,6 @@ public class BIllIngDAOImpl implements BIllIngDAO {
 	public List selectAllcmList() throws Exception {
 		List<BIllIngVO> cmList = sqlSession.selectList("mappers.erp.selectAllcmList");
 		return cmList;
-	}
-	@Override
-	public List<BottomVO>selectAllBottomList()throws Exception{
-		List<BottomVO>bottomList = sqlSession.selectList("mappers.erp.selectAllBottomList");
-		return bottomList;
 	}
 	@Override
 	public List selectAllMrpaMount() throws Exception{
@@ -49,5 +44,11 @@ public class BIllIngDAOImpl implements BIllIngDAO {
 		result = sqlSession.update("mappers.erp.updatebilling",vo.getListVO().get(i));
 		}
 		return result;
+	}
+	@Override
+	public int addbilling(BIllIngVO vo) throws DataAccessException {
+		int idx = vo.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertbilling",vo.getListVO().get(idx));
+		return 0;
 	}
 }

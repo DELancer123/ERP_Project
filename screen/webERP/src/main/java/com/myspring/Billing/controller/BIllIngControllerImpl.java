@@ -30,8 +30,6 @@ public class BIllIngControllerImpl implements BIllIngController{
 		List cmList = billingService.selectAllcmList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("cmList", cmList);	
-		List bottomList = billingService.selectAllBottomList();
-		mav.addObject("bottomList", bottomList);
 		return mav;
 	}
 	@Override
@@ -63,6 +61,20 @@ public class BIllIngControllerImpl implements BIllIngController{
 		result = billingService.updatebilling(vo);
 		System.out.println("result "+result);
 		ModelAndView mav = new ModelAndView("redirect:/member/regbilling.do");
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/member/addbilling.do", method = RequestMethod.GET)
+	public ModelAndView addbilling(@ModelAttribute("bottomList") BIllIngVO vo,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = billingService.addbilling(vo);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 	private String getViewName(HttpServletRequest request) throws Exception {

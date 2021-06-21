@@ -17,7 +17,6 @@
 		<typeAlias type="com.myspring.MainPlan.vo.MainPlanVO" alias="MainPlanVO" />
 		<typeAlias type="com.myspring.MainPlan.MpsOS.vo.MpsOSVO" alias="MpsOSVO" />
 		<typeAlias type="com.myspring.Billing.vo.BIllIngVO" alias="BIllIngVO" />
- 		<typeAlias type="com.myspring.Billing.List.vo.BottomVO" alias="BottomVO" />
 		<typeAlias type="com.myspring.Requiredamount.vo.RequiredamountVO" alias="RequiredamountVO" />
 		<typeAlias type="com.myspring.order_closing.vo.OrderClosingVO" alias="OrderClosingVO" />
 		<typeAlias type="com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO" alias="iupVO" />

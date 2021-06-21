@@ -100,7 +100,7 @@
 		</tr> 
 	</table>
 	<div id="button">
-		<input type="button" onclick="func_Popup();" value="주문조회">
+		<input type="button" onclick="ApplyOrder();" value="주문조회">
 	</div>
 	</container1>
 <container2 id=contents2>
@@ -163,7 +163,7 @@
 <script type="text/javascript">
 var windowObj;
 
-function func_Popup(){
+function ApplyOrder(){
 	window.name = "member/mainplan.do";
 	var settings ='width=1400, height=500, resizable = no, scrollbars = no';
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myspring.Billing.List.vo.BottomVO;
+
 import com.myspring.Billing.dao.BIllIngDAO;
 import com.myspring.Billing.vo.BIllIngVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
@@ -25,11 +25,6 @@ public class BIllIngServiceImpl implements BIllIngService{
 		List<BIllIngVO>cmList = billingDAO.selectAllcmList();
 		return cmList;
 	}
-	@Override
-	public List<BottomVO>selectAllBottomList()throws Exception{
-		List<BottomVO>bottomList = billingDAO.selectAllBottomList();
-		return bottomList;
-	}
 	
 	@Override
 	public List<RequiredamountVO>selectAllMrpaMount()throws Exception{
@@ -43,5 +38,9 @@ public class BIllIngServiceImpl implements BIllIngService{
 	@Override
 	public int updatebilling(BIllIngVO vo) throws DataAccessException {
 		return billingDAO.updatebilling(vo);
+	}
+	@Override
+	public int addbilling(BIllIngVO vo) throws DataAccessException {
+		return billingDAO.addbilling(vo);
 	}
 }

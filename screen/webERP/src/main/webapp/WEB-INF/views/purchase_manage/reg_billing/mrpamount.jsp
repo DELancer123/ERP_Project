@@ -66,7 +66,7 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>
-				<button onClick="sendToParent()">적용</button>	
+				<button onClick="sendToParent();">적용</button>
 				<button>취소</button>
 			</div>
 		</div>
@@ -85,17 +85,16 @@ a {
 				<c:forEach var="mrp" items="${mrpamount}">
 					<tr align="center">
 						<td><input type="checkbox" name="content" /></td>
-						<td><input type="date" value="${mrp.need_date}" /></td>
+						<td><input id="need_date" type="date" value="${mrp.need_date}" /></td>
 						<td><input type="text" value="${mrp.expected_order}" /></td>
-						<td><input type="text" value="${mrp.item_Code}" /></td>
-						<td><input type="text" value="${mrp.item_Name}" /></td>
+						<td><input id="item_Code" type="text" value="${mrp.item_Code}" /></td>
+						<td><input id="item_Name" type="text" value="${mrp.item_Name}" /></td>
 					<td style="width:33%"><input type="text" value="${mrp.standard}"style="width:100%"/></td>
 					<td style="width:33%"><input type="text" value="${mrp.inventory_unit}" style="width:100%"/></td>
-						<td><input type="text" value="${mrp.expected_quantity}" /></td>
+						<td><input id="expected_quantity" type="text" value="${mrp.expected_quantity}" /></td>
 					</tr>
 				</c:forEach>
-			</table>
-			</form>
+			</table>			
 		</div>
 	</div>
 <script type="text/javascript">
@@ -105,13 +104,14 @@ function sendToParent(){
     var text_Name = document.getElementById("item_Name").value;
     var text_expQty = document.getElementById("expected_quantity").value;
     
-    opener.document.getElementById("need_date").value=txt_requestdate;
+    opener.document.getElementById("need_date").value=text_ndDate;
     opener.document.getElementById("item_Code").value=text_Code;
     opener.document.getElementById("item_Name").value=text_Name;
-    opener.document.getElementById("expected_quantity").value=txt_claim_Qty;
+    opener.document.getElementById("expected_quantity").value=text_expQty;
     
     window.close();
 }   
 </script>
+</form>
 </body>
 </html>

@@ -15,17 +15,73 @@ private int sequence;
 private String claim_no;
 private Date claim_date;
 private String claim_division;
+private String item_Code;
+private String item_Name;
+private String standard;
+private Date requestdate;
+private int inventory_qty;
+private int claim_quantity;
+private String buyer;
 private String note;
+
 private List<BIllIngVO> ListVO;
 
 
-public BIllIngVO(int sequence,String claim_no,Date claim_date,String claim_division,String note)
-{
-	this.sequence=sequence;
-	this.claim_no = claim_no;
-	this.claim_date = claim_date;
-	this.claim_division = claim_division;
-	this.note = note;
+
+public String getItem_Code() {
+	return item_Code;
+}
+
+public void setItem_Code(String item_Code) {
+	this.item_Code = item_Code;
+}
+
+public String getItem_Name() {
+	return item_Name;
+}
+
+public void setItem_Name(String item_Name) {
+	this.item_Name = item_Name;
+}
+
+public String getStandard() {
+	return standard;
+}
+
+public void setStandard(String standard) {
+	this.standard = standard;
+}
+
+public Date getRequestdate() {
+	return requestdate;
+}
+
+public void setRequestdate(Date requestdate) {
+	this.requestdate = requestdate;
+}
+
+public int getInventory_qty() {
+	return inventory_qty;
+}
+
+public void setInventory_qty(int inventory_qty) {
+	this.inventory_qty = inventory_qty;
+}
+
+public int getClaim_quantity() {
+	return claim_quantity;
+}
+
+public void setClaim_quantity(int claim_quantity) {
+	this.claim_quantity = claim_quantity;
+}
+
+public String getBuyer() {
+	return buyer;
+}
+
+public void setBuyer(String buyer) {
+	this.buyer = buyer;
 }
 
 @Override

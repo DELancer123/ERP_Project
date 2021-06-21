@@ -23,6 +23,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="CMbaseLayout"  template="/WEB-INF/views/purchase_manage/reg_billing/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="OrderClosingbaseLayout"  template="/WEB-INF/views/purchase_manage/order_closing/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -289,7 +294,7 @@
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/required_amount/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-   <definition name="/member/regbilling" extends="MPSbaseLayout">
+   <definition name="/member/regbilling" extends="CMbaseLayout">
       <put-attribute name="title" value="청구등록" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/reg_billing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
