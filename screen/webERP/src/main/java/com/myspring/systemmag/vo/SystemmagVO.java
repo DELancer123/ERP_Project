@@ -38,6 +38,10 @@ public class SystemmagVO {
 	private String workplace_Address;
 	private String generalCustomer_Tel;
 	private String wholesale_Retail_Business_Code;
+	
+	private String road_Address;
+	private String lot_Address;
+	
 	private List<SystemmagVO> ListVO;
 	
 	public String getGeneral_Customer_Code() {
@@ -117,6 +121,18 @@ public class SystemmagVO {
 	}
 	public void setListVO(List<SystemmagVO> listVO) {
 		ListVO = listVO;
+	}
+	public String getRoad_Address() {
+		return road_Address;
+	}
+	public void setRoad_Address(String road_Address) {
+		this.road_Address = road_Address;
+	}
+	public String getLot_Address() {
+		return lot_Address;
+	}
+	public void setLot_Address(String lot_Address) {
+		this.lot_Address = lot_Address;
 	}
 	
 	

@@ -43,9 +43,13 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 
 	@Override
-	public void updCom(SystemmagVO systemmagVO) throws DataAccessException {
-		
+	public void updCom(SystemmagVO systemmagVO) throws DataAccessException {		
 		systemmagDAO.updateCom(systemmagVO);
+	}
+
+	@Override
+	public List ZipView() throws DataAccessException {
+		return systemmagDAO.zipViewCom();
 	}
 
 	

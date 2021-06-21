@@ -16,4 +16,7 @@ public interface SystemmagService {
 	public void delCom(String[] noary) throws DataAccessException;
 	
 	public void updCom(SystemmagVO systemmagVO) throws DataAccessException;
+	
+	public List ZipView() throws DataAccessException;
+		
 }

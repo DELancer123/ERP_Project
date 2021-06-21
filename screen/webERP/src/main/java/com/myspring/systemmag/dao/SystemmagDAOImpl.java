@@ -50,4 +50,11 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		sqlSession.update("mappers.erp.updateBasicList", systemmagVO);
 	}
 
+	@Override
+	public List zipViewCom() throws DataAccessException {
+		List zipList = null;
+		zipList = sqlSession.selectList("mappers.erp.selectZipList");
+		return zipList;
+	}
+
 }

@@ -214,6 +214,7 @@
 	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">
+		<!-- 일반거래처등록파트 -->
 		<result property="general_Customer_Code" column="general_Customer_Code" />
 		<result property="general_Customer_Name" column="general_Customer_Name" />
 		<result property="general_Customer_Division" column="general_Customer_Division" />
@@ -226,6 +227,8 @@
 		<result property="workplace_Address" column="workplace_Address" />
 		<result property="generalCustomer_Tel" column="generalCustomer_Tel" />
 		<result property="wholesale_Retail_Business_Code" column="wholesale_Retail_Business_Code" />	
+		<result property="road_Address" column="road_Address" />
+		<result property="lot_Address" column="lot_Address" />
 	</resultMap>
 	<select id="selectAllBasicList" resultMap="basicInfoResult">
 		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG]]>
@@ -254,6 +257,9 @@
 			
 		]]>
 	</update>
+	<select id="selectZipList" parameterType="String" resultMap="basicInfoResult">
+		<![CDATA[select * from SM_CRI_ZIP]]>
+	</select>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

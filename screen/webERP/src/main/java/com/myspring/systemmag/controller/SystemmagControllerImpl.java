@@ -150,4 +150,20 @@ public class SystemmagControllerImpl implements SystemmagController {
 		 return mav; 
 	 }
 	 
+	
+	 @Override	 
+	 @RequestMapping(value="/member/regbasicaccZipPopup.do", method =
+	 RequestMethod.GET) public ModelAndView popupZipCompany(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		 request.setCharacterEncoding("utf-8"); 
+		 ModelAndView mav = null; 
+		 String viewName = getViewName(request); 
+		 String com_code = (String) request.getParameter("com_code");
+		 System.out.println("com_code="+com_code);
+		 
+		 List ZipView = systemmagService.ZipView(); //select * 문을호출한다음
+		 mav = new ModelAndView(viewName);
+		 mav.addObject("ZipView", ZipView); //팝업으로 전달함
+		 return mav; 
+	 }
+	 
 }

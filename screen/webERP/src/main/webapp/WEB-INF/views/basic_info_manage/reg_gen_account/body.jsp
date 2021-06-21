@@ -132,7 +132,7 @@ request.setCharacterEncoding("UTF-8");
                         <input type=text name="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="5"/>
                     </td>
      				<td style="width:8px;">
-     					<div style="text-align:center; width:100%;"><a href="javascript:search1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+     					<div style="text-align:center; width:100%;"><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div>
      				</td>
                     <td style="width:80px; text-align:left;">
                     	<input type=text name="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>
@@ -243,7 +243,7 @@ request.setCharacterEncoding("UTF-8");
                     <td>
                         <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
                         style="width:150px;"/>
-                        <i class="fas fa-search" style="color: blue;"></i>
+                        <a href="javascript:searchZip(${general_Customer_Code })"><i class="fas fa-search" style="color :blue;"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -317,9 +317,12 @@ request.setCharacterEncoding("UTF-8");
         	}      	
         } 
          
-        function search1() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함
-        	
+        function searchCode() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
         	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
+        }
+        
+        function searchZip(name) { //우편번호 검색 팝업
+        	openWindowPop("${contextPath}/member/regbasicaccZipPopup.do", "regbasicaccZipPopup");
         }
       
   
