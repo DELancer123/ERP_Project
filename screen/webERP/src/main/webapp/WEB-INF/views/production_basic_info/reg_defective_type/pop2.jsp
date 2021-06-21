@@ -75,8 +75,8 @@
                 </tr>
                 <c:forEach var="group" items='${defGroupList }'>
    <tr align="center">
-      <td><a href="#">${group.defectiveItemGroupCode }</a></td>
-      <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroup }</a></td>
+      <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroupCode }</a></td>
+      <td><a href="">${group.defectiveItemGroup }</a></td>
     </tr>
     </c:forEach>
     	<tr>

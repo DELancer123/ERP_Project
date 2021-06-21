@@ -64,12 +64,8 @@ public class BomViewControllerImpl implements BomViewController {
 			mav.addObject("bomInsert",bomInsert);
 			int inputNo = viewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
-			System.out.println(inNo);
 			request.setAttribute("inputNo", inNo);
 		}
-		
-		 
-			
 		return mav;
 	}
 	
@@ -285,8 +281,9 @@ public class BomViewControllerImpl implements BomViewController {
 		String viewName = getViewName(request);
 		mav = new ModelAndView(viewName);
 		String submit = (String) request.getParameter("submit");
+		String defGroupCode = (String) request.getParameter("defGroupCode");
 		int sum = 0;
-		if(submit == null || submit.equals("0")) {
+		if(defGroupCode == null && submit == null || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
@@ -294,6 +291,9 @@ public class BomViewControllerImpl implements BomViewController {
 			List defectiveList = null;
 			defectiveList =  viewService.viewDefective();
 			mav.addObject("defectiveList",defectiveList);
+		}
+		else if(submit.equals("2")) {
+			
 		}
 		return mav;
 	}

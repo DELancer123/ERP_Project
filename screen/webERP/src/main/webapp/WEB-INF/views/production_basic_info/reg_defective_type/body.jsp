@@ -152,6 +152,21 @@
       	function search1(){
 	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
       	}
+      	function setChildValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);
+  		  URLSearch.set('submit', '2');
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('defGroupCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&defGroupCode=' + name;
+          }
+          else{
+          	URLSearch.set('defGroupCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
       </script>
 </body>
 </html>
