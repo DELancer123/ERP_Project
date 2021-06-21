@@ -335,7 +335,7 @@
             }
         }
         
-/*         update_button.onclick = function(){
+     /* update_button.onclick = function(){
             // dao에서 저장
             var view1 = document.getElementById('table1');
             var view2 = document.getElementById('view2');

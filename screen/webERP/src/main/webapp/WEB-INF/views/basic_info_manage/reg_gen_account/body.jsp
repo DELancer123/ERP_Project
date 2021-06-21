@@ -285,17 +285,17 @@ request.setCharacterEncoding("UTF-8");
         	var no = "";
         	var ary = [];
         	
-        	for(var i=0; i<item; i++) {
+        	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
         		if(document.getElementsByName("checkedContent")[i].checked==true) {
         			no = document.getElementsByName("checkedContent")[i].value;
         			ary.push(no);
         		}       		
         	}
-        	if(ary.length === 0 || ary === null){
+        	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
     			alert('삭제할 목록의 체크박스를 선택해주세요')
     			window.location.href = "${contextPath}/member/regbasicacc.do";
     		}
-        	else 
+        	else //컨트롤러로 해당목록의 no값을 보낸다
     			window.location.href = "${contextPath}/member/deleteBasicacc.do?no="+ary;       	
         }
         
@@ -307,7 +307,7 @@ request.setCharacterEncoding("UTF-8");
         	    	is_empty = true;      	    	
         	    }      	 
         	});       	 
-        	if(is_empty) {
+        	if(is_empty) { //비어있는내용이 있는지 체크함
         	    alert('비어있는 내용이 있습니다. 다시입력하세요');
         	}
         	else{
@@ -317,7 +317,7 @@ request.setCharacterEncoding("UTF-8");
         	}      	
         } 
          
-        function search1() {
+        function search1() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함
         	
         	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
         }

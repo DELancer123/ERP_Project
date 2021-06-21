@@ -56,19 +56,19 @@ public class SystemmagControllerImpl implements SystemmagController {
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit");
-		String code = (String) request.getParameter("com_code");
+		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
+		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
 
-		if (code == null || submit == null) {
-			List comView = systemmagService.comView();
+		if (code == null || submit == null) { //첫접속이라면?
+			List comView = systemmagService.comView(); //select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			return mav;
 		}
 
-		if (submit.equals("1")) {
-			List comView = systemmagService.comView();
-			List comcom = systemmagService.comcom(code);
+		if (submit.equals("1")) { //목록을 선택했을때, 즉 조회를 했을때
+			List comView = systemmagService.comView(); //select문에
+			List comcom = systemmagService.comcom(code); //where절을 추가한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
@@ -111,9 +111,9 @@ public class SystemmagControllerImpl implements SystemmagController {
 	@Override
 	@RequestMapping(value = "/member/deleteBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no");
+		String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
 		String viewName = getViewName(request);
-		String[] numberary = number.split(",");
+		String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
 
 		systemmagService.delCom(numberary);
 
@@ -128,7 +128,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		systemmagService.updCom(systemmagVO);
+		systemmagService.updCom(systemmagVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getGeneral_Customer_Code());
 		return mav;
@@ -140,15 +140,14 @@ public class SystemmagControllerImpl implements SystemmagController {
 	 @RequestMapping(value="/member/regbasicaccPopup.do", method =
 	 RequestMethod.GET) public ModelAndView popupCompany(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		 request.setCharacterEncoding("utf-8"); 
-		 System.out.println("팝업구현중");
 		 ModelAndView mav = null; 
 		 String viewName = getViewName(request); 
 		 
-		 List comView = systemmagService.comView(); 
+		 List comView = systemmagService.comView(); //select * 문을호출한다음
 		 mav = new ModelAndView(viewName);
-		 mav.addObject("comView", comView);
-	 
-	 
-	 return mav; }
+		 mav.addObject("comView", comView); //팝업으로 전달함
+	 	 
+		 return mav; 
+	 }
 	 
 }
