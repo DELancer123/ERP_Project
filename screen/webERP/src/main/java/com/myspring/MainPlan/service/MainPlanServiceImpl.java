@@ -46,5 +46,5 @@ public class MainPlanServiceImpl implements MainPlanService{
 	public int updateMPS(MainPlanVO vo) throws DataAccessException {
 		return mainplanDAO.updateMPS(vo);
 	}
-	
+
 }

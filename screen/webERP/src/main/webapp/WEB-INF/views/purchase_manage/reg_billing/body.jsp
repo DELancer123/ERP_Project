@@ -2,23 +2,17 @@
 	pageEncoding="EUC-KR" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 request.setCharacterEncoding("UTF-8");
+String sequence = (String)request.getAttribute("sequence");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script>
-function func_Popup(){
-	var url = "mrpamount.do";
-	var name = "mrpamount";
-	var option = "width = 1500, height= 600, top = 100, left = 200"
-	window.open(url, name, option);
-}
-</script>
 <style>
 #contents1 {
 	position: absolute;
@@ -59,7 +53,7 @@ function func_Popup(){
 	left: 18%;
 }
 
-#view1, #view2 {
+ #view2 {
 	width: 100%;
 	text-align: center;
 	border: 1px solid black;
@@ -78,7 +72,8 @@ function func_Popup(){
 }
 
 #contents3 {
-	/* overflow: scroll; */
+	 overflow: scroll; 
+	
 }
 
 #total td {
@@ -92,6 +87,17 @@ function func_Popup(){
 #reqInput {
 	background-color: rgb(255, 255, 149);
 	text-align: center;
+}
+
+#BillingInfo {
+ 	overflow: scroll;
+	height: 100%;
+	width: 100%;
+}
+#BillingTable {
+	width: 100%;
+	text-align: center;
+	border: 1px solid black;
 }
 </style>
 </head>
@@ -128,60 +134,66 @@ function func_Popup(){
 		</tr>
 	</table>
 	<div id="button">
-		<input type="button" id="Popup" onclick="func_Popup();" value="소요량적용" />
+		<input type="button" onclick="MrpAmount();" value="소요량적용">
 	</div>
 	</container1>
 	<container2 id="contents2">
-	<table id="view1">
+<div id="BillingInfo">
+<form id="Billing" mehtod="get" commandName="ListVO">
+	<table id="BillingTable">
 		<thead align="center" style="background-color: gray">
 			<td><input type="checkbox" name="content"/></td>
+			<td>순서</td>
 			<td>청구번호</td>
 			<td>청구일자</td>
 			<td>청구구분</td>
-			<td>비고</td>
-		</thead>
-		<c:forEach var="cm" items="${cmList}">
-			<tr align="center">
-				<td><input type="checkbox" name="content" /></td>
-				<td>${cm.claim_no}</td>
-				<td>${cm.claim_date}</td>
-				<td>${cm.claim_division}</td>
-				<td>${cm.note}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	</container2>
-	<container3 id="contents3">
-	<table id="view2">
-				<thead align="center" style="background-color: gray">
-			<td><input type="checkbox" name="content"/></td>
-			<td>순서</td>
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
 			<td>요청일</td>
-			<td>재고단위</td>
 			<td>재고단위수량</td>
-			<td>청구단위</td>
 			<td>청구단위수량</td>
 			<td>주거래처</td>
+			<td>비고</td>
 		</thead>
-		<c:forEach var="btm" items="${bottomList}">
+		<tbody>
+		<c:forEach var="cm" items="${cmList}" varStatus="status">
 			<tr align="center">
-				<td><input type="checkbox" name="content" /></td>
-				<td>${btm.sequence}</td>
-					<td>${btm.item_Code}</td>
-					<td>${btm.item_Name}</td>
-					<td>${btm.standard}</td>
-					<td>${btm.requestdate}</td>
-					<td>${btm.inventory_unit}</td>
-					<td>${btm.inventory_qty}</td>
-					<td>${btm.claim_unit}</td>
-					<td>${btm.claim_quantity}</td>
-					<td>${btm.buyer}</td>
+				<td><input type="checkbox"name="content" value="${cm.sequence}"/></td>
+			<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${cm.sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].claim_no" value = '${cm.claim_no}' readonly/></td>
+			<td><input type="date" name="ListVO[${status.index}].claim_date" value = '${cm.claim_date}' readonly style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].claim_division" value = '${cm.claim_division}' /></td>
+			<td><input type="text" name="ListVO[${status.index}].item_Code" value="${cm.item_Code}" readonly/></td>
+			<td><input type="text" name="ListVO[${status.index}].item_Name" value="${cm.item_Name}" readonly/></td>
+			<td><input type="text" name="ListVO[${status.index}].standard" value="${cm.standard}" readonly style="width:100%"/></td>
+			<td><input type="date" name="ListVO[${status.index}].requestdate" value="${cm.requestdate}" style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].inventory_qty" value="${cm.inventory_qty}" /></td>
+			<td><input type="text" name="ListVO[${status.index}].claim_quantity" value="${cm.claim_quantity}" /></td>
+			<td><input type="text"name="ListVO[${status.index}].buyer"  value="${cm.buyer}" /></td>
+			<td><input type="text" name="ListVO[${status.index}].note" value = '${cm.note}' style="width:100%"/></td>
 			</tr>
 		</c:forEach>
+		<tr align="center">
+		<td></td>
+			<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(cmList) }].sequence" value='${sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" id="claim_no" name="ListVO[${fn:length(cmList) }].claim_no" value='${claim_no}' readonly/></td>
+			<td><input type="date" id="claim_date" name="ListVO[${fn:length(cmList) }].claim_date" value='${claim_date}' readonly style="width:100%"/></td>
+			<td><input type="text" id="claim_division" name="ListVO[${fn:length(cmList) }].claim_division" value='${claim_division}' /></td>
+			<td><input type="text" id="item_Code" name="ListVO[${fn:length(cmList) }].item_Code" value='${item_Code}' readonly/></td>
+			<td><input type="text" id="item_Name" name="ListVO[${fn:length(cmList) }].sequence" value='${item_Name}' readonly/></td>
+			<td><input type="text" id="standard" name="ListVO[${fn:length(cmList) }].standard" value='${standard}'readonly style="width:100%"/></td>
+			<td><input type="date" id="requestdate" name="ListVO[${fn:length(cmList) }].requestdate" value='${requestdate}'/></td>
+			<td><input type="text" id="inventory_qty" name="ListVO[${fn:length(cmList) }].inventory_qty" value='${inventory_qty}' /></td>
+			<td><input type="text" id="claim_quantity" name="ListVO[${fn:length(cmList) }].claim_quantity" value='${claim_quantity}' /></td>		
+			<td><input type="text" id="buyer" name="ListVO[${fn:length(cmList) }].buyer" value='${buyer}'/></td>		
+			<td><input type="text" id="note" name="ListVO[${fn:length(cmList) }].note" value='${note}'/></td>
+		</tr>
+	</tbody>
 	</table>
+	</div>
+	</container2>
+	<container3 id="contents3">
 	<div id="total">
 		<table>
 			<tr>
@@ -207,5 +219,79 @@ function func_Popup(){
 		</table>
 	</div>
 	</container3>
+<script type="text/javascript">
+var windowObj;
+
+function MrpAmount(){	
+	window.name = "/member/regbilling.do";
+	var settings ='width=1400, height=500, resizable = no, scrollbars = no';
+
+	windowObj = window.open("mrpamount.do","mrpamount",settings);
+	
+	var txt_requestdate = document.getelementById("requestdate");
+	var txt_code = document.getelementById("item_Code");
+	var txt_Name = document.getelementById("item_Name");
+	var txt_claim_Qty = document.getelementById("claim_quantity");
+	
+	document.getElementById('requestdate').value= windowObj.document.getElementById("need_date").value; 
+	document.getElementById('item_Code').value= windowObj.document.getElementById("item_Code").value;  
+	document.getElementById('item_Name').value= windowObj.document.getElementById("item_Name").value;  
+	document.getElementById('claim_quantity').value= windowObj.document.getElementById("expected_quantity").value; 
+}
+
+function deleteRow() {
+	  var item = document.getElementsByName("content").length;
+	  var no = "";
+	  var ary = [];
+	  for(var i=0; i<item;i++){
+		  if(document.getElementsByName("content")[i].checked==true){
+			  sequence = document.getElementsByName("content")[i].value;
+			  ary.push(sequence);
+		  }
+		  
+			  window.location.href = "${contextPath}/member/delbilling.do?sequence="+ary;
+	  }
+}
+
+function updateRow() {
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+document.getElementById("sequence").disabled = true;
+document.getElementById("claim_no").disabled = true;		
+document.getElementById("claim_date").disabled = true;
+document.getElementById("claim_division").disabled = true;
+document.getElementById("item_Code").disabled = true;
+document.getElementById("item_Name").disabled = true;
+document.getElementById("standard").disabled = true;
+document.getElementById("requestdate").disabled = true;
+document.getElementById("inventory_qty").disabled = true;
+document.getElementById("claim_quantity").disabled = true;
+document.getElementById("buyer").disabled = true;
+document.getElementById("note").disabled = true;
+var Input = document.createElement("input");
+Input.setAttribute("type", "hidden");
+Input.setAttribute("name", "path");
+Input.setAttribute("value", link);
+document.getElementById('Billing').appendChild(Input);
+document.getElementById('Billing').action = "${contextPath}/member/updatebilling.do";
+document.getElementById('Billing').submit();
+}
+
+function InsertRow(){
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+	var Input = document.createElement("input");
+	Input.setAttribute("type", "hidden");
+	Input.setAttribute("name", "path");
+	Input.setAttribute("value", link);
+	document.getElementById('Billing').appendChild(Input);
+	document.getElementById('Billing').action = "${contextPath}/member/addbilling.do";
+	document.getElementById('Billing').submit();
+
+}
+</script>
+</form>
 </body>
 </html>

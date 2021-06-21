@@ -88,15 +88,19 @@
 			<td>~</td>
 			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
 			<td></td>
-			<td colspan="5">사원</td>
+			<!-- <td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" name="" disabled /></td>
-		</tr>
+			<td><input type="text" name="" disabled /></td> -->
+			<td colspan="5">검색</td>
+			<td style="width: 80px;">
+			<input type='text' id='txtFilter' onkeyup='{filter();return false}' 			
+			onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}'>
+		</tr> 
 	</table>
 	<div id="button">
-		<input type="button" onclick="func_Popup();" value="주문조회">
+		<input type="button" onclick="ApplyOrder();" value="주문조회">
 	</div>
 	</container1>
 <container2 id=contents2>
@@ -118,7 +122,7 @@
 			<td>고객</td>
 			<td>비고</td>
 		</thead>
-		<tbody>
+		<tbody id="languageTBody">
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
@@ -136,7 +140,7 @@
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
 		</c:forEach>		
-		<tr id ="insertTest" align="center">
+		<tr id="insertTest" align="center">
 		<td></td>    	
     	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' style="width:100%"/></td>
     	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
@@ -155,13 +159,11 @@
 	</table>
 	</div>
 </container2>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
 <script type="text/javascript">
 var windowObj;
 
-function func_Popup(){
+function ApplyOrder(){
 	window.name = "member/mainplan.do";
 	var settings ='width=1400, height=500, resizable = no, scrollbars = no';
 
@@ -231,31 +233,15 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
-	
-		var plandate = new Date().toISOString().substring(0,10);;
-    	var due_date = new Date().toISOString().substring(0,10);;
-    	
-    	$('#searchStartDate').change(function (){
-            var date = $('#searchStartDate').val();
-            plandate = date;
-        });
-    	$('#searchEndDate').change(function (){
-            var date = $('#searchEndDate').val();
-            due_date = date;
-        });
-view_button.onclick = function(){
-	  if(plandate>due_date){
-		  alert("계획기간이 납기일보다 크게 설정됨");
-	  } else{
-		  
-	  const URLSearch = new URLSearchParams(location.search);
-	  URLSearch.set('plandate', plandate);
-	  URLSearch.set('due_date', due_date);
-	  const newParam = URLSearch.toString();
-
-	  window.open(location.pathname + '?' + newParam, '_self');
-	  }
-}
+ 	function filter(){
+		if($('#txtFilter').val()=="")
+			$("#languageTBody tr").css('display','');
+			else{
+			$("#languageTBody tr").css('display','none');
+			$("#languageTBody tr[name*='"+$('#txtFilter').val()+"']").css('display','');
+		}
+		return false;
+	} 
 </script>
 </form>
 </body>

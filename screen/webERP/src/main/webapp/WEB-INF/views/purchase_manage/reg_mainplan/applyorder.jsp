@@ -49,7 +49,7 @@ a {
 </style>
 </head>
 <body>
-<form name="select" action=member/mainplan.do" method="get">
+<form name="select" action="member/mainplan.do" method="get">
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">

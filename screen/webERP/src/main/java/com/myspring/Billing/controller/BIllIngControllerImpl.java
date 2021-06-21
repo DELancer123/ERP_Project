@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.Billing.service.BIllIngService;
 import com.myspring.Billing.vo.BIllIngVO;
+import com.myspring.MainPlan.vo.MainPlanVO;
 
 @Controller("billingController")
 public class BIllIngControllerImpl implements BIllIngController{
@@ -28,8 +30,6 @@ public class BIllIngControllerImpl implements BIllIngController{
 		List cmList = billingService.selectAllcmList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("cmList", cmList);	
-		List bottomList = billingService.selectAllBottomList();
-		mav.addObject("bottomList", bottomList);
 		return mav;
 	}
 	@Override
@@ -41,7 +41,42 @@ public class BIllIngControllerImpl implements BIllIngController{
 		mav.addObject("mrpamount", mrpamount);
 		return mav;
 	}
-		
+	
+	@Override
+	@RequestMapping(value = "/member/delbilling.do", method = RequestMethod.GET)
+	public ModelAndView delbilling(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String no = (String) request.getParameter("sequence");
+		String viewName = getViewName(request);
+		String[] numberary  = no.split(",");
+		billingService.delbilling(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbilling.do");
+		return mav;
+	}	
+	
+	@Override
+	@RequestMapping(value="/member/updatebilling.do" ,method = RequestMethod.GET)
+	public ModelAndView updatebilling(@ModelAttribute("cm") BIllIngVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = billingService.updatebilling(vo);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/regbilling.do");
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/member/addbilling.do", method = RequestMethod.GET)
+	public ModelAndView addbilling(@ModelAttribute("bottomList") BIllIngVO vo,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = billingService.addbilling(vo);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

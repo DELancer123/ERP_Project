@@ -142,8 +142,7 @@
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps
-			set planNO=#{planNO}, plandate=#{plandate}, item_Code=#{item_Code}, item_Name=#{item_Name}, standard=#{standard}, inventory_unit=#{inventory_unit},
-			sequence=#{sequence}, expected_date=#{expected_date}, due_date=#{due_date}, plan_quantity=#{plan_quantity}, buyer=#{buyer}, note=#{note}
+			set  plandate=#{plandate},due_date=#{due_date},plan_quantity=#{plan_quantity},note=#{note}
 			where sequence = #{sequence}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
@@ -155,22 +154,18 @@
 	
 	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
+ 		<result property="sequence" column="sequence" />
 		<result property="claim_no" column="claim_no" />
 		<result property="claim_date" column="claim_date" />
 		<result property="claim_division" column="claim_division" />
-		<result property="note" column="note" />
-	</resultMap>
-	<resultMap id="ListResult" type="listVO">
-		<result column="sequence" property="sequence" />
 		<result column="item_Code" property="item_Code" />
 		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
 		<result column="requestdate" property="requestdate" />
-		<result column="inventory_unit" property="inventory_unit" />
 		<result column="inventory_qty" property="inventory_qty" />
-		<result column="claim_unit" property="claim_unit" />
 		<result column="claim_quantity" property="claim_quantity" />
 		<result column="buyer" property="buyer" />		
+		<result property="note" column="note" />
 	</resultMap>
 	<resultMap id="mrpamountResult" type="requiredamountVO">
 		<result property="need_date" column="need_date" />
@@ -184,17 +179,25 @@
 
 	<select id="selectAllcmList" resultMap="billingResult">
 		<![CDATA[SELECT * from PMM_PM_CM]]>
-	</select>
-	
-	<select id="selectAllBottomList" resultMap="ListResult">
-		<![CDATA[select * from pmm_pm_cm_list]]>
-	</select>
-	
+	</select>	
 	<select id="selectAllMrpaMount" resultMap="mrpamountResult">
 		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,inventory_unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
-	
+ 	<delete id="delbilling">
+		delete from PMM_PM_CM where sequence = #{sequence}
+	</delete>
+	<update id="updatebilling" >
+		<![CDATA[update PMM_PM_CM
+			set claim_division=#{claim_division},requestdate=#{requestdate},inventory_qty=#{inventory_qty},
+			claim_quantity=#{claim_quantity},buyer=#{buyer},note=#{note}
+			where sequence = #{sequence}]]>  
+	</update>
+ 	<insert id="insertbilling" parameterType="billingVO">
+		<![CDATA[insert into PMM_PM_CM
+		values(#{claim_division},#{requestdate},#{inventory_qty},#{claim_quantity},#{buyer},#{note})
+		]]>
+	</insert> 
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
