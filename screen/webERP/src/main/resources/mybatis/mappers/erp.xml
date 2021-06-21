@@ -35,16 +35,16 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
-		<result property="operationNumber" column="OPNUMBER" />
-		<result property="materialStatus" column="MATERIALUSESTATUS" />
-		<result property="performanceDate" column="PERFORMANCEDATE" />
-		<result property="processCode" column="PROCESS_CODE" />
-		<result property="workplaceCode" column="WORKPLACE_CODE" />
-		<result property="sortation" column="SORTATION" />
-		<result property="performanceQuantity" column="PERFORMANCEQUANTITY" />
-		<result property="inspection" column="inspection" />
+		<result property="no" column="NO" />
+		<result property="billingDate" column="BILLINGDATE" />
+		<result property="itemCode" column="ITEM_CODE" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="standard" column="STANDARD" />
+		<result property="inventoryUnit" column="INVENTORY_UNIT" />
+		<result property="precisionQuantity" column="PRECISIONQUANTITY" />
+		<result property="loss" column="loss" />
+		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
-		<result property="workOrderNumber" column="WORKORDERNUMBER" />
 	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
@@ -115,7 +115,7 @@
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{number} ]]>
+		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
 	<!-- 생산 팝업 파트 -->	
@@ -601,14 +601,10 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 		<result property="parentStandard" column="Standard" />
 		<result property="parentInventoryUnit" column="Inventory_Unit" />
 		<result property="indicatedQuantity" column="indicatedQuantity" />
-		<result property="unitPrice" column="unitPrice" />				
-		<result property="parentPrice" column="Price" />				
-		<result property="sumPerfomanceQuantity" column="perfomanceQuantity" />				
-		<result property="remainingPerfomance" column="remainingPerfomance" />				
+		<result property="unitPrice" column="unitPrice" />							
 		<result property="status" column="status" />
 		<result property="parentInspection" column="inspection" />
 		<result property="parentNote" column="note" />		
-		<result property="productionPlanCode" column="productionPlanCode" />			
 	</resultMap>
 
 	<select id="selectAllRegOutPerformanceList" resultMap="regOutPerformanceView">
@@ -629,16 +625,14 @@ ORDER BY out.workordernumber]]>
 		<result property="outsourcingCode" column="func_Out_Reg(Outsourcing_Code)" />
 		<result property="workplaceCode" column="func_Out_Wor_Reg(Workplace_Code)" />
 		<result property="sortation" column="sortation" />
-		<result property="precisionQuantity" column="indicatedQuantity" />
-		<result property="PerformanceQuantity" column="PerformanceQuantity" />				
+		<result property="performanceQuantity" column="performanceQuantity" />				
 		<result property="inspection" column="inspection" />
 		<result property="note" column="note" />
+		<result property="workOrderNumber" column="workOrderNumber" />
 	</resultMap>
 	
 	<select id="selectAllRegOutPerformanceDetail" resultMap="regOutPerformanceViewDetail">
-		<![CDATA[SELECT NO,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,indicatedQuantity,FORWARDINGQUANTITY
-FROM CPM_OM_Out_Mat_For MAT, CPM_OM_Out_Mat_For_Det MAF
-WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
+		<![CDATA[SELECT * FROM CPM_OM_Out_Per_Reg_Det]]>
 	</select>
 	
 

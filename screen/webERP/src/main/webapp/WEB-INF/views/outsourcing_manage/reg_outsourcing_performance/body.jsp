@@ -148,7 +148,7 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                    <!-- 
+                    
                         <c:forEach var="regOutPer" items="${regOutPerformanceView}" varStatus="status" >     
 						   <tr align="center">
 						   	  <td><input type="checkbox" name="content" value="${regOutPer.workOrderNumber}"/></td>
@@ -192,7 +192,6 @@
 						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].parentInspection" readonly/></td>
 						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceView) }].noteDetail" value='${param.note }'/></td>
 						    </tr>
--->
                     </tbody>
                 </table>
             </div>

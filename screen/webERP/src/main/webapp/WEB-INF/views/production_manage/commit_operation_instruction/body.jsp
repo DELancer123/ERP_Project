@@ -97,7 +97,7 @@
                             <input type="button" value="취소" style="padding: 5px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="확정" style="padding: 5px;"></input>
+                            <input type="button" value="확정" onClick="confirm();" style="padding: 5px;"></input>
                         </td>
                     </tr>
                 </table>
@@ -168,16 +168,16 @@
                     <tbody>
   					<c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
-  					 	<td><input type="checkbox" value="${detail.operationNumber }" name="content2"/></td>
-                        <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" readonly /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" /></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>                        
-                        <td><input type="text"/></td>
+  					 	<td><input type="checkbox" value="${detail.no }" name="content2"/></td>
+                        <td><input type="date" name="DetailVO[${status.index }].billingDate" value="${detail.billingDate }" readonly /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.precisionQuantity}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].loss" value="${detail.loss}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.comfirmQuantity}"/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
   					 </tr>
                     </c:forEach>
                     <tr>
@@ -294,5 +294,18 @@
       		  }
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
+        }
+        
+        function confirm() {
+        	var item = document.getElementsByName("content").length;
+        	  var no = "";
+        	  var ary = [];
+        	  for(var i=0; i<item;i++){
+        		  if(document.getElementsByName("content")[i].checked==true){
+        			  no = document.getElementsByName("content")[i].value;
+        			  ary.push(no);
+        		  }
+        			window.location.href = "${contextPath}/member/confirmDetail.do?workOrderNumber="+ary;
+        	  }
         }
       </script>
