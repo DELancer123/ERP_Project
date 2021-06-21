@@ -257,6 +257,12 @@
 		<result property="purchasePrice" column="Purchase_Price" />
 		<result property="salesPrice" column="Sales_Price" />
 	</resultMap>
+	<resultMap id="iupView1" type="iupVO">
+		<result property="itemNumber" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+	</resultMap>
 	<resultMap id="iupPopView" type="iupVO">
 		<result property="itemNumber" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -266,24 +272,28 @@
 	<select id="iupSelectAllMemberList" resultMap="iupView">
 		<![CDATA[select * from PM_SM_Ite_Pri]]>
 	</select>
-	<select id="iupSelectNo" resultMap="iupView">
+	<select id="iupSelectNo" resultType="int">
 		<![CDATA[select MAX(no) from PM_SM_Ite_Pri]]>
 	</select>
 	<select id="iupSearchItem" resultMap="iupView" parameterType="String">
 		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemNumber}]]>
 	</select>
-	<select id="iupSelectItem" resultMap="iupView" parameterType="String">
+	<select id="iupSelectItem1" resultMap="iupView1" parameterType="String">
 		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
 	</select>
 	<select id="iupSelectPopList1" resultMap="iupPopView">
-		<![CDATA[select * from SM_BIM_Ite_Reg]]>
+		<![CDATA[select * from PM_SM_Ite_Pri]]>
 	</select>
 	<select id="iupSelectPopList2" resultMap="iupPopView">
 		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
+	<select id="iupChildView" resultMap="iupView1" parameterType="java.util.HashMap">
+		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	</select>
 	<insert id="insertIup" parameterType="iupVO">
 		<![CDATA[
-		 insert into PM_SM_Ite_Pri values(#{no},#{parent}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice} )
+		 insert into PM_SM_Ite_Pri(No, Item_Code, Item_Name, Standard, Inventory_Unit, Purchase_Price, Sales_Price)
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice})
 		]]>  
 	</insert>
 
@@ -294,7 +304,7 @@
 		<![CDATA[
 		update PM_SM_Ite_Pri
 		set Purchase_Price = #{purchasePrice}, Sales_Price = #{salesPrice}
-		where no = #{no}
+		where No = #{no}
 		]]>
 	</update>
 

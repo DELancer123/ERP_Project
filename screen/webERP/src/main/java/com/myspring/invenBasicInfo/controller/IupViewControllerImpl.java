@@ -39,27 +39,26 @@ public class IupViewControllerImpl implements IupViewController {
 	public ModelAndView viewIup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String number = (String) request.getParameter("itemNumber");
+		String itemNumber = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
-		String itemNumber = (String) request.getParameter("itemCode");
+
+//		String itemCode = (String) request.getParameter("itemCode");
 		int sum = 0;
-		if(number == null || number.length() == 0 || submit.equals("0")) {
+		System.out.println(submit);
+		if(itemNumber == null||itemNumber.length() ==0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
 		else if(submit.equals("1")){
-			List iupView = iupViewService.SearchView(number);
-			
+			List iupView = iupViewService.SearchView(itemNumber);
 			mav = new ModelAndView(viewName);
-			
 			mav.addObject("iupView", iupView);
 		}
 		else if(submit.equals("2")) {
-			List iupView = iupViewService.SearchView(number);
 			List iupInsert = iupViewService.setText(itemNumber);
 			mav = new ModelAndView(viewName);
-			mav.addObject("iupView", iupView);
 			mav.addObject("iupInsert",iupInsert);
+			System.out.println("»Æ¿Œ" + iupInsert.size());
 			int inputNo = iupViewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);
@@ -71,7 +70,7 @@ public class IupViewControllerImpl implements IupViewController {
 	@RequestMapping(value="/member/iupcodehelper1.do" ,method = RequestMethod.GET)
 	public ModelAndView iupCodeHelper1(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List itemView = iupViewService.itemView1();
+		List itemView = iupViewService.popView1();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("itemView", itemView);
 		return mav;
@@ -80,8 +79,8 @@ public class IupViewControllerImpl implements IupViewController {
 	@RequestMapping(value="/member/iupcodehelper2.do" ,method =RequestMethod.GET)
 	public ModelAndView iupCodeHelper2(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		String itemNumber = (String)request.getParameter("itemCode");
-		List itemView = iupViewService.itemView2();
+		String itemNumber = (String)request.getParameter("itemNumber");
+		List itemView = iupViewService.popView2();
 		ModelAndView mav = new ModelAndView(viewName); 
 		mav.addObject("itemView", itemView); 
 		return mav;
@@ -89,8 +88,7 @@ public class IupViewControllerImpl implements IupViewController {
 	 
 	@Override
 	@RequestMapping(value="/member/addIup.do" ,method = RequestMethod.GET)
-	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
@@ -104,9 +102,9 @@ public class IupViewControllerImpl implements IupViewController {
 	@Override
 	@RequestMapping(value="/member/delIup.do" ,method = RequestMethod.GET)
 	public ModelAndView iupDelMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no");
+		String itemNumber = (String) request.getParameter("no");
 		String viewName = getViewName(request);
-		String[] numberary = number.split(",");
+		String[] numberary = itemNumber.split(",");
 		iupViewService.delIup(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
 		return mav;
@@ -116,7 +114,9 @@ public class IupViewControllerImpl implements IupViewController {
 	@Override
 	@RequestMapping(value="/member/updateIup.do" ,method = RequestMethod.GET)
 	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8"); int result = 0; result = iupViewService.updateIup(iupVO);
+		request.setCharacterEncoding("utf-8"); 
+		int result = 0; 
+		result = iupViewService.updateIup(iupVO);
 		System.out.println("result "+result);
 		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
 		return mav; 

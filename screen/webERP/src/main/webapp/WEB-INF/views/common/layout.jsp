@@ -259,10 +259,10 @@
             </ul>
         </nav>
         <nav id="nav2">
-            <button id="delete" onclick="">삭제</button>
+            <button id="delete" onclick="deleteData()">삭제</button>
             <button id="view_button">조회</button>
-            <button id="save">저장</button>
-            <button id="update">수정</button>
+            <button id="save" onclick="newRow()">저장</button>
+            <button id="update" onclick="updateRow()">수정</button>
         </nav>
         <div>
             <tiles:insertAttribute name="side"/>

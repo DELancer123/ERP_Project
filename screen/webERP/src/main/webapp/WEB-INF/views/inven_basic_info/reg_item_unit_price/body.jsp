@@ -16,7 +16,9 @@
 	<c:set var="itemName" value="${iup.itemName }"/>
 	<c:set var="standard" value="${iup.standard }"/>
 	<c:set var="inventoryUnit" value="${iup.inventoryUnit }"/>
-</c:forEach>
+	<c:set var="purchasePrice" value="${iup.purchasePrice }"/>
+	<c:set var="salesPrice" value="${iup.salesPrice }"/>
+	</c:forEach>
     
 <!DOCTYPE html>
 <html>
@@ -107,23 +109,27 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${param.itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' readonly/></td>
-                    	<td><input type="text" name="ListVo[${status.index}].salesPrice" value='${iup.salesPrice }' readonly/></td>                                                                            
+                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
                 	</tr>
 				</c:forEach>
                 	<tr id="insertIup" align="center">
                 		<td></td>
-                    	<td><input type="text" id="no" name="ListVO[${fn.length(iupView) }].no" value='${inputNo }' readonly style="width:100%"></td>
-                    	<td><input type="text" id="itemNumber" name="ListVO[${fn.length(iupView) }].itemNumber" value='${param.itemNumber }' ondblclick="search2()" /></td>
-                    	<td><input type="text" id="itemName" name="ListVO[${fn.length(iupView) }].itemName" value='${param.itemName }' readonly/></td>
-                    	<td><input type="text" id="standard" name="ListVO[${fn.length(iupView) }].standard" value='${param.standard }' readonly/></td>
-                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn.length(iupView) }].inventoryUnit" value='${param.inventoryUnit }' readonly/></td>
-                    	<td><input type="text" id="purchasePrice" name="ListVO[${fn.length(iupView) }]" value='${param.purchasePrice }' readonly/></td>
-                    	<td><input type="text" id="salesPrice" name="ListVO[${fn.length(iupView) }]" value='${param.salesPrice }' readonly/></td>                                                        
+              			<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%"></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" /></td>
+                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(iupView) }].itemName" value='${itemName }' /></td>
+                    	<td><input type="text" id="standard" name="ListVO[${fn:length(iupView) }].standard" value='${standard }' /></td>
+                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(iupView) }].inventoryUnit" value='${inventoryUnit }' /></td>
+                    	<td>
+                    	<input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }'/>
+                    	</td>
+                    	<td>
+                    	<input type="text" id="salesPrice" name="ListVO[${fn:length(iupView) }].salesPrice" value='${salesPrice }'/>
+                    	</td>                                               
                 	</tr>
             	</table>
 			</div>
@@ -131,14 +137,15 @@
 	
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
+    	var no = document.getElementById("no")
         var itemNumber = document.getElementById("itemNumber");
-        var itemName = document.getElementById("dataoutput");
-        var standard = document.getElementById("dataoutput");
-      
-        var inventoryUnit = document.getElementById("dataoutput");
-		var purchasePrice = document.getElementById("dataoutput");
-		var salesPrice = document.getElementById("dataoutput");
-
+        var itemName = document.getElementById("itemName");
+        var standard = document.getElementById("standard");
+      	var inventoryUnit = document.getElementById("inventoryUnit");
+		var purchasePrice = document.getElementById("purchasePrice");
+		var salesPrice = document.getElementById("salesPrice");
+		
+		var view_button = document.getElementById("view_button");
 		var save_button = document.getElementById("save");
 		var update_button = document.getElementById("update");
 		
@@ -174,27 +181,28 @@
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','2');
 			const newParam = URLSearch.toString();
-			if(URLSearch.get('itemCode') == null){
-				window.location.href = location.pathname + '?' + newParam + '&itemCode=' + name;
+			if(URLSearch.get('itemNumber') == null){
+				window.location.href = location.pathname + '?' + newParam + '&itemNumber=' + name;
 			}
 			else{
-				URLSearch.set('itemCode',name);
+				URLSearch.set('itemNumber',name);
 				const newParam = URLSearch.toString();
-				window.location.href = location.pathname + '?' +newParam;
+				window.location.href = location.pathname + '?' + newParam;
 			}
 		}
 		
 		function updateRow(){
 			var iupTable = document.getElementById('iupTable');
-			var row = iup.insertRow();
+			var row = iupTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
 			const newParam = URLSearch.toString();
+			
 			var link = location.pathname + '?' + newParam;
-				document.getElementById("inventoryUnit").disabled = true;
+				document.getElementById("no").disabled = true;
 				document.getElementById("purchasePrice").disabled = true;
 				document.getElementById("salesPrice").disabled = true;
-				document.getElementById("no").disabled = true;
+				
 			var articleNoInput = document.createElement("input");
 				articleNoInput.setAttribute("type","hidden");
 				articleNoInput.setAttribute("name","path");
@@ -205,7 +213,7 @@
 		}
 		
 		function newRow(){
-			var row = workOrderTable.insertRow();
+			var row = iupTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
 			const newParam = URLSearch.toString();
@@ -224,7 +232,7 @@
 			var no = "";
 			var ary = [];
 			for(var i=0; i<item; i++){
-				if(document.getElemetsByName("content")[i].checked==true){
+				if(document.getElementsByName("content")[i].checked==true){
 					no = document.getElementsByName("content")[i].value;
 					ary.push(no);
 				}
