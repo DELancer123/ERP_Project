@@ -35,16 +35,16 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
-		<result property="operationNumber" column="OPNUMBER" />
-		<result property="materialStatus" column="MATERIALUSESTATUS" />
-		<result property="performanceDate" column="PERFORMANCEDATE" />
-		<result property="processCode" column="PROCESS_CODE" />
-		<result property="workplaceCode" column="WORKPLACE_CODE" />
-		<result property="sortation" column="SORTATION" />
-		<result property="performanceQuantity" column="PERFORMANCEQUANTITY" />
-		<result property="inspection" column="inspection" />
+		<result property="no" column="NO" />
+		<result property="billingDate" column="BILLINGDATE" />
+		<result property="itemCode" column="ITEM_CODE" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="standard" column="STANDARD" />
+		<result property="inventoryUnit" column="INVENTORY_UNIT" />
+		<result property="precisionQuantity" column="PRECISIONQUANTITY" />
+		<result property="loss" column="loss" />
+		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
-		<result property="workOrderNumber" column="WORKORDERNUMBER" />
 	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
@@ -115,9 +115,12 @@
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{number} ]]>
+		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
+	<select id="checkConfirmDetail" resultMap="OperationRegistVO">
+		<![CDATA[select MATERIALFORWARDINGSTATUS from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	</select>
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
@@ -279,6 +282,10 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		<result property="usageStatus" column="USAGESTATUS" />
 		<result property="defectiveDescription" column="DEFECTIVEDESCRIPTION" />
 	</resultMap>
+	<resultMap id="defGroupView" type="defVO">
+		<result property="defectiveItemGroupCode" column="DEFECTIVETYPENAME" />
+		<result property="defectiveItemGroup" column="DEFECTIVEITEMGROUPCODE" />
+	</resultMap>
 	<select id="defectiveView" resultMap="defTypeView" >
 		<![CDATA[select * from cpm_bim_def_typ_reg]]>
 	</select>
@@ -295,6 +302,9 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		where DEFECTCODE=#{oridefectCode}
 		]]>  
 	</update>
+	<select id="defGroupView" resultMap="defGroupView" >
+		<![CDATA[select * from cpm_bim_def_group]]>
+	</select>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

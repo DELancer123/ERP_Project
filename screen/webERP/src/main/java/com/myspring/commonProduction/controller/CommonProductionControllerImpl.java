@@ -209,6 +209,16 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   		  return mav; 
   	  	}
   	 
+ 	@Override
+ 	@RequestMapping(value="/member/confirmDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView confirmDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		productionService.confirmDetail(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		return mav;
+ 		}
   	 
   
   private String getViewName(HttpServletRequest request) throws Exception {

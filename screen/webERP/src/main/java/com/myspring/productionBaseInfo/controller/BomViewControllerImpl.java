@@ -326,6 +326,8 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView defTypePop(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		ModelAndView mav = new ModelAndView(viewName);
+		List defGroupList = viewService.viewGroupList();
+		mav.addObject("defGroupList",defGroupList);
 		return mav;
 	}
 }
