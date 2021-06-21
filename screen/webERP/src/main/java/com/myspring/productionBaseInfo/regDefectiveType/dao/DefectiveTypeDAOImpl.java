@@ -38,5 +38,12 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		}
 		return result;
 	}
+	@Override
+	public List viewGroupList() throws DataAccessException {
+		List<DefectiveTypeVO> defGroupList = null;
+		defGroupList = sqlSession.selectList("mappers.erp.defGroupView");
+		
+		return defGroupList;
+	}
 
 }

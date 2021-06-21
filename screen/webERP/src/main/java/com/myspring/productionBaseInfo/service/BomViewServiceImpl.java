@@ -152,4 +152,11 @@ public class BomViewServiceImpl implements BomViewService{
 		return updList;
 	}
 
+	@Override
+	public List viewGroupList() throws DataAccessException {
+		List defGroupList = null;
+		defGroupList = defDAO.viewGroupList();
+		return defGroupList;
+	}
+
 }

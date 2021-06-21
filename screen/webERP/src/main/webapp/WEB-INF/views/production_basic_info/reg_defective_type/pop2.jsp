@@ -8,9 +8,6 @@
   request.setCharacterEncoding("UTF-8");
 %>    
     
-<%
-	String inputNo = (String)request.getAttribute("inputNo");
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,15 +70,19 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>번호</td>
-                    <td>품목코드</td>
-                    <td>품명</td>
+                    <td>불량군코드</td>
+                    <td>불량군이름</td>
                 </tr>
+                <c:forEach var="group" items='${defGroupList }'>
    <tr align="center">
-      <td><a href="#"></a></td>
-      <td><a href="javascript:popFunction()"></a></td>
-      <td><a href="#"></a></td>
+      <td><a href="#">${group.defectiveItemGroupCode }</a></td>
+      <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroup }</a></td>
     </tr>
+    </c:forEach>
+    	<tr>
+    		<td><input type="text"/></td>
+    		<td><input type="text"/></td>
+    	</tr>
             </table>
             
         </div>

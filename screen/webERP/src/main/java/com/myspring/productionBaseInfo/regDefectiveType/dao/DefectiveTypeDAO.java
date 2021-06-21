@@ -14,5 +14,7 @@ public interface DefectiveTypeDAO {
 
 	int updDefType(DefectiveTypeVO defVO) throws DataAccessException;
 
+	List viewGroupList() throws DataAccessException;
+
 
 }
