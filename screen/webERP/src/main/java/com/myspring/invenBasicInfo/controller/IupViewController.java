@@ -14,19 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public interface IupViewController {
 	public ModelAndView viewIup(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView iupAddMember(@ModelAttribute("iup") iupVO iupVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	/*
-	 * public ModelAndView removeMember(@RequestParam("id") String id,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 * public ModelAndView login(@ModelAttribute("member") bomVO
-	 * member,RedirectAttributes rAttr,HttpServletRequest request,
-	 * HttpServletResponse response) throws Exception; public ModelAndView
-	 * logout(HttpServletRequest request, HttpServletResponse response) throws
-	 * Exception;
-	 */
-
 	public ModelAndView iupDelMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView iupUpdateMember(@ModelAttribute("iup") iupVO iupVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 
-
 }

@@ -41,7 +41,7 @@ public class IupViewDAOImpl implements IupViewDAO{
 	@Override
 	public List setText(String itemNumber) throws DataAccessException {
 		List<iupVO> textList = null;
-		textList = sqlSession.selectList("mappers.erp.iupSelectItem",itemNumber);
+		textList = sqlSession.selectList("mappers.erp.iupSelectItem1",itemNumber);
 		return textList;
 	}
 	@Override

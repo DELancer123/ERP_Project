@@ -119,13 +119,17 @@
 				</c:forEach>
                 	<tr id="insertIup" align="center">
                 		<td></td>
-                    	<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%"></td>
-                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemName }' ondblclick="search2()" /></td>
+              			<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%"></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" /></td>
                     	<td><input type="text" id="itemName" name="ListVO[${fn:length(iupView) }].itemName" value='${itemName }' /></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn:length(iupView) }].standard" value='${standard }' /></td>
                     	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(iupView) }].inventoryUnit" value='${inventoryUnit }' /></td>
-                    	<td><input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }'/></td>
-                    	<td><input type="text" id="salesPrice" name="ListVO[${fn:length(iupView) }].salesPrice" value='${salesPrice }'/></td>                                                        
+                    	<td>
+                    	<input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }'/>
+                    	</td>
+                    	<td>
+                    	<input type="text" id="salesPrice" name="ListVO[${fn:length(iupView) }].salesPrice" value='${salesPrice }'/>
+                    	</td>                                               
                 	</tr>
             	</table>
 			</div>
@@ -134,7 +138,7 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
     <script>
     	var no = document.getElementById("no")
-        var itemNumber = document.getElementById("itemCode");
+        var itemNumber = document.getElementById("itemNumber");
         var itemName = document.getElementById("itemName");
         var standard = document.getElementById("standard");
       	var inventoryUnit = document.getElementById("inventoryUnit");
@@ -177,16 +181,11 @@
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','2');
 			const newParam = URLSearch.toString();
-			/*
-			document.getElementById("no").disabled = true;
-			document.getElementById("purchasePrice").disabled = true;
-			document.getElementById("salesPrice").disabled = true;
-			*/
-			if(URLSearch.get('itemCode') == null){
-				window.location.href = location.pathname + '?' + newParam + '&itemCode=' + name;
+			if(URLSearch.get('itemNumber') == null){
+				window.location.href = location.pathname + '?' + newParam + '&itemNumber=' + name;
 			}
 			else{
-				URLSearch.set('itemCode',name);
+				URLSearch.set('itemNumber',name);
 				const newParam = URLSearch.toString();
 				window.location.href = location.pathname + '?' + newParam;
 			}
