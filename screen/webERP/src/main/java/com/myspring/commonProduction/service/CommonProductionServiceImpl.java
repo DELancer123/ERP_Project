@@ -2,6 +2,7 @@
  package com.myspring.commonProduction.service;
  
  import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
  
  import org.springframework.beans.factory.annotation.Autowired; import
@@ -112,5 +113,12 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  infolist = ORdao.selectAllCommitOperationInfoDetail(number); 
 	  return infolist; 
 	  }
+  
+  @Override
+	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
+	  List<String> message = new ArrayList(); 
+	  ORdao.confirmDetail(numberAry);
+	  return message;
+	}
   }
  

@@ -213,16 +213,38 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content2"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                                            
+                        <c:forEach var="regOutPerDetail" items="${regOutPerformanceViewDetail}" varStatus="status" >     
+						   <tr align="center">
+						   	  <td><input type="checkbox" name="content" value="${regOutPerDetail.operationPerformanceNumber}"/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].operationPerformanceNumber" value = '${regOutPerDetail.operationPerformanceNumber}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].materialUseStatus" value = '${regOutPerDetail.materialUseStatus}' readonly/></td>
+						   	  <td><input type="date" name="ListVO[${status.index}].performanceDate" value = '${regOutPerDetail.performanceDate}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].outsourcingCode" value = '${regOutPerDetail.outsourcingCode}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].workplaceCode" value = '${regOutPerDetail.workplaceCode}'/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].sortation" value = '${regOutPerDetail.sortation}' ondblclick="search2()"/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].performanceQuantity" value = '${regOutPerDetail.performanceQuantity}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].inspection" value = '${regOutPerDetail.inspection}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].note" value = '${regOutPerDetail.note}' readonly/></td>
+						   	  <td><input type="text" name="ListVO[${status.index}].workOrderNumber" value = '${regOutPerDetail.workOrderNumber}'/></td>
+
+						    </tr>
+						    </c:forEach> 
+						
+						    <tr align="center">
+						     <td><input type="checkbox" value = "check1" name="content"/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].operationPerformanceNumber" readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].materialUseStatus" readonly/></td>
+						    	<td><input type="date" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].performanceDate" value='${param.performanceDate }' /></td>
+						    	<td><input type="text" id = "instructionDate" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].Outsourcing_Code"  value='${param.Outsourcing_Code }'/></td>
+						    	<td><input type="text" id = "dueDate" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].Workplace_Code"  value='${param.Workplace_Code }'/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].sortation" value='${param.sortation }' ondblclick="search2()"/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].performanceQuantity" value='${param.performanceQuantity }' readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].inspection" value='${param.inspection }' readonly/></td>
+						    	<td><input type="text" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].note" value='${param.note }' readonly/></td>
+						    	<td><input type="text" id = "indicatedQuantity" name="ListVO[${fn:length(regOutPerformanceViewDetail) }].indicatedQuantity"  value='${param.workOrderNumber }'/></td>
+						    	
+						    </tr>
                     </tbody>
                 </table>
             </div>

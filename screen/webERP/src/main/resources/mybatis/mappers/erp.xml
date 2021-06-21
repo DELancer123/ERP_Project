@@ -31,6 +31,8 @@
 		<result property="indicated" column="IndicatedQuantity" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
+		<result property="productionFacility" column="PRODUCTIONFACILITY" />
+		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
@@ -99,13 +101,13 @@
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		 insert into CPM_PM_OPE_PER_REG
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획', '비검사', #{note}, #{productionPlanCode})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획', '비검사', #{note}, #{productionPlanCode}, #{productionFacility}, #{taskTeam})
 		]]>  
 	</insert>
 	<update id="updateOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG
-		set dueDate = #{dueDate}, indicatedQuantity = #{indicated}, note = #{note}
+		set dueDate = #{dueDate}, indicatedQuantity = #{indicated}, note = #{note}, productionFacility=#{productionFacility}, taskTeam = #{taskTeam}
 		where  workOrderNumber = #{workOrderNumber}
 		]]>  
 	</update>	
@@ -117,6 +119,18 @@
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
 		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
+	
+	<select id="checkConfirmDetail" resultType="string">
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	</select>
+	
+	<update id="updConfirmDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '확정'
+		where  workOrderNumber = #{workOrderNumber} and status = '계획'
+		]]>  
+	</update>	
 	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
@@ -632,7 +646,9 @@ ORDER BY out.workordernumber]]>
 	</resultMap>
 	
 	<select id="selectAllRegOutPerformanceDetail" resultMap="regOutPerformanceViewDetail">
-		<![CDATA[SELECT * FROM CPM_OM_Out_Per_Reg_Det]]>
+		<![CDATA[SELECT operationPerformanceNumber,materialUseStatus,performanceDate,func_Out_Reg(Outsourcing_Code),func_Out_Wor_Reg(Workplace_Code),
+		sortation,performanceQuantity,inspection,note
+		 FROM CPM_OM_Out_Per_Reg_Det]]>
 	</select>
 	
 
