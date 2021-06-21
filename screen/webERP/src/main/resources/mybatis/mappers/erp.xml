@@ -625,7 +625,9 @@ ORDER BY out.workordernumber]]>
 	</resultMap>
 	
 	<select id="selectAllRegOutPerformanceDetail" resultMap="regOutPerformanceViewDetail">
-		<![CDATA[SELECT * FROM CPM_OM_Out_Per_Reg_Det]]>
+		<![CDATA[SELECT operationPerformanceNumber,materialUseStatus,performanceDate,func_Out_Reg(Outsourcing_Code),func_Out_Wor_Reg(Workplace_Code),
+		sortation,performanceQuantity,inspection,note
+		 FROM CPM_OM_Out_Per_Reg_Det]]>
 	</select>
 	
 
