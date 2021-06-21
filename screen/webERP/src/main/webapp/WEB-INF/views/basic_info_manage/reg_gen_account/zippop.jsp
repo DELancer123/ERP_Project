@@ -95,7 +95,8 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-     		opener.parent.location='${contextPath }/member/regbasicacc.do'; 
+    		text_code.setAttribute("zipCode", text_code.value)
+     		opener.parent.location='${contextPath }/member/regbasicacc.do?zipcode='+text_code.value; 
     		window.close();
     	}
     	close_button.onclick = function(){

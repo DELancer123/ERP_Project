@@ -153,7 +153,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	
 	 @Override	 
 	 @RequestMapping(value="/member/regbasicaccZipPopup.do", method =
-	 RequestMethod.GET) public ModelAndView popupZipCompany(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	 RequestMethod.GET) public ModelAndView popupZipCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		 request.setCharacterEncoding("utf-8"); 
 		 ModelAndView mav = null; 
 		 String viewName = getViewName(request); 

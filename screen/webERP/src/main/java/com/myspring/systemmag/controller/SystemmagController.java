@@ -22,7 +22,7 @@ public interface SystemmagController {
 	
 	public ModelAndView popupCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView popupZipCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView popupZipCompany(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	 
 	
 	
