@@ -120,8 +120,8 @@
 		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
-	<select id="checkConfirmDetail" resultMap="OpePerRegResult">
-		<![CDATA[select MATERIALFORWARDINGSTATUS from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	<select id="checkConfirmDetail" resultType="string">
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
 	<!-- 생산 팝업 파트 -->	

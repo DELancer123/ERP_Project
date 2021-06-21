@@ -132,8 +132,8 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	public void confirmDetail(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
 			
-			String check = (String)sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
-			System.out.println(check);
+			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
+			System.out.println("확정"+check);
 //			
 //			sqlSession.delete("mappers.erp.confirmDetail", obj);		
 //			System.out.println("DAO.delBOM");
