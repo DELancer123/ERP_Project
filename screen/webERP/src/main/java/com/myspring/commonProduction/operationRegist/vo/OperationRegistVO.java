@@ -23,14 +23,15 @@ public class OperationRegistVO {
 	private String inspection;
 	private String note;
 	private String productionPlanCode;
-	private String facility;
+	private String productionFacility;
 	private String taskTeam;
-	public String getFacility() {
-		return facility;
+
+	public String getProductionFacility() {
+		return productionFacility;
 	}
 
-	public void setFacility(String facility) {
-		this.facility = facility;
+	public void setProductionFacility(String productionFacility) {
+		this.productionFacility = productionFacility;
 	}
 
 	public String getTaskTeam() {

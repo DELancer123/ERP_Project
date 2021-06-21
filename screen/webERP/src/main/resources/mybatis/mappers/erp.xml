@@ -31,7 +31,7 @@
 		<result property="indicated" column="IndicatedQuantity" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
-		<result property="facility" column="productionFacility" />
+		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
 		<result property="productionPlanCode" column="ProductionPlanCode" />
@@ -101,13 +101,13 @@
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		 insert into CPM_PM_OPE_PER_REG
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획', '비검사', #{note}, #{productionPlanCode}, #{facility}, #{taskTeam})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획', '비검사', #{note}, #{productionPlanCode}, #{productionFacility}, #{taskTeam})
 		]]>  
 	</insert>
 	<update id="updateOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG
-		set dueDate = #{dueDate}, indicatedQuantity = #{indicated}, note = #{note}, facility=#{facility}, taskTeam = #{taskTeam}
+		set dueDate = #{dueDate}, indicatedQuantity = #{indicated}, note = #{note}, productionFacility=#{productionFacility}, taskTeam = #{taskTeam}
 		where  workOrderNumber = #{workOrderNumber}
 		]]>  
 	</update>	

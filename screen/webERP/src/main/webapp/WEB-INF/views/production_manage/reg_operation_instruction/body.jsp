@@ -127,7 +127,7 @@
                      	<td><input type="text" name="ListVO[${status.index }].indicated" value="${info.indicated}" /></td>
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].inspection value="${info.inspection}" readonly /></td>
-                     	<td><input type="text" name="ListVO[${status.index }].facility" value="${info.facility}" /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].productionFacility" value="${info.productionFacility}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].taskTeam" value="${info.taskTeam}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly /></td>
                      	<td><input type="hidden" name="ListVO[${status.index }].productionPlanCode" value="${info.productionPlanCode }" /></td>
@@ -145,7 +145,7 @@
                         <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].facility" value="${param.facility }"/></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.productionFacility }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" value="${param.taskTeam }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
                         <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
