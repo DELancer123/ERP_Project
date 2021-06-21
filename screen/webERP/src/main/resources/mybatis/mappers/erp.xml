@@ -594,14 +594,10 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 		<result property="parentStandard" column="Standard" />
 		<result property="parentInventoryUnit" column="Inventory_Unit" />
 		<result property="indicatedQuantity" column="indicatedQuantity" />
-		<result property="unitPrice" column="unitPrice" />				
-		<result property="parentPrice" column="Price" />				
-		<result property="sumPerfomanceQuantity" column="perfomanceQuantity" />				
-		<result property="remainingPerfomance" column="remainingPerfomance" />				
+		<result property="unitPrice" column="unitPrice" />							
 		<result property="status" column="status" />
 		<result property="parentInspection" column="inspection" />
 		<result property="parentNote" column="note" />		
-		<result property="productionPlanCode" column="productionPlanCode" />			
 	</resultMap>
 
 	<select id="selectAllRegOutPerformanceList" resultMap="regOutPerformanceView">
@@ -622,16 +618,14 @@ ORDER BY out.workordernumber]]>
 		<result property="outsourcingCode" column="func_Out_Reg(Outsourcing_Code)" />
 		<result property="workplaceCode" column="func_Out_Wor_Reg(Workplace_Code)" />
 		<result property="sortation" column="sortation" />
-		<result property="precisionQuantity" column="indicatedQuantity" />
-		<result property="PerformanceQuantity" column="PerformanceQuantity" />				
+		<result property="performanceQuantity" column="performanceQuantity" />				
 		<result property="inspection" column="inspection" />
 		<result property="note" column="note" />
+		<result property="workOrderNumber" column="workOrderNumber" />
 	</resultMap>
 	
 	<select id="selectAllRegOutPerformanceDetail" resultMap="regOutPerformanceViewDetail">
-		<![CDATA[SELECT NO,ITEM_CODE,ITEM_NAME,STANDARD,INVENTORY_UNIT,indicatedQuantity,FORWARDINGQUANTITY
-FROM CPM_OM_Out_Mat_For MAT, CPM_OM_Out_Mat_For_Det MAF
-WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
+		<![CDATA[SELECT * FROM CPM_OM_Out_Per_Reg_Det]]>
 	</select>
 	
 

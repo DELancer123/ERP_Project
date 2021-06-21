@@ -25,12 +25,12 @@ public class RegOutPerformanceVO {
 	private String parentNote;
 	private String productionPlanCode;	
 	
-	private int operationPerformanceNumber;
+	private String operationPerformanceNumber;
 	private String materialUseStatus;
 	private Date performanceDate;
 	private String outsourcingCode;
 	private String sortation;
-	private String PerformanceQuantity;
+	private String performanceQuantity;
 	private String inspection;
 	private String note;
 	
@@ -138,10 +138,10 @@ public class RegOutPerformanceVO {
 	public void setProductionPlanCode(String productionPlanCode) {
 		this.productionPlanCode = productionPlanCode;
 	}
-	public int getOperationPerformanceNumber() {
+	public String getOperationPerformanceNumber() {
 		return operationPerformanceNumber;
 	}
-	public void setOperationPerformanceNumber(int operationPerformanceNumber) {
+	public void setOperationPerformanceNumber(String operationPerformanceNumber) {
 		this.operationPerformanceNumber = operationPerformanceNumber;
 	}
 	public String getMaterialForwardingStatus() {
@@ -169,10 +169,10 @@ public class RegOutPerformanceVO {
 		this.sortation = sortation;
 	}
 	public String getPerformanceQuantity() {
-		return PerformanceQuantity;
+		return performanceQuantity;
 	}
 	public void setPerformanceQuantity(String performanceQuantity) {
-		PerformanceQuantity = performanceQuantity;
+		this.performanceQuantity = performanceQuantity;
 	}
 	public String getInspection() {
 		return inspection;
