@@ -10,9 +10,7 @@
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
 %>
-<% String parent = request.getParameter("item_code");%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:forEach var="item" items="${salesplan}"> 
+<c:forEach var="sale" items="${salesplan}"> 
     <c:set var="code" value="${item.item_code}"/>
 	<c:set var="name" value="${item.item_name}"/>
 	<c:set var="standard" value="${item.standard}"/>
@@ -84,42 +82,38 @@
 			<td align="center">계획 수정 단가</td>
 			<td align="center">계획 수정 금액</td>			
 		</thead>
-		<c:if test="0" var="submit">
-			<tbody align="center">
-				<td style="width: 5%;"><input type="checkbox" value="check" id="check" name="content" /></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>
-				<td><input type="text"/></td>				
-			</tbody>
-		</c:if>
-		<c:if test ="1" var="submit">
-			<c:forEach var="item" items="${salesplan}" varStatus="status" >
+			<c:forEach var="sale" items="${salesplan}" varStatus="status" >
 				<tbody align="center">
 					<td style="width: 5%;"><input type="checkbox" value="check" id="check" name="content" /></td>
-					<td><input type="text" value="${item.item_code}" ondblclick="search12345()"/></td>
-                    <td><input type="text" value="${item.item_name}" ondblclick="search12345()"/></td>
-                    <td><input type="text" value="${item.standard}" readonly/></td>
-                    <td><input type="text" value="${item.inventory_unit}" readonly/></td>
-                    <td><input type="text" value="${item.planquantity}" readonly/></td>
-                    <td><input type="text" value="${item.planprice}" readonly/></td>
-                    <td><input type="text" value="${item.planquantity*item.planprice}" readonly/></td>
-                    <td><input type="text" value="${item.newquantity}" readonly/></td>
-                    <td><input type="text" value="${item.newprice}" readonly/></td>
-                    <td><input type="text" value="${item.newquantity*item.newprice}" readonly/></td>
+					<td><input type="text" name="List[${status.index}].item_code" value="${sale.item_code}" ondblclick="search2()"/></td>
+                    <td><input type="text" name="List[${status.index}].item_name" value="${sale.item_name}" ondblclick="search2()"/></td>
+                    <td><input type="text" name="List[${status.index}].standard" value="${sale.standard}" readonly/></td>
+                    <td><input type="text" name="List[${status.index}].inventory_unit" value="${sale.inventory_unit}" readonly/></td>
+                    <td><input type="text" name="List[${status.index}].planquantity" value="${sale.planquantity}" readonly/></td>
+                    <td><input type="text" name="List[${status.index}].planprice" value="${sale.planprice}" readonly/></td>
+                    <td><input type="text" value="${sale.planquantity*sale.planprice}" readonly/></td>
+                    <td><input type="text" name="List[${status.index}].newquantity" value="${sale.newquantity}" readonly/></td>
+                    <td><input type="text" name="List[${status.index}].newprice" value="${sale.newprice}" readonly/></td>
+                    <td><input type="text" value="${sale.newquantity*sale.newprice}" readonly/></td>
             	</tbody>
 			</c:forEach>
-		</c:if>
+				<tbody align="center">
+					<td style="width: 5%;"><input type="checkbox" value="check" name="content" /></td>
+					<td><input type="text" id="item_code" name="List[${fn.length(salesplan)}].item_code" value="${param.item_code}" ondblclick="search2()"/></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].item_name" value="${param.item_name}" ondblclick="search2()"/></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].standard" value="${standard}" readonly/></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].inventory_unit" value="${inventory_unit}"/></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].planquantity" value="${planquantity}" /></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].planprice" value="${planprice}" /></td>
+                    <td><input type="text" value="${planquantity*planprice}" /></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].newquantity" value="${newquantity}" /></td>
+                    <td><input type="text" name="List[${fn.length(salesplan)}].newprice" value="${newprice}" /></td>
+                    <td><input type="text" value="${newquantity*newprice}" /></td>
+            	</tbody>
 	</table>
 	</container2>
 	   <script>
-          function search12345(){
+          function search2(){
     	  
         	  openWindowPop('http://localhost:8090/webERP/sales_manage/pop/popItemBySalesReg.do','popItemBySalesReg');  
     }

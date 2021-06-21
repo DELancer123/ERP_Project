@@ -17,8 +17,8 @@ public interface SalesplanService {
 	public List submitItem(String item_code) throws DataAccessException;
 	public List itemText(String item_code) throws DataAccessException;
 	public int inputNo() throws DataAccessException;
-//	public int addItem(ItemViewVO itemviewVO) throws DataAccessException;
-////	public int removeItem(String item_Code) throws DataAccessException;
+	public int addItem(ItemViewVO itemviewVO) throws DataAccessException;
+	public void removeItem(String[] planAry) throws DataAccessException;
 
 
 }

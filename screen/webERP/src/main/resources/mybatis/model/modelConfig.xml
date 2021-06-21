@@ -25,7 +25,8 @@
 			<typeAlias type="com.myspring.salesmanage.itemview.vo.ItemViewVO" alias="itemviewVO" />
 			<typeAlias type="com.myspring.salesmanage.estimate.vo.EstimateVO"  alias="estimateVO" />
 			<typeAlias type="com.myspring.salesmanage.cor.vo.CorVO"  alias="corVO" />
-			<!-- 
+			<typeAlias type="com.myspring.salesmanage.order.vo.OrderVO"  alias="orderVO" />
+			<!-- com.myspring.salesmanage.order.vo
 			<typeAlias type="com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO"  alias="itemgroupVO" />
 			<typeAlias type="com.myspring.salesmanage.pop.custview.vo.CustViewVO" alias="custviewVO" /> -->
 		<!-- 외주 파트 -->

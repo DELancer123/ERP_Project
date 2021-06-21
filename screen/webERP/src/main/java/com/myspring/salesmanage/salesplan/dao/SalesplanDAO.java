@@ -21,11 +21,10 @@ public interface SalesplanDAO {
 		public List submitItemView(String item_code) throws DataAccessException;
 		
 		//reg
-		public int selNo() throws DataAccessException;
-		public int addItem(ItemViewVO itemview) throws DataAccessException;
+		public int selCode() throws DataAccessException;
+		public int insertItem(ItemViewVO itemview) throws DataAccessException;
+		public void deletePlan(String[] planAry) throws DataAccessException;		
 //		public int updNewSalesplan(String item_code) throws DataAccessException;
-//		public void delSalesplan(String[] noary) throws DataAccessException;		
-//		public int selPlanCode() throws DataAccessException;
 
 		
 //		public List selectItemGroupList() throws DataAccessException;

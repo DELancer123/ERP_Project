@@ -47,14 +47,14 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 		
 		
 	@Override
-	public int selNo() throws DataAccessException {
-		return sqlSession.selectOne("mappers.erp.selectNo");
+	public int selCode() throws DataAccessException {
+		return sqlSession.selectOne("mappers.erp.selPlancode");
 	}
 		
 		@Override
-		public int addItem(ItemViewVO itemview) throws DataAccessException {
+		public int insertItem(ItemViewVO itemview) throws DataAccessException {
 			int idx = itemview.getList().size()-1;
-			int result = sqlSession.insert("mappers.erp.insertsalesplan",itemview.getList().get(idx));
+			int result = sqlSession.insert("mappers.erp.insertSalesplan",itemview.getList().get(idx));
 			return result;
 		}
 //
@@ -64,14 +64,14 @@ public class SalesplanDAOImpl implements SalesplanDAO{
 //			return 0;
 //		}
 //
-//		@Override
-//		public void delSalesplan(String[] noary) throws DataAccessException {
-////			for(String obj: noary) {
-////				sqlSession.delete("mappers.erp.delsalesplan", Integer.parseInt(obj));		
-////				System.out.println("DAO.delsalesplan");
-////			}
-//		}
-//
+		@Override
+		public void deletePlan(String[] planArray) throws DataAccessException {
+			for(String obj: planArray) {
+				sqlSession.delete("mappers.erp.deletePlan", Integer.parseInt(obj));		
+				System.out.println("DAO.deletePlan");
+			}
+		}
+
 //		@Override
 //		public String selPlanCode(String nextPlanCode) throws DataAccessException {
 //			return sqlSession.selectOne("mappers.erp.selplancode");

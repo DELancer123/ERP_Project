@@ -41,7 +41,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("allItemList", allItemList);
 		return mav;
-	}
+	}//search pop
 	
 	@RequestMapping(value="/sales_manage/pop/popItemBySalesReg.do" ,method = RequestMethod.GET)
 	public ModelAndView AllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -52,7 +52,7 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("allItemList", allItemList);
 		return mav;
-	}
+	}//table pop
 	
 	@Override
 	@RequestMapping(value="/member/regsalesplan.do" ,method = RequestMethod.GET)
@@ -70,48 +70,35 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 			
 			List salesplan = salesplanService.submitItem(code);			
 			mav = new ModelAndView(viewName);
+			mav.addObject("salesplan", salesplan);
+				
+		}else if(submit.equals("2")) {
+			List salesplan = salesplanService.submitItem(code);			
+			mav = new ModelAndView(viewName);
 			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg
 			int inputNo = salesplanService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);
 			request.setAttribute("inputNo", inNo);
-		
 		}
 		return mav;
 	}
-	@RequestMapping(value="/member/reg.do" ,method = RequestMethod.GET)
-	public ModelAndView insertItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
-		ModelAndView mav = null;
-		String viewName = getViewName(request);
-		String code = (String)request.getParameter("item_code");
-		String submit = (String)request.getParameter("submit");
-		int sum = 0;
+
+	@Override
+	@RequestMapping(value="/member/addsalesplan.do", method = RequestMethod.GET)
+	public ModelAndView addSalesplan(ItemViewVO itemview, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		System.out.println("url"+path);
+		int result = 0;
+		result = salesplanService.addItem(itemview);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		
-		if(code == null || code.length() == 0||submit.equals("0")) {
-			mav = new ModelAndView(viewName);
-			return mav;
-		}else if(submit.equals("1")) {
-			
-			List salesplan = salesplanService.submitItem(code);			
-			mav = new ModelAndView(viewName);
-			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg
-		}else if(submit.equals("2")) {
-
-			List salesplan = salesplanService.submitItem(code);
-//			List addSalesplanList = salesplanService.itemText(code);//text관련 수정
-			mav = new ModelAndView(viewName);
-			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg->list
-//			mav.addObject("addSalesplanList", addSalesplanList);//SM_BIM_Sal_Pla_Reg->insert
-			
-//			int inputNo = salesplanService.inputNo();
-//			String inNo = Integer.toString(inputNo+1);
-//			System.out.println(inNo);
-//			request.setAttribute("inputNo", inNo);
-		}
-
 		return mav;
 	}
+
 
 
 	private String getViewName(HttpServletRequest request)  throws Exception{
@@ -143,10 +130,49 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 	}
 	return viewName;
 }
-
-
-
-
+	
+	@Override
+	public ModelAndView removeSalesplan(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("plancode");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		salesplanService.removeItem(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/addsalesplan.do");
+		return mav;
+	}
+//	@RequestMapping(value="/member/salesplanreg.do" ,method = RequestMethod.GET)
+//	public ModelAndView insertItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	
+//		ModelAndView mav = null;
+//		String viewName = getViewName(request);
+//		String code = (String)request.getParameter("item_code");
+//		String submit = (String)request.getParameter("submit");
+//		int sum = 0;
+//		
+//		if(code == null || code.length() == 0||submit.equals("0")) {
+//			mav = new ModelAndView(viewName);
+//			return mav;
+//		}else if(submit.equals("1")) {
+//			
+//			List salesplan = salesplanService.submitItem(code);			
+//			mav = new ModelAndView(viewName);
+//			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg
+//		}else if(submit.equals("2")) {
+//
+//			List salesplan = salesplanService.submitItem(code);
+////			List addSalesplanList = salesplanService.itemText(code);//text관련 수정
+//			mav = new ModelAndView(viewName);
+//			mav.addObject("salesplan", salesplan);//SM_BIM_Sal_Pla_Reg->list
+////			mav.addObject("addSalesplanList", addSalesplanList);//SM_BIM_Sal_Pla_Reg->insert
+//			
+////			int inputNo = salesplanService.inputNo();
+////			String inNo = Integer.toString(inputNo+1);
+////			System.out.println(inNo);
+////			request.setAttribute("inputNo", inNo);
+//		}
+//
+//		return mav;
+//	}
 //	@Override
 //	@RequestMapping(value="/member/regsalesplan.do", method= RequestMethod.GET)//jsp���� �޾ƿ� ���ΰ�
 //	public ModelAndView listSalesplans(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -161,20 +187,6 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 //	}//mapper.salesplan.
 //
 //
-//
-//
-//	@Override
-//	@RequestMapping(value="/member/addsalesplan.do", method=RequestMethod.POST)
-//	public ModelAndView addSalesplan(@ModelAttribute("info")SalesplanVO salesplan,HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		
-//		request.setCharacterEncoding("utf-8");
-//		int result =0;
-//		result = salesplanService.addSalesplan(salesplan);
-//		ModelAndView mav = new ModelAndView("redirect:/salesplan/listSalesplans.do");
-//		return mav;
-//	}
-//
-//
 //	@Override
 //	public ModelAndView addNewSalesplan(SalesplanVO salesplan, HttpServletRequest request, HttpServletResponse response)
 //			throws Exception {
@@ -183,35 +195,10 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 //		result = salesplanService.addNewSalesplan(salesplan);
 //		ModelAndView mav = new ModelAndView("redirect:/salesplan/listSalesplans.do");
 //		return mav;
-//	}
+//	}//upd
 //	
-//	@RequestMapping(value="/salesplan/removeSalesplan.do", method=RequestMethod.GET)
-//	public ModelAndView removeSalesplan(@RequestParam("Plan_Item_Code")String Plan_Item_Code,
-//			HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		request.setCharacterEncoding("utf-8");
-//		salesplanService.removeSalesplan(Plan_Item_Code);
-//		ModelAndView mav = new ModelAndView("redirect:/salesplan/listSalesplans.do");
-//		return mav;
-//	}
-//
-//	
-//	@RequestMapping(value = "/salesplan/*Form.do", method =  RequestMethod.GET)
-//	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
-//						       HttpServletRequest request, 
-//						       HttpServletResponse response) throws Exception {
-//		//String viewName = getViewName(request);
-//		String viewName = (String)request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("result",result);
-//		mav.setViewName(viewName);
-//		return mav;
-//	}
-//
-//
-//
-//
-//
-////	@Override
+
+//	@Override
 ////	@RequestMapping(value="/member/searchcode.do", method=RequestMethod.GET)
 ////	public ModelAndView searchCode(@ModelAttribute("salesplan") SalesplanVO salesplan,
 //////            RedirectAttributes rAttr,

@@ -196,12 +196,11 @@
         <result property="inventory_unit" column="inventory_unit" />
 	</resultMap> 
 	<resultMap id="salesplan" type="itemviewVO">
+		<result property="plancode" column="plan_code" />
 		<result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />
-
         <result property="standard" column="standard" />
         <result property="inventory_unit" column="inventory_unit" />
-
         <result property="planquantity" column="plan_item_quantity" />
         <result property="planprice" column="plan_unit_price" />
         <result property="newquantity" column="newplan_item_quantity" />
@@ -227,7 +226,28 @@
 		]]>   
 	</select> 
 	
-			<!--popcust-->
+	  <select id="selPlancode" resultMap="salesplan" parameterType="int">
+		<![CDATA[
+		SELECT LAST_NUMBER FROM USER_SEQUENCES
+		 WHERE SEQUENCE_NAME = upper('seq_SM_BIM_Gen_Cus_Reg_no')
+		]]>
+	</select> 
+	
+	<insert id="insertSalesplan" parameterType="itemviewVO">
+		<![CDATA[
+		 insert into SM_BIM_Sal_Pla_Reg
+		 values(F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), #{item_code}, #{item_name}, #{standard}, #{inventory_unit},
+		  #{planquantity}, #{planprice}, #{actualQuantity}, '0', '0', #{plandate})
+		]]>  
+	</insert>
+	
+	<delete id="deletePlan"  parameterType="String">
+	<![CDATA[
+	   delete from  SM_BIM_Sal_Pla_Reg where plan_code=#{plancode}
+	]]>      
+  </delete>
+	
+			<!--popcust -->
 	<resultMap id="custResult" type="estimateVO">
 		<result property="custCode" column="General_Customer_Code" />
         <result property="custName" column="General_Customer_Name" />
@@ -274,13 +294,58 @@
 		 and COR.customerCode = #{custCode}
         ]]>
 	</select>
-
 	
-		<!-- <insert id="insertsalesplan" parameterType="itemviewVO">
-		<![CDATA[ 
-		 insert into SM_BIM_Sal_Pla_Reg
-		 values(#{F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg')}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
-		]]>  
-	</insert> -->
+				
+	<resultMap id="cust" type="orderVO">
+		<result property="custCode" column="General_Customer_Code" />
+        <result property="custName" column="General_Customer_Name" />
+        <result property="comNum" column="Company_Registration_Number" />
+        <result property="repName" column="Representativs_Name" />	
+	</resultMap> 
+	
+		<select id="orderCustList" resultMap="cust">
+      <![CDATA[
+         select * from SM_BIM_Gen_Cus_Reg 
+      ]]>
+	</select>
+	
+	<!-- order&cor (join) -->
+	<resultMap id="orderList" type="orderVO">
+		<id property="ordCode" column="estimateNum" />
+        <result property="ordDate" column="estimateDate" />
+        <result property="custCode" column="customerCode" />
+        <result property="tax" column="tax" />
+        <result property="note" column="note" />
+        <collection property="corVO" javaType="CorVO">
+        <id property="custCode" column="customerCode" />
+        <result property="item_code" column="item_code" />
+        <result property="item_name" column="item_name" />        
+        <result property="stand" column="standard" />
+        <result property="unit" column="inventory_unit" />
+        <result property="dueDate" column="dueDate" />
+        <result property="orderQuant" column="ordersQuantity" />
+        <result property="price" column="productPrice" />
+        <result property="expDate" column="expectedDate" />
+        <result property="relDate" column="releaseExpectedDate" />
+        <result property="inspection" column="inspection" />
+        <result property="orderOX" column="orderOX" />
+        </collection>
+	</resultMap> 
+	
+		<select id="selectOrderList" resultMap="orderList">
+      <![CDATA[
+        select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
+		 where ORD.customerCode = COR.customerCode
+        ]]>
+	</select>
+	
+	<select id="submitOrderCust" resultMap="orderList">
+      <![CDATA[
+        select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
+		 where ORD.customerCode = COR.customerCode
+		 and COR.customerCode = #{custCode}
+        ]]>
+	</select>
+
 	
 </mapper>

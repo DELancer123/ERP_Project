@@ -6,12 +6,16 @@
 
 <%
   request.setCharacterEncoding("UTF-8");
-%>    
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+%> 
+<%
+	String inputNo = (String)request.getAttribute("inputNo");
+	
+%>
+<% String parent = request.getParameter("custCode");%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:forEach var="cust" items="${estList}"> 
+	<c:set var="code" value="${cust.custCode}"/>
+</c:forEach>
 <title>Insert title here</title>
 <style>
 #contents1{

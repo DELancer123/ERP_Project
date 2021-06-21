@@ -182,14 +182,16 @@
 	<put-attribute name="body2" value="/WEB-INF/views/sales_manage/reg_salesplan/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/regestimate" extends="baseLayout">
+   <definition name="/member/regestimate" extends="baseLayout3">
       <put-attribute name="title" value="견적등록" />
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_estimate/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/sales_manage/reg_estimate/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/regorder" extends="baseLayout">
+   <definition name="/member/regorder" extends="baseLayout3">
       <put-attribute name="title" value="수주등록" />
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_order/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/sales_manage/reg_order/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/regforreq" extends="baseLayout">

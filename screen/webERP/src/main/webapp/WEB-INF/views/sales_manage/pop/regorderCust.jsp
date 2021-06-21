@@ -44,16 +44,16 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
+<form name="popForm" method="get" action="${contextPath}/member/regorder" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>품번</td>
+                    <td>고객명</td>
                     <td><input type="text" id="code" /></td>
                 </tr>
                 <tr>
-                    <td>품명</td>
+                    <td>고객 번호</td>
                     <td><input type="text" id="name"/></td>
                 </tr>
             </table>
@@ -67,16 +67,18 @@
         	<div id="view">
             	<table style="width: 100%;">
                 	<tr align="center">
-      					<td><b>품번</b></td>
-      					<td><b>품명</b></td>
-      					<td><b>규격</b></td>
+      					<td><b>코드</b></td>
+      					<td><b>거래처명</b></td>
+      					<td><b>사업자번호</b></td>
+      					<td><b>대표자명</b></td>
   					</tr>
    
- 					<c:forEach var="item" items="${allItemList}" >
+ 					<c:forEach var="cust" items="${orderCustList}" >
    						<tr align="center">
-      						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
-      						<td>${item.item_name}</td>
-      						<td>${item.standard}</td>
+      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</td>
+      						<td>${cust.custName}</td>
+      						<td>${cust.comNum}</td>
+      						<td>${cust.repName}</td>
 						</tr>
   					</c:forEach>   
 				</table>
@@ -91,9 +93,9 @@
     		text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		text_code.setAttribute("item_code",text_code.value);
-			text_name.setAttribute("item_name",text_name.value);
-    		opener.parent.location='${contextPath}/member/regsalesplan.do?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+1;
+    		text_code.setAttribute("custCode",text_code.value);
+			text_name.setAttribute("custName",text_name.value);
+    		opener.parent.location='${contextPath}/member/regorder.do?custCode='+text_code.value+'&&custName='+text_name.value;
     		window.close();
     	}
     </script>

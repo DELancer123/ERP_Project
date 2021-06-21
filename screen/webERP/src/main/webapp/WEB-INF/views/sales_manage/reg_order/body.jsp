@@ -1,9 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" 
+    isELIgnored="false"  %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 #contents1{
@@ -16,24 +24,7 @@
             border: 1px solid black;
             z-index: 1;
         }
-        #contents2{
-            position: absolute;
-            right: 0;
-            top: 25%;
-            width: 85%;
-            height: 35%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-        #contents3{
-            position: absolute;
-            right: 0;
-            top:60%;
-            width: 85%;
-            height: 35%;
-            border: 1px solid black;
-            z-index: 1;
-        }
+       
         #view{
             width: 100%;
             text-align: center;
@@ -51,78 +42,30 @@
 <container1 id = contents1>
             <table class="con1_search">
                 <tr>
-                    <td>»ç¾÷Àå</td>
+                    <td>ì‚¬ì—…ìž¥</td>
                     <td><input type="text" name="" id=""></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td><input type="text" disabled></td>
-                    <td>ÁÖ¹®±â°£</td>
+                    <td>ì£¼ë¬¸ê¸°ê°„</td>
                     <td><input type="date"></td>
                     <td>~</td>
                     <td><input type="date"></td>
                 </tr>
                 <tr>
-                    <td>°í°´</td>
-                    <td><input type="text"></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>
-                    <td><input type="text" disabled></td>
+                    <td colspan="5">ê±°ëž˜ì²˜ ëª…</td>
+                    <td class="codeInput"><input type="text" name="cust" value='${param.custCode}'disabled /></td>
+                    <td class="nameInput"><input type="text" name="cust" value='${param.custName}'disabled /></td>
+                    <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
+
                 </tr>
             </table>
-        </container1>
-        <container2 id="contents2">
-           <table id="view">
-                <thead>
-                    <td><input type="checkbox" id="check" name="content" onclick="selectAll(this)"/></td>
-                    <td>ÁÖ¹®¹øÈ£</td>
-                    <td>ÁÖ¹®ÀÏÀÚ</td>
-                    <td>°í°´</td>
-                    <td>°ú¼¼±¸ºÐ</td>
-                    <td>´Ü°¡±¸ºÐ</td>
-                    <td>³³Ç°Ã³</td>
-                    <td>ºñ°í</td>
-                </thead>
-                <tbody>
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                </tbody>
-           </table>
-        </container2>
-        <container3 id="contents3">
-            <table id="view">
-                <thead>
-                    <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
-                    <td>Ç°¹ø</td>
-                    <td>Ç°¸í</td>
-                    <td>±Ô°Ý</td>
-                    <td>´ÜÀ§</td>
-                    <td>³³±âÀÏ</td>
-                    <td>ÁÖ¹®¼ö·®</td>
-                    <td>´Ü°¡</td>
-                    <td>°ø±Þ°¡</td>
-                    <td>ºÎ°¡¼¼</td>
-                    <td>ÇÕ°è¾×</td>
-                    <td>°Ë»ç</td>
-                </thead>
-                <tbody>
-                    <td style="width: 5%;"><input type="checkbox" value = "check1" id="check" name="content1"/></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                </tbody>
-            </table>
-        </container3>
+           </container1>
+           	   <script>
+                     function search1(){
+    	  
+        	  openWindowPop('http://localhost:8090/webERP/sales_manage/pop/regorderCust.do','regorderCust');  
+    }
+    </script>
+
 </body>
 </html>

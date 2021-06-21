@@ -47,7 +47,7 @@ public class SalesplanServiceImpl implements SalesplanService{
 
 	@Override
 	public int inputNo() throws DataAccessException {
-		return salesplanDAO.selNo();
+		return salesplanDAO.selCode();
 		
 	}
 	
@@ -57,14 +57,14 @@ public class SalesplanServiceImpl implements SalesplanService{
 //		additemList = salesplanDAO.salesText(item_code);
 		return additemList;
 	}
-//	@Override
-//	public int addItem(ItemViewVO itemview) throws DataAccessException {
-//		return salesplanDAO.insertItem(itemview);
-//	}
-//////
-//////	@Override
-//////	public int removeItem(String item_code) throws DataAccessException {
-//////		return salesplanDAO.deleteItem(item_code);
-//////	}
+	@Override
+	public int addItem(ItemViewVO itemview) throws DataAccessException {
+		return salesplanDAO.insertItem(itemview);
+	}
+
+	@Override
+	public void removeItem(String[] planAry) throws DataAccessException {
+		salesplanDAO.deletePlan(planAry);
+	}
 
 }
