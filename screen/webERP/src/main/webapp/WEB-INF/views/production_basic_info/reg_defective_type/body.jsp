@@ -43,6 +43,9 @@
             margin: 20px 10px;
         }
         /* 컨테이너 스타일부 */
+        #workOrderTable{
+        	width:100%;
+        }
         #workOrderInfo {
             overflow: scroll;
             height: 100%;
@@ -53,21 +56,8 @@
 </head>
 <body>
 <container1 id = contents1>
-                <table>
-                    <tr>
-                        <td>
-                            불량코드
-                        </td>
-                        <td colspan="3">
-                            <input type="text" name="factory" style="width: 100%;">
-                        </td>
-                        <td>
-                            불량유형명
-                        </td>
-                        <td>
-                            <input type="text" name="MDDate1" style="width: 250px;">
-                        </td>
-                    </tr>
+                <table style="margin-left:10%; margin-top:2%">
+
                     <tr>
                         <td>
                             불량군
@@ -99,7 +89,7 @@
                         <td>불량설명</td>
                     </thead>
                     <c:forEach var = "def" items='${defectiveList }' varStatus="status" >
-                    <tbody>
+                    <tbody align="center">
                         <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
@@ -110,13 +100,15 @@
                         <input type="hidden" name="defList[${status.index }].oridefectCode" value='${def.defectCode }'/>
                     </tbody>
                     </c:forEach>
+                    <tr align="center">
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text" id="defCode" name="defList[${fn:length(defectiveList) }].defectCode"/></td>
                         <td><input type="text" id="defName" name="defList[${fn:length(defectiveList) }].defectiveTypeName"/></td>
-                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"/></td>
+                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup" ondblclick="search1()"/></td>
                         <td><input type="text" id="usage" name="defList[${fn:length(defectiveList) }].usageStatus"/></td>
                         <td><input type="text" id="defDes" name="defList[${fn:length(defectiveList) }].defectiveDescription"/></td>
                         <input type="hidden" id="groupCode" name="defList[${fn:length(defectiveList) }].defectiveItemGroupCode"/>
+                    <tr>
                 </table>
             </div>
         </form>
@@ -157,10 +149,6 @@
 	            document.getElementById('searchForm').action = "${contextPath}/member/upddefType.do";
 	  			document.getElementById('searchForm').submit();  
 		}
-      	function openWindowPop(url, name){
-            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
-            window.open(url, name, options);
-        }
       	function search1(){
 	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
       	}
