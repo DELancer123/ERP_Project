@@ -237,7 +237,7 @@
 		<![CDATA[
 		 insert into SM_BIM_Sal_Pla_Reg
 		 values(F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), #{item_code}, #{item_name}, #{standard}, #{inventory_unit},
-		  #{planquantity}, #{planprice}, #{actualQuantity}, '0', '0', #{plandate})
+		  #{planquantity}, #{planprice}, #{actualQuantity}, '0', '0',sysdate)
 		]]>  
 	</insert>
 	

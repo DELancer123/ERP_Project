@@ -132,5 +132,37 @@ customerCode varchar2(12) not null,*/
 	public void setListCor(List<CorVO> listCor) {
 		ListCor = listCor;
 	}
+
+	public Date getExpDate() {
+		return expDate;
+	}
+
+	public void setExpDate(Date expDate) {
+		this.expDate = expDate;
+	}
+
+	public Date getRelDate() {
+		return relDate;
+	}
+
+	public void setRelDate(Date relDate) {
+		this.relDate = relDate;
+	}
+
+	public String getInspection() {
+		return inspection;
+	}
+
+	public void setInspection(String inspection) {
+		this.inspection = inspection;
+	}
+
+	public String getOrderOX() {
+		return orderOX;
+	}
+
+	public void setOrderOX(String orderOX) {
+		this.orderOX = orderOX;
+	}
 	
 }

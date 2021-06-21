@@ -28,7 +28,7 @@ public class OrderRegControllerImpl implements OrderRegController{
 	private OrderRegService orderService;
 	   
 	@Override
-	@RequestMapping(value="/sales_manage/pop/regorderCust",method = RequestMethod.GET)
+	@RequestMapping(value="/sales_manage/pop/regorderCust.do",method = RequestMethod.GET)
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		logger.info("viewName: "+ viewName);
