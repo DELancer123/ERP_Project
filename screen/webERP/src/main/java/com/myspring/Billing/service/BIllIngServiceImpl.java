@@ -24,8 +24,7 @@ public class BIllIngServiceImpl implements BIllIngService{
 	public List<BIllIngVO>selectAllcmList() throws Exception{
 		List<BIllIngVO>cmList = billingDAO.selectAllcmList();
 		return cmList;
-	}
-	
+	}	
 	@Override
 	public List<RequiredamountVO>selectAllMrpaMount()throws Exception{
 		List<RequiredamountVO>mrpamount = billingDAO.selectAllMrpaMount();

@@ -195,7 +195,8 @@
 	</update>
  	<insert id="insertbilling" parameterType="billingVO">
 		<![CDATA[insert into PMM_PM_CM
-		values(#{claim_division},#{requestdate},#{inventory_qty},#{claim_quantity},#{buyer},#{note})
+		values(F_GET_NEXT_SEQ('SEQ'),F_GET_NEXT_SEQ('PMM_PM_CM'),#{claim_date},#{claim_division},#{item_Code},#{item_Name},#{standard},#{requestdate},
+		#{inventory_qty},#{claim_quantity},#{buyer},#{note})
 		]]>
 	</insert> 
 

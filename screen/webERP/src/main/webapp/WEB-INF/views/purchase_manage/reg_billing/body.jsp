@@ -160,9 +160,9 @@ String sequence = (String)request.getAttribute("sequence");
 		<c:forEach var="cm" items="${cmList}" varStatus="status">
 			<tr align="center">
 				<td><input type="checkbox"name="content" value="${cm.sequence}"/></td>
-			<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${cm.sequence}' readonly style="width:100%"/></td>
+			<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${cm.sequence}'readonly style="width:100%"/></td>
 			<td><input type="text" name="ListVO[${status.index}].claim_no" value = '${cm.claim_no}' readonly/></td>
-			<td><input type="date" name="ListVO[${status.index}].claim_date" value = '${cm.claim_date}' readonly style="width:100%"/></td>
+			<td><input type="date" name="ListVO[${status.index}].claim_date" value = '${cm.claim_date}'  style="width:100%"/></td>
 			<td><input type="text" name="ListVO[${status.index}].claim_division" value = '${cm.claim_division}' /></td>
 			<td><input type="text" name="ListVO[${status.index}].item_Code" value="${cm.item_Code}" readonly/></td>
 			<td><input type="text" name="ListVO[${status.index}].item_Name" value="${cm.item_Name}" readonly/></td>
@@ -170,7 +170,7 @@ String sequence = (String)request.getAttribute("sequence");
 			<td><input type="date" name="ListVO[${status.index}].requestdate" value="${cm.requestdate}" style="width:100%"/></td>
 			<td><input type="text" name="ListVO[${status.index}].inventory_qty" value="${cm.inventory_qty}" /></td>
 			<td><input type="text" name="ListVO[${status.index}].claim_quantity" value="${cm.claim_quantity}" /></td>
-			<td><input type="text"name="ListVO[${status.index}].buyer"  value="${cm.buyer}" /></td>
+			<td><input type="text" name="ListVO[${status.index}].buyer"  value="${cm.buyer}" /></td>
 			<td><input type="text" name="ListVO[${status.index}].note" value = '${cm.note}' style="width:100%"/></td>
 			</tr>
 		</c:forEach>
@@ -178,15 +178,15 @@ String sequence = (String)request.getAttribute("sequence");
 		<td></td>
 			<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(cmList) }].sequence" value='${sequence}' readonly style="width:100%"/></td>
 			<td><input type="text" id="claim_no" name="ListVO[${fn:length(cmList) }].claim_no" value='${claim_no}' readonly/></td>
-			<td><input type="date" id="claim_date" name="ListVO[${fn:length(cmList) }].claim_date" value='${claim_date}' readonly style="width:100%"/></td>
+			<td><input type="date" id="claim_date" name="ListVO[${fn:length(cmList) }].claim_date" value='${claim_date}' style="width:100%"/></td>
 			<td><input type="text" id="claim_division" name="ListVO[${fn:length(cmList) }].claim_division" value='${claim_division}' /></td>
 			<td><input type="text" id="item_Code" name="ListVO[${fn:length(cmList) }].item_Code" value='${item_Code}' readonly/></td>
-			<td><input type="text" id="item_Name" name="ListVO[${fn:length(cmList) }].sequence" value='${item_Name}' readonly/></td>
+			<td><input type="text" id="item_Name" name="ListVO[${fn:length(cmList) }].item_Name" value='${item_Name}' readonly/></td>
 			<td><input type="text" id="standard" name="ListVO[${fn:length(cmList) }].standard" value='${standard}'readonly style="width:100%"/></td>
 			<td><input type="date" id="requestdate" name="ListVO[${fn:length(cmList) }].requestdate" value='${requestdate}'/></td>
 			<td><input type="text" id="inventory_qty" name="ListVO[${fn:length(cmList) }].inventory_qty" value='${inventory_qty}' /></td>
 			<td><input type="text" id="claim_quantity" name="ListVO[${fn:length(cmList) }].claim_quantity" value='${claim_quantity}' /></td>		
-			<td><input type="text" id="buyer" name="ListVO[${fn:length(cmList) }].buyer" value='${buyer}'/></td>		
+			<td><input type="text" id="buyer" name="ListVO[${fn:length(cmList) }].buyer" value='${buyer}'/></td>			
 			<td><input type="text" id="note" name="ListVO[${fn:length(cmList) }].note" value='${note}'/></td>
 		</tr>
 	</tbody>
@@ -228,15 +228,11 @@ function MrpAmount(){
 
 	windowObj = window.open("mrpamount.do","mrpamount",settings);
 	
-	var txt_requestdate = document.getelementById("requestdate");
 	var txt_code = document.getelementById("item_Code");
 	var txt_Name = document.getelementById("item_Name");
-	var txt_claim_Qty = document.getelementById("claim_quantity");
 	
-	document.getElementById('requestdate').value= windowObj.document.getElementById("need_date").value; 
 	document.getElementById('item_Code').value= windowObj.document.getElementById("item_Code").value;  
 	document.getElementById('item_Name').value= windowObj.document.getElementById("item_Name").value;  
-	document.getElementById('claim_quantity').value= windowObj.document.getElementById("expected_quantity").value; 
 }
 
 function deleteRow() {

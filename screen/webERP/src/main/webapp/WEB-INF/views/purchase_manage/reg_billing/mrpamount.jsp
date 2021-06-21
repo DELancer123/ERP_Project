@@ -99,15 +99,11 @@ a {
 	</div>
 <script type="text/javascript">
 function sendToParent(){
-    var text_ndDate = document.getElementById("need_date").value;
     var text_Code = document.getElementById("item_Code").value;
     var text_Name = document.getElementById("item_Name").value;
-    var text_expQty = document.getElementById("expected_quantity").value;
     
-    opener.document.getElementById("need_date").value=text_ndDate;
     opener.document.getElementById("item_Code").value=text_Code;
     opener.document.getElementById("item_Name").value=text_Name;
-    opener.document.getElementById("expected_quantity").value=text_expQty;
     
     window.close();
 }   
