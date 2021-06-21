@@ -23,6 +23,24 @@ public class OperationRegistVO {
 	private String inspection;
 	private String note;
 	private String productionPlanCode;
+	private String facility;
+	private String taskTeam;
+	public String getFacility() {
+		return facility;
+	}
+
+	public void setFacility(String facility) {
+		this.facility = facility;
+	}
+
+	public String getTaskTeam() {
+		return taskTeam;
+	}
+
+	public void setTaskTeam(String taskTeam) {
+		this.taskTeam = taskTeam;
+	}
+
 	private List<OperationRegistVO> ListVO;
 	
 	public String getMaterialstatus() {
