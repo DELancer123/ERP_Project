@@ -35,16 +35,16 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
-		<result property="operationNumber" column="OPNUMBER" />
-		<result property="materialStatus" column="MATERIALUSESTATUS" />
-		<result property="performanceDate" column="PERFORMANCEDATE" />
-		<result property="processCode" column="PROCESS_CODE" />
-		<result property="workplaceCode" column="WORKPLACE_CODE" />
-		<result property="sortation" column="SORTATION" />
-		<result property="performanceQuantity" column="PERFORMANCEQUANTITY" />
-		<result property="inspection" column="inspection" />
+		<result property="no" column="NO" />
+		<result property="billingDate" column="BILLINGDATE" />
+		<result property="itemCode" column="ITEM_CODE" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="standard" column="STANDARD" />
+		<result property="inventoryUnit" column="INVENTORY_UNIT" />
+		<result property="precisionQuantity" column="PRECISIONQUANTITY" />
+		<result property="loss" column="loss" />
+		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
-		<result property="workOrderNumber" column="WORKORDERNUMBER" />
 	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
@@ -115,7 +115,7 @@
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{number} ]]>
+		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
 	<!-- 생산 팝업 파트 -->	
