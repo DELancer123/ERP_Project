@@ -216,7 +216,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		String viewName = getViewName(request);
  		String[] numberary = number.split(",");
  		productionService.confirmDetail(numberary);
- 		ModelAndView mav = new ModelAndView("redirect:/member/regoperins.do");
+ 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
  		return mav;
  		}
   	 
