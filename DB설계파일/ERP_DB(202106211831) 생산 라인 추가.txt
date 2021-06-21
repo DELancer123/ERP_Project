@@ -2724,6 +2724,97 @@ VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'20200420','M100','M101','L200','L2
 
 SELECT * FROM CPM_PM_Pro_Mat_For;
 
+--생산자재출고 세부사항
+create table CPM_PM_Pro_Mat_For_Det(
+    --순번(PK)
+    NO number(5) NOT NULL,
+    --청구일
+    billingDate date not null,
+    --품번(FK)
+    Item_Code varchar2(12) NOT NULL, 
+    --품명(FK)
+    Item_Name varchar2(50) NOT NULL,
+    --규격
+    Standard varchar2(20), 
+    --재고단위
+    Inventory_Unit varchar2(5) DEFAULT 'EA',
+    --정미수량
+    precisionQuantity number(5) not null,
+    --LOSS
+    LOSS number(5),
+    --출고수량
+    forwardingQuantity number(5),
+    --비고
+    note varchar2(1000),
+    --출고번호(PK)
+    forwardingNumber varchar(12), 
+   
+    
+    CONSTRAINT CPMPMPROMATFORDET_INUMBER_FK  FOREIGN KEY(Item_Code) REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade,
+     CONSTRAINT CPMPMPROMATFORDET_forNum_FK FOREIGN KEY(forwardingNumber) REFERENCES CPM_PM_Pro_Mat_For(forwardingNumber)on delete cascade
+);
+EXECUTE P_RESET_SEQ('NO_seq');
+EXECUTE P_RESET_SEQ('seq_PM_SM_Sto_Mov_Main_no');
+SELECT NO_SEQ.NEXTVAL FROM DUAL ;
+SELECT seq_PM_SM_Sto_Mov_Main_no.NEXTVAL FROM DUAL ;
+
+--생산자재출고 세부사항 데이터
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_CURR_SEQ('NO'),sysdate,'CASE01','슬림형본체',NULL,'EA',300,0,300,null,F_GET_CURR_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'CASE03' , 'ABKO NCORE' ,NULL,'EA',1000,0,1000,null,F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate, 'HDD01' , 'WD BLUE 7200',NULL,'EA',100,20,120,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'HDD02' , 'Seagate BarraCuda 7200' ,NULL,'EA',1100,10,1210,null,F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'SSD01' , '삼성전자 980 PRO' ,NULL,'EA',700,0,700,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'SSD03' , '삼성전자 870 EVO' ,NULL,'EA',400,20,480,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'GPU01' , '지포스 RTX 3060' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'GPU02' , '지포스 RTX 3070' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'GPU03' , '지포스 RTX 2060' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,'GPU05' , '갤럭시 GT1030' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'CPU01' , 'AMD 라이젠5' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'CPU02' , 'core I5-10세대' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'CPU03' , 'core I5-11세대' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'CPU05' , 'AMD 라이젠3 Pro' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'RAM01' , 'ADATA XPG DDR4-3200' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'RAM02' , 'KLEVV DDR4-3200' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate, 'RAM03' , '삼성 DDR4-3200',NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,'BOARD01' , '박격포 MAG B560M',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2,'BOARD02' , 'ASRock B550M',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'BOARD03' , 'GIGABYTE A320M',NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,'POWER01' , '시소닉 A12 STD',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2,'POWER02' , 'ASUS POG Thor 850P',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+INSERT INTO CPM_PM_Pro_Mat_For_Det
+VALUES (F_GET_NEXT_SEQ('NO'),sysdate,'POWER03' , '마이크로닉 Classic 2',NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'));
+
+SELECT * FROM CPM_PM_Pro_Mat_For_Det;
+
+
 --작업실적등록
 create table CPM_PM_Ope_Per_Reg(
     --작업지시번호(PK)
@@ -2754,7 +2845,7 @@ create table CPM_PM_Ope_Per_Reg(
     note varchar2(1000),
     --생산계획번호
     ProductionPlanCode VARCHAR(12) NOT NULL,
-        --생산설비
+    --생산설비
     productionFacility varchar2(50),
     --작업팀
     taskTeam varchar2(50),
@@ -2766,7 +2857,6 @@ create table CPM_PM_Ope_Per_Reg(
 EXECUTE P_RESET_SEQ('seq_CPM_PM_Pro_Pla_Reg_no');
 SELECT seq_CPM_PM_Pro_Pla_Reg_no.NEXTVAL FROM DUAL ;
 SELECT seq_CPM_PM_Ope_Per_Reg_no.NEXTVAL FROM DUAL ;
-
 
 --작업실적등록 데이터
 INSERT INTO CPM_PM_Ope_Per_Reg
@@ -2799,107 +2889,6 @@ INSERT INTO CPM_PM_Ope_Per_Reg
 VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201','20200101','20200401','DT04','EXKOREA' ,NULL,'EA',1000,'마감','검사',null,F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),null,null);
 
 SELECT * FROM CPM_PM_Ope_Per_Reg;
-
-
---생산자재출고 세부사항
-create table CPM_PM_Pro_Mat_For_Det(
-    --순번(PK)
-    NO number(5) NOT NULL,
-    --청구일
-    billingDate date not null,
-    --품번(FK)
-    Item_Code varchar2(12) NOT NULL, 
-    --품명(FK)
-    Item_Name varchar2(50) NOT NULL,
-    --규격
-    Standard varchar2(20), 
-    --재고단위
-    Inventory_Unit varchar2(5) DEFAULT 'EA',
-    --정미수량
-    precisionQuantity number(5) not null,
-    --LOSS
-    LOSS number(5),
-    --출고수량
-    forwardingQuantity number(5),
-    --비고
-    note varchar2(1000),
-    --출고번호(PK)
-    forwardingNumber varchar(12) NOT NULL, 
-    --작업지시번호(PK)
-    workOrderNumber varchar2(12) NOT NULL,
-    
-    CONSTRAINT CPMPMPROMATFORDET_INUMBER_FK  FOREIGN KEY(Item_Code) REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade,
-    CONSTRAINT CPMPMPROMATFORDET_forNum_FK FOREIGN KEY(forwardingNumber) REFERENCES CPM_PM_Pro_Mat_For(forwardingNumber)on delete cascade,
-    CONSTRAINT CPMPMPROMATFORDET_wNumber_FK FOREIGN KEY(workOrderNumber) REFERENCES CPM_PM_Ope_Per_Reg(workOrderNumber)on delete cascade
-);
-EXECUTE P_RESET_SEQ('NO_seq');
-EXECUTE P_RESET_SEQ('seq_PM_SM_Sto_Mov_Main_no');
-SELECT NO_SEQ.NEXTVAL FROM DUAL ;
-SELECT seq_PM_SM_Sto_Mov_Main_no.NEXTVAL FROM DUAL ;
-
---생산자재출고 세부사항 데이터
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_CURR_SEQ('NO'),sysdate,'CASE01','슬림형본체',NULL,'EA',300,0,300,null,F_GET_CURR_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'CASE03' , 'ABKO NCORE' ,NULL,'EA',1000,0,1000,null,F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000007');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate, 'HDD01' , 'WD BLUE 7200',NULL,'EA',100,20,120,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000007');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'HDD02' , 'Seagate BarraCuda 7200' ,NULL,'EA',1100,10,1210,null,F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000011');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'SSD01' , '삼성전자 980 PRO' ,NULL,'EA',700,0,700,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
---INSERT INTO CPM_PM_Pro_Mat_For_Det
---VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'SSD03' , '삼성전자 870 EVO' ,NULL,'EA',400,20,480,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'GPU01' , '지포스 RTX 3060' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'GPU02' , '지포스 RTX 3070' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'GPU03' , '지포스 RTX 2060' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000007');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000011');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000011');
---INSERT INTO CPM_PM_Pro_Mat_For_Det
---VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,'GPU05' , '갤럭시 GT1030' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'CPU01' , 'AMD 라이젠5' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'CPU02' , 'core I5-10세대' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'CPU03' , 'core I5-11세대' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000007');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000011');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000011');
---INSERT INTO CPM_PM_Pro_Mat_For_Det
---VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'CPU05' , 'AMD 라이젠3 Pro' ,NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1, 'RAM01' , 'ADATA XPG DDR4-3200' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2, 'RAM02' , 'KLEVV DDR4-3200' ,NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate, 'RAM03' , '삼성 DDR4-3200',NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000011');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,'BOARD01' , '박격포 MAG B560M',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2,'BOARD02' , 'ASRock B550M',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate,  'BOARD03' , 'GIGABYTE A320M',NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000007');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+1,'POWER01' , '시소닉 A12 STD',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000001');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate+2,'POWER02' , 'ASUS POG Thor 850P',NULL,'EA',900,0,900,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000004');
-INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('NO'),sysdate,'POWER03' , '마이크로닉 Classic 2',NULL,'EA',800,0,800,null, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),'W02106000007');
-
-SELECT * FROM CPM_PM_Pro_Mat_For_Det;
-
-
             
 --작업실적등록 세부사항
 create table CPM_PM_Ope_Per_Reg_Det(
