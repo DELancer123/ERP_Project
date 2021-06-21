@@ -129,13 +129,13 @@ request.setCharacterEncoding("UTF-8");
                 <tr align="center">
                     <td align="center" style="width:80px;">거래처코드</td>
                     <td style="width:50px;">
-                        <input type=text name="customerCode" style="width:100%;" value="" pattern="[0-9]{4}" maxlength="5"/>
+                        <input type=text name="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="5"/>
                     </td>
      				<td style="width:8px;">
      					<div style="text-align:center; width:100%;"><a href="javascript:search1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
      				</td>
                     <td style="width:80px; text-align:left;">
-                    	<input type=text name="ckcustomerCode" value="" style="width:100%;" disabled/>
+                    	<input type=text name="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>
                     </td>	
                     
                     
@@ -292,7 +292,7 @@ request.setCharacterEncoding("UTF-8");
         		}       		
         	}
         	if(ary.length === 0 || ary === null){
-    			alert('삭제할 목록의 체크박스를 선택해주세요^^')
+    			alert('삭제할 목록의 체크박스를 선택해주세요')
     			window.location.href = "${contextPath}/member/regbasicacc.do";
     		}
         	else 
@@ -319,7 +319,7 @@ request.setCharacterEncoding("UTF-8");
          
         function search1() {
         	
-        	openWindowPop("localhost:8090/webERP/member/codehelper.do", "codehelper");
+        	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
         }
       
   

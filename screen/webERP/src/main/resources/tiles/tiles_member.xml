@@ -422,6 +422,19 @@
       <put-attribute name="body" value="/WEB-INF/views/production_basic_info/reg_defective_type/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
+   
+   <!-- 일반거래처등록팝업 -->
+   <definition name="regbasicaccPopupLayout"  template="/WEB-INF/views/basic_info_manage/reg_gen_account/pop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/regbasicaccPopup" extends="regbasicaccPopupLayout">
+      <put-attribute name="title" value="일반거래처등록검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <!--  -->
 
 <!-- 
    <definition name="/member/memberForm" extends="baseLayout">

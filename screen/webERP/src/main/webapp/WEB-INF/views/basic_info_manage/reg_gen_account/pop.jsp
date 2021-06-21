@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath }/member/regbom" >
+<form name="popForm" method="get" action="${contextPath }/member/regbasicacc" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -63,7 +63,7 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
-                <button>버튼3</button>
+                <button id="close">닫기</button>
             </div>
         </div>
         <div id="view">
@@ -73,31 +73,37 @@
                     <td>품명</td>
                     <td>규격</td>
                 </tr>
-                <c:forEach var="bom" items="${itemView}" >     
-   <tr align="center">
-      <td><a href="javascript:popFunction('${bom.itemNumber }','${bom.itemName }')">${bom.itemNumber}</a></td>
-      <td><a href="#">${bom.itemName}</a></td>
-      <td><a href="#">${bom.standard}</a></td>
-    </tr>
+   <c:forEach var="com" items="${comView}" >     
+	   <tr align="center">
+	      <td><a href="javascript:popFunction('${com.general_Customer_Code }','${com.general_Customer_Name }')">${com.general_Customer_Code }</a></td>
+	      <td><a href="javascript:popFunction('${com.general_Customer_Code }','${com.general_Customer_Name }')">${com.general_Customer_Name }</a></td>
+	      <td><a href="#">${com.general_Customer_Division }</a></td>
+	   </tr>
     </c:forEach> 
             </table>
         </div>
     </div>
     
     <script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
+	    var submit_button = document.getElementById("submit");
+	    var close_button = document.getElementById("close");
+	    
+		var text_code = document.getElementById("code");
+		var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		opener.parent.location='${contextPath }/member/regbom.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		opener.parent.location='${contextPath }/member/regbasicacc.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		window.close();
+    	}
+    	close_button.onclick = function(){
     		window.close();
     	}
     </script>
     </form>
+    
 </body>
 </html>

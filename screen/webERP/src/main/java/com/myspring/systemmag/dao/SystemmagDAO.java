@@ -9,9 +9,9 @@ import com.myspring.systemmag.vo.SystemmagVO;
 public interface SystemmagDAO {
 	public int insertNewCompany (SystemmagVO systemmagVO) throws DataAccessException;
 
-	public List viewCom() throws DataAccessException;
+	public List allviewCom() throws DataAccessException;
 	
-	public List allviewCom(String com_code) throws DataAccessException;
+	public List viewCom(String com_code) throws DataAccessException;
 	
 	public void deleteCom(String[] noary) throws DataAccessException;
 	

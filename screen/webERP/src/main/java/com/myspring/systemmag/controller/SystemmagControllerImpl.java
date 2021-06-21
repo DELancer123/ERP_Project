@@ -26,18 +26,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myspring.systemmag.dao.SystemmagDAO;
 import com.myspring.systemmag.service.SystemmagService;
 import com.myspring.systemmag.vo.SystemmagVO;
+
 //회사등록
 @Controller("SystemmagController")
-public class SystemmagControllerImpl implements SystemmagController{
+public class SystemmagControllerImpl implements SystemmagController {
 	@Autowired
 	private SystemmagService systemmagService;
 	@Autowired
 	private SystemmagVO systemmagVO;
 	@Autowired
 	private SystemmagDAO systemmagDAO;
-	
+
 	@Override
-	@RequestMapping(value="/member/addcompany.do")
+	@RequestMapping(value = "/member/addcompany.do")
 	public ModelAndView addCompany(SystemmagVO company, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -48,35 +49,34 @@ public class SystemmagControllerImpl implements SystemmagController{
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
-	
-	//조회
+
+	// 조회
 	@Override
-	@RequestMapping(value="/member/regbasicacc.do" ,method = RequestMethod.GET)
+	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String submit = (String) request.getParameter("submit");
 		String code = (String) request.getParameter("com_code");
-		
-		if(code == null || submit == null) {
+
+		if (code == null || submit == null) {
 			List comView = systemmagService.comView();
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			return mav;
 		}
-			
-	    if(submit.equals("1")) { 
-	    	List comView = systemmagService.comView(); 
-	    	List comcom = systemmagService.comcom(code); 
-	    	mav = new ModelAndView(viewName);
-	    	mav.addObject("comView", comView); 
-	    	mav.addObject("comcom", comcom);
-	    }
-			 
 
-	    return mav; 
+		if (submit.equals("1")) {
+			List comView = systemmagService.comView();
+			List comcom = systemmagService.comcom(code);
+			mav = new ModelAndView(viewName);
+			mav.addObject("comView", comView);
+			mav.addObject("comcom", comcom);
+		}
+
+		return mav;
 	}
-	
+
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -107,31 +107,48 @@ public class SystemmagControllerImpl implements SystemmagController{
 		}
 		return viewName;
 	}
-	
+
 	@Override
-	@RequestMapping(value="/member/deleteBasicacc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/deleteBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("no");
 		String viewName = getViewName(request);
 		String[] numberary = number.split(",");
-		
+
 		systemmagService.delCom(numberary);
-		
+
 		ModelAndView mav = new ModelAndView("redirect:/member/regbasicacc.do");
-		
+
 		return mav;
-		
+
 	}
+
+	@Override
+	@RequestMapping(value = "/member/updateBasicacc.do", method = RequestMethod.GET)
+	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		systemmagService.updCom(systemmagVO);
+		ModelAndView mav = new ModelAndView(
+				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getGeneral_Customer_Code());
+		return mav;
+	}
+
+
 	
-	@Override 
-	@RequestMapping(value="/member/updateBasicacc.do", method = RequestMethod.GET)
-	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");				
-		systemmagService.updCom(systemmagVO);		
-		ModelAndView mav = new ModelAndView("redirect:/member/regbasicacc.do?submit=1&&com_code="+systemmagVO.getGeneral_Customer_Code());
-		return mav;
-	}
-			
+	 @Override	 
+	 @RequestMapping(value="/member/regbasicaccPopup.do", method =
+	 RequestMethod.GET) public ModelAndView popupCompany(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		 request.setCharacterEncoding("utf-8"); 
+		 System.out.println("팝업구현중");
+		 ModelAndView mav = null; 
+		 String viewName = getViewName(request); 
+		 
+		 List comView = systemmagService.comView(); 
+		 mav = new ModelAndView(viewName);
+		 mav.addObject("comView", comView);
+	 
+	 
+	 return mav; }
+	 
 }
-
-

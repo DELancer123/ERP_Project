@@ -26,14 +26,14 @@ public class SystemmagServiceImpl implements SystemmagService {
 	@Override
 	public List comView() throws DataAccessException {
 		List comList = null;
-		comList = systemmagDAO.viewCom();
+		comList = systemmagDAO.allviewCom();
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
 	
 	@Override
 	public List comcom(String com_code) throws DataAccessException {
-		List comList = systemmagDAO.allviewCom(com_code);
+		List comList = systemmagDAO.viewCom(com_code);
 		return comList;
 	}
 
