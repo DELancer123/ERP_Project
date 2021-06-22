@@ -153,11 +153,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(String obj: numberAry) {
 			
 			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
-						if(check.equals("계획")) {
-				sqlSession.update("mappers.erp.updConfirmDetail", obj);
-				message.add("업데이트 완료!");
+			if(check.equals("계획")) {
+				message.add("이미 계획상태입니다!");
+			} else if(check.equals("마감")) {
+				message.add("마감된 작업은 수정할 수 없습니다!");
 			} else {
-				message.add("확정, 마감상태의 작업은 변경 할 수 없습니다!");
+				int count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",obj);
 			}
 		}
 		return message;

@@ -132,6 +132,11 @@
 		]]>  
 	</update>	
 	
+	<select id="countWorkOrderNumber">
+		<![CDATA[select COUNT(*) from CPM_PM_PRO_MAT_FOR_DET where workordernumber = #{number}]]>
+	</select>
+	
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
