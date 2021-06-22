@@ -68,7 +68,6 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return mav;
 	}
-	
 	@RequestMapping(value="/member/codehelper.do" ,method = RequestMethod.GET)
 	public ModelAndView codeHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
