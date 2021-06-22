@@ -18,38 +18,38 @@ public class SystemmagServiceImpl implements SystemmagService {
 	private SystemmagDAO systemmagDAO;
 	
 	@Override
-	public int addCompany (SystemmagVO systemmagVO) throws Exception{
-		int result = systemmagDAO.insertNewCompany(systemmagVO);
+	public int addCustomer (SystemmagVO systemmagVO) throws Exception{
+		int result = systemmagDAO.insertNewCustomer(systemmagVO);
 		return result;
 }
 
 	@Override
-	public List comView() throws DataAccessException {
+	public List viewAllCustomer() throws DataAccessException {
 		List comList = null;
-		comList = systemmagDAO.allviewCom();
+		comList = systemmagDAO.viewAllCustomer();
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
 	
 	@Override
-	public List comcom(String com_code) throws DataAccessException {
-		List comList = systemmagDAO.viewCom(com_code);
+	public List viewCustomer(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.viewCustomer(com_code);
 		return comList;
 	}
 
 	@Override
-	public void delCom(String[] noary) throws DataAccessException {
-		systemmagDAO.deleteCom(noary);
+	public void delCustomer(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteCustomer(noary);
 	}
 
 	@Override
-	public void updCom(SystemmagVO systemmagVO) throws DataAccessException {		
-		systemmagDAO.updateCom(systemmagVO);
+	public void updCustomer(SystemmagVO systemmagVO) throws DataAccessException {		
+		systemmagDAO.updateCustomer(systemmagVO);
 	}
 
 	@Override
-	public List ZipView() throws DataAccessException {
-		return systemmagDAO.zipViewCom();
+	public List zipViewCustomer() throws DataAccessException {
+		return systemmagDAO.zipViewCustomer();
 	}
 
 	

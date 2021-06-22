@@ -15,13 +15,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int insertNewCompany (SystemmagVO systemmagVO) throws DataAccessException{
+	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException{
 		int result = sqlSession.insert("mappers.erp.insertNewCompany",systemmagVO);
 		return result;
 	}
 
 	@Override
-	public List allviewCom() throws DataAccessException {
+	public List viewAllCustomer() throws DataAccessException {
 		List<SystemmagVO> comList = null;
 		comList = sqlSession.selectList("mappers.erp.selectAllBasicList");
 		System.out.println("comList: "+comList);
@@ -29,7 +29,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	}
 	
 	@Override
-	public List viewCom(String com_code) throws DataAccessException {
+	public List viewCustomer(String com_code) throws DataAccessException {
 		List<SystemmagVO> comList = null;
 		comList = sqlSession.selectList("mappers.erp.selectBasicList",com_code);
 		System.out.println("comList12: "+com_code);
@@ -38,7 +38,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 
 
 	@Override
-	public void deleteCom(String[] noary) throws DataAccessException {
+	public void deleteCustomer(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
 			sqlSession.delete("mappers.erp.deleteBasicList", Integer.parseInt(obj));	
 		}
@@ -46,12 +46,12 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	}
 
 	@Override
-	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException {
+	public void updateCustomer(SystemmagVO systemmagVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updateBasicList", systemmagVO);
 	}
 
 	@Override
-	public List zipViewCom() throws DataAccessException {
+	public List zipViewCustomer() throws DataAccessException {
 		List zipList = null;
 		zipList = sqlSession.selectList("mappers.erp.selectZipList");
 		return zipList;

@@ -11,18 +11,18 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagController {
-	public ModelAndView addCompany (@ModelAttribute("company") SystemmagVO company,
+	public ModelAndView addCustomer (@ModelAttribute("company") SystemmagVO company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView updateCompany(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updateCustomer(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
-	public ModelAndView popupCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView popupCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView popupZipCompany(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView popupZipCustomer(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	 
 	
 	

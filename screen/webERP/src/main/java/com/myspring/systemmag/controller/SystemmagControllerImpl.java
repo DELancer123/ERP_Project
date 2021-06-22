@@ -37,23 +37,25 @@ public class SystemmagControllerImpl implements SystemmagController {
 	@Autowired
 	private SystemmagDAO systemmagDAO;
 
+	//회사등록
 	@Override
-	@RequestMapping(value = "/member/addcompany.do")
-	public ModelAndView addCompany(SystemmagVO company, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/member/addcompany.do" ,method = RequestMethod.GET)
+	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
-		StringBuffer url = request.getRequestURL();
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
 		int result = 0;
-		result = systemmagService.addCompany(systemmagVO);
-		String resulturl = url.toString();
-		ModelAndView mav = new ModelAndView();
+		result = systemmagService.addCustomer(systemmagVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
-
+	
 	// 조회
 	@Override
 	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
-	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		
@@ -62,22 +64,22 @@ public class SystemmagControllerImpl implements SystemmagController {
 		String zipCode = (String) request.getParameter("zipCode");
 
 		if (code == null || submit == null) { //첫접속이라면?
-			List comView = systemmagService.comView(); //select all 쿼리를 호출한다
+			List comView = systemmagService.viewAllCustomer(); //select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			return mav;
 		}
 
 		if (submit.equals("1")) { //목록을 선택했을때, 즉 조회를 했을때
-			List comView = systemmagService.comView(); //select문에
-			List comcom = systemmagService.comcom(code); //where절을 추가한다
+			List comView = systemmagService.viewAllCustomer(); //select문에
+			List comcom = systemmagService.viewCustomer(code); //where절을 추가한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
 		}
 		else if(submit.equals("2")) {
-			List comView = systemmagService.comView();
-			List comcom = systemmagService.comcom(code);
+			List comView = systemmagService.viewAllCustomer();
+			List comcom = systemmagService.viewCustomer(code);
 //			List zipView = systemmagService.ZipView();
 			
 			mav = new ModelAndView(viewName);
@@ -126,12 +128,12 @@ public class SystemmagControllerImpl implements SystemmagController {
 
 	@Override
 	@RequestMapping(value = "/member/deleteBasicacc.do", method = RequestMethod.GET)
-	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
 		String viewName = getViewName(request);
 		String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
 
-		systemmagService.delCom(numberary);
+		systemmagService.delCustomer(numberary);
 
 		ModelAndView mav = new ModelAndView("redirect:/member/regbasicacc.do");
 
@@ -141,10 +143,10 @@ public class SystemmagControllerImpl implements SystemmagController {
 
 	@Override
 	@RequestMapping(value = "/member/updateBasicacc.do", method = RequestMethod.GET)
-	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+	public ModelAndView updateCustomer(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		systemmagService.updCom(systemmagVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+		systemmagService.updCustomer(systemmagVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getGeneral_Customer_Code());
 		return mav;
@@ -154,12 +156,12 @@ public class SystemmagControllerImpl implements SystemmagController {
 	
 	 @Override	 
 	 @RequestMapping(value="/member/regbasicaccPopup.do", method =
-	 RequestMethod.GET) public ModelAndView popupCompany(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	 RequestMethod.GET) public ModelAndView popupCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		 request.setCharacterEncoding("utf-8"); 
 		 ModelAndView mav = null; 
 		 String viewName = getViewName(request); 
 		 
-		 List comView = systemmagService.comView(); //select * 문을호출한다음
+		 List comView = systemmagService.viewAllCustomer(); //select * 문을호출한다음
 		 mav = new ModelAndView(viewName);
 		 mav.addObject("comView", comView); //팝업으로 전달함
 	 	 
@@ -169,14 +171,14 @@ public class SystemmagControllerImpl implements SystemmagController {
 	
 	 @Override	 
 	 @RequestMapping(value="/member/regbasicaccZipPopup.do", method =
-	 RequestMethod.GET) public ModelAndView popupZipCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	 RequestMethod.GET) public ModelAndView popupZipCustomer(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		 request.setCharacterEncoding("utf-8"); 
 		 ModelAndView mav = null; 
 		 String viewName = getViewName(request); 
 		 String com_code = request.getParameter("com_code");
 		 System.out.println("com_code="+com_code);
 		 
-		 List ZipView = systemmagService.ZipView(); //select * 문을호출한다음
+		 List ZipView = systemmagService.zipViewCustomer(); //select * 문을호출한다음
 		 mav = new ModelAndView(viewName);
 		 mav.addObject("ZipView", ZipView); //팝업으로 전달함
 		 return mav; 
