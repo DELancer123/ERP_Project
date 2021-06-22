@@ -219,6 +219,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List<String> message = new ArrayList();
  		message = productionService.confirmDetail(numberary);
  		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		System.out.println("컨트롤러 확인"+message);
  		mav.addObject("message",message);
  		return mav;
  		}
@@ -275,6 +276,19 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  		}
   	 
+ 	@Override
+ 	@RequestMapping(value="/member/revertDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView revertDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		List<String> message = new ArrayList();
+ 		message = productionService.revertDetail(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		System.out.println("컨트롤러 확인"+message);
+ 		mav.addObject("message",message);
+ 		return mav;
+ 		}
   
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 

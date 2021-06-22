@@ -44,7 +44,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return popList;
 	}
   
-//  �깮�궛怨꾪쉷 CUD
+//  생산계획 CUD
   @Override
  	public void delProductionPlan(String[] numberAry) throws DataAccessException{
  		COIdao.delProductionPlan(numberAry);
@@ -59,7 +59,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException {
  		return COIdao.addProductionPlan(COIVO);
  	}
-//  �옉�뾽吏��떆 CRUD
+//  작업지시등록 CRUD
   @Override public List<OperationRegistVO> selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
 	  infolist = ORdao.selectAllOperationInfo(startDate,endDate); 
@@ -121,7 +121,14 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   @Override
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
 	  List<String> message = new ArrayList(); 
-	  ORdao.confirmDetail(numberAry);
+	  message = ORdao.confirmDetail(numberAry);
+	  return message;
+	}
+  
+  @Override
+	public List<String> revertDetail(String[] numberAry) throws DataAccessException{
+	  List<String> message = new ArrayList(); 
+	  message = ORdao.revertDetail(numberAry);
 	  return message;
 	}
   

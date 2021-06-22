@@ -3,9 +3,11 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <%
   request.setCharacterEncoding("UTF-8");
-%>    
+%>  
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +96,7 @@
                             <input type="button" value="자재출고" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="취소" style="padding: 5px;"></input>
+                            <input type="button" value="취소" onClick="revert();" style="padding: 5px;"></input>
                         </td>
                         <td>
                             <input type="button" value="확정" onClick="confirm();" style="padding: 5px;"></input>
@@ -313,4 +315,16 @@
         	  }
         }
      
+        function revert() {
+        	var item = document.getElementsByName("content").length;
+      	  	var no = "";
+      	  	var ary = [];
+      	  	for(var i=0; i<item;i++){
+      			  if(document.getElementsByName("content")[i].checked==true){
+      				no = document.getElementsByName("content")[i].value;
+      			  	ary.push(no);
+      		  	}
+      			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
+      	  }
+        }
       </script>
