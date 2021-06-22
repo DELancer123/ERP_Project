@@ -25,8 +25,8 @@ public class MainPlanServiceImpl implements MainPlanService{
 	}
 	
 	@Override
-	public List<MpsOSVO>selectAllMpsosList()throws Exception{
-		List<MpsOSVO>mpsosList = mainplanDAO.selectAllMpsosList();
+	public List<MpsOSVO>selectAllMpsosList(String startDate, String endDate)throws Exception{
+		List<MpsOSVO>mpsosList = mainplanDAO.selectAllMpsosList(startDate,endDate);
 		return mpsosList;
 	}
 	

@@ -43,8 +43,10 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@Override
 	@RequestMapping(value = "member/applyorder.do", method = RequestMethod.GET)
 	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String startDate = request.getParameter("dateStart");
+		String endDate = request.getParameter("dateEnd");
 		String viewName = (String) request.getAttribute("viewName");
-		List mpsosList = mainplanService.selectAllMpsosList();
+		List mpsosList = mainplanService.selectAllMpsosList(startDate, endDate);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mpsosList", mpsosList);
 		return mav;

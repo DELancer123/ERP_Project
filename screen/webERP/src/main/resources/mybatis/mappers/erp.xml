@@ -143,8 +143,12 @@
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
-	<select id="selectAllMpsosList" resultMap="MpsOSResult">
+	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
+	<where>
+		<if test="startDate != '' and startDate != null">orderdate between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and okeydate between #{startDate} and #{endDate} </if>
+	</where>
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps

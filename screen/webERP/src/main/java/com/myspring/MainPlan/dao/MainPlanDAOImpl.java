@@ -36,9 +36,22 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		return mainplanList;
 	}
 	
+
 	@Override
-	public List selectAllMpsosList() throws Exception{
-		List<MpsOSVO>mpsosList = sqlSession.selectList("mappers.erp.selectAllMpsosList");
+	public List selectAllMpsosList(String startDate, String endDate) throws Exception{
+		List<MpsOSVO>mpsosList = null;
+		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date start = new Date(sdf.parse(startDate).getTime());
+			Date end = new Date(sdf.parse(endDate).getTime());
+			System.out.println(start);
+			MainPlanVO vo = new MainPlanVO();
+			vo.setStartDate(start);
+			vo.setEndDate(end);
+			mpsosList = sqlSession.selectList("mappers.erp.selectAllMpsosList", vo);
+		} else {
+			mpsosList = sqlSession.selectList("mappers.erp.selectAllMpsosList");
+		}
 		return mpsosList;
 	}
 	

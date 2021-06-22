@@ -55,15 +55,16 @@ a {
 			<table id="search">
  				<tr>
 					<td>주문기간</td>
-					<td colspan="2" style="width: 80px;"><input type="date"
-						id="reqInput" style="width: 100%;" /></td>
-					<td>~</td>
-					<td><input type="date" id="reqInput" style="width: 100%;" /></td>
-					<td></td>
+						<td><input type="date" id="dateStart"
+							style="background-color: yellow;" /></td>
+						<td>~</td>
+						<td><input type="date" id="dateEnd"
+							style="background-color: yellow;" /></td>
+						<td></td>
 				</tr>
 			</table>
 			<div id="button">
-				<button>조회</button>				
+				<input type="button" id="planSearch" value="조회" onClick="sendData();" />			
 				<button onClick="sendToParent();">적용</button>
 				<button>취소</button>
 			</div>
@@ -111,6 +112,9 @@ a {
 			</form>
 		</div>
 	</div>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 function sendToParent(){	
     var text_buyer = document.getElementById("buyer").value;
@@ -125,6 +129,33 @@ function sendToParent(){
         
      window.close();
 } 
+
+var startDate;
+var endDate;
+
+
+$('#dateStart').change(function (){
+    var date = $('#dateStart').val();
+    startDate = date;
+});
+$('#dateEnd').change(function (){
+    var date = $('#dateEnd').val();
+    endDate = date;
+});
+
+function sendData() {
+	if(startDate == null && endDate == null){
+		alert("시작일과 종료일은 필수 입력 요소입니다!");
+	} else if(startDate == null) {
+		alert("시작일은 필수 입력 요소입니다!");
+	} else if(endDate == null){
+		alert("종료일은 필수 입력 요소입니다!");
+	} else if(startDate > endDate){
+		alert("종료일은 시작일보다 커야합니다!");
+	} else {
+		location.href='${contextPath }/member/applyorder.do?dateStart='+startDate+'&&dateEnd='+endDate;
+	}
+}
 </script>
 </body>
 </html>
