@@ -362,7 +362,7 @@ request.setCharacterEncoding("UTF-8");
     		articleNOInput.setAttribute("name","path");
     		articleNOInput.setAttribute("value", link);
     		document.getElementById('regcompany').appendChild(articleNOInput);
-    		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
+    		document.getElementById('regcompany').action = "${contextPath}/member/addbasicacc.do";
     		document.getElementById('regcompany').submit();
     		alert('등록 되었습니다');
     		}

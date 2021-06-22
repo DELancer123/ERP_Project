@@ -42,6 +42,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	@RequestMapping(value="/member/addbasicacc.do" ,method = RequestMethod.GET)
 	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println("등록부구현중입니다.");
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
