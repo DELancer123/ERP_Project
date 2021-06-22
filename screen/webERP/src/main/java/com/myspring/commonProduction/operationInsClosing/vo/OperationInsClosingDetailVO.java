@@ -1,16 +1,16 @@
 package com.myspring.commonProduction.operationInsClosing.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OperationInsClosingDetailVO {
 	private int no;
+	private String workOrderNumber;
 	private Date instructionDate;
 	private Date dueDate;
 	private String processCode;
 	private String workplaceCode;
-	private String standard;
-	private String inventoryUnit;
 	private int indicatedQuantity;
 	private int sumPerformanceQuantity;
 	private int remainingPerformance;
@@ -50,18 +50,7 @@ public class OperationInsClosingDetailVO {
 	public void setWorkplaceCode(String workplaceCode) {
 		this.workplaceCode = workplaceCode;
 	}
-	public String getStandard() {
-		return standard;
-	}
-	public void setStandard(String standard) {
-		this.standard = standard;
-	}
-	public String getInventoryUnit() {
-		return inventoryUnit;
-	}
-	public void setInventoryUnit(String inventoryUnit) {
-		this.inventoryUnit = inventoryUnit;
-	}
+
 	public int getIndicatedQuantity() {
 		return indicatedQuantity;
 	}
@@ -114,7 +103,13 @@ public class OperationInsClosingDetailVO {
 		return DetailVO;
 	}
 	public void setDetailVO(List<OperationInsClosingDetailVO> detailVO) {
-		DetailVO = detailVO;
+		this.DetailVO = new ArrayList<OperationInsClosingDetailVO>();
+	}
+	public String getWorkOrderNumber() {
+		return workOrderNumber;
+	}
+	public void setWorkOrderNumber(String workOrderNumber) {
+		this.workOrderNumber = workOrderNumber;
 	}
 	
 }

@@ -141,6 +141,7 @@
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly /></td>
                      </tr>
                      </c:forEach>
+                     <!-- 
                      <tr>
                         <td><input type="checkbox" value = "check1" name="content"/></td>
                         <td><input type="text" id="workOrderNumber" name="ListVO[${fn:length(infoList)}].workOrderNumber" readonly /></td>
@@ -154,6 +155,7 @@
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].workplaceCode" readonly/></td>
                      </tr>
+                     -->
                 </tbody>
             </table>
         </div>
@@ -167,7 +169,6 @@
                         <td>NO</td>
                         <td>지시일</td>
                         <td>완료일</td>
-                        <td>공정구분</td>
                         <td>공정</td>
                         <td>작업장</td>
                         <td>지시수량</td>
@@ -180,7 +181,27 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content2"/></td>
+                    
+ 					<c:forEach var="detail" items="${detailList}" varStatus="status">
+ 					    <tr>
+                        <td><input type="checkbox" value="${detail.no }" name="content2"/></td>
+ 						<td><input type="text" name="DetailVO[${status.index }].no" value="${detail.no }" /></td>
+                        <td><input type="date" name="DetailVO[${status.index }].instructionDate" value="${detail.instructionDate }" readonly /></td>
+                        <td><input type="date" name="DetailVO[${status.index }].dueDate" value="${detail.dueDate }" readonly /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].indicatedQuantity" value="${detail.indicatedQuantity}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].sumPerformanceQuantity" value="${detail.sumPerformanceQuantity}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].remainingPerformance" value="${detail.remainingPerformance}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].unitPrice" value="${detail.unitPrice}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].parentPrice" value="${detail.parentPrice}"/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
+                        </tr>
+                        </c:forEach>
+                        <!-- 
+                        <tr>
+                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="text"/></td>
                         <td><input type="date"/></td>
                         <td><input type="date"/></td>
@@ -190,10 +211,11 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
+                        <td><input type="text"/></td>                        
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                    </tr>
+                    -->
                     </tbody>
                 </table>
             </div>
