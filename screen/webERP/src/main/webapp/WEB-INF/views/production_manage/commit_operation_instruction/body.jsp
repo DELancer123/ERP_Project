@@ -314,6 +314,7 @@
         }
      
         window.onload = function() {
+        	var message = [];
         	
         }
       </script>
