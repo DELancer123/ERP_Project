@@ -78,22 +78,17 @@
         <container2 id= contents2>
             <table id="view1">
                 <tr>
-                    <th><input type="checkbox" name="content"/></th>
-                    <th>출고일자</th>
-                    <th>출고번호</th>
-                    <th>고   객</th>
-                    <th>거래구분</th>
-                    <th>No</th>
-                    <th>품번</th>
-                    <th>품명</th>
-                    <th>단위</th>
-                    <th>출고수량</th>
-                    <th>단가</th>
-                    <th>공급가</th>
-                    <th>부가세</th>
-                    <th>합계액</th>
-                    <th>출고창고</th>
-                    <th>출고장소</th>
+                    <td>품번</td>
+                    <td>품명</td>
+                    <td>규격</td>
+                    <td>단위</td>
+                    <td>납기일</td>
+                    <td>주문수량</td>
+                    <td>단가</td>
+                    <td>출하예정일(수주)</td>
+                    <td>출고예정일(의뢰)</td>
+                    <td>출고구분</td>
+                    <td>고객코드</td>
                 </tr>
             </table>
             <div>
