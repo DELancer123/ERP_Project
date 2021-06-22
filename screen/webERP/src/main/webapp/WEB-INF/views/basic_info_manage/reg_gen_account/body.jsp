@@ -273,7 +273,10 @@ request.setCharacterEncoding("UTF-8");
         
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
         updateButton.addEventListener('click', function(){updateRow();}, false); 
-
+        
+        var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
+        registButton.addEventListener('click', function(){newRow();}, false);
+       
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
