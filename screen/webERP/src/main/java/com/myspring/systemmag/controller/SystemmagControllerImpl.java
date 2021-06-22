@@ -38,8 +38,8 @@ public class SystemmagControllerImpl implements SystemmagController {
 	private SystemmagDAO systemmagDAO;
 
 	//회사등록
-	@Override
-	@RequestMapping(value="/member/addcompany.do" ,method = RequestMethod.GET)
+	@Override //@modelAttribute 뭐지? 매개변수
+	@RequestMapping(value="/member/addbasicacc.do" ,method = RequestMethod.GET)
 	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");

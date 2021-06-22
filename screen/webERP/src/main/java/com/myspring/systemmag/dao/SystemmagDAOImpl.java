@@ -16,7 +16,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	
 	@Override
 	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException{
-		int result = sqlSession.insert("mappers.erp.insertNewCompany",systemmagVO);
+		int result = sqlSession.insert("mappers.erp.insertNewCustomer",systemmagVO);
 		return result;
 	}
 

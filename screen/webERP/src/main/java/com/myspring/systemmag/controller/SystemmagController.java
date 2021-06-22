@@ -18,8 +18,7 @@ public interface SystemmagController {
 	public ModelAndView deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView updateCustomer(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	
+		
 	public ModelAndView popupCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView popupZipCustomer(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;

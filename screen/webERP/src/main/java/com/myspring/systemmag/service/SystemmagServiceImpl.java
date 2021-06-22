@@ -27,7 +27,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List viewAllCustomer() throws DataAccessException {
 		List comList = null;
 		comList = systemmagDAO.viewAllCustomer();
-		System.out.println("sercom :"+comList);
 		return comList;
 	}
 	
