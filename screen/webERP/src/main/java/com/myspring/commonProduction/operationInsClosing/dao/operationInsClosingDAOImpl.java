@@ -45,7 +45,7 @@ public class operationInsClosingDAOImpl implements operationInsClosingDAO {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date start = new Date(sdf.parse(startDate).getTime());
 			Date end = new Date(sdf.parse(endDate).getTime());
-			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();//실적등록VO으로 변경해야함.
+			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
 			COIvo.setStartDate(start);
 			COIvo.setEndDate(end);
 			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
@@ -92,11 +92,15 @@ public class operationInsClosingDAOImpl implements operationInsClosingDAO {
 			
 			String check = sqlSession.selectOne("mappers.erp.checkClosingDetail", obj);
 			System.out.println("마감취소 : "+check);
-			if(check.equals("마감")) {
-				sqlSession.update("mappers.erp.updCancleClosingDetail", obj);
-				message.add("업데이트 완료!");
+			if(check.equals("계획")) {
+				message.add("이미 계획상태입니다!");
+			} else if(check.equals("확정")) {
+				message.add("확정된 작업은 수정할 수 없습니다!");
 			} else {
-				message.add("계획,마감상태의 작업은 변경 할 수 없습니다!");
+				
+				sqlSession.update("mappers.erp.updCancleClosingDetail", obj);
+					message.add("업데이트 완료!");
+				
 			}
 		}
 		return message;

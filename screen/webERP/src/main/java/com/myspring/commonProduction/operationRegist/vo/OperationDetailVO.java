@@ -7,6 +7,7 @@ import java.util.List;
 
 public class OperationDetailVO {
 	private int no;
+	private String workOrderNumber;
 	private Date billingDate;
 	private String itemCode;
 	private String itemName;
@@ -112,6 +113,15 @@ public class OperationDetailVO {
 
 	public void setDetailVO(List<OperationDetailVO> detailVO) {
 		DetailVO = new ArrayList();
+	}
+
+
+	public String getWorkOrderNumber() {
+		return workOrderNumber;
+	}
+
+	public void setWorkOrderNumber(String workOrderNumber) {
+		this.workOrderNumber = workOrderNumber;
 	}
 	
 	

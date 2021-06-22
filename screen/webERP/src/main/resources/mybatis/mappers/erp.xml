@@ -47,6 +47,27 @@
 		<result property="loss" column="loss" />
 		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
+		<result property="workOrderNumber" column="workOrderNumber" />
+	</resultMap>
+	<resultMap id="OpeCloDetResult" type="OperationInsClosingVO">
+		<result property="OPNumber" column="OPNumber" />
+		<result property="instructionDate" column="InstructionDate" />
+		<result property="dueDate" column="dueDate" />
+		<result property="processCode" column="PROCESS_CODE" />
+		<result property="workplaceCode" column="WORKPLACE_CODE" />
+		<result property="indicatedQuantity" column="IndicatedQuantity" />
+		<result property="sumPerformanceQuantity" column="performanceQuantity" />
+		<result property="remainingPerformance" column="remainingPerformance" />
+		<result property="unitPrice" column="unitPrice" />
+		<result property="price" column="price" />
+		<result property="inspection" column="inspection" />
+		<result property="note" column="note" />
+		<result property="workOrderNumber" column="workOrderNumber" />
+
+		<collection property="OpePerRegDetResult" column="workOrderNumber" select="selectAllOperationRegistDetail"></collection>
+		<!--
+		<collection property="itemResult" column="itemCode" select="selectitemList"></collection>
+		-->
 	</resultMap>
 	
 	<!-- 생산계획 CRUD -->
@@ -140,14 +161,44 @@
 		<![CDATA[]]>
 	</select> -->
 	
+		<!-- 기초정보등록 품목등록 -->
+		<resultMap id="itemResult" type="itemVO">
+		<result property="item_Code" column="Item_Code"	/>
+		<result property="item_Name" column="Item_Name"	/>
+		<result property="standard" column="Standard"	/>
+		<result property="inventory_Unit" column="Inventory_Unit"	/>
+		<result property="whether_LOT" column="Whether_LOT"	/>
+		<result property="sET_Item" column="SET_Item"	/>
+		<result property="inspection_Status" column="Inspection_Status"	/>
+		<result property="use_Status" column="Use_Status"	/>
+		<result property="lOT_Quantity" column="LOT_Quantity"	/>
+		<result property="drawing_Number" column="Drawing_Number"	/>
+		<result property="hs_Code" column="Hs_Code"	/>
+		<result property="width" column="Width"	/>
+		<result property="length" column="Length"	/>
+		<result property="height" column="Height"	/>
+		<result property="cost" column="Cost"	/>
+		<result property="item_Group_Code" column="Item_Group_Code"	/>
+		<result property="division" column="Division"	/>
+		<result property="notes" column="Notes"	/>
+		<result property="daily_production" column="Daily_production"	/>
+		</resultMap>
+	<!-- 조회 -->
+		<select id="selectitemList" resultMap="itemResult">
+		<![CDATA[select item_Code,item_Name,standard from SM_BIM_Ite_Reg]]>	
+	</select>
+	<select id="selectAllitemList" resultMap="itemResult" parameterType="String">
+		<![CDATA[select * from SM_BIM_Ite_Reg where item_Code = #{item_Code}]]>	
+	</select>
+	
 	<!-- 작업지시 마감처리 CRUD -->
-	<select id="selectAllOperationInsClosingDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[select opr.workordernumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code),func_Pro_Wor_Reg(oprd.workplace_code),opr.indicatedquantity, sum(oprd.performancequantity),
-(opr.indicatedquantity-sum(oprd.performancequantity)), ir.cost,(opr.indicatedquantity*ir.cost),opr.inspection,opr.note
+	<select id="selectAllOperationInsClosingDetail" resultType="OperationInsClosingVO" >
+		<![CDATA[select oprd.OPNumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code) as processCode,func_pro_wor_reg(oprd.workplace_code) as workplaceCode,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
+(opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance, ir.cost as unitPrice,(opr.indicatedquantity*ir.cost) as price,opr.inspection,opr.note
 from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd,SM_BIM_Ite_Reg ir
-where opr.workordernumber= oprd.workordernumber and ir.item_code = opr.item_code
-group by  opr.workordernumber,opr.instructiondate,opr.duedate,oprd.process_code,oprd.workplace_code,opr.indicatedquantity,ir.cost,opr.inspection,opr.note
-order by opr.workordernumber]]>
+where opr.workordernumber= oprd.workordernumber and ir.item_code = opr.item_code and opr.workordernumber=#{workOrderNumber}
+group by  oprd.OPNumber,opr.instructiondate,opr.duedate,oprd.process_code,oprd.workplace_code,opr.indicatedquantity, oprd.performancequantity,ir.cost,(opr.indicatedquantity*ir.cost),opr.inspection,opr.note
+order by oprd.OPNumber]]>
 	</select>
 	
 	<select id="checkClosingDetail" resultType="string">

@@ -2,31 +2,40 @@ package com.myspring.commonProduction.operationInsClosing.vo;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+
 @Component("OperationInsClosingVO") 
 
 public class OperationInsClosingVO {
-	private String workOrderNumber;
+	private String OPNumber;
 	private Date instructionDate;
 	private Date dueDate;
-	private String itemCode;
-	private String itemName;
-	private String standard;
-	private String inventoryUnit;
-	private int indicatedQuantity;
-	private String status;
+	private String processCode;
 	private String workplaceCode;
-	private int cost;
+	private int indicatedQuantity;
+	private int sumPerformanceQuantity;
+	private int remainingPerformance;
+	private int unitPrice;
+	private int price;
+	private String inspection;
+	private String note;
+	private String workOrderNumber;
+	private List<OperationInsClosingVO> DetailVO;
 	
-	public String getWorkOrderNumber() {
-		return workOrderNumber;
+	public OperationInsClosingVO() {
+		
 	}
-	public void setWorkOrderNumber(String workOrderNumber) {
-		this.workOrderNumber = workOrderNumber;
+	
+	@Override
+	public String toString() {
+		return Arrays.toString(DetailVO.toArray());
 	}
+	
+
 	public Date getInstructionDate() {
 		return instructionDate;
 	}
@@ -39,42 +48,7 @@ public class OperationInsClosingVO {
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-	public String getItemCode() {
-		return itemCode;
-	}
-	public void setItemCode(String itemCode) {
-		this.itemCode = itemCode;
-	}
-	public String getItemName() {
-		return itemName;
-	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-	public String getStandard() {
-		return standard;
-	}
-	public void setStandard(String standard) {
-		this.standard = standard;
-	}
-	public String getInventoryUnit() {
-		return inventoryUnit;
-	}
-	public void setInventoryUnit(String inventoryUnit) {
-		this.inventoryUnit = inventoryUnit;
-	}
-	public int getIndicatedQuantity() {
-		return indicatedQuantity;
-	}
-	public void setIndicatedQuantity(int indicatedQuantity) {
-		this.indicatedQuantity = indicatedQuantity;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+
 	public String getWorkplaceCode() {
 		return workplaceCode;
 	}
@@ -82,11 +56,91 @@ public class OperationInsClosingVO {
 		this.workplaceCode = workplaceCode;
 	}
 
-	public int getCost() {
-		return cost;
+	public List<OperationInsClosingVO> getDetailVO() {
+		return DetailVO;
 	}
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setDetailVO(List<OperationInsClosingVO> detailVO) {
+		DetailVO = new ArrayList();
+	}
+
+	public String getOPNumber() {
+		return OPNumber;
+	}
+
+	public void setOPNumber(String oPNumber) {
+		OPNumber = oPNumber;
+	}
+
+	public String getProcessCode() {
+		return processCode;
+	}
+
+	public void setProcessCode(String processCode) {
+		this.processCode = processCode;
+	}
+
+	public int getIndicatedQuantity() {
+		return indicatedQuantity;
+	}
+
+	public void setIndicatedQuantity(int indicatedQuantity) {
+		this.indicatedQuantity = indicatedQuantity;
+	}
+
+	public int getSumPerformanceQuantity() {
+		return sumPerformanceQuantity;
+	}
+
+	public void setSumPerformanceQuantity(int sumPerformanceQuantity) {
+		this.sumPerformanceQuantity = sumPerformanceQuantity;
+	}
+
+	public int getRemainingPerformance() {
+		return remainingPerformance;
+	}
+
+	public void setRemainingPerformance(int remainingPerformance) {
+		this.remainingPerformance = remainingPerformance;
+	}
+
+	public int getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(int unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public String getInspection() {
+		return inspection;
+	}
+
+	public void setInspection(String inspection) {
+		this.inspection = inspection;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getWorkOrderNumber() {
+		return workOrderNumber;
+	}
+
+	public void setWorkOrderNumber(String workOrderNumber) {
+		this.workOrderNumber = workOrderNumber;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	

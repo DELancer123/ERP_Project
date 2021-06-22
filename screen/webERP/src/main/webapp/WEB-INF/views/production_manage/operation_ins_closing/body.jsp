@@ -12,6 +12,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>Insert title here</title>
 <style>
 #contents1{
@@ -110,6 +113,7 @@
         <container2 id="contents2">
            <!-- 디테일부 -->
            <div id="workOrderDetail">
+             <form id="dataForm" mehtod="get" commandName="ListVO">
             <table id="workOrderDetailTable">
                 <thead>
                     <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -158,6 +162,7 @@
                      -->
                 </tbody>
             </table>
+            </form>
         </div>
         <!-- 디테일부 종료 -->
         </container2>
@@ -184,8 +189,8 @@
                     
  					<c:forEach var="detail" items="${detailList}" varStatus="status">
  					    <tr>
-                        <td><input type="checkbox" value="${detail.no }" name="content2"/></td>
- 						<td><input type="text" name="DetailVO[${status.index }].no" value="${detail.no }" /></td>
+                        <td><input type="checkbox" value="${detail.OPNumber }" name="content2"/></td>
+ 						<td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.OPNumber }" /></td>
                         <td><input type="date" name="DetailVO[${status.index }].instructionDate" value="${detail.instructionDate }" readonly /></td>
                         <td><input type="date" name="DetailVO[${status.index }].dueDate" value="${detail.dueDate }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" /></td>
@@ -194,7 +199,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].sumPerformanceQuantity" value="${detail.sumPerformanceQuantity}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].remainingPerformance" value="${detail.remainingPerformance}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].unitPrice" value="${detail.unitPrice}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].parentPrice" value="${detail.parentPrice}"/></td>                        
+                        <td><input type="text" value="${detail.indicatedQuantity*detail.unitPrice}" readonly/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
                         </tr>
@@ -225,7 +230,7 @@
 </html>
 <script>
  /* 검색부 date onChange 함수 설정 */
- 		var startDate = "";
+ 		 		var startDate = "";
     	var endDate = "";
     	
     	$('#searchStartDate').change(function (){
