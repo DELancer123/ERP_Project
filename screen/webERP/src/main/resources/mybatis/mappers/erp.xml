@@ -134,7 +134,12 @@
 	
 	<!-- 작업지시 마감처리 CRUD -->
 	<select id="selectAllOperationInsClosingDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
+		<![CDATA[select opr.workordernumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code),func_Pro_Wor_Reg(oprd.workplace_code),opr.indicatedquantity, sum(oprd.performancequantity),
+(opr.indicatedquantity-sum(oprd.performancequantity)), ir.cost,(opr.indicatedquantity*ir.cost),opr.inspection,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd,SM_BIM_Ite_Reg ir
+where opr.workordernumber= oprd.workordernumber and ir.item_code = opr.item_code
+group by  opr.workordernumber,opr.instructiondate,opr.duedate,oprd.process_code,oprd.workplace_code,opr.indicatedquantity,ir.cost,opr.inspection,opr.note
+order by opr.workordernumber]]>
 	</select>
 	
 	<select id="checkClosingDetail" resultType="string">

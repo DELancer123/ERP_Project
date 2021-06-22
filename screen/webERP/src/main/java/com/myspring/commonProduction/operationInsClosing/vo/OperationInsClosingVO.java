@@ -19,7 +19,7 @@ public class OperationInsClosingVO {
 	private int indicatedQuantity;
 	private String status;
 	private String workplaceCode;
-	private List<OperationInsClosingVO> ListVO;
+	private int cost;
 	
 	public String getWorkOrderNumber() {
 		return workOrderNumber;
@@ -81,11 +81,12 @@ public class OperationInsClosingVO {
 	public void setWorkplaceCode(String workplaceCode) {
 		this.workplaceCode = workplaceCode;
 	}
-	public List<OperationInsClosingVO> getListVO() {
-		return ListVO;
+
+	public int getCost() {
+		return cost;
 	}
-	public void setListVO(List<OperationInsClosingVO> listVO) {
-		ListVO = listVO;
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	
 	

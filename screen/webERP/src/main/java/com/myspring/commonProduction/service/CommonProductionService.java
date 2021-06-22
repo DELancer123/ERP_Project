@@ -35,6 +35,7 @@ import
 		throws DataAccessException, ParseException;
   public List<String> closingDetail(String[] numberAry) throws DataAccessException;
   public List<String> closingCancleDetail(String[] numberAry) throws DataAccessException;
+  public List<String> revertDetail(String[] numberAry) throws DataAccessException;
  
   }
  
