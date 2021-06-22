@@ -7,7 +7,10 @@ import java.util.List;
   import org.springframework.dao.DataAccessException;
   
   import com.myspring.commonProduction.commitOperationInstruction.vo.
-  CommitOperationInstructionVO; import
+  CommitOperationInstructionVO;
+import com.myspring.commonProduction.operationInsClosing.vo.OperationInsClosingVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
+import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
   
   public interface CommonProductionService {
@@ -25,7 +28,15 @@ import java.util.List;
   public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
   public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
   public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
-  public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException;
-  public List<String> confirmDetail(String[] numberAry) throws DataAccessException;  
+  public List<OperationDetailVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException;
+  public List<String> confirmDetail(String[] numberAry) throws DataAccessException;
+  public List<OperationInsClosingVO> selectAllOperationInsClosingInfo(String startDate, String endDate)	throws DataAccessException, ParseException;
+  public List<OperationInsClosingVO> selectAllOperationInsClosingInfoDetail(String number) throws DataAccessException, ParseException;
+  public List<String> closingDetail(String[] numberAry) throws DataAccessException;
+  public List<String> closingCancleDetail(String[] numberAry) throws DataAccessException;
+  public List<String> revertDetail(String[] numberAry) throws DataAccessException;
+  public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException;
+  public List<OperationRegistVO> selectReleaseDetail(String number) throws DataAccessException, ParseException;
+ 
   }
  

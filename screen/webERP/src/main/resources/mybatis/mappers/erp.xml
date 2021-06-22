@@ -132,6 +132,44 @@
 		]]>  
 	</update>	
 	
+	<select id="selectRelease" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber]]>
+	</select>
+	
+	<!-- <select id="selectReleaseDetail" resultMap="OpePerRegDetResult">
+		<![CDATA[]]>
+	</select> -->
+	
+	<!-- 작업지시 마감처리 CRUD -->
+	<select id="selectAllOperationInsClosingDetail" resultMap="OpePerRegDetResult">
+		<![CDATA[select opr.workordernumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code),func_Pro_Wor_Reg(oprd.workplace_code),opr.indicatedquantity, sum(oprd.performancequantity),
+(opr.indicatedquantity-sum(oprd.performancequantity)), ir.cost,(opr.indicatedquantity*ir.cost),opr.inspection,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd,SM_BIM_Ite_Reg ir
+where opr.workordernumber= oprd.workordernumber and ir.item_code = opr.item_code
+group by  opr.workordernumber,opr.instructiondate,opr.duedate,oprd.process_code,oprd.workplace_code,opr.indicatedquantity,ir.cost,opr.inspection,opr.note
+order by opr.workordernumber]]>
+	</select>
+	
+	<select id="checkClosingDetail" resultType="string">
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	</select>
+	
+	<update id="updClosingDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '마감'
+		where  workOrderNumber = #{workOrderNumber} and status = '확정'
+		]]>  
+	</update>
+	
+	<update id="updCancleClosingDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '확정'
+		where  workOrderNumber = #{workOrderNumber} and status = '마감'
+		]]>  
+	</update>	
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />

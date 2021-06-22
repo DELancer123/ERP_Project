@@ -223,8 +223,87 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		mav.addObject("message",message);
  		return mav;
  		}
+ 	
+ 	@Override
+ 	@RequestMapping(value="/member/revertDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView revertDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		List<String> message = new ArrayList();
+ 		message = productionService.revertDetail(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		System.out.println("컨트롤러 확인"+message);
+ 		mav.addObject("message",message);
+ 		return mav;
+ 	}
+ 	
+ 	@Override
+ 	@RequestMapping(value="/member/releaseDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception { 
+ 		String number = request.getParameter("workOrderNumber");
+ 		String viewName = (String)request.getAttribute("viewName");
+ 		ModelAndView mav = new ModelAndView(viewName); 
+ 		
+ 		List infoList = productionService.selectRelease(number);
+ 		List detailList = productionService.selectReleaseDetail(number);
+ 		mav.addObject("infoList", infoList); 
+ 		mav.addObject("detailList", detailList);
+ 		return mav; 
+ 	}
+	
+//  작업지시 마감처리 기능부 
+  	 @Override
+  	  @RequestMapping(value="/member/operinsclo.do" ,method = RequestMethod.GET)
+  	  public ModelAndView listOperationInsClosingInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
+  		  String startDate = request.getParameter("startDate");
+  		  String endDate = request.getParameter("endDate");
+  		  String number = request.getParameter("searchNumber");
+  		  String viewName = (String)request.getAttribute("viewName");
+  		  ModelAndView mav = new ModelAndView(viewName); 
+  		  logger.debug("debug : viewName = " + viewName);
+  		  
+  		  if(number != null && number != "") {
+  			  List infoList = productionService.selectAllOperationInsClosingInfo(startDate, endDate);
+  			  List detailList = productionService.selectAllOperationInsClosingInfoDetail(number);
+  			  mav.addObject("infoList", infoList); 
+  			  mav.addObject("detailList", detailList);
+  		  } else {
+  			List infoList = productionService.selectAllOperationInsClosingInfo(startDate, endDate); 
+  			mav.addObject("infoList", infoList); 
+  		  }
+  		  return mav; 
+  	  	}
   	 
-  
+ 	@Override
+ 	@RequestMapping(value="/member/closingDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView closingDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		List<String> message = new ArrayList();
+ 		//List<String> cancleMessage = new ArrayList();
+ 		message = productionService.closingDetail(numberary);
+ 		//cancleMessage = productionService.closingCancleDetail(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/operinsclo.do");
+ 		mav.addObject("message",message);
+ 		return mav;
+ 		}
+ 	
+ 	@Override
+ 	@RequestMapping(value="/member/closingCancleDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView closingCancleDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		List<String> message = new ArrayList();
+ 		message = productionService.closingCancleDetail(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/operinsclo.do");
+ 		mav.addObject("message",message);
+ 		return mav;
+ 		}
+  	 
+ 	
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
 	  String uri = (String) request.getAttribute("javax.servlet.include.request_uri"); 

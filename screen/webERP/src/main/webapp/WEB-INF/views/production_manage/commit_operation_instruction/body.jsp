@@ -3,9 +3,11 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <%
   request.setCharacterEncoding("UTF-8");
-%>    
+%>  
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,10 +93,10 @@
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
                         <td>
-                            <input type="button" value="자재출고" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="자재출고" onClick="release()" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="취소" style="padding: 5px;"></input>
+                            <input type="button" value="취소" onClick="revert();" style="padding: 5px;"></input>
                         </td>
                         <td>
                             <input type="button" value="확정" onClick="confirm();" style="padding: 5px;"></input>
@@ -142,7 +144,7 @@
                         <td><input type="text" name="ListVO[${status.index }].inventoryUnit" value="${info.inventoryUnit}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].indicated" value="${info.indicated}"/></td>
                         <td><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index }].inspection value="${info.inspection}" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index }].inspection" value="${info.inspection}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].productionFacility" value="${info.productionFacility}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].taskTeam" value="${info.taskTeam}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly/></td>
@@ -313,8 +315,27 @@
         	  }
         }
      
-        window.onload = function() {
-        	var message = '<c:out value="${message}"/>';
-        	alert(message);
+        function revert() {
+        	var item = document.getElementsByName("content").length;
+      	  	var no = "";
+      	  	var ary = [];
+      	  	for(var i=0; i<item;i++){
+      			  if(document.getElementsByName("content")[i].checked==true){
+      				no = document.getElementsByName("content")[i].value;
+      			  	ary.push(no);
+      		  	}
+      			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
+      	  }
+        }
+        
+        function release(){
+        	var item = document.getElementsByName("content").length;
+      	  	var no = "";
+      	  	for(var i=0; i<item;i++){
+      			  if(document.getElementsByName("content")[i].checked==true){
+      				no = document.getElementsByName("content")[i].value;
+      		  	}
+      			window.location.href = "${contextPath}/member/releaseDetail.do?workOrderNumber="+no;
+      	  }
         }
       </script>

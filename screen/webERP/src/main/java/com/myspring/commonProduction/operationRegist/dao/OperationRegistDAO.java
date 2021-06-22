@@ -18,4 +18,8 @@ public interface OperationRegistDAO {
 	public List selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
 	public List selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException;
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException;
+	public List<String> revertDetail(String[] numberAry) throws DataAccessException;
+	public List selectRelease(String number) throws DataAccessException, ParseException;
+	public List selectReleaseDetail(String number) throws DataAccessException, ParseException;
+	
 }

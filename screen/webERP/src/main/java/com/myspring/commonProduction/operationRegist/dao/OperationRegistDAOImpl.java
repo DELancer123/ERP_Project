@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
@@ -123,7 +124,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	
 	@Override
 	public List selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;		
+		List<OperationDetailVO> infoList = null;		
 		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
 		return infoList;
 	}
@@ -133,17 +134,62 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
 		List<String> message = new ArrayList();
 		
-		for(String obj: numberAry) {
+		for(String number: numberAry) {
 			
-			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
-			System.out.println("확정"+check);
+			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
 			if(check.equals("계획")) {
-				sqlSession.update("mappers.erp.updConfirmDetail", obj);
+				sqlSession.update("mappers.erp.updConfirmDetail", number);
 				message.add("업데이트 완료!");
 			} else {
 				message.add("확정, 마감상태의 작업은 변경 할 수 없습니다!");
 			}
 		}
 		return message;
+	}
+	
+	@Override
+	public List<String> revertDetail(String[] numberAry) throws DataAccessException{
+		List<String> message = new ArrayList();
+		
+		for(String number: numberAry) {
+			
+			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
+			System.out.println("다오 체크 확인" + check);
+			if(check.equals("계획")) {
+				message.add("이미 계획상태입니다!");
+			} else if(check.equals("마감")) {
+				message.add("마감된 작업은 수정할 수 없습니다!");
+			} else {
+				String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
+				if(count.equals("0")) {
+					sqlSession.update("mappers.erp.updRevertDetail", number);
+					message.add("업데이트 완료!");
+				} else {
+					message.add("출고 정보가 있는 경우 상태를 변경할 수 없습니다!");
+				}
+			}
+		}
+		return message;
+	}
+	
+	@Override
+	public List selectRelease(String number) throws DataAccessException, ParseException {
+		List<OperationRegistVO> infoList = null;
+		
+		infoList = sqlSession.selectList("mappers.erp.selectRelease", number);		
+		return infoList;
+	}
+	
+	@Override
+	public List selectReleaseDetail(String number) throws DataAccessException, ParseException {
+		List<OperationRegistVO> infoList = null;
+		
+		String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
+		if(count.equals("0")) {
+			infoList = sqlSession.selectList("mappers.erp.selectReleaseDetail", number);	
+		} else {
+			System.out.println("출고 정보가 이미 존재합니다!");
+		}
+		return infoList;
 	}
 }
