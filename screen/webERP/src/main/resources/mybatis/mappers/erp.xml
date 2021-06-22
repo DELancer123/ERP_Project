@@ -136,6 +136,13 @@
 		<![CDATA[select COUNT(*) from CPM_PM_PRO_MAT_FOR_DET where workordernumber = #{number}]]>
 	</select>
 	
+	<update id="updRevertDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG 
+		set status = '계획'
+		where workOrderNumber = #{workOrderNumber} and status = '확정'
+		]]>
+	</update>
 	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">

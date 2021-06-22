@@ -159,6 +159,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 				message.add("마감된 작업은 수정할 수 없습니다!");
 			} else {
 				int count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",obj);
+				if(count > 0) {
+					message.add("출고 정보가 있는 경우 상태를 변경할 수 없습니다!");
+				} else {
+					sqlSession.update("mappers.erp.updRevertDetail");
+					message.add("업데이트 완료!");
+				}
 			}
 		}
 		return message;
