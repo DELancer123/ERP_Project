@@ -25,6 +25,7 @@ public class OperationRegistVO {
 	private String productionPlanCode;
 	private String productionFacility;
 	private String taskTeam;
+	private String workplaceCode;
 
 	public String getProductionFacility() {
 		return productionFacility;
@@ -171,6 +172,14 @@ public class OperationRegistVO {
 
 	public void setListVO(List<OperationRegistVO> listVO) {
 		this.ListVO = new ArrayList();
+	}
+
+	public String getWorkplaceCode() {
+		return workplaceCode;
+	}
+
+	public void setWorkplaceCode(String workplaceCode) {
+		this.workplaceCode = workplaceCode;
 	}
 	
 	

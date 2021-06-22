@@ -14,7 +14,10 @@ import java.util.List;
   import com.myspring.commonProduction.commitOperationInstruction.dao.
   CommitOperationInstructionDAO; import
   com.myspring.commonProduction.commitOperationInstruction.vo.
-  CommitOperationInstructionVO; import
+  CommitOperationInstructionVO;
+import com.myspring.commonProduction.operationInsClosing.dao.operationInsClosingDAO;
+import com.myspring.commonProduction.operationInsClosing.vo.OperationInsClosingVO;
+import
   com.myspring.commonProduction.operationRegist.dao.OperationRegistDAO; import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
@@ -26,6 +29,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   public class CommonProductionServiceImpl implements CommonProductionService {
   @Autowired private CommitOperationInstructionDAO COIdao;
   @Autowired private OperationRegistDAO ORdao;
+  @Autowired private operationInsClosingDAO OCdao;
   
   @Override public List selectAllProductionPlanInfo(String info,String startDate, String endDate) throws DataAccessException, ParseException {
 	  List<CommitOperationInstructionVO> infolist = null; 
@@ -120,5 +124,38 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  ORdao.confirmDetail(numberAry);
 	  return message;
 	}
+  
+//작업지시마감처리 기능부
+	@Override 
+	public List<OperationInsClosingVO> selectAllOperationInsClosingInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
+		  List<OperationInsClosingVO> infolist = null; 
+		  infolist = OCdao.selectAllOperationInsClosingInfo(startDate,endDate);
+		  return infolist; 
+		  }
+	
+	@Override
+	public List<OperationInsClosingVO> selectAllOperationInsClosingInfoDetail(String number) throws DataAccessException, ParseException{ 
+		  List<OperationInsClosingVO> infolist = null; 
+		  infolist = OCdao.selectAllOperationInsClosingInfoDetail(number);
+		  return infolist; 
+		  }
+
+	@Override
+		public List<String> closingDetail(String[] numberAry) throws DataAccessException{
+		  List<String> message = new ArrayList(); 
+		  OCdao.closingDetail(numberAry);
+		  return message;
+		}
+	
+	@Override
+	public List<String> closingCancleDetail(String[] numberAry) throws DataAccessException{
+		List<String> message = new ArrayList(); 
+		OCdao.closingCancleDetail(numberAry);
+		return message;
+	}
+	
+	
+	
+	
   }
  

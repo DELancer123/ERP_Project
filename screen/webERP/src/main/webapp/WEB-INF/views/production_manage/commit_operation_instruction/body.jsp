@@ -142,7 +142,7 @@
                         <td><input type="text" name="ListVO[${status.index }].inventoryUnit" value="${info.inventoryUnit}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].indicated" value="${info.indicated}"/></td>
                         <td><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index }].inspection value="${info.inspection}" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index }].inspection" value="${info.inspection}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].productionFacility" value="${info.productionFacility}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].taskTeam" value="${info.taskTeam}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly/></td>

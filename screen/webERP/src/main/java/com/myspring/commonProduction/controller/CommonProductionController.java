@@ -26,5 +26,8 @@ public interface CommonProductionController {
 	public ModelAndView updProductionPlan(CommitOperationInstructionVO COIVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listCommitOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView confirmDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listOperationInsClosingInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView closingDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView closingCancleDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

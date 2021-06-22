@@ -132,6 +132,31 @@
 		]]>  
 	</update>	
 	
+	<!-- 작업지시 마감처리 CRUD -->
+	<select id="selectAllOperationInsClosingDetail" resultMap="OpePerRegDetResult">
+		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
+	</select>
+	
+	<select id="checkClosingDetail" resultType="string">
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	</select>
+	
+	<update id="updClosingDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '마감'
+		where  workOrderNumber = #{workOrderNumber} and status = '확정'
+		]]>  
+	</update>
+	
+	<update id="updCancleClosingDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '확정'
+		where  workOrderNumber = #{workOrderNumber} and status = '마감'
+		]]>  
+	</update>	
+	
 	<!-- 생산 팝업 파트 -->	
 	<resultMap id="ItemCodeResult" type="ItemCodePopVO">
 		<result property="itemCode" column="Item_Code" />
