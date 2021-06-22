@@ -26,6 +26,7 @@ import java.util.List;
   public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
   public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
   public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException;
-  public List<String> confirmDetail(String[] numberAry) throws DataAccessException;  
+  public List<String> confirmDetail(String[] numberAry) throws DataAccessException;
+  public List<String> revertDetail(String[] numberAry) throws DataAccessException;  
   }
  

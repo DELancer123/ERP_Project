@@ -120,5 +120,12 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  message = ORdao.confirmDetail(numberAry);
 	  return message;
 	}
+  
+  @Override
+	public List<String> revertDetail(String[] numberAry) throws DataAccessException{
+	  List<String> message = new ArrayList(); 
+	  message = ORdao.revertDetail(numberAry);
+	  return message;
+	}
   }
  

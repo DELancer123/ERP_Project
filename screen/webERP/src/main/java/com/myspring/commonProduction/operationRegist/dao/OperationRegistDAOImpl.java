@@ -136,8 +136,24 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(String obj: numberAry) {
 			
 			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
-			System.out.println("확정"+check);
 			if(check.equals("계획")) {
+				sqlSession.update("mappers.erp.updConfirmDetail", obj);
+				message.add("업데이트 완료!");
+			} else {
+				message.add("확정, 마감상태의 작업은 변경 할 수 없습니다!");
+			}
+		}
+		return message;
+	}
+	
+	@Override
+	public List<String> revertDetail(String[] numberAry) throws DataAccessException{
+		List<String> message = new ArrayList();
+		
+		for(String obj: numberAry) {
+			
+			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
+						if(check.equals("계획")) {
 				sqlSession.update("mappers.erp.updConfirmDetail", obj);
 				message.add("업데이트 완료!");
 			} else {
