@@ -59,7 +59,8 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public void delOrder(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.delOrd",Integer.parseInt(obj));
+			System.out.println("안녕");
+			sqlSession.delete("mappers.erp.delOrd",obj);
 		}
 		
 	}

@@ -103,9 +103,11 @@ public class OrderRegControllerImpl implements OrderRegController{
 	@Override
 	@RequestMapping(value="/member/delorder.do", method = RequestMethod.GET)
 	public ModelAndView delOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String code = (String)request.getParameter("ordCode");
+		String code = (String)request.getParameter("no");
 		String viewName = getViewName(request);
 		String[] codeary = code.split(",");
+		System.out.println(codeary+"codeary");
+		System.out.println(code+"code");
 		orderService.removeOrder(codeary);
 		ModelAndView mav = new ModelAndView("redirect:/member/regorder.do");
 		

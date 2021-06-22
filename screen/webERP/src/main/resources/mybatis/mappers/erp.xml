@@ -304,7 +304,7 @@
 	</select> 
 	<insert id="insertOrder" parameterType="orderVO">
 		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
+		 insert into CSM_SM_Ord_Reg
 		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'), #{ordDate}, #{custCode}, #{tax}, #{note})
 		]]>  
 	</insert>
@@ -324,7 +324,7 @@
 	
 	<delete id="delOrd"  parameterType="String">
 	<![CDATA[
-	   delete from  CPM_BIM_BOM_REG where ordersNum=#{ordCode}
+	   delete from CSM_SM_Ord_Reg where ordersNum=#{obj}
 	]]>      
   </delete>	
 	
