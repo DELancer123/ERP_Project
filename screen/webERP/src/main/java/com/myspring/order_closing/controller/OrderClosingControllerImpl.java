@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.MainPlan.controller.MainPlanControllerImpl;
+import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.order_closing.service.OrderClosingService;
 import com.myspring.order_closing.vo.OrderClosingVO;
 
@@ -71,6 +72,17 @@ public class OrderClosingControllerImpl implements OrderClosingController{
 		int result = 0;
 		result = orderclosingService.addClosing(vo);
 		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/member/updateClosing.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMPS(@ModelAttribute("ClosingList") OrderClosingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = orderclosingService.updateClosing(vo);
+		System.out.println("result "+result);
+		ModelAndView mav = new ModelAndView("redirect:/member/orderclosing.do");
 		return mav;
 	}
 	

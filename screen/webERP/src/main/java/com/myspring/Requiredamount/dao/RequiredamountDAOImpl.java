@@ -34,4 +34,16 @@ public class RequiredamountDAOImpl implements RequiredamountDAO{
 		}
 		return mrpList;
 }
+	@Override
+	public int updateMRP(RequiredamountVO vo) throws DataAccessException {
+		int result = 0; 
+
+		int idx = vo.getListVO().size()-1;
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.updateMRP",vo.getListVO().get(i));
+		}
+		return result;
+	}
 }

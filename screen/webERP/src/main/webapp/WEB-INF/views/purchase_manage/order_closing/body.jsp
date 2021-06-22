@@ -116,7 +116,10 @@ String sequence = (String) request.getAttribute("sequence");
 					<td>규격</td>
 					<td>단위</td>
 					<td>발주수량</td>
-					<td>발주잔량</td>
+					<td>단가</td>
+	<!-- 				<td>공급가</td>
+					<td>부가세</td>
+					<td>합계액</td> -->
 					<td>마감</td>
 				</thead>
 				<tbody>
@@ -133,8 +136,8 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
-				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' readonly /></td>
-				<td><input type="text" name="ListVO[${status.index}].order_balance" value='${OrderClosing.order_balance}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' /></td>
+				<td><input type="text" name="ListVO[${status.index}].price" value='${OrderClosing.price}' readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].deadline" value='${OrderClosing.deadline}' /></td>
 						</tr>
 					</c:forEach>
@@ -150,7 +153,7 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
 				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" /></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
-				<td><input type="text" id="order_balance" name="ListVO[${fn:length(ClosingList) }].order_balance" value='${order_balance}' /></td>
+				<td><input type="text" id="price" name="ListVO[${fn:length(ClosingList) }].price" value='${price}' /></td>
 				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' /></td>
 				</tr>
 				</tbody>
@@ -198,31 +201,6 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
  		  window.open(location.pathname + '?' + newParam, '_self');
  		  }
    	}
-       
-/* function updateRow() {
-	const URLSearch = new URLSearchParams(location.search);
-	const newParam = URLSearch.toString();
-	var link = location.pathname + '?' + newParam;
-document.getElementById("sequence").disabled = true;
-document.getElementById("order_no").disabled = true;		
-document.getElementById("order_date").disabled = true;
-document.getElementById("code").disabled = true;
-document.getElementById("buyer").disabled = true;
-document.getElementById("item_Code").disabled = true;
-document.getElementById("item_Name").disabled = true;
-document.getElementById("standard").disabled = true;
-document.getElementById("inventory_unit").disabled = true;
-document.getElementById("order_quantity").disabled = true;
-document.getElementById("order_balance").disabled = true;
-document.getElementById("deadline").disabled = true;
-var Input = document.createElement("input");
-Input.setAttribute("type", "hidden");
-Input.setAttribute("name", "path");
-Input.setAttribute("value", link);
-document.getElementById('OrderClosing').appendChild(Input);
-document.getElementById('OrderClosing').action = "${contextPath}/member/updateOrderClosing.do";
-document.getElementById('OrderClosing').submit();
-} */
 
 function InsertRow(){
 	const URLSearch = new URLSearchParams(location.search);
@@ -238,6 +216,30 @@ function InsertRow(){
 
 }
 
+function updateRow() {
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+document.getElementById("sequence").disabled = true;
+document.getElementById("order_no").disabled = true;		
+document.getElementById("order_date").disabled = true;
+document.getElementById("code").disabled = true;
+document.getElementById("buyer").disabled = true;
+document.getElementById("item_Code").disabled = true;
+document.getElementById("item_Name").disabled = true;
+document.getElementById("standard").disabled = true;
+document.getElementById("inventory_unit").disabled = true;
+document.getElementById("order_quantity").disabled = true;
+document.getElementById("price").disabled = true;
+document.getElementById("deadline").disabled = true;
+var Input = document.createElement("input");
+Input.setAttribute("type", "hidden");
+Input.setAttribute("name", "path");
+Input.setAttribute("value", link);
+document.getElementById('OrderClosing').appendChild(Input);
+document.getElementById('OrderClosing').action = "${contextPath}/member/updateClosing.do";
+document.getElementById('OrderClosing').submit();
+}
 function deleteRow() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";

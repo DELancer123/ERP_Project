@@ -38,4 +38,8 @@ public class OrderClosingServiceImpl implements OrderClosingService{
 	public int addClosing(OrderClosingVO vo) throws DataAccessException {
 		return orderclosingDAO.addClosing(vo);
 	}
+	@Override
+	public int updateClosing(OrderClosingVO vo) throws DataAccessException {
+		return orderclosingDAO.updateClosing(vo);
+	}
 }

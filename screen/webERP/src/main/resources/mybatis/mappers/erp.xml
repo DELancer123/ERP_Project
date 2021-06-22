@@ -218,7 +218,7 @@
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="need_date" column="need_date" />
+		<result property="due_date" column="due_date" />
 		<result property="sequence" column="sequence" />
 		<result property="expected_order" column="expected_order" />
 		<result property="expected_quantity" column="expected_quantity" />
@@ -228,10 +228,15 @@
 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	<where>
-		<if test="startDate != '' and startDate != null">need_date between #{startDate} and #{endDate} </if>
-		<if test="endDate != '' and endDate != null">and need_date between #{startDate} and #{endDate} </if>
+		<if test="startDate != '' and startDate != null">due_date between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>
 	</where>
 	</select>
+	<update id="updateMRP" >
+		<![CDATA[update pmm_pm_mrp
+			set expected_quantity =#{expected_quantity}
+			where sequence = #{sequence}]]>  
+	</update>
 	
 	<!-- orderclosing 발주마감 -->
 	<resultMap id="orderclosingResult" type="orderclosingVO">
@@ -245,7 +250,7 @@
 		<result property="standard" column="standard" />
 		<result property="inventory_unit" column="inventory_unit" />
 		<result property="order_quantity" column="order_quantity" />
-		<result property="order_balance" column="order_balance" />
+		<result property="price" column="price" />
 		<result property="deadline" column="deadline" />
 	</resultMap>
 	
@@ -255,6 +260,9 @@
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
+	<!-- 	<![CDATA[select order_quantity as "발주수량", price  as "단가", order_quantity*price as "공급가", 
+		(order_quantity*price*0.1) as "부가세", order_quantity*price+(order_quantity*price*0.1) 
+			"합계액"  from PMM_PM_ORDER]]> -->
 	</select>
 	
 	<update id="updateOrderClosing">
@@ -268,9 +276,14 @@
 	<insert id="insertClosing" parameterType="orderclosingVO">
 		<![CDATA[insert into PMM_PM_ORDER
 		values(#{sequence},F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{buyer},#{item_Code},#{item_Name},#{standard},
-		#{inventory_unit},#{order_quantity},#{order_balance},#{deadline})
+		#{inventory_unit},#{order_quantity},#{price},#{deadline})
 		]]>
 	</insert> 
+	<update id="updateClosing">
+		<![CDATA[update PMM_PM_ORDER
+			set order_quantity=#{order_quantity} 
+			where sequence=#{sequence}]]>
+	</update>
 	
 	<!-- 품목단가등록(재원) 파트 -->
 

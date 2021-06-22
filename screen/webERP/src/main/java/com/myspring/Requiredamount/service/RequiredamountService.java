@@ -10,4 +10,6 @@ public interface RequiredamountService {
 
 	List<RequiredamountVO> selectAllMrpList(String startDate, String endDate) throws Exception;
 
+	int updateMRP(RequiredamountVO vo) throws DataAccessException;
+
 }

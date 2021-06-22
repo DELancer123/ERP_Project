@@ -132,7 +132,7 @@ request.setCharacterEncoding("UTF-8");
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
-			<td>소요일자</td>
+			<td>납기일</td>
 			<td>예정발주일</td>
 			<td>예정수량</td>
 			<td>단위</td>
@@ -145,9 +145,9 @@ request.setCharacterEncoding("UTF-8");
 			<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.item_Code}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.item_Name}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.standard}' readonly style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].need_date" value='${mrp.need_date}' readonly/></td>
+				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.due_date}' readonly/></td>
 				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].expected_quantity" value='${mrp.expected_quantity}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].expected_quantity" value='${mrp.expected_quantity}'/></td>
 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.inventory_unit}' readonly style="width:100%"/></td>
 			</tr>	
 		</c:forEach>
@@ -156,11 +156,11 @@ request.setCharacterEncoding("UTF-8");
     	<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(mrp) }].sequence" value='${sequence}' style="width:100%"/></td>
     	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mrp) }].item_Code" value='${item_Code}' readonly/></td>
     	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mrp) }].item_Name" value='${item_Name}' readonly/></td>
-    	<td><input type="text" id="standard" name="ListVO[${fn:length(mrp) }].standard" value='${standard}' style="width:100%"/></td>
-    	<td><input type="date" id="need_date" name="ListVO[${fn:length(mrp) }].need_date" value='${need_date}'  /></td>
-    	<td><input type="date" id="expected_order" name="ListVO[${fn:length(mrp) }].expected_order" value='${expected_order}'/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(mrp) }].standard" value='${standard}'readonly style="width:100%"/></td>
+    	<td><input type="date" id="due_date" name="ListVO[${fn:length(mrp) }].due_date" value='${due_date}'  readonly/></td>
+    	<td><input type="date" id="expected_order" name="ListVO[${fn:length(mrp) }].expected_order" value='${expected_order}' readonly/></td>
     	<td><input type="text" id="expected_quantity" name="ListVO[${fn:length(mrp) }].expected_quantity" value='${expected_quantity}'/></td>
-    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mrp) }].inventory_unit" value='${inventory_unit}'style="width:100%" /></td>
+    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mrp) }].inventory_unit" value='${inventory_unit}' style="width:100%"/></td>
     	</tr>
 		</tbody>
 	</table>
@@ -202,7 +202,26 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
  		  window.open(location.pathname + '?' + newParam, '_self');
  		  }
    	}
-       
+ function updateRow() {
+		const URLSearch = new URLSearchParams(location.search);
+		const newParam = URLSearch.toString();
+		var link = location.pathname + '?' + newParam;
+	document.getElementById("sequence").disabled = true;
+	document.getElementById("item_Code").disabled = true;
+	document.getElementById("item_Name").disabled = true;
+	document.getElementById("standard").disabled = true;
+	document.getElementById("due_date").disabled = true;
+	document.getElementById("expected_order").disabled = true;
+	document.getElementById("expected_quantity").disabled = true;
+	document.getElementById("inventory_unit").disabled = true;
+	var Input = document.createElement("input");
+	Input.setAttribute("type", "hidden");
+	Input.setAttribute("name", "path");
+	Input.setAttribute("value", link);
+	document.getElementById('MainPlan').appendChild(Input);
+	document.getElementById('MainPlan').action = "${contextPath}/member/updateMRP.do";
+	document.getElementById('MainPlan').submit();
+}
 </script>
 </body>
 </html>

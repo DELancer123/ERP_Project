@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.Requiredamount.dao.RequiredamountDAO;
 import com.myspring.Requiredamount.vo.RequiredamountVO;
 
@@ -21,5 +22,10 @@ public class RequiredamountServiceImpl implements RequiredamountService{
 	public List<RequiredamountVO>selectAllMrpList(String startDate, String endDate) throws Exception{
 		List<RequiredamountVO>mrpList = mrpDAO.selectAllMrpList(startDate,endDate);
 		return mrpList;
+	}
+	
+	@Override
+	public int updateMRP(RequiredamountVO vo) throws DataAccessException {
+		return mrpDAO.updateMRP(vo);
 	}
 }

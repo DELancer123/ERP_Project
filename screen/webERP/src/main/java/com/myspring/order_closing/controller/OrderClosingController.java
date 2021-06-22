@@ -18,4 +18,7 @@ public interface OrderClosingController {
 
 	ModelAndView updateOrderClosing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView updateMPS(OrderClosingVO vo, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 }

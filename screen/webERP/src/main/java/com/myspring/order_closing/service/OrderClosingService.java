@@ -16,4 +16,6 @@ public interface OrderClosingService {
 
 	void updateOrderClosing(String[] noary) throws DataAccessException;
 
+	int updateClosing(OrderClosingVO vo) throws DataAccessException;
+
 }
