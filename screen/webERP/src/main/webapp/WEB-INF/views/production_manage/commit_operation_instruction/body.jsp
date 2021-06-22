@@ -314,7 +314,7 @@
         }
      
         window.onload = function() {
-        	var message = [];
-        	
+        	var message = '<c:out value="${message}"/>';
+        	alert(message);
         }
       </script>

@@ -219,6 +219,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List<String> message = new ArrayList();
  		message = productionService.confirmDetail(numberary);
  		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		System.out.println("컨트롤러 확인"+message);
  		mav.addObject("message",message);
  		return mav;
  		}
