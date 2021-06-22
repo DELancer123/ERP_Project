@@ -224,6 +224,33 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  		}
  	
+ 	@Override
+ 	@RequestMapping(value="/member/revertDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView revertDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		List<String> message = new ArrayList();
+ 		message = productionService.revertDetail(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		System.out.println("컨트롤러 확인"+message);
+ 		mav.addObject("message",message);
+ 		return mav;
+ 	}
+ 	
+ 	@Override
+ 	@RequestMapping(value="/member/releaseDetail.do" ,method = RequestMethod.GET)
+ 	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception { 
+ 		String number = request.getParameter("workOrderNumber");
+ 		String viewName = (String)request.getAttribute("viewName");
+ 		ModelAndView mav = new ModelAndView(viewName); 
+ 		
+ 		List infoList = productionService.selectRelease(number);
+ 		List detailList = productionService.selectReleaseDetail(number);
+ 		mav.addObject("infoList", infoList); 
+ 		mav.addObject("detailList", detailList);
+ 		return mav; 
+ 	}
 	
 //  작업지시 마감처리 기능부 
   	 @Override
@@ -276,20 +303,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  		}
   	 
- 	@Override
- 	@RequestMapping(value="/member/revertDetail.do" ,method = RequestMethod.GET)
- 	public ModelAndView revertDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
- 		String number = (String) request.getParameter("workOrderNumber");
- 		String viewName = getViewName(request);
- 		String[] numberary = number.split(",");
- 		List<String> message = new ArrayList();
- 		message = productionService.revertDetail(numberary);
- 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
- 		System.out.println("컨트롤러 확인"+message);
- 		mav.addObject("message",message);
- 		return mav;
- 		}
-  
+ 	
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
 	  String uri = (String) request.getAttribute("javax.servlet.include.request_uri"); 

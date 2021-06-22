@@ -18,7 +18,9 @@ import java.util.List;
 import com.myspring.commonProduction.operationInsClosing.dao.operationInsClosingDAO;
 import com.myspring.commonProduction.operationInsClosing.vo.OperationInsClosingVO;
 import
-  com.myspring.commonProduction.operationRegist.dao.OperationRegistDAO; import
+  com.myspring.commonProduction.operationRegist.dao.OperationRegistDAO;
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
+import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
@@ -112,8 +114,8 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  }
   
   @Override 
-  public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException{ 
-	  List<OperationRegistVO> infolist = null; 
+  public List<OperationDetailVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException{ 
+	  List<OperationDetailVO> infolist = null; 
 	  infolist = ORdao.selectAllCommitOperationInfoDetail(number); 
 	  return infolist; 
 	  }
@@ -131,6 +133,20 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  message = ORdao.revertDetail(numberAry);
 	  return message;
 	}
+  
+  @Override
+  public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException{ 
+	  List<OperationRegistVO> infolist = null; 
+	  infolist = ORdao.selectRelease(number); 
+	  return infolist; 
+	  }
+  
+  @Override
+  public List<OperationRegistVO> selectReleaseDetail(String number) throws DataAccessException, ParseException{ 
+	  List<OperationRegistVO> infolist = null; 
+	  infolist = ORdao.selectReleaseDetail(number); 
+	  return infolist; 
+	  }
   
 //작업지시마감처리 기능부
 	@Override 

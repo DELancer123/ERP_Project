@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
@@ -123,7 +124,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	
 	@Override
 	public List selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;		
+		List<OperationDetailVO> infoList = null;		
 		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
 		return infoList;
 	}
@@ -169,5 +170,24 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 			}
 		}
 		return message;
+	}
+	
+	@Override
+	public List selectRelease(String number) throws DataAccessException, ParseException {
+		List<OperationRegistVO> infoList = null;
+		
+		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date start = new Date(sdf.parse(startDate).getTime());
+		Date end = new Date(sdf.parse(endDate).getTime());
+		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+		COIvo.setStartDate(start);
+		COIvo.setEndDate(end);
+		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
+		} else {
+			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
+		}
+		
+		return infoList;
 	}
 }
