@@ -243,7 +243,7 @@ request.setCharacterEncoding("UTF-8");
                     <td>
                         <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
                         style="width:150px;"/>
-                        <a href="javascript:searchZip(${general_Customer_Code })"><i class="fas fa-search" style="color :blue;"></i></a>
+                        <a href="javascript:searchZip()"><i class="fas fa-search" style="color :blue;"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -321,9 +321,39 @@ request.setCharacterEncoding("UTF-8");
         	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
         }
         
-        function searchZip(name) { //우편번호 검색 팝업
+        function searchZip() { //우편번호 검색 팝업
         	openWindowPop("${contextPath}/member/regbasicaccZipPopup.do", "regbasicaccZipPopup");
         }
+        
+        function setChildValue(name){
+        	  
+       	    const URLSearch = new URLSearchParams(location.search);
+     		URLSearch.set('submit', '2');
+     		const newParam = URLSearch.toString();
+     		
+            if(URLSearch.get('zipCode') == null){
+      		window.location.href = location.pathname +'?'+newParam + '&zipCode=' + name;
+            }
+            else{
+            	URLSearch.set('zipCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+        }
+        
+        function newRow(){
+    		const URLSearch = new URLSearchParams(location.search);
+    		URLSearch.set('submit','1');
+    		const newParam = URLSearch.toString();
+    		var link = location.pathname +'?'+newParam;
+    		var articleNOInput = document.createElement("input");
+    		articleNOInput.setAttribute("type","hidden");
+    		articleNOInput.setAttribute("name","path");
+    		articleNOInput.setAttribute("value", link);
+    		document.getElementById('regcompany').appendChild(articleNOInput);
+    		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
+    		document.getElementById('regcompany').submit();
+    		}
       
   
 		</script>

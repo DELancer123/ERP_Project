@@ -56,8 +56,10 @@ public class SystemmagControllerImpl implements SystemmagController {
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
+		
 		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
+		String zipCode = (String) request.getParameter("zipCode");
 
 		if (code == null || submit == null) { //첫접속이라면?
 			List comView = systemmagService.comView(); //select all 쿼리를 호출한다
@@ -72,6 +74,20 @@ public class SystemmagControllerImpl implements SystemmagController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
+		}
+		else if(submit.equals("2")) {
+			List comView = systemmagService.comView();
+			List comcom = systemmagService.comcom(code);
+//			List zipView = systemmagService.ZipView();
+			
+			mav = new ModelAndView(viewName);
+			mav.addObject("comView", comView);
+			mav.addObject("comcom",comcom);
+//			mav.addObject("zipView", zipView);
+			mav.addObject("zipCode", zipCode);
+			
+			System.out.println("zipcode:" + zipCode);
+			System.out.println("comcode:"+ code);
 		}
 
 		return mav;
@@ -157,7 +173,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 		 request.setCharacterEncoding("utf-8"); 
 		 ModelAndView mav = null; 
 		 String viewName = getViewName(request); 
-		 String com_code = (String) request.getParameter("com_code");
+		 String com_code = request.getParameter("com_code");
 		 System.out.println("com_code="+com_code);
 		 
 		 List ZipView = systemmagService.ZipView(); //select * 문을호출한다음

@@ -94,14 +94,20 @@
     			text_code.value = code;
     			text_name.value = name;
     	}
-    	submit_button.onclick = function(){
+    	/* submit_button.onclick = function(){
     		text_code.setAttribute("zipCode", text_code.value)
-     		opener.parent.location='${contextPath }/member/regbasicacc.do?zipcode='+text_code.value; 
+     		opener.parent.location='${contextPath }/member/regbasicacc.do?submit=2&com_code='+com_code+'zipcode='+text_code.value; 
     		window.close();
+    	} */
+    	submit_button.onclick = function(){
+    		opener.setChildValue(text_code.value);
+			window.close();
     	}
     	close_button.onclick = function(){
     		window.close();
     	}
+    	
+    	
     </script>
     </form>
     
