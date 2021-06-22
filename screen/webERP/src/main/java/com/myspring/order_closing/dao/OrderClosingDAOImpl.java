@@ -36,15 +36,23 @@ public class OrderClosingDAOImpl implements OrderClosingDAO{
 	}
 	
 	@Override
-	public int updateOrderClosing(OrderClosingVO vo) throws DataAccessException {
-		int result = 0; 
-
-		int idx = vo.getListVO().size()-1;
-		for(int i = 0; i<idx;i++) {
-			System.out.println("i"+i);
-		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateOrderClosing",vo.getListVO().get(i));
+	public void updateOrderClosing(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.update("mappers.erp.updateOrderClosing", Integer.parseInt(obj));		
 		}
-		return result;
+	}
+	
+	@Override
+	public void delClosing(String[] noary) throws DataAccessException{
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.delClosing", Integer.parseInt(obj));		
+		}
+	}
+	
+	@Override
+	public int addClosing(OrderClosingVO vo) throws DataAccessException {
+		int idx = vo.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertClosing",vo.getListVO().get(idx));
+		return 0;
 	}
 }

@@ -25,7 +25,17 @@ public class OrderClosingServiceImpl implements OrderClosingService{
 	}
 	
 	@Override
-	public int updateOrderClosing(OrderClosingVO vo) throws DataAccessException {
-		return orderclosingDAO.updateOrderClosing(vo);
+	public void updateOrderClosing(String[] noary) throws DataAccessException {
+		orderclosingDAO.updateOrderClosing(noary);
+	}
+	
+	@Override
+	public void delClosing(String[] noary) throws DataAccessException{
+		orderclosingDAO.delClosing(noary);
+	}
+
+	@Override
+	public int addClosing(OrderClosingVO vo) throws DataAccessException {
+		return orderclosingDAO.addClosing(vo);
 	}
 }

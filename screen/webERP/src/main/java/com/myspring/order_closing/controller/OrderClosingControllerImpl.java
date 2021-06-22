@@ -40,12 +40,69 @@ public class OrderClosingControllerImpl implements OrderClosingController{
 	
 	@Override
 	@RequestMapping(value="/member/updateOrderClosing.do" ,method = RequestMethod.GET)
-	public ModelAndView updateOrderClosing(@ModelAttribute("OrderClosing") OrderClosingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = orderclosingService.updateOrderClosing(vo);
-		System.out.println("result "+result);
+	public ModelAndView updateOrderClosing(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String no = (String) request.getParameter("sequence");
+		String viewName = getViewName(request);
+		String[] numberary  = no.split(",");
+		orderclosingService.updateOrderClosing(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/orderclosing.do");
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value = "/member/delClosing.do", method = RequestMethod.GET)
+	public ModelAndView delClosing(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String no = (String) request.getParameter("sequence");
+		String viewName = getViewName(request);
+		String[] numberary  = no.split(",");
+		orderclosingService.delClosing(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/orderclosing.do");
+		return mav;
+	}	
+
+	@Override
+	@RequestMapping(value = "/member/addClosing.do", method = RequestMethod.GET)
+	public ModelAndView addClosing(@ModelAttribute("ClosingList") OrderClosingVO vo,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = orderclosingService.addClosing(vo);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
+	
+	private String getViewName(HttpServletRequest request) throws Exception {
+		String contextPath = request.getContextPath();
+		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
+		if (uri == null || uri.trim().equals("")) {
+			uri = request.getRequestURI();
+		}
+
+		int begin = 0;
+		if (!((contextPath == null) || ("".equals(contextPath)))) {
+			begin = contextPath.length();
+		}
+
+		int end;
+		if (uri.indexOf(";") != -1) {
+			end = uri.indexOf(";");
+		} else if (uri.indexOf("?") != -1) {
+			end = uri.indexOf("?");
+		} else {
+			end = uri.length();
+		}
+
+		String viewName = uri.substring(begin, end);
+		if (viewName.indexOf(".") != -1) {
+			viewName = viewName.substring(0, viewName.lastIndexOf("."));
+		}
+		if (viewName.lastIndexOf("/") != -1) {
+			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
+		}
+		return viewName;
+	}
+	
 }

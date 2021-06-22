@@ -96,6 +96,9 @@ String sequence = (String) request.getAttribute("sequence");
 			<td><i class="fas fa-search" style="color: blue;"></td>
 		</tr>
 	</table>
+	<div id="button">
+		<input type="button" onClick="func_DeadLine()" value="마감처리" />
+	</div>
 	</container1>
 	<container2 id=contents2>
 	<div id=view>
@@ -138,16 +141,16 @@ String sequence = (String) request.getAttribute("sequence");
 				<tr align="center">
 					<td></td>
 				<td><input type="text" id="sequence" name="ListVO[${fn:length(ClosingList) }].sequence" value='${sequence}' style="width: 100%" /></td>
-				<td><input type="text" id="order_no" name="ListVO[${fn:length(ClosingList) }].order_no" value='${order_no}' readonly /></td>
+				<td><input type="text" id="order_no" name="ListVO[${fn:length(ClosingList) }].order_no" value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
-				<td><input type="text" id="code" name="ListVO[${fn:length(ClosingList) }].code" value='${code}' readonly style="width: 100%" /></td>
-				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}' readonly /></td>
-				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' readonly /></td>
-				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' readonly /></td>
-				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" readonly /></td>
-				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" readonly /></td>
-				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' readonly /></td>
-				<td><input type="text" id="order_balance" name="ListVO[${fn:length(ClosingList) }].order_balance" value='${order_balance}' readonly /></td>
+				<td><input type="text" id="code" name="ListVO[${fn:length(ClosingList) }].code" value='${code}' style="width: 100%" /></td>
+				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}'  /></td>
+				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' /></td>
+				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' /></td>
+				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
+				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" /></td>
+				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
+				<td><input type="text" id="order_balance" name="ListVO[${fn:length(ClosingList) }].order_balance" value='${order_balance}' /></td>
 				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' /></td>
 				</tr>
 				</tbody>
@@ -196,7 +199,7 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
  		  }
    	}
        
-function updateRow() {
+/* function updateRow() {
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();
 	var link = location.pathname + '?' + newParam;
@@ -219,6 +222,47 @@ Input.setAttribute("value", link);
 document.getElementById('OrderClosing').appendChild(Input);
 document.getElementById('OrderClosing').action = "${contextPath}/member/updateOrderClosing.do";
 document.getElementById('OrderClosing').submit();
+} */
+
+function InsertRow(){
+	const URLSearch = new URLSearchParams(location.search);
+	const newParam = URLSearch.toString();
+	var link = location.pathname + '?' + newParam;
+	var Input = document.createElement("input");
+	Input.setAttribute("type", "hidden");
+	Input.setAttribute("name", "path");
+	Input.setAttribute("value", link);
+	document.getElementById('OrderClosing').appendChild(Input);
+	document.getElementById('OrderClosing').action = "${contextPath}/member/addClosing.do";
+	document.getElementById('OrderClosing').submit();
+
+}
+
+function deleteRow() {
+	  var item = document.getElementsByName("content").length;
+	  var no = "";
+	  var ary = [];
+	  for(var i=0; i<item;i++){
+		  if(document.getElementsByName("content")[i].checked==true){
+			  sequence = document.getElementsByName("content")[i].value;
+			  ary.push(sequence);
+		  }
+		  
+			  window.location.href = "${contextPath}/member/delClosing.do?sequence="+ary;
+	  }
+}
+function func_DeadLine(){
+	  var item = document.getElementsByName("content").length;
+	  var no = "";
+	  var ary = [];
+	  for(var i=0; i<item;i++){
+		  if(document.getElementsByName("content")[i].checked==true){
+			  sequence = document.getElementsByName("content")[i].value;
+			  ary.push(sequence);
+		  }
+		  
+			  window.location.href = "${contextPath}/member/updateOrderClosing.do?sequence="+ary;
+	}
 }
 </script>
 </html>

@@ -11,7 +11,11 @@ public interface OrderClosingController {
 
 	ModelAndView ClosingList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView updateOrderClosing(OrderClosingVO vo, HttpServletRequest request, HttpServletResponse response)
+	ModelAndView delClosing(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView addClosing(OrderClosingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
+
+	ModelAndView updateOrderClosing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

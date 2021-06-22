@@ -259,9 +259,18 @@
 	
 	<update id="updateOrderClosing">
 		<![CDATA[update PMM_PM_ORDER
-			set deadline= #{deadline}
-			where order_no=#{order_no}]]>
+			set deadline = '마감'
+			where sequence=#{sequence}and deadline ='진행']]>
 	</update>
+	<delete id="delClosing">
+		delete from PMM_PM_ORDER where sequence = #{sequence}
+	</delete>
+	<insert id="insertClosing" parameterType="orderclosingVO">
+		<![CDATA[insert into PMM_PM_ORDER
+		values(#{sequence},F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{buyer},#{item_Code},#{item_Name},#{standard},
+		#{inventory_unit},#{order_quantity},#{order_balance},#{deadline})
+		]]>
+	</insert> 
 	
 	<!-- 품목단가등록(재원) 파트 -->
 
