@@ -16,8 +16,8 @@ public interface OrderRegService {
 	public List listCusts() throws DataAccessException;
 	public List submitCust(String custCode) throws DataAccessException;
 	public int addOrder(OrderVO orderVO) throws DataAccessException;
+	public int inputNo() throws DataAccessException;
 //	public List custText(String custCode) throws DataAccessException;
-//	public int inputNo() throws DataAccessException;
 //////	public int removeItem(String item_Code) throws DataAccessException;
 //
 //	

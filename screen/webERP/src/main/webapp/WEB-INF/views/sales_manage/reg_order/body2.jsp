@@ -14,7 +14,7 @@
 <% String parent = request.getParameter("custCode");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="cust" items="${orderList}"> 
-	<c:set var="code" value="${cust.custName}"/>
+	<c:set var="code" value="${cust.ordCode}"/>
 </c:forEach>
 
 <!DOCTYPE html>
@@ -68,8 +68,8 @@
                 <c:forEach var="cust" items="${orderList}"> 
                 <tbody>
                     <td><input type="checkbox" value= "${cust.ordCode}" id="check" name="content"/></td>
-                    <td><input type="text" value="${cust.ordCode}"readonly/></td>
-                    <td><input type="text" value="${cust.ordDate}"readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"readonly/></td>
+                    <td><input type="date" value="${cust.ordDate}"readonly/></td>
                     <td><input type="text" value="${cust.custName}"readonly/></td>
                     <td><input type="text" value="${cust.tax}"readonly/></td>
                     <td><input type="text" value="${cust.note}"readonly/></td>
@@ -77,8 +77,8 @@
                 </c:forEach>
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" value="${ordCode}"readonly/></td>
-                    <td><input type="text" value="${ordDate}"readonly/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].ordCode" value="${ordCode}"readonly/></td>
+                    <td><input type="date" value="${ordDate}"readonly/></td>
                     <td><input type="text" value="${custCode}"readonly/></td>
                     <td><input type="text" value="${tax}"readonly/></td>
                     <td><input type="text" value="${note}"readonly/></td>
@@ -104,16 +104,16 @@
                    <c:forEach var="cust" items="${orderList}"> 
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" value="${cust.corVO.item_code}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.item_name}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.stand}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.unit}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.dueDate}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.orderQuant}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.price}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}"readonly/></td>
-                    <td><input type="text" value="${(cust.corVO.orderQuant*cust.corVO.price)*0.1}"readonly/></td>
-                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}"readonly/></td>
+                    <td><input type="text" value="${cust.corVO.item_code}" ondblclick="search2()" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.item_name}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.stand}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.unit}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.dueDate}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.orderQuant}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.price}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
+                    <td><input type="text" value="${(cust.corVO.orderQuant*cust.corVO.price)*0.1}" readonly/></td>
+                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.orderOX}"readonly/></td>
                 </tbody>
                 </c:forEach>
@@ -127,11 +127,21 @@
                     <td><input type="text" value="${corVO.orderQuant}"readonly/></td>
                     <td><input type="text" value="${corVO.price}"readonly/></td>
                     <td><input type="text" value="${corVO.orderQuant*corVO.price}"readonly/></td>
-                    <td><input type="text" value="${corVO.orderQuant*corVO.price)*0.1}"readonly/></td>
+                    <td><input type="text" value="${(corVO.orderQuant*corVO.price)*0.1}"readonly/></td>
                     <td><input type="text" value="${corVO.orderQuant*corVO.price}"readonly/></td>
                     <td><input type="text" value="${corVO.orderOX}"readonly/></td>
                 </tbody>
             </table>
         </container3>
+        <script>
+        var item_code = document.getElementById("item_code");
+        var item_code = document.getElementById("dataoutput");
+        item_code.onfocus = function(){
+        	var item_name = document.getElementById("item_code");
+        }
+        function search5(){
+        	openWindowPop('http://localhost:8090/webERP/sales_manage/pop/regorderItem.do','regorderItem');
+        }
+        </script>
 </body>
 </html>

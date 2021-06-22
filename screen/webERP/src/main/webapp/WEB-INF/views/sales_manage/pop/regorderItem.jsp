@@ -7,9 +7,8 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-<%
-	String inputNo = (String)request.getAttribute("inputNo");
-%>
+
+
 <html>
 <head>
 <meta charset=UTF-8">
@@ -45,16 +44,16 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/member/regorder" >
+<form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>고객명</td>
+                    <td>품번</td>
                     <td><input type="text" id="code" /></td>
                 </tr>
                 <tr>
-                    <td>고객 번호</td>
+                    <td>품명</td>
                     <td><input type="text" id="name"/></td>
                 </tr>
             </table>
@@ -68,16 +67,16 @@
         	<div id="view">
             	<table style="width: 100%;">
                 	<tr align="center">
-      					<td><b>코드</b></td>
-      					<td><b>거래처명</b></td>
-      					<td><b>사업자번호</b></td>
+      					<td><b>품번</b></td>
+      					<td><b>품명</b></td>
+      					<td><b>규격</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${orderCustList}" >
+ 					<c:forEach var="item" items="${allItemList}" >
    						<tr align="center">
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</a></td>
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custName}</a></td>
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.comNum}</a></td>
+      						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
+      						<td>${item.item_name}</td>
+      						<td>${item.standard}</td>
 						</tr>
   					</c:forEach>   
 				</table>
@@ -92,10 +91,9 @@
     		text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		text_code.setAttribute("custCode",text_code.value);
-			text_name.setAttribute("custName",text_name.value);
-			submit_button.setAttribute("submit",submit_button)
-    		opener.parent.location='${contextPath}/member/regorder.do?custCode='+text_code.value+'&&custName='+text_name.value;
+    		text_code.setAttribute("item_code",text_code.value);
+			text_name.setAttribute("item_name",text_name.value);
+    		opener.parent.location='${contextPath}/member/regsalesplan.do?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>

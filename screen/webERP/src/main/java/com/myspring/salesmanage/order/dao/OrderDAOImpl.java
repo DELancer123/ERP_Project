@@ -39,9 +39,8 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public int selOrdCode() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int selOrdCode() throws DataAccessException {	
+		return sqlSession.selectOne("mappers.erp.selOrderCode");
 	}
 
 	@Override

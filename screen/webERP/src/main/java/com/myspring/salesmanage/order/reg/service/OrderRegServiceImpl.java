@@ -41,4 +41,9 @@ public class OrderRegServiceImpl implements OrderRegService {
 		return orderDAO.addOrder(orderVO);
 	}
 
+	@Override
+	public int inputNo() throws DataAccessException {
+		return orderDAO.selOrdCode();
+	}
+
 }

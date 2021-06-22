@@ -71,7 +71,7 @@ public class OrderRegControllerImpl implements OrderRegController{
 			List orderList = orderService.submitCust(code);
 			mav = new ModelAndView(viewName);
 			mav.addObject("orderList", orderList);
-			int inputNo = orderService.hashCode();
+			int inputNo = orderService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo+"번째 주문번호");
 			request.setAttribute("inputNo", inNo);
@@ -88,7 +88,20 @@ public class OrderRegControllerImpl implements OrderRegController{
 		int result = 0;
 		result = orderService.addOrder(orderVO);
 		ModelAndView mav = new ModelAndView("redirect:" + path);
+		System.out.println("list"+orderVO.getListOrd().get(2).getCustName());
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="/sales_manage/pop/regorderItem.do",method = RequestMethod.GET)
+	public ModelAndView helper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		logger.info("viewName: "+ viewName);
+		logger.debug("viewName: "+ viewName);
+		List orderCustList = orderService.listCusts();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("orderCustList", orderCustList);
+
 		return mav;
 	}
 	
