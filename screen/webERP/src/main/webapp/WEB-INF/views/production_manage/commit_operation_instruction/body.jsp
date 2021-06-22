@@ -96,7 +96,7 @@
                             <input type="button" value="자재출고" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
-                            <input type="button" value="취소" style="padding: 5px;"></input>
+                            <input type="button" value="취소" onClick="revert();" style="padding: 5px;"></input>
                         </td>
                         <td>
                             <input type="button" value="확정" onClick="confirm();" style="padding: 5px;"></input>

@@ -121,7 +121,7 @@
 	</select>
 	
 	<select id="checkConfirmDetail" resultType="string">
-		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{number}]]>
 	</select>
 	
 	<update id="updConfirmDetail">
@@ -132,7 +132,7 @@
 		]]>  
 	</update>	
 	
-	<select id="countWorkOrderNumber">
+	<select id="countWorkOrderNumber" resultType="string">
 		<![CDATA[select COUNT(*) from CPM_PM_PRO_MAT_FOR_DET where workordernumber = #{number}]]>
 	</select>
 	
@@ -140,7 +140,7 @@
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG 
 		set status = '계획'
-		where workOrderNumber = #{workOrderNumber} and status = '확정'
+		where workOrderNumber = #{number} and status = '확정'
 		]]>
 	</update>
 	
