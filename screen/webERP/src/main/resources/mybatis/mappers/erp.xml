@@ -132,6 +132,14 @@
 		]]>  
 	</update>	
 	
+	<select id="selectRelease" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber]]>
+	</select>
+	
+	<!-- <select id="selectReleaseDetail" resultMap="OpePerRegDetResult">
+		<![CDATA[]]>
+	</select> -->
+	
 	<!-- 작업지시 마감처리 CRUD -->
 	<select id="selectAllOperationInsClosingDetail" resultMap="OpePerRegDetResult">
 		<![CDATA[select opr.workordernumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code),func_Pro_Wor_Reg(oprd.workplace_code),opr.indicatedquantity, sum(oprd.performancequantity),

@@ -184,7 +184,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	public List selectReleaseDetail(String number) throws DataAccessException, ParseException {
 		List<OperationRegistVO> infoList = null;
 		
-		infoList = sqlSession.selectList("mappers.erp.selectReleaseDetail", number);		
+		String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
+		if(count.equals("0")) {
+			infoList = sqlSession.selectList("mappers.erp.selectReleaseDetail", number);	
+		} else {
+			System.out.println("출고 정보가 이미 존재합니다!");
+		}
 		return infoList;
 	}
 }
