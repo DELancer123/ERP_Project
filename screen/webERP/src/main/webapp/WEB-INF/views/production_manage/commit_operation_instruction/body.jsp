@@ -93,7 +93,7 @@
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
                         <td>
-                            <input type="button" value="자재출고" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="자재출고" onClick="release()" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
                             <input type="button" value="취소" onClick="revert();" style="padding: 5px;"></input>
@@ -325,6 +325,17 @@
       			  	ary.push(no);
       		  	}
       			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
+      	  }
+        }
+        
+        function release(){
+        	var item = document.getElementsByName("content").length;
+      	  	var no = "";
+      	  	for(var i=0; i<item;i++){
+      			  if(document.getElementsByName("content")[i].checked==true){
+      				no = document.getElementsByName("content")[i].value;
+      		  	}
+      			window.location.href = "${contextPath}/member/releaseDetail.do?workOrderNumber="+no;
       	  }
         }
       </script>

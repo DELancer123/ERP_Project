@@ -29,10 +29,8 @@ import
   public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException;
   public List<OperationRegistVO> selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException;
   public List<String> confirmDetail(String[] numberAry) throws DataAccessException;
-  public List<OperationInsClosingVO> selectAllOperationInsClosingInfo(String startDate, String endDate)
-		throws DataAccessException, ParseException;
-  public List<OperationInsClosingVO> selectAllOperationInsClosingInfoDetail(String number)
-		throws DataAccessException, ParseException;
+  public List<OperationInsClosingVO> selectAllOperationInsClosingInfo(String startDate, String endDate)	throws DataAccessException, ParseException;
+  public List<OperationInsClosingVO> selectAllOperationInsClosingInfoDetail(String number) throws DataAccessException, ParseException;
   public List<String> closingDetail(String[] numberAry) throws DataAccessException;
   public List<String> closingCancleDetail(String[] numberAry) throws DataAccessException;
   public List<String> revertDetail(String[] numberAry) throws DataAccessException;
