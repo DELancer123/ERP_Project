@@ -7,8 +7,6 @@ import com.myspring.Billing.vo.BIllIngVO;
 
 public interface BIllIngDAO {
 
-	List selectAllcmList() throws Exception;
-
 	List selectAllMrpaMount() throws Exception;
 
 	void delbilling(String[] noary) throws DataAccessException;
@@ -16,5 +14,7 @@ public interface BIllIngDAO {
 	int updatebilling(BIllIngVO vo) throws DataAccessException;
 
 	int addbilling(BIllIngVO vo) throws DataAccessException;
+
+	List selectAllcmList(String startDate, String endDate) throws Exception;
 
 }

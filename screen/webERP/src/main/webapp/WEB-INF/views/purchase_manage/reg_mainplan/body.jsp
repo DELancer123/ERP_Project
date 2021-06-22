@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="false" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -10,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 #contents1 {
@@ -66,7 +68,7 @@
 <body>
 <container1 id=contents1>
 	<table class="con1_search">
-		<tr>
+<!-- 		<tr>
 			<td>사업장</td>
 			<td style="width: 50px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
@@ -80,7 +82,7 @@
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
 			<td><input type="text" name="" disabled /></td>
 
-		</tr>
+		</tr> -->
 		<tr>
 			<td>계획기간</td>
 			<td colspan="2" style="width: 50px;"><input type="date"
@@ -88,15 +90,12 @@
 			<td>~</td>
 			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
 			<td></td>
-			<!-- <td colspan="5">사원</td>
+			<!-- 			 <td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" name="" disabled /></td> -->
-			<td colspan="5">검색</td>
-			<td style="width: 80px;">
-			<input type='text' id='txtFilter' onkeyup='{filter();return false}' 			
-			onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}'>
+			<td><input type="text" name="" disabled /></td>  -->
+					
 		</tr> 
 	</table>
 	<div id="button">
@@ -122,7 +121,7 @@
 			<td>고객</td>
 			<td>비고</td>
 		</thead>
-		<tbody id="languageTBody">
+		<tbody>
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
@@ -159,7 +158,9 @@
 	</table>
 	</div>
 </container2>
-<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 var windowObj;
 
@@ -169,7 +170,7 @@ function ApplyOrder(){
 
 	windowObj = window.open("applyorder.do","applyorder",settings);
 	
-	var txt_code = document.getelementById("item_Code");
+ 	var txt_code = document.getelementById("item_Code");
 	var txt_Name = document.getelementById("item_Name");
 	var txt_buyer = document.getelementById("buyer");
 	var txt_expDate = document.getelementById("expected_date");
@@ -177,7 +178,7 @@ function ApplyOrder(){
 	document.getElementById('item_Code').value= windowObj.document.getElementById("item_Code").value;  
 	document.getElementById('item_Name').value= windowObj.document.getElementById("item_Name").value;  
 	document.getElementById('buyer').value= windowObj.document.getElementById("buyer").value; 
-	document.getElementById('expected_date').value= windowObj.document.getElementById("expected_Date").value; 
+	document.getElementById('expected_date').value= windowObj.document.getElementById("expected_Date").value;
 }
 
 function deleteRow() {
@@ -233,15 +234,38 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
- 	function filter(){
-		if($('#txtFilter').val()=="")
-			$("#languageTBody tr").css('display','');
-			else{
-			$("#languageTBody tr").css('display','none');
-			$("#languageTBody tr[name*='"+$('#txtFilter').val()+"']").css('display','');
-		}
-		return false;
-	} 
+	/* input date의 현재 날짜 기본값 설정*/
+	 document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+	 document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+	 
+	 /* 검색부 date onChange 함수 설정 */
+	 		var startDate = new Date().toISOString().substring(0,10);;
+	    	var endDate = new Date().toISOString().substring(0,10);;
+	    	
+	    	$('#searchStartDate').change(function (){
+	            var date = $('#searchStartDate').val();
+	            startDate = date;
+	        });
+	    	$('#searchEndDate').change(function (){
+	            var date = $('#searchEndDate').val();
+	            endDate = date;
+	        });
+	    	
+	    	 /* 조회버튼 클릭시 기능 구현 */
+	        view_button.onclick = function(){
+	  		  if(startDate>endDate){
+	  			  alert(" 종료일은 시작일보다 작을수 없습니다.");
+	  		  } else{
+	  			  
+	      	  const URLSearch = new URLSearchParams(location.search);
+	  		  URLSearch.set('startDate', startDate);
+	  		  URLSearch.set('endDate', endDate);
+	  		  const newParam = URLSearch.toString();
+
+	  		  window.open(location.pathname + '?' + newParam, '_self');
+	  		  }
+	    	}
+	        
 </script>
 </form>
 </body>

@@ -1,6 +1,5 @@
 package com.myspring.MainPlan.service;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,8 @@ public class MainPlanServiceImpl implements MainPlanService{
 	private MainPlanDAO mainplanDAO;
 	
 	@Override
-	public List<MainPlanVO>selectAllMainPlanList() throws Exception{
-		List<MainPlanVO> mainplanList = mainplanDAO.selectAllMainPlanList();
+	public List<MainPlanVO>selectAllMainPlanList(String startDate, String endDate) throws Exception{
+		List<MainPlanVO> mainplanList = mainplanDAO.selectAllMainPlanList(startDate,endDate);
 		return mainplanList;
 	}
 	

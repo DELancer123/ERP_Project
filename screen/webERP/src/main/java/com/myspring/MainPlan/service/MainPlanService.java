@@ -9,7 +9,6 @@ import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
 
 public interface MainPlanService {
-	List<MainPlanVO> selectAllMainPlanList() throws Exception;
 
 	List<MpsOSVO> selectAllMpsosList() throws Exception;
 
@@ -18,5 +17,8 @@ public interface MainPlanService {
 	int addMPS(MainPlanVO vo) throws DataAccessException;
 
 	int updateMPS(MainPlanVO vo) throws DataAccessException;
+
+	List<MainPlanVO> selectAllMainPlanList(String startDate, String endDate) throws Exception;
+
 
 }

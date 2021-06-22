@@ -1,7 +1,6 @@
 package com.myspring.MainPlan.dao;
 
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 
 @Repository("mainplanDAO")
 public class MainPlanDAOImpl implements MainPlanDAO{
@@ -19,8 +19,20 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List selectAllMainPlanList() throws Exception{
-		List<MainPlanVO>mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList");
+	public List selectAllMainPlanList(String startDate, String endDate) throws Exception{
+		List<MainPlanVO>mainplanList = null;
+		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date start = new Date(sdf.parse(startDate).getTime());
+			Date end = new Date(sdf.parse(endDate).getTime());
+			System.out.println(start);
+			MainPlanVO vo = new MainPlanVO();
+			vo.setStartDate(start);
+			vo.setEndDate(end);
+			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList", vo);
+		} else {
+			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList");
+		}
 		return mainplanList;
 	}
 	

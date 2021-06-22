@@ -4,12 +4,9 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
-
 import com.myspring.MainPlan.vo.MainPlanVO;
 
 public interface MainPlanDAO {
-
-	List selectAllMainPlanList() throws Exception;
 
 	List selectAllMpsosList() throws Exception;
 
@@ -19,4 +16,5 @@ public interface MainPlanDAO {
 
 	int updateMPS(MainPlanVO vo) throws DataAccessException;
 
+	List selectAllMainPlanList(String startDate, String endDate) throws Exception;
 }

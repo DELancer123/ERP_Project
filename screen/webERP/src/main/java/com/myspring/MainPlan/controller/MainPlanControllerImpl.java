@@ -13,12 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
-import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 
 @Controller("mainplanController")
 public class MainPlanControllerImpl implements MainPlanController {
@@ -31,8 +30,11 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@Override
 	@RequestMapping(value = "member/mainplan.do", method = RequestMethod.GET)
 	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String viewName = (String) request.getAttribute("viewName");
-		List mainplanList = mainplanService.selectAllMainPlanList();
+		  logger.debug("debug : viewName = " + viewName); 
+		List mainplanList = mainplanService.selectAllMainPlanList(startDate, endDate);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mainplanList", mainplanList);
 		return mav;
@@ -84,6 +86,8 @@ public class MainPlanControllerImpl implements MainPlanController {
 		return mav;
 	}
 
+
+	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

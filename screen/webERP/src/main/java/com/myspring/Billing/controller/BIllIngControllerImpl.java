@@ -26,8 +26,10 @@ public class BIllIngControllerImpl implements BIllIngController{
 	@Override
 	@RequestMapping(value="member/regbilling.do", method = RequestMethod.GET)
 	public ModelAndView cmList(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String viewName = (String)request.getAttribute("viewName");
-		List cmList = billingService.selectAllcmList();
+		List cmList = billingService.selectAllcmList(startDate, endDate);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("cmList", cmList);	
 		return mav;

@@ -21,8 +21,8 @@ public class BIllIngServiceImpl implements BIllIngService{
 	private BIllIngDAO billingDAO;
 	
 	@Override
-	public List<BIllIngVO>selectAllcmList() throws Exception{
-		List<BIllIngVO>cmList = billingDAO.selectAllcmList();
+	public List<BIllIngVO>selectAllcmList(String startDate, String endDate) throws Exception{
+		List<BIllIngVO>cmList = billingDAO.selectAllcmList(startDate,endDate);
 		return cmList;
 	}	
 	@Override

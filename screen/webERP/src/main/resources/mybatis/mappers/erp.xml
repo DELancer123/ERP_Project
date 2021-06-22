@@ -113,6 +113,8 @@
 		<result property="plan_quantity" column="plan_quantity" />
 		<result property="buyer" column="buyer" />
 		<result property="note" column="note" />
+		<result property="startDate" column="startDate" />
+		<result property="endDate" column="endDate" />
 	</resultMap>
 	<resultMap type="mpsosVO" id="MpsOSResult">
 		<result column="orderno" property="orderno" />
@@ -131,8 +133,12 @@
 		<result column="note" property="note" />
 	</resultMap>
 
-	<select id="selectAllMainPlanList" resultMap="mainplanResult">
+	<select id="selectAllMainPlanList" resultMap="mainplanResult" parameterType="MainPlanVO"> 
 		<![CDATA[SELECT * from pmm_pm_mps]]>
+			<where>
+		<if test="startDate != '' and startDate != null">plandate between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>
+	</where>
 	</select>
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
@@ -151,7 +157,6 @@
 			#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
 		]]>
 	</insert>
-	
 	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
  		<result property="sequence" column="sequence" />
@@ -177,8 +182,12 @@
 		<result property="expected_quantity" column="expected_quantity" />
 	</resultMap>
 
-	<select id="selectAllcmList" resultMap="billingResult">
+	<select id="selectAllcmList" resultMap="billingResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from PMM_PM_CM]]>
+			<where>
+		<if test="startDate != '' and startDate != null">claim_date between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and requestdate between #{startDate} and #{endDate} </if>
+	</where>
 	</select>	
 	<select id="selectAllMrpaMount" resultMap="mrpamountResult">
 		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,inventory_unit,expected_quantity

@@ -21,8 +21,11 @@ public class MainPlanVO {
 	private int plan_quantity;
 	private String buyer;
 	private String note;
+	private Date startDate;
+	private Date endDate;
 	private List<MainPlanVO> ListVO;
-	 
+
+	
 	public MainPlanVO(String planNO,Date plandate,String item_Code,String item_Name,String standard,String inventory_unit,int sequence,
 			Date expected_date,Date due_date,int plan_quantity,String buyer,String note) 
 	{
@@ -39,6 +42,33 @@ public class MainPlanVO {
 		this.note=note;
 		this.planNO=planNO;
 	}
+	
+	
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
+
 	@Override
 	public String toString() {return Arrays.toString(ListVO.toArray());}
 	

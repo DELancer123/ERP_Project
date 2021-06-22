@@ -64,7 +64,7 @@ a {
 			</table>
 			<div id="button">
 				<button>조회</button>				
-				<button onClick="sendToParent();">적용</button>				
+				<button onClick="sendToParent();">적용</button>
 				<button>취소</button>
 			</div>
 		</div>
@@ -112,19 +112,19 @@ a {
 		</div>
 	</div>
 <script type="text/javascript">
-function sendToParent(){
-        var text_buyer = document.getElementById("buyer").value;
-        var text_Code = document.getElementById("item_Code").value;
-        var text_Name = document.getElementById("item_Name").value;
-        var text_expDate = document.getElementById("expected_Date").value;
+function sendToParent(){	
+    var text_buyer = document.getElementById("buyer").value;
+    var text_Code = document.getElementById("item_Code").value;
+    var text_Name = document.getElementById("item_Name").value;
+    var text_expDate = document.getElementById("expected_Date").value;
         
-        opener.document.getElementById("buyer").value=text_buyer;
-        opener.document.getElementById("item_Code").value=text_Code;
-        opener.document.getElementById("item_Name").value=text_Name;
-        opener.document.getElementById("expected_date").value=text_expDate;
+    opener.document.getElementById("buyer").value=text_buyer;
+    opener.document.getElementById("item_Code").value=text_Code;
+    opener.document.getElementById("item_Name").value=text_Name;
+    opener.document.getElementById("expected_date").value=text_expDate;
         
-        window.close();
-}        
+     window.close();
+} 
 </script>
 </body>
 </html>

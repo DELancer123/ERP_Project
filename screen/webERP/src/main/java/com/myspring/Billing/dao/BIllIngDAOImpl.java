@@ -1,5 +1,7 @@
 package com.myspring.Billing.dao;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,8 +20,20 @@ public class BIllIngDAOImpl implements BIllIngDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectAllcmList() throws Exception {
-		List<BIllIngVO> cmList = sqlSession.selectList("mappers.erp.selectAllcmList");
+	public List selectAllcmList(String startDate, String endDate) throws Exception {
+		List<BIllIngVO> cmList = null;
+		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date start = new Date(sdf.parse(startDate).getTime());
+			Date end = new Date(sdf.parse(endDate).getTime());
+			System.out.println(start);
+			MainPlanVO vo = new MainPlanVO();
+			vo.setStartDate(start);
+			vo.setEndDate(end);
+			cmList = sqlSession.selectList("mappers.erp.selectAllcmList", vo);
+		} else {
+			cmList = sqlSession.selectList("mappers.erp.selectAllcmList");
+		}
 		return cmList;
 	}
 	@Override

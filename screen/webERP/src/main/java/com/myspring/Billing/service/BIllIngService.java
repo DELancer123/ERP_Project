@@ -8,8 +8,6 @@ import com.myspring.Requiredamount.vo.RequiredamountVO;
 
 public interface BIllIngService {
 
-	List<BIllIngVO> selectAllcmList() throws Exception;
-
 	List<RequiredamountVO> selectAllMrpaMount() throws Exception;
 
 	void delbilling(String[] noary) throws DataAccessException;
@@ -17,5 +15,7 @@ public interface BIllIngService {
 	int updatebilling(BIllIngVO vo) throws DataAccessException;
 
 	int addbilling(BIllIngVO vo) throws DataAccessException;
+
+	List<BIllIngVO> selectAllcmList(String startDate, String endDate) throws Exception;
 
 }
