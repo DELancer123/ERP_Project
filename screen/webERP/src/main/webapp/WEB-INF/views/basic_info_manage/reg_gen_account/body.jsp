@@ -179,6 +179,14 @@ request.setCharacterEncoding("UTF-8");
 	                </tr>
 	               
                 </c:forEach>
+                <tr>
+                    <td colspan="3">
+                        <button onclick="searchView(this.value)"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none; 
+                        text-align: center; width:99%">새로등록</button>
+                    </td>
+                </tr>
                 </tbody>
                 
             </table>
@@ -344,7 +352,7 @@ request.setCharacterEncoding("UTF-8");
             }
         }
         
-        function newRow(){
+        function newRow(){      	
     		const URLSearch = new URLSearchParams(location.search);
     		URLSearch.set('submit','1');
     		const newParam = URLSearch.toString();
@@ -356,6 +364,7 @@ request.setCharacterEncoding("UTF-8");
     		document.getElementById('regcompany').appendChild(articleNOInput);
     		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
     		document.getElementById('regcompany').submit();
+    		alert('등록 되었습니다');
     		}
       
   
