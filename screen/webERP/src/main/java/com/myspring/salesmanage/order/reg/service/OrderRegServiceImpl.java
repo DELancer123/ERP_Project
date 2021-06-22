@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.myspring.salesmanage.order.dao.OrderDAO;
+import com.myspring.salesmanage.order.vo.OrderVO;
 
 @Service("orderRegService")
 public class OrderRegServiceImpl implements OrderRegService {
@@ -33,6 +34,11 @@ public class OrderRegServiceImpl implements OrderRegService {
 		List submitOrderCust = null;
 		submitOrderCust = orderDAO.submitOrderCust(custCode);
 		return submitOrderCust;
+	}
+
+	@Override
+	public int addOrder(OrderVO orderVO) throws DataAccessException {
+		return orderDAO.addOrder(orderVO);
 	}
 
 }

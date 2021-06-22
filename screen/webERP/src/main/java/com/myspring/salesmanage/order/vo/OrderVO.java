@@ -99,7 +99,7 @@ public class OrderVO {
 		this.repName = repName;
 	}
 
-	public List<OrderVO> getListEst() {
+	public List<OrderVO> getListOrd() {
 		return ListOrd;
 	}
 

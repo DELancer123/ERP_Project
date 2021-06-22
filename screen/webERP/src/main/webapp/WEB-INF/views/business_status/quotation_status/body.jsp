@@ -22,6 +22,7 @@
             	height: 10%;
             	border: 1px solid black;
             	z-index: 1;
+            	
         	}
         	input{
         		width: 100%;

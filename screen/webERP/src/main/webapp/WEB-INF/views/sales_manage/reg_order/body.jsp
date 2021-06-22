@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>수주 등록</title>
 <style>
 #contents1{
             position: absolute;
@@ -44,18 +44,18 @@
                 <tr>
                     <td>사업장</td>
                     <td><input type="text" name="" id=""></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td><input type="text" disabled></td>
+                    <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td>주문기간</td>
                     <td><input type="date"></td>
                     <td>~</td>
                     <td><input type="date"></td>
                 </tr>
                 <tr>
-                    <td colspan="5">거래처 명</td>
-                    <td class="codeInput"><input type="text" name="cust" value='${param.custCode}'disabled /></td>
-                    <td class="nameInput"><input type="text" name="cust" value='${param.custName}'disabled /></td>
-                    <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
+                    <td>거래처 명</td>
+                    <td><input type="text" name="cust" value='${param.custCode}'disabled /></td>
+                    <td><input type="text" name="cust" value='${param.custName}'disabled /></td>
+                    <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
 
                 </tr>
             </table>

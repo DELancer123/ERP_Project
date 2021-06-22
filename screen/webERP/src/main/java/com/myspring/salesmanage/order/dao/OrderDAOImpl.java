@@ -38,4 +38,29 @@ public class OrderDAOImpl implements OrderDAO {
 		return submitOrderCust;
 	}
 
+	@Override
+	public int selOrdCode() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int addOrder(OrderVO orderVO) throws DataAccessException {
+		int idx = orderVO.getListOrd().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertOrder",orderVO.getListOrd().get(idx));
+		return 0;
+	}
+
+//	@Override
+//	public int updNewOrder(String custCode) throws DataAccessException {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//
+//	@Override
+//	public void delOrder(String[] noary) throws DataAccessException {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
 }
