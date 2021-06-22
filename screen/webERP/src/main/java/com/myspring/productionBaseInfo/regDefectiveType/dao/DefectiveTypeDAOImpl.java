@@ -16,9 +16,9 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	@Override
-	public List viewDefective() throws DataAccessException {
+	public List viewDefective(String defGroupCode) throws DataAccessException {
 		List<DefectiveTypeVO> defList = null;
-		defList = sqlSession.selectList("mappers.erp.defectiveView");
+		defList = sqlSession.selectList("mappers.erp.defectiveView",defGroupCode);
 		
 		return defList;
 	}
@@ -44,6 +44,11 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		defGroupList = sqlSession.selectList("mappers.erp.defGroupView");
 		
 		return defGroupList;
+	}
+	@Override
+	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

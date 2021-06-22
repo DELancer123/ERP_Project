@@ -63,13 +63,13 @@
                             ºÒ·®±º
                         </td>
                         <td>
-                            <input type="text" name="department" style="width: 130px;">
+                            <input type="text" name="department" value='${param.defGroupCode }' style="width: 130px;">
                         </td>
                         <td>
-                             <i class="fas fa-search" style="color: blue;"></i>
+                             <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
                         </td>
                         <td>
-                            <input type="text" name="ckdepartment" style="width: 130px;" disabled >
+                            <input type="text" name="ckdepartment" value='${param.defGroup }' style="width: 130px;" disabled >
                         </td>
                     </tr>
                 </table>
@@ -90,10 +90,11 @@
                     </thead>
                     <c:forEach var = "def" items='${defectiveList }' varStatus="status" >
                     <tbody align="center">
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                        <td><input type="checkbox" value = "0" id="check" name="content"/></td>
+                        <input type="hidden" value='${status.index }' name="defList[${status.index }].chkNum"/>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
-                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' ondblclick="search1()"/></td>
+                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' /></td>
                         <td><input type="text" name="defList[${status.index }].usageStatus" value='${def.usageStatus }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveDescription" value='${def.defectiveDescription }'/></td>
                         <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${def.defectiveItemGroupCode }'/>
@@ -104,10 +105,10 @@
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text" id="defCode" name="defList[${fn:length(defectiveList) }].defectCode"/></td>
                         <td><input type="text" id="defName" name="defList[${fn:length(defectiveList) }].defectiveTypeName"/></td>
-                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup" ondblclick="search1()"/></td>
+                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"value='${param.defGroup }' ondblclick="search1()"/></td>
                         <td><input type="text" id="usage" name="defList[${fn:length(defectiveList) }].usageStatus"/></td>
                         <td><input type="text" id="defDes" name="defList[${fn:length(defectiveList) }].defectiveDescription"/></td>
-                        <input type="hidden" id="groupCode" name="defList[${fn:length(defectiveList) }].defectiveItemGroupCode"/>
+                        <input type="hidden" id="groupCode" name="defList[${fn:length(defectiveList) }].defectiveItemGroupCode"value='${param.defGroupCode }' />
                     <tr>
                 </table>
             </div>
@@ -116,7 +117,7 @@
       <script>
       	var save_button = document.getElementById("save");
       	var upd_button = document.getElementById("update");
-      	
+      	var delete_button = document.getElementById("delete");
       	save_button.onclick = function(){
 			const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
@@ -152,21 +153,25 @@
       	function search1(){
 	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
       	}
-      	function setChildValue(name){
-      	  
-      	  const URLSearch = new URLSearchParams(location.search);
-  		  URLSearch.set('submit', '2');
-  		  const newParam = URLSearch.toString();
-          if(URLSearch.get('defGroupCode') == null){
-  		window.location.href = location.pathname +'?'+newParam + '&defGroupCode=' + name;
-          }
-          else{
-          	URLSearch.set('defGroupCode', name);
-          	const newParam = URLSearch.toString();
-          	window.location.href = location.pathname +'?'+newParam;
-          }
-          
-      }
+      	delete_button.onclick = function(){
+      		document.getElementById("defCode").disabled = true;
+		     document.getElementById("defName").disabled = true;
+		     document.getElementById("defgroup").disabled = true;
+		     document.getElementById("usage").disabled = true;
+		     document.getElementById("defDes").disabled = true;
+		     document.getElementById("groupCode").disabled = true;
+		    const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+			 var link = location.pathname +'?'+newParam;
+	  			var articleNOInput = document.createElement("input");
+	  		     articleNOInput.setAttribute("type","hidden");
+	  		     articleNOInput.setAttribute("name","path");
+	  		     articleNOInput.setAttribute("value", link);
+	  		     document.getElementById('searchForm').appendChild(articleNOInput);
+	            document.getElementById('searchForm').action = "${contextPath}/member/deldefType.do";
+	  			document.getElementById('searchForm').submit();  
+      	}
       </script>
 </body>
 </html>

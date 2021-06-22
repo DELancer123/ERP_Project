@@ -134,9 +134,9 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public List viewDefective() throws DataAccessException {
+	public List viewDefective(String defGroupCode) throws DataAccessException {
 		List defView = null;
-		defView = defDAO.viewDefective();
+		defView = defDAO.viewDefective(defGroupCode);
 		return defView;
 	}
 
@@ -157,6 +157,13 @@ public class BomViewServiceImpl implements BomViewService{
 		List defGroupList = null;
 		defGroupList = defDAO.viewGroupList();
 		return defGroupList;
+	}
+
+	@Override
+	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException {
+		int delList = 0;
+		delList = defDAO.deldefType(defVO);
+		return delList;
 	}
 
 }

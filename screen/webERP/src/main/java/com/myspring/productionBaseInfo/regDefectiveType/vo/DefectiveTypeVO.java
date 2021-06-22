@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("defVO")
 public class DefectiveTypeVO {
+	private String chkNum;
 	private String defectCode;
 	private String defectiveTypeName;
 	private String defectiveItemGroupCode;
@@ -61,6 +62,12 @@ public class DefectiveTypeVO {
 	}
 	public void setOridefectCode(String oridefectCode) {
 		this.oridefectCode = oridefectCode;
+	}
+	public String getChkNum() {
+		return chkNum;
+	}
+	public void setChkNum(String chkNum) {
+		this.chkNum = chkNum;
 	}
 	
 	

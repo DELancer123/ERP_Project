@@ -8,13 +8,16 @@ import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 
 public interface DefectiveTypeDAO {
 
-	List viewDefective() throws DataAccessException;
+	List viewDefective(String defGroupCode) throws DataAccessException;
 
 	int addoutprice(DefectiveTypeVO defVO) throws DataAccessException;
 
 	int updDefType(DefectiveTypeVO defVO) throws DataAccessException;
 
 	List viewGroupList() throws DataAccessException;
+
+	int deldefType(DefectiveTypeVO defVO) throws DataAccessException;
+
 
 
 }

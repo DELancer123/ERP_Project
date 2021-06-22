@@ -297,8 +297,8 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		<result property="defectiveItemGroupCode" column="DEFECTIVETYPENAME" />
 		<result property="defectiveItemGroup" column="DEFECTIVEITEMGROUPCODE" />
 	</resultMap>
-	<select id="defectiveView" resultMap="defTypeView" >
-		<![CDATA[select * from cpm_bim_def_typ_reg]]>
+	<select id="defectiveView" resultMap="defTypeView" parameterType="String">
+		<![CDATA[select * from cpm_bim_def_typ_reg where DEFECTIVEITEMGROUPCODE=#{defGroupCode}]]>
 	</select>
 	<insert id="addDefType" parameterType="defVO">
 		<![CDATA[

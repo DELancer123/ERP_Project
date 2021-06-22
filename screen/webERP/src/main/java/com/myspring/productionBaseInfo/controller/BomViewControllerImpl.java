@@ -288,11 +288,13 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		else if(submit.equals("1")){
 			List defectiveList = null;
-			defectiveList =  viewService.viewDefective();
+			defectiveList =  viewService.viewDefective(defGroupCode);
 			mav.addObject("defectiveList",defectiveList);
 		}
 		else if(submit.equals("2")) {
-			
+			List defectiveList = null;
+			defectiveList =  viewService.viewDefective(defGroupCode);
+			mav.addObject("defectiveList",defectiveList);
 		}
 		return mav;
 	}
@@ -311,7 +313,7 @@ public class BomViewControllerImpl implements BomViewController {
 
 	@Override
 	@RequestMapping(value="/member/upddefType.do" ,method = RequestMethod.GET)
-	public ModelAndView updoutprice(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView upddefType(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
@@ -327,6 +329,19 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView(viewName);
 		List defGroupList = viewService.viewGroupList();
 		mav.addObject("defGroupList",defGroupList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/member/deldefType.do" ,method = RequestMethod.GET)
+	public ModelAndView deldefType(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		System.out.println(defVO.getDefList().get(1).getChkNum());
+		System.out.println(defVO.getDefList().get(2).getChkNum());
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = viewService.deldefType(defVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
 }

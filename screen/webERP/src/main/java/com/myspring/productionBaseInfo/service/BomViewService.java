@@ -27,8 +27,9 @@ public interface BomViewService {
 	public List inputText(String itemCode)throws DataAccessException;
 	public int updoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
 	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
-	public List viewDefective() throws DataAccessException;
+	public List viewDefective(String defGroupCode) throws DataAccessException;
 	public int addDefType(DefectiveTypeVO defVO) throws DataAccessException;
 	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException;
 	public List viewGroupList() throws DataAccessException;
+	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException;
 }
