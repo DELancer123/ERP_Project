@@ -15,6 +15,7 @@ public interface SystemmagService {
 	public int addCom(SystemmagVO systemmagVO) throws Exception;
 	public List comView() throws DataAccessException;
 	public List comcom(String com_code) throws DataAccessException;
+	public void updCom(SystemmagVO systemmagVO) throws DataAccessException;
 	//ÆË¾÷
 	public List zipView(String zipNumber) throws DataAccessException;
 	public List zipText(String zipNumber) throws DataAccessException;

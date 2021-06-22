@@ -44,6 +44,10 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("comList12: "+com_code);
 		return comList;
 	}
+	@Override
+	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException {
+		sqlSession.update("mappers.erp.updatecompany", systemmagVO);
+	}
 	//회사등록(팝업)
 		@Override
 		public int addWor(WorkplaceVO workplaceVO) throws DataAccessException{
@@ -59,7 +63,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		@Override
 		public List zipText(String zipNumber) throws DataAccessException {
 			List<ZipcodeVO> textList = null;
-			textList = sqlSession.selectList("mappers.erp.selectitem",zipNumber);
+			textList = sqlSession.selectList("mappers.erp.selectzip",zipNumber);
 			return textList;
 		}
 	//사업장등록 조회

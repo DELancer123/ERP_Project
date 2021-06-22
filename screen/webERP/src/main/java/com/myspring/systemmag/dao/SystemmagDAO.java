@@ -16,6 +16,7 @@ public interface SystemmagDAO {
 	public int addCom(SystemmagVO systemmagVO) throws DataAccessException;
 	public List viewCom() throws DataAccessException;
 	public List allviewCom(String com_code) throws DataAccessException;
+	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException;
 	//ÆË¾÷
 	public List viewZip() throws DataAccessException;
 	public List zipText(String zipNumber) throws DataAccessException;

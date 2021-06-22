@@ -19,6 +19,7 @@ public interface SystemmagController {
 	public ModelAndView viewCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delCompany(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView adressZip(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updateCompany(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//사업장등록
 	public ModelAndView addWorkplace(@ModelAttribute("workplace") WorkplaceVO workplaceVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;

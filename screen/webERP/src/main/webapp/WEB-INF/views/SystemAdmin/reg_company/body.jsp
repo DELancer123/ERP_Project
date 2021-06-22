@@ -37,6 +37,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
 #contents1{
             position: absolute;
@@ -228,8 +229,8 @@
                         <input type="text" name="main_Store_Postal_Code" id="zipcode"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
-                        text-align: center;" pattern="[0-9]{5}" maxlength="5"
-                        value='${main_Store_Postal_Code }' />
+                        text-align: center;" pattern="[0-9]{5}" maxlength="6"
+                        value='${main_Store_Postal_Code }${zipcode}' />
                         <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                 </tr>
@@ -237,7 +238,7 @@
                     <td align="center">본점주소</td>
                     <td colspan="2">
                         <input type="text" name="main_Store_Address" id="address1" class= "reqInput"
-                        value='${main_Store_Address }'
+						value='${main_Store_Address }${road_address}'
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -248,7 +249,7 @@
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"	
-                        value='${main_Branch_Number }' />
+                        value='${main_Branch_Number }${lot_address}' />
                     </td>
                 </tr>
                 <tr>
@@ -307,6 +308,10 @@
  		window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
 	}
 	
+	var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+    updateButton.addEventListener('click', function(){updateRow();}, false); 
+	
+	//등록함수
 	function newRow(){
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit','1');
@@ -319,14 +324,34 @@
 		document.getElementById('regcompany').appendChild(articleNOInput);
 		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
 		document.getElementById('regcompany').submit();
-		}
+	}
+	//수정함수
+	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+       	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+       	$('#regcompany').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+       	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+       	    	is_empty = true;      	    	
+       	    }      	 
+       	});       	 
+       	if(is_empty) { //비어있는내용이 있는지 체크함
+       	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+       	}
+       	else{
+	        	document.getElementById('regcompany').action = "${contextPath}/member/updcompany.do";
+	    		document.getElementById('regcompany').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+	    		alert('수정되었습니다'); 
+       	}      	
+       } 
+	
 	function searchzip(){
 		
 		openWindowPop1('http://localhost:8090/webERP/member/zippopup.do','zippopup');
 	}
 	
 	function setChildValue(name){
-  	  
+  	  document.getElementById('zipcode').value="";
+  	  document.getElementById('address1').value="";
+  	  document.getElementById('address2').value="";
   	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '2');
 		  const newParam = URLSearch.toString();

@@ -22,7 +22,7 @@
     		text-decoration:none;
     	}
         #wrap{
-            width: 1100px;
+            width: 1100px; 
             height: 500px;
             border: 1px solid black;
         }

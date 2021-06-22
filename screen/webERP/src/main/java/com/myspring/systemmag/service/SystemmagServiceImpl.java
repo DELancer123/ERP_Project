@@ -34,6 +34,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
+	//회사등록 수정
+	@Override
+	public void updCom(SystemmagVO systemmagVO) throws DataAccessException {		
+		systemmagDAO.updateCom(systemmagVO);
+	}
 	//회사등록(팝업)
 	@Override
 	public List zipView(String zipNumber) throws DataAccessException {

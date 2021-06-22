@@ -87,7 +87,17 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 		return mav;
 	}
-		
+	//회사등록(수정)
+	@Override
+	@RequestMapping(value = "/member/updcompany.do", method = RequestMethod.GET)
+	public ModelAndView updateCompany(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		systemmagService.updCom(systemmagVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+		ModelAndView mav = new ModelAndView(
+				"redirect:/member/regcompany.do?submit=1&&com_code=" + systemmagVO.getCompany_Code());
+		return mav;
+	}
 	
 	//회사등록(팝업)
 	@RequestMapping(value="/member/zippopup.do" ,method = RequestMethod.GET)

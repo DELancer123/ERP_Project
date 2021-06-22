@@ -221,6 +221,30 @@
 	 #{company_Registration_Number},#{corporate_Registration_Number}, #{representatives_Name}, #{resident_Registration_Number}, #{main_Store_Postal_Code}, #{main_Store_Address},
 	 #{main_Branch_Number},#{main_Store_Tel}, #{upstate}, #{industry}, #{date_Of_Establishment}, #{whether_To_Use_Status})]]>
 	</insert>
+	<!-- 수정 -->
+	<update id="updatecompany" parameterType="SystemmagVO">
+		<![CDATA[
+			update SM_CRI_Com_Reg
+			set	company_Name=#{company_Name},
+			sortation=#{sortation},
+			fiscal_Year_Number=#{fiscal_Year_Number},
+			fiscal_Year_Dates=#{fiscal_Year_Dates},
+			fiscal_Year_Datee=#{fiscal_Year_Datee},
+			company_Registration_Number=#{company_Registration_Number},
+			corporate_Registration_Number=#{corporate_Registration_Number},
+			representatives_Name=#{representatives_Name},
+			resident_Registration_Number=#{resident_Registration_Number},
+			main_Store_Postal_Code=#{main_Store_Postal_Code},
+			main_Store_Address=#{main_Store_Address},
+			main_Branch_Number=#{main_Branch_Number},
+			main_Store_Tel=#{main_Store_Tel},
+			upstate=#{upstate},
+			industry=#{industry},
+			date_Of_Establishment=#{date_Of_Establishment},
+			whether_To_Use_Status=#{whether_To_Use_Status}
+			where company_Code=#{company_Code}
+		]]>
+	</update>
 	<!-- 팝업 -->
 	<resultMap id="ZipViewResult" type="ZipcodeVO">
 		<result property="zipcode" column="Zipcode" />
