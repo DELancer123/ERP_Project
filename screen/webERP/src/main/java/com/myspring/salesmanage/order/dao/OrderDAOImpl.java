@@ -56,10 +56,12 @@ public class OrderDAOImpl implements OrderDAO {
 //		return 0;
 //	}
 //
-//	@Override
-//	public void delOrder(String[] noary) throws DataAccessException {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public void delOrder(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.delOrd",Integer.parseInt(obj));
+		}
+		
+	}
 
 }

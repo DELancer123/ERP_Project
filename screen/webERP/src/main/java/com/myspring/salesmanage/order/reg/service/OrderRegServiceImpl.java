@@ -46,4 +46,9 @@ public class OrderRegServiceImpl implements OrderRegService {
 		return orderDAO.selOrdCode();
 	}
 
+	@Override
+	public void removeOrder(String[] noary) throws DataAccessException {
+		orderDAO.delOrder(noary);
+	}
+
 }

@@ -322,6 +322,12 @@
       ]]>
 	</select>
 	
+	<delete id="delOrd"  parameterType="String">
+	<![CDATA[
+	   delete from  CPM_BIM_BOM_REG where ordersNum=#{ordCode}
+	]]>      
+  </delete>	
+	
 	
 	<!-- estimate&cor (join) -->
 	<resultMap id="estList" type="estimateVO">
