@@ -18,13 +18,8 @@ public class RequiredamountServiceImpl implements RequiredamountService{
 	private RequiredamountDAO mrpDAO;
 	
 	@Override
-	public List<RequiredamountVO>selectAllMrpList() throws Exception{
-		List<RequiredamountVO>mrpList = mrpDAO.selectAllMrpList();
+	public List<RequiredamountVO>selectAllMrpList(String startDate, String endDate) throws Exception{
+		List<RequiredamountVO>mrpList = mrpDAO.selectAllMrpList(startDate,endDate);
 		return mrpList;
-	}
-	
-	@Override
-	public int updateMRP(RequiredamountVO vo) throws DataAccessException {
-		return mrpDAO.updateMRP(vo);
 	}
 }

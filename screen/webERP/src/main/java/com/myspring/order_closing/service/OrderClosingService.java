@@ -8,8 +8,8 @@ import com.myspring.order_closing.vo.OrderClosingVO;
 
 public interface OrderClosingService {
 
-	List<OrderClosingVO> selectAllClosingList() throws Exception;
-
 	int updateOrderClosing(OrderClosingVO vo) throws DataAccessException;
+
+	List<OrderClosingVO> selectAllClosingList(String startDate, String endDate) throws Exception;
 
 }

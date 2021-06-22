@@ -85,10 +85,10 @@ String sequence = (String) request.getAttribute("sequence");
 		</tr>
 		<tr>
 			<td>발주기간</td>
-			<td colspan="2" style="width: 80px;"><input type="date"
-				style="width: 100%;" /></td>
+			<td colspan="2" style="width: 50px;"><input type="date"
+				id='searchStartDate' style="width: 100%;" /></td>
 			<td>~</td>
-			<td><input type="date" style="width: 100%;" /></td>
+			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
 			<td></td>
 			<td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" style="width: 100%;" /></td>
@@ -160,7 +160,42 @@ String sequence = (String) request.getAttribute("sequence");
 	</container2>
 	</form>
 </body>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+/* input date의 현재 날짜 기본값 설정*/
+document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+
+/* 검색부 date onChange 함수 설정 */
+		var startDate = new Date().toISOString().substring(0,10);;
+   	var endDate = new Date().toISOString().substring(0,10);;
+   	
+   	$('#searchStartDate').change(function (){
+           var date = $('#searchStartDate').val();
+           startDate = date;
+       });
+   	$('#searchEndDate').change(function (){
+           var date = $('#searchEndDate').val();
+           endDate = date;
+       });
+   	
+   	 /* 조회버튼 클릭시 기능 구현 */
+       view_button.onclick = function(){
+ 		  if(startDate>endDate){
+ 			  alert(" 종료일은 시작일보다 작을수 없습니다.");
+ 		  } else{
+ 			  
+     	  const URLSearch = new URLSearchParams(location.search);
+ 		  URLSearch.set('startDate', startDate);
+ 		  URLSearch.set('endDate', endDate);
+ 		  const newParam = URLSearch.toString();
+
+ 		  window.open(location.pathname + '?' + newParam, '_self');
+ 		  }
+   	}
+       
 function updateRow() {
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();

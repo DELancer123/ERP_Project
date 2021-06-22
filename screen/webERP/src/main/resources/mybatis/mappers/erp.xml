@@ -135,7 +135,7 @@
 
 	<select id="selectAllMainPlanList" resultMap="mainplanResult" parameterType="MainPlanVO"> 
 		<![CDATA[SELECT * from pmm_pm_mps]]>
-			<where>
+	<where>
 		<if test="startDate != '' and startDate != null">plandate between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>
 	</where>
@@ -184,7 +184,7 @@
 
 	<select id="selectAllcmList" resultMap="billingResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from PMM_PM_CM]]>
-			<where>
+	<where>
 		<if test="startDate != '' and startDate != null">claim_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and requestdate between #{startDate} and #{endDate} </if>
 	</where>
@@ -221,13 +221,13 @@
 		<result property="inventory_unit" column="inventory_unit" />
 	</resultMap>
 
-	<select id="selectAllMrpList" resultMap="mrpResult">
+	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
+	<where>
+		<if test="startDate != '' and startDate != null">need_date between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and need_date between #{startDate} and #{endDate} </if>
+	</where>
 	</select>
-	<update id="updateMRP" >
-		<![CDATA[update pmm_pm_mrp
-			set expected_order= to_char(sysdate, 'YYYY-MM-DD')]]>  
-	</update>
 	
 	<!-- orderclosing 발주마감 -->
 	<resultMap id="orderclosingResult" type="orderclosingVO">
@@ -247,6 +247,10 @@
 	
 	<select id="selectAllClosingList" resultMap="orderclosingResult">
 		<![CDATA[select * from PMM_PM_ORDER]]>
+	<where>
+		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
+	</where>
 	</select>
 	
 	<update id="updateOrderClosing">

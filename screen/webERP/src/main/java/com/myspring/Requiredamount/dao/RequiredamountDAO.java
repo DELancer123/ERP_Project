@@ -8,8 +8,6 @@ import com.myspring.Requiredamount.vo.RequiredamountVO;
 
 public interface RequiredamountDAO {
 
-	List selectAllMrpList() throws Exception;
-
-	int updateMRP(RequiredamountVO vo) throws DataAccessException;
+	List selectAllMrpList(String startDate, String endDate) throws Exception;
 
 }

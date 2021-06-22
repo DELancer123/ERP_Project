@@ -25,23 +25,15 @@ public class RequiredamountControllerImpl implements RequiredamountController{
 	@Override
 	@RequestMapping(value="member/requiredamount.do", method = RequestMethod.GET)
 	public ModelAndView mrpList(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String viewName = (String)request.getAttribute("viewName");
-		List mrpList = mrpService.selectAllMrpList();
+		List mrpList = mrpService.selectAllMrpList(startDate, endDate);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mrpList", mrpList);
 		return mav;
 	}
-	
-	@Override
-	@RequestMapping(value="/member/updateMRP.do" ,method = RequestMethod.GET)
-	public ModelAndView updateMRP(@ModelAttribute("mrp") RequiredamountVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = mrpService.updateMRP(vo);
-		System.out.println("result "+result);
-		ModelAndView mav = new ModelAndView("redirect:/member/requiredamount.do");
-		return mav;
-	}
+
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

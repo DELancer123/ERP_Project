@@ -19,8 +19,8 @@ public class OrderClosingServiceImpl implements OrderClosingService{
 	private OrderClosingDAO orderclosingDAO;
 
 	@Override
-	public List<OrderClosingVO>selectAllClosingList() throws Exception{
-		List<OrderClosingVO> ClosingList = orderclosingDAO.selectAllClosingList();
+	public List<OrderClosingVO>selectAllClosingList(String startDate, String endDate) throws Exception{
+		List<OrderClosingVO> ClosingList = orderclosingDAO.selectAllClosingList(startDate,endDate);
 		return ClosingList;
 	}
 	

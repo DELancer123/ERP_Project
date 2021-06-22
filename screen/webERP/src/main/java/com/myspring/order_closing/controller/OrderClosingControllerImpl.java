@@ -29,8 +29,10 @@ public class OrderClosingControllerImpl implements OrderClosingController{
 	@Override
 	@RequestMapping(value = "member/orderclosing.do", method = RequestMethod.GET)
 	public ModelAndView ClosingList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String viewName = (String) request.getAttribute("viewName");
-		List ClosingList = orderclosingService.selectAllClosingList();
+		List ClosingList = orderclosingService.selectAllClosingList(startDate, endDate);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("ClosingList", ClosingList);
 		return mav;

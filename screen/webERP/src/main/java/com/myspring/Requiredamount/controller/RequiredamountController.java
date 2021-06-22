@@ -11,7 +11,4 @@ public interface RequiredamountController {
 
 	ModelAndView mrpList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView updateMRP(RequiredamountVO vo, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
-
 }
