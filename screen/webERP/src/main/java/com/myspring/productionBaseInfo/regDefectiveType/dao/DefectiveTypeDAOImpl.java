@@ -47,7 +47,9 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 	}
 	@Override
 	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException {
-		// TODO Auto-generated method stub
+		for(int i = 0;i<10;i++) {
+			sqlSession.delete("mappers.erp.deleteBOM");		
+		}
 		return 0;
 	}
 
