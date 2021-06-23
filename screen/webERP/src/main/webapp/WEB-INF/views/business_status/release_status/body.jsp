@@ -10,18 +10,18 @@ String dueDate = (String) request.getAttribute("dueDate");
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:forEach var="rs" items="${rsInsert }">
-	<c:set var="itemCode" value="${Item_Code}" />
-	<c:set var="itemName" value="${Item_Name}" />
-	<c:set var="standard" value="${standard}" />
-	<c:set var="inventoryUnit" value="${Inventory_Unit}" />
-	<c:set var="dueDate" value="${dueDate}" />
-	<c:set var="orderQuantity" value="${ordersQuantity}" />
-	<c:set var="productPrice" value="${productPrice}" />
-	<c:set var="expectedDate" value="${expectedDate}" />
-	<c:set var="releaseExpectedDate" value="${releaseExpectedDate}" />
-	<c:set var="inspection" value="${inspection}" />
-	<c:set var="orderOX" value="${orderOX}" />
-	<c:set var="customerCode" value="${customerCode}" />
+	<c:set var="itemCode" value="${rs.Item_Code}" />
+	<c:set var="itemName" value="${rs.Item_Name}" />
+	<c:set var="standard" value="${rs.standard}" />
+	<c:set var="inventoryUnit" value="${rs.Inventory_Unit}" />
+	<c:set var="dueDate" value="${rs.dueDate}" />
+	<c:set var="orderQuantity" value="${rs.ordersQuantity}" />
+	<c:set var="productPrice" value="${rs.productPrice}" />
+	<c:set var="expectedDate" value="${rs.expectedDate}" />
+	<c:set var="releaseExpectedDate" value="${rs.releaseExpectedDate}" />
+	<c:set var="inspection" value="${rs.inspection}" />
+	<c:set var="orderOX" value="${rs.orderOX}" />
+	<c:set var="customerCode" value="${rs.customerCode}" />
 </c:forEach>
 <!DOCTYPE html>
 <html>
@@ -125,24 +125,24 @@ String dueDate = (String) request.getAttribute("dueDate");
 					<td>단가</td>
 					<td>출하예정일(수주)</td>
 					<td>출고예정일(의뢰)</td>
+					<td>검사(의뢰,수주)</td>
 					<td>출고구분</td>
 					<td>고객코드</td>
 				</thead>
-				<c:forEach var="rs" items="${rsView }" varStatus="status">
 				<tr>
-					<td><input type="text" id="itemCode" name="ListVO[${fn:length }].itemCode" value='${rs.itemCode }'/></td>
-					<td><input type="text" id="itemName" name="ListVO[${fn:length }].itemName" value='${rs.itemName }'/></td>
-					<td><input type="text" id="standard" name="ListVO[${fn:length }].standard" value='${rs.standard }'/></td>
-					<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length }].inventoryUnit" value='${rs.inventoryUnit }'/></td>
-					<td><input type="text" id="dueDate" name="ListVO[${fn:length }].dueDate" value='${rs.dueDate }'/></td>
-					<td><input type="text" id="orderQuantity" name="ListVO[${fn:length }].orderQuantity" value='${rs.orderQuantity }'/></td>
-					<td><input type="text" id="productPrice" name="ListVO[${fn:length }].productPrice" value='${rs.productPrice }'/></td>
-					<td><input type="text" id="expectedDate" name="ListVO[${fn:length }].expectedDate" value='${rs.expectedDate }'/></td>
-					<td><input type="text" id="releaseExpectedDate" name="ListVO[${fn:length }].releaseExpectedDate" value='${rs.releaseExpectedDate }'/></td>
-					<td><input type="text" id="orderOX" name="ListVO[${fn:length }].orderOX" value='${rs.orderOX }'/></td>
-					<td><input type="text" id="customerCode" name="ListVO[${fn:length }].customerCode" value='${rs.customerCode }'/></td>
+					<td><input type="text" id="itemCode" name="itemCode" value='${itemCode }'/></td>
+					<td><input type="text" id="itemName" name="itemName" value='${itemName }'/></td>
+					<td><input type="text" id="standard" name="standard" value='${standard }'/></td>
+					<td><input type="text" id="inventoryUnit" name="inventoryUnit" value='${inventoryUnit }'/></td>
+					<td><input type="text" id="dueDate" name="dueDate" value='${dueDate }'/></td>
+					<td><input type="text" id="orderQuantity" name="orderQuantity" value='${orderQuantity }'/></td>
+					<td><input type="text" id="productPrice" name="productPrice" value='${productPrice }'/></td>
+					<td><input type="text" id="expectedDate" name="expectedDate" value='${expectedDate }'/></td>
+					<td><input type="text" id="releaseExpectedDate" name="releaseExpectedDate" value='${releaseExpectedDate }'/></td>
+					<td><input type="text" id="inspection" name="inspection" value='${inspection }'/></td>
+					<td><input type="text" id="orderOX" name="orderOX" value='${orderOX }'/></td>
+					<td><input type="text" id="customerCode" name="customerCode" value='${customerCode }'/></td>
 				</tr>
-				</c:forEach>
 			</table>
 		</div>
 		<div id="rsSum">
@@ -154,17 +154,7 @@ String dueDate = (String) request.getAttribute("dueDate");
 		</container2>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script>
-			var itemCode = document.getElementById("itemCode");
-			var itemName = document.getElementById("itemName");
-			var standard = document.getElementById("standard");
-			var inventoryUnit = document.getElementById("inventoryUnit");
-			var dueDate = document.getElementById("dueDate");
-			var orderQuantity = document.getElementById("orderQuantity");
-			var productPrice = document.getElementById("productPrice");
-			var expectedDate = document.getElementById("expectedDate");
-			var releaseExpectedDate = document.getElementById("releaseExpectedDate");
-			var orderOX = document.getElementById("orderOX");
-			var customerCode = document.getElementById("customerCode");
+			
 		</script>
 	</form>
 </body>
