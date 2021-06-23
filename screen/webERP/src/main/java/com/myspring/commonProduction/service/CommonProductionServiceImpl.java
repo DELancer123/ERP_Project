@@ -22,6 +22,8 @@ import
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.registOperationPerformance.dao.RegistOperationPerformanceDAO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
   
@@ -31,6 +33,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   public class CommonProductionServiceImpl implements CommonProductionService {
   @Autowired private CommitOperationInstructionDAO COIdao;
   @Autowired private OperationRegistDAO ORdao;
+  @Autowired private RegistOperationPerformanceDAO ROPdao;
   @Autowired private operationInsClosingDAO OCdao;
   
   @Override public List selectAllProductionPlanInfo(String info,String startDate, String endDate) throws DataAccessException, ParseException {
@@ -147,6 +150,29 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  infolist = ORdao.selectReleaseDetail(number); 
 	  return infolist; 
 	  }
+  
+
+//작업실적등록 기능부
+	@Override
+	public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
+		  List<RegistOperationPerformanceVO> infolist = null; 
+		  infolist = ROPdao.selectAllRegistOperationPerformanceInfo(startDate,endDate);
+		  return infolist; 
+		  }
+	
+	@Override
+	public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number) throws DataAccessException, ParseException{ 
+		  List<RegistOperationPerformanceVO> infolist = null; 
+		  infolist = ROPdao.selectAllRegistOperationPerformanceInfoDetail(number);
+		  return infolist; 
+		  }
+
+	@Override
+		public List<String> MaterialUse(String[] numberAry) throws DataAccessException{
+		  List<String> message = new ArrayList(); 
+		  ROPdao.MaterialUse(numberAry);
+		  return message;
+		}
   
 //작업지시마감처리 기능부
 	@Override 

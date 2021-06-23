@@ -87,11 +87,11 @@
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
    	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
    	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}' ondblclick="search2()"/></td>
+   	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].unit" value = '${bom.unit }' readonly/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].division" value = '${bom.division }'/>   </td>
+   	  <td><input type="text" name="ListVO[${status.index}].division" value = '${bom.division }' readonly/>   </td>
    	  <td><input type="text" name="ListVO[${status.index}].precisionQuantity" value = '${bom.precisionQuantity }'/></td>
    	  <td><input type="text" name="ListVO[${status.index}].loss" value = '${bom.loss }'/></td>
    	  <td><input type="text" value = '${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }' readonly/></td>
@@ -102,7 +102,7 @@
     <td></td>
     	<td><input type="text" id="no" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
     	<td><input type="text" id="parent" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
-    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()"/></td>
+    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" readonly/></td>
     	<td><input type="text" id="itemName" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
     	<td><input type="text" id="unit" name="ListVO[${fn:length(bomView) }].unit" value='${unit }' readonly/></td>
@@ -129,6 +129,7 @@
       var startDate = document.getElementById("startDate");
       var endDate = document.getElementById("endDate");
      	  var actualQuantity = document.getElementById('actualQuantity');
+     	  var actualQuantity1 = document.getElementById('actualQuantity1');
 
       var save_button = document.getElementById("save");
       var update_button = document.getElementById('update');
@@ -138,9 +139,9 @@
     	  var preQuan = parseFloat(precisionQuantity.value);
     	  var lossInt = parseFloat(loss.value);
     	  actualQuantity.value = preQuan + (preQuan * (lossInt/100));
-    	  console.log(precisionQuantity.value);
-    	  console.log(actualQuantity.value);
+
       }
+
       function search2(){
     	
       	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');

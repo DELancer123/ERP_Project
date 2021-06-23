@@ -29,6 +29,8 @@
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="indicated" column="IndicatedQuantity" />
+		<result property="sumPerformanceQuantity" column="performanceQuantity" />
+		<result property="remainingPerformance" column="remainingPerformance" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
@@ -48,6 +50,27 @@
 		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
 		<result property="workOrderNumber" column="workOrderNumber" />
+	</resultMap>
+	<resultMap id="RegOpePerResult" type="RegistOperationPerformanceVO">
+		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialstatus" column="MATERIALFORWARDINGSTATUS" />
+		<result property="workplaceCode" column="WORKPLACE_CODE" />
+		<result property="instructionDate" column="InstructionDate" />
+		<result property="dueDate" column="dueDate" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="indicated" column="IndicatedQuantity" />
+		<result property="sumPerformanceQuantity" column="performanceQuantity" />
+		<result property="remainingPerformance" column="remainingPerformance" />
+		<result property="status" column="status" />
+		<result property="workSortation" column="workSortation" />
+		<result property="inspection" column="Inspection" />
+		<result property="productionFacility" column="PRODUCTIONFACILITY" />
+		<result property="taskTeam" column="taskTeam" />
+		<result property="note" column="note" />
+		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpeCloDetResult" type="OperationInsClosingVO">
 		<result property="OPNumber" column="OPNumber" />
@@ -145,6 +168,8 @@
 		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
+	<!-- 작업지시확정 추가 기능 -->
+	
 	<update id="updConfirmDetail">
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG
@@ -153,13 +178,106 @@
 		]]>  
 	</update>	
 	
-	<select id="selectRelease" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber]]>
+	<update id="updRevertDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '계획'
+		where  workOrderNumber = #{workOrderNumber} and status = '확정'
+		]]>  
+	</update>	
+	
+	
+	<select id="countWorkOrderNumber" resultType="string">
+		<![CDATA[select count(*) from CPM_PM_PRO_MAT_FOR_DET where workOrderNumber = #{number}]]>
 	</select>
 	
-	<!-- <select id="selectReleaseDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[]]>
-	</select> -->
+	<select id="selectRelease" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	</select>
+	
+	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
+		<![CDATA[select distinct( bom.item_code) as itemCode, bom.item_name, bom.standard, bom.inventory_unit, reg.indicatedquantity
+				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det,cpm_bim_bom_reg bom
+				where reg.item_code = bom.parent_item_code and reg.workordernumber = #{number}
+                order by bom.item_code]]>
+	</select>
+	
+	<!-- 작업실적등록 CRUD -->
+	
+<resultMap id="RegistOperationPerformanceResult" type="RegistOperationPerformanceVO">
+	<result property="workOrderNumber" column="workordernumber" />
+	<result property="materialstatus" column="materialforwardingstatus" />
+	<result property="workplaceCode" column="workplaceCode" />
+	<result property="instructionDate" column="instructiondate" />
+	<result property="dueDate" column="duedate" />
+	<result property="itemCode" column="item_code" />
+	<result property="itemName" column="item_name" />
+	<result property="standard" column="standard" />
+	<result property="inventoryUnit" column="inventory_unit" />
+	<result property="indicated" column="indicatedquantity" />
+	<result property="sumPerformanceQuantity" column="sumPerformancequantity" />
+	<result property="remainingPerformance" column="remainingPerformance" />
+	<result property="status" column="status" />
+	<result property="workSortation" column="worksortation" />
+	<result property="inspection" column="inspection" />
+	<result property="note" column="note" />
+	<result property="productionFacility" column="productionfacility" />
+	<result property="taskTeam" column="taskTeam" />
+</resultMap>	
+<resultMap id="RegistOperationPerformanceResultDetail" type="RegistOperationPerformanceDetailVO">
+	<result property="OPNumber" column="OPNumber" />
+	<result property="materialUseStatus" column="materialUseStatus" />
+	<result property="performanceDate" column="performanceDate" />
+	<result property="processCode" column="PROCESS_CODE" />
+	<result property="workplaceCode" column="WORKPLACE_CODE" />
+	<result property="sortation" column="sortation" />
+	<result property="performanceQuantity" column="performanceQuantity" />
+	<result property="inspection" column="inspection" />
+	<result property="note" column="note" />
+	<result property="workOrderNumber" column="workOrderNumber" />
+</resultMap>	
+	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
+		<![CDATA[select *
+from CPM_PM_Ope_Per_Reg
+]]>
+	</select>
+	
+		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det
+]]>
+	</select>
+	
+
+		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
+		<![CDATA[select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code) as workplaceCode,opr.instructiondate ,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
+(opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
+group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+order by opr.workordernumber
+]]>
+<where> opr.workordernumber= oprd.workordernumber and opr.workOrderNumber = #{workOrderNumber}
+			<if test="startDate != '' and startDate != null">
+				and opr.instructionDate between #{startDate} and #{endDate}
+			</if>
+			<if test="endDate != '' and endDate != null">
+				and opr.dueDate between #{startDate} and #{endDate}
+			</if>
+</where>
+	</select>
+	
+	<select id="checkMaterialUse" resultType="string">
+		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}]]>
+	</select>
+	
+	<update id="updMaterialUse">
+		<![CDATA[
+		update CPM_PM_Ope_Per_Reg_Det
+		set materialUseStatus = '유'
+		where  workOrderNumber = #{workOrderNumber} and status = '무'
+		]]>  
+	</update>	
 	
 		<!-- 기초정보등록 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
@@ -296,7 +414,7 @@ order by oprd.OPNumber]]>
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG where parent_item_code = #{parent}]]>
+		<![CDATA[select * from CPM_BIM_BOM_REG where parent_item_code = #{parent} order by division desc]]>
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
@@ -307,10 +425,10 @@ order by oprd.OPNumber]]>
 		<![CDATA[select no,item_code,item_name,standard,inventory_unit,COST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList1" resultMap="popView">
-		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품']]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품' order by division desc]]>
 	</select>
 	<select id="selectPopList2" resultMap="popView">
-		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품']]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품' order by division desc]]>
 	</select>
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
@@ -334,10 +452,10 @@ order by oprd.OPNumber]]>
 		]]>  
 	</update>
 	<select id="outView" resultMap="outpopView">
-		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg]]>
+		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg order by outsourcing_code]]>
 	</select>
 	<select id="outViewex" resultMap="outpopViewex" parameterType="String">
-		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg]]>
+		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg order by workplace_code]]>
 	</select>
 	
 	
@@ -355,7 +473,7 @@ order by oprd.OPNumber]]>
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
 		<![CDATA[select out.*, ite.item_name,ite.STANDARD,ite.INVENTORY_UNIT,ite.COST
 from cpm_bim_out_pri out, sm_bim_ite_reg ite
-where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1}]]>
+where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1} order by out.outsourcing_code]]>
 	</select>
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
@@ -387,7 +505,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		<result property="defectiveItemGroup" column="DEFECTIVEITEMGROUPCODE" />
 	</resultMap>
 	<select id="defectiveView" resultMap="defTypeView" parameterType="String">
-		<![CDATA[select * from cpm_bim_def_typ_reg where DEFECTIVEITEMGROUPCODE=#{defGroupCode}]]>
+		<![CDATA[select * from cpm_bim_def_typ_reg where DEFECTIVEITEMGROUPCODE=#{defGroupCode} order by defectcode]]>
 	</select>
 	<insert id="addDefType" parameterType="defVO">
 		<![CDATA[
@@ -403,8 +521,17 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		]]>  
 	</update>
 	<select id="defGroupView" resultMap="defGroupView" >
-		<![CDATA[select * from cpm_bim_def_group]]>
+		<![CDATA[select * from cpm_bim_def_group order by defectiveTypeName]]>
 	</select>
+	<insert id="addDefpop" parameterType="defVO">
+		<![CDATA[
+		 insert into cpm_bim_def_group
+		 values(#{defectiveItemGroupCode}, #{defectiveItemGroup})
+		]]>  
+	</insert>
+	<delete id="deldeftype">
+		delete from cpm_bim_def_typ_reg where DEFECTCODE = #{no}
+	</delete>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

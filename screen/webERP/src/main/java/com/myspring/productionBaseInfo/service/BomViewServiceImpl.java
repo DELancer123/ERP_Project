@@ -159,11 +159,16 @@ public class BomViewServiceImpl implements BomViewService{
 		return defGroupList;
 	}
 
+	
+
 	@Override
-	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException {
-		int delList = 0;
-		delList = defDAO.deldefType(defVO);
-		return delList;
+	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException {
+		return defDAO.addDefpop(defVO);
+	}
+
+	@Override
+	public int deldefType(String[] numberary) throws DataAccessException {
+		return defDAO.deldefType(numberary);
 	}
 
 }

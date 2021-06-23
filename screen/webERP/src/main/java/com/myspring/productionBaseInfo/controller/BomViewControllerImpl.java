@@ -93,7 +93,6 @@ public class BomViewControllerImpl implements BomViewController {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
-		System.out.println("url" + path);
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
@@ -115,10 +114,11 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
-		System.out.println("result "+result);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 		
@@ -335,12 +335,23 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/deldefType.do" ,method = RequestMethod.GET)
 	public ModelAndView deldefType(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		System.out.println(defVO.getDefList().get(1).getChkNum());
-		System.out.println(defVO.getDefList().get(2).getChkNum());
+		String number = (String) request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		viewService.deldefType(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/deftype.do");
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/member/adddefpop.do" ,method = RequestMethod.GET)
+	public ModelAndView adddefpop(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		String path = request.getParameter("path");
+		System.out.println("확인"+defVO.getDefList().get(2).getDefectiveItemGroupCode());
+		System.out.println("확인"+defVO.getDefList().get(2).getDefectiveItemGroup());
 		path = path.replace("/webERP", "");
 		int result = 0;
-		result = viewService.deldefType(defVO);
+		result = viewService.addDefpop(defVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
