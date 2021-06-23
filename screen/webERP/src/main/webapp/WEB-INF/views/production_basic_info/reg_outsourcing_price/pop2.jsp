@@ -66,7 +66,6 @@
                 <button id="search">조회</button>
                 <button id="submit" onclick="submitClick(this.form)">적용</button>
                 <input type="hidden" name="inputNo" value=""/>
-                 
                 <button>버튼3</button>
             </div>
         </div>
@@ -77,7 +76,7 @@
                     <td>품목코드</td>
                     <td>품명</td>
                 </tr>
-                <c:forEach var="bom" items="${bomlist}" >     
+                <c:forEach var="bom" items="${bomlist}">
    <tr align="center">
       <td><a href="#">${bom.no}</a></td>
       <td><a href="javascript:popFunction('${bom.itemNumber }','${bom.itemName }')">${bom.itemNumber}</a></td>

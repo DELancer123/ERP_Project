@@ -516,6 +516,9 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		 values(#{defectiveItemGroupCode}, #{defectiveItemGroup})
 		]]>  
 	</insert>
+	<delete id="deldeftype">
+		delete from cpm_bim_def_typ_reg where DEFECTCODE = #{no}
+	</delete>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

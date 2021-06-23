@@ -335,11 +335,11 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/deldefType.do" ,method = RequestMethod.GET)
 	public ModelAndView deldefType(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String path = request.getParameter("path");
-		path = path.replace("/webERP", "");
-		int result = 0;
-		result = viewService.deldefType(defVO);
-		ModelAndView mav = new ModelAndView("redirect:"+path);
+		String number = (String) request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		viewService.deldefType(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/deftype.do");
 		return mav;
 	}
 	@Override

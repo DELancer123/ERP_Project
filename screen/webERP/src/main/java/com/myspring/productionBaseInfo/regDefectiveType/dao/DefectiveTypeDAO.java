@@ -16,7 +16,7 @@ public interface DefectiveTypeDAO {
 
 	List viewGroupList() throws DataAccessException;
 
-	int deldefType(DefectiveTypeVO defVO) throws DataAccessException;
+	int deldefType(String[] numberary) throws DataAccessException;
 
 	int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
 
