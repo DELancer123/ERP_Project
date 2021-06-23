@@ -168,6 +168,8 @@
 		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
+	<!-- 작업지시확정 추가 기능 -->
+	
 	<update id="updConfirmDetail">
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG
@@ -176,13 +178,28 @@
 		]]>  
 	</update>	
 	
+	<update id="updRevertDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '계획'
+		where  workOrderNumber = #{workOrderNumber} and status = '확정'
+		]]>  
+	</update>	
+	
+	
+	<select id="countWorkOrderNumber" resultType="string">
+		<![CDATA[select count(*) from CPM_PM_PRO_MAT_FOR_DET where workOrderNumber = #{number}]]>
+	</select>
+	
 	<select id="selectRelease" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
-	<!-- <select id="selectReleaseDetail" resultMap="OpePerRegDetResult">
-		<![CDATA[]]>
-	</select> -->
+	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
+		<![CDATA[select det.billingdate, det.item_code, det.item_name, det.standard, det.inventory_unit, reg.indicatedquantity
+				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det
+				where reg.workordernumber = det.workordernumber and det.workordernumber = #{number}]]>
+	</select>
 	
 	<!-- 작업실적등록 CRUD -->
 	
@@ -384,7 +401,7 @@ order by oprd.OPNumber]]>
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG where parent_item_code = #{parent}]]>
+		<![CDATA[select * from CPM_BIM_BOM_REG where parent_item_code = #{parent} order by division desc]]>
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
@@ -395,10 +412,10 @@ order by oprd.OPNumber]]>
 		<![CDATA[select no,item_code,item_name,standard,inventory_unit,COST from cpm_bim_bom_reg where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList1" resultMap="popView">
-		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품']]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where not division='부품' order by division desc]]>
 	</select>
 	<select id="selectPopList2" resultMap="popView">
-		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품']]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품' order by division desc]]>
 	</select>
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
@@ -422,10 +439,10 @@ order by oprd.OPNumber]]>
 		]]>  
 	</update>
 	<select id="outView" resultMap="outpopView">
-		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg]]>
+		<![CDATA[select outsourcing_code,outsourcing_name from sm_bim_out_reg order by outsourcing_code]]>
 	</select>
 	<select id="outViewex" resultMap="outpopViewex" parameterType="String">
-		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg]]>
+		<![CDATA[select workplace_code,workplace_name from sm_bim_out_wor_reg order by workplace_code]]>
 	</select>
 	
 	
@@ -443,7 +460,7 @@ order by oprd.OPNumber]]>
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
 		<![CDATA[select out.*, ite.item_name,ite.STANDARD,ite.INVENTORY_UNIT,ite.COST
 from cpm_bim_out_pri out, sm_bim_ite_reg ite
-where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1}]]>
+where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1} order by out.outsourcing_code]]>
 	</select>
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
@@ -475,7 +492,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		<result property="defectiveItemGroup" column="DEFECTIVEITEMGROUPCODE" />
 	</resultMap>
 	<select id="defectiveView" resultMap="defTypeView" parameterType="String">
-		<![CDATA[select * from cpm_bim_def_typ_reg where DEFECTIVEITEMGROUPCODE=#{defGroupCode}]]>
+		<![CDATA[select * from cpm_bim_def_typ_reg where DEFECTIVEITEMGROUPCODE=#{defGroupCode} order by defectcode]]>
 	</select>
 	<insert id="addDefType" parameterType="defVO">
 		<![CDATA[
@@ -491,7 +508,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		]]>  
 	</update>
 	<select id="defGroupView" resultMap="defGroupView" >
-		<![CDATA[select * from cpm_bim_def_group]]>
+		<![CDATA[select * from cpm_bim_def_group order by defectiveTypeName]]>
 	</select>
 	<insert id="addDefpop" parameterType="defVO">
 		<![CDATA[

@@ -93,7 +93,7 @@
                         <td><input type="checkbox" value = "0" id="check" class="check" name="content"/></td>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
-                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' /></td>
+                        <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' readonly/></td>
                         <td><input type="text" name="defList[${status.index }].usageStatus" value='${def.usageStatus }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveDescription" value='${def.defectiveDescription }'/></td>
                         <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${def.defectiveItemGroupCode }'/>
@@ -104,7 +104,7 @@
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
                         <td><input type="text" id="defCode" name="defList[${fn:length(defectiveList) }].defectCode"/></td>
                         <td><input type="text" id="defName" name="defList[${fn:length(defectiveList) }].defectiveTypeName"/></td>
-                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"value='${param.defGroup }' ondblclick="search1()"/></td>
+                        <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"value='${param.defGroup }' readonly/></td>
                         <td><input type="text" id="usage" name="defList[${fn:length(defectiveList) }].usageStatus"/></td>
                         <td><input type="text" id="defDes" name="defList[${fn:length(defectiveList) }].defectiveDescription"/></td>
                         <input type="hidden" id="groupCode" name="defList[${fn:length(defectiveList) }].defectiveItemGroupCode"value='${param.defGroupCode }' />

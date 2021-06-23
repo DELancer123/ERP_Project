@@ -243,7 +243,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception { 
  		String number = request.getParameter("workOrderNumber");
  		String viewName = (String)request.getAttribute("viewName");
- 		ModelAndView mav = new ModelAndView(viewName); 
+ 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
  		
  		List infoList = productionService.selectRelease(number);
  		List detailList = productionService.selectReleaseDetail(number);

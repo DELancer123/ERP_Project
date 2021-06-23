@@ -93,7 +93,6 @@ public class BomViewControllerImpl implements BomViewController {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
-		System.out.println("url" + path);
 		int result = 0;
 		result = viewService.addBOM(bomVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
@@ -115,10 +114,11 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
 		int result = 0;
 		result = viewService.updateBOM(bomVO);
-		System.out.println("result "+result);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 		
