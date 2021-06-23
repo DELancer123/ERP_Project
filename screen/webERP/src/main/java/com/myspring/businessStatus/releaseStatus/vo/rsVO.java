@@ -20,6 +20,8 @@ public class rsVO {
 	private String inspection; //검사(의뢰,수주)
 	private String orderOX; //출고구분
 	private String customerCode; //고객코드
+	private Date startDate;
+	private Date endDate;
 	private List<rsVO> ListVO;
 	
 	@Override
@@ -125,6 +127,22 @@ public class rsVO {
 
 	public void setCustomerCode(String customerCode) {
 		this.customerCode = customerCode;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public List<rsVO> getListVO() {

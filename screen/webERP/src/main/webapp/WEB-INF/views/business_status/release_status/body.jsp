@@ -9,20 +9,6 @@ request.setCharacterEncoding("UTF-8");
 String dueDate = (String) request.getAttribute("dueDate");
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:forEach var="rs" items="${rsInsert }">
-	<c:set var="itemCode" value="${rs.Item_Code}" />
-	<c:set var="itemName" value="${rs.Item_Name}" />
-	<c:set var="standard" value="${rs.standard}" />
-	<c:set var="inventoryUnit" value="${rs.Inventory_Unit}" />
-	<c:set var="dueDate" value="${rs.dueDate}" />
-	<c:set var="orderQuantity" value="${rs.ordersQuantity}" />
-	<c:set var="productPrice" value="${rs.productPrice}" />
-	<c:set var="expectedDate" value="${rs.expectedDate}" />
-	<c:set var="releaseExpectedDate" value="${rs.releaseExpectedDate}" />
-	<c:set var="inspection" value="${rs.inspection}" />
-	<c:set var="orderOX" value="${rs.orderOX}" />
-	<c:set var="customerCode" value="${rs.customerCode}" />
-</c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,32 +67,14 @@ String dueDate = (String) request.getAttribute("dueDate");
 	<form id="searchForm">
 		<table class="con1_search">
 			<tr>
-				<td>사업장</td>
-				<td style="width: 50px;"><input type="text"
-					style="width: 100%;" /></td>
-
-				<td colspan="3"><input type="text" name="" disabled
-					style="width: 100%;" /></td>
-				<td><i class="fas fa-search" style="color: blue;"></i></td>
-				<td colspan="5" style="width: 100px;">거래구분</td>
-				<td style="width: 80px;"><input type="text"
-					style="width: 100%;" /></td>
-				<td><input type="text" name="" disabled /></td>
-				<td><i class="fas fa-search" style="color: blue;"></i></td>
-
-			</tr>
-			<tr>
-				<td>출고기간</td>
-				<td colspan="2" style="width: 80px;"><input type="date"
-					id="reqInput" style="width: 100%;" /></td>
+				<td>납기일</td>
+				<td colspan="2" style="width: 80px;">
+				<input type="date" id="searchStartDate" value="${param.startDate }" style="width: 100%;" />
+				</td>
 				<td>~</td>
-				<td><input type="date" id="reqInput" style="width: 100%;" /></td>
-				<td><i class="fas fa-search" style="color: blue;"></i></td>
-				<td colspan="5">사원</td>
-				<td style="width: 80px;"><input type="text"
-					style="width: 100%;" /></td>
-				<td><input type="text" name="" disabled /></td>
-				<td><i class="fas fa-search" style="color: blue;"></i></td>
+				<td>
+				<input type="date" id="searchEndDate" value="${param.endDate }"style="width: 100%;" />
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -129,20 +97,22 @@ String dueDate = (String) request.getAttribute("dueDate");
 					<td>출고구분</td>
 					<td>고객코드</td>
 				</thead>
+				<c:forEach var="rs" items="${rsView }" varStatus="status">
 				<tr>
-					<td><input type="text" id="itemCode" name="itemCode" value='${itemCode }'/></td>
-					<td><input type="text" id="itemName" name="itemName" value='${itemName }'/></td>
-					<td><input type="text" id="standard" name="standard" value='${standard }'/></td>
-					<td><input type="text" id="inventoryUnit" name="inventoryUnit" value='${inventoryUnit }'/></td>
-					<td><input type="text" id="dueDate" name="dueDate" value='${dueDate }'/></td>
-					<td><input type="text" id="orderQuantity" name="orderQuantity" value='${orderQuantity }'/></td>
-					<td><input type="text" id="productPrice" name="productPrice" value='${productPrice }'/></td>
-					<td><input type="text" id="expectedDate" name="expectedDate" value='${expectedDate }'/></td>
-					<td><input type="text" id="releaseExpectedDate" name="releaseExpectedDate" value='${releaseExpectedDate }'/></td>
-					<td><input type="text" id="inspection" name="inspection" value='${inspection }'/></td>
-					<td><input type="text" id="orderOX" name="orderOX" value='${orderOX }'/></td>
-					<td><input type="text" id="customerCode" name="customerCode" value='${customerCode }'/></td>
+					<td><input type="text" id="itemCode" name="ListVO[${fn:length(rsView) }].itemCode" value='${rs.itemCode }' readonly/></td>
+					<td><input type="text" id="itemName" name="ListVO[${fn:length(rsView) }].itemName" value='${rs.itemName }' readonly/></td>
+					<td><input type="text" id="standard" name="ListVO[${fn:length(rsView) }].standard" value='${rs.standard }' readonly/></td>
+					<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(rsView) }].inventoryUnit" value='${rs.inventoryUnit }' readonly/></td>
+					<td><input type="text" id="dueDate" name="ListVO[${fn:length(rsView) }].dueDate" value='${rs.dueDate }' readonly/></td>
+					<td><input type="text" id="orderQuantity" name="ListVO[${fn:length(rsView) }].orderQuantity" value='${rs.orderQuantity }' readonly/></td>
+					<td><input type="text" id="productPrice" name="ListVO[${fn:length(rsView) }].productPrice" value='${rs.productPrice }' readonly/></td>
+					<td><input type="text" id="expectedDate" name="ListVO[${fn:length(rsView) }].expectedDate" value='${rs.expectedDate }' readonly/></td>
+					<td><input type="text" id="releaseExpectedDate" name="ListVO[${fn:length(rsView) }].releaseExpectedDate" value='${rs.releaseExpectedDate }' readonly/></td>
+					<td><input type="text" id="inspection" name="ListVO[${fn:length(rsView) }].inspection" value='${rs.inspection }' readonly/></td>
+					<td><input type="text" id="orderOX" name="ListVO[${fn:length(rsView) }].orderOX" value='${rs.orderOX }' readonly/></td>
+					<td><input type="text" id="customerCode" name="ListVO[${fn:length(rsView) }].customerCode" value='${rs.customerCode }' readonly/></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<div id="rsSum">
@@ -154,7 +124,31 @@ String dueDate = (String) request.getAttribute("dueDate");
 		</container2>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script>
+			var startDate = new Date().toISOString().substring(0,10);;
+			var endDate = new Date().toISOString().substring(0,10);;
 			
+			$('#searchStartDate').change(function(){
+				var date = $('#searchStartDate').val();
+				startDate = date;
+			});
+			$('#searchEndDate').change(function(){
+				var date = $('#searchEndDate').val();
+				endDate = date;
+			});
+			
+			view_button.onclick = function(){
+				if(startDate>endDate){
+					alert("지시기간 종료일은 시작일보다 작을 수 없습니다.");
+				} else{
+					const URLSearch = new URLSearchParams(location.search);
+					URLSearch.set('submit',"1")
+					URLSearch.set('startDate',startDate);
+					URLSearch.set('endDate',endDate);
+					const newParam = URLSearch.toString();
+					
+					window.open(location.pathname + '?' + newParam, '_self');
+				}
+			}
 		</script>
 	</form>
 </body>
