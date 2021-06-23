@@ -251,7 +251,47 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		mav.addObject("detailList", detailList);
  		return mav; 
  	}
+ 	
+ 	
+ 	
+ 	
+//  작업실적등록 기능부 
+  	 @Override
+  	  @RequestMapping(value="/member/regoperperf.do" ,method = RequestMethod.GET)
+  	  public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
+  		  String startDate = request.getParameter("startDate");
+  		  String endDate = request.getParameter("endDate");
+  		  String number = request.getParameter("searchNumber");
+  		  String viewName = (String)request.getAttribute("viewName");
+  		  ModelAndView mav = new ModelAndView(viewName); 
+  		  logger.debug("debug : viewName = " + viewName);
+  		  
+  		  if(number != null && number != "") {
+  			  List infoList = productionService.selectAllRegistOperationPerformanceInfo(startDate, endDate);
+  			  List detailList = productionService.selectAllRegistOperationPerformanceInfoDetail(number);
+  			  mav.addObject("infoList", infoList); 
+  			  mav.addObject("detailList", detailList);
+  		  } else {
+  			List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
+  			mav.addObject("infoList", infoList); 
+  		  }
+  		  return mav; 
+  	  	}
 	
+ 	@Override
+ 	@RequestMapping(value="/member/materialUse.do" ,method = RequestMethod.GET)
+ 	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception {
+ 		String number = (String) request.getParameter("workOrderNumber");
+ 		String viewName = getViewName(request);
+ 		String[] numberary = number.split(",");
+ 		List<String> message = new ArrayList();
+ 		message = productionService.MaterialUse(numberary);
+ 		ModelAndView mav = new ModelAndView("redirect:/member/regoperperf.do");
+ 		System.out.println("컨트롤러 확인"+message);
+ 		mav.addObject("message",message);
+ 		return mav;
+ 	}
+  	 
 //  작업지시 마감처리 기능부 
   	 @Override
   	  @RequestMapping(value="/member/operinsclo.do" ,method = RequestMethod.GET)

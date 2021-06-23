@@ -24,7 +24,7 @@ public class OperationInsClosingVO {
 	private String inspection;
 	private String note;
 	private String workOrderNumber;
-	private List<OperationInsClosingVO> DetailVO;
+	private List<OperationInsClosingVO> ListVO;
 	
 	public OperationInsClosingVO() {
 		
@@ -32,7 +32,7 @@ public class OperationInsClosingVO {
 	
 	@Override
 	public String toString() {
-		return Arrays.toString(DetailVO.toArray());
+		return Arrays.toString(ListVO.toArray());
 	}
 	
 
@@ -56,11 +56,11 @@ public class OperationInsClosingVO {
 		this.workplaceCode = workplaceCode;
 	}
 
-	public List<OperationInsClosingVO> getDetailVO() {
-		return DetailVO;
+	public List<OperationInsClosingVO> getListVO() {
+		return ListVO;
 	}
-	public void setDetailVO(List<OperationInsClosingVO> detailVO) {
-		DetailVO = new ArrayList();
+	public void setListVO(List<OperationInsClosingVO> ListVO) {
+		ListVO = new ArrayList();
 	}
 
 	public String getOPNumber() {

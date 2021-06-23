@@ -31,5 +31,8 @@ public interface CommonProductionController {
 	public ModelAndView closingCancleDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView revertDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

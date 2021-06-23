@@ -446,7 +446,7 @@
       <put-attribute name="body" value="/WEB-INF/views/production_manage/production_meterial_forwarding/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
-	<definition name="/member/regoperperf" extends="baseLayout">
+	<definition name="/member/regoperperf" extends="baseLayout4">
       <put-attribute name="title" value="작업실적등록" />
       <put-attribute name="body" value="/WEB-INF/views/production_manage/reg_operation_performance/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
