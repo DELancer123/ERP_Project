@@ -60,29 +60,27 @@ public class OrderRegControllerImpl implements OrderRegController{
 		String code = (String)request.getParameter("custCode");
 		String submit = (String)request.getParameter("submit");
 		
-		if(code == null || code.length() == 0) {
-//			||submit.equals("0")) {
+		if(code == null || code.length() == 0||submit.equals("0")) {
 		
 			mav = new ModelAndView(viewName);
 			return mav;
 		}
-		List orderList = orderService.submitCust(code);
-		mav = new ModelAndView(viewName);
-		mav.addObject("orderList", orderList);
-//		else if(submit.equals("1")) {
-//			List orderList = orderService.submitCust(code);
-//			mav = new ModelAndView(viewName);
-//			mav.addObject("orderList", orderList);
-//		}else if(submit.equals("2")) {
-//			List orderList = orderService.submitCust(code);
-//			mav = new ModelAndView(viewName);
-//			mav.addObject("orderList", orderList);
-//			int inputNo = orderService.inputNo();
-//			String inNo = Integer.toString(inputNo+1);
-//			System.out.println(inNo+"번째 주문번호");
-//			request.setAttribute("inputNo", inNo);
-//		}
-//		return mav;
+//		List orderList = orderService.submitCust(code);
+//		mav = new ModelAndView(viewName);
+//		mav.addObject("orderList", orderList);
+		else if(submit.equals("1")) {
+			List orderList = orderService.submitCust(code);
+			mav = new ModelAndView(viewName);
+			mav.addObject("orderList", orderList);
+		}else if(submit.equals("2")) {
+			List orderList = orderService.submitCust(code);
+			mav = new ModelAndView(viewName);
+			mav.addObject("orderList", orderList);
+			int inputNo = orderService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			System.out.println(inNo+"번째 주문번호");
+			request.setAttribute("inputNo", inNo);
+		}
 		return mav;
 	}
 	@Override

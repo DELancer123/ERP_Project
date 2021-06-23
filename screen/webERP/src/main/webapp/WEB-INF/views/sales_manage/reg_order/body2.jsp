@@ -9,11 +9,6 @@
 %> 
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
-	String ordCode = (String)request.getAttribute("ordCode");
-	if(ordCode!=null){
-	String replace = ordCode.replaceAll("[^0-9]","");
-	int no1 = Integer.parseInt(replace);		
-	}
 %>
 <% String code = request.getParameter("custCode");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -59,7 +54,7 @@
 </style>
 </head>
 <body>
-        	<form id="regOrd" method="get" commandName = "ListOrd">
+        <form id="regOrd" method="get" commandName = "ListOrd">
         <container2 id="contents2">
            <table id="view">
                 <thead>
@@ -74,7 +69,7 @@
                 <tbody>
                     <td><input type="checkbox" value="${cust.ordCode}" name="content"/></td>
                     <td><input type="text" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"/></td>
-                    <td><input type="date" value="${cust.ordDate}"/></td>
+                    <td><input type="date" name="ListOrd[${status.index}].ordCode"value="${cust.ordDate}"/></td>
                     <td><input type="text" value="${cust.custName}"/></td>
                     <td><input type="text" value="${cust.tax}"/></td>
                     <td><input type="text" value="${cust.note}"/></td>
@@ -82,11 +77,11 @@
                 </c:forEach>
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].ordCode" value="${ordCode}"/></td>
-                    <td><input type="date" value="${ordDate}"/></td>
-                    <td><input type="text" value="${custCode}"/></td>
-                    <td><input type="text" value="${tax}"/></td>
-                    <td><input type="text" value="${note}"/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].ordDate" value="${ordCode}"/></td>
+                    <td><input type="date" name="ListOrd[${fn:length(orderList)}].ordDate" value="${ordDate}"/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].custCode" value="${custCode}"/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].tax" value="${tax}"/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].note" value="${note}"/></td>
                 </tbody>
            </table>
         </container2>
@@ -140,16 +135,6 @@
         </container3>
         </form>
         <script>
-        var item_code = document.getElementById("corVO.item_code");
-        var item_name = document.getElementById("dataoutput");
-        
-        /* item_code.onfocus = function(){
-        	var item_code = document.getElementById("item_code");
-        } */
-        
-        function search5(){
-        	openWindowPop('http://localhost:8090/webERP/sales_manage/pop/regorderItem.do','regorderItem');
-        }
         
         function deleteData() {
         

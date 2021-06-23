@@ -55,7 +55,7 @@ public class OrderDAOImpl implements OrderDAO {
 //		// TODO Auto-generated method stub
 //		return 0;
 //	}
-//
+
 	@Override
 	public void delOrder(String[] noary) throws DataAccessException {
 		for(String obj: noary) {

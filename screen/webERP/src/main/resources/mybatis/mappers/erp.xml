@@ -362,7 +362,7 @@
 		 and COR.customerCode = #{custCode}
         ]]>
 	</select>
-	<!-- 출고현황(재원) -->
+	<!-- 출고현황(재원) 
 	<resultMap id="rsView" type="rsVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
@@ -377,7 +377,7 @@
 		<result property="orderOX" column="orderOX" />
 		<result property="customerCode" column="customerCode" />
 	</resultMap>
-	<select id="rsSelectAllMemberList" resultMap="rsView">
+	<select id="rsSelectAllMemberList" resultMap="rsView"> 
 		<![CDATA[select * from CSM_SM_COR_Reg]]>
 	</select>
 	<select id="rsSelectItem" resultMap="rsView" parameterType="String">
@@ -385,5 +385,5 @@
 	</select>
 	<select id="rsSearchItem" resultMap="rsView" parameterType="String">
 		<![CDATA[select * from CSM_SM_COR_Reg where dueDate = #{dueDate]]>
-	</select>
+	</select>-->
 </mapper>
