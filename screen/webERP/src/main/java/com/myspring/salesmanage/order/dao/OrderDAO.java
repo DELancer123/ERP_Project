@@ -16,8 +16,8 @@ public interface OrderDAO {
 	//reg
 	public int selOrdCode() throws DataAccessException;
 	public int addOrder(OrderVO orderVO) throws DataAccessException;
+	public void delOrder(String[] noary) throws DataAccessException;		
 //	public int updNewOrder(String custCode) throws DataAccessException;
-//	public void delOrder(String[] noary) throws DataAccessException;		
 	
 //	public List selectItemGroupList() throws DataAccessException;
 //	public List addGroup(String groupcode) throws DataAccessException;

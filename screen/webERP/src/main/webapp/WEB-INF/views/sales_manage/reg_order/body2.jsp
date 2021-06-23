@@ -9,9 +9,13 @@
 %> 
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
-	
+	String ordCode = (String)request.getAttribute("ordCode");
+	if(ordCode!=null){
+	String replace = ordCode.replaceAll("[^0-9]","");
+	int no1 = Integer.parseInt(replace);		
+	}
 %>
-<% String parent = request.getParameter("custCode");%>
+<% String code = request.getParameter("custCode");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="cust" items="${orderList}"> 
 	<c:set var="code" value="${cust.ordCode}"/>
@@ -55,6 +59,7 @@
 </style>
 </head>
 <body>
+        	<form id="regOrd" method="get" commandName = "ListOrd">
         <container2 id="contents2">
            <table id="view">
                 <thead>
@@ -67,21 +72,21 @@
                 </thead>
                 <c:forEach var="cust" items="${orderList}"> 
                 <tbody>
-                    <td><input type="checkbox" value= "${cust.ordCode}" id="check" name="content"/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"readonly/></td>
-                    <td><input type="date" value="${cust.ordDate}"readonly/></td>
-                    <td><input type="text" value="${cust.custName}"readonly/></td>
-                    <td><input type="text" value="${cust.tax}"readonly/></td>
-                    <td><input type="text" value="${cust.note}"readonly/></td>
+                    <td><input type="checkbox" value="${cust.ordCode}" name="content"/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"/></td>
+                    <td><input type="date" value="${cust.ordDate}"/></td>
+                    <td><input type="text" value="${cust.custName}"/></td>
+                    <td><input type="text" value="${cust.tax}"/></td>
+                    <td><input type="text" value="${cust.note}"/></td>
                 </tbody>
                 </c:forEach>
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].ordCode" value="${ordCode}"readonly/></td>
-                    <td><input type="date" value="${ordDate}"readonly/></td>
-                    <td><input type="text" value="${custCode}"readonly/></td>
-                    <td><input type="text" value="${tax}"readonly/></td>
-                    <td><input type="text" value="${note}"readonly/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].ordCode" value="${ordCode}"/></td>
+                    <td><input type="date" value="${ordDate}"/></td>
+                    <td><input type="text" value="${custCode}"/></td>
+                    <td><input type="text" value="${tax}"/></td>
+                    <td><input type="text" value="${note}"/></td>
                 </tbody>
            </table>
         </container2>
@@ -103,8 +108,8 @@
                 </thead>
                    <c:forEach var="cust" items="${orderList}"> 
                 <tbody>
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" value="${cust.corVO.item_code}" ondblclick="search2()" readonly/></td>
+                    <td><input type="checkbox" value = "check1" name="content"/></td>
+                    <td><input type="text" id="item_code" value="${cust.corVO.item_code}" ondblclick="search2()" readonly/></td>
                     <td><input type="text" value="${cust.corVO.item_name}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.stand}" readonly/></td>
                     <td><input type="text" value="${cust.corVO.unit}" readonly/></td>
@@ -118,29 +123,47 @@
                 </tbody>
                 </c:forEach>
                 <tbody>
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" value="${corVO.item_code}"readonly/></td>
-                    <td><input type="text" value="${corVO.item_name}"readonly/></td>
-                    <td><input type="text" value="${corVO.stand}"readonly/></td>
-                    <td><input type="text" value="${corVO.unit}"readonly/></td>
-                    <td><input type="text" value="${corVO.dueDate}"readonly/></td>
-                    <td><input type="text" value="${corVO.orderQuant}"readonly/></td>
-                    <td><input type="text" value="${corVO.price}"readonly/></td>
-                    <td><input type="text" value="${corVO.orderQuant*corVO.price}"readonly/></td>
-                    <td><input type="text" value="${(corVO.orderQuant*corVO.price)*0.1}"readonly/></td>
-                    <td><input type="text" value="${corVO.orderQuant*corVO.price}"readonly/></td>
-                    <td><input type="text" value="${corVO.orderOX}"readonly/></td>
+                    <td><input type="checkbox" value = "check1" name="content"/></td>
+                    <td><input type="text" name="ListVO[${fn:length(orderList)}].corVO.item_code" value="${corVO.item_code}"/></td>
+                    <td><input type="text" value="${corVO.item_name}"/></td>
+                    <td><input type="text" value="${corVO.stand}"/></td>
+                    <td><input type="text" value="${corVO.unit}"/></td>
+                    <td><input type="text" value="${corVO.dueDate}"/></td>
+                    <td><input type="text" value="${corVO.orderQuant}"/></td>
+                    <td><input type="text" value="${corVO.price}"/></td>
+                    <td><input type="text" value="${corVO.orderQuant*corVO.price}"/></td>
+                    <td><input type="text" value="${(corVO.orderQuant*corVO.price)*0.1}"/></td>
+                    <td><input type="text" value="${corVO.orderQuant*corVO.price}"/></td>
+                    <td><input type="text" value="${corVO.orderOX}"/></td>
                 </tbody>
             </table>
         </container3>
+        </form>
         <script>
-        var item_code = document.getElementById("item_code");
-        var item_code = document.getElementById("dataoutput");
-        item_code.onfocus = function(){
-        	var item_name = document.getElementById("item_code");
-        }
+        var item_code = document.getElementById("corVO.item_code");
+        var item_name = document.getElementById("dataoutput");
+        
+        /* item_code.onfocus = function(){
+        	var item_code = document.getElementById("item_code");
+        } */
+        
         function search5(){
         	openWindowPop('http://localhost:8090/webERP/sales_manage/pop/regorderItem.do','regorderItem');
+        }
+        
+        function deleteData() {
+        
+      	  var item = document.getElementsByName("content").length;
+      	  var no = "";
+      	  var ary = [];
+      	  for(var i=0; i<item;i++){
+      		  if(document.getElementsByName("content")[i].checked==true){
+      			no = document.getElementsByName("content")[i].value;
+      			
+      			   ary.push(no); 
+      		  }
+      		 	  window.location.href = "${contextPath}/member/delorder.do?no="+ary;
+      	  }
         }
         </script>
 </body>

@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title>회원 정보 출력창</title>
+<title>거래처 팝업</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <style>
     	a{
@@ -60,7 +60,7 @@
             </table>
             <div id="button">
                 <button id="search">조회</button>
-                <button id="submit">적용</button>
+                <button id="submit"  onclick="submitClick(this.form)">적용</button>
                 <input type="hidden" name="inputNo" value=""/>
                 <input type="reset" id="reset" value="초기화"/>
             </div>
@@ -83,22 +83,29 @@
 				</table>
 			</div>
 		</div>
-	 <script>
-      var submit_button = document.getElementById("submit");
+		        <script>
+    var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
+    		
     	function popFunction(code,name){
-    		text_code.value = code;
-    		text_name.value = name;
+    			text_code.value = code;
+    			text_name.value = name;
+    			
+    	}
+    	function submitClick(form){
+    		opener.setChildValue(text_name.value);
+			window.close();
     	}
     	submit_button.onclick = function(){
     		text_code.setAttribute("custCode",text_code.value);
 			text_name.setAttribute("custName",text_name.value);
-			submit_button.setAttribute("submit",submit_button)
-    		opener.parent.location='${contextPath}/member/regorder.do?custCode='+text_code.value+'&&custName='+text_name.value;
+			opener.parent.location='${contextPath}/member/regorder.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>
+
+
 	</form>
 </body>
 </html>

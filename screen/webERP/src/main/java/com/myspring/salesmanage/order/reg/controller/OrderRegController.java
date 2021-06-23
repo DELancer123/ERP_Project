@@ -12,7 +12,7 @@ public interface OrderRegController{
 	
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listAllCust(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView addMember(@ModelAttribute("order") OrderVO orderVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public ModelAndView addOrder(@ModelAttribute("order") OrderVO orderVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delOrder(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

@@ -60,27 +60,34 @@ public class OrderRegControllerImpl implements OrderRegController{
 		String code = (String)request.getParameter("custCode");
 		String submit = (String)request.getParameter("submit");
 		
-		if(code == null || code.length() == 0||submit.equals("0")) {
+		if(code == null || code.length() == 0) {
+//			||submit.equals("0")) {
+		
 			mav = new ModelAndView(viewName);
 			return mav;
-		}else if(submit.equals("1")) {
-			List orderList = orderService.submitCust(code);
-			mav = new ModelAndView(viewName);
-			mav.addObject("orderList", orderList);
-		}else if(submit.equals("2")) {
-			List orderList = orderService.submitCust(code);
-			mav = new ModelAndView(viewName);
-			mav.addObject("orderList", orderList);
-			int inputNo = orderService.inputNo();
-			String inNo = Integer.toString(inputNo+1);
-			System.out.println(inNo+"번째 주문번호");
-			request.setAttribute("inputNo", inNo);
 		}
+		List orderList = orderService.submitCust(code);
+		mav = new ModelAndView(viewName);
+		mav.addObject("orderList", orderList);
+//		else if(submit.equals("1")) {
+//			List orderList = orderService.submitCust(code);
+//			mav = new ModelAndView(viewName);
+//			mav.addObject("orderList", orderList);
+//		}else if(submit.equals("2")) {
+//			List orderList = orderService.submitCust(code);
+//			mav = new ModelAndView(viewName);
+//			mav.addObject("orderList", orderList);
+//			int inputNo = orderService.inputNo();
+//			String inNo = Integer.toString(inputNo+1);
+//			System.out.println(inNo+"번째 주문번호");
+//			request.setAttribute("inputNo", inNo);
+//		}
+//		return mav;
 		return mav;
 	}
 	@Override
 	@RequestMapping(value="/member/addorder.do", method = RequestMethod.GET)
-	public ModelAndView addMember(OrderVO orderVO, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView addOrder(OrderVO orderVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
@@ -89,6 +96,20 @@ public class OrderRegControllerImpl implements OrderRegController{
 		result = orderService.addOrder(orderVO);
 		ModelAndView mav = new ModelAndView("redirect:" + path);
 		System.out.println("list"+orderVO.getListOrd().get(2).getCustName());
+		
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/member/delorder.do", method = RequestMethod.GET)
+	public ModelAndView delOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String code = (String)request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] codeary = code.split(",");
+		System.out.println(codeary+"codeary");
+		System.out.println(code+"code");
+		orderService.removeOrder(codeary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regorder.do");
 		
 		return mav;
 	}
@@ -134,6 +155,5 @@ public class OrderRegControllerImpl implements OrderRegController{
 	}
 	return viewName;
 	}
-
 
 }
