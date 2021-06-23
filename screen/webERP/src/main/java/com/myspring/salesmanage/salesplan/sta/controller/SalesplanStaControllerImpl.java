@@ -37,8 +37,8 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 	@RequestMapping(value="/business_status/pop/popItem.do" ,method = RequestMethod.GET)
 	public ModelAndView listAllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		logger.info("viewName: "+ viewName);
-		logger.debug("viewName: "+ viewName);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
 		List allItemList = salesplanService.listItems();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("allItemList", allItemList);

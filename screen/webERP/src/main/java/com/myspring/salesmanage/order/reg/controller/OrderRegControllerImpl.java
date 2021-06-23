@@ -43,8 +43,8 @@ public class OrderRegControllerImpl implements OrderRegController{
 	@RequestMapping(value="/sales_manage/pop/regorderCust.do",method = RequestMethod.GET)
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		logger.info("viewName: "+ viewName);
-		logger.debug("viewName: "+ viewName);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
 		List orderCustList = orderService.listCusts();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("orderCustList", orderCustList);
@@ -115,8 +115,8 @@ public class OrderRegControllerImpl implements OrderRegController{
 	@RequestMapping(value="/sales_manage/pop/regorderItem.do",method = RequestMethod.GET)
 	public ModelAndView helper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		logger.info("viewName: "+ viewName);
-		logger.debug("viewName: "+ viewName);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
 		List orderCustList = orderService.listCusts();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("orderCustList", orderCustList);

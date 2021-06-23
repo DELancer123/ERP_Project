@@ -68,7 +68,7 @@
                 <c:forEach var="cust" items="${orderList}"> 
                 <tbody>
                     <td><input type="checkbox" value="${cust.ordCode}" name="content"/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"/></td>
+                    <td><input type="text" id="ordCode" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"/></td>
                     <td><input type="date" name="ListOrd[${status.index}].ordDate"value="${cust.ordDate}"/></td>
                     <td><input type="text" name="ListOrd[${status.index}].custCode" value="${cust.custCode}"/></td>
                     <td><input type="text" name="ListOrd[${status.index}].tax" value="${cust.tax}"/></td>
@@ -77,7 +77,7 @@
                 </c:forEach>
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].ordCode" value="${ordCode}"/></td>
+                    <td><input type="text" id="ordCode" name="ListOrd[${fn:length(orderList)}].ordCode" value="${ordCode}"/></td>
                     <td><input type="date" name="ListOrd[${fn:length(orderList)}].ordDate" value="${ordDate}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderList)}].custCode" value="${custCode}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderList)}].tax" value="${tax}"/></td>
@@ -119,7 +119,7 @@
                 </c:forEach>
                 <tbody>
                     <td><input type="checkbox" value = "check1" name="content"/></td>
-                    <td><input type="text" name="ListOrd[${fn:length(orderList)}].corVO.item_code" value="${corVO.item_code}"  ondblclick="search2()"/></td>
+                    <td><input type="text" id="item_code" name="ListOrd[${fn:length(orderList)}].corVO.item_code" value="${corVO.item_code}"  ondblclick="search2()"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderList)}].corVO.item_name" value="${corVO.item_name}" ondblclick="search2()"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderList)}].corVO.stand" value="${corVO.stand}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderList)}].corVO.unit" value="${corVO.unit}"/></td>
@@ -135,15 +135,59 @@
         </container3>
         </form>
         <script>
+        var ordCode = document.getElementById("ordCode");
+        var ordDate = document.getElementById("dataoutput");
+        var custCode = document.getElementById("dataoutput");
+        var tax = document.getElementById("dataoutput");
+        var note = document.getElementById("dataoutput");
+
+        var item_code = document.getElementById("item_code");
+        var item_name = document.getElementById("dataoutput");
+        var stand = document.getElementById("dataoutput");
+        var unit = document.getElementById("dataoutput");
+        var dueDate = document.getElementById("dataoutput");
+        var orderQuant = document.getElementById("dataoutput");
+        var price = document.getElementById("dataoutput");
+        var orderOX = document.getElementById("dataoutput");
+        
+        function setChildValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);
+  		  URLSearch.set('submit', '2');
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('item_code') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&item_code=' + name;
+          }
+          else{
+          	URLSearch.set('item_code', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
+        function newRow(){
+            
+            alert(하이);
+            window.location.href = "${contextPath}/member/addorder.do?no="+cust;
+            /*var workOrderTable = document.getElementById('workOrderTable');
+            var row = workOrderTable.insertRow(); 
+    			var link = document.location.href;
+    			var articleNOInput = document.createElement("input");
+    		     articleNOInput.setAttribute("type","hidden");
+    		     articleNOInput.setAttribute("name","path");
+    		     articleNOInput.setAttribute("value", link);
+    		     document.getElementById('regOrd').appendChild(articleNOInput);
+              document.getElementById('regOrd').action = "${contextPath}/member/addorder.do";
+    			document.getElementById('regOrd').submit(); */
+        }
+
         function search2(){
         	
           	openWindowPop('http://localhost:8090/webERP/sales_manage/pop/regorderItem.do','regorderItem');
         	 
           }
         
-        function newRow(){
-        	 
-        }
+
         function deleteData() {
         
       	  var item = document.getElementsByName("content").length;

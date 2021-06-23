@@ -47,7 +47,7 @@ public class OrderDAOImpl implements OrderDAO {
 	public int addOrder(OrderVO orderVO) throws DataAccessException {
 		int idx = orderVO.getListOrd().size()-1;
 		int result = sqlSession.insert("mappers.erp.insertOrder",orderVO.getListOrd().get(idx));
-		return 0;
+		return result;
 	}
 
 //	@Override
