@@ -167,6 +167,8 @@
 		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
+	<!-- 작업지시확정 추가 기능 -->
+	
 	<update id="updConfirmDetail">
 		<![CDATA[
 		update CPM_PM_OPE_PER_REG
@@ -174,6 +176,19 @@
 		where  workOrderNumber = #{workOrderNumber} and status = '계획'
 		]]>  
 	</update>	
+	
+	<update id="updRevertDetail">
+		<![CDATA[
+		update CPM_PM_OPE_PER_REG
+		set status = '계획'
+		where  workOrderNumber = #{workOrderNumber} and status = '확정'
+		]]>  
+	</update>	
+	
+	
+	<select id="countWorkOrderNumber" resultType="string">
+		<![CDATA[select count(*) from CPM_PM_PRO_MAT_FOR_DET where workOrderNumber = #{number}]]>
+	</select>
 	
 	<select id="selectRelease" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
