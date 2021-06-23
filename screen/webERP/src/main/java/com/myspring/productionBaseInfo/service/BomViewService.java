@@ -32,4 +32,5 @@ public interface BomViewService {
 	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException;
 	public List viewGroupList() throws DataAccessException;
 	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException;
+	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
 }

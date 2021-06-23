@@ -166,4 +166,9 @@ public class BomViewServiceImpl implements BomViewService{
 		return delList;
 	}
 
+	@Override
+	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException {
+		return defDAO.addDefpop(defVO);
+	}
+
 }

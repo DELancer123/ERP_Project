@@ -90,8 +90,7 @@
                     </thead>
                     <c:forEach var = "def" items='${defectiveList }' varStatus="status" >
                     <tbody align="center">
-                        <td><input type="checkbox" value = "0" id="check" name="content"/></td>
-                        <input type="hidden" value='${status.index }' name="defList[${status.index }].chkNum"/>
+                        <td><input type="checkbox" value = "0" id="check" class="check" name="content"/></td>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' /></td>
@@ -154,7 +153,8 @@
 	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
       	}
       	delete_button.onclick = function(){
-      		document.getElementById("defCode").disabled = true;
+      		
+      		 document.getElementById("defCode").disabled = true;
 		     document.getElementById("defName").disabled = true;
 		     document.getElementById("defgroup").disabled = true;
 		     document.getElementById("usage").disabled = true;
@@ -170,7 +170,7 @@
 	  		     articleNOInput.setAttribute("value", link);
 	  		     document.getElementById('searchForm').appendChild(articleNOInput);
 	            document.getElementById('searchForm').action = "${contextPath}/member/deldefType.do";
-	  			document.getElementById('searchForm').submit();  
+	  			document.getElementById('searchForm').submit();   
       	}
       </script>
 </body>

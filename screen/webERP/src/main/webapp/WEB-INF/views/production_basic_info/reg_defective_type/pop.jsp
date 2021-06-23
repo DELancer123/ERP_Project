@@ -3,11 +3,11 @@
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-    
+    <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
 	String div = (String)request.getAttribute("div");
 %>
@@ -49,7 +49,6 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -65,29 +64,35 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit" onclick="submitClick(this.form)">적용</button>
-                <input type="hidden" name="inputNo" value=""/>
-                 
-                <button>버튼3</button>
+				<button id="delete_pop">삭제</button>                 
+                <button id="save_pop">저장</button>
             </div>
         </div>
         <div id="view">
+		<form id="popForm" method="get" commandName = "defList">
             <table style="width: 100%;">
                 <tr align="center">
+			    	<td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                     <td>불량군코드</td>
                     <td>불량군이름</td>
                 </tr>
-                <c:forEach var="group" items='${defGroupList }'>
+                <c:forEach var="group" items='${defGroupList }' varStatus="status">
    <tr align="center">
+   <td><input type="checkbox" name="content"/></td>
       <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroupCode }</a></td>
       <td><a href="">${group.defectiveItemGroup }</a></td>
+      <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${group.defectiveItemGroupCode }'/>
+      <input type="hidden" name="defList[${status.index }].defectiveItemGroup" value='${group.defectiveItemGroup }'/>
     </tr>
     </c:forEach>
     	<tr>
-    		<td><input type="text"/></td>
-    		<td><input type="text"/></td>
+    	<td></td>
+    		<td ><input type="text" name="defList[${fn:length(defGroupList) }].defectiveItemGroupCode"/></td>
+    		<td><input type="text" name="defList[${fn:length(defGroupList) }].defectiveItemGroup"/></td>
     	</tr>
             </table>
             
+    </form>
         </div>
     </div>
     
@@ -95,6 +100,7 @@
    		var submit_button = document.getElementById("submit");
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
+    	var save_pop = document.getElementById("save_pop");
     		
     	function popFunction(code,name){
     			text_code.value = code;
@@ -108,8 +114,22 @@
     			window.close();
     		}
     		
-    	
+    	save_pop.onclick = function(){
+  		 		var link = location.pathname;
+    			var articleNOInput = document.createElement("input");
+    		     articleNOInput.setAttribute("type","hidden");
+    		     articleNOInput.setAttribute("name","path");
+    		     articleNOInput.setAttribute("value", link);
+    		     document.getElementById('popForm').appendChild(articleNOInput);
+                document.getElementById('popForm').action = "${contextPath}/member/adddefpop.do";
+    			document.getElementById('popForm').submit();  
+    	}
+    	function selectAll(selectAll){
+            const checkbox = document.getElementsByName('content');
+            checkbox.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            })
+        }
     </script>
-    </form>
 </body>
 </html>
