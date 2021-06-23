@@ -197,7 +197,7 @@
                 </form>
              </div>
         </container2>
-        <!-- 
+        <
         <container3 id="contents3">
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -214,7 +214,6 @@
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                    <!--
                     <tbody>
                         <c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
@@ -247,7 +246,7 @@
             </div>
             <!-- 컨테이너 출력 종료 -->
             <!-- 출력부 -->
-            <!--
+            
             <div id="detailPrint1">
                 입고 창고<input type="text" name="cargoName" style="width: 75px;"><a href="#" onclick="showPopup();"> <i class="fas fa-search"></i></a><input type="text" name="printCargoName" disabled>
                 재작업<select>
@@ -256,7 +255,6 @@
                 </select>
             </div>
         </container3>
-         -->
       
 </body>
 </html>
