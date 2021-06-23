@@ -243,7 +243,7 @@ from CPM_PM_Ope_Per_Reg
 	</select>
 	
 		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
 ]]>
 	</select>
 	
@@ -253,18 +253,11 @@ from CPM_PM_Ope_Per_Reg
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
 (opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
 from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
+where opr.workordernumber= oprd.workordernumber
 group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
 order by opr.workordernumber
 ]]>
-<where> opr.workordernumber= oprd.workordernumber and opr.workOrderNumber = #{workOrderNumber}
-			<if test="startDate != '' and startDate != null">
-				and opr.instructionDate between #{startDate} and #{endDate}
-			</if>
-			<if test="endDate != '' and endDate != null">
-				and opr.dueDate between #{startDate} and #{endDate}
-			</if>
-</where>
 	</select>
 	
 	<select id="checkMaterialUse" resultType="string">
@@ -275,7 +268,7 @@ order by opr.workordernumber
 		<![CDATA[
 		update CPM_PM_Ope_Per_Reg_Det
 		set materialUseStatus = '유'
-		where  workOrderNumber = #{workOrderNumber} and status = '무'
+		where  workOrderNumber = #{workOrderNumber} and materialUseStatus = '무'
 		]]>  
 	</update>	
 	

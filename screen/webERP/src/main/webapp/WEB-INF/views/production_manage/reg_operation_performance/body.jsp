@@ -108,7 +108,7 @@
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
 
                         <td>
-                            <input type="button" value="자재사용" onclick="MaterialUse();" style="padding: 5px; margin-left: 30px;"></input>
+                            <input type="button" value="자재사용" onClick="materialUse();" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
                         <td>
                             <input type="button" value="생산자원등록" style="padding: 5px;"></input>
@@ -362,7 +362,7 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
         
         
         
-        function MaterialUse() {
+        function materialUse() {
         	var item = document.getElementsByName("content").length;
         	  var no = "";
         	  var ary = [];
