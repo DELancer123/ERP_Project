@@ -176,12 +176,12 @@
 	</update>	
 	
 	<select id="selectRelease" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber]]>
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[select det.billingdate, det.item_code,det.item_name,det.standard,det.inventory_unit,REG.indicatedquantity,det.loss,(reg.indicatedquantity+(reg.indicatedquantity*det.loss)*0.01)
-				from CPM_PM_OPE_PER_REG reg,CPM_PM_Pro_Mat_For_Det det
+		<![CDATA[select det.billingdate, det.item_code, det.item_name, det.standard, det.inventory_unit, reg.indicatedquantity
+				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det
 				where reg.workordernumber = det.workordernumber and det.workordernumber = #{number}]]>
 	</select>
 	
