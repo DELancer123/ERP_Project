@@ -22,6 +22,7 @@ public class OperationRegistVO {
 	private int sumPerformanceQuantity;
 	private int remainingPerformance;
 	private String status;
+	private String workSortation;
 	private String inspection;
 	private String note;
 	private String productionPlanCode;
@@ -198,6 +199,14 @@ public class OperationRegistVO {
 
 	public void setRemainingPerformance(int remainingPerformance) {
 		this.remainingPerformance = remainingPerformance;
+	}
+
+	public String getWorkSortation() {
+		return workSortation;
+	}
+
+	public void setWorkSortation(String workSortation) {
+		this.workSortation = workSortation;
 	}
 	
 	

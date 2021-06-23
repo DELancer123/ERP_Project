@@ -45,13 +45,7 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		
 		return defGroupList;
 	}
-	@Override
-	public int deldefType(DefectiveTypeVO defVO) throws DataAccessException {
-		for(int i = 0;i<10;i++) {
-			sqlSession.delete("mappers.erp.deleteBOM");		
-		}
-		return 0;
-	}
+
 	@Override
 	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException {
 		int idx = defVO.getDefList().size()-1;
@@ -59,5 +53,11 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		System.out.println(idx);
 		return 0;
 	}
-
+	@Override
+	public int deldefType(String[] numberary) throws DataAccessException {
+		for(int i = 0;i<numberary.length;i++) {
+			sqlSession.delete("mappers.erp.deldeftype", numberary[i]);		
+		}
+		return 0;
+	}
 }

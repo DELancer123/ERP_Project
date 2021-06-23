@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
 
 @Repository("RegistOperationPerformanceDAO")
@@ -59,7 +60,7 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	
 	@Override
 	public List selectAllRegistOperationPerformanceInfoDetail(String number) throws DataAccessException, ParseException {
-		List<RegistOperationPerformanceVO> infoList = null;		
+		List<RegistOperationPerformanceDetailVO> infoList = null;		
 		infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoDetail", number);
 		return infoList;
 	}

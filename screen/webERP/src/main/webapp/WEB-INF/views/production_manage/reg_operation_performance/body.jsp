@@ -122,6 +122,7 @@
         </container1>
         <container2 id="contents2">
              <div id="workOrderDetail">
+              <form id="dataForm" mehtod="get" commandName="ListVO">
                 <table id="workOrderDetailTable">
                     <thead> 
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -138,7 +139,10 @@
                         <td>실적수량</td>
                         <td>실적잔량</td>
                         <td>상태</td>
+                        <td>작업구분</td>
                         <td>검사</td>
+                        <td>생산설비</td>
+                        <td>작업팀</td>
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
@@ -151,7 +155,7 @@
                      	<td><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly /></td>
                      	<td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly /></td>
                      	<td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" /></td>
-                     	<td><input tpye="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].itemName" value="${info.itemName}" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].standard" value="${info.standard}" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].inventoryUnit" value="${info.inventoryUnit}" readonly /></td>
@@ -159,7 +163,10 @@
                      	<td><input type="text" name="ListVO[${status.index }].sumPerformanceQuantity" value="${info.sumPerformanceQuantity}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].remainingPerformance" value="${info.remainingPerformance}" /></td>
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].workSortation" value="${info.workSortation}" /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].inspection" value="${info.inspection}" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].productionFacility" value="${info.productionFacility}" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index }].taskTeam" value="${info.taskTeam}" readonly/></td>
                      	<td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly /></td>
                      </tr>
                      </c:forEach>
@@ -178,14 +185,19 @@
                         <td><input type="text" id="sumPerformanceQuantity" name="ListVO[${fn:length(infoList)}].sumPerformanceQuantity" value="${param.sumPerformanceQuantity }"/></td>
                         <td><input type="text" id="remainingPerformance" name="ListVO[${fn:length(infoList)}].remainingPerformance" value="${param.remainingPerformance }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
+                        <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].workSortation" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
                        
                      </tr>
                     </tbody>
                 </table>
-            </div>
+                </form>
+             </div>
         </container2>
+        <
         <container3 id="contents3">
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -234,6 +246,7 @@
             </div>
             <!-- 컨테이너 출력 종료 -->
             <!-- 출력부 -->
+            
             <div id="detailPrint1">
                 입고 창고<input type="text" name="cargoName" style="width: 75px;"><a href="#" onclick="showPopup();"> <i class="fas fa-search"></i></a><input type="text" name="printCargoName" disabled>
                 재작업<select>
@@ -247,6 +260,10 @@
 </html>
 
 <script>
+/* input date의 현재 날짜 기본값 설정*/
+document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+
  /* 검색부 date onChange 함수 설정 */
  		 		var startDate = "";
     	var endDate = "";
