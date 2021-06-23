@@ -180,7 +180,7 @@ request.setCharacterEncoding("UTF-8");
 	               
                 </c:forEach>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="5">
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
@@ -361,9 +361,9 @@ request.setCharacterEncoding("UTF-8");
     		articleNOInput.setAttribute("type","hidden");
     		articleNOInput.setAttribute("name","path");
     		articleNOInput.setAttribute("value", link);
-    		document.getElementById('regcompany').appendChild(articleNOInput);
-    		document.getElementById('regcompany').action = "${contextPath}/member/addbasicacc.do";
-    		document.getElementById('regcompany').submit();
+    		document.getElementById('reg_gen_account').appendChild(articleNOInput);
+    		document.getElementById('reg_gen_account').action = "${contextPath}/member/addbasicacc.do";
+    		document.getElementById('reg_gen_account').submit();
     		alert('등록 되었습니다');
     		}
       
