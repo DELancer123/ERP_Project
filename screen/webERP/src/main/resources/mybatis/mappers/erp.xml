@@ -50,6 +50,7 @@
 		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
 		<result property="workOrderNumber" column="workOrderNumber" />
+		<collection property="OpePerRegResult" column="workOrderNumber" select="selectAllOperationRegistInfoCondition"></collection>
 	</resultMap>
 	<resultMap id="RegOpePerResult" type="RegistOperationPerformanceVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
@@ -194,10 +195,12 @@
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
-	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[select det.billingdate, det.item_code, det.item_name, det.standard, det.inventory_unit, reg.indicatedquantity
-				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det
-				where reg.workordernumber = det.workordernumber and det.workordernumber = #{number}]]>
+	<select id="selectReleaseDetail" resultType="OperationDetailVO">
+		<![CDATA[select det.no as no, det.billingDate as billingDate, bom.item_code as Item_Code, bom.item_name as item_Name, bom.standard as standard, bom.inventory_unit as inventory_Unit, reg.indicatedQuantity as indicatedquantity,det.loss as loss,(reg.indicatedQuantity*det.loss) as confirmQuantity, det.note as note 
+				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det,cpm_bim_bom_reg bom
+				where reg.item_code = bom.parent_item_code and reg.workordernumber = #{number}
+                order by bom.item_code
+         ]]>
 	</select>
 	
 	<!-- 작업실적등록 CRUD -->
