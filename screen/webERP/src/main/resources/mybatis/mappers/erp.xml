@@ -215,7 +215,7 @@
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
-		<result property="item_Code" column="item_Code" />
+   		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="due_date" column="due_date" />
@@ -223,10 +223,16 @@
 		<result property="expected_order" column="expected_order" />
 		<result property="expected_quantity" column="expected_quantity" />
 		<result property="inventory_unit" column="inventory_unit" />
+		<collection property="bomVO" resultMap="bomView"/>
+		<collection property="mainplanVO" resultMap="mainplanResult"/>
 	</resultMap>
 
-	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="MainPlanVO">
-		<![CDATA[SELECT * from pmm_pm_mrp]]>
+	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
+		<![CDATA[select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
+			pm.due_date, pm.sequence
+    		from CPM_BIM_BOM_REG bom, pmm_pm_mps pm
+            where pm.sequence = bom.no 
+    		    ]]>
 	<where>
 		<if test="startDate != '' and startDate != null">due_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>

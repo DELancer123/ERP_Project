@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Component("mrpVO")
 public class RequiredamountVO {
@@ -20,7 +21,8 @@ private Date expected_order;
 private int expected_quantity;
 private String inventory_unit;
 private List<RequiredamountVO> ListVO;
-
+private bomVO bomVO;
+private MainPlanVO mainplanVO;
 
 
 @Override
@@ -54,4 +56,22 @@ public void setExpected_quantity(int expected_quantity) {this.expected_quantity=
 
 public String getInventory_unit() {return inventory_unit;}
 public void setInventory_unit(String inventory_unit) {this.inventory_unit=inventory_unit;}
+
+public bomVO getBomVO() {
+	return bomVO;
+}
+
+public void setBomVO(bomVO bomVO) {
+	this.bomVO = bomVO;
+}
+
+public MainPlanVO getMainplanVO() {
+	return mainplanVO;
+}
+
+public void setMainplanVO(MainPlanVO mainplanVO) {
+	this.mainplanVO = mainplanVO;
+}
+
+
 }

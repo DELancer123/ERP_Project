@@ -22,27 +22,11 @@ public class MainPlanVO {
 	private String buyer;
 	private String note;
 	private Date startDate;
-	private Date endDate;
+	private Date endDate;	
 	private List<MainPlanVO> ListVO;
 
 	
-	public MainPlanVO(String planNO,Date plandate,String item_Code,String item_Name,String standard,String inventory_unit,int sequence,
-			Date expected_date,Date due_date,int plan_quantity,String buyer,String note) 
-	{
-		this.plandate=plandate;
-		this.item_Code=item_Code;
-		this.item_Name=item_Name;
-		this.standard=standard;
-		this.inventory_unit=inventory_unit;
-		this.sequence=sequence;
-		this.expected_date=expected_date;
-		this.due_date=due_date;
-		this.plan_quantity=plan_quantity;
-		this.buyer=buyer;
-		this.note=note;
-		this.planNO=planNO;
-	}
-	
+
 	
 	
 	public Date getStartDate() {

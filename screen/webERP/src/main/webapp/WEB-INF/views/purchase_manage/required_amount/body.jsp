@@ -140,28 +140,17 @@ request.setCharacterEncoding("UTF-8");
 		<tbody>
 		<c:forEach var="mrp" items="${mrpList}" varStatus="status">
 			<tr align="center">
-				<td ><input type="checkbox" name="content" value="${mrp.sequence}"/></td>
-		<td style="width:13px;"><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.sequence}' readonly style="width:100%"/></td>
-			<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.item_Code}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.item_Name}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.standard}' readonly style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.due_date}' readonly/></td>
+				<td ><input type="checkbox" name="content"/></td>
+	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.mainplanVO.sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.bomVO.itemNumber}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.bomVO.itemName}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly style="width:100%"/></td>
+				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly/></td>
 				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].expected_quantity" value='${mrp.expected_quantity}'/></td>
-				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.inventory_unit}' readonly style="width:100%"/></td>
+				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value='${mrp.bomVO.precisionQuantity}' readonly/></td>
+				<td style="width:33px;"><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.bomVO.unit}' readonly style="width:100%"/></td>
 			</tr>	
 		</c:forEach>
-		<tr align="center">
-		<td></td>    	
-    	<td style="width:13px;"><input type="text" id="sequence" name="ListVO[${fn:length(mrp) }].sequence" value='${sequence}' style="width:100%"/></td>
-    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mrp) }].item_Code" value='${item_Code}' readonly/></td>
-    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mrp) }].item_Name" value='${item_Name}' readonly/></td>
-    	<td><input type="text" id="standard" name="ListVO[${fn:length(mrp) }].standard" value='${standard}'readonly style="width:100%"/></td>
-    	<td><input type="date" id="due_date" name="ListVO[${fn:length(mrp) }].due_date" value='${due_date}'  readonly/></td>
-    	<td><input type="date" id="expected_order" name="ListVO[${fn:length(mrp) }].expected_order" value='${expected_order}' readonly/></td>
-    	<td><input type="text" id="expected_quantity" name="ListVO[${fn:length(mrp) }].expected_quantity" value='${expected_quantity}'/></td>
-    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mrp) }].inventory_unit" value='${inventory_unit}' style="width:100%"/></td>
-    	</tr>
 		</tbody>
 	</table>
 	</div>
@@ -212,15 +201,15 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
 	document.getElementById("standard").disabled = true;
 	document.getElementById("due_date").disabled = true;
 	document.getElementById("expected_order").disabled = true;
-	document.getElementById("expected_quantity").disabled = true;
+	document.getElementById("plan_quantity").disabled = true;
 	document.getElementById("inventory_unit").disabled = true;
 	var Input = document.createElement("input");
 	Input.setAttribute("type", "hidden");
 	Input.setAttribute("name", "path");
 	Input.setAttribute("value", link);
-	document.getElementById('MainPlan').appendChild(Input);
-	document.getElementById('MainPlan').action = "${contextPath}/member/updateMRP.do";
-	document.getElementById('MainPlan').submit();
+	document.getElementById('mrp').appendChild(Input);
+	document.getElementById('mrp').action = "${contextPath}/member/updateMRP.do";
+	document.getElementById('mrp').submit();
 }
 </script>
 </body>
