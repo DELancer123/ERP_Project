@@ -38,8 +38,8 @@ public class EstimateStaControllerImpl implements EstimateStaController{
 			throws Exception {		
 		
 		String viewName = getViewName(request);
-		logger.info("viewName: "+ viewName);
-		logger.debug("viewName: "+ viewName);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
 		List allCustList = estimateService.listCust();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("allCustList", allCustList);

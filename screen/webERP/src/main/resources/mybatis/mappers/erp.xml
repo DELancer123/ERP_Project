@@ -67,11 +67,14 @@
 	</select>
 	<select id="searchitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}]]>
+		<![CDATA[
+		select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}
+		]]>
 	</select>
 	<select id="selectitem" resultMap="bomView"
 		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
+		<![CDATA[
+		select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
 	</select>
 	<select id="selectPopList" resultMap="popView">
 		<![CDATA[select * from CPM_BIM_BOM_REG]]>
@@ -296,7 +299,7 @@
         ]]>
 	</select>
 	
-	  <select id="selOrdercode" resultMap="orderList" parameterType="int">
+	  <select id="selOrdercode" resultMap="orderList" parameterType="String">
 		<![CDATA[
 		SELECT LAST_NUMBER FROM USER_SEQUENCES
 		 WHERE SEQUENCE_NAME = upper('seq_CSM_SM_Ord_Reg_no')
