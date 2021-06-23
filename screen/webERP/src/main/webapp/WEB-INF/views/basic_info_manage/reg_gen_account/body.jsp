@@ -309,7 +309,7 @@ request.setCharacterEncoding("UTF-8");
         	    alert('검색 내용이 비어있습니다');
         	}
         	else{
-	        	document.getElementById('searchForm').action = "${contextPath}/member/regbasicacc.do?submit=2";
+	        	document.getElementById('searchForm').action = "${contextPath}/member/regbasicacc.do?submit=2&&"+$("#customerCode").val;
 	    		document.getElementById('searchForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 
         	}      	
         } 

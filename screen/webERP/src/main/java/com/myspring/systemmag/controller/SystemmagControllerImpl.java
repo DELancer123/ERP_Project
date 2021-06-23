@@ -100,7 +100,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 		}
 		if (submit.equals("2")) {
 			String customerCode = (String) request.getParameter("customerCode"); //검색부의값을 겟파라미터로 가져옴
-			System.out.println(customerCode);
+			System.out.println("viewName:"+viewName);
 			List comView = systemmagService.searchCustomer(customerCode);
 			mav = new ModelAndView();
 			mav.addObject(comView);
