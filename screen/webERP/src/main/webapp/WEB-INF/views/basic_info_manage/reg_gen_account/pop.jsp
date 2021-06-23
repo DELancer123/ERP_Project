@@ -61,7 +61,6 @@
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
                 <button id="submit">적용</button>
                 <button id="close">닫기</button>
             </div>
@@ -95,8 +94,13 @@
     			text_code.value = code;
     			text_name.value = name;
     	}
-    	submit_button.onclick = function(){
+    	/* submit_button.onclick = function(){
     		opener.parent.location='${contextPath }/member/regbasicacc.do?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		window.close();
+    	} */
+    	submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
+    		$(opener.document).find("#customerCode").val($("#code").val()); //find()는 body.jsp의 텍스트박스의값임, val()는 팝업.jsp의 텍스트박스의값임
+    		$(opener.document).find("#ckcustomerCode").val($("#name").val());
     		window.close();
     	}
     	close_button.onclick = function(){

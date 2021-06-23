@@ -61,7 +61,6 @@
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
                 <button id="submit">적용</button>
                 <button id="close">닫기</button>
             </div>
@@ -89,23 +88,23 @@
 	    
 		var text_code = document.getElementById("code");
 		var text_name = document.getElementById("name");
-    		
+    
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
     	}
-    	/* submit_button.onclick = function(){
-    		text_code.setAttribute("zipCode", text_code.value)
-     		opener.parent.location='${contextPath }/member/regbasicacc.do?submit=2&com_code='+com_code+'zipcode='+text_code.value; 
+    	
+    	submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
+    		$(opener.document).find("#zipCode").val($("#code").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+    		$(opener.document).find("#workplace_Address").val($("#name").val());
     		window.close();
-    	} */
-    	submit_button.onclick = function(){
-    		opener.setChildValue(text_code.value);
-			window.close();
     	}
+	
+  
     	close_button.onclick = function(){
     		window.close();
     	}
+		
     	
     	
     </script>

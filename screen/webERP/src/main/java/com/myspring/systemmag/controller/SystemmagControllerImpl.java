@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,14 +38,13 @@ public class SystemmagControllerImpl implements SystemmagController {
 	private SystemmagVO systemmagVO;
 	@Autowired
 	private SystemmagDAO systemmagDAO;
-
 	//회사등록
 	@Override //@modelAttribute 뭐지? 매개변수
 	@RequestMapping(value="/member/addbasicacc.do" ,method = RequestMethod.GET)
 	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		System.out.println("등록부구현중입니다.");
+			throws Exception {		
 		request.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		System.out.println("url" + path);
@@ -186,3 +187,5 @@ public class SystemmagControllerImpl implements SystemmagController {
 	 }
 	 
 }
+
+
