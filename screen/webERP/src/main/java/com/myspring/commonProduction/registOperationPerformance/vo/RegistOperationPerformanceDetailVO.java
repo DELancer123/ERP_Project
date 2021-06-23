@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @Component("RegistOperationPerformanceDetailVO") 
 public class RegistOperationPerformanceDetailVO {
 	private String OPNumber;
-	private String MaterialUseStatus;
+	private String materialUseStatus;
 	private Date performanceDate;
 	private String processCode;
 	private String workplaceCode;
 	private int sortation;
-	private int sumPerformanceQuantity;
+	private int performanceQuantity;
 	private String inspection;
 	private String note;
 	private String workOrderNumber;
@@ -32,42 +32,21 @@ public class RegistOperationPerformanceDetailVO {
 	public void setOPNumber(String oPNumber) {
 		OPNumber = oPNumber;
 	}
-	public String getMaterialUseStatus() {
-		return MaterialUseStatus;
-	}
-	public void setMaterialUseStatus(String materialUseStatus) {
-		MaterialUseStatus = materialUseStatus;
-	}
+
 	public Date getPerformanceDate() {
 		return performanceDate;
 	}
 	public void setPerformanceDate(Date performanceDate) {
 		this.performanceDate = performanceDate;
 	}
-	public String getProcessCode() {
-		return processCode;
-	}
-	public void setProcessCode(String processCode) {
-		this.processCode = processCode;
-	}
-	public String getWorkplaceCode() {
-		return workplaceCode;
-	}
-	public void setWorkplaceCode(String workplaceCode) {
-		this.workplaceCode = workplaceCode;
-	}
+
 	public int getSortation() {
 		return sortation;
 	}
 	public void setSortation(int sortation) {
 		this.sortation = sortation;
 	}
-	public int getSumPerformanceQuantity() {
-		return sumPerformanceQuantity;
-	}
-	public void setSumPerformanceQuantity(int sumPerformanceQuantity) {
-		this.sumPerformanceQuantity = sumPerformanceQuantity;
-	}
+
 	public String getInspection() {
 		return inspection;
 	}
@@ -91,6 +70,39 @@ public class RegistOperationPerformanceDetailVO {
 	}
 	public void setDetailVO(List<RegistOperationPerformanceDetailVO> detailVO) {
 		DetailVO = new ArrayList();
+	}
+
+	public int getPerformanceQuantity() {
+		return performanceQuantity;
+	}
+
+	public void setPerformanceQuantity(int performanceQuantity) {
+		this.performanceQuantity = performanceQuantity;
+	}
+
+
+	public String getMaterialUseStatus() {
+		return materialUseStatus;
+	}
+
+	public void setMaterialUseStatus(String materialUseStatus) {
+		this.materialUseStatus = materialUseStatus;
+	}
+
+	public String getProcessCode() {
+		return processCode;
+	}
+
+	public void setProcessCode(String processCode) {
+		this.processCode = processCode;
+	}
+
+	public String getWorkplaceCode() {
+		return workplaceCode;
+	}
+
+	public void setWorkplaceCode(String workplaceCode) {
+		this.workplaceCode = workplaceCode;
 	}
 	
 	
