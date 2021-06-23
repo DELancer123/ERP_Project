@@ -219,12 +219,12 @@
   					 <tr>
   					 	<td><input type="checkbox" value="${detail.OPNumber }" name="content2"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.OPNumber }" readonly /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].MaterialUseStatus" value="${detail.MaterialUseStatus }" readonly /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].materialUseStatus" value="${detail.materialUseStatus }" readonly /></td>
                         <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].sortation" value="${detail.sortation}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].sumPerformanceQuantity" value="${detail.sumPerformanceQuantity}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].performanceQuantity" value="${detail.performanceQuantity}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                      
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
   					 </tr>
@@ -359,6 +359,8 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
         }
+        
+        
         
         function MaterialUse() {
         	var item = document.getElementsByName("content").length;

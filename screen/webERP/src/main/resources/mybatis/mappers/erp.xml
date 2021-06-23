@@ -223,13 +223,25 @@
 	<result property="productionFacility" column="productionfacility" />
 	<result property="taskTeam" column="taskTeam" />
 </resultMap>	
+<resultMap id="RegistOperationPerformanceResultDetail" type="RegistOperationPerformanceDetailVO">
+	<result property="OPNumber" column="OPNumber" />
+	<result property="materialUseStatus" column="materialUseStatus" />
+	<result property="performanceDate" column="performanceDate" />
+	<result property="processCode" column="PROCESS_CODE" />
+	<result property="workplaceCode" column="WORKPLACE_CODE" />
+	<result property="sortation" column="sortation" />
+	<result property="performanceQuantity" column="performanceQuantity" />
+	<result property="inspection" column="inspection" />
+	<result property="note" column="note" />
+	<result property="workOrderNumber" column="workOrderNumber" />
+</resultMap>	
 	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
 		<![CDATA[select *
 from CPM_PM_Ope_Per_Reg
 ]]>
 	</select>
 	
-		<select id="selectAllRegistOperationPerformanceInfoDetail" parameterType = "string" resultType="RegistOperationPerformanceDetailVO">
+		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det
 ]]>
 	</select>

@@ -14,7 +14,7 @@ public class RegistOperationPerformanceDetailVO {
 	private Date performanceDate;
 	private String processCode;
 	private String workplaceCode;
-	private int sortation;
+	private String sortation;
 	private int performanceQuantity;
 	private String inspection;
 	private String note;
@@ -40,12 +40,6 @@ public class RegistOperationPerformanceDetailVO {
 		this.performanceDate = performanceDate;
 	}
 
-	public int getSortation() {
-		return sortation;
-	}
-	public void setSortation(int sortation) {
-		this.sortation = sortation;
-	}
 
 	public String getInspection() {
 		return inspection;
@@ -103,6 +97,14 @@ public class RegistOperationPerformanceDetailVO {
 
 	public void setWorkplaceCode(String workplaceCode) {
 		this.workplaceCode = workplaceCode;
+	}
+
+	public String getSortation() {
+		return sortation;
+	}
+
+	public void setSortation(String sortation) {
+		this.sortation = sortation;
 	}
 	
 	
