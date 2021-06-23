@@ -371,7 +371,7 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
         			  no = document.getElementsByName("content")[i].value;
         			  ary.push(no);
         		  }
-        			window.location.href = "${contextPath}/member/materialUse.do?workOrderNumber="+ary;
+        			window.location.href = "${contextPath}/member/materialUse.do?OPNumber="+ary;
         	  }
         }
         

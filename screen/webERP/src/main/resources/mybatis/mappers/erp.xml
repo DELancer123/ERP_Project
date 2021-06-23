@@ -243,7 +243,7 @@ from CPM_PM_Ope_Per_Reg
 	</select>
 	
 		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
+		<![CDATA[SELECT OPNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection, note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
 ]]>
 	</select>
 	
@@ -261,14 +261,14 @@ order by opr.workordernumber
 	</select>
 	
 	<select id="checkMaterialUse" resultType="string">
-		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}]]>
+		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where OPNumber = #{OPNumber}]]>
 	</select>
 	
 	<update id="updMaterialUse">
 		<![CDATA[
 		update CPM_PM_Ope_Per_Reg_Det
 		set materialUseStatus = '유'
-		where  workOrderNumber = #{workOrderNumber} and materialUseStatus = '무'
+		where  OPNumber = #{OPNumber} and materialUseStatus = '무'
 		]]>  
 	</update>	
 	

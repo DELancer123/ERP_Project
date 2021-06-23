@@ -41,19 +41,19 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	@Override
 	public List selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException {
 		List<RegistOperationPerformanceVO> infoList = null;
-		infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition");
-//		
-//		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			Date start = new Date(sdf.parse(startDate).getTime());
-//			Date end = new Date(sdf.parse(endDate).getTime());
-//			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
-//			COIvo.setStartDate(start);
-//			COIvo.setEndDate(end);
-//			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition", COIvo);
-//		} else {
-//			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfo");
-//		}
+		//infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition");
+		
+		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date start = new Date(sdf.parse(startDate).getTime());
+			Date end = new Date(sdf.parse(endDate).getTime());
+			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+			COIvo.setStartDate(start);
+			COIvo.setEndDate(end);
+			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition", COIvo);
+		} else {
+			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfo");
+		}
 		
 		return infoList;
 	}
@@ -75,7 +75,7 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 			
 			String check = sqlSession.selectOne("mappers.erp.checkMaterialUse", obj);
 			System.out.println("자재사용 : "+check);
-			if(check.equals("무")) {
+			if(check.equals(obj)) {
 				sqlSession.update("mappers.erp.updMaterialUse", obj);
 				message.add("업데이트 완료!");
 			} else {
