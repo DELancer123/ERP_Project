@@ -19,12 +19,18 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		int result = sqlSession.insert("mappers.erp.insertNewCustomer",systemmagVO);
 		return result;
 	}
+	
+	@Override
+	public List searchCustomer(String customerCode) throws DataAccessException {
+		List<SystemmagVO> cusList = null;
+		cusList = sqlSession.selectList("mappers.erp.selectSearchBasicList", customerCode);
+		return cusList;
+	}
 
 	@Override
 	public List viewAllCustomer() throws DataAccessException {
 		List<SystemmagVO> comList = null;
 		comList = sqlSession.selectList("mappers.erp.selectAllBasicList");
-		System.out.println("comList: "+comList);
 		return comList;
 	}
 	
@@ -32,7 +38,6 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	public List viewCustomer(String com_code) throws DataAccessException {
 		List<SystemmagVO> comList = null;
 		comList = sqlSession.selectList("mappers.erp.selectBasicList",com_code);
-		System.out.println("comList12: "+com_code);
 		return comList;
 	}
 
@@ -41,8 +46,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	public void deleteCustomer(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
 			sqlSession.delete("mappers.erp.deleteBasicList", Integer.parseInt(obj));	
-		}
-		
+		}	
 	}
 
 	@Override
@@ -56,5 +60,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		zipList = sqlSession.selectList("mappers.erp.selectZipList");
 		return zipList;
 	}
+
+	
 
 }

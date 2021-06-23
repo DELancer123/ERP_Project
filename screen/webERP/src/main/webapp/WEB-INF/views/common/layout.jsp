@@ -335,7 +335,7 @@
             }
         }
         
-     /* update_button.onclick = function(){
+     /*update_button.onclick = function(){
             // dao에서 저장
             var view1 = document.getElementById('table1');
             var view2 = document.getElementById('view2');
@@ -363,13 +363,13 @@
                 checkbox.checked = selectAll.checked;
             })
         }
-        view_button.onclick = function(){
+        /* view_button.onclick = function(){
 			  const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();
 
 			  window.open(location.pathname + '?' + newParam, '_self');
-    	} 
+    	}  */
         
         function openWindowPop(url, name){
             var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';

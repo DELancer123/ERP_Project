@@ -8,6 +8,8 @@ import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagDAO {
 	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException;
+	
+	public List searchCustomer(String customerCode) throws DataAccessException;
 
 	public List viewAllCustomer() throws DataAccessException;
 	

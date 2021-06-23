@@ -21,7 +21,14 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public int addCustomer (SystemmagVO systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
 		return result;
-}
+    }
+	
+	@Override
+	public List searchCustomer(String customerCode) throws DataAccessException {
+		List cusList = null;
+		cusList = systemmagDAO.searchCustomer(customerCode);
+		return cusList;
+	}
 
 	@Override
 	public List viewAllCustomer() throws DataAccessException {
@@ -50,6 +57,8 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List zipViewCustomer() throws DataAccessException {
 		return systemmagDAO.zipViewCustomer();
 	}
+
+	
 
 	
 

@@ -233,6 +233,9 @@
 	<select id="selectAllBasicList" resultMap="basicInfoResult">
 		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG order by GENERAL_CUSTOMER_CODE]]>
 	</select>
+	<select id="selectSearchBasicList" parameterType="String" resultMap="basicInfoResult">
+		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{customerCode}]]>
+	</select>
 	<select id="selectBasicList" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
 	</select>

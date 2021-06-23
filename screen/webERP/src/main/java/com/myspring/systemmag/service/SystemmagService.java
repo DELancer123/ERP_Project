@@ -9,6 +9,8 @@ import com.myspring.systemmag.vo.SystemmagVO;
 public interface SystemmagService {
 	public int addCustomer(SystemmagVO systemmagVO) throws Exception;
 	
+	public List searchCustomer(String customerCode) throws DataAccessException;
+	
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;

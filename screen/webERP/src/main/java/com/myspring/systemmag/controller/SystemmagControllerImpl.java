@@ -56,6 +56,24 @@ public class SystemmagControllerImpl implements SystemmagController {
 	
 	// 조회
 	@Override
+	@RequestMapping(value = "/member/searchbasicacc.do", method = RequestMethod.GET)
+	public ModelAndView searchCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		
+		String customerCode = (String) request.getParameter("customerCode"); //검색부의값을 겟파라미터로 가져옴
+		System.out.println("검색구현중customerCode:"+customerCode);
+		
+		List comView = systemmagService.searchCustomer(customerCode); //select where 쿼리를 호출한다
+		mav = new ModelAndView(viewName);
+		mav.addObject("comView", comView);
+		return mav;
+	
+	}
+	
+	
+	// 조회
+	@Override
 	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
@@ -79,21 +97,6 @@ public class SystemmagControllerImpl implements SystemmagController {
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
 		}
-		else if(submit.equals("2")) {
-			List comView = systemmagService.viewAllCustomer();
-			List comcom = systemmagService.viewCustomer(code);
-//			List zipView = systemmagService.ZipView();
-			
-			mav = new ModelAndView(viewName);
-			mav.addObject("comView", comView);
-			mav.addObject("comcom",comcom);
-//			mav.addObject("zipView", zipView);
-			mav.addObject("zipCode", zipCode);
-			
-			System.out.println("zipcode:" + zipCode);
-			System.out.println("comcode:"+ code);
-		}
-
 		return mav;
 	}
 

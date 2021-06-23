@@ -124,31 +124,33 @@ request.setCharacterEncoding("UTF-8");
 </style>
 </head>
 <body>
-<container1 id = contents1>
-            <table id="table1" align="center">
-                <tr align="center">
-                    <td align="center" style="width:80px;">거래처코드</td>
-                    <td style="width:50px;">
-                        <input type=text name="customerCode" id="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="5"/>
-                    </td>
-     				<td style="width:8px;">
-     					<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div>
-     				</td>
-                    <td style="width:80px; text-align:left;">
-                    	<input type=text name="ckcustomerCode" id="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>
-                    </td>	
-                    
-                    
-                    <td align="center" style="width:100px; padding-right:7px;">거래처구분</td>
-                    <td style="width:100px; text-align:left" >
-                        <select name="customerType" >
-                            <option value="default">1.일반</option>
-                            <option value="2">2.무역</option>
-                            <option value="3">3.주민</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+		<container1 id = contents1>
+			<form method="get" id="searchForm">
+	            <table id="table1" align="center">
+	                <tr align="center">
+	                    <td align="center" style="width:80px;">거래처코드</td>
+	                    <td style="width:50px;">
+	                        <input type=text name="customerCode" id="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="5"/>
+	                    </td>
+	     				<td style="width:8px;">
+	     					<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+	     				</td>
+	                    <td style="width:80px; text-align:left;">
+	                    	<input type=text name="ckcustomerCode" id="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>
+	                    </td>	
+	                    
+	                    
+	                    <td align="center" style="width:100px; padding-right:7px;">거래처구분</td>
+	                    <td style="width:100px; text-align:left" >
+	                        <select name="customerType" >
+	                            <option value="default">1.일반</option>
+	                            <option value="2">2.무역</option>
+	                            <option value="3">3.주민</option>
+	                        </select>
+	                    </td>
+	                </tr>
+	            </table>
+	        </form>
         </container1>
         
         <container2 id= contents2>
@@ -281,18 +283,37 @@ request.setCharacterEncoding("UTF-8");
         var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
         deleteButton.addEventListener('click', function(){deleteData();}, false);
         
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
+        var deleteButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
+        deleteButton.addEventListener('click', function(){searchData();}, false);
         
         var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
         registButton.addEventListener('click', function(){newRow();}, false);
+        
+        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateRow();}, false); 
+        
        
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
         }
         
-                
+        function searchData() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});       	 
+        	if(is_empty) { //비어있는내용이 있는지 체크함
+        	    alert('검색 내용이 비어있습니다');
+        	}
+        	else{
+	        	document.getElementById('searchForm').action = "${contextPath}/member/searchbasicacc.do";
+	    		document.getElementById('searchForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 
+        	}      	
+        } 
+        
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("checkedContent").length;
         	var no = "";
@@ -305,15 +326,30 @@ request.setCharacterEncoding("UTF-8");
         		}       		
         	}
         	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
-    			alert('삭제할 목록의 체크박스를 선택해주세요')
+    			alert('삭제할 목록의 체크박스를 선택해주세요');
     			window.location.href = "${contextPath}/member/regbasicacc.do";
     		}
-        	else //컨트롤러로 해당목록의 no값을 보낸다
-    			window.location.href = "${contextPath}/member/deleteBasicacc.do?no="+ary;       	
+        	else {//컨트롤러로 해당목록의 no값을 보낸다
+        		alert('삭제 되었습니다');
+    			window.location.href = "${contextPath}/member/deleteBasicacc.do?no="+ary;
+        	}
         }
         
+        function newRow(){      	
+    		const URLSearch = new URLSearchParams(location.search);
+    		URLSearch.set('submit','1');
+    		const newParam = URLSearch.toString();
+    		var link = location.pathname +'?'+newParam;
+    		var articleNOInput = document.createElement("input");
+    		articleNOInput.setAttribute("type","hidden");
+    		articleNOInput.setAttribute("name","path");
+    		articleNOInput.setAttribute("value", link);
+    		document.getElementById('reg_gen_account').appendChild(articleNOInput);
+    		document.getElementById('reg_gen_account').action = "${contextPath}/member/addbasicacc.do";
+    		document.getElementById('reg_gen_account').submit();
+    	}
         
-         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
         	$('#reg_gen_account').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
         	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
@@ -337,39 +373,8 @@ request.setCharacterEncoding("UTF-8");
         function searchZip() { //우편번호 검색 팝업
         	openWindowPop("${contextPath}/member/regbasicaccZipPopup.do", "regbasicaccZipPopup");
         } 
-        
+               
        
-        
-        function setChildValue(name){
-        	  
-       	    const URLSearch = new URLSearchParams(location.search);
-     		URLSearch.set('submit', '2');
-     		const newParam = URLSearch.toString();
-     		
-            if(URLSearch.get('zipCode') == null){
-      		window.location.href = location.pathname +'?'+newParam + '&zipCode=' + name;
-            }
-            else{
-            	URLSearch.set('zipCode', name);
-            	const newParam = URLSearch.toString();
-            	window.location.href = location.pathname +'?'+newParam;
-            }
-        }
-        
-        function newRow(){      	
-    		const URLSearch = new URLSearchParams(location.search);
-    		URLSearch.set('submit','1');
-    		const newParam = URLSearch.toString();
-    		var link = location.pathname +'?'+newParam;
-    		var articleNOInput = document.createElement("input");
-    		articleNOInput.setAttribute("type","hidden");
-    		articleNOInput.setAttribute("name","path");
-    		articleNOInput.setAttribute("value", link);
-    		document.getElementById('reg_gen_account').appendChild(articleNOInput);
-    		document.getElementById('reg_gen_account').action = "${contextPath}/member/addbasicacc.do";
-    		document.getElementById('reg_gen_account').submit();
-    		}
-      
   
 		</script>
         
