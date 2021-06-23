@@ -135,12 +135,12 @@
                      	<td><input type="checkbox" name="content" value="${info.workOrderNumber }" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].workOrderNumber" value="${info.workOrderNumber}" readonly /></td>
                      	<td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly /></td>
-                     	<td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" /></td>
+                     	<td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" readonly/></td>
                      	<td><input tpye="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].itemName" value="${info.itemName}" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].standard" value="${info.standard}" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].inventoryUnit" value="${info.inventoryUnit}" readonly /></td>
-                     	<td><input type="text" name="ListVO[${status.index }].indicated" value="${info.indicated}" /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].indicated" value="${info.indicated}" readonly/></td>
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly /></td>
                      </tr>
@@ -190,18 +190,18 @@
  					<c:forEach var="detail" items="${detailList}" varStatus="status">
  					    <tr>
                         <td><input type="checkbox" value="${detail.OPNumber }" name="content2"/></td>
- 						<td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.OPNumber }" /></td>
+ 						<td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.OPNumber }" readonly/></td>
                         <td><input type="date" name="DetailVO[${status.index }].instructionDate" value="${detail.instructionDate }" readonly /></td>
                         <td><input type="date" name="DetailVO[${status.index }].dueDate" value="${detail.dueDate }" readonly /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].indicatedQuantity" value="${detail.indicatedQuantity}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].sumPerformanceQuantity" value="${detail.sumPerformanceQuantity}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].remainingPerformance" value="${detail.remainingPerformance}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].unitPrice" value="${detail.unitPrice}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].indicated" value="${detail.indicated}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].sumPerformanceQuantity" value="${detail.sumPerformanceQuantity}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].remainingPerformance" value="${detail.remainingPerformance}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].unitPrice" value="${detail.unitPrice}" readonly/></td>
                         <td><input type="text" value="${detail.indicatedQuantity*detail.unitPrice}" readonly/></td>                        
-                        <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                        
-                        <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}" readonly/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}" readonly/></td>
                         </tr>
                         </c:forEach>
                         <!-- 

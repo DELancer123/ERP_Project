@@ -29,6 +29,8 @@
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="indicated" column="IndicatedQuantity" />
+		<result property="sumPerformanceQuantity" column="performanceQuantity" />
+		<result property="remainingPerformance" column="remainingPerformance" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
@@ -48,6 +50,26 @@
 		<result property="comfirmQuantity" column="FORWARDINGQUANTITY" />
 		<result property="note" column="note" />
 		<result property="workOrderNumber" column="workOrderNumber" />
+	</resultMap>
+	<resultMap id="RegOpePerResult" type="RegistOperationPerformanceVO">
+		<result property="workOrderNumber" column="workOrderNumber" />
+		<result property="materialstatus" column="MATERIALFORWARDINGSTATUS" />
+		<result property="workPlaceCode" column="WORKPLACE_CODE" />
+		<result property="instructionDate" column="InstructionDate" />
+		<result property="dueDate" column="dueDate" />
+		<result property="itemCode" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="indicated" column="IndicatedQuantity" />
+		<result property="sumPerformanceQuantity" column="performanceQuantity" />
+		<result property="remainingPerformance" column="remainingPerformance" />
+		<result property="status" column="status" />
+		<result property="inspection" column="Inspection" />
+		<result property="productionFacility" column="PRODUCTIONFACILITY" />
+		<result property="taskTeam" column="taskTeam" />
+		<result property="note" column="note" />
+		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpeCloDetResult" type="OperationInsClosingVO">
 		<result property="OPNumber" column="OPNumber" />
@@ -160,6 +182,23 @@
 	<!-- <select id="selectReleaseDetail" resultMap="OpePerRegDetResult">
 		<![CDATA[]]>
 	</select> -->
+	
+	<!-- 작업실적등록 CRUD -->
+	<select id="selectAllRegistOperationPerformanceInfoDetail" resultType="RegistOperationPerformanceVO">
+		<![CDATA[select * from CPM_PM_Ope_per_Reg where workOrderNumber = #{workOrderNumber} ]]>
+	</select>
+	
+	<select id="checkMaterialUse" resultType="string">
+		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}]]>
+	</select>
+	
+	<update id="updMaterialUse">
+		<![CDATA[
+		update CPM_PM_Ope_Per_Reg_Det
+		set materialUseStatus = '유'
+		where  workOrderNumber = #{workOrderNumber} and status = '무'
+		]]>  
+	</update>	
 	
 		<!-- 기초정보등록 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
