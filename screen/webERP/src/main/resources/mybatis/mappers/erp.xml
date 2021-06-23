@@ -185,7 +185,14 @@
 	
 	<!-- 작업실적등록 CRUD -->
 	<select id="selectAllRegistOperationPerformanceInfoDetail" resultType="RegistOperationPerformanceVO">
-		<![CDATA[select * from CPM_PM_Ope_per_Reg where workOrderNumber = #{workOrderNumber} ]]>
+		<![CDATA[select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code),opr.instructiondate ,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity),
+(opr.indicatedquantity-sum(oprd.performancequantity)),opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd
+where opr.workordernumber= oprd.workordernumber and  workOrderNumber = #{workOrderNumber}
+group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+order by opr.workordernumber ]]>
 	</select>
 	
 	<select id="checkMaterialUse" resultType="string">

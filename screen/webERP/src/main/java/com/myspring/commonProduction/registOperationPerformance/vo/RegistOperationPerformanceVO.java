@@ -22,9 +22,12 @@ public class RegistOperationPerformanceVO {
 	private int sumPerformanceQuantity;
 	private int remainingPerformance;
 	private String status;
+	private String workSortation;
 	private String inspection;
 	private String note;
 	private String productionPlanCode;
+	private String productionFacility;
+	private String taskTeam;
 	private List<RegistOperationPerformanceVO> ListVO;
 	
 	@Override
@@ -145,6 +148,36 @@ public class RegistOperationPerformanceVO {
 
 	public void setMaterialstatus(String materialstatus) {
 		this.materialstatus = materialstatus;
+	}
+
+
+	public String getWorkSortation() {
+		return workSortation;
+	}
+
+
+	public void setWorkSortation(String workSortation) {
+		this.workSortation = workSortation;
+	}
+
+
+	public String getProductionFacility() {
+		return productionFacility;
+	}
+
+
+	public void setProductionFacility(String productionFacility) {
+		this.productionFacility = productionFacility;
+	}
+
+
+	public String getTaskTeam() {
+		return taskTeam;
+	}
+
+
+	public void setTaskTeam(String taskTeam) {
+		this.taskTeam = taskTeam;
 	}
 	
 	

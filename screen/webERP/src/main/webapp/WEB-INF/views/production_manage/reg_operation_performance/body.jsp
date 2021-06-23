@@ -138,7 +138,10 @@
                         <td>실적수량</td>
                         <td>실적잔량</td>
                         <td>상태</td>
+                        <td>작업구분</td>
                         <td>검사</td>
+                        <td>생산설비</td>
+                        <td>작업팀</td>
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
@@ -159,7 +162,10 @@
                      	<td><input type="text" name="ListVO[${status.index }].sumPerformanceQuantity" value="${info.sumPerformanceQuantity}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].remainingPerformance" value="${info.remainingPerformance}" /></td>
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].workSortation" value="${info.workSortation}" /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].inspection" value="${info.inspection}" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].productionFacility" value="${info.productionFacility}" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index }].taskTeam" value="${info.taskTeam}" readonly/></td>
                      	<td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly /></td>
                      </tr>
                      </c:forEach>
@@ -178,7 +184,10 @@
                         <td><input type="text" id="sumPerformanceQuantity" name="ListVO[${fn:length(infoList)}].sumPerformanceQuantity" value="${param.sumPerformanceQuantity }"/></td>
                         <td><input type="text" id="remainingPerformance" name="ListVO[${fn:length(infoList)}].remainingPerformance" value="${param.remainingPerformance }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
+                        <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].workSortation" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
                        
                      </tr>
