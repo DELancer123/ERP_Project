@@ -68,7 +68,7 @@
 <body>
 <container1 id=contents1>
 	<table class="con1_search">
-<!-- 		<tr>
+ 		<tr>
 			<td>사업장</td>
 			<td style="width: 50px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
@@ -82,7 +82,7 @@
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
 			<td><input type="text" name="" disabled /></td>
 
-		</tr> -->
+		</tr>
 		<tr>
 			<td>계획기간</td>
 			<td colspan="2" style="width: 50px;"><input type="date"
@@ -90,11 +90,11 @@
 			<td>~</td>
 			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
 			<td></td>
-			<!-- 			 <td colspan="5">사원</td>
+			 			 <td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" name="" disabled /></td>  -->
+			<td><input type="text" name="" disabled /></td>
 					
 		</tr> 
 	</table>

@@ -141,13 +141,13 @@ request.setCharacterEncoding("UTF-8");
 		<c:forEach var="mrp" items="${mrpList}" varStatus="status">
 			<tr align="center">
 				<td ><input type="checkbox" name="content"/></td>
-	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.mainplanVO.sequence}' readonly style="width:100%"/></td>
-			<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.bomVO.itemNumber}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.bomVO.itemName}' readonly/></td>
+	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly style="width:100%"/></td>
+			<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${mrp.bomVO.itemNumber}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].itemName" value='${mrp.bomVO.itemName}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly style="width:100%"/></td>
 				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly/></td>
 				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value='${mrp.bomVO.precisionQuantity}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity}'/></td>
 				<td style="width:33px;"><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.bomVO.unit}' readonly style="width:100%"/></td>
 			</tr>	
 		</c:forEach>
@@ -165,7 +165,7 @@ document.getElementById('searchStartDate').value = new Date().toISOString().subs
 document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
 
 /* 검색부 date onChange 함수 설정 */
-		var startDate = new Date().toISOString().substring(0,10);;
+	var startDate = new Date().toISOString().substring(0,10);;
    	var endDate = new Date().toISOString().substring(0,10);;
    	
    	$('#searchStartDate').change(function (){

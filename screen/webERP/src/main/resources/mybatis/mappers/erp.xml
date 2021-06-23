@@ -134,7 +134,12 @@
 	</resultMap>
 
 	<select id="selectAllMainPlanList" resultMap="mainplanResult" parameterType="MainPlanVO"> 
-		<![CDATA[SELECT * from pmm_pm_mps]]>
+		<![CDATA[SELECT * from pmm_pm_mps]]><!-- 
+	select cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
+	cc.dueDate, cc.releaseExpectedDate,
+	mp.plandate, mp.plan_Quantity, mp.buyer
+	from CSM_SM_COR_Reg cc, PMM_PM_MPS mp
+	where cc.dueDate = mp.plandate -->
 	<where>
 		<if test="startDate != '' and startDate != null">plandate between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>
@@ -144,7 +149,11 @@
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
 	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="MainPlanVO">
-		<![CDATA[SELECT * from pmm_pm_mps_os]]>
+		<![CDATA[SELECT * from pmm_pm_mps_os]]><!-- 
+	select co.ordersNum, co.ordersdate, co.customerCode, co.Note,
+	cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
+	cc.releaseExpectedDate
+	from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc -->
 	<where>
 		<if test="startDate != '' and startDate != null">orderdate between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and okeydate between #{startDate} and #{endDate} </if>
@@ -215,14 +224,7 @@
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
-   		<result property="item_Code" column="item_Code" />
-		<result property="item_Name" column="item_Name" />
-		<result property="standard" column="standard" />
-		<result property="due_date" column="due_date" />
-		<result property="sequence" column="sequence" />
 		<result property="expected_order" column="expected_order" />
-		<result property="expected_quantity" column="expected_quantity" />
-		<result property="inventory_unit" column="inventory_unit" />
 		<collection property="bomVO" resultMap="bomView"/>
 		<collection property="mainplanVO" resultMap="mainplanResult"/>
 	</resultMap>
@@ -261,14 +263,16 @@
 	</resultMap>
 	
 	<select id="selectAllClosingList" resultMap="orderclosingResult">
-		<![CDATA[select * from PMM_PM_ORDER]]>
+		<![CDATA[select sequence,order_no,order_date,code,buyer,item_Code,item_Name,standard,
+		inventory_unit,order_quantity,price, order_quantity*price as applyPrice, 
+		(order_quantity*price*0.1) as vat, order_quantity*price+(order_quantity*price*0.1) 
+		sumPrice,deadline
+		from PMM_PM_ORDER]]>
 	<where>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
-	<!-- 	<![CDATA[select order_quantity as "발주수량", price  as "단가", order_quantity*price as "공급가", 
-		(order_quantity*price*0.1) as "부가세", order_quantity*price+(order_quantity*price*0.1) 
-			"합계액"  from PMM_PM_ORDER]]> -->
+
 	</select>
 	
 	<update id="updateOrderClosing">

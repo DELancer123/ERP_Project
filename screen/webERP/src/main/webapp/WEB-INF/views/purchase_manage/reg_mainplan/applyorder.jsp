@@ -76,15 +76,12 @@ a {
 					<td>순서</td>
 					<td>주문번호</td>
 					<td>주문일자</td>
-					<td>승인일자</td>
 					<td>고객</td>
 					<td>품번</td>
 					<td>품명</td>
 					<td>규격</td>
 					<td>단위</td>
 					<td>주문수량</td>
-					<td>적용수량</td>
-					<td>주문잔량</td>
 					<td>출하예정일</td>
 					<td>비고</td>
 				</thead>	
@@ -94,15 +91,13 @@ a {
 					<td style="width:13px;"><input type="text" value="${MpsOS.sequence}" style="width:100%"/></td>
 						<td><input type="text" value="${MpsOS.orderno}" /></td>
 						<td><input type="text" value="${MpsOS.orderdate}"/></td>
-						<td><input type="text" value="${MpsOS.okeydate}"/></td>
 						<td><input type="text" id="buyer" value="${MpsOS.buyer}" /></td>
 						<td><input type="text" id="item_Code" value="${MpsOS.item_Code}" /></td>
 						<td><input type="text" id="item_Name" value="${MpsOS.item_Name}" /></td>
 						<td><input type="text" value="${MpsOS.standard}" style="width:100%"/></td>
 						<td><input type="text" value="${MpsOS.inventory_unit}" style="width:100%"/></td>
 						<td><input type="text" value="${MpsOS.order_quantity}" style="width:100%"/></td>
-						<td><input type="text" value="${MpsOS.apply_quantity}" style="width:100%"/></td>
-						<td><input type="text" value="${MpsOS.order_Balance}" style="width:100%"/></td>
+					
 						<td><input type="text" id="expected_Date" value="${MpsOS.expected_Date}"/></td>
 						<td><input type="text" value="${MpsOS.note}" style="width:100%"/></td>
 					</tr>
