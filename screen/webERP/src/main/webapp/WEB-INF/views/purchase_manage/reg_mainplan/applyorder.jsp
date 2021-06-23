@@ -66,6 +66,7 @@ a {
 			<div id="button">
 				<input type="button" id="planSearch" value="조회" onClick="sendData();" />			
 				<button onClick="sendToParent();">적용</button>
+				<button onClick="sendToParent()2;">적용2</button>
 				<button>취소</button>
 			</div>
 		</div>
@@ -124,6 +125,14 @@ function sendToParent(){
         
      window.close();
 } 
+function sendToParent2(){	
+	$("#item_Code", opener.document).val($("#item_Code").val());
+	$("#item_Name", opener.document).val($("#item_Name").val());
+	$("#buyer", opener.document).val($("#buyer").val());
+	$("#expected_Date", opener.document).val($("#expected_Date").val());
+        
+     window.close();
+} 
 
 var startDate;
 var endDate;
@@ -151,6 +160,7 @@ function sendData() {
 		location.href='${contextPath }/member/applyorder.do?dateStart='+startDate+'&&dateEnd='+endDate;
 	}
 }
+
 </script>
 </body>
 </html>

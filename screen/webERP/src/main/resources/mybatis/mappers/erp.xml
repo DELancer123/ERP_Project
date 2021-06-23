@@ -120,15 +120,12 @@
 		<result column="orderno" property="orderno" />
 		<result column="sequence" property="sequence" />
 		<result column="orderdate" property="orderdate" />
-		<result column="okeydate" property="okeydate" />
 		<result column="buyer" property="buyer" />
 		<result column="item_Code" property="item_Code" />
 		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
 		<result column="inventory_unit" property="inventory_unit" />
 		<result column="order_quantity" property="order_quantity" />
-		<result column="apply_quantity" property="apply_quantity" />
-		<result column="order_Balance" property="order_Balance" />
 		<result column="expected_Date" property="expected_Date" />
 		<result column="note" property="note" />
 	</resultMap>
@@ -224,6 +221,7 @@
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
+		<result property="sequence" column="sequence" />
 		<result property="expected_order" column="expected_order" />
 		<collection property="bomVO" resultMap="bomView"/>
 		<collection property="mainplanVO" resultMap="mainplanResult"/>
@@ -231,9 +229,10 @@
 
 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
 		<![CDATA[select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
-			pm.due_date, pm.sequence
-    		from CPM_BIM_BOM_REG bom, pmm_pm_mps pm
+			pm.due_date, pm.sequence , mr.expected_order
+    		from CPM_BIM_BOM_REG bom, pmm_pm_mps pm, pmm_pm_mrp mr
             where pm.sequence = bom.no 
+            and pm.sequence = mr.sequence
     		    ]]>
 	<where>
 		<if test="startDate != '' and startDate != null">due_date between #{startDate} and #{endDate} </if>
