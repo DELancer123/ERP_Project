@@ -56,16 +56,17 @@ public class SystemmagControllerImpl implements SystemmagController {
 	
 	// 조회
 	@Override
-	@RequestMapping(value = "/member/searchbasicacc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/searchbasicaccasdf.do", method = RequestMethod.GET)
 	public ModelAndView searchCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
+		System.out.println("viewName:"+viewName);
 		
 		String customerCode = (String) request.getParameter("customerCode"); //검색부의값을 겟파라미터로 가져옴
 		System.out.println("검색구현중customerCode:"+customerCode);
 		
 		List comView = systemmagService.searchCustomer(customerCode); //select where 쿼리를 호출한다
-		mav = new ModelAndView(viewName);
+		mav = new ModelAndView("redirect:/member/regbasicacc.do?submit=2searched="+customerCode);
 		mav.addObject("comView", comView);
 		return mav;
 	
@@ -78,7 +79,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		
+		System.out.println("viewName:"+viewName);
 		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
 		String zipCode = (String) request.getParameter("zipCode");
@@ -96,6 +97,13 @@ public class SystemmagControllerImpl implements SystemmagController {
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
+		}
+		if (submit.equals("2")) {
+			String customerCode = (String) request.getParameter("customerCode"); //검색부의값을 겟파라미터로 가져옴
+			System.out.println(customerCode);
+			List comView = systemmagService.searchCustomer(customerCode);
+			mav = new ModelAndView();
+			mav.addObject(comView);
 		}
 		return mav;
 	}
