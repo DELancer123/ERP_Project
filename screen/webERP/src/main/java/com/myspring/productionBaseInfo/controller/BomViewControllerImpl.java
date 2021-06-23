@@ -335,12 +335,23 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/deldefType.do" ,method = RequestMethod.GET)
 	public ModelAndView deldefType(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		System.out.println(defVO.getDefList().get(1).getChkNum());
-		System.out.println(defVO.getDefList().get(2).getChkNum());
 		String path = request.getParameter("path");
 		path = path.replace("/webERP", "");
 		int result = 0;
 		result = viewService.deldefType(defVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/member/adddefpop.do" ,method = RequestMethod.GET)
+	public ModelAndView adddefpop(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String path = request.getParameter("path");
+		System.out.println("확인"+defVO.getDefList().get(2).getDefectiveItemGroupCode());
+		System.out.println("확인"+defVO.getDefList().get(2).getDefectiveItemGroup());
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = viewService.addDefpop(defVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}

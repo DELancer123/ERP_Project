@@ -52,5 +52,12 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		}
 		return 0;
 	}
+	@Override
+	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException {
+		int idx = defVO.getDefList().size()-1;
+		int result = sqlSession.insert("mappers.erp.addDefpop",defVO.getDefList().get(idx));
+		System.out.println(idx);
+		return 0;
+	}
 
 }

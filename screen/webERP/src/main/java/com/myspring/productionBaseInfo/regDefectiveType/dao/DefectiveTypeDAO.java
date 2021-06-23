@@ -18,6 +18,8 @@ public interface DefectiveTypeDAO {
 
 	int deldefType(DefectiveTypeVO defVO) throws DataAccessException;
 
+	int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
+
 
 
 }

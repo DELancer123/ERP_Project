@@ -405,6 +405,12 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<select id="defGroupView" resultMap="defGroupView" >
 		<![CDATA[select * from cpm_bim_def_group]]>
 	</select>
+	<insert id="addDefpop" parameterType="defVO">
+		<![CDATA[
+		 insert into cpm_bim_def_group
+		 values(#{defectiveItemGroupCode}, #{defectiveItemGroup})
+		]]>  
+	</insert>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />
