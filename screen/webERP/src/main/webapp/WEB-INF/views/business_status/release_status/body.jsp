@@ -84,33 +84,33 @@ String dueDate = (String) request.getAttribute("dueDate");
 		<div id="rsInfo">
 			<table id="rsTable">
 				<thead>
+					<td>출고번호</td>
+					<td>출고일자</td>
+					<td>고객</td>
 					<td>품번</td>
-					<td>품명</td>
-					<td>규격</td>
-					<td>단위</td>
+					<td>풍명</td>
 					<td>납기일</td>
 					<td>주문수량</td>
 					<td>단가</td>
-					<td>출하예정일(수주)</td>
-					<td>출고예정일(의뢰)</td>
-					<td>검사(의뢰,수주)</td>
+					<td>공급가</td>
+					<td>부가세</td>
+					<td>공급대가</td>
 					<td>출고구분</td>
-					<td>고객코드</td>
 				</thead>
 				<c:forEach var="rs" items="${rsView }" varStatus="status">
 				<tr>
+					<td><input type="text" id="releaseNum" name="ListVO[${fn:length(rsView) }].releaseNum" value='${rs.releaseNum }' readonly/></td>
+					<td><input type="text" id="releaseDate" name="ListVO[${fn:length(rsView) }].releaseDate" value='${rs.ireleaseDate }' readonly/></td>
+					<td><input type="text" id="customerCode" name="ListVO[${fn:length(rsView) }].customerCode" value='${rs.customerCode }' readonly/></td>
 					<td><input type="text" id="itemCode" name="ListVO[${fn:length(rsView) }].itemCode" value='${rs.itemCode }' readonly/></td>
 					<td><input type="text" id="itemName" name="ListVO[${fn:length(rsView) }].itemName" value='${rs.itemName }' readonly/></td>
-					<td><input type="text" id="standard" name="ListVO[${fn:length(rsView) }].standard" value='${rs.standard }' readonly/></td>
-					<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(rsView) }].inventoryUnit" value='${rs.inventoryUnit }' readonly/></td>
 					<td><input type="text" id="dueDate" name="ListVO[${fn:length(rsView) }].dueDate" value='${rs.dueDate }' readonly/></td>
-					<td><input type="text" id="orderQuantity" name="ListVO[${fn:length(rsView) }].orderQuantity" value='${rs.orderQuantity }' readonly/></td>
+					<td><input type="text" id="ordersQuantity" name="ListVO[${fn:length(rsView) }].ordersQuantity" value='${rs.ordersQuantity }' readonly/></td>
 					<td><input type="text" id="productPrice" name="ListVO[${fn:length(rsView) }].productPrice" value='${rs.productPrice }' readonly/></td>
-					<td><input type="text" id="expectedDate" name="ListVO[${fn:length(rsView) }].expectedDate" value='${rs.expectedDate }' readonly/></td>
-					<td><input type="text" id="releaseExpectedDate" name="ListVO[${fn:length(rsView) }].releaseExpectedDate" value='${rs.releaseExpectedDate }' readonly/></td>
-					<td><input type="text" id="inspection" name="ListVO[${fn:length(rsView) }].inspection" value='${rs.inspection }' readonly/></td>
+					<td><input type="text" id="totPrice" readonly/></td>
+					<td><input type="text" id="vat" readonly/></td>
+					<td><input type="text" id="totVatPrice" readonly/></td>
 					<td><input type="text" id="orderOX" name="ListVO[${fn:length(rsView) }].orderOX" value='${rs.orderOX }' readonly/></td>
-					<td><input type="text" id="customerCode" name="ListVO[${fn:length(rsView) }].customerCode" value='${rs.customerCode }' readonly/></td>
 				</tr>
 				</c:forEach>
 			</table>
@@ -126,6 +126,26 @@ String dueDate = (String) request.getAttribute("dueDate");
 		<script>
 			var startDate = new Date().toISOString().substring(0,10);;
 			var endDate = new Date().toISOString().substring(0,10);;
+			var totPrice = document.getElementById("totPrice");
+			var vat = document.getElementById("vat");
+			var totVatPrice = document.getElementById("totVatPrice");
+			
+			totPrice.onfocus = function(){
+				var ordersQuantity = parsefloat(ordersQuantity.value);
+				var productPrice = parsefloat(productPrice.value);
+				totPrice.value = ordersQuantity*productPrice;
+			}
+			
+			vat.onfocus = function(){
+				var totPrice = parsefloat(totPrice.value);
+				vat.value = totPrice * (1/10);
+			}
+			
+			totVatPrice = function(){
+				var totPrice = parsefloat(totPrice.value); 
+				var vat = parsefloat(vat.value);
+				totVatPrice.value = totPrice + vat;
+			}
 			
 			$('#searchStartDate').change(function(){
 				var date = $('#searchStartDate').val();

@@ -8,18 +8,19 @@ import org.springframework.stereotype.Component;
 
 @Component("rsVO")
 public class rsVO {
-	private String itemCode; //품번
-	private String itemName; //품명
-	private String standard; //규격
-	private String inventoryUnit; //단위
+	private String releaseNum ; //출고번호
+	private Date releaseDate ; //출고일자
+	private String customerCode; //고객
+	
+	private String Item_Code; //품번
+	private String Item_Name; //품명
 	private Date dueDate; //납기일
-	private int orderQuantity; //주문수량
 	private int productPrice; //단가
-	private Date expectedDate; //출하예정일(수주)
-	private Date releaseExpectedDate; //출고예정일(의뢰)
-	private String inspection; //검사(의뢰,수주)
+	private int totPrice; //공급가
+	private int vat; //부가세
+	private int totVatPrice; //공급대가
 	private String orderOX; //출고구분
-	private String customerCode; //고객코드
+	
 	private Date startDate;
 	private Date endDate;
 	private List<rsVO> ListVO;
@@ -33,36 +34,44 @@ public class rsVO {
 		super();
 	}
 
-	public String getItemCode() {
-		return itemCode;
+	public String getReleaseNum() {
+		return releaseNum;
 	}
 
-	public void setItemCode(String itemCode) {
-		this.itemCode = itemCode;
+	public void setReleaseNum(String releaseNum) {
+		this.releaseNum = releaseNum;
 	}
 
-	public String getItemName() {
-		return itemName;
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
-	public String getStandard() {
-		return standard;
+	public String getCustomerCode() {
+		return customerCode;
 	}
 
-	public void setStandard(String standard) {
-		this.standard = standard;
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
 	}
 
-	public String getInventoryUnit() {
-		return inventoryUnit;
+	public String getItem_Code() {
+		return Item_Code;
 	}
 
-	public void setInventoryUnit(String inventoryUnit) {
-		this.inventoryUnit = inventoryUnit;
+	public void setItem_Code(String item_Code) {
+		Item_Code = item_Code;
+	}
+
+	public String getItem_Name() {
+		return Item_Name;
+	}
+
+	public void setItem_Name(String item_Name) {
+		Item_Name = item_Name;
 	}
 
 	public Date getDueDate() {
@@ -73,14 +82,6 @@ public class rsVO {
 		this.dueDate = dueDate;
 	}
 
-	public int getOrderQuantity() {
-		return orderQuantity;
-	}
-
-	public void setOrderQuantity(int orderQuantity) {
-		this.orderQuantity = orderQuantity;
-	}
-
 	public int getProductPrice() {
 		return productPrice;
 	}
@@ -89,28 +90,28 @@ public class rsVO {
 		this.productPrice = productPrice;
 	}
 
-	public Date getExpectedDate() {
-		return expectedDate;
+	public int getTotPrice() {
+		return totPrice;
 	}
 
-	public void setExpectedDate(Date expectedDate) {
-		this.expectedDate = expectedDate;
+	public void setTotPrice(int totPrice) {
+		this.totPrice = totPrice;
 	}
 
-	public Date getReleaseExpectedDate() {
-		return releaseExpectedDate;
+	public int getVat() {
+		return vat;
 	}
 
-	public void setReleaseExpectedDate(Date releaseExpectedDate) {
-		this.releaseExpectedDate = releaseExpectedDate;
+	public void setVat(int vat) {
+		this.vat = vat;
 	}
 
-	public String getInspection() {
-		return inspection;
+	public int getTotVatPrice() {
+		return totVatPrice;
 	}
 
-	public void setInspection(String inspection) {
-		this.inspection = inspection;
+	public void setTotVatPrice(int totVatPrice) {
+		this.totVatPrice = totVatPrice;
 	}
 
 	public String getOrderOX() {
@@ -119,14 +120,6 @@ public class rsVO {
 
 	public void setOrderOX(String orderOX) {
 		this.orderOX = orderOX;
-	}
-
-	public String getCustomerCode() {
-		return customerCode;
-	}
-
-	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
 	}
 
 	public Date getStartDate() {
@@ -152,6 +145,6 @@ public class rsVO {
 	public void setListVO(List<rsVO> listVO) {
 		ListVO = listVO;
 	}
-	
+
 	
 }

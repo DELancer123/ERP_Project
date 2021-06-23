@@ -364,18 +364,17 @@
 	</select>
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsView" type="rsVO">
+		<result property="releaseNum" column="releaseNum" />
+		<result property="releaseDate" column="releaseDate" />
+		<result property="customerCode" column="customerCode" />
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
-		<result property="standard" column="standard" />
-		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="dueDate" column="dueDate" />
-		<result property="orderQuantity" column="ordersQuantity" />
 		<result property="productPrice" column="productPrice" />
-		<result property="expectedDate" column="expectedDate" />
-		<result property="releaseExpectedDate" column="releaseExpectedDate" />
-		<result property="inspection" column="inspection" />
+		<result property="totPrice" column="totPrice" />
+		<result property="vat" column="vat" />
+		<result property="totVatPrice" column="totVatPrice" />
 		<result property="orderOX" column="orderOX" />
-		<result property="customerCode" column="customerCode" />
 	</resultMap>
 	<select id="rsSelectAllMemberList" resultMap="rsView">
 		<![CDATA[select * from CSM_SM_COR_Reg ]]>
