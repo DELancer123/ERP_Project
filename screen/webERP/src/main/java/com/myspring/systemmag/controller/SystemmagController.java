@@ -23,17 +23,20 @@ public interface SystemmagController {
 	//사업장등록
 	public ModelAndView addWorkplace(@ModelAttribute("workplace") WorkplaceVO workplaceVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updateWorkplace(WorkplaceVO workplaceVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//품목등록
 	public ModelAndView addItem (@ModelAttribute("item") itemVO itemVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updateItem(itemVO itemVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//품목군등록
 	public ModelAndView addItemg (@ModelAttribute("itemg") ItemgVO itemgVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewItemg(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updateItemg(ItemgVO itemgVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//사원조회
 	public ModelAndView viewemployee(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//부서등록
 	public ModelAndView adddepartment (@ModelAttribute("department") DepartmentVO departmentVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewdepartment(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView updatedepartment(DepartmentVO departmentVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

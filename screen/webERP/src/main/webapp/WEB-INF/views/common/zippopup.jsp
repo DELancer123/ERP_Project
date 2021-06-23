@@ -100,10 +100,13 @@
     		text_address1.value = address1;
     		text_address2.value = address2;
     	}
-    	submit_button.onclick = function(){
-    		opener.setChildValue(text_zipcode.value);
-			window.close();
+    	submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
+            $(opener.document).find("#zipCode").val($("#code").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+            $(opener.document).find("#workplace_Address").val($("#name").val());
+            $(opener.document).find("#generalCustomer_Tel").val($("#name").val());
+            window.close();
     	}
+    	
     </script>
     </form>
 </body>

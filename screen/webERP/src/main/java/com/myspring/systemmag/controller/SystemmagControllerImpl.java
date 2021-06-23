@@ -150,6 +150,18 @@ public class SystemmagControllerImpl implements SystemmagController{
 		
 		return mav;
 	}
+	//사업장등록(수정)
+		@Override
+		@RequestMapping(value = "/member/updbusiness.do", method = RequestMethod.GET)
+		public ModelAndView updateWorkplace(@ModelAttribute("") WorkplaceVO workplaceVO, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			System.out.println("값확인" + workplaceVO.getWorrepresentatives_Name());
+			systemmagService.updWor(workplaceVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+			ModelAndView mav = new ModelAndView(
+					"redirect:/member/regbusiness.do?submit=1&&wor_code=" + workplaceVO.getWorkplace_Code());
+			return mav;
+		}
 		//품목등록(조회)
 		@Override
 		@RequestMapping(value="/member/regitem.do" ,method = RequestMethod.GET)
@@ -189,6 +201,17 @@ public class SystemmagControllerImpl implements SystemmagController{
 			ModelAndView mav = new ModelAndView("redirect:"+path);
 			return mav;
 		}
+		//품목등록(수정)
+		@Override
+		@RequestMapping(value = "/member/upditem.do", method = RequestMethod.GET)
+		public ModelAndView updateItem(@ModelAttribute("") itemVO itemVO, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			systemmagService.updItem(itemVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+			ModelAndView mav = new ModelAndView(
+					"redirect:/member/regitem.do?submit=1&&item_code=" + itemVO.getItem_Code());
+			return mav;
+		}
 		//품목군등록(조회)
 		@Override
 		@RequestMapping(value="/member/regitemgroup.do" ,method = RequestMethod.GET)
@@ -212,6 +235,17 @@ public class SystemmagControllerImpl implements SystemmagController{
 			int result = 0;
 			result = systemmagService.addItemg(itemgVO);
 			ModelAndView mav = new ModelAndView("redirect:"+path);
+			return mav;
+		}
+		//품목군등록(수정)
+		@Override
+		@RequestMapping(value = "/member/upditemg.do", method = RequestMethod.GET)
+		public ModelAndView updateItemg(@ModelAttribute("") ItemgVO itemgVO, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			systemmagService.updItemg(itemgVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+			ModelAndView mav = new ModelAndView(
+					"redirect:/member/regitemgroup.do?submit=1&&itemg_code=" + itemgVO.getItem_Group_Code());
 			return mav;
 		}
 		//사원조회
@@ -248,6 +282,17 @@ public class SystemmagControllerImpl implements SystemmagController{
 			int result = 0;
 			result = systemmagService.addDep(departmentVO);
 			ModelAndView mav = new ModelAndView("redirect:"+path);
+			return mav;
+		}
+		//부서등록(수정)
+		@Override
+		@RequestMapping(value = "/member/upddepartment.do", method = RequestMethod.GET)
+		public ModelAndView updatedepartment(@ModelAttribute("") DepartmentVO departmentVO, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			systemmagService.updDep(departmentVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+			ModelAndView mav = new ModelAndView(
+					"redirect:/member/regdepartment.do?submit=1&&dep_code=" + departmentVO.getDepartment_Code());
 			return mav;
 		}
 	//겟뷰네임
@@ -291,11 +336,6 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return null;
 	}
 	
-	
-	@Override
-	public ModelAndView updWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
 	@Override
 	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;

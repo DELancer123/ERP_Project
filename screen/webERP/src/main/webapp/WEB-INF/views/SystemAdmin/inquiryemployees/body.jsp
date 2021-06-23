@@ -112,25 +112,25 @@
                 <c:forEach var="employee" items="${employeeView}" > 
                 <tr>
                     <td>
-                        <input type=text name="Employee_Code" style="width:100px;" value='${employee.employee_Code }'>
+                        <input type=text name="Employee_Code" style="width:100px;" value='${employee.employee_Code }' readonly/>
                     </td>
                     <td>
-                        <input type=text name="Employee_Name" value='${employee.employee_Name }'>
+                        <input type=text name="Employee_Name" value='${employee.employee_Name }' readonly/>
                     </td>
                    	<td>
-                   		<input type=text name="Department_Code" style="width:100px;" value='${employee.department_Code }'>
+                   		<input type=text name="Department_Code" style="width:100px;" value='${employee.department_Code }' readonly/>
                     </td>
                     <td>
-                    	<input type=text name="Department_Name" value='${employee.department_Name }'>
+                    	<input type=text name="Department_Name" value='${employee.department_Name }' readonly/>
                     </td>
                     <td>
-                    	<input type=date name="JoinDate" value='${employee.joinDate }'>
+                    	<input type=date name="JoinDate" value='${employee.joinDate }' readonly/>
                     </td>
                     <td>
-                    	<input type=date name="ResignationDate" value='${employee.resignationDate }'>
+                    	<input type=date name="ResignationDate" value='${employee.resignationDate }' readonly/>
                     </td>
                     <td>
-                    	<input type=text name="Emergency_Contact_Network" value='${employee.emergency_Contact_Network }'>
+                    	<input type=text name="Emergency_Contact_Network" value='${employee.emergency_Contact_Network }' readonly/>
                     </td>
                 </tr>
                 </c:forEach>

@@ -24,16 +24,20 @@ public interface SystemmagDAO {
 	public int addWor(WorkplaceVO workplaceVO) throws DataAccessException;
 	public List viewWor() throws DataAccessException;
 	public List allviewWor(String wor_code) throws DataAccessException;
+	public void updateWor(WorkplaceVO workplaceVO) throws DataAccessException;
 	//품목등록
 	public int addItem(itemVO itemVO) throws DataAccessException;
 	public List viewItem() throws DataAccessException;
 	public List allviewItem(String item_code) throws DataAccessException;
+	public void updateItem(itemVO itemVO) throws DataAccessException;
 	//품목군등록
 	public int addItemg(ItemgVO itemgVO) throws DataAccessException;
 	public List allviewItemg() throws DataAccessException;
+	public void updateItemg(ItemgVO itemgVO) throws DataAccessException;
 	//사원조회
 	public List allviewemployee() throws DataAccessException;
 	//부서등록
 	public List allviewdepartment() throws DataAccessException;
 	public int addDep(DepartmentVO departmentVO) throws DataAccessException;
+	public void updateDep(DepartmentVO departmentVO) throws DataAccessException;
 }

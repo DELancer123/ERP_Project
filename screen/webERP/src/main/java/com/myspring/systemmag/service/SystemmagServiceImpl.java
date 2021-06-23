@@ -75,6 +75,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 		List worList = systemmagDAO.allviewWor(wor_code);
 		return worList;
 	}
+	//사업장등록(수정)
+	@Override
+	public void updWor(WorkplaceVO workplaceVO) throws DataAccessException {		
+		systemmagDAO.updateWor(workplaceVO);
+	}
 	//품목등록(조회)
 	@Override
 	public List itemView() throws DataAccessException {
@@ -93,6 +98,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 		public int addItem(itemVO itemVO) throws DataAccessException{
 			return systemmagDAO.addItem(itemVO);
 	}
+	//품목등록(수정)
+		@Override
+		public void updItem(itemVO itemVO) throws DataAccessException {		
+			systemmagDAO.updateItem(itemVO);
+		}
 	//품목군등록(조회)
 	@Override
 	public List itemgView() throws DataAccessException {
@@ -100,6 +110,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 		itemgList = systemmagDAO.allviewItemg();
 		System.out.println("sercom= :");
 		return itemgList;
+	}
+	//품목군등록(수정)
+	@Override
+	public void updItemg(ItemgVO itemgVO) throws DataAccessException {		
+		systemmagDAO.updateItemg(itemgVO);
 	}
 	//부서등록
 			@Override
@@ -127,4 +142,9 @@ public class SystemmagServiceImpl implements SystemmagService {
 		public int addDep(DepartmentVO departmentVO) throws DataAccessException{
 			return systemmagDAO.addDep(departmentVO);
 	}
+	//부서등록(수정)
+		@Override
+		public void updDep(DepartmentVO departmentVO) throws DataAccessException {		
+			systemmagDAO.updateDep(departmentVO);
+		}
 }

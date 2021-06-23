@@ -14,25 +14,18 @@ public class itemVO {
 	private String sET_Item;
 	private String inspection_Status;
 	private String use_Status;
-	private String lOT_Quantity;
+	private int lOT_Quantity;
 	private String drawing_Number;
 	private String hs_Code;
 	private String width;
 	private String length;
 	private String height;
-	private String cost;
+	private int cost;
 	private String item_Group_Code;
 	private String division;
 	private String notes;
-	private String daily_production;
+	private int daily_production;
 	private List<itemVO> ListVO;
-	
-	public String getDivision() {
-		return division;
-	}
-	public void setDivision(String division) {
-		this.division = division;
-	}
 	public String getItem_Code() {
 		return item_Code;
 	}
@@ -81,10 +74,10 @@ public class itemVO {
 	public void setUse_Status(String use_Status) {
 		this.use_Status = use_Status;
 	}
-	public String getlOT_Quantity() {
+	public int getlOT_Quantity() {
 		return lOT_Quantity;
 	}
-	public void setlOT_Quantity(String lOT_Quantity) {
+	public void setlOT_Quantity(int lOT_Quantity) {
 		this.lOT_Quantity = lOT_Quantity;
 	}
 	public String getDrawing_Number() {
@@ -117,10 +110,10 @@ public class itemVO {
 	public void setHeight(String height) {
 		this.height = height;
 	}
-	public String getCost() {
+	public int getCost() {
 		return cost;
 	}
-	public void setCost(String cost) {
+	public void setCost(int cost) {
 		this.cost = cost;
 	}
 	public String getItem_Group_Code() {
@@ -129,18 +122,23 @@ public class itemVO {
 	public void setItem_Group_Code(String item_Group_Code) {
 		this.item_Group_Code = item_Group_Code;
 	}
-	
-	public String getDaily_production() {
-		return daily_production;
+	public String getDivision() {
+		return division;
 	}
-	public void setDaily_production(String daily_production) {
-		this.daily_production = daily_production;
+	public void setDivision(String division) {
+		this.division = division;
 	}
 	public String getNotes() {
 		return notes;
 	}
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	public int getDaily_production() {
+		return daily_production;
+	}
+	public void setDaily_production(int daily_production) {
+		this.daily_production = daily_production;
 	}
 	public List<itemVO> getListVO() {
 		return ListVO;
@@ -149,4 +147,6 @@ public class itemVO {
 		ListVO = listVO;
 	}
 	
+	
 }
+	

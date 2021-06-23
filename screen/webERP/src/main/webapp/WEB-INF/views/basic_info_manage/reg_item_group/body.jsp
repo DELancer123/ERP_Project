@@ -12,6 +12,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
  #contents1{
             position: absolute;
@@ -112,45 +113,39 @@
                     <td>사용여부</td>
                     <td>품목군설명</td>
                 </tr>
-                <c:forEach var="itemg" items="${itemgView}" >  
-                <tr>
-                    <td>
-                        <input type="checkbox" name="content"/>
-                    </td>
-                    <td>
-                        <input type=text name="rangeCode" value='${itemg.item_Group_Code }' >
-                    </td>
-                    <td>
-                        <input type=text name="rangeName" value='${itemg.item_Group_Name }' >
-                    </td>
-                    <td>
-                        <select name="usable" >
-                        <option value=0 <c:if test="${itemg.use_Status == 0}">selected</c:if>>0.부</option>
+                <c:forEach var="itemg" items="${itemgView}" varStatus="status" >  
+                <tr id = "updateTest" align="center">
+                <td><input type="checkbox" name="content"/></td>
+                    <td><input type="text" name="ListVO[${status.index }].item_Group_Code" value = '${itemg.item_Group_Code}'/></td>
+                    <td><input type="text" name="ListVO[${status.index }].item_Group_Name" value = '${itemg.item_Group_Name}'/></td>
+                    <td><select name="ListVO[${status.index }].use_Status">
+    					<option value=0 <c:if test="${itemg.use_Status == 0}">selected</c:if>>0.부</option>
     					<option value=1 <c:if test="${itemg.use_Status == 1}">selected</c:if>>1.여</option>
-                    </td>
-                    <td>
-                        <input type=text name="explain" value='${itemg.explanation }' >
-                    </td>
-                </tr>
+    				</select></td>
+                    <td><input type="text" name="ListVO[${status.index }].explanation" value = '${itemg.explanation}'/></td>
+                 </tr>
                 </c:forEach>
                 <tbody>
                  <tr id ="insertTest" align="center" >
     <td><input type="checkbox" name="content"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Code" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Name" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Code" id="item_Group_Code1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Name" id="item_Group_Name1" /></td>
     	<td>
-    	<select name="ListVO[${fn:length(itemgView) }].use_Status">
+    	<select name="ListVO[${fn:length(itemgView) }].use_Status" id="use_Status1">
     	<option value=0 <c:if test="${itemg.use_Status == 0}">selected</c:if>>0.부</option>
     	<option value=1 <c:if test="${itemg.use_Status == 1}">selected</c:if>>1.여</option>
     	</select>
     	</td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" id="explanation1"/></td>
     </tr>
                  </tbody>
             </table>
         </container2>
         </form>
         <script>
+        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateRow();}, false); 
+        //등록함수
         function newRow(){
     		const URLSearch = new URLSearchParams(location.search);
     		URLSearch.set('submit','1');
@@ -164,6 +159,27 @@
     		document.getElementById('regItemg').action = "${contextPath}/member/additemg.do";
     		document.getElementById('regItemg').submit();
     		}
+      //수정함수
+        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        	document.getElementById('item_Group_Code1').disabled = true;
+        	document.getElementById('item_Group_Name1').disabled = true;
+        	document.getElementById('use_Status1').disabled = true;
+        	document.getElementById('explanation1').disabled = true;
+       	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+       	/* $('#regItemg').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+       	    if(!$(this).val()) { //#regdepartment2는 form태그의 id값임
+       	    	is_empty = true;      	    	
+       	    }      	 
+       	});       	 
+       	if(is_empty) { //비어있는내용이 있는지 체크함
+       	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+       	}
+       	else{ */
+	        	document.getElementById('regItemg').action = "${contextPath}/member/upditemg.do";
+	    		document.getElementById('regItemg').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+	    		alert('수정되었습니다'); 
+       	/* } */      	
+       }
         </script>
 </body>
 </html>

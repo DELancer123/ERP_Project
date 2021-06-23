@@ -270,7 +270,7 @@
 		<result property="workplace_Number" column="Workplace_Number"	/>
 		<result property="workplace_Tel" column="Workplace_Tel"	/>
 		<result property="worupstate" column="Upstate"	/>
-		<result property="worindustry" column="insdustry"	/>
+		<result property="worindustry" column="industry"	/>
 		<result property="main_Store_Status" column="Main_Store_Status"	/>
 	</resultMap>
 	<!-- 조회 -->
@@ -287,6 +287,25 @@
 	values(#{workplace_Code},#{workplace_Name}, #{worcompany_Registration_Number}, #{worcorporate_Registration_Number}, #{worrepresentatives_Name}, #{workplace_Zipcode},
 	 #{workplace_Address},#{workplace_Number}, #{workplace_Tel}, #{worupstate}, #{worindustry}, #{main_Store_Status})]]>
 	</insert>
+	<!-- 수정 -->
+	<update id="updateworkplace" parameterType="workplaceVO">
+		<![CDATA[
+			update SM_CRI_Wor_Reg
+			set	workplace_Name=#{workplace_Name},
+			company_Registration_Number=#{worcompany_Registration_Number},
+			corporate_Registration_Number=#{worcorporate_Registration_Number},
+			representatives_Name=#{worrepresentatives_Name},
+			workplace_Zipcode=#{workplace_Zipcode},
+			workplace_Address=#{workplace_Address},
+			workplace_Number=#{workplace_Number},
+			workplace_Tel=#{workplace_Tel},
+			upstate=#{worupstate},
+			industry=#{worindustry},
+			main_Store_Status=#{main_Store_Status}
+			where workplace_Code=#{workplace_Code}
+		]]>
+	</update>
+	
 	<!-- 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
 		<result property="item_Code" column="Item_Code"	/>
@@ -324,6 +343,31 @@
 	 #{inspection_Status}, #{use_Status}, #{lOT_Quantity}, #{drawing_Number}, #{hs_Code}, #{width}, #{length}
 	 , #{height}, #{cost}, #{item_Group_Code}, #{division}, #{notes}, #{daily_production})]]>
 	</insert>
+	<!-- 수정 -->
+	<update id="updateItem" parameterType="itemVO">
+		<![CDATA[
+			update SM_BIM_Ite_Reg
+			set	item_Name=#{item_Name},
+			standard=#{standard},
+			inventory_Unit=#{inventory_Unit},
+			whether_LOT=#{whether_LOT},
+			sET_Item=#{sET_Item},
+			inspection_Status=#{inspection_Status},
+			use_Status=#{use_Status},
+			lOT_Quantity=#{lOT_Quantity},
+			drawing_Number=#{drawing_Number},
+			hs_Code=#{hs_Code},
+			width=#{width},
+			length=#{length},
+			height=#{height},
+			cost=#{cost},
+			item_Group_Code=#{item_Group_Code},
+			division=#{division},
+			notes=#{notes},
+			DAILYPRODUCTION=#{daily_production}
+			where item_Code=#{item_Code}
+		]]>
+	</update>
 	<!-- 품목군등록 -->	
 		<resultMap id="itemgResult" type="ItemgVO">
 		<result property="item_Group_Code" column="Item_Group_Code"	/>
@@ -341,7 +385,16 @@
 	insert into SM_BIM_Ite_gro_Reg
 	values(#{item_Group_Code},#{item_Group_Name}, #{use_Status}, #{explanation})]]>
 	</insert>
-	
+	<!-- 수정 -->
+	<update id="updateitemg" parameterType="ItemgVO">
+		<![CDATA[
+			update SM_BIM_Ite_gro_Reg
+			set	ITEM_GROUP_NAME=#{item_Group_Name},
+				USE_STATUS=#{use_Status},
+				EXPLANATION=#{explanation}
+			where ITEM_GROUP_CODE=#{item_Group_Code}
+		]]>
+	</update>
 	<!-- 사원조회 -->
 	<resultMap id="employeeResult" type="EmployeeVO">
 		<result property="employee_Code" column="Employee_Code"	/>
@@ -377,6 +430,19 @@
 	values(#{department_Code},#{department_Name}, #{workplace_Code}, #{workplace_Name}, #{sector_Code}, #{sector_Name},
 	 #{usedate})]]>
 	</insert>
+	<!-- 수정 -->
+	<update id="updatedepartment" parameterType="DepartmentVO">
+		<![CDATA[
+			update SM_CRI_Dep_Reg
+			set	department_Name=#{department_Name},
+			workplace_Code=#{workplace_Code},
+			workplace_Name=#{workplace_Name},
+			sector_Code=#{sector_Code},
+			sector_Name=#{sector_Name},
+			usedate=#{usedate}
+			where department_Code=#{department_Code}
+		]]>
+	</update>
 	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">

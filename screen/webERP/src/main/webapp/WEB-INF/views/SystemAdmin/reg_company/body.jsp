@@ -230,7 +230,7 @@
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="6"
-                        value='${main_Store_Postal_Code }${zipcode}' />
+                        value='${main_Store_Postal_Code }' />
                         <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                 </tr>
@@ -238,7 +238,7 @@
                     <td align="center">본점주소</td>
                     <td colspan="2">
                         <input type="text" name="main_Store_Address" id="address1" class= "reqInput"
-						value='${main_Store_Address }${road_address}'
+						value='${main_Store_Address }'
                         style="width: 240px;"/>
                     </td>
                 </tr>
@@ -249,7 +249,7 @@
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"	
-                        value='${main_Branch_Number }${lot_address}' />
+                        value='${main_Branch_Number }' />
                     </td>
                 </tr>
                 <tr>
@@ -324,6 +324,7 @@
 		document.getElementById('regcompany').appendChild(articleNOInput);
 		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
 		document.getElementById('regcompany').submit();
+		alert('등록되었습니다');
 	}
 	//수정함수
 	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수

@@ -12,6 +12,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
 #contents1{
             position: absolute;
@@ -84,7 +85,6 @@
 </style>
 </head>
 <body>
-<form method="get" id="regdepartment">
 <container1 id = contents1>
             <table id="table1" align="center">
                 <tr>
@@ -118,6 +118,7 @@
                 </tr>
             </table>
         </container1>
+        <form method="get" id="regdepartment2">
         <container2 id= contents2>
             <table id="table2" align="center">
                 <thead>
@@ -130,51 +131,39 @@
                     <td align="center">부문명</td>
                     <td align="center">사용기간 시작</td>
                 </thead>
-                <c:forEach var="department" items="${departmentView}" >
-               
+                <c:forEach var="department" items="${departmentView}" varStatus="status" >
                 <tbody>
-                <tr>
-                <td><input type="checkbox" name="content" /></td>
-                    <td align="center">
-                        <input type=text name="divCode" style="width: 100px;" value='${department.department_Code }'>
-                    </td>
-                    <td align="center">
-                        <input type=text name="divName" value='${department.department_Name }'>
-                    </td>
-                    <td align="center">
-                        <input type=text name="workSpaceCode" style="width: 100px;" value='${department.workplace_Code }'>
-                    </td>
-                    <td align="center">
-                        <input type=text name="workSpaceName" value='${department.workplace_Name }'>
-                    </td>
-                    <td align="center">
-                        <input type=text name="sectorCode" style="width: 100px;" value='${department.sector_Code }'>
-                    </td>
-                    <td align="center">
-                        <input type=text name="sectorName" value='${department.sector_Name }'>
-                    </td>
-                    <td align="center">
-                        <input type="date" value='${department.usedate }'>
-                    </td>
-                </tr>
+                <tr id = "updateTest" align="center">
+                <td><input type="checkbox" name="content"/></td>
+                    <td><input type="text" name="ListVO[${status.index }].department_Code" value = '${department.department_Code}' style="width: 100px;"/></td>
+                    <td><input type="text" name="ListVO[${status.index }].department_Name" value = '${department.department_Name}'/></td>
+                    <td><input type="text" name="ListVO[${status.index }].workplace_Code" value = '${department.workplace_Code}' style="width: 100px;"/></td>
+                    <td><input type="text" name="ListVO[${status.index }].workplace_Name" value = '${department.workplace_Name}'/></td>
+                    <td><input type="text" name="ListVO[${status.index }].sector_Code" value = '${department.sector_Code}' style="width: 100px;"/></td>
+                    <td><input type="text" name="ListVO[${status.index }].sector_Name" value = '${department.sector_Name}'/></td>
+                    <td><input type="text" name="ListVO[${status.index }].usedate" value = '${department.usedate}'/></td>
+                 </tr>
                     </tbody>
                 </c:forEach>
                 <tbody>
                  <tr id ="insertTest" align="center" >
     <td></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Code" style="width: 100px;"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px;"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px;"/></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" /></td>
-    	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Code" style="width: 100px;" id="department_Code1"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" id="department_Name1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px;" id="workplace_Code1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" id="workplace_Name1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px;" id="sector_Code1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" id="sector_Name1" /></td>
+    	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" id="usedate1" /></td>
     </tr>
                  </tbody>
             </table>
         </container2>
-        </form>
+        	</form>
         <script>
+        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateRow();}, false); 
+        //등록함수
         function newRow(){
     		const URLSearch = new URLSearchParams(location.search);
     		URLSearch.set('submit','1');
@@ -188,6 +177,30 @@
     		document.getElementById('regdepartment').action = "${contextPath}/member/adddepartment.do";
     		document.getElementById('regdepartment').submit();
     		}
+        //수정함수
+        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        	document.getElementById('department_Code1').disabled = true;
+        	document.getElementById('department_Name1').disabled = true;
+        	document.getElementById('workplace_Code1').disabled = true;
+        	document.getElementById('workplace_Name1').disabled = true;
+        	document.getElementById('sector_Code1').disabled = true;
+        	document.getElementById('sector_Name1').disabled = true;
+        	document.getElementById('usedate1').disabled = true;
+       	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+       	/* $('#regdepartment2').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+       	    if(!$(this).val()) { //#regdepartment2는 form태그의 id값임
+       	    	is_empty = true;      	    	
+       	    }      	 
+       	});       	 
+       	if(is_empty) { //비어있는내용이 있는지 체크함
+       	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+       	}
+       	else{ */
+	        	document.getElementById('regdepartment2').action = "${contextPath}/member/upddepartment.do";
+	    		document.getElementById('regdepartment2').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+	    		alert('수정되었습니다'); 
+       	/* } */      	
+       } 
         </script>
 </body>
 </html>
