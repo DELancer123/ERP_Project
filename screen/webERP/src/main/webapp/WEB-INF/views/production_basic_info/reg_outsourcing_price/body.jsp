@@ -122,7 +122,7 @@
                         <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
                         <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
                         <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }' readonly/></td>
-                        <td><input type="text" value='${out.bomVO.itemName }' ondblclick="search3()" readonly/></td>
+                        <td><input type="text" value='${out.bomVO.itemName }' readonly/></td>
                         <td><input type="text" value='${out.bomVO.standard }' readonly/></td>
                         <td><input type="text" value='${out.bomVO.unit }' readonly/></td>
                         <td><input type="text" value='${out.bomVO.cost }' readonly/></td>
