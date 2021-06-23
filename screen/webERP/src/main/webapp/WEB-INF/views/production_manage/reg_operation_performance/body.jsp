@@ -122,6 +122,7 @@
         </container1>
         <container2 id="contents2">
              <div id="workOrderDetail">
+              <form id="dataForm" mehtod="get" commandName="ListVO">
                 <table id="workOrderDetailTable">
                     <thead> 
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -154,7 +155,7 @@
                      	<td><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly /></td>
                      	<td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly /></td>
                      	<td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" /></td>
-                     	<td><input tpye="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].itemName" value="${info.itemName}" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].standard" value="${info.standard}" readonly /></td>
                      	<td><input type="text" name="ListVO[${status.index }].inventoryUnit" value="${info.inventoryUnit}" readonly /></td>
@@ -193,8 +194,10 @@
                      </tr>
                     </tbody>
                 </table>
-            </div>
+                </form>
+             </div>
         </container2>
+        <!-- 
         <container3 id="contents3">
             <div id="workOrderInfo">
                 <table id="workOrderTable">
@@ -211,6 +214,7 @@
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
+                    <!--
                     <tbody>
                         <c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
@@ -243,6 +247,7 @@
             </div>
             <!-- 컨테이너 출력 종료 -->
             <!-- 출력부 -->
+            <!--
             <div id="detailPrint1">
                 입고 창고<input type="text" name="cargoName" style="width: 75px;"><a href="#" onclick="showPopup();"> <i class="fas fa-search"></i></a><input type="text" name="printCargoName" disabled>
                 재작업<select>
@@ -251,11 +256,16 @@
                 </select>
             </div>
         </container3>
+         -->
       
 </body>
 </html>
 
 <script>
+/* input date의 현재 날짜 기본값 설정*/
+document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+
  /* 검색부 date onChange 함수 설정 */
  		 		var startDate = "";
     	var endDate = "";

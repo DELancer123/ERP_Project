@@ -1,9 +1,13 @@
 package com.myspring.commonProduction.registOperationPerformance.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 
+@Component("RegistOperationPerformanceDetailVO") 
 public class RegistOperationPerformanceDetailVO {
 	private String OPNumber;
 	private String MaterialUseStatus;
@@ -16,6 +20,12 @@ public class RegistOperationPerformanceDetailVO {
 	private String note;
 	private String workOrderNumber;
 	private List<RegistOperationPerformanceDetailVO> DetailVO;
+	
+	@Override
+	public String toString() {
+		return Arrays.toString(DetailVO.toArray());
+	}
+	
 	public String getOPNumber() {
 		return OPNumber;
 	}
@@ -80,7 +90,7 @@ public class RegistOperationPerformanceDetailVO {
 		return DetailVO;
 	}
 	public void setDetailVO(List<RegistOperationPerformanceDetailVO> detailVO) {
-		DetailVO = detailVO;
+		DetailVO = new ArrayList();
 	}
 	
 	

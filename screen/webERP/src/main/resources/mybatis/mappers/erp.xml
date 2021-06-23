@@ -54,7 +54,7 @@
 	<resultMap id="RegOpePerResult" type="RegistOperationPerformanceVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
 		<result property="materialstatus" column="MATERIALFORWARDINGSTATUS" />
-		<result property="workPlaceCode" column="WORKPLACE_CODE" />
+		<result property="workplaceCode" column="WORKPLACE_CODE" />
 		<result property="instructionDate" column="InstructionDate" />
 		<result property="dueDate" column="dueDate" />
 		<result property="itemCode" column="Item_Code" />
@@ -65,6 +65,7 @@
 		<result property="sumPerformanceQuantity" column="performanceQuantity" />
 		<result property="remainingPerformance" column="remainingPerformance" />
 		<result property="status" column="status" />
+		<result property="workSortation" column="workSortation" />
 		<result property="inspection" column="Inspection" />
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
@@ -176,7 +177,7 @@
 	</update>	
 	
 	<select id="selectRelease" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber]]>
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
 	</select>
 	
 	<!-- <select id="selectReleaseDetail" resultMap="OpePerRegDetResult">
@@ -184,15 +185,56 @@
 	</select> -->
 	
 	<!-- 작업실적등록 CRUD -->
-	<select id="selectAllRegistOperationPerformanceInfoDetail" resultType="RegistOperationPerformanceVO">
-		<![CDATA[select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code),opr.instructiondate ,opr.duedate,
-opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity),
-(opr.indicatedquantity-sum(oprd.performancequantity)),opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
-from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd
-where opr.workordernumber= oprd.workordernumber and  workOrderNumber = #{workOrderNumber}
+	
+<resultMap id="RegistOperationPerformanceResult" type="RegistOperationPerformanceVO">
+	<result property="workOrderNumber" column="workordernumber" />
+	<result property="materialstatus" column="materialforwardingstatus" />
+	<result property="workplaceCode" column="workplaceCode" />
+	<result property="instructionDate" column="instructiondate" />
+	<result property="dueDate" column="duedate" />
+	<result property="itemCode" column="item_code" />
+	<result property="itemName" column="item_name" />
+	<result property="standard" column="standard" />
+	<result property="inventoryUnit" column="inventory_unit" />
+	<result property="indicated" column="indicatedquantity" />
+	<result property="sumPerformanceQuantity" column="sumPerformancequantity" />
+	<result property="remainingPerformance" column="remainingPerformance" />
+	<result property="status" column="status" />
+	<result property="workSortation" column="worksortation" />
+	<result property="inspection" column="inspection" />
+	<result property="note" column="note" />
+	<result property="productionFacility" column="productionfacility" />
+	<result property="taskTeam" column="taskTeam" />
+</resultMap>	
+	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
+		<![CDATA[select *
+from CPM_PM_Ope_Per_Reg
+]]>
+	</select>
+	
+		<select id="selectAllRegistOperationPerformanceInfoDetail" parameterType = "string" resultType="RegistOperationPerformanceDetailVO">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg_Det
+]]>
+	</select>
+	
+
+		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
+		<![CDATA[select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code) as workplaceCode,opr.instructiondate ,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
+(opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
 group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
-order by opr.workordernumber ]]>
+order by opr.workordernumber
+]]>
+<where> opr.workordernumber= oprd.workordernumber and opr.workOrderNumber = #{workOrderNumber}
+			<if test="startDate != '' and startDate != null">
+				and opr.instructionDate between #{startDate} and #{endDate}
+			</if>
+			<if test="endDate != '' and endDate != null">
+				and opr.dueDate between #{startDate} and #{endDate}
+			</if>
+</where>
 	</select>
 	
 	<select id="checkMaterialUse" resultType="string">

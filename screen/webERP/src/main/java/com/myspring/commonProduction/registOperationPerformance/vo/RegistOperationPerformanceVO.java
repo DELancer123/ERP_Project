@@ -24,10 +24,10 @@ public class RegistOperationPerformanceVO {
 	private String status;
 	private String workSortation;
 	private String inspection;
-	private String note;
-	private String productionPlanCode;
+	//private String productionPlanCode;
 	private String productionFacility;
 	private String taskTeam;
+	private String note;
 	private List<RegistOperationPerformanceVO> ListVO;
 	
 	@Override
@@ -115,12 +115,12 @@ public class RegistOperationPerformanceVO {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public String getProductionPlanCode() {
-		return productionPlanCode;
-	}
-	public void setProductionPlanCode(String productionPlanCode) {
-		this.productionPlanCode = productionPlanCode;
-	}
+//	public String getProductionPlanCode() {
+//		return productionPlanCode;
+//	}
+//	public void setProductionPlanCode(String productionPlanCode) {
+//		this.productionPlanCode = productionPlanCode;
+//	}
 
 	public List<RegistOperationPerformanceVO> getListVO() {
 		return ListVO;

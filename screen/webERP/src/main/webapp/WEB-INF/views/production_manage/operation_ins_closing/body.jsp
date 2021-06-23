@@ -195,7 +195,7 @@
                         <td><input type="date" name="DetailVO[${status.index }].dueDate" value="${detail.dueDate }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode}" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].indicated" value="${detail.indicated}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].indicatedQuantity" value="${detail.indicatedQuantity}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].sumPerformanceQuantity" value="${detail.sumPerformanceQuantity}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].remainingPerformance" value="${detail.remainingPerformance}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].unitPrice" value="${detail.unitPrice}" readonly/></td>
