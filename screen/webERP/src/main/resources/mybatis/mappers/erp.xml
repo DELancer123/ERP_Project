@@ -196,9 +196,10 @@
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[select det.billingdate, det.item_code, det.item_name, det.standard, det.inventory_unit, reg.indicatedquantity
-				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det
-				where reg.workordernumber = det.workordernumber and det.workordernumber = #{number}]]>
+		<![CDATA[select distinct( bom.item_code) as itemCode, bom.item_name, bom.standard, bom.inventory_unit, reg.indicatedquantity
+				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det,cpm_bim_bom_reg bom
+				where reg.item_code = bom.parent_item_code and reg.workordernumber = #{number}
+                order by bom.item_code]]>
 	</select>
 	
 	<!-- 작업실적등록 CRUD -->
@@ -528,6 +529,9 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		 values(#{defectiveItemGroupCode}, #{defectiveItemGroup})
 		]]>  
 	</insert>
+	<delete id="deldeftype">
+		delete from cpm_bim_def_typ_reg where DEFECTCODE = #{no}
+	</delete>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />

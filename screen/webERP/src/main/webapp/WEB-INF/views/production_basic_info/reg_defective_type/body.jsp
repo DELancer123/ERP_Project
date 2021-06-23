@@ -90,7 +90,7 @@
                     </thead>
                     <c:forEach var = "def" items='${defectiveList }' varStatus="status" >
                     <tbody align="center">
-                        <td><input type="checkbox" value = "0" id="check" class="check" name="content"/></td>
+                        <td><input type="checkbox" value = '${def.defectCode }'  id="check" class="check" name="content"/></td>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' readonly/></td>
@@ -153,24 +153,17 @@
 	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
       	}
       	delete_button.onclick = function(){
-      		
-      		 document.getElementById("defCode").disabled = true;
-		     document.getElementById("defName").disabled = true;
-		     document.getElementById("defgroup").disabled = true;
-		     document.getElementById("usage").disabled = true;
-		     document.getElementById("defDes").disabled = true;
-		     document.getElementById("groupCode").disabled = true;
-		    const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '1');
-			  const newParam = URLSearch.toString();
-			 var link = location.pathname +'?'+newParam;
-	  			var articleNOInput = document.createElement("input");
-	  		     articleNOInput.setAttribute("type","hidden");
-	  		     articleNOInput.setAttribute("name","path");
-	  		     articleNOInput.setAttribute("value", link);
-	  		     document.getElementById('searchForm').appendChild(articleNOInput);
-	            document.getElementById('searchForm').action = "${contextPath}/member/deldefType.do";
-	  			document.getElementById('searchForm').submit();   
+      		var item = document.getElementsByName("content").length;
+      	  var no = "";
+      	  var ary = [];
+      	  for(var i=0; i<item;i++){
+      		  if(document.getElementsByName("content")[i].checked==true){
+      			  no = document.getElementsByName("content")[i].value;
+      			  ary.push(no);
+      		  }
+      		  
+      			  window.location.href = "${contextPath}/member/deldefType.do?no="+ary;
+      	  }
       	}
       </script>
 </body>
