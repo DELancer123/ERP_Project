@@ -196,11 +196,20 @@
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[select distinct( bom.item_code) as itemCode, bom.item_name, bom.standard, bom.inventory_unit, reg.indicatedquantity
+		<![CDATA[select distinct(bom.item_code) as item_Code, bom.item_name, bom.standard, bom.inventory_unit as inventory_unit, reg.IndicatedQuantity
 				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det,cpm_bim_bom_reg bom
 				where reg.item_code = bom.parent_item_code and reg.workordernumber = #{number}
                 order by bom.item_code]]>
 	</select>
+	
+	<!-- 작업지시확정 자재출고 CRUD -->
+	<insert id="insertReleaseData" parameterType="OperationDetailVO">
+		<![CDATA[
+		 insert into CPM_PM_PRO_MAT_FOR_DET
+		 values(F_GET_NEXT_SEQ('NO'), to_char(sysdate,'YYYYMMDD'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
+		 #{precisionQuantity}, #{note}, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), #{workOrderNumber} )
+		]]>  
+	</insert>
 	
 	<!-- 작업실적등록 CRUD -->
 	
@@ -236,29 +245,31 @@
 	<result property="note" column="note" />
 	<result property="workOrderNumber" column="workOrderNumber" />
 </resultMap>	
-	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
-		<![CDATA[select *
-from CPM_PM_Ope_Per_Reg
-]]>
-	</select>
-	
-		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection, note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
-]]>
-	</select>
-	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
 		<![CDATA[select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code) as workplaceCode,opr.instructiondate ,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
 (opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
 from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
-where opr.workordernumber= oprd.workordernumber
+where opr.workordernumber= oprd.workordernumber and (status = '확정' or status = '마감')
 group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
 order by opr.workordernumber
 ]]>
 	</select>
+	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
+		<![CDATA[select *
+from CPM_PM_Ope_Per_Reg
+where (status = '확정' or status = '마감')
+]]>
+	</select>
+	
+		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
+		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection,note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
+]]>
+	</select>
+	
+
 	
 	<select id="checkMaterialUse" resultType="string">
 		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where OPNumber = #{OPNumber}]]>

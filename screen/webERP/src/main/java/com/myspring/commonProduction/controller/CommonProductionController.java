@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 
 public interface CommonProductionController {
@@ -31,8 +32,8 @@ public interface CommonProductionController {
 	public ModelAndView closingCancleDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView revertDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
+	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addReleaseData(OperationDetailVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

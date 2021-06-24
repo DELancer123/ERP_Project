@@ -441,6 +441,11 @@
       <put-attribute name="body" value="/WEB-INF/views/production_manage/commit_operation_instruction/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
+   <definition name="/member/inscomoperins" extends="baseLayout4">
+      <put-attribute name="title" value="작업지시확정" />
+      <put-attribute name="body" value="/WEB-INF/views/production_manage/commit_operation_instruction/insertbody.jsp" />
+	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
+   </definition>
 	<definition name="/member/prometfor" extends="baseLayout">
       <put-attribute name="title" value="생산자재출고" />
       <put-attribute name="body" value="/WEB-INF/views/production_manage/production_meterial_forwarding/body.jsp" />

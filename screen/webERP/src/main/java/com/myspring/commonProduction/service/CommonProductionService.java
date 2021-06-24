@@ -39,10 +39,9 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException;
   public List<OperationRegistVO> selectReleaseDetail(String number) throws DataAccessException, ParseException;
   public List<String> MaterialUse(String[] numberAry) throws DataAccessException;
-  public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate)
-		throws DataAccessException, ParseException;
-  public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number)
-		throws DataAccessException, ParseException;
+  public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException;
+  public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number) throws DataAccessException, ParseException;
+  public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException;
  
   }
  

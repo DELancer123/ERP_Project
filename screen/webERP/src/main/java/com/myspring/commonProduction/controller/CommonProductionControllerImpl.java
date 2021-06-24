@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod; 
 import org.springframework.web.servlet.ModelAndView;
   
-import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO; 
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO; 
 import com.myspring.commonProduction.service.CommonProductionService;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
@@ -193,7 +194,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   	  public ModelAndView listCommitOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
   		  String startDate = request.getParameter("startDate");
   		  String endDate = request.getParameter("endDate");
-  		  String number = request.getParameter("searchNumber");
+  		  String number = request.getParameter("searchNumber");  		  
   		  String viewName = (String)request.getAttribute("viewName");
   		  ModelAndView mav = new ModelAndView(viewName); 
   		  logger.debug("debug : viewName = " + viewName);
@@ -238,21 +239,35 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  	}
  	
+// 작업지시 확정 자재출고 부 기능
+
  	@Override
- 	@RequestMapping(value="/member/releaseDetail.do" ,method = RequestMethod.GET)
+ 	@RequestMapping(value="/member/inscomoperins.do" ,method = RequestMethod.GET)
  	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception { 
  		String number = request.getParameter("workOrderNumber");
  		String viewName = (String)request.getAttribute("viewName");
- 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		ModelAndView mav = new ModelAndView(viewName); 
  		
  		List infoList = productionService.selectRelease(number);
  		List detailList = productionService.selectReleaseDetail(number);
  		mav.addObject("infoList", infoList); 
- 		mav.addObject("detailList", detailList);
+		mav.addObject("detailList", detailList);
  		return mav; 
  	}
  	
- 	
+ 	@Override
+	@RequestMapping(value="/member/addReleaseData.do" ,method = RequestMethod.GET)
+	public ModelAndView addReleaseData(@ModelAttribute("info") OperationDetailVO ORVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = productionService.addReleaseData(ORVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
  	
  	
 //  작업실적등록 기능부 
@@ -272,7 +287,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   			  mav.addObject("infoList", infoList); 
   			  mav.addObject("detailList", detailList);
   		  } else {
-  			List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
+  			List infoList = productionService.selectAllRegistOperationPerformanceInfo(startDate, endDate); 
   			mav.addObject("infoList", infoList); 
   		  }
   		  return mav; 

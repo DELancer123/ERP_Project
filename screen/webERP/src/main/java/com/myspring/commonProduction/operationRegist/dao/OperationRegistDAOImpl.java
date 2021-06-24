@@ -172,6 +172,8 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return message;
 	}
 	
+//	작업지시확정 자재출고 기능부
+
 	@Override
 	public List selectRelease(String number) throws DataAccessException, ParseException {
 		List<OperationRegistVO> infoList = null;
@@ -191,5 +193,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 			System.out.println("출고 정보가 이미 존재합니다!");
 		}
 		return infoList;
+	}
+	
+	@Override
+	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
+		int idx = ORVO.getDetailVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(idx));
+		return 0;
 	}
 }
