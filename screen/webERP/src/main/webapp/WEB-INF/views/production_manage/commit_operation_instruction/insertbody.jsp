@@ -174,27 +174,28 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
-  					<c:forEach var="release" items="${releaseList}" varStatus="status">
+  					<c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
   					 	<td><input type="checkbox" name="content2"/></td>                        
-                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${release.itemCode }" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${release.itemName}" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${release.standard}" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${release.inventoryUnit}" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${release.indicated}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.indicated}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].loss" /></td>                                                
                         <td><input type="text" name="DetailVO[${status.index }].note" /></td>
+                        <td><input type="hidden" name="DetailVO[${status.index }].workOrderNumber" value="${param.workOrderNumber }" /></td>
   					 </tr>
                     </c:forEach>
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>                        
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>                                              
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemCode"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemName"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].standard"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].inventoryUnit"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].precisionQuantity"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].loss"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].note"/></td>                                              
                     </tr>
                     </tbody>
                 </table>

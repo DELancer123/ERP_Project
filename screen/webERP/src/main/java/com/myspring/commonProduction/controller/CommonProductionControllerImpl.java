@@ -251,7 +251,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List infoList = productionService.selectRelease(number);
  		List detailList = productionService.selectReleaseDetail(number);
  		mav.addObject("infoList", infoList); 
-		mav.addObject("releaseList", detailList);
+		mav.addObject("detailList", detailList);
  		return mav; 
  	}
  	
