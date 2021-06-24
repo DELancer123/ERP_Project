@@ -272,7 +272,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   			  mav.addObject("infoList", infoList); 
   			  mav.addObject("detailList", detailList);
   		  } else {
-  			List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
+  			List infoList = productionService.selectAllRegistOperationPerformanceInfo(startDate, endDate); 
   			mav.addObject("infoList", infoList); 
   		  }
   		  return mav; 

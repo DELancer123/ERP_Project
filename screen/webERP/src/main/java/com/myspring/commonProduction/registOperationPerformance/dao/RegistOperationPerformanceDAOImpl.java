@@ -41,19 +41,19 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	@Override
 	public List selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException {
 		List<RegistOperationPerformanceVO> infoList = null;
-		//infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition");
+		infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition");
 		
-		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date start = new Date(sdf.parse(startDate).getTime());
-			Date end = new Date(sdf.parse(endDate).getTime());
-			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
-			COIvo.setStartDate(start);
-			COIvo.setEndDate(end);
-			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition", COIvo);
-		} else {
-			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfo");
-		}
+//		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//			Date start = new Date(sdf.parse(startDate).getTime());
+//			Date end = new Date(sdf.parse(endDate).getTime());
+//			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+//			COIvo.setStartDate(start);
+//			COIvo.setEndDate(end);
+//			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfoCondition", COIvo);
+//		} else {
+//			infoList = sqlSession.selectList("mappers.erp.selectAllRegistOperationPerformanceInfo");
+//		}
 		
 		return infoList;
 	}
