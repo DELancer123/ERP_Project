@@ -194,6 +194,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   		  String startDate = request.getParameter("startDate");
   		  String endDate = request.getParameter("endDate");
   		  String number = request.getParameter("searchNumber");
+  		  String worknumber = request.getParameter("workOrderNumber");
   		  String viewName = (String)request.getAttribute("viewName");
   		  ModelAndView mav = new ModelAndView(viewName); 
   		  logger.debug("debug : viewName = " + viewName);
@@ -203,7 +204,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   			  List detailList = productionService.selectAllCommitOperationInfoDetail(number);
   			  mav.addObject("infoList", infoList); 
   			  mav.addObject("detailList", detailList);
-  		  } else {
+  		  } else if(worknumber != null && worknumber != "") {
+  			List infoList = productionService.selectRelease(worknumber);
+  	 		List releaseList = productionService.selectReleaseDetail(worknumber);
+  	 		mav.addObject("infoList", infoList); 
+  			mav.addObject("releaseList", releaseList);
+  		  }
+  		  else {
   			List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
   			mav.addObject("infoList", infoList); 
   		  }
@@ -248,7 +255,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List infoList = productionService.selectRelease(number);
  		List detailList = productionService.selectReleaseDetail(number);
  		mav.addObject("infoList", infoList); 
- 		mav.addObject("detailList", detailList);
+		mav.addObject("detailList", detailList);
  		return mav; 
  	}
  	

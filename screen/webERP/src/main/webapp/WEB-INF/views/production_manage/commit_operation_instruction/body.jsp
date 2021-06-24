@@ -157,6 +157,7 @@
         </container2>
         <container3 id="contents3">
             <div id="workOrderInfo">
+            <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
                         <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
@@ -186,6 +187,20 @@
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
   					 </tr>
                     </c:forEach>
+                    <c:forEach var="release" items="${releaseList}" varStatus="status">
+  					 <tr>
+  					 	<td><input type="checkbox" name="content2"/></td>
+                        <td><input type="date" name="DetailVO[${status.index }].billingDate" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${release.itemCode }" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${release.itemName}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${release.standard}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${release.inventoryUnit}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${release.indicated}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" /></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].note" /></td>
+  					 </tr>
+                    </c:forEach>
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="date"/></td>
@@ -200,6 +215,7 @@
                     </tr>
                     </tbody>
                 </table>
+                </form>
             </div>
         </container3>
       
@@ -265,9 +281,9 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
-  			document.getElementById('dataForm').submit();  
+  		    document.getElementById('detailForm').appendChild(linkPath);
+            document.getElementById('detailForm').action = "${contextPath}/member/addOperationInstruction.do";
+  			document.getElementById('detailForm').submit();  
 		
       }
       
@@ -335,7 +351,7 @@
       			  if(document.getElementsByName("content")[i].checked==true){
       				no = document.getElementsByName("content")[i].value;
       		  	}
-      			window.location.href = "${contextPath}/member/releaseDetail.do?workOrderNumber="+no;
+      			window.location.href = "${contextPath}/member/comoperins.do?workOrderNumber="+no;
       	  }
         }
       </script>
