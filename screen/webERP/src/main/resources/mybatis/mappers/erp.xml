@@ -212,7 +212,7 @@
 	</insert>
 	
 	<select id="selectWorkOrderNumber" resultType="string">
-		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
 	</select>
 	
 	<update id="materialSet">
@@ -221,8 +221,8 @@
 		where workOrderNumber = #{workOrderNumber}]]>
 	</update>
 	
-	<delete id="deleteOperationInstruction" parameterType="OperationDetailVO">
-		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+	<delete id="deleteCommitOperation" parameterType="OperationDetailVO">
+		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
 	</delete>
 	
 	<!-- 작업실적등록 CRUD -->
