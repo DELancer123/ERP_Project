@@ -101,7 +101,7 @@
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
     	var save_pop = document.getElementById("save_pop");
-    		
+    	var delete_pop = document.getElementById("delete_pop");
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
@@ -130,6 +130,22 @@
                 checkbox.checked = selectAll.checked;
             })
         }
+    	delete_pop.onclick = function(){
+			const URLSearch = new URLSearchParams(location.search);
+			var code= URLSearch.get('itemNumber');
+			var place = URLSearch.get('placeCode');
+			 var item = document.getElementsByName("content").length;
+	    	  var no = "";
+	    	  var ary = [];
+	    	  for(var i=0; i<item;i++){
+	    		  if(document.getElementsByName("content")[i].checked==true){
+	    			  no = document.getElementsByName("content")[i].value;
+	    			  ary.push(no);
+	    		  }
+	    		  
+	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
+	    	  }
+		}
     </script>
 </body>
 </html>
