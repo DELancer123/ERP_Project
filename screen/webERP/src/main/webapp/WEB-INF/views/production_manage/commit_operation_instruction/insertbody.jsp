@@ -163,8 +163,7 @@
             <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
-                        <td>청구일</td>
+                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>                        
                         <td>품번</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -177,8 +176,7 @@
                     <tbody>
   					<c:forEach var="release" items="${releaseList}" varStatus="status">
   					 <tr>
-  					 	<td><input type="checkbox" name="content2"/></td>
-                        <td><input type="date" id="billingDate" name="DetailVO[${status.index }].billingDate" /></td>
+  					 	<td><input type="checkbox" name="content2"/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${release.itemCode }" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].itemName" value="${release.itemName}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].standard" value="${release.standard}" readonly/></td>
@@ -189,8 +187,7 @@
   					 </tr>
                     </c:forEach>
                     <tr>
-                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="date"/></td>
+                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>                        
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
@@ -207,9 +204,7 @@
       
 </body>
 </html>
-<script>
-
-document.getElementById('billingDate').value = new Date().toISOString().substring(0,10);;
+<script>	
  /* 검색부 date onChange 함수 설정 */
  		var startDate = "";
     	var endDate = "";
@@ -270,7 +265,7 @@ document.getElementById('billingDate').value = new Date().toISOString().substrin
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
   		    document.getElementById('detailForm').appendChild(linkPath);
-            document.getElementById('detailForm').action = "${contextPath}/member/addOperationInstruction.do";
+            document.getElementById('detailForm').action = "${contextPath}/member/addReleaseData.do";
   			document.getElementById('detailForm').submit();  
 		
       }

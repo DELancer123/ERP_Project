@@ -151,7 +151,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return infolist; 
 	  }
   
-
+//작업지시확정 자재출고 기능부
+  
+  @Override
+ 	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
+ 		return ORdao.addReleaseData(ORVO);
+ 	}
+  
 //작업실적등록 기능부
 	@Override
 	public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 
