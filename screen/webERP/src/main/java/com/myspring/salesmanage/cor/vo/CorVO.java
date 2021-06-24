@@ -18,38 +18,9 @@ public class CorVO {
 	private int price;
 	private Date dueDate;
 	private Date expDate;
-	private Date relDate;
 	private String inspection;
 	private String orderOX;
 	
-	/*
-	 * 
-	 * --테이블 생성
-create table CSM_SM_COR_Reg(
---품번(공통)(FK)item_code
-Item_Code varchar2(12) not null,
---품명(공통)(FK)item_name
-Item_Name varchar2(50) not null,
---규격stand
-standard varchar2(20) DEFAULT NULL,
---단위unit
-Inventory_Unit varchar2(5) DEFAULT 'EA',
---납기일(견적, 수주, 출고의뢰)dueDate
-dueDate date not null,
---주문 수량(공통)orderQuant
-ordersQuantity Number(5) DEFAULT '0',
---단가(견적, 수주, 출고처리)price
-productPrice Number(15) DEFAULT '0',
---출하예정일(수주)expDate
-expectedDate DATE not null,
---출고예정일(의뢰)
-releaseExpectedDate date not null,
---검사(의뢰, 수주)
-inspection Varchar2(10) not null,
---출고구분(예외/주문)(출고처리)
-orderOX varchar2(20) not null,
---모든 등록과 연결하기 위한 고객코드custCode
-customerCode varchar2(12) not null,*/
 	private List<CorVO> ListCor;
 	
 	@Override
@@ -139,14 +110,6 @@ customerCode varchar2(12) not null,*/
 
 	public void setExpDate(Date expDate) {
 		this.expDate = expDate;
-	}
-
-	public Date getRelDate() {
-		return relDate;
-	}
-
-	public void setRelDate(Date relDate) {
-		this.relDate = relDate;
 	}
 
 	public String getInspection() {

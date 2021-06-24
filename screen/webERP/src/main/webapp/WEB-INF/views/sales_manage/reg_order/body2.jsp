@@ -100,8 +100,8 @@
                 </tbody>
            </table>
         </container2>
-        
-            <table id="view">
+        <container3 id="contents3">
+            <table id="addOrder">
                 <thead>
                     <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
                     <td>품번</td>
@@ -179,7 +179,7 @@
     		     articleNOInput.setAttribute("value", link);
     		     document.getElementById('regOrd').appendChild(articleNOInput);
               document.getElementById('regOrd').action = "${contextPath}/member/addorder.do";
-              openWindowPop('http://localhost:8090/webERP/member/addorder.do?custCode="+custCode','addorder');
+              /*openWindowPop('http://localhost:8090/webERP/member/addorder.do?custCode="+custCode','addorder'); */
     			document.getElementById('regOrd').submit(); 
         }
         /*function setChildValue(name){

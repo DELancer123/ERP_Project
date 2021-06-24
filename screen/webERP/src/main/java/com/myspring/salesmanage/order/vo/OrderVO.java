@@ -35,41 +35,51 @@ public class OrderVO {
 		super();
 	}
 
+
 	public String getOrdCode() {
 		return ordCode;
 	}
+
 
 	public void setOrdCode(String ordCode) {
 		this.ordCode = ordCode;
 	}
 
+
 	public Date getOrdDate() {
 		return ordDate;
 	}
+
 
 	public void setOrdDate(Date ordDate) {
 		this.ordDate = ordDate;
 	}
 
+
 	public String getCustCode() {
 		return custCode;
 	}
+
 
 	public void setCustCode(String custCode) {
 		this.custCode = custCode;
 	}
 
+
 	public String getTax() {
 		return tax;
 	}
+
 
 	public void setTax(String tax) {
 		this.tax = tax;
 	}
 
+
 	public String getNote() {
 		return note;
 	}
+
 
 	public void setNote(String note) {
 		this.note = note;
@@ -79,37 +89,46 @@ public class OrderVO {
 		return custName;
 	}
 
+
 	public void setCustName(String custName) {
 		this.custName = custName;
 	}
+
 
 	public String getComNum() {
 		return comNum;
 	}
 
+
 	public void setComNum(String comNum) {
 		this.comNum = comNum;
 	}
+
 
 	public String getRepName() {
 		return repName;
 	}
 
+
 	public void setRepName(String repName) {
 		this.repName = repName;
 	}
+
 
 	public List<OrderVO> getListOrd() {
 		return ListOrd;
 	}
 
+
 	public void setListOrd(List<OrderVO> listOrd) {
-		this.ListOrd = listOrd;
+		ListOrd = listOrd;
 	}
+
 
 	public CorVO getCorVO() {
 		return corVO;
 	}
+
 
 	public void setCorVO(CorVO corVO) {
 		this.corVO = corVO;

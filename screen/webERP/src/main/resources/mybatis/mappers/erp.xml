@@ -249,27 +249,42 @@
 	   delete from  SM_BIM_Sal_Pla_Reg where plan_code=#{plancode}
 	]]>      
   </delete>	
-		<resultMap id="cust" type="orderVO">
+  
+  <!-- order reg -->
+	<resultMap id="orderStaList" type="orderVO">
 		<result property="custCode" column="General_Customer_Code" />
         <result property="custName" column="General_Customer_Name" />
         <result property="comNum" column="Company_Registration_Number" />
         <result property="repName" column="Representativs_Name" />	
+        <result property="ordCode" column="ordersNum" />	
+        <result property="ordDate" column="ordersdate" />	
+        <result property="tax" column="tax" />	
+        <result property="note" column="Note" />        
 	</resultMap> 
 	
-		<select id="orderCustList" resultMap="cust">
-      <![CDATA[
-         select * from SM_BIM_Gen_Cus_Reg 
-      ]]>
+	<select id="orderCustList" resultMap="orderStaList">
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
 	</select>
-	<!-- order&cor (join)	 -->
-	<resultMap id="orderList" type="orderVO">
+	
+	<select id="selectOrderList" resultMap="orderStaList">
+      <![CDATA[select * from CSM_SM_Ord_Reg]]>
+	</select>
+	<select id="submitOrderCust" resultMap="orderStaList">
+      <![CDATA[
+        select * from CSM_SM_Ord_Reg ORD,SM_BIM_Gen_Cus_Reg CUS
+		 where ORD.customerCode = CUS.customerCode
+		 and ORD.customerCode = #{custCode}
+        ]]>
+	</select>
+		<!-- order&cor (join) sta -->
+	<resultMap id="orderRegList" type="orderVO">
 		<result property="ordCode" column="ordersNum" />
         <result property="ordDate" column="ordersdate" />
-        <result property="custCode" column="customerCode" />
+        <result property="custCode" column="General_Customer_Code" />
         <result property="tax" column="tax" />
         <result property="note" column="note" />
         <collection property="corVO" javaType="CorVO">
-        <id property="custCode" column="customerCode" />
+        <id property="custCode" column="General_Customer_Code" />
         <result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />        
         <result property="stand" column="standard" />
@@ -278,40 +293,25 @@
         <result property="orderQuant" column="ordersQuantity" />
         <result property="price" column="productPrice" />
         <result property="expDate" column="expectedDate" />
-        <result property="relDate" column="releaseExpectedDate" />
         <result property="inspection" column="inspection" />
         <result property="orderOX" column="orderOX" />
         </collection>
 	</resultMap> 
 	
-		<select id="selectOrderList" resultMap="orderList">
+		<select id="RegOrderList" resultMap="orderRegList">
       <![CDATA[
         select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
-		 where ORD.customerCode = COR.customerCode
+		 where ORD.General_Customer_Code = COR.General_Customer_Code
         ]]>
 	</select>
 	
-	<select id="submitOrderCust" resultMap="orderList">
+	<select id="submitOrderReg" resultMap="orderRegList">
       <![CDATA[
         select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
-		 where ORD.customerCode = COR.customerCode
-		 and COR.customerCode = #{custCode}
+		 where ORD.General_Customer_Code = COR.General_Customer_Code
+		 and COR.General_Customer_Code = #{custCode}
         ]]>
 	</select>
-	
-	  <select id="selOrdercode" resultMap="orderList" parameterType="int">
-		<![CDATA[
-		SELECT LAST_NUMBER FROM USER_SEQUENCES
-		 WHERE SEQUENCE_NAME = upper('seq_CSM_SM_Ord_Reg_no')
-		]]>
-	</select> 
-	<insert id="insertOrder" parameterType="orderVO">
-		<![CDATA[
-		 insert into CSM_SM_Ord_Reg
-		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'), #{ordDate}, #{custCode}, #{tax}, #{note})
-		]]>  
-	</insert>
-	
 	<!-- 출고현황(재원) 
 	<resultMap id="rsView" type="rsVO">
 		<result property="itemCode" column="Item_Code" />
