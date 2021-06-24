@@ -13,6 +13,8 @@
 <html>
 <head>
 <meta charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>거래처 팝업</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <style>
@@ -45,7 +47,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/member/regorder" >
+<form name="popForm" method="get">
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -68,16 +70,16 @@
         	<div id="view">
             	<table style="width: 100%;">
                 	<tr align="center">
-      					<td><b>코드</b></td>
+      					<td><b>거래처 코드</b></td>
       					<td><b>거래처명</b></td>
-      					<td><b>사업자번호</b></td>
+      					<td><b>사업자 명</b></td>
   					</tr>
    
  					<c:forEach var="cust" items="${orderCustList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</a></td>
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custName}</a></td>
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.comNum}</a></td>
+      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.repName}</a></td>
 						</tr>
   					</c:forEach>   
 				</table>
@@ -100,7 +102,7 @@
     	submit_button.onclick = function(){
     		text_code.setAttribute("custCode",text_code.value);
 			text_name.setAttribute("custName",text_name.value);
-			opener.parent.location='${contextPath}/member/regorder.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+0;
+			opener.parent.location='${contextPath}/member/regorder.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+1;
     		window.close();
     	}
     </script>

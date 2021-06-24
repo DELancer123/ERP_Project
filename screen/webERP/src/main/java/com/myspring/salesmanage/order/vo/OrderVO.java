@@ -103,7 +103,7 @@ public class OrderVO {
 		return ListOrd;
 	}
 
-	public void setListEst(List<OrderVO> listOrd) {
+	public void setListOrd(List<OrderVO> listOrd) {
 		this.ListOrd = listOrd;
 	}
 

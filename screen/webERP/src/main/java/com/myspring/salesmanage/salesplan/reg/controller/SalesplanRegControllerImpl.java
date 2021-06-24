@@ -46,8 +46,8 @@ public class SalesplanRegControllerImpl implements SalesplanRegController {
 	@RequestMapping(value="/sales_manage/pop/popItemBySalesReg.do" ,method = RequestMethod.GET)
 	public ModelAndView AllItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		logger.info("viewName: "+ viewName);
-		logger.debug("viewName: "+ viewName);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
 		List allItemList = salesplanService.listItems();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("allItemList", allItemList);

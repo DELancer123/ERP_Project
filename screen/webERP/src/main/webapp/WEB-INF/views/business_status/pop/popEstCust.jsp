@@ -44,8 +44,9 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/member/quotationstatus" >
-    <div id="wrap">
+<!-- <form name="popForm" method="get" action="${contextPath}/member/quotationstatus" >
+     -->
+     <div id="wrap">
         <div id="searchBox">
             <table id="search">
                 <tr>
@@ -73,18 +74,18 @@
       					<td><b>대표자명</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${allCustList}" >
+ 					<!-- <c:forEach var="cust" items="${allCustList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</td>
       						<td>${cust.custName}</td>
       						<td>${cust.comNum}</td>
       						<td>${cust.repName}</td>
 						</tr>
-  					</c:forEach>   
+  					</c:forEach>   -->
 				</table>
 			</div>
 		</div>
-	 <script>
+<!-- 	 <script>
       var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
@@ -98,7 +99,7 @@
     		opener.parent.location='${contextPath}/member/quotationstatus.do?custCode='+text_code.value+'&&custName='+text_name.value;
     		window.close();
     	}
-    </script>
+    </script> -->
 	</form>
 </body>
 </html>

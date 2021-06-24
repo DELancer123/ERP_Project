@@ -38,16 +38,19 @@ public class OrderDAOImpl implements OrderDAO {
 		return submitOrderCust;
 	}
 
-	@Override
-	public int selOrdCode() throws DataAccessException {	
-		return sqlSession.selectOne("mappers.erp.selOrderCode");
-	}
 
 	@Override
 	public int addOrder(OrderVO orderVO) throws DataAccessException {
-		int idx = orderVO.getListOrd().size()-1;
+		int idx = orderVO.getListOrd().size()+1;
 		int result = sqlSession.insert("mappers.erp.insertOrder",orderVO.getListOrd().get(idx));
-		return 0;
+		return result;
+	}
+	
+	@Override
+	public List selectLine(String custCode) throws DataAccessException {
+		List<OrderVO> textList = null;
+		textList = sqlSession.selectList("mappers.erp.selectLine", custCode);
+		return textList;
 	}
 
 //	@Override
@@ -55,14 +58,19 @@ public class OrderDAOImpl implements OrderDAO {
 //		// TODO Auto-generated method stub
 //		return 0;
 //	}
-//
+
 	@Override
 	public void delOrder(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
 			System.out.println("안녕");
 			sqlSession.delete("mappers.erp.delOrd",obj);
 		}
-		
+	}
+	
+	
+	@Override
+	public String selOrdCode() throws DataAccessException {	
+		return sqlSession.selectOne("mappers.erp.selOrderCode");
 	}
 
 }

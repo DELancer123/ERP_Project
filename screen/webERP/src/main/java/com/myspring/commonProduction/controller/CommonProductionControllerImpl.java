@@ -30,7 +30,7 @@ import com.myspring.commonProduction.service.CommonProductionService;
   @RequestMapping(value="/member/proplanreg.do" ,method = RequestMethod.GET)
   	public ModelAndView listProductInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
 	  String viewName = (String)request.getAttribute("viewName");
-	  logger.debug("debug �젅諛� : viewName = " + viewName); 
+//	  logger.debug("debug �젅諛� : viewName = " + viewName); 
 	  List infoList = productionService.selectAllProductionPlanInfo();
 	  ModelAndView mav = new ModelAndView(viewName); 
 	  mav.addObject("infoList", infoList); 
@@ -41,7 +41,7 @@ import com.myspring.commonProduction.service.CommonProductionService;
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)
   public ModelAndView listOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
 	  String viewName = (String)request.getAttribute("viewName");
-	  logger.debug("debug �젅諛� : viewName = " + viewName); 
+//	  logger.debug("debug �젅諛� : viewName = " + viewName); 
 	  List infoList = productionService.selectAllOperationInfo(); 
 	  ModelAndView mav = new ModelAndView(viewName); 
 	  mav.addObject("infoList", infoList); 

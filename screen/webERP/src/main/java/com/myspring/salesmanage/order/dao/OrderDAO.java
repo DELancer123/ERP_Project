@@ -13,9 +13,13 @@ public interface OrderDAO {
 	public List selectAllCustList() throws DataAccessException;
 	public List submitOrderCust(String custCode) throws DataAccessException;
 	
-	//reg
-	public int selOrdCode() throws DataAccessException;
+	
+	//reg-insert
 	public int addOrder(OrderVO orderVO) throws DataAccessException;
+	public List selectLine(String custCode) throws DataAccessException;
+	
+	//reg
+	public String selOrdCode() throws DataAccessException;
 	public void delOrder(String[] noary) throws DataAccessException;		
 //	public int updNewOrder(String custCode) throws DataAccessException;
 	

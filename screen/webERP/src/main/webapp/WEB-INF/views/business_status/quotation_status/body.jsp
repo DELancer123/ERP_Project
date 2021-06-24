@@ -68,11 +68,6 @@
                 </tr>
         	</table>
 		</container1>
-		         <script>
-          function search1(){
-    	  
-        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/popEstCust.do','popEstCust');  
-    }
-    </script>
+
 	</body>
 </html>
