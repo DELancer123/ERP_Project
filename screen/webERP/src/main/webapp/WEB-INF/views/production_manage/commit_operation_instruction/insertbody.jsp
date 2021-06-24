@@ -195,9 +195,9 @@
                         <td><input type="text" name="DetailVO[${status.index }].itemName" value="${release.itemName}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].standard" value="${release.standard}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${release.inventoryUnit}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${release.indicated}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" readonly /></td>                        
+                        <td><input type="text" id="precisionQuantity" name="DetailVO[${status.index }].precisionQuantity" value="${release.indicated}"/></td>
+                        <td><input type="text" id="loss" name="DetailVO[${status.index }].loss" /></td>
+                        <td><input type="text" id="actualQuantity" name="DetailVO[${status.index }].comfirmQuantity" readonly /></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" /></td>
   					 </tr>
                     </c:forEach>
@@ -352,7 +352,7 @@
       			  if(document.getElementsByName("content")[i].checked==true){
       				no = document.getElementsByName("content")[i].value;
       		  	}
-      			window.location.href = "${contextPath}/member/inscomoperins.do?workOrderNumber="+no;
+      			window.location.href = "${contextPath}/member/comoperins.do?workOrderNumber="+no;
       	  }
         }
       </script>

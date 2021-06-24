@@ -193,8 +193,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   	  public ModelAndView listCommitOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
   		  String startDate = request.getParameter("startDate");
   		  String endDate = request.getParameter("endDate");
-  		  String number = request.getParameter("searchNumber");
-  		  String worknumber = request.getParameter("workOrderNumber");
+  		  String number = request.getParameter("searchNumber");  		  
   		  String viewName = (String)request.getAttribute("viewName");
   		  ModelAndView mav = new ModelAndView(viewName); 
   		  logger.debug("debug : viewName = " + viewName);
@@ -204,13 +203,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   			  List detailList = productionService.selectAllCommitOperationInfoDetail(number);
   			  mav.addObject("infoList", infoList); 
   			  mav.addObject("detailList", detailList);
-  		  } else if(worknumber != null && worknumber != "") {
-  			List infoList = productionService.selectRelease(worknumber);
-  	 		List releaseList = productionService.selectReleaseDetail(worknumber);
-  	 		mav.addObject("infoList", infoList); 
-  			mav.addObject("releaseList", releaseList);
-  		  }
-  		  else {
+  		  } else {
   			List infoList = productionService.selectAllCommitOperationInfo(startDate, endDate); 
   			mav.addObject("infoList", infoList); 
   		  }
@@ -250,7 +243,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception { 
  		String number = request.getParameter("workOrderNumber");
  		String viewName = (String)request.getAttribute("viewName");
- 		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+ 		ModelAndView mav = new ModelAndView("redirect:/member/inscomoperins.do");
  		
  		List infoList = productionService.selectRelease(number);
  		List detailList = productionService.selectReleaseDetail(number);
