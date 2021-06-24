@@ -161,7 +161,6 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      		  
       			  window.location.href = "${contextPath}/member/deldefType.do?no="+ary;
       	  }
       	}

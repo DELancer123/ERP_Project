@@ -1,5 +1,6 @@
 package com.myspring.productionBaseInfo.BOM.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -33,7 +34,7 @@ public interface bomViewDAO {
 
 	public int updoutprice(RegOutSourcingPriceVO outVO)throws DataAccessException;
 
-	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
+	public int deloutprice(HashMap<Integer, String> map) throws DataAccessException;
 
 
 }

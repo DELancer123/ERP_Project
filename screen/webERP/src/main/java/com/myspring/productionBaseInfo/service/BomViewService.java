@@ -1,5 +1,6 @@
 package com.myspring.productionBaseInfo.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -26,11 +27,11 @@ public interface BomViewService {
 	public int addoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
 	public List inputText(String itemCode)throws DataAccessException;
 	public int updoutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
-	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException;
 	public List viewDefective(String defGroupCode) throws DataAccessException;
 	public int addDefType(DefectiveTypeVO defVO) throws DataAccessException;
 	public int updDefType(DefectiveTypeVO defVO) throws DataAccessException;
 	public List viewGroupList() throws DataAccessException;
 	public int deldefType(String[] numberary) throws DataAccessException;
 	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
+	public int doutprice(HashMap<Integer, String> map) throws DataAccessException;
 }
