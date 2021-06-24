@@ -197,38 +197,15 @@ public class SystemmagControllerImpl implements SystemmagController {
 		String viewName = getViewName(request);	
 		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
-		String zipCode = (String) request.getParameter("zipCode");
-		String customerCode = (String) request.getParameter("customerCode");//검색부의값을 겟파라미터로 가져옴
-		
-		System.out.println("viewName:"+viewName);
-		System.out.println("customerCode:"+customerCode);
-		System.out.println("submit:"+submit);
 		
 		if (code == null || submit == null) { //첫접속이라면?
 			System.out.println("1번분기들어옴");
-			List comView = systemmagService.viewAllOutware(); //select all 쿼리를 호출한다
+			List outwareList = systemmagService.viewAllOutware(); //select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
-			mav.addObject("comView", comView);
+			mav.addObject("outwareList", outwareList);
 			return mav;
 		}
 
-//		else if (submit != null) { //목록을 선택했을때, 즉 조회를 했을때
-//			System.out.println("2번분기들어옴");
-//			List comView = systemmagService.viewAllCustomer(); //select문에
-//			List comcom = systemmagService.viewCustomer(code); //where절을 추가한다
-//			mav = new ModelAndView(viewName);
-//			mav.addObject("comView", comView);
-//			mav.addObject("comcom", comcom);
-//		}
-//		else if (customerCode != null && submit == null) {//검색했을때
-//			System.out.println("3번분기들어옴");
-//			System.out.println("customerCode:"+customerCode);
-//			System.out.println("viewName:"+viewName);
-//			List comView = systemmagService.searchCustomer(customerCode);
-//			mav = new ModelAndView("/member/regbasicacc");
-//			mav.addObject(comView);
-//			System.out.println("size:"+comView.size());
-//		}
 		return mav;
 	}
 	 

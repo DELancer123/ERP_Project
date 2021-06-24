@@ -301,6 +301,11 @@
 		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
 		<result property="outsourcing_Status" column="outsourcing_Status" />
 	</resultMap>
+	<select id="selectAllOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_HOU_REG]]>
+		<!-- <![CDATA[select * from SM_BIM_PRO_REG]]>
+		<![CDATA[select * from SM_BIM_OUT_REG]]> -->
+	</select>
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

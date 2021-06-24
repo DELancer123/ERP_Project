@@ -67,7 +67,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	public List viewAllOutware() throws DataAccessException {
 		List<SystemmagVO> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllOutware");
-		return null;
+		return outwareList;
 	}
 
 	

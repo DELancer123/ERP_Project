@@ -159,7 +159,7 @@
                     <th>외주공정설명</th>
                     <th>사용여부</th>
                 </thead>
-                <!-- <tbody id="view1" style="display: none;">
+                <tbody id="view1" style="display: none;">
                     <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text"/></td>
                     <td><input type="text"/></td>
@@ -170,7 +170,7 @@
                         <option value="1">사용</option>
                         <option value="2">미사용</option>
                     </select></td>
-                </tbody> -->
+                </tbody>
             </table>
         </container2>
         <container3 id="contents3">
