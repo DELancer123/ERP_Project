@@ -137,6 +137,11 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return message;
 	}
   
+  @Override
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+		return ORdao.delCommitOperation(ODVO);
+	}
+  
 //작업지시확정 자재출고 기능부
   @Override
   public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException{ 

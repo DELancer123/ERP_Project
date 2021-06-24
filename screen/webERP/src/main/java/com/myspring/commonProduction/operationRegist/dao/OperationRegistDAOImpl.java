@@ -134,6 +134,20 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return infoList;
 	}
 	
+	@Override
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+		int result = 0; 
+
+		int idx = ODVO.getDetailVO().size();
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));		
+		System.out.println("DAOresult:"+result);
+		}
+		return result;
+	}
+	
 //	확정 버튼 기능부
 	@Override
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{

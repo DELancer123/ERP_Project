@@ -293,16 +293,17 @@
         
       
         function deleteData() {
-      	  var item = document.getElementsByName("content").length;
-      	  var no = "";
-      	  var ary = [];
-      	  for(var i=0; i<item;i++){
-      		  if(document.getElementsByName("content")[i].checked==true){
-      			  no = document.getElementsByName("content")[i].value;
-      			  ary.push(no);
-      		  }
-      			  window.location.href = "${contextPath}/member/delCommitOperation.do?workOrderNumber="+ary;
-      	  }
+        	var row = workOrderTable.insertRow(); 
+        	const URLSearch = new URLSearchParams(location.search);
+        	const newParam = URLSearch.toString();
+  		 	var link = location.pathname +'?'+newParam;
+    		var linkPath = document.createElement("input");
+    		linkPath.setAttribute("type","hidden");
+    		linkPath.setAttribute("name","path");
+    		linkPath.setAttribute("value", link);
+  		    document.getElementById('detailForm').appendChild(linkPath);
+            document.getElementById('detailForm').action = "${contextPath}/member/deleteCommitOperation.do";
+    		document.getElementById('detailForm').submit();  
         }
         
         function confirm() {
