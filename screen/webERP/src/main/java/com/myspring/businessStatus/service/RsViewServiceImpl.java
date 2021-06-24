@@ -1,5 +1,6 @@
 package com.myspring.businessStatus.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,17 @@ public class RsViewServiceImpl implements RsViewService{
 		return rsList;
 	}
 	
-	@Override
-	public List setText(String dueDate) throws DataAccessException{
-		List searchList = null;
-		searchList = rsDAO.setText(dueDate);
-		return searchList;
-	}
+//	@Override
+//	public List setText(String startDate, String endDate) throws DataAccessException,ParseException{
+//		List searchList = null;
+//		searchList = rsDAO.setText(startDate,endDate);
+//		return searchList;
+//	}
 	
 	@Override
-	public List searchView(String dueDate) throws DataAccessException{
+	public List searchView(String startDate, String endDate) throws DataAccessException,ParseException{
 		List searchList = null;
-		searchList = rsDAO.searchView(dueDate);
+		searchList = rsDAO.searchView(startDate,endDate);
 		return searchList;
 	}
 }

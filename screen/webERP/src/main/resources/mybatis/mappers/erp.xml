@@ -363,28 +363,35 @@
         ]]>
 	</select>-->
 	
-	<!-- 출고현황(재원) 
+	<!-- 출고현황(재원) -->
+	<resultMap id="rsjView" type="rsjVO">
+		<result property="releaseNum" column="releaseNum" />
+		<result property="releaseDate" column="releaseDate" />
+		<result property="customerCode" column="customerCode" />
+	</resultMap>
 	<resultMap id="rsView" type="rsVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
-		<result property="standard" column="standard" />
-		<result property="inventoryUnit" column="Inventory_Unit" />
 		<result property="dueDate" column="dueDate" />
-		<result property="orderQuantity" column="ordersQuantity" />
 		<result property="productPrice" column="productPrice" />
-		<result property="expectedDate" column="expectedDate" />
-		<result property="releaseExpectedDate" column="releaseExpectedDate" />
-		<result property="inspection" column="inspection" />
+		<result property="vatPrice" column="vatPrice" />
+		<result property="ordersQuantity" column="ordersQuantity" />
 		<result property="orderOX" column="orderOX" />
-		<result property="customerCode" column="customerCode" />
+		<collection property="rsjVO" resultMap="rsjView"></collection>
 	</resultMap>
-	<select id="rsSelectAllMemberList" resultMap="rsView"> 
-		<![CDATA[select * from CSM_SM_COR_Reg]]>
+	<select id="rsSelectAllMemberList" resultMap="rsView">
+		<![CDATA[select * from CSM_SM_COR_Reg ]]>
 	</select>
-	<select id="rsSelectItem" resultMap="rsView" parameterType="String">
-		<![CDATA[select * from CSM_SM_COR_Reg where dueDate = #{dueDate]]>
+<!-- 	<select id="rsSelectItem" resultMap="rsView" parameterType="rsVO">
+		<![CDATA[select * from CSM_SM_COR_Reg 
+				where dueDate between #{startDate}
+				and #{endDate}
+		]]>
+	</select> -->
+	<select id="rsSearchItem" resultMap="rsView" parameterType="java.util.HashMap">
+		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.customerCode, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
+				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg
+				where pro.customerCode = reg.customerCode and pro.releaseDate between #{startDate} and #{endDate}
+		]]>
 	</select>
-	<select id="rsSearchItem" resultMap="rsView" parameterType="String">
-		<![CDATA[select * from CSM_SM_COR_Reg where dueDate = #{dueDate]]>
-	</select>-->
 </mapper>
