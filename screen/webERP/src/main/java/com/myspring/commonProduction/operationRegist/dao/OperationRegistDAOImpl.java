@@ -97,8 +97,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	@Override
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
-			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);		
-			System.out.println("DAO.delBOM");
+			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
+			if(check.equals("계획")) {
+			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);
+			} else {
+				System.out.println("확정,마감 상태의 정보는 삭제할 수 없습니다.");
+				continue;
+			}
 		}
 	}
 	
@@ -127,6 +132,22 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		List<OperationDetailVO> infoList = null;		
 		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
 		return infoList;
+	}
+	
+	@Override
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+		int result = 0; 
+		String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
+
+		int idx = ODVO.getDetailVO().size();
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
+		System.out.println("DAOresult:"+result);
+		}
+		sqlSession.update("mappers.erp.materialSet", workOrderNumber);
+		return result;
 	}
 	
 //	확정 버튼 기능부
@@ -172,6 +193,8 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return message;
 	}
 	
+//	작업지시확정 자재출고 기능부
+
 	@Override
 	public List selectRelease(String number) throws DataAccessException, ParseException {
 		List<OperationRegistVO> infoList = null;
@@ -191,5 +214,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 			System.out.println("출고 정보가 이미 존재합니다!");
 		}
 		return infoList;
+	}
+	
+	@Override
+	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
+		int idx = ORVO.getDetailVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(idx));
+		return 0;
 	}
 }

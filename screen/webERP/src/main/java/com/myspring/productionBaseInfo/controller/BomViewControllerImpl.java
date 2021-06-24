@@ -1,7 +1,9 @@
 package com.myspring.productionBaseInfo.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
@@ -262,14 +264,27 @@ public class BomViewControllerImpl implements BomViewController {
 
 	@Override
 	@RequestMapping(value="/member/deleteoutprice.do" ,method = RequestMethod.GET)
-	public ModelAndView deleteoutprice(RegOutSourcingPriceVO outVO, HttpServletRequest request,
+	public ModelAndView deleteoutprice(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		String path = request.getParameter("path");
-		path = path.replace("/webERP", "");
 		int result = 0;
-		/* result = viewService.doutprice(outVO); */
-		ModelAndView mav = new ModelAndView("redirect:"+path);
+		request.setCharacterEncoding("utf-8");
+		String place = request.getParameter("place");
+		String code = request.getParameter("out");
+		String number = (String) request.getParameter("no");
+		String[] numberary = number.split(",");
+		RegOutSourcingPriceVO outVO = new RegOutSourcingPriceVO();
+		List<RegOutSourcingPriceVO> outVO1= new ArrayList<RegOutSourcingPriceVO>();
+		System.out.println("길이" + numberary.length);
+		for(int i = 0;i<numberary.length;i++) {
+			outVO1.add(i,outVO);
+			outVO1.get(i).setOutcustomer(place);
+			outVO1.get(i).setOutsourcing_Code(code);
+			outVO1.get(i).setItem_code(numberary[i]);
+		}
+		System.out.println(outVO1.get(0).getItem_code());
+		System.out.println(outVO1.get(1).getItem_code());
+		result = viewService.doutprice(outVO1);
+		ModelAndView mav = new ModelAndView("redirect:/member/outprice.do?itemNumber="+code+"&&placeCode="+place+"&&submit=1");
 		return mav;
 	}
 
@@ -347,8 +362,6 @@ public class BomViewControllerImpl implements BomViewController {
 	public ModelAndView adddefpop(DefectiveTypeVO defVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String path = request.getParameter("path");
-		System.out.println("확인"+defVO.getDefList().get(2).getDefectiveItemGroupCode());
-		System.out.println("확인"+defVO.getDefList().get(2).getDefectiveItemGroup());
 		path = path.replace("/webERP", "");
 		int result = 0;
 		result = viewService.addDefpop(defVO);

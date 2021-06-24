@@ -1,5 +1,6 @@
 package com.myspring.productionBaseInfo.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,12 +127,6 @@ public class BomViewServiceImpl implements BomViewService{
 		return updList;
 	}
 
-	@Override
-	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
-		int delList = 0;
-		delList = bomDAO.deloutprice(outVO);
-		return delList;
-	}
 
 	@Override
 	public List viewDefective(String defGroupCode) throws DataAccessException {
@@ -169,6 +164,13 @@ public class BomViewServiceImpl implements BomViewService{
 	@Override
 	public int deldefType(String[] numberary) throws DataAccessException {
 		return defDAO.deldefType(numberary);
+	}
+
+	@Override
+	public int doutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException {
+		int delList = 0;
+		delList = bomDAO.deloutprice(outVO1);
+		return delList;
 	}
 
 }

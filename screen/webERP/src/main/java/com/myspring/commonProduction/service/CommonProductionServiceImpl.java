@@ -139,20 +139,30 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	}
   
   @Override
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+		return ORdao.delCommitOperation(ODVO);
+	}
+  
+//작업지시확정 자재출고 기능부
+  @Override
   public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
 	  infolist = ORdao.selectRelease(number); 
 	  return infolist; 
-	  }
+  }
   
   @Override
   public List<OperationRegistVO> selectReleaseDetail(String number) throws DataAccessException, ParseException{ 
 	  List<OperationRegistVO> infolist = null; 
 	  infolist = ORdao.selectReleaseDetail(number); 
 	  return infolist; 
-	  }
+  }
   
-
+  @Override
+ 	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
+ 		return ORdao.addReleaseData(ORVO);
+ 	}
+  
 //작업실적등록 기능부
 	@Override
 	public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 

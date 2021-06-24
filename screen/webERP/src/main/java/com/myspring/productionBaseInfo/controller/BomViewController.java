@@ -28,7 +28,7 @@ public interface BomViewController {
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView deleteoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView deleteoutprice(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewDefectiveType(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView adddefType(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView upddefType(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;

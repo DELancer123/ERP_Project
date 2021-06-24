@@ -99,7 +99,7 @@
 </head>
 <body>
 <container1 id = contents1>
-                <form id="searchForm" method="get" action="${pageContext.request.contextPath }/member/curinvenstat.do">
+                <form id="searchForm" method="get" action="${pageContext.request.contextPath }/member/curfinishedinvenstat.do">
             <table class="con1_search">
                 <tr>
                     <td>Η°Έν</td>

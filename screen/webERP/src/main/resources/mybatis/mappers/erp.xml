@@ -202,6 +202,29 @@
                 order by bom.item_code]]>
 	</select>
 	
+	<!-- 작업지시확정 자재출고 CRUD -->
+	<insert id="insertReleaseData" parameterType="OperationDetailVO">
+		<![CDATA[
+		 insert into CPM_PM_PRO_MAT_FOR_DET
+		 values(F_GET_NEXT_SEQ('NO'), to_char(sysdate,'YYYYMMDD'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
+		 #{precisionQuantity}, #{note}, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), #{workOrderNumber} )
+		]]>  
+	</insert>
+	
+	<select id="selectWorkOrderNumber" resultType="string">
+		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+	</select>
+	
+	<update id="materialSet">
+		<![CDATA[update CPM_PM_OPE_PER_REG
+		set MATERIALFORWARDINGSTATUS = '출고대기'
+		where workOrderNumber = #{workOrderNumber}]]>
+	</update>
+	
+	<delete id="deleteOperationInstruction" parameterType="OperationDetailVO">
+		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+	</delete>
+	
 	<!-- 작업실적등록 CRUD -->
 	
 <resultMap id="RegistOperationPerformanceResult" type="RegistOperationPerformanceVO">
@@ -510,7 +533,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		]]>  
 	</update>
 	<delete id="deloutprice" parameterType="outpriVO">
-		delete from CPM_BIM_OUT_PRI where  outsourcing_Code=#{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
+		delete from CPM_BIM_OUT_PRI where outsourcing_code = #{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
 	</delete>
 	<!-- 불량유형등록 -->
 	<resultMap id="defTypeView" type="defVO">
@@ -886,6 +909,83 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[SELECT operationPerformanceNumber,materialUseStatus,performanceDate,func_Out_Reg(Outsourcing_Code),func_Out_Wor_Reg(Workplace_Code),
 		sortation,performanceQuantity,inspection,note
 		 FROM CPM_OM_Out_Per_Reg_Det]]>
+	</select>
+	<!-- 재고현황 파트 -->
+	<resultMap id="StoManage" type="StockManageVO">
+		<result property="moveNum" column="Move_Num" />
+		<result property="moveDate" column="Move_Date" />
+		<result property="outputBusiness" column="Output_Business" />
+		<result property="outputWarehouse" column="Output_Warehouse" />
+		<result property="outputPlace" column="Output_Place" />
+		<result property="inputBusiness" column="Input_Business" />
+		<result property="inputWarehouse" column="Input_Warehouse" />
+		<result property="inputPlace" column="Input_Place" />
+		<result property="note" column="Note" />	
+		<result property="no" column="NO" />	
+		<result property="itemCode" column="Item_Code" />	
+		<result property="itemName" column="Item_Name" />	
+		<result property="standard" column="Standard" />	
+		<result property="inventoryUnit" column="Inventory_Unit" />	
+		<result property="moveQuantity" column="Move_Quantity" />	
+		<result property="movePrice" column="Move_Price" />	
+		<result property="modNum" column="Mod_Num" />	
+		<result property="modDate" column="Mod_Date" />	
+		<result property="houseCode" column="House_Code" />	
+		<result property="locationCode" column="Location_Code" />	
+		<result property="generalCustomerCode" column="General_Customer_Code" />	
+		<result property="kind" column="Kind" />	
+		<result property="modQuantity" column="Mod_Quantity" />	
+		<result property="setCode" column="SET_Code" />	
+		<result property="inputQuantity" column="Input_Quantity" />	
+		<result property="outputQuantity" column="Output_Quantity" />	
+		<result property="purchasePrice" column="Purchase_Price" />	
+		<result property="salesPrice" column="Sales_Price" />	
+		<result property="quantity" column="Quantity" />	
+		<result property="type" column="Type" />	
+		<result property="typeCode" column="Type_Code" />	
+		<result property="typeName" column="Type_Name" />	
+		
+		<result property="busCode" column="Output_Business"/>
+			
+	</resultMap>
+	
+	<select id="stockView" parameterType="String"  resultMap="StoManage">
+		<![CDATA[ select no,Item_Code, Item_Name, Standard, Inventory_Unit, Quantity 
+		  from PM_SM_Pro_Stock
+		  where Item_Name = #{itemName}
+		]]>
+	</select>
+	
+	<select id="stockViewAll"  resultMap="StoManage">
+		<![CDATA[ select no,Item_Code, Item_Name, Standard, Inventory_Unit, Quantity 
+		  from PM_SM_Pro_Stock
+		]]>
+	</select>
+	
+	<select id="finishedstockView" parameterType="String"  resultMap="StoManage">
+		<![CDATA[ select no,Item_Code, Item_Name, Standard, Inventory_Unit, Quantity 
+		  from PM_SM_Pro_FinishedProduct
+		  where Item_Name = #{itemName}
+		]]>
+	</select>
+	
+	<select id="finishedstockViewAll" resultMap="StoManage">
+		<![CDATA[ select no,Item_Code, Item_Name, Standard, Inventory_Unit, Quantity 
+		  from PM_SM_Pro_FinishedProduct
+		]]>
+	</select>
+	
+	<select id="selectstockList" resultMap="StoManage">
+		<![CDATA[ select Item_Code, Item_Name
+		  from PM_SM_Pro_Stock
+		]]>
+	</select>
+	
+	<select id="selectPopstockList" resultMap="StoManage">
+		<![CDATA[ select Item_Code, Item_Name
+		  from PM_SM_Pro_Stock
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
 	</select>
 	
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 
 public interface OperationRegistDAO {
@@ -21,5 +22,7 @@ public interface OperationRegistDAO {
 	public List<String> revertDetail(String[] numberAry) throws DataAccessException;
 	public List selectRelease(String number) throws DataAccessException, ParseException;
 	public List selectReleaseDetail(String number) throws DataAccessException, ParseException;
-	
+	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException;
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException;
+		
 }

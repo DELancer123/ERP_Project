@@ -101,6 +101,9 @@
                         <td>
                             <input type="button" value="확정" onClick="confirm();" style="padding: 5px;"></input>
                         </td>
+                        <td>
+                        	<input type="button" value="원래 화면으로" onClick="back()" style="padding: 5px;" />
+                        </td>
                     </tr>
                 </table>
                 </form>
@@ -160,58 +163,39 @@
             <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
-                        <td>청구일</td>
+                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>                        
                         <td>품번</td>
                         <td>품명</td>
                         <td>규격</td>
                         <td>단위</td>
                         <td>정미수량</td>
-                        <td>LOSS</td>
-                        <td>확정수량</td>                     
+                        <td>LOSS</td>                          
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
   					<c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
-  					 	<td><input type="checkbox" value="${detail.no }" name="content2"/></td>
-                        <td><input type="date" name="DetailVO[${status.index }].billingDate" value="${detail.billingDate }" readonly /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.precisionQuantity}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].loss" value="${detail.loss}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.comfirmQuantity}"/></td>                        
-                        <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
-  					 </tr>
-                    </c:forEach>
-                    <c:forEach var="release" items="${releaseList}" varStatus="status">
-  					 <tr>
-  					 	<td><input type="checkbox" name="content2"/></td>
-                        <td><input type="date" name="DetailVO[${status.index }].billingDate" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${release.itemCode }" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${release.itemName}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${release.standard}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${release.inventoryUnit}"/></td>
-                        <td><input type="text" id="precisionQuantity" name="DetailVO[${status.index }].precisionQuantity" value="${release.indicated}"/></td>
-                        <td><input type="text" id="loss" name="DetailVO[${status.index }].loss" /></td>
-                        <td><input type="text" id="actualQuantity" name="DetailVO[${status.index }].comfirmQuantity" readonly /></td>                        
+  					 	<td><input type="checkbox" name="content2"/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.indicated}" readonly/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>                                                
                         <td><input type="text" name="DetailVO[${status.index }].note" /></td>
+                        <td><input type="hidden" name="DetailVO[${status.index }].workOrderNumber" value="${param.workOrderNumber }" /></td>
   					 </tr>
                     </c:forEach>
                     <tr>
-                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>                        
-                        <td><input type="text"/></td>
+                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>                        
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemCode"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemName"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].standard"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].inventoryUnit"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].precisionQuantity"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].loss"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].note"/></td>                                         
                     </tr>
                     </tbody>
                 </table>
@@ -221,7 +205,7 @@
       
 </body>
 </html>
-<script>
+<script>	
  /* 검색부 date onChange 함수 설정 */
  		var startDate = "";
     	var endDate = "";
@@ -241,8 +225,7 @@
       function search2(){  
 	      openWindowPop('http://localhost:8090/webERP/member/departmentSearch.do','departmentSearch');  	  
 		}
-      
-  
+    
       /* 조회버튼 클릭시 기능 구현 */
       view_button.onclick = function(){
 		 if(startDate>endDate){
@@ -283,7 +266,7 @@
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
   		    document.getElementById('detailForm').appendChild(linkPath);
-            document.getElementById('detailForm').action = "${contextPath}/member/addOperationInstruction.do";
+            document.getElementById('detailForm').action = "${contextPath}/member/addReleaseData.do";
   			document.getElementById('detailForm').submit();  
 		
       }
@@ -355,4 +338,9 @@
       			window.location.href = "${contextPath}/member/comoperins.do?workOrderNumber="+no;
       	  }
         }
+        
+        function back(){
+        	window.location.href = "${contextPath}/member/comoperins.do";
+        }
+        
       </script>

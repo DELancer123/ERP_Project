@@ -6,7 +6,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
   request.setCharacterEncoding("UTF-8");
-%>    
+%>
  <c:forEach var="set" items="${setText}" >     
  	<c:set var="itemNumber" value="${set.itemNumber }"/>
  	<c:set var="itemName" value="${set.itemName }"/>
@@ -118,7 +118,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content" value='${out.item_code }'/></td>
+                        <td><input type="checkbox" value = '${out.item_code }' id="check" name="content" value='${out.item_code }'/></td>
                         <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
                         <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
                         <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }' readonly/></td>
@@ -132,7 +132,7 @@
                     </tbody>
                     </c:forEach>
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                        <td></td>
                         <input type="hidden" id="outsoucing" name="outpriveVO[${fn:length(outpriceView) }].outsourcing_Code" value='${param.itemNumber}'/>
                         <input type="hidden" id="placecode" name="outpriveVO[${fn:length(outpriceView) }].outcustomer" value='${param.placeCode }'/>
                         <td><input type="text" id="itemCode" name="outpriveVO[${fn:length(outpriceView) }].item_code" value='${itemNumber }' readonly /></td>
@@ -162,10 +162,10 @@
       }
       function search2(){
     	  var outcode = document.getElementById('outcode');
-    	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=2&&itemNumber='+outcode.value,'codehelper1');
+    	      	openWindowPop('${contextPath}/member/outsourcingPop.do?div=2&&itemNumber='+outcode.value,'codehelper1');
       }
 	  function search3(){
-		  openWindowPop('http://localhost:8090/webERP/member/outpricehelper.do','codehelper2');
+		  openWindowPop('${contextPath}/member/outpricehelper.do','codehelper2');
 	  }
 		function setChildValue(name){
     	  
@@ -219,6 +219,11 @@
 	  			document.getElementById('searchForm').submit();  
 		}
 		delete_button.onclick = function(){
+			const URLSearch = new URLSearchParams(location.search);
+			var code= URLSearch.get('itemNumber');
+			var place = URLSearch.get('placeCode');
+			console.log(code);
+			console.log(place);
 			 var item = document.getElementsByName("content").length;
 	    	  var no = "";
 	    	  var ary = [];
@@ -228,7 +233,7 @@
 	    			  ary.push(no);
 	    		  }
 	    		  
-	    			  window.location.href = "${contextPath}/member/deloutprice.do?no="+ary;
+	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
 	    	  }
 		}
       </script>

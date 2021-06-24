@@ -143,15 +143,17 @@ public class bomViewDAOImpl implements bomViewDAO{
 		return result;
 	}
 
+
 	@Override
-	public int deloutprice(RegOutSourcingPriceVO outVO) throws DataAccessException {
+	public int deloutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException {
 		int result = 0; 
-		int idx = outVO.getOutpriveVO().size();
-		for(int i = 0; i<idx;i++) {
-		result = sqlSession.update("mappers.erp.deloutprice",outVO.getOutpriveVO().get(i));		
+		for(int i = 0;i<outVO1.size();i++) {
+			result = sqlSession.update("mappers.erp.deloutprice",outVO1.get(i));
+			System.out.println("반복" + i);
 		}
 		return result;
 	}
+	
 	
 
 
