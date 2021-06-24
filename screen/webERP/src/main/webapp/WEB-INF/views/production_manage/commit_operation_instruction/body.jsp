@@ -352,7 +352,7 @@
       			  if(document.getElementsByName("content")[i].checked==true){
       				no = document.getElementsByName("content")[i].value;
       		  	}
-      			window.location.href = "${contextPath}/member/comoperins.do?workOrderNumber="+no;
+      			window.location.href = "${contextPath}/member/inscomoperins.do?workOrderNumber="+no;
       	  }
         }
       </script>
