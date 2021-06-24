@@ -311,7 +311,7 @@
 		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'), #{ordDate}, #{custCode}, #{tax}, #{note})
 		]]>  
 	</insert>
-				<!--popcust  F_GET_CURR_SEQ('SM_BIM_Gen_Cus_Reg')-->
+				<!--popcust  F_GET_CURR_SEQ('SM_BIM_Gen_Cus_Reg')
 	<resultMap id="custResult" type="estimateVO">
 		<result property="custCode" column="General_Customer_Code" />
         <result property="custName" column="General_Customer_Name" />
@@ -330,9 +330,6 @@
 	   delete from CSM_SM_Ord_Reg where ordersNum=#{obj}
 	]]>      
   </delete>	
-	
-	
-	<!-- estimate&cor (join) -->
 	<resultMap id="estList" type="estimateVO">
 		<id property="estCode" column="estimateNum" />
         <result property="estDate" column="estimateDate" />
@@ -364,7 +361,8 @@
 		 where EST.customerCode = COR.customerCode
 		 and COR.customerCode = #{custCode}
         ]]>
-	</select>
+	</select>-->
+	
 	<!-- 출고현황(재원) 
 	<resultMap id="rsView" type="rsVO">
 		<result property="itemCode" column="Item_Code" />

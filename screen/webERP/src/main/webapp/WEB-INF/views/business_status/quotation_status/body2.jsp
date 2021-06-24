@@ -13,10 +13,10 @@
 %>
 <% String parent = request.getParameter("custCode");%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:forEach var="cust" items="${estList}"> 
+<!--<c:forEach var="cust" items="${estList}"> 
 	<c:set var="code" value="${cust.custCode}"/>
 </c:forEach>
-
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +93,7 @@
                     <td>부가세</td>
                     <td>합계액</td>
                 </thead>
-                   <c:forEach var="cust" items="${estList}" varStatus="status" > 
+            <!-- <c:forEach var="cust" items="${estList}" varStatus="status" > 
     	            <tbody>
                     <td  class="ch" style="width: 5%;"><input type="checkbox" name="content"/></td>
                     <td><input type="text" value="${cust.estCode}"readonly/></td>
@@ -110,7 +110,7 @@
                     <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
                  
 	                </tbody>
-                   </c:forEach>
+                   </c:forEach>-->
                
             </table>
             <div id="total">
