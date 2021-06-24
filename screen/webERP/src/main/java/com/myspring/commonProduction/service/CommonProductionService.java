@@ -42,6 +42,7 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException;
   public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number) throws DataAccessException, ParseException;
   public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException;
+  public void delCommitOperation(String[] numberAry) throws DataAccessException;
  
   }
  

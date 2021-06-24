@@ -186,21 +186,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.comfirmQuantity}"/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
   					 </tr>
-                    </c:forEach>
-                    <c:forEach var="release" items="${releaseList}" varStatus="status">
-  					 <tr>
-  					 	<td><input type="checkbox" name="content2"/></td>
-                        <td><input type="date" name="DetailVO[${status.index }].billingDate" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${release.itemCode }" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].itemName" value="${release.itemName}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].standard" value="${release.standard}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${release.inventoryUnit}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${release.indicated}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" readonly /></td>                        
-                        <td><input type="text" name="DetailVO[${status.index }].note" /></td>
-  					 </tr>
-                    </c:forEach>
+                    </c:forEach>              
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="date"/></td>
@@ -315,7 +301,7 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      			  window.location.href = "${contextPath}/member/delCommitOperation.do?workOrderNumber="+ary;
       	  }
         }
         

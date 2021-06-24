@@ -97,8 +97,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	@Override
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
-			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);		
-			System.out.println("DAO.delBOM");
+			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
+			if(check.equals("계획")) {
+			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);
+			} else {
+				System.out.println("확정,마감 상태의 정보는 삭제할 수 없습니다.");
+				continue;
+			}
 		}
 	}
 	
@@ -127,6 +132,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		List<OperationDetailVO> infoList = null;		
 		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
 		return infoList;
+	}
+	
+	@Override
+	public void delCommitOperation(String[] numberAry) throws DataAccessException{
+		for(String obj: numberAry) {
+			sqlSession.delete("mappers.erp.deleteCommitOperation", obj);
+		}
 	}
 	
 //	확정 버튼 기능부

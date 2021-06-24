@@ -239,6 +239,17 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  	}
  	
+ 	@Override
+	@RequestMapping(value="/member/delCommitOperation.do" ,method = RequestMethod.GET)
+	public ModelAndView delCommitOperation(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("workOrderNumber");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		productionService.delCommitOperation(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+		return mav;
+		}
+ 	
 // 작업지시 확정 자재출고 부 기능
 
  	@Override

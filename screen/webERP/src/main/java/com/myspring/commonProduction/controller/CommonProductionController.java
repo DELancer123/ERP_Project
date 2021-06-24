@@ -35,5 +35,6 @@ public interface CommonProductionController {
 	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addReleaseData(OperationDetailVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delCommitOperation(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
