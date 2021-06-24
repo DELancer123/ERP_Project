@@ -261,12 +261,13 @@
 
 <script>
 /* input date의 현재 날짜 기본값 설정*/
-document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
-document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
-
+ /* input date의 현재 날짜 기본값 설정*/
+ document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+ document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+ 
  /* 검색부 date onChange 함수 설정 */
- 		 		var startDate = "";
-    	var endDate = "";
+ 		var startDate = new Date().toISOString().substring(0,10);;
+    	var endDate = new Date().toISOString().substring(0,10);;
     	
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
@@ -363,17 +364,30 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
         
         
         function materialUse() {
-        	var item = document.getElementsByName("content").length;
+  // 		 if(startDate>endDate){
+	//		  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
+		//  } else{
+
+        	var item = document.getElementsByName("content2").length;
         	  var no = "";
         	  var ary = [];
         	  for(var i=0; i<item;i++){
-        		  if(document.getElementsByName("content")[i].checked==true){
-        			  no = document.getElementsByName("content")[i].value;
+        		  if(document.getElementsByName("content2")[i].checked==true){
+        			  no = document.getElementsByName("content2")[i].value;
         			  ary.push(no);
+        		  	}
         		  }
-        			window.location.href = "${contextPath}/member/materialUse.do?OPNumber="+ary;
-        	  }
-        }
+        	  
+        		  //const URLSearch = new URLSearchParams(location.search);
+        		  //URLSearch.set('startDate', startDate);
+        		  //URLSearch.set('endDate', endDate);
+        		  //URLSearch.set('searchNumber', ary);
+        		  //const newParam = URLSearch.toString();
+
+        		  //window.open(location.pathname + '?' + newParam, '_self');
+        	  //}
+        		window.location.href = "${contextPath}/member/materialUse.do?OPNumber="+ary;
         
+        }
 
       </script>
