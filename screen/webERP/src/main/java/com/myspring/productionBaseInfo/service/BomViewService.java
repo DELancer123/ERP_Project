@@ -33,5 +33,5 @@ public interface BomViewService {
 	public List viewGroupList() throws DataAccessException;
 	public int deldefType(String[] numberary) throws DataAccessException;
 	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
-	public int doutprice(HashMap<Integer, String> map) throws DataAccessException;
+	public int doutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException;
 }
