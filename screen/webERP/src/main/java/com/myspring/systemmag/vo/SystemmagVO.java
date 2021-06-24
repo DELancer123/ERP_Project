@@ -26,6 +26,8 @@ public class SystemmagVO {
 //	private String whether_To_Use_Status;
 //	private List<SystemmagVO> ListVO;
 	
+	//일반거래처등록
+	//SM_BIM_GEN_CUS_REG
 	private String general_Customer_Code;
 	private String general_Customer_Name;
 	private String general_Customer_Division;
@@ -134,6 +136,143 @@ public class SystemmagVO {
 	public void setLot_Address(String lot_Address) {
 		this.lot_Address = lot_Address;
 	}
+	
+	//창고/공정/외주공정등록--
+	//SM_BIM_HOU_REG => 창고/장소 탭에서 사용함
+	private String house_Code;
+	private String house_Name;
+	private String house_Location_In;
+	private String house_Location_Out;
+	private String house_Explanation;
+	private String house_Status;
+	
+	public String getHouse_Code() {
+		return house_Code;
+	}
+	public void setHouse_Code(String house_Code) {
+		this.house_Code = house_Code;
+	}
+	public String getHouse_Name() {
+		return house_Name;
+	}
+	public void setHouse_Name(String house_Name) {
+		this.house_Name = house_Name;
+	}
+	public String getHouse_Location_In() {
+		return house_Location_In;
+	}
+	public void setHouse_Location_In(String house_Location_In) {
+		this.house_Location_In = house_Location_In;
+	}
+	public String getHouse_Location_Out() {
+		return house_Location_Out;
+	}
+	public void setHouse_Location_Out(String house_Location_Out) {
+		this.house_Location_Out = house_Location_Out;
+	}
+	public String getHouse_Explanation() {
+		return house_Explanation;
+	}
+	public void setHouse_Explanation(String house_Explanation) {
+		this.house_Explanation = house_Explanation;
+	}
+	public String getHouse_Status() {
+		return house_Status;
+	}
+	public void setHouse_Status(String house_Status) {
+		this.house_Status = house_Status;
+	}
+
+	//SM_BIM_PRO_REG => 생산공정/작업장 탭에서 사용함
+	private String process_Code;
+	private String process_Name;
+	private String process_Location_In;
+	private String process_Location_Out;
+	private String process_Explanation;
+	private String process_Status;
+	
+	public String getProcess_Code() {
+		return process_Code;
+	}
+	public void setProcess_Code(String process_Code) {
+		this.process_Code = process_Code;
+	}
+	public String getProcess_Name() {
+		return process_Name;
+	}
+	public void setProcess_Name(String process_Name) {
+		this.process_Name = process_Name;
+	}
+	public String getProcess_Location_In() {
+		return process_Location_In;
+	}
+	public void setProcess_Location_In(String process_Location_In) {
+		this.process_Location_In = process_Location_In;
+	}
+	public String getProcess_Location_Out() {
+		return process_Location_Out;
+	}
+	public void setProcess_Location_Out(String process_Location_Out) {
+		this.process_Location_Out = process_Location_Out;
+	}
+	public String getProcess_Explanation() {
+		return process_Explanation;
+	}
+	public void setProcess_Explanation(String process_Explanation) {
+		this.process_Explanation = process_Explanation;
+	}
+	public String getProcess_Status() {
+		return process_Status;
+	}
+	public void setProcess_Status(String process_Status) {
+		this.process_Status = process_Status;
+	}
+
+	//SM_BIM_OUT_REG => 외주공정/작업장 탭에서 사용함
+	private String outsourcing_Code; 
+	private String outsourcing_Name;
+	private String outsourcing_Location_In;
+	private String outsourcing_Location_Out;
+	private String outsourcing_Explanation;
+	private String outsourcing_Status;
+
+	public String getOutsourcing_Code() {
+		return outsourcing_Code;
+	}
+	public void setOutsourcing_Code(String outsourcing_Code) {
+		this.outsourcing_Code = outsourcing_Code;
+	}
+	public String getOutsourcing_Name() {
+		return outsourcing_Name;
+	}
+	public void setOutsourcing_Name(String outsourcing_Name) {
+		this.outsourcing_Name = outsourcing_Name;
+	}
+	public String getOutsourcing_Location_In() {
+		return outsourcing_Location_In;
+	}
+	public void setOutsourcing_Location_In(String outsourcing_Location_In) {
+		this.outsourcing_Location_In = outsourcing_Location_In;
+	}
+	public String getOutsourcing_Location_Out() {
+		return outsourcing_Location_Out;
+	}
+	public void setOutsourcing_Location_Out(String outsourcing_Location_Out) {
+		this.outsourcing_Location_Out = outsourcing_Location_Out;
+	}
+	public String getOutsourcing_Explanation() {
+		return outsourcing_Explanation;
+	}
+	public void setOutsourcing_Explanation(String outsourcing_Explanation) {
+		this.outsourcing_Explanation = outsourcing_Explanation;
+	}
+	public String getOutsourcing_Status() {
+		return outsourcing_Status;
+	}
+	public void setOutsourcing_Status(String outsourcing_Status) {
+		this.outsourcing_Status = outsourcing_Status;
+	}
+	
 	
 	
 	

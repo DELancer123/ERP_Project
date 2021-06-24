@@ -212,9 +212,8 @@
 	</select>
 
 	
-	<!--기초정보관리파트-->
+	<!--기초정보관리_일반거래처등록-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">
-		<!-- 일반거래처등록파트 -->
 		<result property="general_Customer_Code" column="general_Customer_Code" />
 		<result property="general_Customer_Name" column="general_Customer_Name" />
 		<result property="general_Customer_Division" column="general_Customer_Division" />
@@ -256,8 +255,7 @@
 			workplace_Address=#{workplace_Address},
 			generalCustomer_Tel=#{generalCustomer_Tel},
 			wholesale_Retail_Business_Code=#{wholesale_Retail_Business_Code}
-			where general_Customer_Code=#{general_Customer_Code}
-			
+			where general_Customer_Code=#{general_Customer_Code}			
 		]]>
 	</update>
 	<insert id="insertNewCustomer" parameterType="systemmagVO">
@@ -275,10 +273,35 @@
 			#{workplace_Address}, 
 			#{generalCustomer_Tel}, 
 			#{wholesale_Retail_Business_Code})]]>
-		</insert>
+	</insert>
 	<select id="selectZipList" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_CRI_ZIP]]>
 	</select>
+	<!-- 기초정보관리_창고/공정/외주공정등록 -->
+	<resultMap id="outwareInfoResult" type="SystemmagVO">
+		<!-- 창고/장소파트 -->
+		<result property="house_Code" column="house_Code" />
+		<result property="house_Name" column="house_Name" />
+		<result property="house_Location_In" column="house_Location_In" />
+		<result property="house_Location_Out" column="house_Location_Out" />
+		<result property="house_Explanation" column="house_Explanation" />
+		<result property="house_Status" column="house_Status" />
+		<!-- 생산공정/작업장 -->
+		<result property="process_Code" column="process_Code" />
+		<result property="process_Name" column="process_Name" />
+		<result property="process_Location_In" column="process_Location_In" />
+		<result property="process_Location_Out" column="process_Location_Out" />
+		<result property="process_Explanation" column="process_Explanation" />
+		<result property="process_Status" column="process_Status" />
+		<!-- 외주공정/작업장 -->	
+		<result property="outsourcing_Code" column="outsourcing_Code" />
+		<result property="outsourcing_Name" column="outsourcing_Name" />
+		<result property="outsourcing_Location_In" column="outsourcing_Location_In" />
+		<result property="outsourcing_Location_Out" column="outsourcing_Location_Out" />
+		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
+		<result property="outsourcing_Status" column="outsourcing_Status" />
+	</resultMap>
+	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

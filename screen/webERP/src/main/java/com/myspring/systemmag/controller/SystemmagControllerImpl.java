@@ -206,7 +206,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 		
 		if (code == null || submit == null) { //첫접속이라면?
 			System.out.println("1번분기들어옴");
-			List comView = systemmagService.viewAllOutWare(); //select all 쿼리를 호출한다
+			List comView = systemmagService.viewAllOutware(); //select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			return mav;
