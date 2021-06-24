@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"
+    isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,6 +101,9 @@
         .tab-content.current{
             display: inherit;
         }
+        input{
+        	text-align:center;
+        }
 </style>
 </head>
 <body>
@@ -140,18 +150,22 @@
                     <th>창고설명</th>
                     <th>사용여부</th>
                 </thead>
+                <c:forEach var="out" items="${houOutwareList}">
                 <tbody>
+                
                     <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><select name="" id="">
+                    <td><input type="text" value="${out.house_Code }"/></td>
+                    <td><input type="text" value="${out.house_Name }"/></td>
+                    <td><input type="text" value="${out.house_Location_In }"/></td>
+                    <td><input type="text" value="${out.house_Location_Out }"/></td>
+                    <td><input type="text" value="${out.house_Explanation }"/></td>
+                    <td><select>
                         <option value="1">사용</option>
                         <option value="2">미사용</option>
                     </select></td>
                 </tbody>
+                </c:forEach>
+                
             </table>
         </div>
         <div class="tab-2 tab-content">
@@ -165,18 +179,21 @@
                     <th>공정설명</th>
                     <th>사용여부</th>
                 </thead>
+                <c:forEach var="out" items="${proOutwareList}">
                 <tbody>
+                
                     <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><select name="" id="">
+                    <td><input type="text" value="${out.process_Code }"/></td>
+                    <td><input type="text" value="${out.process_Name }"/></td>
+                    <td><input type="text" value="${out.process_Location_In }"/></td>
+                    <td><input type="text" value="${out.process_Location_Out }"/></td>
+                    <td><input type="text" value="${out.process_Explanation }"/></td>
+                    <td><select>
                         <option value="1">사용</option>
                         <option value="2">미사용</option>
                     </select></td>
                 </tbody>
+                </c:forEach>
             </table>
         </div>
         <div class="tab-3 tab-content">  
@@ -190,18 +207,21 @@
                     <th>외주공정설명</th>
                     <th>사용여부</th>
                 </thead>
+                <c:forEach var="out" items="${outOutwareList}">
                 <tbody>
+                
                     <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><select name="" id="">
+                    <td><input type="text" value="${out.outsourcing_Code }"/></td>
+                    <td><input type="text" value="${out.outsourcing_Name }"/></td>
+                    <td><input type="text" value="${out.outsourcing_Location_In }"/></td>
+                    <td><input type="text" value="${out.outsourcing_Location_Out }"/></td>
+                    <td><input type="text" value="${out.outsourcing_Explanation }"/></td>
+                    <td><select>
                         <option value="1">사용</option>
                         <option value="2">미사용</option>
                     </select></td>
                 </tbody>
+                </c:forEach>
             </table>
         </div>
         </container2>

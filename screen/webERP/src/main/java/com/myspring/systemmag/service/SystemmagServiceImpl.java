@@ -62,11 +62,26 @@ public class SystemmagServiceImpl implements SystemmagService {
 	
 	//창고/공정/외주공정등록
 	@Override
-	public List viewAllOutware() throws DataAccessException {
+	public List viewAllHouOutware() throws DataAccessException {
 		List outwareList = null;
-		outwareList = systemmagDAO.viewAllOutware();
+		outwareList = systemmagDAO.viewAllHouOutware();	
 		return outwareList;
 	}
+	
+	@Override
+	public List viewAllProOutware() throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewAllProOutware();	
+		return outwareList;
+	}
+	
+	@Override
+	public List viewAllOutOutware() throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewAllOutOutware();	
+		return outwareList;
+	}
+	
 	
 
 	

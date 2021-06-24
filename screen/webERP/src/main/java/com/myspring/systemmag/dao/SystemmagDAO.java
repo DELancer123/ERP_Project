@@ -23,5 +23,9 @@ public interface SystemmagDAO {
 	public List zipViewCustomer() throws DataAccessException;
 	
 	//창고/공정/외주공정등록
-	public List viewAllOutware() throws DataAccessException;
+	public List viewAllHouOutware() throws DataAccessException;
+	
+	public List viewAllProOutware() throws DataAccessException;
+	
+	public List viewAllOutOutware() throws DataAccessException;
 }

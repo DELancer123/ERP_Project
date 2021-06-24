@@ -63,10 +63,24 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	}
 	
 	//창고/공정/외주공정등록
-	@Override
-	public List viewAllOutware() throws DataAccessException {
+	@Override /* 창고/장소 쿼리 */
+	public List viewAllHouOutware() throws DataAccessException {
 		List<SystemmagVO> outwareList = null;
-		outwareList = sqlSession.selectList("mappers.erp.selectAllOutware");
+		outwareList = sqlSession.selectList("mappers.erp.selectAllHouOutware");
+		return outwareList;
+	}
+	
+	@Override /* 생산공정/작업장 쿼리 */
+	public List viewAllProOutware() throws DataAccessException {
+		List<SystemmagVO> outwareList = null;
+		outwareList = sqlSession.selectList("mappers.erp.selectAllProOutware");
+		return outwareList;
+	}
+	
+	@Override /* 외주공정/작업장 쿼리 */
+	public List viewAllOutOutware() throws DataAccessException {
+		List<SystemmagVO> outwareList = null;
+		outwareList = sqlSession.selectList("mappers.erp.selectAllOutOutware");
 		return outwareList;
 	}
 

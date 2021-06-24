@@ -200,9 +200,14 @@ public class SystemmagControllerImpl implements SystemmagController {
 		
 		if (code == null || submit == null) { //첫접속이라면?
 			System.out.println("1번분기들어옴");
-			List outwareList = systemmagService.viewAllOutware(); //select all 쿼리를 호출한다
+			List houOutwareList = systemmagService.viewAllHouOutware(); //select all 쿼리를 호출한다
+			List proOutwareList = systemmagService.viewAllProOutware();
+			List outOutwareList = systemmagService.viewAllOutOutware();
+			
 			mav = new ModelAndView(viewName);
-			mav.addObject("outwareList", outwareList);
+			mav.addObject("houOutwareList", houOutwareList);
+			mav.addObject("proOutwareList", proOutwareList);
+			mav.addObject("outOutwareList", outOutwareList);
 			return mav;
 		}
 
