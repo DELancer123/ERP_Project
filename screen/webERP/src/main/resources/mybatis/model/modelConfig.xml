@@ -40,6 +40,7 @@
 		<typeAlias type="com.myspring.outsourcing_manage.ComOutsourcing.vo.ComOutsourcingVO" alias="comOutsourcingVO" /> 
 		<typeAlias type="com.myspring.outsourcing_manage.OutRelease.vo.OutReleaseVO" alias="OutReleaseVO" /> 
 		<typeAlias type="com.myspring.outsourcing_manage.RegOutPerformance.vo.RegOutPerformanceVO" alias="RegOutPerformanceVO" /> 
-
+		<!-- 재고 관리 -->
+		<typeAlias type="com.myspring.StockManage.vo.StockManageVO" alias="StockManageVO"/>
 	</typeAliases>
 </configuration>	 
