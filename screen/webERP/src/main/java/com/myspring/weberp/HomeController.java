@@ -35,7 +35,7 @@ public class HomeController {
 }*/
 
 
-//�ٱ��� ��� �ڵ�
+//占쌕깍옙占쏙옙 占쏙옙占� 占쌘듸옙
 
 @Controller
 
@@ -318,6 +318,10 @@ public class HomeController {
 	@RequestMapping(value = "/member/codehelper", method = RequestMethod.GET)
 	public String Popup(Locale locale, Model model) {
 		return "/member/codehelper";
+	}
+	@RequestMapping(value = "/member/curfinishedinvenstat", method = RequestMethod.GET)
+	public String dhkswpvna(Locale locale, Model model) {
+		return "/member/curfinishedinvenstat";
 	}
 
 }

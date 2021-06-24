@@ -23,5 +23,5 @@ public interface OperationRegistDAO {
 	public List selectRelease(String number) throws DataAccessException, ParseException;
 	public List selectReleaseDetail(String number) throws DataAccessException, ParseException;
 	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException;
-	
+		
 }
