@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component("RegistOperationPerformanceDetailVO") 
 public class RegistOperationPerformanceDetailVO {
-	private String OPNumber;
+	private String opNumber;
 	private String materialUseStatus;
 	private Date performanceDate;
 	private String processCode;
@@ -26,12 +26,7 @@ public class RegistOperationPerformanceDetailVO {
 		return Arrays.toString(DetailVO.toArray());
 	}
 	
-	public String getOPNumber() {
-		return OPNumber;
-	}
-	public void setOPNumber(String oPNumber) {
-		OPNumber = oPNumber;
-	}
+
 
 	public Date getPerformanceDate() {
 		return performanceDate;
@@ -105,6 +100,18 @@ public class RegistOperationPerformanceDetailVO {
 
 	public void setSortation(String sortation) {
 		this.sortation = sortation;
+	}
+
+
+
+	public String getOpNumber() {
+		return opNumber;
+	}
+
+
+
+	public void setOpNumber(String opNumber) {
+		this.opNumber = opNumber;
 	}
 	
 	

@@ -217,8 +217,8 @@
                     <tbody>
                         <c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
-  					 	<td><input type="checkbox" value="${detail.OPNumber }" name="content2"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.OPNumber }" readonly /></td>
+  					 	<td><input type="checkbox" value="${detail.opNumber }" name="content2"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.opNumber }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].materialUseStatus" value="${detail.materialUseStatus }" readonly /></td>
                         <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" readonly /></td>
@@ -364,10 +364,6 @@
         
         
         function materialUse() {
-  // 		 if(startDate>endDate){
-	//		  alert("지시기간 종료일은 시작일보다 작을수 없습니다.");
-		//  } else{
-
         	var item = document.getElementsByName("content2").length;
         	  var no = "";
         	  var ary = [];
@@ -378,15 +374,7 @@
         		  	}
         		  }
         	  
-        		  //const URLSearch = new URLSearchParams(location.search);
-        		  //URLSearch.set('startDate', startDate);
-        		  //URLSearch.set('endDate', endDate);
-        		  //URLSearch.set('searchNumber', ary);
-        		  //const newParam = URLSearch.toString();
-
-        		  //window.open(location.pathname + '?' + newParam, '_self');
-        	  //}
-        		window.location.href = "${contextPath}/member/materialUse.do?OPNumber="+ary;
+        		window.location.href = "${contextPath}/member/materialUse.do?opNumber="+ary;
         
         }
 
