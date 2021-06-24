@@ -67,9 +67,9 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	}
 	
 	@Override
-	public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPVO) throws DataAccessException {
-		int idx = ROPVO.getDetailVO().size()-1;
-		int result = sqlSession.insert("mappers.erp.insertOperationInstruction",ROPVO.getDetailVO().get(idx));
+	public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO) throws DataAccessException {
+		int idx = ROPDVO.getDetailVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertRegistOperationPerformanceInfoDetail",ROPDVO.getDetailVO().get(idx));
 		return result;
 	}
 	

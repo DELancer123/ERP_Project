@@ -12,6 +12,7 @@ import com.myspring.commonProduction.operationInsClosing.vo.OperationInsClosingV
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
   
   public interface CommonProductionService {
@@ -39,9 +40,19 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException;
   public List<OperationRegistVO> selectReleaseDetail(String number) throws DataAccessException, ParseException;
   public List<String> MaterialUse(String[] numberAry) throws DataAccessException;
+<<<<<<< HEAD
+  public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate)
+		throws DataAccessException, ParseException;
+  public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number)
+		throws DataAccessException, ParseException;
+  public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO) throws DataAccessException;
+ 
+=======
   public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfo(String startDate, String endDate) throws DataAccessException, ParseException;
   public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number) throws DataAccessException, ParseException;
   public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException;
+  public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException;
   
+>>>>>>> ff3e85e5bf49d1bae1d88f2d863fb518a2e90a0b
   }
  

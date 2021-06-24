@@ -16,9 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod; 
 import org.springframework.web.servlet.ModelAndView;
   
+<<<<<<< HEAD
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO; 
+import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
+=======
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO; 
+>>>>>>> ff3e85e5bf49d1bae1d88f2d863fb518a2e90a0b
 import com.myspring.commonProduction.service.CommonProductionService;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  
@@ -28,6 +34,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  @	Autowired private CommonProductionService productionService;
 	  @Autowired private CommitOperationInstructionVO COIVO;
 	  @Autowired private OperationRegistVO ORVO;
+	  @Autowired private RegistOperationPerformanceDetailVO ROPDVO;
   
 	  @Override
 	  @RequestMapping(value="/member/proplanreg.do" ,method = RequestMethod.GET)
@@ -239,6 +246,16 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  	}
  
+ 	@Override
+  	@RequestMapping(value="/member/deleteCommitOperation.do" ,method = RequestMethod.GET)
+  	public ModelAndView delCommitOperation(@ModelAttribute("info") OperationDetailVO ODVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	  		request.setCharacterEncoding("utf-8");
+	  		int result = 0;
+	  		result = productionService.delCommitOperation(ODVO);
+	  		System.out.println("result "+result);
+	  		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
+	  		return mav;
+  		}
  	
 // 작업지시 확정 자재출고 부 기능
 
@@ -293,6 +310,20 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   		  }
   		  return mav; 
   	  	}
+  	 
+  	@Override
+	@RequestMapping(value="/member/addRegistOperationPerformanceInfoDetail.do" ,method = RequestMethod.GET)
+	public ModelAndView addRegistOperationPerformanceInfoDetail(@ModelAttribute("detail") RegistOperationPerformanceDetailVO ROPDVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = productionService.addRegistOperationPerformanceInfoDetail(ROPDVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
 	
  	@Override
  	@RequestMapping(value="/member/materialUse.do" ,method = RequestMethod.GET)

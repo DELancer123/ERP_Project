@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 
 public interface CommonProductionController {
 
@@ -34,6 +35,12 @@ public interface CommonProductionController {
 	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception;
+<<<<<<< HEAD
+	public ModelAndView addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+=======
 	public ModelAndView addReleaseData(OperationDetailVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delCommitOperation(OperationDetailVO ODVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+>>>>>>> ff3e85e5bf49d1bae1d88f2d863fb518a2e90a0b
 
 }

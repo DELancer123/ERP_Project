@@ -23,6 +23,7 @@ import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.commonProduction.registOperationPerformance.dao.RegistOperationPerformanceDAO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
@@ -137,6 +138,11 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  return message;
 	}
   
+  @Override
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+		return ORdao.delCommitOperation(ODVO);
+	}
+  
 //작업지시확정 자재출고 기능부
   @Override
   public List<OperationRegistVO> selectRelease(String number) throws DataAccessException, ParseException{ 
@@ -171,6 +177,11 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		  infolist = ROPdao.selectAllRegistOperationPerformanceInfoDetail(number);
 		  return infolist; 
 		  }
+	
+	 @Override
+	 public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO) throws DataAccessException {
+			return ROPdao.addRegistOperationPerformanceInfoDetail(ROPDVO);
+		}
 
 	@Override
 		public List<String> MaterialUse(String[] numberAry) throws DataAccessException{

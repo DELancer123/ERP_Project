@@ -134,6 +134,23 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return infoList;
 	}
 	
+	@Override
+	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+		int result = 0; 
+		String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
+
+		int idx = ODVO.getDetailVO().size();
+		for(int i = 0; i<idx;i++) {
+			System.out.println("i"+i);
+		System.out.println("idx : "+idx);
+		System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getNo());
+		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
+		System.out.println("DAOresult:"+result);
+		}
+		sqlSession.update("mappers.erp.materialSet", workOrderNumber);
+		return result;
+	}
+	
 //	확정 버튼 기능부
 	@Override
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
