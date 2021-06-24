@@ -195,7 +195,7 @@
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].inventoryUnit"/></td>
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].precisionQuantity"/></td>
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].loss"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].note"/></td>                                              
+                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].note"/></td>                                         
                     </tr>
                     </tbody>
                 </table>
