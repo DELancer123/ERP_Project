@@ -200,6 +200,7 @@
         <
         <container3 id="contents3">
             <div id="workOrderInfo">
+            <form id="dataForm1" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
                         <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
@@ -210,7 +211,7 @@
                         <td>작업장</td>
                         <td>구분</td>
                         <td>실적수량</td>
-                        <td>검사</td>
+                        <td>검사</td>>
                         <td>비고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
@@ -231,18 +232,19 @@
                     </c:forEach>
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>                        
-                        <td><input type="text"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].opNumber" readonly /></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].materialUseStatus" readonly /></td>
+                        <td><input type="date" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.workDate }"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
+                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].note" value="${param.note }"/></td>
                     </tr>
                     </tbody>
                 </table>
+                </form>
             </div>
             <!-- 컨테이너 출력 종료 -->
             <!-- 출력부 -->

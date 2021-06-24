@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
+
 public interface RegistOperationPerformanceDAO {
 
 	public List viewPop() throws DataAccessException;
@@ -13,5 +15,6 @@ public interface RegistOperationPerformanceDAO {
 			throws DataAccessException, ParseException;
 	public List selectAllRegistOperationPerformanceInfoDetail(String number) throws DataAccessException, ParseException;
 	public List<String> MaterialUse(String[] numberAry) throws DataAccessException;
+	public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPVO) throws DataAccessException;
 
 }

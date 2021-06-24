@@ -113,6 +113,6 @@ public class RegistOperationPerformanceDetailVO {
 	public void setOpNumber(String opNumber) {
 		this.opNumber = opNumber;
 	}
-	
+
 	
 }

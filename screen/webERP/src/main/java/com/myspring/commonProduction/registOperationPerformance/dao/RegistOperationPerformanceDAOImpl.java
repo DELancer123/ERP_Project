@@ -66,6 +66,13 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 		return infoList;
 	}
 	
+	@Override
+	public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPVO) throws DataAccessException {
+		int idx = ROPVO.getDetailVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertOperationInstruction",ROPVO.getDetailVO().get(idx));
+		return result;
+	}
+	
 //	자재사용 버튼 기능부
 	@Override
 	public List<String> MaterialUse(String[] numberAry) throws DataAccessException{
