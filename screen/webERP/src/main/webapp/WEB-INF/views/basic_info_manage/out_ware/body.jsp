@@ -207,7 +207,7 @@
         </container2>
         <container3 id="contents3">
         <div class="tab-1 tab-content current">
-            <table>
+            <table id="view2">
                 <tr>
                     <td>위치코드1</td>
                     <td>위치명</td>
@@ -217,7 +217,7 @@
             </table>
         </div>
         <div class="tab-2 tab-content">
-            <table>
+            <table id="view2">
                 <tr>
                     <td>작업장코드2</td>
                     <td>작업장명</td>
@@ -227,7 +227,7 @@
             </table>
         </div>
         <div class="tab-3 tab-content">
-            <table>
+            <table id="view2">
                 <tr>
                     <td>작업장코드3</td>
                     <td>작업장명</td>
