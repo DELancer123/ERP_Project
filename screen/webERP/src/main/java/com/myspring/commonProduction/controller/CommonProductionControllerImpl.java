@@ -239,16 +239,16 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	}
  	
  	@Override
- 	@RequestMapping(value="/member/releaseDetail.do" ,method = RequestMethod.GET)
+ 	@RequestMapping(value="/member/inscomoperins.do" ,method = RequestMethod.GET)
  	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception { 
  		String number = request.getParameter("workOrderNumber");
  		String viewName = (String)request.getAttribute("viewName");
- 		ModelAndView mav = new ModelAndView("redirect:/member/inscomoperins.do");
+ 		ModelAndView mav = new ModelAndView(viewName); 
  		
  		List infoList = productionService.selectRelease(number);
  		List detailList = productionService.selectReleaseDetail(number);
  		mav.addObject("infoList", infoList); 
-		mav.addObject("detailList", detailList);
+		mav.addObject("releaseList", detailList);
  		return mav; 
  	}
  	
