@@ -118,7 +118,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="out" items='${outpriceView }' varStatus="status">
                     <tbody>
-                        <td><input type="checkbox" value = "check1" id="check" name="content" value='${out.item_code }'/></td>
+                        <td><input type="checkbox" value = '${out.item_code }' id="check" name="content" value='${out.item_code }'/></td>
                         <input type="hidden" name="outpriveVO[${status.index}].outsourcing_Code" value='${out.outsourcing_Code }'/>
                         <input type="hidden" name="outpriveVO[${status.index}].outcustomer" value='${out.outcustomer }'/>
                         <td><input type="text" name="outpriveVO[${status.index}].item_code" value='${out.item_code }' readonly/></td>
@@ -233,7 +233,7 @@
 	    			  ary.push(no);
 	    		  }
 	    		  
-	    			   window.location.href = "${contextPath}/member/deloutprice.do?no="+ary+"&&out="+code+"&&place"+place; 
+	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
 	    	  }
 		}
       </script>

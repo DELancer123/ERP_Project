@@ -34,7 +34,7 @@ public interface bomViewDAO {
 
 	public int updoutprice(RegOutSourcingPriceVO outVO)throws DataAccessException;
 
-	public int deloutprice(HashMap<Integer, String> map) throws DataAccessException;
+	public int deloutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException;
 
 
 }

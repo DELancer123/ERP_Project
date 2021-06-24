@@ -167,9 +167,9 @@ public class BomViewServiceImpl implements BomViewService{
 	}
 
 	@Override
-	public int doutprice(HashMap<Integer, String> map) throws DataAccessException {
+	public int doutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException {
 		int delList = 0;
-		delList = bomDAO.deloutprice(map);
+		delList = bomDAO.deloutprice(outVO1);
 		return delList;
 	}
 

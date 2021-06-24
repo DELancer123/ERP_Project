@@ -509,7 +509,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 		]]>  
 	</update>
 	<delete id="deloutprice" parameterType="outpriVO">
-		delete from CPM_BIM_OUT_PRI where outcustomer=#{outcustomer} and item_code=#{item_code}
+		delete from CPM_BIM_OUT_PRI where outsourcing_code = #{outsourcing_Code} and outcustomer=#{outcustomer} and item_code=#{item_code}
 	</delete>
 	<!-- 불량유형등록 -->
 	<resultMap id="defTypeView" type="defVO">

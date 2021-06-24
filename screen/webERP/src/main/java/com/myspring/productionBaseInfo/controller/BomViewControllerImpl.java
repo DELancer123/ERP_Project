@@ -269,14 +269,20 @@ public class BomViewControllerImpl implements BomViewController {
 		int result = 0;
 		request.setCharacterEncoding("utf-8");
 		String place = request.getParameter("place");
+		String code = request.getParameter("out");
 		String number = (String) request.getParameter("no");
 		String[] numberary = number.split(",");
-		HashMap<Integer, String> map = new HashMap<Integer, String>();
+		RegOutSourcingPriceVO outVO = new RegOutSourcingPriceVO();
+		List<RegOutSourcingPriceVO> outVO1= new ArrayList<RegOutSourcingPriceVO>();
 		for(int i = 0;i<numberary.length;i++) {
-			map.put(i, number);
+			outVO.setItem_code(numberary[i]);
+			outVO.setOutsourcing_Code(code);
+			outVO.setOutcustomer(place);
+			outVO1.add(i, outVO);
 		}
-		map.put(numberary.length, place);
-		result = viewService.doutprice(map);
+		System.out.println(outVO1.get(0).getOutsourcing_Code() + code);
+		System.out.println(outVO1.get(0).getOutcustomer() + place);
+		result = viewService.doutprice(outVO1);
 		ModelAndView mav = new ModelAndView("redirect:/member/outprice.do");
 		return mav;
 	}
