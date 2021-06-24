@@ -100,7 +100,7 @@
                 </tbody>
            </table>
         </container2>
-        <container3 id="contents3">
+        
             <table id="view">
                 <thead>
                     <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>

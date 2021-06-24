@@ -19,7 +19,8 @@ public interface OrderDAO {
 	public List selectLine(String custCode) throws DataAccessException;
 	
 	//reg
-	public String selOrdCode() throws DataAccessException;
+	public int selOrdCode() throws DataAccessException;
+//	public String selOrdCode() throws DataAccessException;
 	public void delOrder(String[] noary) throws DataAccessException;		
 //	public int updNewOrder(String custCode) throws DataAccessException;
 	

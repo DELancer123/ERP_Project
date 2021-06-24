@@ -69,7 +69,8 @@ public class OrderDAOImpl implements OrderDAO {
 	
 	
 	@Override
-	public String selOrdCode() throws DataAccessException {	
+	public int selOrdCode() throws DataAccessException {	
+//		public String selOrdCode() throws DataAccessException {	
 		return sqlSession.selectOne("mappers.erp.selOrderCode");
 	}
 
