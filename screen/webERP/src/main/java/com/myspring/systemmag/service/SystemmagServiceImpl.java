@@ -26,7 +26,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public int addCom(SystemmagVO systemmagVO) throws DataAccessException{
 		return systemmagDAO.addCom(systemmagVO);
 }
-	//회사등록 조회
+	//회사등록(조회)
 	@Override
 	public List comView() throws DataAccessException {
 		List comList = null;
@@ -34,10 +34,15 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom :"+comList);
 		return comList;
 	}
-	//회사등록 수정
+	//회사등록(수정)
 	@Override
 	public void updCom(SystemmagVO systemmagVO) throws DataAccessException {		
 		systemmagDAO.updateCom(systemmagVO);
+	}
+	//회사등록(삭제)
+	@Override
+	public void delCom(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteCom(noary);
 	}
 	//회사등록(팝업)
 	@Override
@@ -80,6 +85,10 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public void updWor(WorkplaceVO workplaceVO) throws DataAccessException {		
 		systemmagDAO.updateWor(workplaceVO);
 	}
+	@Override
+	public void delWor(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteWor(noary);
+	}
 	//품목등록(조회)
 	@Override
 	public List itemView() throws DataAccessException {
@@ -93,6 +102,13 @@ public class SystemmagServiceImpl implements SystemmagService {
 		List itemList = systemmagDAO.allviewItem(item_code);
 		return itemList;
 	}
+	//품목등록 팝업
+	@Override
+	public List itgView(String itgNumber) throws DataAccessException {
+		List itgList = null;
+		itgList = systemmagDAO.viewItg();
+		return itgList;
+	}
 	//품목등록
 		@Override
 		public int addItem(itemVO itemVO) throws DataAccessException{
@@ -102,6 +118,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 		@Override
 		public void updItem(itemVO itemVO) throws DataAccessException {		
 			systemmagDAO.updateItem(itemVO);
+		}
+	//품목등록(삭제)
+		@Override
+		public void delItem(String[] noary) throws DataAccessException {
+			systemmagDAO.deleteItem(noary);
 		}
 	//품목군등록(조회)
 	@Override
@@ -115,6 +136,10 @@ public class SystemmagServiceImpl implements SystemmagService {
 	@Override
 	public void updItemg(ItemgVO itemgVO) throws DataAccessException {		
 		systemmagDAO.updateItemg(itemgVO);
+	}
+	@Override
+	public void delItemg(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteItemg(noary);
 	}
 	//부서등록
 			@Override
@@ -146,5 +171,10 @@ public class SystemmagServiceImpl implements SystemmagService {
 		@Override
 		public void updDep(DepartmentVO departmentVO) throws DataAccessException {		
 			systemmagDAO.updateDep(departmentVO);
+		}
+	//부서등록(수정)
+		@Override
+		public void delDep(String[] noary) throws DataAccessException {
+			systemmagDAO.deleteDep(noary);
 		}
 }

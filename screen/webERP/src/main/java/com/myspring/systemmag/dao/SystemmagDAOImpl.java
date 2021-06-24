@@ -49,6 +49,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updatecompany", systemmagVO);
 	}
+	//회사등록(삭제)
+	@Override
+	public void deleteCom(String[] noary) throws DataAccessException {
+		for(int i = 0;i<noary.length;i++) {
+			sqlSession.delete("mappers.erp.deletecompany",noary[i]);	
+		}
+		
+	}
 	//회사등록(팝업)
 		@Override
 		public List viewZip() throws DataAccessException {
@@ -88,6 +96,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	public void updateWor(WorkplaceVO workplaceVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updateworkplace", workplaceVO);
 	}
+	@Override
+	public void deleteWor(String[] noary) throws DataAccessException {
+		for(int i = 0;i<noary.length;i++) {
+			sqlSession.delete("mappers.erp.deleteWor",noary[i]);	
+		}
+		
+	}
 	//품목등록(조회)
 	@Override
 	public List viewItem() throws DataAccessException {
@@ -103,6 +118,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: "+item_code);
 		return itemList;
 	}
+	//품목등록(팝업)
+	@Override
+	public List viewItg() throws DataAccessException {
+		List<ItemgVO> itgList = null;
+		itgList = sqlSession.selectList("mappers.erp.selectAllitemgList");
+		return itgList;
+	}
 	//품목등록
 		@Override
 		public int addItem(itemVO itemVO) throws DataAccessException{
@@ -113,6 +135,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		@Override
 		public void updateItem(itemVO itemVO) throws DataAccessException {
 			sqlSession.update("mappers.erp.updateItem", itemVO);
+		}
+	//품목등록(삭제)
+		@Override
+		public void deleteItem(String[] noary) throws DataAccessException {
+			for(int i = 0;i<noary.length;i++) {
+				sqlSession.delete("mappers.erp.deleteItem",noary[i]);	
+			}
+			
 		}
 	//품목군등록(조회)
 	@Override
@@ -136,6 +166,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 				for(int i = 0; i<itemgVO.getListVO().size();i++) {
 				result = sqlSession.update("mappers.erp.updateitemg", itemgVO.getListVO().get(i));
 				}
+			}
+	//품목군등록(삭제)
+			@Override
+			public void deleteItemg(String[] noary) throws DataAccessException {
+				for(int i = 0;i<noary.length;i++) {
+					sqlSession.delete("mappers.erp.deleteItemg",noary[i]);	
+				}
+				
 			}
 	//사원조회
 	@Override
@@ -167,6 +205,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			for(int i = 0; i<departmentVO.getListVO().size();i++) {
 			result = sqlSession.update("mappers.erp.updatedepartment", departmentVO.getListVO().get(i));
 			}
+		}
+	//부서등록(삭제)
+		@Override
+		public void deleteDep(String[] noary) throws DataAccessException {
+			for(int i = 0;i<noary.length;i++) {
+				sqlSession.delete("mappers.erp.deleteDep",noary[i]);	
+			}
+			
 		}
 
 }

@@ -334,10 +334,7 @@
             var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
         }
-        function openWindowPop1(url, name){
-            var options = 'top=0, left=0, width=1100, height=500, status=no, menubar=no, toolbar=no, resizable=no';
-            window.open(url, name, options);
-        }
+        
 		
     </script>
 </body>

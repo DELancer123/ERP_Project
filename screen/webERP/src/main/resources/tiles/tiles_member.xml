@@ -429,17 +429,6 @@
 	  <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
    <!-- 우편번호 팝업 -->
-<!--    <definition name="/member/regzip" extends="Zippopup">
-   <put-attribute name="title" value="우편번호팝업" />
-   <put-attribute name="side" value="" />
-   <put-attribute name="body" value="" />   
-   </definition> -->
-   
-<!--    <definition name="ZippopupLayout" extends="/WEB_INF/views/SystemAdmin/reg_company/body.jsp">
-   <put-attribute name="title" value="" />
-   <put-attribute name="side" value="" />
-   <put-attribute name="body" value="" />   
-   </definition> -->
      <definition name="ZippopupLayout"  template="/WEB-INF/views/common/zippopup.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -450,14 +439,16 @@
    <put-attribute name="side" value="" />
    <put-attribute name="body" value="" />   
    </definition>
-<!-- 
-   <definition name="/member/memberForm" extends="baseLayout">
-      <put-attribute name="title" value="회원등록창" />
-      <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+   <!-- 품목팝업 -->
+   <definition name="Itemgpopup"  template="/WEB-INF/views/basic_info_manage/reg_item/Itempopup.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
    </definition>
-
-   <definition name="/member/viewDetail" extends="baseLayout">
-      <put-attribute name="title" value="회원상세창" />
-      <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
-   </definition> -->
+   
+   <definition name="/member/itemgpop" extends="Itemgpopup">
+   <put-attribute name="title" value="팝업" />
+   <put-attribute name="side" value="" />
+   <put-attribute name="body" value="" />   
+   </definition>
 </tiles-definitions>

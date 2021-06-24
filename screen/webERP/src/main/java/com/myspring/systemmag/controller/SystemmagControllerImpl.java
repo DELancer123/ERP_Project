@@ -98,7 +98,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 				"redirect:/member/regcompany.do?submit=1&&com_code=" + systemmagVO.getCompany_Code());
 		return mav;
 	}
-	
+	//회사등록(삭제)
+	@Override
+	@RequestMapping(value = "/member/deletecompany.do", method = RequestMethod.GET)
+	public ModelAndView deleteCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
+		String viewName = getViewName(request);
+		String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
+
+		systemmagService.delCom(numberary);
+
+		ModelAndView mav = new ModelAndView("redirect:/member/regcompany.do");
+
+		return mav;
+
+	}
 	//회사등록(팝업)
 	@RequestMapping(value="/member/zippopup.do" ,method = RequestMethod.GET)
 	public ModelAndView Compopup(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -162,6 +176,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 					"redirect:/member/regbusiness.do?submit=1&&wor_code=" + workplaceVO.getWorkplace_Code());
 			return mav;
 		}
+		//사업장등록(삭제)
+		@Override
+		@RequestMapping(value = "/member/deletbusiness.do", method = RequestMethod.GET)
+		public ModelAndView deleteWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
+			String viewName = getViewName(request);
+			String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
+
+			systemmagService.delWor(numberary);
+
+			ModelAndView mav = new ModelAndView("redirect:/member/regbusiness.do");
+
+			return mav;
+
+		}
 		//품목등록(조회)
 		@Override
 		@RequestMapping(value="/member/regitem.do" ,method = RequestMethod.GET)
@@ -186,7 +215,16 @@ public class SystemmagControllerImpl implements SystemmagController{
 			}
 			return mav;
 		}
-			
+		//품목등록(팝업)
+		@RequestMapping(value="/member/itemgpop.do" ,method = RequestMethod.GET)
+		public ModelAndView itgpopup(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = getViewName(request);
+			String itgNumber = (String) request.getParameter("itemg_Code");
+			/* List itgView = systemmagService.itgView(itgNumber); */
+			ModelAndView mav = new ModelAndView(viewName);
+			/* mav.addObject("itgView", itgView); */
+			return mav;
+		}
 		//품목등록
 		@Override
 		@RequestMapping(value="/member/additem.do" ,method = RequestMethod.GET)
@@ -211,6 +249,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 			ModelAndView mav = new ModelAndView(
 					"redirect:/member/regitem.do?submit=1&&item_code=" + itemVO.getItem_Code());
 			return mav;
+		}
+		//품목등록(삭제)
+		@Override
+		@RequestMapping(value = "/member/deleteitem.do", method = RequestMethod.GET)
+		public ModelAndView deleteItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
+			String viewName = getViewName(request);
+			String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
+
+			systemmagService.delItem(numberary);
+
+			ModelAndView mav = new ModelAndView("redirect:/member/regitem.do");
+
+			return mav;
+
 		}
 		//품목군등록(조회)
 		@Override
@@ -247,6 +300,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 			ModelAndView mav = new ModelAndView(
 					"redirect:/member/regitemgroup.do?submit=1&&itemg_code=" + itemgVO.getItem_Group_Code());
 			return mav;
+		}
+		//품목군등록(삭제)
+		@Override
+		@RequestMapping(value = "/member/deleteItemg.do", method = RequestMethod.GET)
+		public ModelAndView deleteItemg(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
+			String viewName = getViewName(request);
+			String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
+
+			systemmagService.delItemg(numberary);
+
+			ModelAndView mav = new ModelAndView("redirect:/member/regitemgroup.do");
+
+			return mav;
+
 		}
 		//사원조회
 		@Override
@@ -295,6 +363,21 @@ public class SystemmagControllerImpl implements SystemmagController{
 					"redirect:/member/regdepartment.do?submit=1&&dep_code=" + departmentVO.getDepartment_Code());
 			return mav;
 		}
+		//부서등록(삭제)
+		@Override
+		@RequestMapping(value = "/member/deletedepartment.do", method = RequestMethod.GET)
+		public ModelAndView deletedepartment(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
+			String viewName = getViewName(request);
+			String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
+
+			systemmagService.delDep(numberary);
+
+			ModelAndView mav = new ModelAndView("redirect:/member/regdepartment.do");
+
+			return mav;
+
+		}
 	//겟뷰네임
 	
 	private String getViewName(HttpServletRequest request) {
@@ -328,16 +411,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return viewName;
 	}
 	@Override
-	public ModelAndView delCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
-	@Override
 	public ModelAndView adressZip(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
-	}
-	
-	@Override
-	public ModelAndView delWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;
 	}
 	

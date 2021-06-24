@@ -245,6 +245,10 @@
 			where company_Code=#{company_Code}
 		]]>
 	</update>
+	<!-- 삭제 -->
+	<delete id="deletecompany">
+		delete from SM_CRI_Com_Reg where Company_Code = #{no}
+	</delete>
 	<!-- 팝업 -->
 	<resultMap id="ZipViewResult" type="ZipcodeVO">
 		<result property="zipcode" column="Zipcode" />
@@ -305,7 +309,10 @@
 			where workplace_Code=#{workplace_Code}
 		]]>
 	</update>
-	
+	<!-- 삭제 -->
+	<delete id="deleteWor">
+		delete from SM_CRI_Wor_Reg where Workplace_Code = #{no}
+	</delete>
 	<!-- 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
 		<result property="item_Code" column="Item_Code"	/>
@@ -368,6 +375,10 @@
 			where item_Code=#{item_Code}
 		]]>
 	</update>
+	<!-- 삭제 -->
+	<delete id="deleteItem">
+		delete from SM_BIM_Ite_Reg where Item_Code = #{no}
+	</delete>
 	<!-- 품목군등록 -->	
 		<resultMap id="itemgResult" type="ItemgVO">
 		<result property="item_Group_Code" column="Item_Group_Code"	/>
@@ -395,6 +406,10 @@
 			where ITEM_GROUP_CODE=#{item_Group_Code}
 		]]>
 	</update>
+	<!-- 삭제 -->
+	<delete id="deleteItemg">
+		delete from SM_BIM_Ite_gro_Reg where Item_Group_Code = #{no}
+	</delete>
 	<!-- 사원조회 -->
 	<resultMap id="employeeResult" type="EmployeeVO">
 		<result property="employee_Code" column="Employee_Code"	/>
@@ -443,6 +458,10 @@
 			where department_Code=#{department_Code}
 		]]>
 	</update>
+	<!-- 삭제 -->
+	<delete id="deleteDep">
+		delete from SM_CRI_Dep_Reg where Department_Code = #{no}
+	</delete>
 	
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">

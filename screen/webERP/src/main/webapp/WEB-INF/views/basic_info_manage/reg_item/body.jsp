@@ -135,7 +135,7 @@
                     <td>품목군</td>
                     <td>
                         <input type=text style="width:80px;">
-                        <i class="fas fa-search" style="color: blue;"></i>
+                        <a href="javascript:searchitemg()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                     <td>
                         <input type=text>
@@ -164,14 +164,14 @@
         <container2 id= contents2>
             <table id="table2">
                 <thead>
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)" id="focus1" /></td>
+                    <td><input type="checkbox" name="checkedContent" onclick="selectAll1(this)" id="focus1" /></td>
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
                 </thead>
                 <c:forEach var="item" items="${itemView}" > 
                 <tbody>
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td><input type="checkbox" value='${item.item_Code }' id="chec-k" name="checkedContent"/></td>
                     <td>
                         <input type="text" value='${item.item_Code }' ondblclick="searchView(this.value)">
                     </td>
@@ -333,6 +333,17 @@
         </container3>
         </form>
         <script>
+      //체크박스함수
+    	function selectAll1(selectAll1){
+        	const checkbox = document.getElementsByName('checkedContent');
+        	checkbox.forEach((checkbox) => {
+            	checkbox.checked = selectAll1.checked;
+        	})
+    	}
+        
+        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+    	deleteButton.addEventListener('click', function(){deleteData();}, false);
+        
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
         updateButton.addEventListener('click', function(){updateRow();}, false); 
         
@@ -392,7 +403,32 @@
      	    		document.getElementById('regitem').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
      	    		alert('수정되었습니다'); 
             	/* } */      	
-            } 
+            }
+     	//삭제함수
+     	    function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
+     	      	var item = document.getElementsByName("checkedContent").length;
+     	      	var no = "";
+     	      	var ary = [];
+     	      	
+     	      	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+     	      		if(document.getElementsByName("checkedContent")[i].checked==true) {
+     	      			no = document.getElementsByName("checkedContent")[i].value;
+     	      			ary.push(no);
+     	      		}       		
+     	      	}
+     	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+     	  			alert('삭제할 목록의 체크박스를 선택해주세요')
+     	  			window.location.href = "${contextPath}/member/regitem.do";
+     	  		}
+     	      	else //컨트롤러로 해당목록의 no값을 보낸다
+     	  			window.location.href = "${contextPath}/member/deleteitem.do?no="+ary;       	
+     	      }
+     	//팝업
+     	function searchitemg(){
+		
+		openWindowPop('${contextPath}/member/itemgpop.do','itemgpopup');
+	}
+	
         </script>
         
 </body>

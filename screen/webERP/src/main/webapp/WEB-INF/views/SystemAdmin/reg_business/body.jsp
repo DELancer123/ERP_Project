@@ -58,6 +58,11 @@
            	background-color: rgb(255, 255, 149);
             text-align: center;
         }
+        
+        #address1 {
+           	background-color: rgb(255, 255, 149);
+            text-align: center;
+        }
 </style>
 </head>
 <body>
@@ -65,16 +70,19 @@
 <container id = contents1>
             <table id="table1">
                 <tr>
+                	<td></td>
                     <p><td colspan = "2" span style="color:black" align="center">기초정보등록</td></p>
                 </tr>
                 <tr>
+                	<td><input type="checkbox" name="checkedContent" onclick="selectAll1(this)"/></td>
                     <td align="center">코드</td>
                     <td align="center">사업장명</td>
                 </tr>
                 <c:forEach var="wor" items="${worView }" >
                 <tr>
+                <td><input type="checkbox" name="checkedContent" value='${wor.workplace_Code}'/></td>
                     <td>
-                        <input type="text" ondblclick="searchView(this.value)"  value='${wor.workplace_Code }'
+                        <input type="text" ondblclick="searchView(this.value)"  value='${wor.workplace_Code}'
                         style="background-color: rgb(235, 235, 235);
                         border-style: none; vertical-align: 1px; width: 80px; 
                         text-align: center;" pattern="[0-9]{4}" maxlength="4"
@@ -145,24 +153,24 @@
                 <tr>
                     <td align="center">사업장우편번호</td>
                     <td>
-                        <input type="text" name="workplace_Zipcode" value="${workplace_Zipcode }"
+                        <input type="text" name="workplace_Zipcode" value="${workplace_Zipcode }" id="zipcode" readonly
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="5"/>
-                        <i class="fas fa-search" style="color: blue;"></i> 
+                        <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="2">
-                        <input type="text" name="workplace_Address" id="reqInput" value="${workplace_Address }"
-                        style="width: 240px;"/>
+                        <input type="text" name="workplace_Address" id="address1" value="${workplace_Address}" readonly
+                        style="width: 240px;" />
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업장번지</td>
                     <td colspan="2">
-                        <input type="text" name="workplace_Number"  value="${workplace_Number }"
+                        <input type="text" name="workplace_Number"  value="${workplace_Number}" id="address2"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"/>
@@ -207,14 +215,25 @@
         </container>
         </form>
             <script>
-        function searchView(name) {
-        	console.log('확인');
-         	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&wor_code=" + name; 
+    	//체크박스함수
+    	function selectAll1(selectAll1){
+            const checkbox = document.getElementsByName('checkedContent');
+            checkbox.forEach((checkbox) => {
+                checkbox.checked = selectAll1.checked;
+            })
         }
+    	
+        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+        deleteButton.addEventListener('click', function(){deleteData();}, false);
         
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
         updateButton.addEventListener('click', function(){updateRow();}, false); 
         
+        function searchView(name) {
+        	console.log('확인');
+         	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&wor_code=" + name; 
+        }
+        //등록함수
         function newRow(){
     		document.getElementsByName("workplace_Code").disabled = true;
     		document.getElementsByName("workplace_Name").disabled = true;
@@ -230,6 +249,7 @@
     		document.getElementById('regworkplace').action = "${contextPath}/member/addbusiness.do";
     		document.getElementById('regworkplace').submit();
     		}
+        //수정함수
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
            	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
            	$('#regworkplace').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
@@ -245,7 +265,26 @@
     	    		document.getElementById('regworkplace').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
     	    		alert('수정되었습니다'); 
            	}      	
-           } 
+           }
+      //삭제함수
+        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
+          	var item = document.getElementsByName("checkedContent").length;
+          	var no = "";
+          	var ary = [];
+          	
+          	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+          		if(document.getElementsByName("checkedContent")[i].checked==true) {
+          			no = document.getElementsByName("checkedContent")[i].value;
+          			ary.push(no);
+          		}       		
+          	}
+          	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+      			alert('삭제할 목록의 체크박스를 선택해주세요')
+      			window.location.href = "${contextPath}/member/regbusiness.do";
+      		}
+          	else //컨트롤러로 해당목록의 no값을 보낸다
+      			window.location.href = "${contextPath}/member/deletbusiness.do?no="+ary;       	
+          }
     	
     	function searchzip(){
     		

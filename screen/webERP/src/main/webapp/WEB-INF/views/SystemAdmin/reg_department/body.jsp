@@ -122,7 +122,7 @@
         <container2 id= contents2>
             <table id="table2" align="center">
                 <thead>
-                	<td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                	<td><input type="checkbox" name="checkedContent" onclick="selectAll1(this)"/></td>
                     <td align="center">부서코드</td>
                     <td align="center">부서명</td>
                     <td align="center">사업장코드</td>
@@ -134,7 +134,7 @@
                 <c:forEach var="department" items="${departmentView}" varStatus="status" >
                 <tbody>
                 <tr id = "updateTest" align="center">
-                <td><input type="checkbox" name="content"/></td>
+                <td><input type="checkbox" name="checkedContent" value = '${department.department_Code}' /></td>
                     <td><input type="text" name="ListVO[${status.index }].department_Code" value = '${department.department_Code}' style="width: 100px;"/></td>
                     <td><input type="text" name="ListVO[${status.index }].department_Name" value = '${department.department_Name}'/></td>
                     <td><input type="text" name="ListVO[${status.index }].workplace_Code" value = '${department.workplace_Code}' style="width: 100px;"/></td>
@@ -161,6 +161,17 @@
         </container2>
         	</form>
         <script>
+      //체크박스함수
+    	function selectAll1(selectAll1){
+        	const checkbox = document.getElementsByName('checkedContent');
+        	checkbox.forEach((checkbox) => {
+            	checkbox.checked = selectAll1.checked;
+        	})
+    	}
+        
+        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+    	deleteButton.addEventListener('click', function(){deleteData();}, false);
+        
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
         updateButton.addEventListener('click', function(){updateRow();}, false); 
         //등록함수
@@ -173,9 +184,9 @@
     		articleNOInput.setAttribute("type","hidden");
     		articleNOInput.setAttribute("name","path");
     		articleNOInput.setAttribute("value", link);
-    		document.getElementById('regdepartment').appendChild(articleNOInput);
-    		document.getElementById('regdepartment').action = "${contextPath}/member/adddepartment.do";
-    		document.getElementById('regdepartment').submit();
+    		document.getElementById('regdepartment2').appendChild(articleNOInput);
+    		document.getElementById('regdepartment2').action = "${contextPath}/member/adddepartment.do";
+    		document.getElementById('regdepartment2').submit();
     		}
         //수정함수
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
@@ -201,6 +212,25 @@
 	    		alert('수정되었습니다'); 
        	/* } */      	
        } 
+      //삭제함수
+        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
+          	var item = document.getElementsByName("checkedContent").length;
+          	var no = "";
+          	var ary = [];
+          	
+          	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+          		if(document.getElementsByName("checkedContent")[i].checked==true) {
+          			no = document.getElementsByName("checkedContent")[i].value;
+          			ary.push(no);
+          		}       		
+          	}
+          	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+      			alert('삭제할 목록의 체크박스를 선택해주세요')
+      			window.location.href = "${contextPath}/member/regdepartment.do";
+      		}
+          	else //컨트롤러로 해당목록의 no값을 보낸다
+      			window.location.href = "${contextPath}/member/deletedepartment.do?no="+ary;       	
+          }
         </script>
 </body>
 </html>

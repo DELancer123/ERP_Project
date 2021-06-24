@@ -92,6 +92,9 @@
 
             <table id="table1">
                 <tr>
+                	<td>
+                        <input type="checkbox" name="checkedContent" onclick="selectAll1(this)"/>
+                    </td>
                     <td align="center">회사코드</td>
                     <td align="center">회사명</td>
                     <td align="center">구분</td>
@@ -99,6 +102,7 @@
    
                 <c:forEach var="com" items="${comView}" >     
                 <tr>
+                <td><input type="checkbox" name="checkedContent" value='${com.company_Code}'/></td>
                     <td>
                         <input type="text"  ondblclick="searchView(this.value)" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
@@ -127,7 +131,7 @@
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%">새로등록</button>
+                        text-align: center; width:125%">새로등록</button>
                     </td>
                 	</tr>
             </table>
@@ -226,7 +230,7 @@
                 <tr>
                     <td align="center">본점우편번호</td>
                     <td colspan="2">
-                        <input type="text" name="main_Store_Postal_Code" id="zipcode"
+                        <input type="text" name="main_Store_Postal_Code" id="zipcode" readonly
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="6"
@@ -237,7 +241,7 @@
                 <tr>
                     <td align="center">본점주소</td>
                     <td colspan="2">
-                        <input type="text" name="main_Store_Address" id="address1" class= "reqInput"
+                        <input type="text" name="main_Store_Address" id="address1" class= "reqInput" readonly
 						value='${main_Store_Address }'
                         style="width: 240px;"/>
                     </td>
@@ -303,13 +307,24 @@
         </container>
 </form>
 <script>
+//체크박스함수
+	function selectAll1(selectAll1){
+    	const checkbox = document.getElementsByName('checkedContent');
+    	checkbox.forEach((checkbox) => {
+        	checkbox.checked = selectAll1.checked;
+    	})
+	}
+
+	var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+	deleteButton.addEventListener('click', function(){deleteData();}, false);
+
+	var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+    updateButton.addEventListener('click', function(){updateRow();}, false); 
+	
 	function searchView(name) {
 		console.log('확인');
  		window.location.href = "${contextPath}/member/regcompany.do?submit=1&&com_code=" + name; 
 	}
-	
-	var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-    updateButton.addEventListener('click', function(){updateRow();}, false); 
 	
 	//등록함수
 	function newRow(){
@@ -364,7 +379,27 @@
       	const newParam = URLSearch.toString();
       	window.location.href = location.pathname +'?'+newParam;
       }
+      
   }
+	//삭제함수
+    function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
+      	var item = document.getElementsByName("checkedContent").length;
+      	var no = "";
+      	var ary = [];
+      	
+      	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+      		if(document.getElementsByName("checkedContent")[i].checked==true) {
+      			no = document.getElementsByName("checkedContent")[i].value;
+      			ary.push(no);
+      		}       		
+      	}
+      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+  			alert('삭제할 목록의 체크박스를 선택해주세요')
+  			window.location.href = "${contextPath}/member/regcompany.do";
+  		}
+      	else //컨트롤러로 해당목록의 no값을 보낸다
+  			window.location.href = "${contextPath}/member/deletecompany.do?no="+ary;       	
+      }
 </script>
 </body>
 </html>
