@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 
 public interface CommonProductionController {
 
@@ -34,5 +35,7 @@ public interface CommonProductionController {
 	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

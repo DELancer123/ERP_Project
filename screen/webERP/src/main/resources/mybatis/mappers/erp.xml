@@ -256,10 +256,20 @@ where (status = '확정' or status = '마감')
 	</select>
 	
 		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection,note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
+		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection,note 
+		FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
 ]]>
 	</select>
 	
+	
+	
+	<insert id="insertRegistOperationPerformanceInfoDetail" parameterType="RegistOperationPerformanceDetailVO">
+		<![CDATA[
+		
+		 insert into CPM_PM_Ope_Per_Reg_Det
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무', #{performanceDate}, #{processCode}, #{workplaceCode}, #{sortation}, #{performanceQuantity}, #{inspection},#{note}, #{workOrderNumber})
+		]]>  
+	</insert>
 
 	
 	<select id="checkMaterialUse" resultType="string">

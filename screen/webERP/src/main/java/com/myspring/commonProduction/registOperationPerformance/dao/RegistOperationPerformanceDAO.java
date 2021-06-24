@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
 
 public interface RegistOperationPerformanceDAO {
 

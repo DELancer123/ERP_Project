@@ -12,6 +12,7 @@ import com.myspring.commonProduction.operationInsClosing.vo.OperationInsClosingV
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
   
   public interface CommonProductionService {
@@ -43,6 +44,7 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
 		throws DataAccessException, ParseException;
   public List<RegistOperationPerformanceVO> selectAllRegistOperationPerformanceInfoDetail(String number)
 		throws DataAccessException, ParseException;
+  public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO) throws DataAccessException;
  
   }
  
