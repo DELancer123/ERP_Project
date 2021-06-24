@@ -48,9 +48,9 @@ public class operationInsClosingDAOImpl implements operationInsClosingDAO {
 			CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
 			COIvo.setStartDate(start);
 			COIvo.setEndDate(end);
-			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
+			infoList = sqlSession.selectList("mappers.erp.selectAllOperationInsClosingInfoCondition", COIvo);
 		} else {
-			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
+			infoList = sqlSession.selectList("mappers.erp.selectAllOperationInsClosingInfo");
 		}
 		
 		return infoList;

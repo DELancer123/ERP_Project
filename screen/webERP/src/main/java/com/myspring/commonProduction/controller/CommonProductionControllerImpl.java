@@ -288,7 +288,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  	@Override
  	@RequestMapping(value="/member/materialUse.do" ,method = RequestMethod.GET)
  	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception {
- 		String number = (String) request.getParameter("OPNumber");
+ 		String number = (String) request.getParameter("opNumber");
  		String viewName = getViewName(request);
  		String[] numberary = number.split(",");
  		List<String> message = new ArrayList();

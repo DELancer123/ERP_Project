@@ -217,8 +217,8 @@
                     <tbody>
                         <c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
-  					 	<td><input type="checkbox" value="${detail.OPNumber }" name="content2"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.OPNumber }" readonly /></td>
+  					 	<td><input type="checkbox" value="${detail.opNumber }" name="content2"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.opNumber }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].materialUseStatus" value="${detail.materialUseStatus }" readonly /></td>
                         <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" readonly /></td>
@@ -261,12 +261,13 @@
 
 <script>
 /* input date의 현재 날짜 기본값 설정*/
-document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
-document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
-
+ /* input date의 현재 날짜 기본값 설정*/
+ document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
+ document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
+ 
  /* 검색부 date onChange 함수 설정 */
- 		 		var startDate = "";
-    	var endDate = "";
+ 		var startDate = new Date().toISOString().substring(0,10);;
+    	var endDate = new Date().toISOString().substring(0,10);;
     	
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
@@ -363,17 +364,18 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
         
         
         function materialUse() {
-        	var item = document.getElementsByName("content").length;
+        	var item = document.getElementsByName("content2").length;
         	  var no = "";
         	  var ary = [];
         	  for(var i=0; i<item;i++){
-        		  if(document.getElementsByName("content")[i].checked==true){
-        			  no = document.getElementsByName("content")[i].value;
+        		  if(document.getElementsByName("content2")[i].checked==true){
+        			  no = document.getElementsByName("content2")[i].value;
         			  ary.push(no);
+        		  	}
         		  }
-        			window.location.href = "${contextPath}/member/materialUse.do?OPNumber="+ary;
-        	  }
-        }
+        	  
+        		window.location.href = "${contextPath}/member/materialUse.do?opNumber="+ary;
         
+        }
 
       </script>

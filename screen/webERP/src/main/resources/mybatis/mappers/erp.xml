@@ -225,7 +225,7 @@
 	<result property="taskTeam" column="taskTeam" />
 </resultMap>	
 <resultMap id="RegistOperationPerformanceResultDetail" type="RegistOperationPerformanceDetailVO">
-	<result property="OPNumber" column="OPNumber" />
+	<result property="opNumber" column="opNumber" />
 	<result property="materialUseStatus" column="materialUseStatus" />
 	<result property="performanceDate" column="performanceDate" />
 	<result property="processCode" column="PROCESS_CODE" />
@@ -243,7 +243,7 @@ from CPM_PM_Ope_Per_Reg
 	</select>
 	
 		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[SELECT OPNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection, note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
+		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection, note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
 ]]>
 	</select>
 	
@@ -303,6 +303,22 @@ order by opr.workordernumber
 	</select>
 	
 	<!-- 작업지시 마감처리 CRUD -->
+		<select id="selectAllOperationInsClosingInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<where> status = '확정' or status = '마감'
+			<if test="startDate != '' and startDate != null">
+				and instructionDate between #{startDate} and #{endDate}
+			</if>
+			<if test="endDate != '' and endDate != null">
+				and dueDate between #{startDate} and #{endDate}
+			</if>
+		</where>
+	</select>
+	
+		<select id="selectAllOperationInsClosingInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
+		<![CDATA[select * from CPM_PM_Ope_Per_Reg where status = '확정' or status = '마감' ]]>
+	</select>
+	
 	<select id="selectAllOperationInsClosingDetail" resultType="OperationInsClosingVO" >
 		<![CDATA[select oprd.OPNumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code) as processCode,func_pro_wor_reg(oprd.workplace_code) as workplaceCode,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
 (opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance, ir.cost as unitPrice,(opr.indicatedquantity*ir.cost) as price,opr.inspection,opr.note
