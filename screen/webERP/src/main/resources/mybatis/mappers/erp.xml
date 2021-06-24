@@ -211,6 +211,20 @@
 		]]>  
 	</insert>
 	
+	<select id="selectWorkOrderNumber" resultType="string">
+		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+	</select>
+	
+	<update id="materialSet">
+		<![CDATA[update CPM_PM_OPE_PER_REG
+		set MATERIALFORWARDINGSTATUS = '출고대기'
+		where workOrderNumber = #{workOrderNumber}]]>
+	</update>
+	
+	<delete id="deleteOperationInstruction" parameterType="OperationDetailVO">
+		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+	</delete>
+	
 	<!-- 작업실적등록 CRUD -->
 	
 <resultMap id="RegistOperationPerformanceResult" type="RegistOperationPerformanceVO">

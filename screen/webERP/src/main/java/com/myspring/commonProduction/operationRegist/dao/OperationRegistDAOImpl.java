@@ -137,14 +137,16 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	@Override
 	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
 		int result = 0; 
+		String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
 
 		int idx = ODVO.getDetailVO().size();
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));		
+		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
 		System.out.println("DAOresult:"+result);
 		}
+		sqlSession.update("mappers.erp.materialSet", workOrderNumber);
 		return result;
 	}
 	
