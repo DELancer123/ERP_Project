@@ -281,8 +281,6 @@ public class BomViewControllerImpl implements BomViewController {
 			outVO1.get(i).setOutsourcing_Code(code);
 			outVO1.get(i).setItem_code(numberary[i]);
 		}
-		System.out.println(outVO1.get(0).getItem_code());
-		System.out.println(outVO1.get(1).getItem_code());
 		result = viewService.doutprice(outVO1);
 		ModelAndView mav = new ModelAndView("redirect:/member/outprice.do?itemNumber="+code+"&&placeCode="+place+"&&submit=1");
 		return mav;
