@@ -91,6 +91,7 @@ public class StockManageControllerImpl implements StockManageController {
 
 		return mav;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/member/searchPopName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
