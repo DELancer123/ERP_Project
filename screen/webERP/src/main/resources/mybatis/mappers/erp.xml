@@ -113,7 +113,7 @@
 		<result property="plan_quantity" column="plan_quantity" />
 		<result property="buyer" column="buyer" />
 		<result property="note" column="note" />
-		<result property="startDate" column="startDate" />
+ 		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
 	</resultMap>
 	<resultMap type="mpsosVO" id="MpsOSResult">
@@ -133,7 +133,7 @@
 	<select id="selectAllMainPlanList" resultMap="mainplanResult" parameterType="MainPlanVO"> 
 		<![CDATA[SELECT * from pmm_pm_mps]]><!-- 
 	select cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
-	cc.dueDate, cc.releaseExpectedDate,
+	cc.dueDate, cc.expectedDate,
 	mp.plandate, mp.plan_Quantity, mp.buyer
 	from CSM_SM_COR_Reg cc, PMM_PM_MPS mp
 	where cc.dueDate = mp.plandate -->
@@ -149,11 +149,11 @@
 		<![CDATA[SELECT * from pmm_pm_mps_os]]><!-- 
 	select co.ordersNum, co.ordersdate, co.customerCode, co.Note,
 	cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
-	cc.releaseExpectedDate
+	cc.expectedDate,cc.ordersQuantity
 	from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc -->
 	<where>
 		<if test="startDate != '' and startDate != null">orderdate between #{startDate} and #{endDate} </if>
-		<if test="endDate != '' and endDate != null">and okeydate between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and orderdate between #{startDate} and #{endDate} </if>
 	</where>
 	</select>
 	<update id="updateMPS" >
@@ -163,8 +163,8 @@
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
 		<![CDATA[insert into pmm_pm_mps
-			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},#{sequence},
-			#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
+			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},
+			#{sequence},#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
 		]]>
 	</insert>
 	<!-- billing 청구등록 -->
@@ -221,8 +221,14 @@
 
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
+		<result property="standard" column="standard" />
+		<result property="due_date" column="due_date" />
 		<result property="sequence" column="sequence" />
 		<result property="expected_order" column="expected_order" />
+		<result property="expected_quantity" column="expected_quantity" />
+		<result property="inventory_unit" column="inventory_unit" />
 		<collection property="bomVO" resultMap="bomView"/>
 		<collection property="mainplanVO" resultMap="mainplanResult"/>
 	</resultMap>
@@ -241,17 +247,17 @@
 	</select>
 	<update id="updateMRP" >
 		<![CDATA[update pmm_pm_mrp
-			set expected_quantity =#{expected_quantity}
+			set expected_quantity =#{expected_quantity},
 			where sequence = #{sequence}]]>  
 	</update>
 	
 	<!-- orderclosing 발주마감 -->
 	<resultMap id="orderclosingResult" type="orderclosingVO">
-		<result property="sequence" column="sequence" />
 		<result property="order_no" column="order_no" />
 		<result property="order_date" column="order_date" />
 		<result property="code" column="code" />
 		<result property="buyer" column="buyer" />
+		<result property="sequence" column="sequence" />
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
@@ -259,6 +265,7 @@
 		<result property="order_quantity" column="order_quantity" />
 		<result property="price" column="price" />
 		<result property="deadline" column="deadline" />
+		<result property="note" column="note" />
 	</resultMap>
 	
 	<select id="selectAllClosingList" resultMap="orderclosingResult">
@@ -284,14 +291,14 @@
 	</delete>
 	<insert id="insertClosing" parameterType="orderclosingVO">
 		<![CDATA[insert into PMM_PM_ORDER
-		values(#{sequence},F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{buyer},#{item_Code},#{item_Name},#{standard},
-		#{inventory_unit},#{order_quantity},#{price},#{deadline})
+		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{buyer},#{sequence},#{item_Code},#{item_Name},#{standard},
+		#{inventory_unit},#{order_quantity},#{price},#{deadline},#{note})
 		]]>
 	</insert> 
 	<update id="updateClosing">
 		<![CDATA[update PMM_PM_ORDER
 			set order_quantity=#{order_quantity} 
-			where item_code=#{item_code}]]>
+			where sequence=#{sequence}]]>
 	</update>
 	
 	<!-- 품목단가등록(재원) 파트 -->

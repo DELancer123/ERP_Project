@@ -20,28 +20,26 @@ public class MpsOSVO {
 	private int order_Balance;
 	private Date expected_Date;
 	private String note;
+	//private OrderVO;
+	//private CorVO;
 
 public MpsOSVO() {}
 
-public MpsOSVO(String orderno,int sequence,Date orderdate, Date okeydate,String buyer,String item_Code,
-		String item_Name,String standard,String inventory_unit,int order_quantity,int apply_quantity,int order_Balance,Date expected_Date,String note) 
-{
-	this.orderno=orderno;
-	this.sequence=sequence;
-	this.orderdate=orderdate;
-	this.okeydate=okeydate;
-	this.buyer=buyer;
-	this.item_Code=item_Code;
-	this.item_Name=item_Name;
-	this.standard=standard;
-	this.inventory_unit=inventory_unit;
-	this.order_quantity=order_quantity;
-	this.apply_quantity=apply_quantity;
-	this.order_Balance=order_Balance;
-	this.expected_Date=expected_Date;
-	this.note=note;
-	
-}
+//public OrderVO getOrderVO() {
+//return OrderVO;
+//}
+//
+//public void setOrderVO(OrderVO OrderVO) {
+//this.OrderVO = OrderVO;
+//}
+//
+//public CorVO getCorVO() {
+//return mainplanVO;
+//}
+//
+//public void setCorVO(CorVO CorVO) {
+//this.CorVO = CorVO;
+//}
 
 public String getOrderno() {return orderno;}
 public void setOrderno(String orderno) {this.orderno=orderno;}

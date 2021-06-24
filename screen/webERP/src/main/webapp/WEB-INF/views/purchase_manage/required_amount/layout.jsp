@@ -260,10 +260,10 @@
             </ul>
         </nav>
         <nav id="nav2">
-            <button onclick="deleteRow()">삭제</button>
+<!--             <button onclick="deleteRow()">삭제</button> -->
             <button id="view_button">조회</button>
-            <button id="save" onclick="InsertRow()">저장</button>
-            <button id="update" onclick="updateRow()">수정</button>
+<!--             <button id="save" onclick="InsertRow()">저장</button> -->
+             <button id="update" onclick="updateRow()">수정</button>
         </nav>
         <div>
             <tiles:insertAttribute name="side"/>

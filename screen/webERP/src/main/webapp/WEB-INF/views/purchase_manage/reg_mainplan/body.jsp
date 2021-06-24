@@ -108,13 +108,13 @@
 	<table id="MPSTable">
 		<thead align="center" style="background-color: gray">
 		 <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-			<td>순서</td>
 			<td>계획번호</td>
 			<td>계획일</td>
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
 			<td>단위</td>
+			<td>순서</td>
 			<td>출하예정일</td>
 			<td>납기일</td>
 			<td>계획수량</td>
@@ -125,29 +125,36 @@
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
-  		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}' readonly/></td>				
+<%--  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.CorVO.item_Code}' readonly/></td>	 --%>			
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
+<%--  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.CorVO.item_Name}' readonly/></td>				 --%>
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
+<%--  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.CorVO.stand}' style="width:100%" /></td>				 --%>
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
+<%--  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.CorVO.unit}' style="width:100%" readonly/></td>				 --%>
+  		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
+<%--  				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.CorVO.expdate}' readonly/></td>				 --%>
  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
+<%--  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.CorVO.duedate}' /></td>				 --%>
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
+<%--  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.CorVO.note}' /></td>				 --%>
 			</tr>
 		</c:forEach>		
-		<tr id="insertTest" align="center">
+ 		<tr id="insertTest" align="center">
 		<td></td>    	
-    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' style="width:100%"/></td>
     	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
     	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
     	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${item_Code}' readonly/></td>
     	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${item_Name}' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${standard}' style="width:100%"/></td>
     	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${inventory_unit}' style="width:100%" /></td>
+    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${sequence}' style="width:100%"/></td>
     	<td><input type="date" id="expected_date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${expected_date}'readonly/></td>
     	<td><input type="date" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${due_date}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${plan_quantity}' /></td>

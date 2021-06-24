@@ -23,8 +23,21 @@ public class OrderClosingVO {
 	private int order_quantity;
 	private int price; 
 	private String deadline;
+	private String note;
 	private List<OrderClosingVO> ListVO;
 	
+	
+	
+	
+	
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	@Override
 	public String toString() {return Arrays.toString(ListVO.toArray());}
 	

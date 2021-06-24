@@ -49,7 +49,7 @@ a {
 </style>
 </head>
 <body>
-<form name="select" action="member/mainplan.do" method="get">
+<form name="select" action="member/mainplan.do" method="get" onSubmit="cntCheck()">
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
@@ -90,15 +90,23 @@ a {
 					<td><input type="checkbox" name="content"/></td>
 					<td style="width:13px;"><input type="text" value="${MpsOS.sequence}" style="width:100%"/></td>
 						<td><input type="text" value="${MpsOS.orderno}" /></td>
+<%-- 						<td><input type="text" value="${MpsOS.OrderVO.ordCode}" /></td> --%>
 						<td><input type="text" value="${MpsOS.orderdate}"/></td>
+<%-- 						<td><input type="text" value="${MpsOS.OrderVO.ordDate}"/></td> --%>
 						<td><input type="text" id="buyer" value="${MpsOS.buyer}" /></td>
+<%-- 						<td><input type="text" id="buyer" value="${MpsOS.OrderVO.custCode}" /></td> --%>
 						<td><input type="text" id="item_Code" value="${MpsOS.item_Code}" /></td>
+<%-- 						<td><input type="text" id="item_Code" value="${MpsOS.CorVO.item_Code}" /></td> --%>
 						<td><input type="text" id="item_Name" value="${MpsOS.item_Name}" /></td>
+<%-- 						<td><input type="text" id="item_Name" value="${MpsOS.CorVO.item_Name}" /></td> --%>
 						<td><input type="text" value="${MpsOS.standard}" style="width:100%"/></td>
+<%-- 						<td><input type="text" value="${MpsOS.CorVO.stand}" style="width:100%"/></td> --%>
 						<td><input type="text" value="${MpsOS.inventory_unit}" style="width:100%"/></td>
+<%-- 						<td><input type="text" value="${MpsOS.CorVO.unit}" style="width:100%"/></td> --%>
 						<td><input type="text" value="${MpsOS.order_quantity}" style="width:100%"/></td>
-					
+<%-- 						<td><input type="text" value="${MpsOS.CorVO.orderQuant}" style="width:100%"/></td> --%>					
 						<td><input type="text" id="expected_Date" value="${MpsOS.expected_Date}"/></td>
+<%-- 						<td><input type="text" id="expectedDate" value="${MpsOS.CorVO.expDate}"/></td> --%>
 						<td><input type="text" value="${MpsOS.note}" style="width:100%"/></td>
 					</tr>
 				</c:forEach>
@@ -116,12 +124,13 @@ function sendToParent(){
     var text_Code = document.getElementById("item_Code").value;
     var text_Name = document.getElementById("item_Name").value;
     var text_expDate = document.getElementById("expected_Date").value;
-        
+     
     opener.document.getElementById("buyer").value=text_buyer;
     opener.document.getElementById("item_Code").value=text_Code;
     opener.document.getElementById("item_Name").value=text_Name;
     opener.document.getElementById("expected_date").value=text_expDate;
         
+
      window.close();
 } 
 
