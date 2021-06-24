@@ -136,9 +136,9 @@ request.setCharacterEncoding("UTF-8");
 	     					<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div>
 	     				</td>
 	                    <td style="width:80px; text-align:left;">
-	                    	<input type=text name="ckcustomerCode" id="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>
+	                    	<input type=text name="ckcustomerCode" id="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>	                    
 	                    </td>	
-	                    
+	                   
 	                    
 	                    <td align="center" style="width:100px; padding-right:7px;">거래처구분</td>
 	                    <td style="width:100px; text-align:left" >
@@ -253,7 +253,7 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">우편번호</td>
                     <td>
                         <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
-                        style="width:150px;"/>
+                        style="width:150px; background-color:#eee;" readonly/>
                         <a href="javascript:searchZip()"><i class="fas fa-search" style="color :blue;"></i></a>
                     </td>
                 </tr>
@@ -301,7 +301,7 @@ request.setCharacterEncoding("UTF-8");
         function searchData() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
         	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    if(!$(this).val()) { //#searchForm는 form태그의 id값임
         	    	is_empty = true;      	    	
         	    }      	 
         	});       	 
@@ -309,7 +309,7 @@ request.setCharacterEncoding("UTF-8");
         	    alert('검색 내용이 비어있습니다');
         	}
         	else{
-	        	document.getElementById('searchForm').action = "${contextPath}/member/regbasicacc.do?submit=2&&"+$("#customerCode").val;
+	        	document.getElementById('searchForm').action = "${contextPath}/member/regbasicacc.do?"
 	    		document.getElementById('searchForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 
         	}      	
         } 

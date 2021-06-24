@@ -54,23 +54,27 @@ public class SystemmagControllerImpl implements SystemmagController {
 		return mav;
 	}
 	
-	// 조회
-	@Override
-	@RequestMapping(value = "/member/searchbasicaccasdf.do", method = RequestMethod.GET)
-	public ModelAndView searchCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = null;
-		String viewName = getViewName(request);
-		System.out.println("viewName:"+viewName);
-		
-		String customerCode = (String) request.getParameter("customerCode"); //검색부의값을 겟파라미터로 가져옴
-		System.out.println("검색구현중customerCode:"+customerCode);
-		
-		List comView = systemmagService.searchCustomer(customerCode); //select where 쿼리를 호출한다
-		mav = new ModelAndView("redirect:/member/regbasicacc.do?submit=2searched="+customerCode);
-		mav.addObject("comView", comView);
-		return mav;
-	
-	}
+	/*
+	 * // 조회
+	 * 
+	 * @Override
+	 * 
+	 * @RequestMapping(value = "/member/searchbasicaccasdf.do", method =
+	 * RequestMethod.GET) public ModelAndView searchCustomer(HttpServletRequest
+	 * request, HttpServletResponse response) throws Exception { ModelAndView mav =
+	 * null; String viewName = getViewName(request);
+	 * System.out.println("viewName:"+viewName);
+	 * 
+	 * String customerCode = (String) request.getParameter("customerCode"); //검색부의값을
+	 * 겟파라미터로 가져옴 System.out.println("검색구현중customerCode:"+customerCode);
+	 * 
+	 * List comView = systemmagService.searchCustomer(customerCode); //select where
+	 * 쿼리를 호출한다 mav = new
+	 * ModelAndView("redirect:/member/regbasicacc.do?submit=2searched="+customerCode
+	 * ); mav.addObject("comView", comView); return mav;
+	 * 
+	 * }
+	 */
 	
 	
 	// 조회
@@ -78,32 +82,40 @@ public class SystemmagControllerImpl implements SystemmagController {
 	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
-		String viewName = getViewName(request);
-		System.out.println("viewName:"+viewName);
+		String viewName = getViewName(request);	
 		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
 		String zipCode = (String) request.getParameter("zipCode");
-
-		if (code == null || submit == null) { //첫접속이라면?
+		String customerCode = (String) request.getParameter("customerCode");//검색부의값을 겟파라미터로 가져옴
+		
+		System.out.println("viewName:"+viewName);
+		System.out.println("customerCode:"+customerCode);
+		System.out.println("submit:"+submit);
+		
+		if (code == null && submit == null  && customerCode == null) { //첫접속이라면?
+			System.out.println("1번분기들어옴");
 			List comView = systemmagService.viewAllCustomer(); //select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			return mav;
 		}
 
-		if (submit.equals("1")) { //목록을 선택했을때, 즉 조회를 했을때
+		else if (submit != null) { //목록을 선택했을때, 즉 조회를 했을때
+			System.out.println("2번분기들어옴");
 			List comView = systemmagService.viewAllCustomer(); //select문에
 			List comcom = systemmagService.viewCustomer(code); //where절을 추가한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
 		}
-		if (submit.equals("2")) {
-			String customerCode = (String) request.getParameter("customerCode"); //검색부의값을 겟파라미터로 가져옴
+		else if (customerCode != null && submit == null) {
+			System.out.println("3번분기들어옴");
+			System.out.println("customerCode:"+customerCode);
 			System.out.println("viewName:"+viewName);
 			List comView = systemmagService.searchCustomer(customerCode);
-			mav = new ModelAndView();
+			mav = new ModelAndView("/member/regbasicacc");
 			mav.addObject(comView);
+			System.out.println("size:"+comView.size());
 		}
 		return mav;
 	}
