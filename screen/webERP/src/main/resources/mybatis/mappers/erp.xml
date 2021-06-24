@@ -196,7 +196,7 @@
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[select distinct( bom.item_code) as itemCode, bom.item_name, bom.standard, bom.inventory_unit, reg.indicatedquantity
+		<![CDATA[select distinct(bom.item_code) as item_Code, bom.item_name, bom.standard, bom.inventory_unit as inventory_unit, reg.IndicatedQuantity
 				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det,cpm_bim_bom_reg bom
 				where reg.item_code = bom.parent_item_code and reg.workordernumber = #{number}
                 order by bom.item_code]]>
