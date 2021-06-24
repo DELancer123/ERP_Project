@@ -66,7 +66,6 @@ a {
 			<div id="button">
 				<input type="button" id="planSearch" value="조회" onClick="sendData();" />			
 				<button onClick="sendToParent();">적용</button>
-				<button onClick="sendToParent()2;">적용2</button>
 				<button>취소</button>
 			</div>
 		</div>
@@ -122,14 +121,6 @@ function sendToParent(){
     opener.document.getElementById("item_Code").value=text_Code;
     opener.document.getElementById("item_Name").value=text_Name;
     opener.document.getElementById("expected_date").value=text_expDate;
-        
-     window.close();
-} 
-function sendToParent2(){	
-	$("#item_Code", opener.document).val($("#item_Code").val());
-	$("#item_Name", opener.document).val($("#item_Name").val());
-	$("#buyer", opener.document).val($("#buyer").val());
-	$("#expected_Date", opener.document).val($("#expected_Date").val());
         
      window.close();
 } 

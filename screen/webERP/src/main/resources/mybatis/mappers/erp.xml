@@ -291,7 +291,7 @@
 	<update id="updateClosing">
 		<![CDATA[update PMM_PM_ORDER
 			set order_quantity=#{order_quantity} 
-			where sequence=#{sequence}]]>
+			where item_code=#{item_code}]]>
 	</update>
 	
 	<!-- 품목단가등록(재원) 파트 -->
