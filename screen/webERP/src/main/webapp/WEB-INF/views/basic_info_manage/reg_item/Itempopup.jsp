@@ -52,9 +52,11 @@
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>검색1</td>
+                    <td>Code</td>
                     <td><input type="text" id="code" /></td>
-                    <td>검색2</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
                     <td><input type="text" id="name" /></td>
                 </tr>
             </table>
@@ -69,10 +71,9 @@
                     <td>품목코드</td>
                     <td>품명</td>
                 </tr>
-                <c:forEach var="itemg" items="${itemgView}" >     
+                <c:forEach var="itemg" items="${itgView}" >     
    <tr align="center">
       <td><a href="javascript:popFunction('${itemg.item_Group_Code }','${itemg.item_Group_Name }')">${itemg.item_Group_Code}</a></td>
-      <td><a href="#">${itemg.item_Group_Code}</a></td>
       <td><a href="#">${itemg.item_Group_Name}</a></td>
     </tr>
     </c:forEach> 

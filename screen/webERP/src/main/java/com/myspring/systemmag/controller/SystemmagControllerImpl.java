@@ -220,9 +220,9 @@ public class SystemmagControllerImpl implements SystemmagController{
 		public ModelAndView itgpopup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = getViewName(request);
 			String itgNumber = (String) request.getParameter("itemg_Code");
-			/* List itgView = systemmagService.itgView(itgNumber); */
+			List itgView = systemmagService.itgView(itgNumber);
 			ModelAndView mav = new ModelAndView(viewName);
-			/* mav.addObject("itgView", itgView); */
+			mav.addObject("itgView", itgView);
 			return mav;
 		}
 		//품목등록

@@ -134,11 +134,11 @@
                 <tr>
                     <td>Ç°¸ñ±º</td>
                     <td>
-                        <input type=text style="width:80px;">
+                        <input type=text style="width:80px;" value='${param.item_Group_Code}' />
                         <a href="javascript:searchitemg()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                     <td>
-                        <input type=text>
+                        <input type=text value='${param.item_Group_Name}' />
                     </td>
                 </tr>
                 <tr>
