@@ -274,16 +274,17 @@ public class BomViewControllerImpl implements BomViewController {
 		String[] numberary = number.split(",");
 		RegOutSourcingPriceVO outVO = new RegOutSourcingPriceVO();
 		List<RegOutSourcingPriceVO> outVO1= new ArrayList<RegOutSourcingPriceVO>();
+		System.out.println("길이" + numberary.length);
 		for(int i = 0;i<numberary.length;i++) {
-			outVO.setItem_code(numberary[i]);
-			outVO.setOutsourcing_Code(code);
-			outVO.setOutcustomer(place);
-			outVO1.add(i, outVO);
+			outVO1.add(i,outVO);
+			outVO1.get(i).setOutcustomer(place);
+			outVO1.get(i).setOutsourcing_Code(code);
+			outVO1.get(i).setItem_code(numberary[i]);
 		}
-		System.out.println(outVO1.get(0).getOutsourcing_Code() + code);
-		System.out.println(outVO1.get(0).getOutcustomer() + place);
+		System.out.println(outVO1.get(0).getItem_code());
+		System.out.println(outVO1.get(1).getItem_code());
 		result = viewService.doutprice(outVO1);
-		ModelAndView mav = new ModelAndView("redirect:/member/outprice.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/outprice.do?itemNumber="+code+"&&placeCode="+place+"&&submit=1");
 		return mav;
 	}
 

@@ -58,7 +58,8 @@
                         </ul></li>
                     <li><a href="#" id="side3">재고수불현황</a>
                         <ul id="l_sub3">
-                            <li><a href="http://localhost:8090/webERP/member/curinvenstat.do#">현재고현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/curinvenstat.do#">현재고현황(재고)</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/curfinishedinvenstat.do#">현재고현황(완제품)</a></li>
                             <li><a href="http://localhost:8090/webERP/member/supplystat.do#">재고수불현황(일자,유형별)</a></li>
                             <li><a href="http://localhost:8090/webERP/member/lotbusiness.do#">현재고(LOT)현황(전사,사업장)</a></li>
                             <li><a href="http://localhost:8090/webERP/member/lotware.do#">현재고(LOT)현황(창고,장소)</a></li>
