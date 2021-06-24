@@ -14,6 +14,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//일반거래처등록
 	@Override
 	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException{
 		int result = sqlSession.insert("mappers.erp.insertNewCustomer",systemmagVO);
@@ -59,6 +60,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		List zipList = null;
 		zipList = sqlSession.selectList("mappers.erp.selectZipList");
 		return zipList;
+	}
+	
+	//창고/공정/외주공정등록
+	@Override
+	public List viewAllOutware() throws DataAccessException {
+		List<SystemmagVO> outwareList = null;
+		outwareList = sqlSession.selectList("mappers.erp.selectAllOutware");
+		return null;
 	}
 
 	

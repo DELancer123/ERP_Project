@@ -102,27 +102,29 @@
                 <tr>
                     <td>사업장</td>
                     <td>
-                        <input type="text">
+                        <input type="text" style="width:100px;">
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td> 
                     <td>
-                        <input type="text">
+                        <input type="text" disabled>
                     </td>
+					<td style="width:50px;"></td>
+
                     <td>거래처</td>
                     <td>
-                        <input type="text"">
+                        <input type="text" style="width:100px;">
                         <i class="fas fa-search" style="color: blue;"></i>
                     </td>
                     <td>
-                        <input type="text"">
+                        <input type="text" disabled>
                     </td>
                 </tr>
             </table>
             <div>
-                <ul class="tabs" style="left:0px; bottom:0px; position: absolute;">
+                <ul class="tabs" style="left:0px; bottom:0px; position: absolute;" >
                     <li class="tab-link current" data-tab="tab-1" id="month_button">창고/장소</li>
-                    <li class="tab-link" data-tab="tab-2" id="things_button">생산공정/작업장</li>
-                    <li class="tab-link2" data-tab="tab-3" id="set_button">외주공정/작업장</li>
+                    <li class="tab-link" data-tab="tab-2" id="things_button">생산공정/<br>작업장</li>
+                    <li class="tab-link2" data-tab="tab-3" id="set_button">외주공정/<br>작업장</li>
                 </ul>
             </div>
         </container1>
@@ -200,6 +202,7 @@
         var month_button = document.getElementById('month_button');
         var things_button = document.getElementById('things_button');
         var set_button = document.getElementById('set_button');
+        
         month_button.onclick = function(){
             var month = document.getElementById('month');
             var things = document.getElementById('things');

@@ -47,7 +47,7 @@
                             <li><a href="http://localhost:8090/webERP/member/regbasicacc.do">일반거래처등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regitemgroup.do">품목군등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regitem.do">품목등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/outware">창고/공정/외주공정등록</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/outware.do">창고/공정/외주공정등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/logistics_manage.do">물류관리내역등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/logperbusi.do">물류실적담당자등록(거래차)</a></li>
                             <li><a href="http://localhost:8090/webERP/member/logperitem.do">물류실적담당자등록(품목)</a></li>

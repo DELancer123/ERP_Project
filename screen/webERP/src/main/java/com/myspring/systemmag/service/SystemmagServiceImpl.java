@@ -17,6 +17,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	@Autowired
 	private SystemmagDAO systemmagDAO;
 	
+	//일반거래처등록
 	@Override
 	public int addCustomer (SystemmagVO systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
@@ -59,7 +60,13 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 
 	
-
+	//창고/공정/외주공정등록
+	@Override
+	public List viewAllOutware() throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewAllOutware();
+		return outwareList;
+	}
 	
 
 	

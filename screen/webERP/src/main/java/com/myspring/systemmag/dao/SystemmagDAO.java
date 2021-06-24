@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagDAO {
+	//일반거래처등록
 	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException;
 	
 	public List searchCustomer(String customerCode) throws DataAccessException;
@@ -20,4 +21,7 @@ public interface SystemmagDAO {
 	public void updateCustomer(SystemmagVO systemmagVO) throws DataAccessException;
 	
 	public List zipViewCustomer() throws DataAccessException;
+	
+	//창고/공정/외주공정등록
+	public List viewAllOutware() throws DataAccessException;
 }
