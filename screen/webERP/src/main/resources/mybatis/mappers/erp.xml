@@ -363,18 +363,20 @@
         ]]>
 	</select>
 	<!-- 출고현황(재원) -->
-	<resultMap id="rsView" type="rsVO">
+	<resultMap id="rsjView" type="rsjVO">
 		<result property="releaseNum" column="releaseNum" />
 		<result property="releaseDate" column="releaseDate" />
 		<result property="customerCode" column="customerCode" />
+	</resultMap>
+	<resultMap id="rsView" type="rsVO">
 		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="dueDate" column="dueDate" />
 		<result property="productPrice" column="productPrice" />
-		<result property="totPrice" column="totPrice" />
-		<result property="vat" column="vat" />
-		<result property="totVatPrice" column="totVatPrice" />
+		<result property="vatPrice" column="vatPrice" />
+		<result property="ordersQuantity" column="ordersQuantity" />
 		<result property="orderOX" column="orderOX" />
+		<collection property="rsjVO" resultMap="rsjView"></collection>
 	</resultMap>
 	<select id="rsSelectAllMemberList" resultMap="rsView">
 		<![CDATA[select * from CSM_SM_COR_Reg ]]>
@@ -385,10 +387,10 @@
 				and #{endDate}
 		]]>
 	</select> -->
-	<select id="rsSearchItem" resultMap="rsView" parameterType="rsVO">
-		<![CDATA[select * from CSM_SM_COR_Reg 
-				where dueDate between #{startDate}
-				and #{endDate}
+	<select id="rsSearchItem" resultMap="rsView" parameterType="java.util.HashMap">
+		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.customerCode, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
+				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg
+				where pro.customerCode = reg.customerCode and pro.releaseDate between #{startDate} and #{endDate}
 		]]>
 	</select>
 </mapper>

@@ -27,6 +27,7 @@
 			<typeAlias type="com.myspring.salesmanage.cor.vo.CorVO"  alias="corVO" />
 			<typeAlias type="com.myspring.salesmanage.order.vo.OrderVO"  alias="orderVO" />
 			<typeAlias type="com.myspring.businessStatus.releaseStatus.vo.rsVO" alias="rsVO" />
+			<typeAlias type="com.myspring.businessStatus.releaseStatus.vo.rsjVO" alias="rsjVO" />
 			<!-- com.myspring.salesmanage.order.vo
 			<typeAlias type="com.myspring.salesmanage.pop.itemgroup.vo.ItemGroupVO"  alias="itemgroupVO" />
 			<typeAlias type="com.myspring.salesmanage.pop.custview.vo.CustViewVO" alias="custviewVO" /> -->

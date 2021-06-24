@@ -8,21 +8,16 @@ import org.springframework.stereotype.Component;
 
 @Component("rsVO")
 public class rsVO {
-	private String releaseNum ; //출고번호
-	private Date releaseDate ; //출고일자
-	private String customerCode; //고객
-	
-	private String Item_Code; //품번
-	private String Item_Name; //품명
+	private String itemCode; //품번
+	private String itemName; //품명
 	private Date dueDate; //납기일
+	private int ordersQuantity; //주문수량
 	private int productPrice; //단가
-	private int totPrice; //공급가
-	private int vat; //부가세
-	private int totVatPrice; //공급대가
+	private int vatPrice; //부가세계산용단가
 	private String orderOX; //출고구분
-	
 	private Date startDate;
 	private Date endDate;
+	rsjVO rsjVO;
 	private List<rsVO> ListVO;
 	
 	@Override
@@ -34,44 +29,20 @@ public class rsVO {
 		super();
 	}
 
-	public String getReleaseNum() {
-		return releaseNum;
+	public String getItemCode() {
+		return itemCode;
 	}
 
-	public void setReleaseNum(String releaseNum) {
-		this.releaseNum = releaseNum;
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
 	}
 
-	public Date getReleaseDate() {
-		return releaseDate;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	public String getCustomerCode() {
-		return customerCode;
-	}
-
-	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
-	}
-
-	public String getItem_Code() {
-		return Item_Code;
-	}
-
-	public void setItem_Code(String item_Code) {
-		Item_Code = item_Code;
-	}
-
-	public String getItem_Name() {
-		return Item_Name;
-	}
-
-	public void setItem_Name(String item_Name) {
-		Item_Name = item_Name;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
 	public Date getDueDate() {
@@ -82,6 +53,14 @@ public class rsVO {
 		this.dueDate = dueDate;
 	}
 
+	public int getOrdersQuantity() {
+		return ordersQuantity;
+	}
+
+	public void setOrdersQuantity(int ordersQuantity) {
+		this.ordersQuantity = ordersQuantity;
+	}
+
 	public int getProductPrice() {
 		return productPrice;
 	}
@@ -89,29 +68,13 @@ public class rsVO {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-
-	public int getTotPrice() {
-		return totPrice;
+	
+	public int getVatPrice() {
+		return vatPrice;
 	}
 
-	public void setTotPrice(int totPrice) {
-		this.totPrice = totPrice;
-	}
-
-	public int getVat() {
-		return vat;
-	}
-
-	public void setVat(int vat) {
-		this.vat = vat;
-	}
-
-	public int getTotVatPrice() {
-		return totVatPrice;
-	}
-
-	public void setTotVatPrice(int totVatPrice) {
-		this.totVatPrice = totVatPrice;
+	public void setVatPrice(int vatPrice) {
+		this.vatPrice = vatPrice;
 	}
 
 	public String getOrderOX() {
@@ -138,6 +101,14 @@ public class rsVO {
 		this.endDate = endDate;
 	}
 
+	public rsjVO getRsjVO() {
+		return rsjVO;
+	}
+
+	public void setRsjVO(rsjVO rsjVO) {
+		this.rsjVO = rsjVO;
+	}
+
 	public List<rsVO> getListVO() {
 		return ListVO;
 	}
@@ -146,5 +117,4 @@ public class rsVO {
 		ListVO = listVO;
 	}
 
-	
 }

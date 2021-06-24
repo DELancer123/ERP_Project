@@ -67,7 +67,7 @@ String dueDate = (String) request.getAttribute("dueDate");
 	<form id="searchForm">
 		<table class="con1_search">
 			<tr>
-				<td>납기일</td>
+				<td>출고일자검색</td>
 				<td colspan="2" style="width: 80px;">
 				<input type="date" id="searchStartDate" value="${param.startDate }" style="width: 100%;" />
 				</td>
@@ -92,6 +92,7 @@ String dueDate = (String) request.getAttribute("dueDate");
 					<td>납기일</td>
 					<td>주문수량</td>
 					<td>단가</td>
+					<td></td>
 					<td>공급가</td>
 					<td>부가세</td>
 					<td>공급대가</td>
@@ -99,26 +100,28 @@ String dueDate = (String) request.getAttribute("dueDate");
 				</thead>
 				<c:forEach var="rs" items="${rsView }" varStatus="status">
 				<tr>
-					<td><input type="text" id="releaseNum" name="ListVO[${fn:length(rsView) }].releaseNum" value='${rs.releaseNum }' readonly/></td>
-					<td><input type="text" id="releaseDate" name="ListVO[${fn:length(rsView) }].releaseDate" value='${rs.ireleaseDate }' readonly/></td>
-					<td><input type="text" id="customerCode" name="ListVO[${fn:length(rsView) }].customerCode" value='${rs.customerCode }' readonly/></td>
+					<td><input type="text" id="releaseNum" value='${rs.rsjVO.releaseNum }' readonly/></td>
+					<td><input type="text" id="releaseDate" value='${rs.rsjVO.releaseDate }' readonly/></td>
+					<td><input type="text" id="customerCode" value='${rs.rsjVO.customerCode }' readonly/></td>
 					<td><input type="text" id="itemCode" name="ListVO[${fn:length(rsView) }].itemCode" value='${rs.itemCode }' readonly/></td>
 					<td><input type="text" id="itemName" name="ListVO[${fn:length(rsView) }].itemName" value='${rs.itemName }' readonly/></td>
 					<td><input type="text" id="dueDate" name="ListVO[${fn:length(rsView) }].dueDate" value='${rs.dueDate }' readonly/></td>
 					<td><input type="text" id="ordersQuantity" name="ListVO[${fn:length(rsView) }].ordersQuantity" value='${rs.ordersQuantity }' readonly/></td>
 					<td><input type="text" id="productPrice" name="ListVO[${fn:length(rsView) }].productPrice" value='${rs.productPrice }' readonly/></td>
-					<td><input type="text" id="totPrice" readonly/></td>
-					<td><input type="text" id="vat" readonly/></td>
-					<td><input type="text" id="totVatPrice" readonly/></td>
+					<td><input type="hidden" id="vatPrice" name="ListVO[${fn:length(rsView) }].vatPrice" value='${rs.vatPrice }' readonly/></td>
+					<td><input type="number" id="totPrice" value='${rs.ordersQuantity * rs.productPrice }' readonly/></td>
+					<td><input type="number" id="vat" value='${rs.ordersQuantity * rs.vatPrice}' readonly/></td>
+					<td><input type="number" id="totVatPrice" value='${(rs.ordersQuantity * rs.productPrice) + (rs.ordersQuantity * rs.vatPrice)}' readonly/>
 					<td><input type="text" id="orderOX" name="ListVO[${fn:length(rsView) }].orderOX" value='${rs.orderOX }' readonly/></td>
 				</tr>
 				</c:forEach>
 			</table>
 		</div>
 		<div id="rsSum">
-			수량합계: <input type="text" disabled /> 공급가 합계: <input type="text"
-				disabled /> 부가세 합계: <input type="text" disabled /> 합계액: <input
-				type="text" disabled />
+			수량합계: <input type="text" disabled /> 
+			공급가 합계: <input type="text" disabled /> 
+			부가세 합계: <input type="text" disabled /> 
+			합계액: <input type="text" disabled />
 		</div>
 
 		</container2>
@@ -126,26 +129,6 @@ String dueDate = (String) request.getAttribute("dueDate");
 		<script>
 			var startDate = new Date().toISOString().substring(0,10);;
 			var endDate = new Date().toISOString().substring(0,10);;
-			var totPrice = document.getElementById("totPrice");
-			var vat = document.getElementById("vat");
-			var totVatPrice = document.getElementById("totVatPrice");
-			
-			totPrice.onfocus = function(){
-				var ordersQuantity = parsefloat(ordersQuantity.value);
-				var productPrice = parsefloat(productPrice.value);
-				totPrice.value = ordersQuantity*productPrice;
-			}
-			
-			vat.onfocus = function(){
-				var totPrice = parsefloat(totPrice.value);
-				vat.value = totPrice * (1/10);
-			}
-			
-			totVatPrice = function(){
-				var totPrice = parsefloat(totPrice.value); 
-				var vat = parsefloat(vat.value);
-				totVatPrice.value = totPrice + vat;
-			}
 			
 			$('#searchStartDate').change(function(){
 				var date = $('#searchStartDate').val();
