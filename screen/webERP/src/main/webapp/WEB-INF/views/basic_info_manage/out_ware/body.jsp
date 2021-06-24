@@ -229,9 +229,13 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-1 tab-content current">
             <table id="view2">
                 <tr>
-                    <td>위치코드1</td>
+                    <td>위치코드</td>
                     <td>위치명</td>
                     <td>위치설명</td>
+                    <td>가출고 코드</td>
+                    <td>가출고 거래처명</td>
+                    <td>적합여부</td>
+                    <td>가용재고여부</td>
                     <td>사용여부</td>
                 </tr>
             </table>
@@ -239,9 +243,11 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-2 tab-content">
             <table id="view2">
                 <tr>
-                    <td>작업장코드2</td>
+                    <td>작업장코드</td>
                     <td>작업장명</td>
                     <td>작업장설명</td>
+                    <td>적합여부</td>
+                    <td>공정설명</td>
                     <td>사용여부</td>
                 </tr>
             </table>
@@ -249,9 +255,12 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-3 tab-content">
             <table id="view2">
                 <tr>
-                    <td>작업장코드3</td>
+                    <td>작업장코드</td>
+                    <td>외주거래처코드</td>
                     <td>작업장명</td>
+                    <td>외주거래처명</td>
                     <td>작업장설명</td>
+                    <td>적합여부</td>
                     <td>사용여부</td>
                 </tr>
             </table>
