@@ -134,13 +134,6 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return infoList;
 	}
 	
-	@Override
-	public void delCommitOperation(String[] numberAry) throws DataAccessException{
-		for(String obj: numberAry) {
-			sqlSession.delete("mappers.erp.deleteCommitOperation", obj);
-		}
-	}
-	
 //	확정 버튼 기능부
 	@Override
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
