@@ -316,7 +316,16 @@ where (status = '확정' or status = '마감')
 	</resultMap>
 	
 	<select id="selectHouseCodeList" resultMap="HouseCodeSearchResult">
-		select * from SM_BIM_HOU_REG
+		<![CDATA[select * from SM_BIM_HOU_REG]]>
+	</select>
+	
+	<resultMap id="ProcessCodeSearchResult" type="ProcessCodeSearchVO">
+		<result property="processCode" column="process_Code" />
+		<result property="processName" column="process_Name" />
+	</resultMap>
+	
+	<select id="selectProcessCodeList" resultMap="ProcessCodeSearchResult">
+		<![CDATA[select * from SM_BIM_PRO_REG]]>
 	</select>
 	
 		<!-- 기초정보등록 품목등록 -->
