@@ -41,19 +41,19 @@
                             <li><a href="http://localhost:8090/webERP/member/regestimate.do">견적등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regorder.do#">수주등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regforreq.do#">출고의뢰등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/forwarding.do#">출고처리</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/transactionissue.do#">거래명세서발행</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/forwarding.do">출고처리</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/transactionissue.do">거래명세서발행</a></li>
                         </ul></li>
                     <li><a href="#" id="side2">영업현황</a>
                         <ul id="l_sub2">
-                            <li><a href="http://localhost:8090/webERP/member/quotationstatus.do#">견적현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/salesplanstat.do#">판매계획현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/salesplancont.do#">판매계획대비출고현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/quotationcont.do#">견적대비수주현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/orderstat.do#">수주현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/ordercontrast.do#">수주대비출고현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/releasestat.do#">출고현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/relreturnstat.do#">출고반품현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/quotationstatus.do">견적현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/salesplanstat.do">판매계획현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/salesplancont.do">판매계획대비출고현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/quotationcont.do">견적대비수주현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/orderstat.do">수주현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/ordercontrast.do">수주대비출고현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/releasestat.do">출고현황</a></li>
+                            <li><a href="http://localhost:8090/webERP/member/relreturnstat.do">출고반품현황</a></li>
                         </ul></li>
                 </ul>
             </div>

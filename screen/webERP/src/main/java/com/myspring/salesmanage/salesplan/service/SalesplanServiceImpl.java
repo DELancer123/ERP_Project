@@ -33,7 +33,7 @@ public class SalesplanServiceImpl implements SalesplanService{
 	@Override
 	public List listItems() throws DataAccessException {
 		List allItemList = null;
-		System.out.println("리스트아이템"); 
+		System.out.println("由ъ뒪�듃�븘�씠�뀥"); 
 		allItemList = salesplanDAO.selectAllItemList();
 		return allItemList;
 	}

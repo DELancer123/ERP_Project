@@ -1,113 +1,257 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" 
-    isELIgnored="false"  %>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
-%>    
-
+	request.setCharacterEncoding("UTF-8");
+%>
+<% 
+	String itemCode = request.getParameter("itemCode");
+%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:forEach var="sp" items="${spInsert}">
+	<c:set var="planDate" value="${sp.planDate }"/>
+	<c:set var="itemCode" value="${sp.itemCode }"/>
+	<c:set var="itemName" value="${sp.itemName }"/>
+	<c:set var="standard" value="${sp.standard }"/>
+	<c:set var="inventoryUnit" value="${sp.inventoryUnit }"/>
+	<c:set var="planItemQuantity" value="${sp.planItemQuantity }"/>
+	<c:set var="planUnitPrice" value="${sp.planUnitPrice }"/>
+	<c:set var="newPlanItemQuantity" value="${sp.newPlanItemQuantity }"/>
+	<c:set var="newPlanUnitPrice" value="${sp.newPlanUnitPrice }"/>
+	</c:forEach>
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
- #contents1{
+		#contents1{
             position: absolute;
-            left: 15%;
+            padding: 10px;
+            right: 0;
             top: 15%;
             width: 85%;
-            height: 10%;
+            height: 12%; 
             border: 1px solid black;
             z-index: 1;
         }
-          .con1_search{
+        
+        #contents2{
+            position: absolute;
+            right: 0;
+            top: 27%; 
+            width: 85%;
+            height: 68%; 
+            border: 1px solid black;
+            z-index: 1;
+        }
+        .con1_search{
             padding:0;
             text-align: center;
-            position: absolute;
+            /* position: absolute; ƒ≠ ∏¿ﬂ∂Ûº≠ ¡ˆøÚ*/
             top: 25%;
-            left: 15%;
+            left: 18%;
         }
-       /* #view1{
-            width: 150%;
+        #spTable1,#view2{
+            width: 100%;
             text-align: center;
             border: 1px solid black;
+            
         }
-        #view1 th{
-            width: 30px;
-        }*/
-        #reqInput {
-            background-color: rgb(255, 255, 149);
-            text-align: center;
+        /* end default πÿ¿∏∑Œ css √ﬂ∞°«‘*/
+        .con1_search {
+            margin: 10px;
+        }        
+        #contents2 {
+            overflow: scroll;
         }
 </style>
-<script>
-		var plus_button = document.getElementById('plus');
-		var minus_button = document.getElementById('minus');
-
-		plus_button.onclick = function() {
-			var year = document.getElementById('year');
-			year.value = Number(year.value) + 1;
-		}
-		minus_button.onclick = function() {
-			var year = document.getElementById('year');
-			year.value = Number(year.value) - 1;
-		}
-		function sumPrice
-</script>
 </head>
 <body>
-	<container1 id=contents1>
-	<table class="con1_search" id="view">
-		<tr>
+	<container1 id = contents1>
+		<form id="searchForm">
+			<table class="con1_search">
+                <tr>
+                    <td>
+                    	«∞π¯
+                    </td>
+                    <td style="width: 50px;">
+                    	<input type="text" style="width: 100%;" name="" value='${param.itemCode }' />
+                    </td>
+                    <td>
+                    	<a href="javascript:search1()">
+                    		<i class="fas fa-search" style="color: blue;"></i>
+                    	</a>
+                    </td> 
+                    <td colspan="3">
+                    	<input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/>
+                    </td>
+                </tr>
+			</table>
+		</form>
+        </container1>
+	<form id="regSp" method="get" commandName="ListVO">
+		<container2 id="contents2">
+			<div id="spInfo">    
+            	<table id="spTable">
+                	<thead align="center" style="background-color:gray">                    
+                    	<td style="width: 5%;"><input type="checkbox" name="content" onclick="selectAll(this)"></td>
+                    	<td align="center">µÓ∑œ¿œ¿⁄</td>
+						<td align="center">«∞π¯</td>
+						<td align="center">«∞∏Ì</td>
+						<td align="center">±‘∞›</td>
+						<td align="center">¥‹¿ß(∞¸∏Æ)</td>
+						<td align="center">∆«∏≈ ∞Ë»π ºˆ∑Æ</td>
+						<td align="center">∆«∏≈ ∞Ë»π¥‹∞°</td>
+						<td align="center">∆«∏≈ ∞Ë»π ±›æ◊</td>
+						<td align="center">∞Ë»π ºˆ¡§ ºˆ∑Æ</td>
+						<td align="center">∞Ë»π ºˆ¡§ ¥‹∞°</td>
+						<td align="center">∞Ë»π ºˆ¡§ ±›æ◊</td>	
+					</thead>
+				<c:forEach var="sp" items="${spView }" varStatus="status">
+					<tr id="updateSp" align="center">
+                    	<td style="width: 5%;"><input type="checkbox" value="${param.itemCode }" name="content" /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].planDate" value="${sp.planDate}" readonly/></td>
+						<td><input type="text" name="ListVO[${status.index}].itemCode" value="${param.itemCode}" readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemName" value="${sp.itemName}" readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].standard" value="${sp.standard}" readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value="${sp.inventoryUnit}" readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].planItemQuantity" value="${sp.planItemQuantity}" readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].planUnitPrice" value="${sp.planUnitPrice}" readonly/></td>
+                    	<td><input type="text" value="${sp.planItemQuantity * sp.planUnitPrice}" readonly/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].newPlanItemQuantity" value="${sp.newPlanItemQuantity}"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].newPlanUnitPrice" value="${sp.newPlanUnitPrice}"/></td>
+                    	<td><input type="text" value="${sp.newPlanItemQuantity * sp.newPlanUnitPrice}" readonly/></td>                                                                      
+                	</tr>
+				</c:forEach>
+                	<tr id="insertSp" align="center">
+                		<td></td>
+              			<td><input type="date" id="planDate" name="ListVO[${fn:length(spView) }].planDate" value='${planDate }' ></td>
+                    	<td><input type="text" id="itemCode" name="ListVO[${fn:length(spView) }].itemCode" value='${itemCode }' ondblclick="search2()" /></td>
+                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(spView) }].itemName" value='${itemName }' /></td>
+                    	<td><input type="text" id="standard" name="ListVO[${fn:length(spView) }].istandard" value='${standard }' /></td>
+                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(spView) }].inventoryUnit" value='${inventoryUnit }' /></td>
+                    	<td><input type="text" id="planItemQuantity" name="ListVO[${fn:length(spView) }].planItemQuantity" value='${planItemQuantity }' /></td>
+                    	<td><input type="text" id="planUnitPrice" name="ListVO[${fn:length(spView) }].planUnitPrice" value='${planUnitPrice }' /></td>
+                    	<td><input type="text" value='${planItemQuantity * planUnitPrice }' /></td>
+                    	<td><input type="text" id="newPlanItemQuantity" name="ListVO[${fn:length(spView) }].newPlanItemQuantity" value='${newPlanItemQuantity }' /></td>
+                    	<td><input type="text" id="newPlanUnitPrice" name="ListVO[${fn:length(spView) }].newPlanUnitPrice" value='${newPlanUnitPrice }' /></td>
+                    	<td><input type="text" value='${newPlanItemQuantity * newPlanUnitPrice }' /></td>                                         
+                	</tr>
+            	</table>
+			</div>
+		</container2>
 	
-			<td align="center">ÌíàÎ≤à</td>
-			<td><input type="text" name="item" value='${param.item_name}' /></td>
-			<td><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
-			<td><input type="text" disabled></td>
-			<form name="frmSearchDate" method="get"  action="${contextPath}/member/searchdate.do">
-			<td align="right" colspan="2">ÎåÄÏÉÅÎÖÑÏõî</td>
-			<td colspan="2">
-				<button id="minus"> << </button> <input type="text" value="2021"
-				id="year"
-				style="background-color: rgb(255, 255, 149); width: 60px; text-align: center;">
-				<button id="plus"> >> </button> <select name="Plan_Date" id="reqInput">
-					<option value="1">1Ïõî</option>
-					<option value="2">2Ïõî</option>
-					<option value="3">3Ïõî</option>
-					<option value="4">4Ïõî</option>
-					<option value="5">5Ïõî</option>
-					<option value="6">6Ïõî</option>
-					<option value="7">7Ïõî</option>
-					<option value="8">8Ïõî</option>
-					<option value="9">9Ïõî</option>
-					<option value="10">10Ïõî</option>
-					<option value="11">11Ïõî</option>
-					<option value="12">12Ïõî</option>
-			</select>
-			</td>
-			</form>
-		</tr>
-		<tr>
+    <script src="http://code.jquery.com/jquery-latest.js"></script> <!--¡¶¿Ãƒı∏Æ√÷Ω≈πˆ¡Ø∞°¡Æø»-->
+    <script>
+    	var planDate = document.getElementById("planDate");
+        var itemCode = document.getElementById("itemCode");
+        var itemName = document.getElementById("itemName");
+        var standard = document.getElementById("standard");
+      	var inventoryUnit = document.getElementById("inventoryUnit");
+		var planItemQuantity = document.getElementById("planItemQuantity");
+		var planUnitPrice = document.getElementById("planUnitPrice");
+		var newPlanItemQuantity = document.getElementById("newPlanItemQuantity");
+		var newPlanUnitPrice = document.getElementById("newPlanUnitPrice");
+		
+		var view_button = document.getElementById("view_button");
+		var save_button = document.getElementById("save");
+		var update_button = document.getElementById("update");
+		
+		function openWindowPop(url, name){
+			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+			window.open(url, name, options);
+		}
+		
+		view_button.onclick = function(){
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
 
-			<td align="center">ÌíàÎ™©Íµ∞</td>
-			<td><input type="text" name="Plan_Item_Code" id="piCodeSearch"></td>
-			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" disabled></td>
-			<td align="center">ÌåêÎß§ Í≥ÑÌöç ÏàòÎüâ</td>
-			<td><input type="text" name="Plan_Item_Quantity"></td>
-			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" disabled></td>
-		</tr>
-	</table>
-	</container1>
-	   <script>
-          function search1(){
-    	  
-        	  openWindowPop('http://localhost:8090/webERP/sales_manage/pop/popItemBySalesList.do','popItemBySalesList');  
-    }
-    </script>
+			  window.open(location.pathname + '?' + newParam, '_self');
+    	}
+		
+		function selectAll(selectAll){
+            const checkbox = document.getElementsByName('content');
+            checkbox.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            })
+        }
+		
+		function search1(){
+			openWindowPop('http://localhost:8090/webERP/member/spcodehelper1.do','spcodehelper1');
+		}
+		
+		function search2(){
+			openWindowPop('http://localhost:8090/webERP/member/spcodehelper2.do','spcodehelper2');
+		}
+		
+		function setChildValue(name){
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','2');
+			const newParam = URLSearch.toString();
+			if(URLSearch.get('itemCode') == null){
+				window.location.href = location.pathname + '?' + newParam + '&itemCode=' + name;
+			}
+			else{
+				URLSearch.set('itemCode',name);
+				const newParam = URLSearch.toString();
+				window.location.href = location.pathname + '?' + newParam;
+			}
+		}
+		
+		function updateRow(){
+			var spTable = document.getElementById('spTable');
+			var row = spTable.insertRow();
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','1');
+			const newParam = URLSearch.toString();
+			
+			var link = location.pathname + '?' + newParam;
+				document.getElementById("planDate").disabled = true;
+				document.getElementById("planItemQuantity").disabled = true;
+				document.getElementById("planUnitPrice").disabled = true;
+				document.getElementById("newPlanItemQuantity").disabled = true;
+				document.getElementById("newPlanUnitPrice").disabled = true;
+				
+			var articleNoInput = document.createElement("input");
+				articleNoInput.setAttribute("type","hidden");
+				articleNoInput.setAttribute("name","path");
+				articleNoInput.setAttribute("value",link);
+				document.getElementById('regSp').appendChild(articleNoInput);
+				document.getElementById('regSp').action = "${contextPath}/member/updateSp.do";
+				document.getElementById('regSp').submit();
+		}
+		
+		function newRow(){
+			var row = spTable.insertRow();
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','1');
+			const newParam = URLSearch.toString();
+			var link = location.pathname + '?' + newParam;
+			var articleNoInput = document.createElement("input");
+			articleNoInput.setAttribute("type","hidden");
+			articleNoInput.setAttribute("name","path");
+			articleNoInput.setAttribute("value",link);
+			document.getElementById('regSp').appendChild(articleNoInput);
+			document.getElementById('regSp').action = "${contextPath}/member/addSp.do";
+			document.getElementById('regSp').submit();
+		}
+		
+		function deleteData(){
+			var item = document.getElementsByName("content").length;
+			var itemCode = "";
+			var ary = [];
+			for(var i=0; i<item; i++){
+				if(document.getElementsByName("content")[i].checked==true){
+					itemCode = document.getElementsByName("content")[i].value;
+					ary.push(itemCode);
+				}
+				window.location.href = "${contextPath}/member/delSp.do?itemCode="+ary;
+			}
+		}
+	</script>
+	</form>
 </body>
 </html>
