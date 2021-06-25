@@ -104,7 +104,7 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead align="center">
+                    <thead align="center" style="background-color:gray">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td>품번</td>
                         <td>품명</td>

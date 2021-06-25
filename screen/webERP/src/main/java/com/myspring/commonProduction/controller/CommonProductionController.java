@@ -39,4 +39,5 @@ public interface CommonProductionController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addReleaseData(OperationDetailVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delCommitOperation(OperationDetailVO ODVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView houseCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

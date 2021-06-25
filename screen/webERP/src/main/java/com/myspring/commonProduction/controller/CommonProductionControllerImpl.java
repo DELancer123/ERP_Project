@@ -335,6 +335,18 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		mav.addObject("message",message);
  		return mav;
  	}
+ 	
+// 	작업실적 등록 팝업부
+ 	
+ 	@Override
+	  @RequestMapping(value="/member/houseCodeSearchPop.do" ,method = RequestMethod.GET)
+		public ModelAndView houseCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = getViewName(request);
+			List itemView = productionService.houseCodeSearch();
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("itemView", itemView);
+			return mav;
+		}
   	 
 //  작업지시 마감처리 기능부 
   	 @Override

@@ -36,7 +36,6 @@ public class RegistOperationPerformanceDetailVO {
 		this.performanceDate = performanceDate;
 	}
 
-
 	public String getInspection() {
 		return inspection;
 	}
@@ -69,7 +68,6 @@ public class RegistOperationPerformanceDetailVO {
 	public void setPerformanceQuantity(int performanceQuantity) {
 		this.performanceQuantity = performanceQuantity;
 	}
-
 
 	public String getMaterialUseStatus() {
 		return materialUseStatus;

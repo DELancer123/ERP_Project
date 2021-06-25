@@ -189,6 +189,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		  ROPdao.MaterialUse(numberAry);
 		  return message;
 		}
+	
+	 @Override
+	  public List houseCodeSearch() throws DataAccessException {
+		  List popList = null;
+		  popList = ROPdao.houseCodeViewPop();
+		  return popList;
+		}
   
 //작업지시마감처리 기능부
 	@Override 
