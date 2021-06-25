@@ -39,7 +39,7 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
-		<result property="no" column="NO" />
+		<result property="forwardingNumber" column="FORWARDINGNUMBER" />
 		<result property="billingDate" column="BILLINGDATE" />
 		<result property="itemCode" column="ITEM_CODE" />
 		<result property="itemName" column="ITEM_NAME" />
@@ -205,12 +205,12 @@
 		<![CDATA[
 		 insert into CPM_PM_PRO_MAT_FOR_DET
 		 values(F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), SYSDATE, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
-		 (precisionQuantity + precisionQuantity * loss), #{note}, #{workOrderNumber} )
+		 (precisionQuantity + (precisionQuantity * loss)), #{note}, #{workOrderNumber} )
 		]]>  
 	</insert>
 	
 	<select id="selectWorkOrderNumber" resultType="string">
-		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
+		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</select>
 	
 	<update id="materialSet">
@@ -220,7 +220,7 @@
 	</update>
 	
 	<delete id="deleteCommitOperation" parameterType="OperationDetailVO">
-		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
+		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</delete>
 	
 	<!-- 작업실적등록 CRUD -->
