@@ -354,7 +354,7 @@
 	/*  ÆË¾÷ Á¶È¸ºÎ*/
   
  	function houseCodeSearch(){
- 			openWindowPop('http://localhost:8090/webERP/member/houseCodeSearch.do','houseCodeSearch');
+ 			openWindowPop('http://localhost:8090/webERP/member/houseCodeSearchPop.do','houseCodeSearch');
 		}
 	
       </script>

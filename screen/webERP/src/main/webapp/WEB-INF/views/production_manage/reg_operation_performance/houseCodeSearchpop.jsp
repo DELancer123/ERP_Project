@@ -72,10 +72,10 @@
                     <td>창고코드</td>
                     <td>창고명</td>
                 </tr>
-    <c:forEach var="factory" items="${itemView}" >     
+    <c:forEach var="house" items="${itemView}" >     
 		<tr align="center">
-      		<td><a href="javascript:popFunction('${factory.workplaceCode }','${factory.workplaceName }')">${factory.workplaceCode}</a></td>
-      		<td><a href="#">${factory.workplaceName}</a></td>
+      		<td><a href="javascript:popFunction('${house.houseCode}','${house.houseName }')">${house.houseCode}</a></td>
+      		<td><a href="#">${house.houseName}</a></td>
     	</tr> 
     </c:forEach> 
             </table>

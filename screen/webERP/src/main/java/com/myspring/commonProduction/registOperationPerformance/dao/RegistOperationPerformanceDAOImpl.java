@@ -92,4 +92,10 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 		}
 		return message;
 	}
+
+	// 팝업부 기능구현
+	
+	
+
 }
+
