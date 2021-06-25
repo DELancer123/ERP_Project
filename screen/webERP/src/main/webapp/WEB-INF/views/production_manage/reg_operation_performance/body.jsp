@@ -205,6 +205,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                      
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].workOrderNumber" value="${param.searchNumber}" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].houseCode" value="${detail.houseCode}"/></td>
   					 </tr>
                     </c:forEach>
                     <tr>
@@ -219,7 +220,7 @@
                         <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
                         <td><input type="text" id="note" name="DetailVO[${fn:length(detailList)}].note" value="${param.note }"/></td>
                         <td><input type="text" id="workOrderNumber" name="DetailVO[${fn:length(detailList)}].workOrderNumber" value="${param.searchNumber }"/></td>
-                        <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" value="#{param.houseCode }" /></td>
+                        <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" ondblclick="houseCodeSearch()" value="${param.houseCode }" /></td>
                     </tr>
                     </tbody>
                 </table>
@@ -350,5 +351,10 @@
         		window.location.href = "${contextPath}/member/materialUse.do?opNumber="+ary;
         
         }
-
+	/*  ÆË¾÷ Á¶È¸ºÎ*/
+  
+ 	function houseCodeSearch(){
+ 			openWindowPop('http://localhost:8090/webERP/member/houseCodeSearch.do','houseCodeSearch');
+		}
+	
       </script>
