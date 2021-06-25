@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.productionBaseInfo.BOM.dao.bomViewDAO;
 import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
@@ -176,6 +177,14 @@ public class BomViewServiceImpl implements BomViewService{
 	@Override
 	public void deldefPop(String[] numberary) throws DataAccessException {
 		defDAO.deldefPop(numberary);
+	}
+
+	@Override
+	public List<bomVO> searchPopName(String itemName) throws DataAccessException {
+		List popView = null;
+		popView = bomDAO.searchoutPop(itemName);
+		return popView;
+		
 	}
 
 }

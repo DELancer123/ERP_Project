@@ -79,7 +79,7 @@
                         <td>계정</td>
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
-                        <<td>필요수량</td>
+                        <td>필요수량</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
@@ -173,7 +173,7 @@
   			 document.getElementById("precisionQuantity").disabled = true;
   		     document.getElementById("loss").disabled = true;
   		     document.getElementById("no").disabled = true;
-  		   var articleNOInput = document.createElement("input");
+  		   	 var articleNOInput = document.createElement("input");
 		     articleNOInput.setAttribute("type","hidden");
 		     articleNOInput.setAttribute("name","path");
 		     articleNOInput.setAttribute("value", link);

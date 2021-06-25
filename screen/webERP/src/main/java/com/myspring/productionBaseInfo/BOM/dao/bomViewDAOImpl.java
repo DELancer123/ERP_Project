@@ -153,6 +153,14 @@ public class bomViewDAOImpl implements bomViewDAO{
 		}
 		return result;
 	}
+
+	@Override
+	public List<bomVO> searchoutPop(String itemName) throws DataAccessException {
+		List<bomVO> outList1 = null;
+		outList1 = sqlSession.selectList("mappers.erp.outPopSearch",itemName);
+		return outList1;
+	}
+
 	
 	
 

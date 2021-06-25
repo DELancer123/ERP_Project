@@ -474,6 +474,13 @@ order by oprd.OPNumber]]>
 	<select id="selectPopList2" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품' order by division desc]]>
 	</select>
+	<select id="outPopSearch" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
 	</select>
@@ -616,7 +623,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
-
+	
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />
