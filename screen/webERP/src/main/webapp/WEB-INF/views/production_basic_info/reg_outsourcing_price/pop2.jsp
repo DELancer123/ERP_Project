@@ -71,12 +71,12 @@
                     <td>품명</td>
                 </tr>
             </table>
-                <c:forEach var="bom" items="${bomlist}">
            <table id="searchItem" style="width:100%">
-   <tr align="center" >
-      <td><a href="javascript:popFunction('${bom.itemNumber }','${bom.itemName }')">${bom.itemNumber}</a></td>
-      <td><a href="#">${bom.itemName}</a></td>
-    </tr>
+                <c:forEach var="bom" items="${bomlist}">
+   				<tr align="center" >
+      				<td><a href="javascript:popFunction('${bom.itemNumber }','${bom.itemName }')">${bom.itemNumber}</a></td>
+     				 <td><a href="#">${bom.itemName}</a></td>
+   				</tr>
     </c:forEach> 
             </table>
             
