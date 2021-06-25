@@ -29,5 +29,13 @@ public interface SystemmagController {
 	
 	//물류관리내역등록
 	public ModelAndView viewLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView addLogistics(@ModelAttribute("logis") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView deleteLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView updateLogistics(SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
 			
 }

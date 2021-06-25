@@ -240,6 +240,63 @@ public class SystemmagControllerImpl implements SystemmagController {
 		
 		return mav;
 	}
+	
+	//물류관리내역등록-등록
+	@Override
+	@RequestMapping(value="/member/addLogistics_manage.do" ,method = RequestMethod.GET)
+	public ModelAndView addLogistics(@ModelAttribute("logistics") SystemmagVO systemmagVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {		
+		request.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = systemmagService.addLogistics(systemmagVO);
+		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+	
+	//물류관리내역등록-삭제
+	@Override
+	@RequestMapping(value = "/member/deleteLogistics_manage.do", method = RequestMethod.GET)
+	public ModelAndView deleteLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("no"); //체크가된 체크박스의 값들을 가져오는 변수임
+		String viewName = getViewName(request);
+		String[] numberary = number.split(","); //쉼표를 기준으로 나누어 배열에 저장한다
+
+		systemmagService.deleteLogistics(numberary);
+
+		ModelAndView mav = new ModelAndView("redirect:/member/logistics_manage.do");
+		return mav;
+	}
+	
+	//물류관리내역등록-수정
+	@Override
+	@RequestMapping(value = "/member/updateLogistics_manage.do", method = RequestMethod.GET)
+	public ModelAndView updateLogistics(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		systemmagService.updateLogistics(systemmagVO);//서비스파트의 업데이트함수에 매개변수로  VO를전달함
+		ModelAndView mav = new ModelAndView(
+				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getLogistics_In_Code());
+		return mav;
+	}
+	
+	//물류관리내역등록-팝업
+	 @Override	 
+	 @RequestMapping(value="/member/regbasicaccPopup.do", method = RequestMethod.GET) 
+	 public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		 request.setCharacterEncoding("utf-8"); 
+		 ModelAndView mav = null; 
+		 String viewName = getViewName(request); 
+		 
+		 List logisticsView = systemmagService.viewAllLogistics(); //select * 문을호출한다음
+		 mav = new ModelAndView(viewName);
+		 mav.addObject("logisticsView", logisticsView); //팝업으로 전달함
+	 	 
+		 return mav; 
+	 }
 	 
 }
 
