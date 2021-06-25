@@ -390,62 +390,62 @@
 		]]>
 	</select>
 	
-		<!-- 판매계획등록(재원 -->
+		<!-- 판매계획등록(재원) -->
 	<resultMap id="spView" type="spVO">
-		<result property="itemNumber" column="Item_Code" />
+		<result property="planDate" column="Plan_Date" />
+		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
-		<result property="purchasePrice" column="Purchase_Price" />
-		<result property="salesPrice" column="Sales_Price" />
+		<result property="planItemQuantity" column="Plan_Item_Quantity" />
+		<result property="planUnitPrice" column="Plan_Unit_Price" />
+		<result property="newPlanItemQuantity" column="Newplan_Item_Quantity" />
+		<result property="newPlanUnitPrice" column="Newplan_Unit_Price" />
 	</resultMap>
-	<resultMap id="iupView1" type="iupVO">
-		<result property="itemNumber" column="Item_Code" />
+	<resultMap id="spView1" type="spVO">
+		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 		<result property="inventoryUnit" column="Inventory_Unit" />
 	</resultMap>
-	<resultMap id="iupPopView" type="iupVO">
-		<result property="itemNumber" column="Item_Code" />
+	<resultMap id="spPopView" type="spVO">
+		<result property="itemCode" column="Item_Code" />
 		<result property="itemName" column="Item_Name" />
 		<result property="standard" column="Standard" />
 	</resultMap>
 
-	<select id="iupSelectAllMemberList" resultMap="iupView">
-		<![CDATA[select * from PM_SM_Ite_Pri]]>
+	<select id="spSelectAllMemberList" resultMap="spView">
+		<![CDATA[select * from SM_BIM_Sal_Pla_Re]]>
 	</select>
-	<select id="iupSelectNo" resultType="int">
-		<![CDATA[select MAX(no) from PM_SM_Ite_Pri]]>
+	<select id="spSearchItem" resultMap="spView" parameterType="String">
+		<![CDATA[select * from SM_BIM_Sal_Pla_Re where Item_Code = #{itemCode}]]>
 	</select>
-	<select id="iupSearchItem" resultMap="iupView" parameterType="String">
-		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemNumber}]]>
+	<select id="spSelectItem1" resultMap="spView1" parameterType="String">
+		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
 	</select>
-	<select id="iupSelectItem1" resultMap="iupView1" parameterType="String">
-		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	<select id="spSelectPopList1" resultMap="spPopView">
+		<![CDATA[select * from SM_BIM_Sal_Pla_Reg]]>
 	</select>
-	<select id="iupSelectPopList1" resultMap="iupPopView">
-		<![CDATA[select * from PM_SM_Ite_Pri]]>
-	</select>
-	<select id="iupSelectPopList2" resultMap="iupPopView">
+	<select id="spSelectPopList2" resultMap="spPopView">
 		<![CDATA[select * from SM_BIM_Ite_Reg]]>
 	</select>
-	<select id="iupChildView" resultMap="iupView1" parameterType="java.util.HashMap">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	<select id="spChildView" resultMap="spView1" parameterType="java.util.HashMap">
+		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
 	</select>
-	<insert id="insertIup" parameterType="iupVO">
+	<insert id="insertSp" parameterType="spVO">
 		<![CDATA[
-		 insert into PM_SM_Ite_Pri(No, Item_Code, Item_Name, Standard, Inventory_Unit, Purchase_Price, Sales_Price)
-		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice})
+		EXECUTE P_RESET_SEQ('seq_SM_BIM_Gen_Cus_Reg_no');
+		insert into SM_BIM_Sal_Pla_Reg values (F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'),#{planDate},#{itemCode},#{itemName},
+			#{standard},#{inventoryUnit},#{planItemQuantity},#{planUnitPrice},#{newPlanItemQuantity},#{newPlanUnitPrice});
 		]]>  
 	</insert>
-
-	<delete id="deleteIup">
-		delete from PM_SM_Ite_Pri where Item_Code = #{itemCode}
+	<delete id="deleteSp">
+		delete from SM_BIM_Sal_Pla_Reg where Item_Code = #{itemCode}
 	</delete>
-	<update id="updateIup" parameterType="iupVO">
+	<update id="updateSp" parameterType="spVO">
 		<![CDATA[
-		update PM_SM_Ite_Pri
-		set Purchase_Price = #{purchasePrice}, Sales_Price = #{salesPrice}
+		update SM_BIM_Sal_Pla_Reg
+		set Newplan_Item_Quantity = #{newPlanItemQuantity}, Newplan_Unit_Price = #{newPlanUnitPrice}
 		where No = #{no}
 		]]>
 	</update>
