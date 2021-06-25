@@ -47,20 +47,13 @@
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
-<!-- jsonview 설정 -->
-
-
-
-<beans:bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView">
-
-<beans:property name="contentType" value="application/json;charset=UTF-8"> </beans:property>
-
-</beans:bean>
-
-<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" id="beanNameResolver"/>
-
-
-
+	
+	<!-- jsonview 설정 -->
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+    <beans:property name="contentType" value="application/json;charset=UTF-8"> </beans:property>
+	</beans:bean>
+	<beans:bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"  />
+	<!-- jsonview 끝 -->
 	<context:component-scan
 		base-package="com.myspring.*" />
 
