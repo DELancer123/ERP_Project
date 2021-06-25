@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component("corVO")
 public class CorVO {
 
-	private String custCode;
+	private String ordCode;
 	private String item_code;
 	private String item_name;
 	private String stand;
@@ -33,11 +33,11 @@ public class CorVO {
 	}
 
 	public String getCustCode() {
-		return custCode;
+		return ordCode;
 	}
 
-	public void setCustCode(String custCode) {
-		this.custCode = custCode;
+	public void setCustCode(String ordCode) {
+		this.ordCode = ordCode;
 	}
 
 	public String getItem_code() {
