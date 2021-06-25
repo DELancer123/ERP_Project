@@ -61,9 +61,7 @@
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
-                <button id="submit">적용</button>
-                <button>버튼3</button>
+                <button id="submit">적용</button>                
             </div>
         </div>
         <div id="view">
@@ -94,7 +92,7 @@
     	submit_button.onclick = function(){
     		var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url_arr[0]+'?factoryNumber='+text_code.value+'&&factoryName='+text_name.value;
+    		opener.parent.location=url+'&houseCode='+text_code.value;
     		window.close();
     	}
     </script>
