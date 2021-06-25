@@ -26,22 +26,6 @@ public class RsViewDAOImpl implements RsViewDAO{
 		rsList = sqlSession.selectList("mappers.erp.rsSelectAllMemberList");
 		return rsList;
 	}
-	
-//	@Override
-//	public List setText(String startDate,String endDate) throws DataAccessException,ParseException{
-//		List<rsVO> textList = null;
-//		if(startDate != null && startDate != "" && endDate != null && endDate != "") {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date start = new Date(sdf.parse(startDate).getTime());
-//		Date end = new Date(sdf.parse(endDate).getTime());
-//		rsVO rsVO = new rsVO();
-//		rsVO.setStartDate(start);
-//		rsVO.setEndDate(end);
-//		textList = sqlSession.selectList("mappers.erp.rsSelectItem",rsVO);
-//		}
-//		return textList;
-//	}
-	
 	@Override
 	public List searchView(String startDate, String endDate) throws DataAccessException,ParseException{
 		List<rsVO> searchList = null;

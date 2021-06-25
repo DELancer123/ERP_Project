@@ -9,6 +9,5 @@ import com.myspring.businessStatus.releaseStatus.vo.*;
 
 public interface RsViewDAO {
 	public List viewRs() throws DataAccessException;
-//	public List setText(String startDate, String endDate) throws DataAccessException,ParseException;
 	public List searchView(String startDate, String endDate) throws DataAccessException,ParseException;
 }

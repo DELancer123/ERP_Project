@@ -380,14 +380,9 @@
 		<collection property="rsjVO" resultMap="rsjView"></collection>
 	</resultMap>
 	<select id="rsSelectAllMemberList" resultMap="rsView">
-		<![CDATA[select * from CSM_SM_COR_Reg ]]>
+		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.customerCode, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
+				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg ]]>
 	</select>
-<!-- 	<select id="rsSelectItem" resultMap="rsView" parameterType="rsVO">
-		<![CDATA[select * from CSM_SM_COR_Reg 
-				where dueDate between #{startDate}
-				and #{endDate}
-		]]>
-	</select> -->
 	<select id="rsSearchItem" resultMap="rsView" parameterType="java.util.HashMap">
 		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.customerCode, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
 				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg

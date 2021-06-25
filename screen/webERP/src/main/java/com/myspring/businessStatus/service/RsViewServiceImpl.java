@@ -25,14 +25,6 @@ public class RsViewServiceImpl implements RsViewService{
 		rsList = rsDAO.viewRs();
 		return rsList;
 	}
-	
-//	@Override
-//	public List setText(String startDate, String endDate) throws DataAccessException,ParseException{
-//		List searchList = null;
-//		searchList = rsDAO.setText(startDate,endDate);
-//		return searchList;
-//	}
-	
 	@Override
 	public List searchView(String startDate, String endDate) throws DataAccessException,ParseException{
 		List searchList = null;
