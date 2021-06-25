@@ -540,7 +540,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
 		<![CDATA[SELECT * FROM outPriceView
-where outsourcing_code = #{0} and outcustomer=#{1}]]>
+		where outsourcing_code = #{0} and outcustomer=#{1}]]>
 	</select>
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
