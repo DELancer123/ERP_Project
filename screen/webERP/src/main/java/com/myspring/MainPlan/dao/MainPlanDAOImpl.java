@@ -93,5 +93,23 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		popList = sqlSession.selectList("mappers.erp.searchMPSOS",itemName);
 		return popList;
 	}
+	@Override
+	public List setText(String itemNumber) throws DataAccessException {
+		List<MainPlanVO> textList = null;
+		textList = sqlSession.selectList("mappers.erp.selectitem",itemNumber);
+		return textList;
+	}
+
+	@Override
+	public List SearchView(String itemNumber) throws DataAccessException{
+		List<MainPlanVO> searchList = null;
+		searchList = sqlSession.selectList("mappers.erp.searchitem",itemNumber);
+		return searchList;
+	}
+
+	@Override
+	public int selSeq() throws DataAccessException {
+		return sqlSession.selectOne("mappers.erp.selectSeq");
+	}
 
 }

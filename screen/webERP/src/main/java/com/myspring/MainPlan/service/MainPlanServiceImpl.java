@@ -57,5 +57,23 @@ public class MainPlanServiceImpl implements MainPlanService{
 	public List<MpsOSVO> searchMPSOS(String itemName) {
 		return mainplanDAO.searchMPSOS(itemName);
 	}
+	
+	@Override
+	public int inputSeq() throws DataAccessException {
+		return mainplanDAO.selSeq();
+	}
+	@Override
+	public List setText(String itemNumber) throws DataAccessException {
+		List searchList = null;
+		searchList = mainplanDAO.setText(itemNumber);
+		return searchList;
+	}
+
+	@Override
+	public List SearchView(String itemNumber) throws DataAccessException {
+		List searchList = null;
+		searchList = mainplanDAO.SearchView(itemNumber);
+		return searchList;
+	}
 
 }

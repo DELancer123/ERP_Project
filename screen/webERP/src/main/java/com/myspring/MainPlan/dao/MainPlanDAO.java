@@ -24,4 +24,10 @@ public interface MainPlanDAO {
 
 	List viewMPS() throws DataAccessException;
 
+	List setText(String itemNumber) throws DataAccessException;
+
+	List SearchView(String itemNumber) throws DataAccessException;
+
+	int selSeq() throws DataAccessException;
+
 }
