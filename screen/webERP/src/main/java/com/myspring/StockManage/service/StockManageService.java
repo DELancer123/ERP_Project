@@ -24,6 +24,10 @@ public interface StockManageService {
 
 	List<StockManageVO> searchPopName(String itemName);
 
+	List finishednameView();
+
+	List<StockManageVO> searchPopName2(String itemName);
+
 
 
 

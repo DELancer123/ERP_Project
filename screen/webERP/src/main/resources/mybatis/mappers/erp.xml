@@ -155,9 +155,9 @@
 		where  workOrderNumber = #{workOrderNumber}
 		]]>  
 	</update>	
-	<delete id="deleteOperationInstruction">
+	<!-- <delete id="deleteOperationInstruction">
 		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
-	</delete>
+	</delete> -->
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
@@ -820,7 +820,7 @@ order by workordernumber]]>
 	<insert id="insertOutRelease" parameterType="OutReleaseVO">
 		<![CDATA[
 		INSERT INTO CPM_OM_Out_Mat_For
-		VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),#{forwardingDate}, #{houseCode}, #{locationCode}, #{outsourcingCode}, #{workplaceCode},#{note});
+		VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),#{forwardingDate}, #{houseCode}, #{locationCode}, #{outsourcingCode}, #{workplaceCode},#{note})
 		]]>  
 	</insert>
 
@@ -849,7 +849,7 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	<insert id="insertOutReleaseDetail" parameterType="OutReleaseVO">
 		<![CDATA[
 		INSERT INTO CPM_OM_Out_Mat_For_Det
-		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber});
+		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber})
 		]]>  
 	</insert>
 	
@@ -971,9 +971,22 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	<select id="selectfinishedstockList" resultMap="StoManage">
+		<![CDATA[ select Item_Code, Item_Name
+		  from PM_SM_Pro_FinishedProduct
+		]]>
+	</select>
+	
 	<select id="selectPopstockList" resultMap="StoManage">
 		<![CDATA[ select Item_Code, Item_Name
 		  from PM_SM_Pro_Stock
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
+	<select id="selectPopstockList2" resultMap="StoManage">
+		<![CDATA[ select Item_Code, Item_Name
+		  from PM_SM_Pro_FinishedProduct
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>

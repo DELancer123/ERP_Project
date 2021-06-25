@@ -55,6 +55,19 @@ public class StockManageServiceImpl implements StockManageService{
 		return stockManageDAO.viewserachPopName(itemName);
 	}
 
+	@Override
+	public List finishednameView() {
+		List popList = null;
+		popList = stockManageDAO.finishednameView();
+		
+		return popList;
+	}
+
+	@Override
+	public List<StockManageVO> searchPopName2(String itemName) {
+		return stockManageDAO.viewserachPopName2(itemName);
+	}
+
 
 
 

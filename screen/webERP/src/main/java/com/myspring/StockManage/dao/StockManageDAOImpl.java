@@ -62,6 +62,20 @@ public class StockManageDAOImpl implements StockManageDAO {
 		return popList;
 	}
 
+	@Override
+	public List finishednameView() {
+		List<StockManageVO> nameList = null;
+		nameList = sqlSession.selectList("mappers.erp.selectfinishedstockList");
+		return nameList;
+	}
+
+	@Override
+	public List<StockManageVO> viewserachPopName2(String itemName) {
+		List<StockManageVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopstockList2",itemName);
+		return popList;
+	}
+
 
 
 	
