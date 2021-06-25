@@ -155,9 +155,9 @@
 		where  workOrderNumber = #{workOrderNumber}
 		]]>  
 	</update>	
-	<delete id="deleteOperationInstruction">
+	<!-- <delete id="deleteOperationInstruction">
 		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
-	</delete>
+	</delete> -->
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
@@ -196,8 +196,10 @@
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[SELECT * FROM releasedetailview where workordernumber = #{number}
-                ]]>
+		<![CDATA[select distinct(bom.item_code) as item_Code, bom.item_name, bom.standard, bom.inventory_unit as inventory_unit, reg.IndicatedQuantity
+				from CPM_PM_OPE_PER_REG reg, CPM_PM_Pro_Mat_For_Det det,cpm_bim_bom_reg bom
+				where reg.item_code = bom.parent_item_code and reg.workordernumber = #{number}
+                order by bom.item_code]]>
 	</select>
 	
 	<!-- 작업지시확정 자재출고 CRUD -->
@@ -254,16 +256,22 @@
 	<result property="sortation" column="sortation" />
 	<result property="performanceQuantity" column="performanceQuantity" />
 	<result property="inspection" column="inspection" />
-	<result property="houseCode" column="HOUSE_CODE" />
 	<result property="note" column="note" />
 	<result property="workOrderNumber" column="workOrderNumber" />
+	<result property="houseCode" column="house_Code" />
 </resultMap>	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
-		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW
+		<![CDATA[select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code) as workplaceCode,opr.instructiondate ,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
+(opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
+where opr.workordernumber= oprd.workordernumber and (status = '확정' or status = '마감')
+group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
+opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
+order by opr.workordernumber
 ]]>
 	</select>
-	
 	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
 		<![CDATA[select *
 from CPM_PM_Ope_Per_Reg
@@ -272,7 +280,8 @@ where (status = '확정' or status = '마감')
 	</select>
 	
 		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[SELECT * FROM RegOpePerformanceDetailVIEW where workOrderNumber = #{workOrderNumber}
+		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection,note, house_Code 
+		FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
 ]]>
 	</select>
 	
@@ -282,7 +291,7 @@ where (status = '확정' or status = '마감')
 		<![CDATA[
 		
 		 insert into CPM_PM_Ope_Per_Reg_Det
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무', #{performanceDate}, #{processCode}, #{workplaceCode}, #{sortation}, #{performanceQuantity}, #{inspection},#{houseCode},#{note}, #{workOrderNumber})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무', #{performanceDate}, #{processCode}, #{workplaceCode}, #{sortation}, #{performanceQuantity}, #{inspection},#{note}, #{workOrderNumber})
 		]]>  
 	</insert>
 
@@ -298,6 +307,26 @@ where (status = '확정' or status = '마감')
 		where  OPNumber = #{OPNumber} and materialUseStatus = '무'
 		]]>  
 	</update>	
+	
+	<!-- 작업실적등록 팝업부  -->
+	
+	<resultMap id="HouseCodeSearchResult" type="HouseCodeSearchVO">
+		<result property="houseCode" column="house_Code" />
+		<result property="houseName" column="house_Name" />
+	</resultMap>
+	
+	<select id="selectHouseCodeList" resultMap="HouseCodeSearchResult">
+		<![CDATA[select * from SM_BIM_HOU_REG]]>
+	</select>
+	
+	<resultMap id="ProcessCodeSearchResult" type="ProcessCodeSearchVO">
+		<result property="processCode" column="process_Code" />
+		<result property="processName" column="process_Name" />
+	</resultMap>
+	
+	<select id="selectProcessCodeList" resultMap="ProcessCodeSearchResult">
+		<![CDATA[select * from SM_BIM_PRO_REG]]>
+	</select>
 	
 		<!-- 기초정보등록 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
@@ -347,8 +376,12 @@ where (status = '확정' or status = '마감')
 	</select>
 	
 	<select id="selectAllOperationInsClosingDetail" resultType="OperationInsClosingVO" >
-		<![CDATA[SELECT * FROM OperationInsClosingDetailVIEW
-WHERE workOrderNumber=#{workOrderNumber}]]>
+		<![CDATA[select oprd.OPNumber,opr.instructiondate ,opr.duedate,func_pro_reg(oprd.process_code) as processCode,func_pro_wor_reg(oprd.workplace_code) as workplaceCode,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
+(opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance, ir.cost as unitPrice,(opr.indicatedquantity*ir.cost) as price,opr.inspection,opr.note
+from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd,SM_BIM_Ite_Reg ir
+where opr.workordernumber= oprd.workordernumber and ir.item_code = opr.item_code and opr.workordernumber=#{workOrderNumber}
+group by  oprd.OPNumber,opr.instructiondate,opr.duedate,oprd.process_code,oprd.workplace_code,opr.indicatedquantity, oprd.performancequantity,ir.cost,(opr.indicatedquantity*ir.cost),opr.inspection,opr.note
+order by oprd.OPNumber]]>
 	</select>
 	
 	<select id="checkClosingDetail" resultType="string">
@@ -462,6 +495,13 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	<select id="selectPopList2" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품' order by division desc]]>
 	</select>
+	<select id="outPopSearch" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
 	</select>
@@ -503,8 +543,9 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	</resultMap>
 	
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
-		<![CDATA[SELECT * FROM outPriceView
-where outsourcing_code = #{0} and outcustomer=#{1}]]>
+		<![CDATA[select out.*, ite.item_name,ite.STANDARD,ite.INVENTORY_UNIT,ite.COST
+from cpm_bim_out_pri out, sm_bim_ite_reg ite
+where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outcustomer=#{1} order by out.outsourcing_code]]>
 	</select>
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
@@ -603,7 +644,7 @@ where outsourcing_code = #{0} and outcustomer=#{1}]]>
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
-
+	
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />
@@ -820,7 +861,7 @@ order by workordernumber]]>
 	<insert id="insertOutRelease" parameterType="OutReleaseVO">
 		<![CDATA[
 		INSERT INTO CPM_OM_Out_Mat_For
-		VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),#{forwardingDate}, #{houseCode}, #{locationCode}, #{outsourcingCode}, #{workplaceCode},#{note});
+		VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),#{forwardingDate}, #{houseCode}, #{locationCode}, #{outsourcingCode}, #{workplaceCode},#{note})
 		]]>  
 	</insert>
 
@@ -849,7 +890,7 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	<insert id="insertOutReleaseDetail" parameterType="OutReleaseVO">
 		<![CDATA[
 		INSERT INTO CPM_OM_Out_Mat_For_Det
-		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber});
+		VALUES (F_GET_NEXT_SEQ('NO'),#{billingDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit},#{precisionQuantity},#{loss},#{forwardingQuantity},#{noteDetail},#{forwardingNumber},#{workOrderNumber})
 		]]>  
 	</insert>
 	
@@ -971,9 +1012,22 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	<select id="selectfinishedstockList" resultMap="StoManage">
+		<![CDATA[ select Item_Code, Item_Name
+		  from PM_SM_Pro_FinishedProduct
+		]]>
+	</select>
+	
 	<select id="selectPopstockList" resultMap="StoManage">
 		<![CDATA[ select Item_Code, Item_Name
 		  from PM_SM_Pro_Stock
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
+	<select id="selectPopstockList2" resultMap="StoManage">
+		<![CDATA[ select Item_Code, Item_Name
+		  from PM_SM_Pro_FinishedProduct
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>

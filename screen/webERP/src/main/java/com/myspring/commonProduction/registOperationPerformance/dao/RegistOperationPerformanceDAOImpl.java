@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.HouseCodeSearchVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.ProcessCodeSearchVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
 
@@ -97,10 +99,16 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	
 	@Override
 	public List houseCodeViewPop() throws DataAccessException {
-		List<FactoryViewVO> popList = null;
+		List<HouseCodeSearchVO> popList = null;
 		popList = sqlSession.selectList("mappers.erp.selectHouseCodeList");
 		return popList;
 	}
 
+	@Override
+	public List processCodeViewPop() throws DataAccessException {
+		List<ProcessCodeSearchVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectProcessCodeList");
+		return popList;
+	}
 }
 

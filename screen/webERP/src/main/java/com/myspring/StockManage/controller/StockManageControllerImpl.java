@@ -91,6 +91,15 @@ public class StockManageControllerImpl implements StockManageController {
 
 		return mav;
 	}
+	@RequestMapping(value = "/member/finishedsearchtype.do", method = RequestMethod.GET)
+	public ModelAndView finishedsearchtype(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List nameView = stockManageservice.finishednameView();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("nameView", nameView);
+
+		return mav;
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/member/searchPopName.do", method = RequestMethod.GET)
@@ -98,6 +107,18 @@ public class StockManageControllerImpl implements StockManageController {
 		ModelAndView mav = new ModelAndView();
 		List<StockManageVO> popName = null;
 		popName = stockManageservice.searchPopName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchPopName2.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName2(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<StockManageVO> popName = null;
+		popName = stockManageservice.searchPopName2(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 

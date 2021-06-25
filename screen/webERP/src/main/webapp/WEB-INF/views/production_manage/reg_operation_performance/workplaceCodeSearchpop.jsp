@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>창고검색</title>
+    <title>작업장 검색</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <style>
     	a{
@@ -67,13 +67,13 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>창고코드</td>
-                    <td>창고명</td>
+                    <td>작업장코드</td>
+                    <td>작업장명</td>
                 </tr>
-    <c:forEach var="house" items="${itemView}" >     
+    <c:forEach var="work" items="${itemView}" >     
 		<tr align="center">
-      		<td><a href="javascript:popFunction('${house.houseCode}','${house.houseName }')">${house.houseCode}</a></td>
-      		<td><a href="#">${house.houseName}</a></td>
+      		<td><a href="javascript:popFunction('${work.workpalceCode}','${work.workplaceName }')">${work.workplaceCode}</a></td>
+      		<td><a href="#">${process.processName}</a></td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -92,7 +92,7 @@
     	submit_button.onclick = function(){
     		var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url+'&houseCode='+text_code.value;
+    		opener.parent.location=url+'&workplaceName='+text_name.value;
     		window.close();
     	}
     </script>
