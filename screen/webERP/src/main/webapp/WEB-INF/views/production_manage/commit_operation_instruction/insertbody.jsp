@@ -182,22 +182,13 @@
                         <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.indicated}" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>                                                
+                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>    
                         <td><input type="text" name="DetailVO[${status.index }].note" /></td>
+                        <td><input type="hidden" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.indicated}" /></td>
                         <td><input type="hidden" name="DetailVO[${status.index }].workOrderNumber" value="${param.workOrderNumber }" /></td>
   					 </tr>
                     </c:forEach>
-                    <tr>
-                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>                        
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemCode"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemName"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].standard"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].inventoryUnit"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].precisionQuantity"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].loss"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(infoList)}].note"/></td>                                         
-                    </tr>
-                    </tbody>
+                   </tbody>
                 </table>
                 </form>
             </div>
@@ -256,7 +247,6 @@
       
         function newRow(){
           // dao에서 저장
-    	 
         	var row = workOrderTable.insertRow(); 
           	const URLSearch = new URLSearchParams(location.search);
 		 	const newParam = URLSearch.toString();

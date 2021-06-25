@@ -97,7 +97,7 @@ public class OperationDetailVO {
 	}
 
 	public void setComfirmQuantity(int comfirmQuantity) {
-		this.comfirmQuantity = comfirmQuantity;
+		this.comfirmQuantity = this.precisionQuantity + (this.precisionQuantity / 100 * this.loss);
 	}
 
 	public String getNote() {

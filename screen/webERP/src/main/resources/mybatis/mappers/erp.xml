@@ -205,7 +205,7 @@
 		<![CDATA[
 		 insert into CPM_PM_PRO_MAT_FOR_DET
 		 values(F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), SYSDATE, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
-		 (precisionQuantity + (precisionQuantity * loss)), #{note}, #{workOrderNumber} )
+		 #{comfirmQuantity}, #{note}, #{workOrderNumber} )
 		]]>  
 	</insert>
 	
