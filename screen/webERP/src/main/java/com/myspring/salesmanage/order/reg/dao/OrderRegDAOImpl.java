@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.order.vo.OrderVO;
 
 @Repository("orderRegDAO")
@@ -34,11 +35,33 @@ public class OrderRegDAOImpl implements OrderRegDAO {
 	
 	@Override
 	public List selectSupOrderList() throws DataAccessException {
-		List<OrderVO> orderList = null;
-		orderList = sqlSession.selectList("mappers.erp.RegOrderSupList");
-		return orderList;
+		List<OrderVO> orderSupList = null;
+		orderSupList = sqlSession.selectList("mappers.erp.RegOrderSupList");
+		return orderSupList;
 	}
 	
+	@Override
+	public void delSupOrder(String[] noary) throws DataAccessException {
+		for(String ordcode: noary) {
+			sqlSession.delete("mappers.erp.delSupOrd",ordcode);
+		}
+	}
+
+	@Override
+	public List submitOrderCorReg(String ordCode) throws DataAccessException {
+		List<OrderVO> submitOrderCor = null;
+		submitOrderCor = sqlSession.selectList("mappers.erp.submitSubOrdReg", ordCode);
+		return submitOrderCor;
+	}
+	
+	@Override
+	public List selectSubCorList() throws DataAccessException {
+		List<CorVO> subOrderList = null;
+		subOrderList = sqlSession.selectList("mappers.erp.orderCorList");
+		return subOrderList;
+	}
+
+
 
 //	@Override
 //	public List RegOrderSubList() throws DataAccessException {
@@ -55,12 +78,7 @@ public class OrderRegDAOImpl implements OrderRegDAO {
 
 
 	
-//	@Override
-//	public void delOrder(String[] noary) throws DataAccessException {
-//		for(String obj: noary) {
-//			sqlSession.delete("mappers.erp.delOrd",obj);
-//		}
-//	}
+
 //		
 //	@Override
 //	public int selOrdCode() throws DataAccessException {	

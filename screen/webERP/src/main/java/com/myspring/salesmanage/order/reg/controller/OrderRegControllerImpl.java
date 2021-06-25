@@ -51,21 +51,19 @@ public class OrderRegControllerImpl implements OrderRegController{
 		if(code == null || code.length() == 0||submit.equals("0")) {
 		
 			mav = new ModelAndView(viewName);
-			List orderInsert = orderService.submitCust(code);
-			mav.addObject("orderInsert", orderInsert);
 			return mav;
 		}
 		else if(submit.equals("1")) {
-			List orderList = orderService.submitCust(code);
+			List orderSupList = orderService.submitCust(code);
 			mav = new ModelAndView(viewName);
-			mav.addObject("orderList", orderList);
+			mav.addObject("orderSupList", orderSupList);
 			
 		}else if(submit.equals("2")) {
 			System.out.println("얍!");
-			List orderList = orderService.submitCust(code);
+			List orderSupList = orderService.submitCust(code);
 			List orderInsert = orderService.submitCust(code);
 			mav = new ModelAndView(viewName);
-			mav.addObject("orderList", orderList);
+			mav.addObject("orderSupList", orderSupList);
 			mav.addObject("orderInsert", orderInsert);
 //			int inputNo = orderService.inputNo();
 //			String inNo = Integer.toString(inputNo+1);
@@ -75,8 +73,8 @@ public class OrderRegControllerImpl implements OrderRegController{
 	}
 	
 //	@Override
-//	@RequestMapping(value="/member/suborderlist.do" ,method = RequestMethod.GET)
-//	public ModelAndView listOrdItemCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	@RequestMapping(value="/member/regorder1.do" ,method = RequestMethod.GET)
+//	public ModelAndView listSubOrdCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		ModelAndView mav = null;
 //		String viewName = getViewName(request);
 //		String code = (String)request.getParameter("custCode");
@@ -107,6 +105,39 @@ public class OrderRegControllerImpl implements OrderRegController{
 //		}
 //		return mav;
 //	}
+	
+	@RequestMapping(value="/member/suborderlist.do",method = RequestMethod.GET)
+	public ModelAndView helper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String code = (String)request.getParameter("ordCode");
+		String submit = (String)request.getParameter("submit");
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
+		if(code == null || code.length() == 0||submit.equals("0")) {
+			
+			mav = new ModelAndView(viewName);
+			List orderSupList= orderService.submitCust(code);
+			mav.addObject("orderSupList", orderSupList);
+			return mav;
+		}
+		else if(submit.equals("1")) {
+			mav = new ModelAndView(viewName);			
+			List orderSupList= orderService.submitCust(code);
+			mav.addObject("orderSupList", orderSupList);
+			
+			
+		}else if(submit.equals("2")) {
+
+			mav = new ModelAndView(viewName);			
+			List orderSupList= orderService.submitCust(code);
+			mav.addObject("orderSupList", orderSupList);
+//			int inputNo = orderService.inputNo();
+//			String inNo = Integer.toString(inputNo+1);
+//			request.setAttribute("inputNo", inNo);
+		}
+		return mav;
+	}
 //	@Override
 //	@RequestMapping(value="/member/addorder.do", method = RequestMethod.GET)
 //	public ModelAndView addOrder(OrderVO orderVO, HttpServletRequest request, HttpServletResponse response)
@@ -136,17 +167,7 @@ public class OrderRegControllerImpl implements OrderRegController{
 //		return mav;
 //	}
 	
-//	@RequestMapping(value="/member/helperorder.do",method = RequestMethod.GET)
-//	public ModelAndView helper(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String viewName = getViewName(request);
-////		logger.info("viewName: "+ viewName);
-////		logger.debug("viewName: "+ viewName);
-//		List orderCustList = orderService.listCusts();
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("orderCustList", orderCustList);
-//
-//		return mav;
-//	}
+
 	
 	private String getViewName(HttpServletRequest request)  throws Exception{
 		String contextPath = request.getContextPath();

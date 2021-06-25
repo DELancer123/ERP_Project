@@ -13,44 +13,19 @@ public interface OrderRegDAO {
 	//super reg
 	public List selectSupOrderList() throws DataAccessException;
 	public List submitOrdCustSupReg(String custCode) throws DataAccessException;
+	public void delSupOrder(String[] noary) throws DataAccessException;
 
+	//sub reg
+	public List selectSubCorList() throws DataAccessException;
+	public List submitOrderCorReg(String custCode) throws DataAccessException;
+//	public void delSupOrder(String[] noary) throws DataAccessException;
 	
 //	public List RegOrderSubList() throws DataAccessException;
 //	public List submitOrdSubReg(String ordCode) throws DataAccessException;
-//	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	
-//	
-//	
+//
 //	//reg-delete
 //	public int selOrdCode() throws DataAccessException;
-//	public void delOrder(String[] noary) throws DataAccessException;
+
 //	
 //	//reg-insert
 //	public int addOrder(OrderVO orderVO) throws DataAccessException;

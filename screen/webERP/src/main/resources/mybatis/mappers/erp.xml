@@ -340,9 +340,21 @@
 
 	
 		<select id="orderCorList" resultMap="orderCorRegList">
-      <![CDATA[select * from CSM_SM_COR_Reg]]>
+      <![CDATA[select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
+		 where ORD.ordersNum = COR.code]]>
 	</select>
 	
+	<select id="submitSubOrdReg" resultMap="orderCorRegList" parameterType="String">
+      <![CDATA[
+		select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
+		 where ORD.ordersNum = COR.code	
+		 and ORD.ordersNum = #{ordCode}
+        ]]>
+	</select><!-- regSupOrder -->
+	
+	<delete id="delSupOrd" parameterType="String">
+		<![CDATA[delete from CSM_SM_Ord_Reg where ordersNum=#{ordcode}]]>      
+  </delete>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">

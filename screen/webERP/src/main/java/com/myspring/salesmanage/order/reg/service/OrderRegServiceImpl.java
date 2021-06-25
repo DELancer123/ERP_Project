@@ -31,9 +31,9 @@ public class OrderRegServiceImpl implements OrderRegService {
 	
 	@Override
 	public List listRegOrder() throws DataAccessException {
-		List orderList = null;
-		orderList = orderDAO.selectSupOrderList();
-		return orderList;
+		List orderSupList = null;
+		orderSupList = orderDAO.selectSupOrderList();
+		return orderSupList;
 	}
 
 
