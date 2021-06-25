@@ -451,4 +451,29 @@
    <put-attribute name="side" value="" />
    <put-attribute name="body" value="" />   
    </definition>
+   
+   <!-- 부서등록팝업 -->
+   <definition name="Departmentpopup"  template="/WEB-INF/views/SystemAdmin/reg_department/departmentpopup.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   
+   <definition name="/member/departmentpop" extends="Departmentpopup">
+   <put-attribute name="title" value="팝업" />
+   <put-attribute name="side" value="" />
+   <put-attribute name="body" value="" />   
+   </definition>
+   <!-- 부서등록(부문)팝업 -->
+   <definition name="Sectorpopup"  template="/WEB-INF/views/SystemAdmin/reg_department/department_sector.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   
+   <definition name="/member/sectorpop" extends="Sectorpopup">
+   <put-attribute name="title" value="팝업" />
+   <put-attribute name="side" value="" />
+   <put-attribute name="body" value="" />   
+   </definition>
 </tiles-definitions>

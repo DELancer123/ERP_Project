@@ -11,6 +11,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.DepartmentVO;
 import com.myspring.systemmag.vo.EmployeeVO;
 import com.myspring.systemmag.vo.ItemgVO;
+import com.myspring.systemmag.vo.SectorVO;
 import com.myspring.systemmag.vo.SystemmagVO;
 import com.myspring.systemmag.vo.WorkplaceVO;
 import com.myspring.systemmag.vo.ZipcodeVO;
@@ -214,5 +215,18 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			}
 			
 		}
-
+	//부서등록(팝업)
+		@Override
+		public List viewDep() throws DataAccessException {
+			List<DepartmentVO> depList = null;
+			depList = sqlSession.selectList("mappers.erp.selectworList");
+			return depList;
+		}
+	//부서등록(팝업)
+		@Override
+		public List viewSec() throws DataAccessException {
+			List<SectorVO> secList = null;
+			secList = sqlSession.selectList("mappers.erp.selectSector");
+			return secList;
+		}
 }

@@ -141,7 +141,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public void delItemg(String[] noary) throws DataAccessException {
 		systemmagDAO.deleteItemg(noary);
 	}
-	//부서등록
+	//품목등록
 			@Override
 			public int addItemg(ItemgVO itemgVO) throws DataAccessException{
 				return systemmagDAO.addItemg(itemgVO);
@@ -172,9 +172,23 @@ public class SystemmagServiceImpl implements SystemmagService {
 		public void updDep(DepartmentVO departmentVO) throws DataAccessException {		
 			systemmagDAO.updateDep(departmentVO);
 		}
-	//부서등록(수정)
+	//부서등록(삭제)
 		@Override
 		public void delDep(String[] noary) throws DataAccessException {
 			systemmagDAO.deleteDep(noary);
+		}
+	//부서등록 팝업
+		@Override
+		public List depView(String depNumber) throws DataAccessException {
+			List depList = null;
+			depList = systemmagDAO.viewDep();
+			return depList;
+		}
+	//부서등록 팝업
+		@Override
+		public List secView(String secNumber) throws DataAccessException {
+			List secList = null;
+			secList = systemmagDAO.viewSec();
+			return secList;
 		}
 }

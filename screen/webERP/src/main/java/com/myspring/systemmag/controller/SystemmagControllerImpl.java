@@ -140,7 +140,7 @@ public class SystemmagControllerImpl implements SystemmagController{
 		return mav;
 	}
 	
-	//사업장등록 조회
+	//사업장등록(조회)
 	@Override
 	@RequestMapping(value="/member/regbusiness.do" ,method = RequestMethod.GET)
 	public ModelAndView viewWorkplace(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -378,6 +378,26 @@ public class SystemmagControllerImpl implements SystemmagController{
 			return mav;
 
 		}
+		//부서등록(팝업)
+				@RequestMapping(value="/member/departmentpop.do" ,method = RequestMethod.GET)
+				public ModelAndView departmentpopup(HttpServletRequest request, HttpServletResponse response) throws Exception {
+					String viewName = getViewName(request);
+					String depNumber = (String) request.getParameter("dep_Code");
+					List depView = systemmagService.depView(depNumber);
+					ModelAndView mav = new ModelAndView(viewName);
+					mav.addObject("depView", depView);
+					return mav;
+				}
+		//부문(팝업)
+				@RequestMapping(value="/member/sectorpop.do" ,method = RequestMethod.GET)
+				public ModelAndView Sectorpopup(HttpServletRequest request, HttpServletResponse response) throws Exception {
+					String viewName = getViewName(request);
+					String secNumber = (String) request.getParameter("sec_Code");
+					List secView = systemmagService.secView(secNumber);
+					ModelAndView mav = new ModelAndView(viewName);
+					mav.addObject("secView", secView);
+					return mav;
+				}
 	//겟뷰네임
 	
 	private String getViewName(HttpServletRequest request) {

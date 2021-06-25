@@ -21,6 +21,8 @@ public interface SystemmagService {
 	public List zipView(String zipNumber) throws DataAccessException;
 	public List zipText(String zipNumber) throws DataAccessException;
 	public List itgView(String itgNumber) throws DataAccessException;
+	public List depView(String depNumber) throws DataAccessException;
+	public List secView(String secNumber) throws DataAccessException;
 	//사업장등록
 	public int addWor(WorkplaceVO workplaceVO) throws Exception;
 	public List worView() throws DataAccessException;

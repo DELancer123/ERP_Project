@@ -37,5 +37,7 @@
 		<typeAlias type="com.myspring.systemmag.vo.DepartmentVO" alias="DepartmentVO" />
 		<!-- 우편번호(팝업) -->
 		<typeAlias type="com.myspring.systemmag.vo.ZipcodeVO" alias="ZipcodeVO" />
+		<!-- 부문(팝업) -->
+		<typeAlias type="com.myspring.systemmag.vo.SectorVO" alias="SectorVO" />
 	</typeAliases>
 </configuration>	 

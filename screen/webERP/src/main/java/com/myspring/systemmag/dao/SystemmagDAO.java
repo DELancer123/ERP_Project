@@ -22,6 +22,8 @@ public interface SystemmagDAO {
 	public List viewZip() throws DataAccessException;
 	public List zipText(String zipNumber) throws DataAccessException;
 	public List viewItg() throws DataAccessException;
+	public List viewDep() throws DataAccessException;
+	public List viewSec() throws DataAccessException;
 	//사업장등록
 	public int addWor(WorkplaceVO workplaceVO) throws DataAccessException;
 	public List viewWor() throws DataAccessException;

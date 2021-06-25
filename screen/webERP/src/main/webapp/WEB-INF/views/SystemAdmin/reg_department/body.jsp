@@ -73,6 +73,8 @@
         }        
         
         #table1 {
+        	padding-left:25%;
+        	padding-right:30%;
         	margin-top:18px;
         	width:100%
 
@@ -88,32 +90,17 @@
 <container1 id = contents1>
             <table id="table1" align="center">
                 <tr>
-                    <p><td colspan="3" span style="color:black" align="center">부서등록</td></p>
-                    <p><td colspan="7" span style="color:black" align="center">부문등록</td></p>
+                    <td colspan="3" span style="color:black" align="center" ><b>부서등록</b></td>
                 </tr>
                 <tr>
                     <td align="center">사업장</td>
                     <td >
-                        <select name="workSpace" style="width: 120px;">
-                        </select>
-                        <i class="fas fa-search" style="color: blue;"></i>
+                        <input type=text name="workSpace" style="width: 120px;" value='${param.workplace_Code }' readonly/>
+                        <a href="javascript:searchitemg()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
-                    <td align="center">조회기준일 적용</td>
-                    <td>
-                        <input type="checkbox">
-                        <input type="date" disabled text-align: center; style="width: 130px;"/>
-                    </td>                  
-                    <td align="center" colspan="3" style="width:150px; text-align: right;">부문코드&nbsp;</td>
-                    <td>
-                        <input type=text name="sectorCode" style=" width: 80px;"/>
-                    </td>
-                    <td align="center">부문명</td>
-                    <td>
-                        <input type=text name="sectorName" style="width: 150px;"/>
-                    </td>
-                    <td align="center">사용기간 시작</td>
-                    <td>
-                        <input type="date" style="width: 130px;">
+                    <td align="center">사업장명</td>
+                    <td >
+                        <input type=text name="workSpaceName" style="width: 240px;" value='${param.workplace_Name }' readonly/>
                     </td>
                 </tr>
             </table>
@@ -150,10 +137,10 @@
     <td></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Code" style="width: 100px;" id="department_Code1"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" id="department_Name1" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px;" id="workplace_Code1" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" id="workplace_Name1" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px;" id="sector_Code1" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" id="sector_Name1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px;" id="workplace_Code1" value='${param.workplace_Code}' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" id="workplace_Name1" value='${param.workplace_Name}' readonly/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px;" id="sector_Code1" ondblclick="searchsector()" readonly value='${param.sector_Code}'/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" id="sector_Name1" readonly value='${param.sector_Name}'/></td>
     	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" id="usedate1" /></td>
     </tr>
                  </tbody>
@@ -231,6 +218,30 @@
           	else //컨트롤러로 해당목록의 no값을 보낸다
       			window.location.href = "${contextPath}/member/deletedepartment.do?no="+ary;       	
           }
+    	//팝업
+     	function searchitemg(){
+		
+		openWindowPop('${contextPath}/member/departmentpop.do','departmentpopup');
+	}
+     	function searchsector(){
+    		
+    		openWindowPop('${contextPath}/member/sectorpop.do','sectorpop');
+    	}
+     	function setChildValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);
+  		  URLSearch.set('submit', '2');
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('depCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&depCode=' + name;
+          }
+          else{
+          	URLSearch.set('secCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam + '&secCode=' + name;
+          }
+          
+      }
         </script>
 </body>
 </html>

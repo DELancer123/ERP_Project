@@ -462,7 +462,16 @@
 	<delete id="deleteDep">
 		delete from SM_CRI_Dep_Reg where Department_Code = #{no}
 	</delete>
-	
+	<!-- 부문 -->
+		<resultMap id="sectorResult" type="SectorVO">
+		<result property="sector_Code" column="Sector_Code"	/>
+		<result property="sector_Name" column="Sector_Name"	/>
+		<result property="useDate" column="UseDate"	/>
+		</resultMap>
+	<!-- 조회 -->
+	<select id="selectSector" resultMap="sectorResult">
+		<![CDATA[select * from SM_CRI_Sec_Reg]]>	
+	</select>
 	<!--기초정보관리파트-->
 	<resultMap id="basicInfoResult" type="SystemmagVO">
 		<result property="General_Customer_Code" column="General_Customer_Code" />

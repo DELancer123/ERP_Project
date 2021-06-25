@@ -16,13 +16,13 @@
  	<c:set var="inspection_Status" value="${item1.inspection_Status }"/>
  	<c:set var="use_Status" value="${item1.use_Status }"/>
  	<c:set var="lOT_Quantity" value="${item1.lOT_Quantity }"/>
- 	<c:set var="drawing_Number" value="${item1.drawing_Number }"/>
+ 	<c:set var="drawing_Number" value="${item1.drawing_Number}"/>
  	<c:set var="hs_Code" value="${item1.hs_Code }"/>
  	<c:set var="width" value="${item1.width }"/>
  	<c:set var="length" value="${item1.length }"/>
  	<c:set var="height" value="${item1.height }"/>
  	<c:set var="cost" value="${item1.cost }"/>
- 	<c:set var="item_Group_Code " value="${item1.item_Group_Code  }"/>
+ 	<c:set var="item_Group_Code" value="${item1.item_Group_Code}"/>
  	<c:set var="division" value="${item1.division }"/> 	
  	<c:set var="notes" value="${item1.notes }"/>
  	<c:set var="daily_production" value="${item1.daily_production }"/>
@@ -141,24 +141,7 @@
                         <input type=text value='${param.item_Group_Name}' />
                     </td>
                 </tr>
-                <tr>
-                    <td>검색조건</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="0">0.시작문자열</option>
-                            <option value="1">1.포함문자열</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" value=" 품번 검색" id="search1">
-                    </td>
-                    <td>
-                        <input type="text" value=" 품명 검색" id="search2">
-                    </td>
-                    <td>
-                        <input type="text" value=" 규격 검색" id="search3">
-                    </td>
-                </tr>
+               
             </table>
         </container1>
         <container2 id= contents2>
@@ -225,14 +208,6 @@
                         <input type="text" name="inventory_Unit" id=inventory_Unit  value='${inventory_Unit }'>
                     </td>
                 </tr>
-                <!-- <tr>
-                    <td align="center">품목군</td>
-                    <td>
-                        <input type="text" style="width: 70px;">
-                        <button>+</button>
-                        <input type="text" style="width: 100px;">
-                    </td>
-                </tr> -->
                 <tr>
                     <td align="center">LOT여부</td>
                     <td>
@@ -312,6 +287,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td align="center">품목군</td>
+                    <td>
+                        <input type="text" name="item_Group_Code" id="item_Group_Code" value='${item_Group_Code}'>
+                    </td>
+                </tr>
+                <tr>
                     <td align="center">반/완제품</td>
                     <td>
                         <input type="text" name="division" id="division" value='${division }'>
@@ -347,28 +328,6 @@
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
         updateButton.addEventListener('click', function(){updateRow();}, false); 
         
-        	var search_box1 = document.getElementById('search1');
-        	var search_box2 = document.getElementById('search2');
-        	var search_box3 = document.getElementById('search3');
-        	search_box1.onfocus = function(){
-                document.getElementById("search1").value = '';
-            }
-            search_box1.onblur = function(){
-                document.getElementById("search1").value = ' 품번 검색';
-            }
-            search_box2.onfocus = function(){
-                document.getElementById("search2").value = '';
-            }
-            search_box2.onblur = function(){
-                document.getElementById("search2").value = ' 품명 검색';
-            }
-            search_box3.onfocus = function(){
-                document.getElementById("search3").value = '';
-            }
-            search_box3.onblur = function(){
-                document.getElementById("search3").value = ' 규격 검색';
-            }
-            
             function searchView(name) {
             	console.log('확인');
              	window.location.href = "${contextPath}/member/regitem.do?submit=1&&item_code=" + name; 
