@@ -172,6 +172,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="/member/workplaceCodeSearchPop"  template="/WEB-INF/views/production_manage/reg_operation_performance/workplaceCodeSearchpop.jsp">
+      <put-attribute name="title" value="작업장코드팝업" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <!--  -->
    
 <!--외주 팝업 -->
