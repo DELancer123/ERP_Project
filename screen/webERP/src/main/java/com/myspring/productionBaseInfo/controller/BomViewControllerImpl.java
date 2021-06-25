@@ -366,4 +366,15 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
+	@Override
+	@RequestMapping(value="/member/deldefPop.do" ,method = RequestMethod.GET)
+	public ModelAndView deldefPop(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String number = (String) request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		viewService.deldefPop(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/deftypepop.do");
+		return mav;
+	}
 }

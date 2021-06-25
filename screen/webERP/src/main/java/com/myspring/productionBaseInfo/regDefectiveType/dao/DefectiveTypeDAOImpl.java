@@ -60,4 +60,11 @@ public class DefectiveTypeDAOImpl implements DefectiveTypeDAO{
 		}
 		return 0;
 	}
+	@Override
+	public Object deldefPop(String[] numberary) throws DataAccessException {
+		for(int i = 0;i<numberary.length;i++) {
+			sqlSession.delete("mappers.erp.deldefPop", numberary[i]);		
+		}
+		return 0;
+	}
 }

@@ -33,5 +33,6 @@ public interface BomViewController {
 	public ModelAndView adddefType(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView upddefType(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView deldefType(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView deldefPop(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView adddefpop(@ModelAttribute("def") DefectiveTypeVO defVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

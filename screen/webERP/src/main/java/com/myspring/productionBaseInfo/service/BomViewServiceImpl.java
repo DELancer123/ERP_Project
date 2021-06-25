@@ -173,4 +173,9 @@ public class BomViewServiceImpl implements BomViewService{
 		return delList;
 	}
 
+	@Override
+	public void deldefPop(String[] numberary) throws DataAccessException {
+		defDAO.deldefPop(numberary);
+	}
+
 }

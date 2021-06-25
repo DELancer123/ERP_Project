@@ -78,7 +78,7 @@
                 </tr>
                 <c:forEach var="group" items='${defGroupList }' varStatus="status">
    <tr align="center">
-   <td><input type="checkbox" name="content"/></td>
+   <td><input type="checkbox" name="content" value='${group.defectiveItemGroupCode }'/></td>
       <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroupCode }</a></td>
       <td><a href="">${group.defectiveItemGroup }</a></td>
       <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${group.defectiveItemGroupCode }'/>
@@ -131,9 +131,6 @@
             })
         }
     	delete_pop.onclick = function(){
-			const URLSearch = new URLSearchParams(location.search);
-			var code= URLSearch.get('itemNumber');
-			var place = URLSearch.get('placeCode');
 			 var item = document.getElementsByName("content").length;
 	    	  var no = "";
 	    	  var ary = [];
@@ -142,8 +139,7 @@
 	    			  no = document.getElementsByName("content")[i].value;
 	    			  ary.push(no);
 	    		  }
-	    		  
-	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
+	    			    window.location.href = "${contextPath}/member/deldefPop.do?no="+ary; 
 	    	  }
 		}
     </script>

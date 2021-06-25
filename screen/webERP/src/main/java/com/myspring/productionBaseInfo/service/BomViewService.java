@@ -34,4 +34,5 @@ public interface BomViewService {
 	public int deldefType(String[] numberary) throws DataAccessException;
 	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
 	public int doutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException;
+	public void deldefPop(String[] numberary) throws DataAccessException;
 }
