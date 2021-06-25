@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.order.dao;
+package com.myspring.salesmanage.order.reg.dao;
 
 import java.util.List;
 
@@ -6,21 +6,18 @@ import org.springframework.dao.DataAccessException;
 
 import com.myspring.salesmanage.order.vo.OrderVO;
 
-public interface OrderDAO {
+public interface OrderRegDAO {
 	
-	//sta
-	public List selectOrderCorList() throws DataAccessException;
-	public List submitOrdCustSta(String custCode) throws DataAccessException;
-	
+	//pop
+	public List selectAllCustList() throws DataAccessException;	
 	//super reg
-	public List RegOrderSupList() throws DataAccessException;
-	public List selectAllCustList() throws DataAccessException;
+	public List selectSupOrderList() throws DataAccessException;
 	public List submitOrdCustSupReg(String custCode) throws DataAccessException;
 
 	
-	public List RegOrderSubList() throws DataAccessException;
-	public List submitOrdSubReg(String ordCode) throws DataAccessException;
-	
+//	public List RegOrderSubList() throws DataAccessException;
+//	public List submitOrdSubReg(String ordCode) throws DataAccessException;
+//	
 	
 	
 	

@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.salesmanage.order.vo.OrderVO;
-
 public interface OrderRegController{
 	
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception;

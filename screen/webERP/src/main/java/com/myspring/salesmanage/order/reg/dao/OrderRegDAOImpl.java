@@ -1,4 +1,4 @@
-package com.myspring.salesmanage.order.dao;
+package com.myspring.salesmanage.order.reg.dao;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.salesmanage.order.vo.OrderVO;
 
-@Repository("orderDAO")
-public class OrderDAOImpl implements OrderDAO {
+@Repository("orderRegDAO")
+public class OrderRegDAOImpl implements OrderRegDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -21,52 +21,37 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public List selectAllCustList() throws DataAccessException {
 		List<OrderVO> orderCustList = null;
-		orderCustList = sqlSession.selectList("mappers.erp.orderCustList");
+		orderCustList = sqlSession.selectList("mappers.erp.allCustForRegOrder");
 		return orderCustList;
 	}
-	
-	//////////////////status
-	@Override
-	public List selectOrderCorList() throws DataAccessException {
-		List<OrderVO> orderList = null;
-		orderList = sqlSession.selectList("mappers.erp.StaOrderList");
-		return orderList;
-	}
 
-	@Override
-	public List submitOrdCustSta(String custCode) throws DataAccessException {
-		List<OrderVO> submitOrderCust = null;
-		submitOrderCust = sqlSession.selectList("mappers.erp.submitOrderSta", custCode);
-		return submitOrderCust;
-	}
-
-	//////////////////////registration
-	@Override
-	public List RegOrderSupList() throws DataAccessException {
-		List<OrderVO> orderList = null;
-		orderList = sqlSession.selectList("mappers.erp.RegOrderSupList");
-		return orderList;
-	}
-	
 	@Override
 	public List submitOrdCustSupReg(String custCode) throws DataAccessException {
 		List<OrderVO> submitOrderCust = null;
 		submitOrderCust = sqlSession.selectList("mappers.erp.submitOrderSupReg", custCode);
 		return submitOrderCust;
 	}//customer submit by superOrder registration
-
+	
 	@Override
-	public List RegOrderSubList() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List selectSupOrderList() throws DataAccessException {
+		List<OrderVO> orderList = null;
+		orderList = sqlSession.selectList("mappers.erp.RegOrderSupList");
+		return orderList;
 	}
+	
 
-	@Override
-	public List submitOrdSubReg(String ordCode) throws DataAccessException {
-		List<OrderVO> submitSubOrdList = null;
-		submitSubOrdList = sqlSession.selectList("mappers.erp.submitsubOrder", ordCode);
-		return submitSubOrdList;
-	}//customer submit by subOrder registration
+//	@Override
+//	public List RegOrderSubList() throws DataAccessException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public List submitOrdSubReg(String ordCode) throws DataAccessException {
+//		List<OrderVO> submitSubOrdList = null;
+//		submitSubOrdList = sqlSession.selectList("mappers.erp.submitsubOrder", ordCode);
+//		return submitSubOrdList;
+//	}//customer submit by subOrder registration
 
 
 	

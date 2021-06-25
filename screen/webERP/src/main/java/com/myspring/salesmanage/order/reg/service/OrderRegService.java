@@ -9,13 +9,12 @@ import com.myspring.salesmanage.order.vo.OrderVO;
 public interface OrderRegService {
 
 	
-	//list by order regstration
-	public List listRegOrder() throws DataAccessException;
-	
 	//cust
 	public List listCusts() throws DataAccessException;
-	public List submitCust(String custCode) throws DataAccessException;
 	
+	//list by order regstration
+	public List submitCust(String custCode) throws DataAccessException;
+	public List listRegOrder() throws DataAccessException;
 //	//reg-delete
 //	public int inputNo() throws DataAccessException;
 //	public void removeOrder(String[] noary) throws DataAccessException;
