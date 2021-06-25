@@ -67,14 +67,10 @@
         #workOrderInfo {
             width: 100%;
             overflow: scroll;
-            height: 90%;
+            height: 100%;
         }
         /* 컨테이너 스타일부 종료 */
-        /* 출력부 스타일부 */
-        #detailPrint1{
-            border: 1px solid;
-            height: 10%;
-        }
+        
 
 </style>
 </head>
@@ -192,6 +188,7 @@
                         <td>검사</td>
                         <td>비고</td>
                         <td>작업지시번호</td>
+                        <td>입고창고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
@@ -222,21 +219,14 @@
                         <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
                         <td><input type="text" id="note" name="DetailVO[${fn:length(detailList)}].note" value="${param.note }"/></td>
                         <td><input type="text" id="workOrderNumber" name="DetailVO[${fn:length(detailList)}].workOrderNumber" value="${param.searchNumber }"/></td>
+                        <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" value="#{param.houseCode }" /></td>
                     </tr>
                     </tbody>
                 </table>
                 </form>
             </div>
             <!-- 컨테이너 출력 종료 -->
-            <!-- 출력부 -->
             
-            <div id="detailPrint1">
-                입고 창고<input type="text" name="cargoName" style="width: 75px;"><a href="#" onclick="showPopup();"> <i class="fas fa-search"></i></a><input type="text" name="printCargoName" disabled>
-                재작업<select>
-                    <option>부</option>
-                    <option>여</option>
-                </select>
-            </div>
         </container3>
       
 </body>

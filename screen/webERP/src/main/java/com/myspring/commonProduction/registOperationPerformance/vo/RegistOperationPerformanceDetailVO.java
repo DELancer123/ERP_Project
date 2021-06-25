@@ -19,6 +19,7 @@ public class RegistOperationPerformanceDetailVO {
 	private String inspection;
 	private String note;
 	private String workOrderNumber;
+	private String houseCode;
 	private List<RegistOperationPerformanceDetailVO> DetailVO;
 	
 	@Override
@@ -112,6 +113,18 @@ public class RegistOperationPerformanceDetailVO {
 
 	public void setOpNumber(String opNumber) {
 		this.opNumber = opNumber;
+	}
+
+
+
+	public String getHouseCode() {
+		return houseCode;
+	}
+
+
+
+	public void setHouseCode(String houseCode) {
+		this.houseCode = houseCode;
 	}
 
 	
