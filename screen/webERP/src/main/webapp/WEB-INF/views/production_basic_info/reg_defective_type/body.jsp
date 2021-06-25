@@ -40,12 +40,16 @@
         }
         #searchForm {
             height: 100%;
-            margin: 20px 10px;
+
         }
         /* 컨테이너 스타일부 */
         #workOrderTable{
         	width:100%;
+        	margin: 0; 
         }
+		input {
+			width:100%;
+		}
         #workOrderInfo {
             overflow: scroll;
             height: 100%;
@@ -56,7 +60,7 @@
 </head>
 <body>
 <container1 id = contents1>
-                <table style="margin-left:10%; margin-top:2%">
+                <table style="margin-left:10%; margin-top:2%;">
 
                     <tr>
                         <td>
@@ -78,10 +82,9 @@
         <container2 id= contents2>
             <form id="searchForm" method="get" commandName = "defList">
             <div id="workOrderInfo">
-                <table id="workOrderTable">
-              
-                    <thead align="center">
-                        <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                <table id="workOrderTable" >
+                    <thead align="center" style="background-color:gray">
+                        <td style="width:3%"><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td>불량코드</td>
                         <td>불량유형명</td>
                         <td>불량군</td>
@@ -90,7 +93,7 @@
                     </thead>
                     <c:forEach var = "def" items='${defectiveList }' varStatus="status" >
                     <tbody align="center">
-                        <td><input type="checkbox" value = '${def.defectCode }'  id="check" class="check" name="content"/></td>
+                        <td style="width:3%"><input type="checkbox" value = '${def.defectCode }'  id="check" class="check" name="content"/></td>
                         <td><input type="text" name="defList[${status.index }].defectCode" value = '${def.defectCode }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveTypeName"value='${def.defectiveTypeName }'/></td>
                         <td><input type="text" name="defList[${status.index }].defectiveItemGroup" value='${def.defectiveItemGroup }' readonly/></td>
@@ -101,7 +104,7 @@
                     </tbody>
                     </c:forEach>
                     <tr align="center">
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td style="width:3%"></td>
                         <td><input type="text" id="defCode" name="defList[${fn:length(defectiveList) }].defectCode"/></td>
                         <td><input type="text" id="defName" name="defList[${fn:length(defectiveList) }].defectiveTypeName"/></td>
                         <td><input type="text" id="defgroup" name="defList[${fn:length(defectiveList) }].defectiveItemGroup"value='${param.defGroup }' readonly/></td>

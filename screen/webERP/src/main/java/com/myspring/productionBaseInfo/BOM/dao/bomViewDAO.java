@@ -36,5 +36,7 @@ public interface bomViewDAO {
 
 	public int deloutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException;
 
+	public List<bomVO> searchoutPop(String itemName) throws DataAccessException;
+
 
 }

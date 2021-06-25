@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
@@ -35,4 +36,5 @@ public interface BomViewService {
 	public int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
 	public int doutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException;
 	public void deldefPop(String[] numberary) throws DataAccessException;
+	public List<bomVO> searchPopName(String itemName) throws DataAccessException;
 }
