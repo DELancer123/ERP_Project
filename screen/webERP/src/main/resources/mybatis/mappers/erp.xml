@@ -356,6 +356,28 @@
 	<delete id="delSupOrd" parameterType="String">
 		<![CDATA[delete from CSM_SM_Ord_Reg where ordersNum=#{ordcode}]]>      
   </delete>
+  <!-- forwarding regstration -->
+  	<resultMap id="forward" type="forwardVO">
+		<result property="relCode" column="releaseNum" />
+		<result property="relDate" column="releaseDate" />
+		<result property="custCode" column="customerCode" />
+		<result property="deadLine" column="deadLine" />
+		<result property="note" column="note" />
+		<result property="custName" column="General_Customer_Name" />
+		<result property="comNum" column="Company_Registration_Number" />
+		<result property="repName" column="Representativs_Name" />
+	</resultMap>  
+	<select id="allCustforward" resultMap="forward">
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
+	</select><!-- popCust-->
+	<select id="allSupForward" resultMap="forward">
+		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
+	</select>
+	<select id="submitSupForward" resultMap="forward" parameterType="String">
+		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{custCode}]]>
+	</select>
+	
+	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
 		<result property="releaseNum" column="releaseNum" />
