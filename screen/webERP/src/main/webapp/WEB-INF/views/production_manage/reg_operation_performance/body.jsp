@@ -106,12 +106,6 @@
                         <td>
                             <input type="button" value="자재사용" onClick="materialUse();" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
-                        <td>
-                            <input type="button" value="생산자원등록" style="padding: 5px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="검색상세" style="padding: 5px;"></input>
-                        </td>
                     </tr>
                 </table>
                 </form>
