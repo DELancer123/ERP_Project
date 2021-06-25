@@ -284,19 +284,19 @@ public class SystemmagControllerImpl implements SystemmagController {
 	}
 	
 	//물류관리내역등록-팝업
-	 @Override	 
-	 @RequestMapping(value="/member/regbasicaccPopup.do", method = RequestMethod.GET) 
-	 public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		 request.setCharacterEncoding("utf-8"); 
-		 ModelAndView mav = null; 
-		 String viewName = getViewName(request); 
+	@Override	 
+	@RequestMapping(value="/member/logisticsPopup.do", method = RequestMethod.GET) 
+	public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8"); 
+		ModelAndView mav = null; 
+		String viewName = getViewName(request); 
 		 
-		 List logisticsView = systemmagService.viewAllLogistics(); //select * 문을호출한다음
-		 mav = new ModelAndView(viewName);
-		 mav.addObject("logisticsView", logisticsView); //팝업으로 전달함
+		List logisticsView = systemmagService.viewAllLogistics(); //select * 문을호출한다음
+		mav = new ModelAndView(viewName);
+		mav.addObject("logisticsView", logisticsView); //팝업으로 전달함
 	 	 
-		 return mav; 
-	 }
+		return mav; 
+	}
 	 
 }
 

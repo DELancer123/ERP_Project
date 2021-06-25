@@ -321,6 +321,7 @@
 	<select id="selectAllOutWorOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_OUT_WOR_REG]]>
 	</select>
+	
 	<!-- 기초정보관리_물류관리내역등록 -->
 	<resultMap id="logisticsManagementResult" type="SystemmagVO">	
 		<result property="logistics_In_Code" column="logistics_In_Code" />
@@ -334,6 +335,27 @@
 	<select id="selectOneLogisticsManagement" parameterType="String" resultMap="logisticsManagementResult">
 		<![CDATA[select * from SM_BIM_LOG_MAN where logistics_In_Code = #{com_code}]]>
 	</select>
+	<delete id="deleteLogisticsManagement">
+		delete from SM_BIM_LOG_MAN where logistics_In_Code = #{no}
+	</delete>
+	<update id="updateLogisticsManagement" parameterType="SystemmagVO">
+		<![CDATA[
+			update SM_BIM_LOG_MAN
+			set	logistics_In_Code=#{logistics_In_Code},
+			logistics_In_Name=#{logistics_In_Name},
+			explanation=#{explanation},
+			remarks=#{remarks},
+			where logistics_In_Code=#{logistics_In_Code}			
+		]]>
+	</update>
+	<insert id="insertNewLogisticsManagement" parameterType="SystemmagVO">
+		<![CDATA[
+			insert into SM_BIM_LOG_MAN
+			values(#{logistics_In_Code},
+			#{logistics_In_Name}, 
+			#{explanation}, 
+			#{remarks})]]>
+	</insert>
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

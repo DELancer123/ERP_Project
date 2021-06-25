@@ -122,20 +122,20 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	
 	@Override
 	public int insertNewLogistics (SystemmagVO systemmagVO) throws DataAccessException{
-		int result = sqlSession.insert("mappers.erp.insertNewLogistics",systemmagVO);
+		int result = sqlSession.insert("mappers.erp.insertNewLogisticsManagement",systemmagVO);
 		return result;
 	}
 
 	@Override
 	public void deleteLogistics(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteLogistics", Integer.parseInt(obj));	
+			sqlSession.delete("mappers.erp.deleteLogisticsManagement", Integer.parseInt(obj));	
 		}	
 	}
 
 	@Override
 	public void updateLogistics(SystemmagVO systemmagVO) throws DataAccessException {
-		sqlSession.update("mappers.erp.updateLogistics", systemmagVO);
+		sqlSession.update("mappers.erp.updateLogisticsManagement", systemmagVO);
 	}
 	
 

@@ -85,7 +85,15 @@ request.setCharacterEncoding("UTF-8");
 	                    </td>                    	                    
 	                </tr>
 	               
-                </c:forEach>                
+                </c:forEach>     
+                <tr>
+                    <td colspan="3">
+                        <button onclick="searchView(this.value)"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none; 
+                        text-align: center; width:99%">새로등록</button>
+                    </td>
+                </tr>           
             </table>
         </container>
 
