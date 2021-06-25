@@ -11,7 +11,7 @@ import com.myspring.MainPlan.vo.MainPlanVO;
 
 public interface MainPlanController {
 
-	ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
@@ -20,5 +20,7 @@ public interface MainPlanController {
 	ModelAndView addMPS(MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	ModelAndView updateMPS(MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView viewMPS(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.Requiredamount.service.RequiredamountService;
 import com.myspring.Requiredamount.vo.RequiredamountVO;
+import com.myspring.order_closing.vo.OrderClosingVO;
 
 @Controller("mrpController")
 public class RequiredamountControllerImpl implements RequiredamountController{
@@ -35,16 +36,6 @@ public class RequiredamountControllerImpl implements RequiredamountController{
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value="/member/updateMRP.do" ,method = RequestMethod.GET)
-	public ModelAndView updateMPS(@ModelAttribute("mrp") RequiredamountVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = mrpService.updateMRP(vo);
-		System.out.println("result "+result);
-		ModelAndView mav = new ModelAndView("redirect:/member/requiredamount.do");
-		return mav;
-	}
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

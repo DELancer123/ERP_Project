@@ -9,13 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
 
@@ -27,16 +28,49 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@Autowired
 	private MainPlanVO mainplanVO;
 
+//	@Override
+//	@RequestMapping(value = "member/mainplan.do", method = RequestMethod.GET)
+//	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String startDate = request.getParameter("startDate");
+//		String endDate = request.getParameter("endDate");
+//		String viewName = (String) request.getAttribute("viewName");
+//		  logger.debug("debug : viewName = " + viewName); 
+//		List mainplanList = mainplanService.selectAllMainPlanList(startDate, endDate);
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("mainplanList", mainplanList);
+//		return mav;
+//	}
+	
 	@Override
-	@RequestMapping(value = "member/mainplan.do", method = RequestMethod.GET)
-	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
-		String viewName = (String) request.getAttribute("viewName");
-		  logger.debug("debug : viewName = " + viewName); 
-		List mainplanList = mainplanService.selectAllMainPlanList(startDate, endDate);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("mainplanList", mainplanList);
+	@RequestMapping(value="/member/mainplan.do" ,method = RequestMethod.GET)
+	public ModelAndView viewMPS(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String number = (String) request.getParameter("itemNumber");
+		String submit = (String) request.getParameter("submit");
+		String itemNumber = (String) request.getParameter("itemCode");
+		int sum = 0;
+		if(number == null || number.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List bomView = mainplanService.SearchView(number);
+			
+			mav = new ModelAndView(viewName);
+			
+			mav.addObject("bomView", bomView);
+		}
+		else if(submit.equals("2")) {
+			List MPSView = mainplanService.SearchView(number);
+			List MPSInsert = mainplanService.setText(itemNumber);
+			mav = new ModelAndView(viewName);
+			mav.addObject("MPSView", MPSView);
+			mav.addObject("MPSInsert",MPSInsert);
+			int inputSeq = mainplanService.inputSeq();
+			String inNo = Integer.toString(inputSeq+1);
+			request.setAttribute("inputSeq", inputSeq);
+		}
 		return mav;
 	}
 
@@ -88,6 +122,17 @@ public class MainPlanControllerImpl implements MainPlanController {
 		return mav;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/member/searchMPSOS.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<MpsOSVO> popName = null;
+		popName = mainplanService.searchMPSOS(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
 
 	
 	private String getViewName(HttpServletRequest request) throws Exception {

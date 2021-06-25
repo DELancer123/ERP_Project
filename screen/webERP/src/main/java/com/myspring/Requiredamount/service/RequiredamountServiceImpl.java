@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.Requiredamount.dao.RequiredamountDAO;
 import com.myspring.Requiredamount.vo.RequiredamountVO;
+import com.myspring.order_closing.vo.OrderClosingVO;
 
 @Service("mrpService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -23,9 +24,5 @@ public class RequiredamountServiceImpl implements RequiredamountService{
 		List<RequiredamountVO>mrpList = mrpDAO.selectAllMrpList(startDate,endDate);
 		return mrpList;
 	}
-	
-	@Override
-	public int updateMRP(RequiredamountVO vo) throws DataAccessException {
-		return mrpDAO.updateMRP(vo);
-	}
+
 }

@@ -6,6 +6,7 @@
 
 <%
 request.setCharacterEncoding("UTF-8");
+String sequence = (String) request.getAttribute("sequence");
 %>
 <!DOCTYPE html>
 <html>
@@ -126,11 +127,12 @@ request.setCharacterEncoding("UTF-8");
 <form id="MRP" mehtod="get" commandName="ListVO">
 	<table id="MRPTable">
 		<thead align="center" style="background-color: gray">
-			<td>순서</td>
+		<td><input type="checkbox" name="content" /></td>
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
 			<td>납기일</td>
+			<td>순서</td>
 			<td>예정발주일</td>
 			<td>예정수량</td>
 			<td>단위</td>
@@ -138,26 +140,17 @@ request.setCharacterEncoding("UTF-8");
 		<tbody>
 		<c:forEach var="mrp" items="${mrpList}" varStatus="status">
 			<tr align="center">
-	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly style="width:100%"/></td>
+			<td><input type="checkbox" name="content" value="${mrp.sequence}" /></td>
 			<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${mrp.bomVO.itemNumber}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].itemName" value='${mrp.bomVO.itemName}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly/></td>
-				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity}'/></td>
+				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly style="width:100%"/></td>
+	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly style="width:100%"/></td>
+				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
+ 				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity}'/></td>
 				<td style="width:33px;"><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly style="width:100%"/></td>
 			</tr>	
 		</c:forEach>
-		<tr>    	
-    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mrp) }].sequence" value='${sequence}' style="width:100%"/></td>
-    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(mrp) }].itemNumber" value='${itemNumber}' readonly/></td>
-    	<td><input type="text" id="itemName" name="ListVO[${fn:length(mrp) }].itemName" value = '${itemName}'/></td>
-    	<td><input type="text" id="standard" name="ListVO[${fn:length(mrp) }].standard" value='${standard}' readonly/></td>
-    	<td><input type="text" id="due_date" name="ListVO[${fn:length(mrp) }].due_date" value='${due_date}' readonly/></td>
-    	<td><input type="text" id="expected_order" name="ListVO[${fn:length(mrp) }].expected_order" value='${expected_order}' style="width:100%" /></td>
-    	<td><input type="date" id="precisionQuantity" name="ListVO[${fn:length(mrp) }].precisionQuantity" value='${precisionQuantity}'readonly/></td>
-    	<td><input type="date" id="unit" name="ListVO[${fn:length(mrp) }].unit" value='${unit}'readonly/></td>
-    </tr>
 		</tbody>
 	</table>
 	</div>
@@ -185,7 +178,7 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
        });
    	
    	 /* 조회버튼 클릭시 기능 구현 */
-       view_button.onclick = function(){
+        view_button.onclick = function(){
  		  if(startDate>endDate){
  			  alert(" 종료일은 시작일보다 작을수 없습니다.");
  		  } else{
@@ -197,27 +190,7 @@ document.getElementById('searchEndDate').value = new Date().toISOString().substr
 
  		  window.open(location.pathname + '?' + newParam, '_self');
  		  }
-   	}
- function updateRow() {
-		const URLSearch = new URLSearchParams(location.search);
-		const newParam = URLSearch.toString();
-		var link = location.pathname + '?' + newParam;
-	document.getElementById("sequence").disabled = true;
-	document.getElementById("itemNumber").disabled = true;
-	document.getElementById("itemName").disabled = true;
-	document.getElementById("standard").disabled = true;
-	document.getElementById("due_date").disabled = true;
-	document.getElementById("expected_order").disabled = true;
-	document.getElementById("plan_quantity").disabled = true;
-	document.getElementById("unit").disabled = true;
-	var Input = document.createElement("input");
-	Input.setAttribute("type", "hidden");
-	Input.setAttribute("name", "path");
-	Input.setAttribute("value", link);
-	document.getElementById('mrp').appendChild(Input);
-	document.getElementById('mrp').action = "${contextPath}/member/updateMRP.do";
-	document.getElementById('mrp').submit();
-}
+  } 
 </script>
 </body>
 </html>

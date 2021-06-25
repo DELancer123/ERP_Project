@@ -292,6 +292,7 @@
    <definition name="/member/mainplan" extends="MPSbaseLayout">
       <put-attribute name="title" value="주계획작성" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/reg_mainplan/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/purchase_manage/reg_mainplan/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
    <definition name="/member/requiredamount" extends="MRPbaseLayout">

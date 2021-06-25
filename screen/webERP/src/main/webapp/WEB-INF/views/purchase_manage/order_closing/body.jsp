@@ -117,12 +117,12 @@ String sequence = (String) request.getAttribute("sequence");
 					<td>규격</td>
 					<td>단위</td>
 					<td>발주수량</td>
-					<td>단가</td>
 					<td>마감</td>
-					<td>비고</td>
-<!-- 	 				<td>공급가</td>
+					<td>단가</td>
+ 	 				<td>공급가</td>
 					<td>부가세</td>
-					<td>합계액</td> -->
+					<td>합계액</td>
+					<td>비고</td>
 				</thead>
 				<tbody>
 					<c:forEach var="OrderClosing" items="${ClosingList}"
@@ -139,12 +139,12 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].price" value='${OrderClosing.price}' /></td>
 				<td><input type="text" name="ListVO[${status.index}].deadline" value='${OrderClosing.deadline}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].note" value='${OrderClosing.note}' /></td>
-				<%-- <td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].price" value='${OrderClosing.price}' /></td>
+				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price}' readonly/></td>
 				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price*0.1}' readonly/></td>
-				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price+(OrderClosing.order_quantity*OrderClosing.price*0.1)}' readonly/></td> --%>
+				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price+(OrderClosing.order_quantity*OrderClosing.price*0.1)}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].note" value='${OrderClosing.note}' /></td>
 						</tr>
 					</c:forEach>
 				<tr align="center">
@@ -159,12 +159,12 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
 				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" /></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
-				<td><input type="text" id="price" name="ListVO[${fn:length(ClosingList) }].price" value='${price}' /></td>
 				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' /></td>
-				<td><input type="text" id="note" name="ListVO[${fn:length(ClosingList) }].note" value='${note}' /></td>
-<%-- 				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price}' readonly/></td>
+				<td><input type="text" id="price" name="ListVO[${fn:length(ClosingList) }].price" value='${price}' /></td>
+ 				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price}' readonly/></td>
 				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price*0.1}' readonly/></td>
-				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price+(OrderClosing.order_quantity*OrderClosing.price*0.1)}' readonly/></td> --%>
+				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price+(OrderClosing.order_quantity*OrderClosing.price*0.1)}' readonly/></td> 
+				<td><input type="text" id="note" name="ListVO[${fn:length(ClosingList) }].note" value='${note}' /></td>
 				</tr>
 				</tbody>
 			</table>
@@ -236,13 +236,13 @@ document.getElementById("order_date").disabled = true;
 document.getElementById("code").disabled = true;
 document.getElementById("buyer").disabled = true;
 document.getElementById("sequence").disabled = true;
-document.getElementById("item_code").disabled = true;
-document.getElementById("item_name").disabled = true;
+document.getElementById("item_Code").disabled = true;
+document.getElementById("item_Name").disabled = true;
 document.getElementById("standard").disabled = true;
 document.getElementById("inventory_unit").disabled = true;
 document.getElementById("order_quantity").disabled = true;
-document.getElementById("price").disabled = true;
 document.getElementById("deadline").disabled = true;
+document.getElementById("price").disabled = true;
 document.getElementById("note").disabled = true;
 var Input = document.createElement("input");
 Input.setAttribute("type", "hidden");

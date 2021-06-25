@@ -18,10 +18,17 @@ public class MainPlanServiceImpl implements MainPlanService{
 	@Autowired
 	private MainPlanDAO mainplanDAO;
 	
+//	@Override
+//	public List<MainPlanVO>selectAllMainPlanList(String startDate, String endDate) throws Exception{
+//		List<MainPlanVO> mainplanList = mainplanDAO.selectAllMainPlanList(startDate,endDate);
+//		return mainplanList;
+//	}
+	
 	@Override
-	public List<MainPlanVO>selectAllMainPlanList(String startDate, String endDate) throws Exception{
-		List<MainPlanVO> mainplanList = mainplanDAO.selectAllMainPlanList(startDate,endDate);
-		return mainplanList;
+	public List viewMPS() throws DataAccessException {
+		List MPSList = null;
+		MPSList = mainplanDAO.viewMPS();
+		return MPSList;
 	}
 	
 	@Override
@@ -44,6 +51,11 @@ public class MainPlanServiceImpl implements MainPlanService{
 	@Override
 	public int updateMPS(MainPlanVO vo) throws DataAccessException {
 		return mainplanDAO.updateMPS(vo);
+	}
+	
+	@Override
+	public List<MpsOSVO> searchMPSOS(String itemName) {
+		return mainplanDAO.searchMPSOS(itemName);
 	}
 
 }

@@ -11,31 +11,36 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
-import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 
 @Repository("mainplanDAO")
 public class MainPlanDAOImpl implements MainPlanDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Override
-	public List selectAllMainPlanList(String startDate, String endDate) throws Exception{
-		List<MainPlanVO>mainplanList = null;
-		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date start = new Date(sdf.parse(startDate).getTime());
-			Date end = new Date(sdf.parse(endDate).getTime());
-			System.out.println(start);
-			MainPlanVO vo = new MainPlanVO();
-			vo.setStartDate(start);
-			vo.setEndDate(end);
-			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList", vo);
-		} else {
-			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList");
-		}
-		return mainplanList;
-	}
+//	@Override
+//	public List selectAllMainPlanList(String startDate, String endDate) throws Exception{
+//		List<MainPlanVO>mainplanList = null;
+//		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//			Date start = new Date(sdf.parse(startDate).getTime());
+//			Date end = new Date(sdf.parse(endDate).getTime());
+//			System.out.println(start);
+//			MainPlanVO vo = new MainPlanVO();
+//			vo.setStartDate(start);
+//			vo.setEndDate(end);
+//			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList", vo);
+//		} else {
+//			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList");
+//		}
+//		return mainplanList;
+//	}
 	
+	@Override
+	public List viewMPS() throws DataAccessException {
+		List<MainPlanVO> MPSList = null;
+		MPSList = sqlSession.selectList("mappers.erp.selectAllMainPlanList");
+		return MPSList;
+	}
 
 	@Override
 	public List selectAllMpsosList(String startDate, String endDate) throws Exception{
@@ -80,6 +85,13 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		result = sqlSession.update("mappers.erp.updateMPS",vo.getListVO().get(i));
 		}
 		return result;
+	}
+	
+	@Override
+	public List<MpsOSVO>searchMPSOS(String itemName) {
+		List<MpsOSVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.searchMPSOS",itemName);
+		return popList;
 	}
 
 }
