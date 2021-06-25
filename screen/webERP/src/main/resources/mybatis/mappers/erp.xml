@@ -319,6 +319,15 @@ where (status = '확정' or status = '마감')
 		<![CDATA[select * from SM_BIM_PRO_REG]]>
 	</select>
 	
+	<resultMap id="WorkplaceCodeSearchResult" type="WorkplaceCodeSearchVO">
+		<result property="workplaceCode" column="workplace_Code" />
+		<result property="workplaceName" column="workplace_Name" />
+	</resultMap>
+	
+	<select id="selectWorkplaceCodeList" resultMap="WorkplaceCodeSearchResult">
+		<![CDATA[select * from SM_BIM_PRO_WOR_REG]]>
+	</select>
+	
 		<!-- 기초정보등록 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
 		<result property="item_Code" column="Item_Code"	/>

@@ -18,5 +18,6 @@ public interface RegistOperationPerformanceDAO {
 	public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPVO) throws DataAccessException;
 	public List houseCodeViewPop() throws DataAccessException;
 	public List processCodeViewPop() throws DataAccessException;
+	public List workplaceCodeViewPop() throws DataAccessException;
 
 }

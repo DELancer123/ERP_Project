@@ -18,6 +18,7 @@ import com.myspring.commonProduction.registOperationPerformance.vo.HouseCodeSear
 import com.myspring.commonProduction.registOperationPerformance.vo.ProcessCodeSearchVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.WorkplaceCodeSearchVO;
 
 @Repository("RegistOperationPerformanceDAO")
 public class RegistOperationPerformanceDAOImpl implements RegistOperationPerformanceDAO {
@@ -108,6 +109,13 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	public List processCodeViewPop() throws DataAccessException {
 		List<ProcessCodeSearchVO> popList = null;
 		popList = sqlSession.selectList("mappers.erp.selectProcessCodeList");
+		return popList;
+	}
+	
+	@Override
+	public List workplaceCodeViewPop() throws DataAccessException {
+		List<WorkplaceCodeSearchVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectWorkplaceCodeList");
 		return popList;
 	}
 }
