@@ -17,6 +17,7 @@ public class OrderDAOImpl implements OrderDAO {
 	
 	List<OrderVO> orderList;
 	
+	//////////////////////popCust
 	@Override
 	public List selectAllCustList() throws DataAccessException {
 		List<OrderVO> orderCustList = null;
@@ -33,7 +34,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public List submitOrdCust(String custCode) throws DataAccessException {
+	public List submitOrdCustSta(String custCode) throws DataAccessException {
 		List<OrderVO> submitOrderCust = null;
 		submitOrderCust = sqlSession.selectList("mappers.erp.submitOrderSta", custCode);
 		return submitOrderCust;
@@ -41,20 +42,31 @@ public class OrderDAOImpl implements OrderDAO {
 
 	//////////////////////registration
 	@Override
-	public List RegOrderList() throws DataAccessException {
+	public List RegOrderSupList() throws DataAccessException {
 		List<OrderVO> orderList = null;
-		orderList = sqlSession.selectList("mappers.erp.RegOrderList");
+		orderList = sqlSession.selectList("mappers.erp.RegOrderSupList");
 		return orderList;
 	}
-
-
+	
+	@Override
+	public List submitOrdCustSupReg(String custCode) throws DataAccessException {
+		List<OrderVO> submitOrderCust = null;
+		submitOrderCust = sqlSession.selectList("mappers.erp.submitOrderSupReg", custCode);
+		return submitOrderCust;
+	}//customer submit by superOrder registration
 
 	@Override
-	public List submitOrderCust(String custCode) throws DataAccessException {
-		List<OrderVO> submitOrderCust = null;
-		submitOrderCust = sqlSession.selectList("mappers.erp.staOrderCust", custCode);
-		return submitOrderCust;
+	public List RegOrderSubList() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public List submitOrdSubReg(String ordCode) throws DataAccessException {
+		List<OrderVO> submitSubOrdList = null;
+		submitSubOrdList = sqlSession.selectList("mappers.erp.submitsubOrder", ordCode);
+		return submitSubOrdList;
+	}//customer submit by subOrder registration
 
 
 	

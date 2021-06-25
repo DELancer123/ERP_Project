@@ -250,7 +250,7 @@
 	]]>      
   </delete>	
  
- <!-- order reg -->
+ <!-- order supReg -->
 	<resultMap id="orderRegList" type="orderVO">
 		<result property="custCode" column="General_Customer_Code" />
         <result property="custName" column="General_Customer_Name" />
@@ -260,24 +260,26 @@
         <result property="ordDate" column="ordersdate" />	
         <result property="tax" column="tax" />	
         <result property="note" column="Note" />        
+	</resultMap>
+
+	<!-- order subReg -->
+	<resultMap id="orderCorRegList" type="corVO">
+	    <result property="ordCode" column="code" />
+        <result property="item_code" column="item_code" />
+        <result property="item_name" column="item_name" />        
+        <result property="stand" column="standard" />
+        <result property="unit" column="inventory_unit" />
+        <result property="orderQuant" column="ordersQuantity" />
+        <result property="price" column="productPrice" />
+        <result property="dueDate" column="dueDate" />
+        <result property="expDate" column="expectedDate" />
+        <result property="inspection" column="inspection" />
+        <result property="orderOX" column="orderOX" />
 	</resultMap> 
 	
-	<select id="orderCustList" resultMap="orderRegList">
-      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
-	</select><!-- popCust -->
 	
-	<select id="RegOrderList" resultMap="orderRegList">
-      <![CDATA[select * from CSM_SM_Ord_Reg]]>
-	</select><!-- regOrder -->
-	<select id="submitOrderCust" resultMap="orderRegList">
-      <![CDATA[
-        select * from CSM_SM_Ord_Reg ORD,SM_BIM_Gen_Cus_Reg CUS
-		 where ORD.General_Customer_Code = CUS.General_Customer_Code
-		 and ORD.General_Customer_Code = #{custCode}
-        ]]>
-	</select>
 		<!-- order&cor (join) sta -->
-	<resultMap id="orderStaList" type="orderVO">
+	<resultMap id="orderJoinList" type="orderVO">
 		<result property="ordCode" column="ordersNum" />
         <result property="ordDate" column="ordersdate" />
         <result property="custCode" column="General_Customer_Code" />
@@ -297,22 +299,59 @@
         <result property="orderOX" column="orderOX" />
         </collection>
 	</resultMap> 
+
 	
-		<select id="StaOrderList" resultMap="orderStaList">
+	<select id="orderCustList" resultMap="orderRegList">
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+	</select><!-- popCust -->
+	
+	<select id="RegOrderSupList" resultMap="orderRegList">
+      <![CDATA[select * from CSM_SM_Ord_Reg]]>
+	</select><!-- regSupOrder -->
+	
+	<select id="submitOrderSupReg" resultMap="orderRegList" parameterType="String">
+      <![CDATA[
+        select * from CSM_SM_Ord_Reg ORD,SM_BIM_Gen_Cus_Reg CUS
+		 where ORD.General_Customer_Code = CUS.General_Customer_Code
+		 and ORD.General_Customer_Code = #{custCode}
+        ]]>
+	</select><!-- regSupOrder -->
+	
+	<select id="orderCorList" resultMap="orderCorRegList">
+      <![CDATA[select * from CSM_SM_COR_Reg]]>
+	</select>
+	
+	<select id="submitSubOrder" resultMap="orderCorRegList" parameterType="String">
+      <![CDATA[
+          select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
+		 where ORD.ordersNum = COR.code
+		 and COR.code = #{ordCode}
+        ]]>
+	</select>
+
+	
+		<select id="StaOrderList" resultMap="orderJoinList">
       <![CDATA[
         select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
 		 where ORD.ordersNum = COR.code
         ]]>
 	</select>
 	
-	<select id="staOrderCust" resultMap="orderStaList">
+	<select id="staOrderCust" resultMap="orderJoinList">
       <![CDATA[
-        select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
+          select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
 		 where ORD.ordersNum = COR.code
 		 and ORD.General_Customer_Code = #{custCode}
         ]]>
 	</select>
 
+	<select id="submitOrderSta" resultMap="orderJoinList" parameterType="String">
+      <![CDATA[
+       select * from CSM_SM_Ord_Reg ORD,SM_BIM_Gen_Cus_Reg CUS
+		 where ORD.General_Customer_Code = CUS.General_Customer_Code
+		 and ORD.General_Customer_Code = #{custCode}
+        ]]>
+	</select>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">

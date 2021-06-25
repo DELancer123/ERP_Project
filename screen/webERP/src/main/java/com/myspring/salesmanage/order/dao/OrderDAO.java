@@ -10,13 +10,16 @@ public interface OrderDAO {
 	
 	//sta
 	public List selectOrderCorList() throws DataAccessException;
-	public List submitOrdCust(String custCode) throws DataAccessException;
+	public List submitOrdCustSta(String custCode) throws DataAccessException;
 	
-	//reg
-	public List RegOrderList() throws DataAccessException;
+	//super reg
+	public List RegOrderSupList() throws DataAccessException;
 	public List selectAllCustList() throws DataAccessException;
-	public List submitOrderCust(String custCode) throws DataAccessException;
+	public List submitOrdCustSupReg(String custCode) throws DataAccessException;
 
+	
+	public List RegOrderSubList() throws DataAccessException;
+	public List submitOrdSubReg(String ordCode) throws DataAccessException;
 	
 	
 	

@@ -31,7 +31,7 @@ public class OrderStaServiceImpl implements OrderStaService {
 	@Override
 	public List submitCust(String custCode) throws DataAccessException {
 		List submitOrderCust = null;
-		submitOrderCust = orderDAO.submitOrderCust(custCode);
+		submitOrderCust = orderDAO.submitOrdCustSta(custCode);
 		return submitOrderCust;
 	}
 
