@@ -17,24 +17,6 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-//	@Override
-//	public List selectAllMainPlanList(String startDate, String endDate) throws Exception{
-//		List<MainPlanVO>mainplanList = null;
-//		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			Date start = new Date(sdf.parse(startDate).getTime());
-//			Date end = new Date(sdf.parse(endDate).getTime());
-//			System.out.println(start);
-//			MainPlanVO vo = new MainPlanVO();
-//			vo.setStartDate(start);
-//			vo.setEndDate(end);
-//			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList", vo);
-//		} else {
-//			mainplanList = sqlSession.selectList("mappers.erp.selectAllMainPlanList");
-//		}
-//		return mainplanList;
-//	}
-	
 	@Override
 	public List viewMPS() throws DataAccessException {
 		List<MainPlanVO> MPSList = null;
@@ -95,21 +77,28 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 	}
 	@Override
 	public List setText(String itemNumber) throws DataAccessException {
-		List<MainPlanVO> textList = null;
-		textList = sqlSession.selectList("mappers.erp.selectitem",itemNumber);
+		List<MpsOSVO> textList = null;
+		textList = sqlSession.selectList("mappers.erp.selectMRP",itemNumber);
 		return textList;
 	}
 
 	@Override
 	public List SearchView(String itemNumber) throws DataAccessException{
-		List<MainPlanVO> searchList = null;
-		searchList = sqlSession.selectList("mappers.erp.searchitem",itemNumber);
+		List<MpsOSVO> searchList = null;
+		searchList = sqlSession.selectList("mappers.erp.searchMRP",itemNumber);
 		return searchList;
 	}
 
 	@Override
 	public int selSeq() throws DataAccessException {
 		return sqlSession.selectOne("mappers.erp.selectSeq");
+	}
+	
+	@Override
+	public List inputText(String itemCode) throws DataAccessException {
+		List<MpsOSVO> textList = null;
+		textList = sqlSession.selectList("mappers.erp.selectMRP",itemCode);
+		return textList;
 	}
 
 }

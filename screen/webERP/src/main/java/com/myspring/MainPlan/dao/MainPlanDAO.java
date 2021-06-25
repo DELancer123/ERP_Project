@@ -16,8 +16,6 @@ public interface MainPlanDAO {
 
 	int updateMPS(MainPlanVO vo) throws DataAccessException;
 
-	//List selectAllMainPlanList(String startDate, String endDate) throws Exception;
-
 	List selectAllMpsosList(String startDate, String endDate) throws Exception;
 
 	List<MpsOSVO> searchMPSOS(String itemName);
@@ -29,5 +27,7 @@ public interface MainPlanDAO {
 	List SearchView(String itemNumber) throws DataAccessException;
 
 	int selSeq() throws DataAccessException;
+
+	List inputText(String itemCode) throws DataAccessException;
 
 }

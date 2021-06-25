@@ -66,30 +66,9 @@
 </style>
 </head>
 <body>
-<container1 id=contents1>
-	<table class="con1_search">
-
-<!-- 			<td>계획기간</td>
-			<td colspan="2" style="width: 50px;"><input type="date"
-				id='searchStartDate' style="width: 100%;" /></td>
-			<td>~</td>
-			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
-			<td></td> -->
-<!-- 			 			 <td colspan="5">사원</td>
-			<td style="width: 80px;"><input type="text" id="reqInput"
-				style="width: 100%;" /></td>
-			<td><i class="fas fa-search" style="color: blue;"></i></td>
-			<td><input type="text" name="" disabled /></td>
-					 -->
-		</tr> 
-	</table>
-<!-- 	<div id="button">
-		<input type="button" onclick="search2();" value="주문조회">
-	</div> -->
-	</container1>
 <container2 id=contents2>
 <div id="MpsInfo">
-<form id="searchForm" mehtod="get" commandName="ListVO">
+<form id="MainPlan" mehtod="get" commandName="ListVO">
 	<table id="MPSTable">
 		<thead align="center" style="background-color: gray">
 		 <td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
@@ -150,13 +129,8 @@
 	</table>
 	</div>
 </container2>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 var itemNumber = document.getElementById("itemCode");
-var save_button = document.getElementById("save");
-var update_button = document.getElementById('update');
 
 function search2(){
 	
@@ -193,8 +167,9 @@ function deleteRow() {
 	  }
 }
 
-function InsertRow(){
-		const URLSearch = new URLSearchParams(location.search);
+function InsertRow(){	 
+   		const URLSearch = new URLSearchParams(location.search);
+	 	URLSearch.set('submit', '1');
 		const newParam = URLSearch.toString();
 		var link = location.pathname + '?' + newParam;
 		var Input = document.createElement("input");
@@ -209,7 +184,10 @@ function InsertRow(){
 
 
 	function updateRow() {
-			const URLSearch = new URLSearchParams(location.search);
+		  var MPSTable = document.getElementById('MPSTable');
+          var row = MPSTable.insertRow(); 
+          const URLSearch = new URLSearchParams(location.search);
+          URLSearch.set('submit', '1');
 			const newParam = URLSearch.toString();
 			var link = location.pathname + '?' + newParam;
 		document.getElementById("sequence").disabled = true;
@@ -232,35 +210,13 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit();
 	}
-	/* input date의 현재 날짜 기본값 설정*/
-document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
-document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
-	 
-	 /* 검색부 date onChange 함수 설정 */
-var startDate = new Date().toISOString().substring(0,10);;
-var endDate = new Date().toISOString().substring(0,10);;
-	    	
-$('#searchStartDate').change(function (){
-	var date = $('#searchStartDate').val();
-	startDate = date;
-});
-$('#searchEndDate').change(function (){
-	  var date = $('#searchEndDate').val();
-	  ndDate = date;
-});
-	    	
-/* 조회버튼 클릭시 기능 구현 */
-view_button.onclick = function(){
-	if(startDate>endDate){
-	  	 alert(" 종료일은 시작일보다 작을수 없습니다.");
-	} else{	  			  
-	 const URLSearch = new URLSearchParams(location.search);
-	 URLSearch.set('startDate', startDate);
-	 URLSearch.set('endDate', endDate);
-	 const newParam = URLSearch.toString();
-	  	
-	 window.open(location.pathname + '?' + newParam, '_self');
-	 }
+
+ view_button.onclick = function(){
+	const URLSearch = new URLSearchParams(location.search);
+	URLSearch.set('submit', '1');
+	const newParam = URLSearch.toString();
+
+	window.open(location.pathname + '?' + newParam, '_self');
 }
 </script>
 </form>

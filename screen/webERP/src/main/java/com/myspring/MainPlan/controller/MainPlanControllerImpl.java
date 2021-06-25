@@ -28,19 +28,6 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@Autowired
 	private MainPlanVO mainplanVO;
 
-//	@Override
-//	@RequestMapping(value = "member/mainplan.do", method = RequestMethod.GET)
-//	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String startDate = request.getParameter("startDate");
-//		String endDate = request.getParameter("endDate");
-//		String viewName = (String) request.getAttribute("viewName");
-//		  logger.debug("debug : viewName = " + viewName); 
-//		List mainplanList = mainplanService.selectAllMainPlanList(startDate, endDate);
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("mainplanList", mainplanList);
-//		return mav;
-//	}
-	
 	@Override
 	@RequestMapping(value="/member/mainplan.do" ,method = RequestMethod.GET)
 	public ModelAndView viewMPS(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -55,11 +42,11 @@ public class MainPlanControllerImpl implements MainPlanController {
 			return mav;
 		}
 		else if(submit.equals("1")){
-			List bomView = mainplanService.SearchView(number);
+			List MPSView = mainplanService.SearchView(number);
 			
 			mav = new ModelAndView(viewName);
 			
-			mav.addObject("bomView", bomView);
+			mav.addObject("MPSView", MPSView);
 		}
 		else if(submit.equals("2")) {
 			List MPSView = mainplanService.SearchView(number);
@@ -68,8 +55,8 @@ public class MainPlanControllerImpl implements MainPlanController {
 			mav.addObject("MPSView", MPSView);
 			mav.addObject("MPSInsert",MPSInsert);
 			int inputSeq = mainplanService.inputSeq();
-			String inNo = Integer.toString(inputSeq+1);
-			request.setAttribute("inputSeq", inputSeq);
+			String inSeq = Integer.toString(inputSeq+1);
+			request.setAttribute("inputSeq", inSeq);
 		}
 		return mav;
 	}

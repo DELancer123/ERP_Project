@@ -18,12 +18,6 @@ public class MainPlanServiceImpl implements MainPlanService{
 	@Autowired
 	private MainPlanDAO mainplanDAO;
 	
-//	@Override
-//	public List<MainPlanVO>selectAllMainPlanList(String startDate, String endDate) throws Exception{
-//		List<MainPlanVO> mainplanList = mainplanDAO.selectAllMainPlanList(startDate,endDate);
-//		return mainplanList;
-//	}
-	
 	@Override
 	public List viewMPS() throws DataAccessException {
 		List MPSList = null;
@@ -73,6 +67,13 @@ public class MainPlanServiceImpl implements MainPlanService{
 	public List SearchView(String itemNumber) throws DataAccessException {
 		List searchList = null;
 		searchList = mainplanDAO.SearchView(itemNumber);
+		return searchList;
+	}
+
+	@Override
+	public List inputText(String itemCode) throws DataAccessException {
+		List searchList = null;
+		searchList = mainplanDAO.inputText(itemCode);
 		return searchList;
 	}
 

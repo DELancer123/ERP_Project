@@ -130,32 +130,11 @@
 		<result column="note" property="note" />
 	</resultMap>
 
-	<select id="selectAllMainPlanList" resultMap="mainplanResult" parameterType="MainPlanVO"> 
-		<![CDATA[SELECT * from pmm_pm_mps]]><!-- 
-	select cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
-	cc.dueDate, cc.expectedDate,
-	mp.plandate, mp.plan_Quantity, mp.buyer
-	from CSM_SM_COR_Reg cc, PMM_PM_MPS mp
-	where cc.dueDate = mp.plandate -->
-	<where>
-		<if test="startDate != '' and startDate != null">plandate between #{startDate} and #{endDate} </if>
-		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>
-	</where>
-	</select>
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
 	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="MainPlanVO">
-		<![CDATA[SELECT * from pmm_pm_mps_os]]><!-- 
-	select co.ordersNum, co.ordersdate, co.customerCode, co.Note,
-	cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
-	cc.expectedDate,cc.ordersQuantity
-	from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc
-    where cc.EXPECTEDDATE=co.ORDERSDATE -->
-	<where>
-		<if test="startDate != '' and startDate != null">orderdate between #{startDate} and #{endDate} </if>
-		<if test="endDate != '' and endDate != null">and orderdate between #{startDate} and #{endDate} </if>
-	</where>
+		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps
@@ -168,13 +147,28 @@
 			F_GET_NEXT_SEQ('SEQ'),#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
 		]]>
 	</insert>
-	
+		
 	<select id="searchMPSOS" resultMap="MpsOSResult">
 		<![CDATA[ select item_Code, item_Name
-		  	from pmm_pm_mps
+		  	from pmm_pm_mps_os
 		 	 where item_Name like '%'||#{item_Name}||'%']]>
 	</select>
-
+	
+  	<select id="searchMRP" resultMap="MpsOSResult" parameterType="String">
+		<![CDATA[select * from pmm_pm_mps_os where item_code = #{item_code} order by sequence desc]]>
+	</select>
+	
+	<select id="selectMRP" resultMap="MpsOSResult" parameterType="String">
+		<![CDATA[select buyer,item_code,item_name,standard,inventory_unit,expected_Date,note from pmm_pm_mps_os where item_code=#{item_code}]]>
+	</select>
+	
+	<select id="selectSeq" resultType="int">
+		<![CDATA[select MAX(sequence) from pmm_pm_mps]]>
+	</select>
+	
+	<select id="inputMRP" resultMap="bomView" parameterType="String">
+		<![CDATA[select sequence,buyer,item_code,item_name,standard,inventory_unit,expected_Date,note from pmm_pm_mps_os where item_code=#{item_code}]]>
+	</select>
 	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
  		<result property="sequence" column="sequence" />
@@ -226,7 +220,8 @@
 		#{inventory_qty},#{claim_quantity},#{buyer},#{note})
 		]]>
 	</insert> 
-
+	
+	
 	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
 		<result property="item_Code" column="item_Code" />

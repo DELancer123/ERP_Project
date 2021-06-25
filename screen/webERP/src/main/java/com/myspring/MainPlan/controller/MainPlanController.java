@@ -10,9 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.MainPlan.vo.MainPlanVO;
 
 public interface MainPlanController {
-
-	//ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 	ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception;

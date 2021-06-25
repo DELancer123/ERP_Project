@@ -20,8 +20,8 @@ a {
 }
 
 #wrap {
-	width: 1400px;
-	height: 450px;
+	width: 300px;
+	height: 400px;
 	border: 1px solid black;
 }
 
@@ -32,18 +32,13 @@ a {
 }
 
 #button {
-	margin-top: -3%;
+	margin-top: 3%;
 	margin-right: 3%;
 	text-align: right;
 }
-
-#search {
-	margin-left: 30px;
-}
-
 #view {	
     overflow: scroll;
-    height: 100%;
+    height: 77%;
     width: 100%;
     
 }
@@ -54,15 +49,6 @@ a {
 	<div id="wrap">
 		<div id="searchBox">
 			<table id="search">
-<!--  				<tr>
-					<td>주문기간</td>
-						<td><input type="date" id="dateStart"
-							style="background-color: yellow;" /></td>
-						<td>~</td>
-						<td><input type="date" id="dateEnd"
-							style="background-color: yellow;" /></td>
-						<td></td>
-				</tr> -->
 					<tr>
 						<td>품목코드</td>
 						<td><input type="text" id="code" name="code" /></td>
@@ -73,27 +59,16 @@ a {
 					</tr>
 					<tr>
 			</table>
-			<div id="button">
-				<input type="button" id="planSearch" value="조회" onClick="sendData();" />			
+			<div id="button">	
 				<button id="submit" onclick="submitClick(this.form)">적용</button>
                 <input type="hidden" name="inputSeq" value=""/>
 			</div>
 		</div>
 		<div id="view">
 			<table style="width: 100%;" id="searchItem">
-				<thead align="center" style="background-color: gray">
-					<td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-<!-- 					<td>순서</td>
-					<td>주문번호</td>
-					<td>주문일자</td>
-					<td>고객</td> -->
+				<tr align="center">
 					<td>품번</td>
 					<td>품명</td>
-<!-- 					<td>규격</td>
-					<td>단위</td>
-					<td>주문수량</td>
-					<td>출하예정일</td>
-					<td>비고</td> -->
 				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
@@ -105,9 +80,6 @@ a {
 			</table>
 		</div>
 	</div>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
@@ -121,39 +93,11 @@ var text_name = document.getElementById("name");
 			text_name.value = name;
 			
 	}
-	function submitClick(form){
+ 	function submitClick(form){
 		opener.setChildValue(text_code.value)
 		window.close(); 
 	}
-	
-	
-var startDate;
-var endDate;
-
-
-$('#dateStart').change(function (){
-    var date = $('#dateStart').val();
-    startDate = date;
-});
-$('#dateEnd').change(function (){
-    var date = $('#dateEnd').val();
-    endDate = date;
-});
-
-function sendData() {
-	if(startDate == null && endDate == null){
-		alert("시작일과 종료일은 필수 입력 요소입니다!");
-	} else if(startDate == null) {
-		alert("시작일은 필수 입력 요소입니다!");
-	} else if(endDate == null){
-		alert("종료일은 필수 입력 요소입니다!");
-	} else if(startDate > endDate){
-		alert("종료일은 시작일보다 커야합니다!");
-	} else {
-		location.href='${contextPath }/member/applyorder.do?dateStart='+startDate+'&&dateEnd='+endDate;
-	}
-}
-
+ 	
 //ajax 구문
 $('.name').keyup(function(){
 //변수 words에 id가 name인것의 값을 저장한다
@@ -172,8 +116,8 @@ $.ajax({
 		for(var i = 0 ; i<data.length ; i++){
 			var str = '';
 				str += 	'<tr align="center" id = "yahoo">';
-				str +=  '<td>'+ data[i].item_Code + '</a></td>';  
-				str +=  '<td>'+ data[i].item_Name + '</a></td>';  
+				str +=  '<td><a href = "#">'+ data[i].item_Code + '</a></td>';  
+				str +=  '<td><a href = "#">'+ data[i].item_Name + '</a></td>';  
 				str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].item_Code+'"></td>';  
 				str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].item_Name+'" ></td>';  
 				str +=	'</tr>';
