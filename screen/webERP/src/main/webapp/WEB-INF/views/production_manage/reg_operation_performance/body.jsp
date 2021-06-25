@@ -208,7 +208,7 @@
                         <td><input type="text" id="materialUseStatus" name="DetailVO[${fn:length(detailList)}].materialUseStatus" value="${param.materialUseStatus }" readonly /></td>
                         <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
                         <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processName }" ondblclick="processCodeSearch()"/></td>
-                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }"/></td>
+                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }" ondblclick="workpalceCodeSearch()"/></td>
                         <td><input type="text" id="sortation" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
                         <td><input type="text" id="performanceQuantity" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
                         <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
@@ -353,5 +353,9 @@
 	
  	function processCodeSearch(){
 			openWindowPop('http://localhost:8090/webERP/member/processCodeSearchPop.do','processCodeSearch');
+	}
+ 	
+ 	function workpalceCodeSearch(){
+		openWindowPop('http://localhost:8090/webERP/member/workpalceCodeSearchPop.do','workplaceCodeSearch');
 	}
       </script>
