@@ -111,7 +111,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 		return logisticsList;
 	}
 	
-	//물류관리내역등록
 	@Override
 	public List viewSelectedLogistics(String com_code) throws DataAccessException {
 		List logisticsList = null;
@@ -119,12 +118,22 @@ public class SystemmagServiceImpl implements SystemmagService {
 		return logisticsList;
 	}
 	
-	
-	
+	@Override
+	public int addLogistics (SystemmagVO systemmagVO) throws Exception{
+		int result = systemmagDAO.insertNewLogistics(systemmagVO);
+		return result;
+    }
 
-	
+	@Override
+	public void deleteLogistics(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteLogistics(noary);
+	}
 
-	
+	@Override
+	public void updateLogistics(SystemmagVO systemmagVO) throws DataAccessException {		
+		systemmagDAO.updateLogistics(systemmagVO);
+	}
+
 	
 	
 }

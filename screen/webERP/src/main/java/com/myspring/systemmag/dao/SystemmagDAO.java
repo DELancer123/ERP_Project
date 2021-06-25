@@ -8,13 +8,13 @@ import com.myspring.systemmag.vo.SystemmagVO;
 
 public interface SystemmagDAO {
 	//일반거래처등록
-	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException;
-	
-	public List searchCustomer(String customerCode) throws DataAccessException;
-
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
+	
+	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException;
+	
+	public List searchCustomer(String customerCode) throws DataAccessException;
 	
 	public void deleteCustomer(String[] noary) throws DataAccessException;
 	
@@ -39,4 +39,10 @@ public interface SystemmagDAO {
 	public List viewAllLogistics() throws DataAccessException;
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
+	
+	public int insertNewLogistics (SystemmagVO systemmagVO) throws DataAccessException;
+	
+	public void deleteLogistics(String[] noary) throws DataAccessException;
+	
+	public void updateLogistics(SystemmagVO systemmagVO) throws DataAccessException;
 }
