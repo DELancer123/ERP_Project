@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import com.myspring.salesmanage.forward.reg.dao.ForwardRegDAO;
 
+@Service("forwardRegService")
 public class ForwardRegServiceImpl implements ForwardRegService {
 	
 	@Autowired

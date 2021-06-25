@@ -217,9 +217,10 @@
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_forwarding_request/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/forwarding" extends="baseLayout">
+   <definition name="/member/forwarding" extends="baseLayout4">
       <put-attribute name="title" value="출고처리" />
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/forwarding/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/sales_manage/forwarding/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/transactionissue" extends="baseLayout">

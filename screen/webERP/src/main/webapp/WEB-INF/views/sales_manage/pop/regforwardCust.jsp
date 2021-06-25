@@ -63,7 +63,7 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit"  onclick="submitClick(this.form)">적용</button>
-                <input type="hidden" name="inputNo" value="${inputNo}"/>
+                <input type="hidden" name="inputNo"/>
                 <input type="reset" id="reset" value="초기화"/>
             </div>
         </div>
@@ -75,7 +75,7 @@
       					<td><b>사업자 명</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${orderCustList}" >
+ 					<c:forEach var="cust" items="${forwardCustList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</a></td>
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custName}</a></td>

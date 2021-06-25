@@ -56,21 +56,19 @@
                     <td>출고번호</td>
                     <td>출고일자</td>
                     <td>고객</td>
-                    <td>과세구분</td>
-                    <td>단가구분</td>
-                    <td>납품처</td>
+                    <td>마감</td>
                     <td>비고</td>
                 </thead>
+                <c:forEach var="supForwarding" items="${supForwardList}" varStatus="status">
                 <tbody>
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
+                    <td><input type="checkbox" value = "${supForwarding.relCode}" id="check" name="content"/></td>
+                    <td><input type="text" value="${supForwarding.relCode}" readonly/></td>
+                    <td><input type="text" value="${supForwarding.relDate}" readonly /></td>
+                    <td><input type="text" value="${supForwarding.custCode}" readonly /></td>
+                    <td><input type="text" value="${supForwarding.deadLine}" readonly /></td>
+                    <td><input type="text" value="${supForwarding.note}" readonly /></td>
                 </tbody>
+                </c:forEach>
            </table>
         </container2>
         <container3 id="contents3">

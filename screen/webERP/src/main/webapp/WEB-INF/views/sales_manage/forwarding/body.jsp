@@ -43,7 +43,7 @@
                     <td>~</td>
                     <td><input type="date" id="reqInput"></td>
                 </tr>
-                <tr>
+               <!--  <tr>
                     <td>고객</td>
                     <td><input type="text"></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
@@ -53,6 +53,7 @@
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td><input type="text" disabled></td>
                 </tr>
+                 -->
             </table>
         </container1>
          <script>

@@ -15,7 +15,6 @@ public class ForwardVO {
 	private String relCode;
 	private Date relDate;
 	private String custCode;
-	private String releaseOX;
 	private String deadLine;
 	private String note;
 
@@ -58,14 +57,6 @@ public class ForwardVO {
 
 	public void setCustCode(String custCode) {
 		this.custCode = custCode;
-	}
-
-	public String getReleaseOX() {
-		return releaseOX;
-	}
-
-	public void setReleaseOX(String releaseOX) {
-		this.releaseOX = releaseOX;
 	}
 
 	public String getDeadLine() {

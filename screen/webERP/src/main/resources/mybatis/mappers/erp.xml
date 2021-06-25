@@ -360,7 +360,7 @@
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
-		<result property="custCode" column="customerCode" />
+		<result property="custCode" column="General_Customer_Code" />
 		<result property="deadLine" column="deadLine" />
 		<result property="note" column="note" />
 		<result property="custName" column="General_Customer_Name" />
@@ -382,7 +382,7 @@
 	<resultMap id="rsjView" type="rsjVO">
 		<result property="releaseNum" column="releaseNum" />
 		<result property="releaseDate" column="releaseDate" />
-		<result property="customerCode" column="customerCode" />
+		<result property="customerCode" column="General_Customer_Code" />
 	</resultMap>
 	<resultMap id="rsView" type="rsVO">
 		<result property="itemCode" column="Item_Code" />
@@ -395,13 +395,13 @@
 		<collection property="rsjVO" resultMap="rsjView"></collection>
 	</resultMap>
 	<select id="rsSelectAllMemberList" resultMap="rsView">
-		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.customerCode, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
+		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.General_Customer_Code, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
 				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg ]]>
 	</select>
 	<select id="rsSearchItem" resultMap="rsView" parameterType="java.util.HashMap">
-		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.customerCode, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
+		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.General_Customer_Code, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
 				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg
-				where pro.customerCode = reg.customerCode and pro.releaseDate between #{startDate} and #{endDate}
+				where pro.General_Customer_Code = reg.General_Customer_Code and pro.releaseDate between #{startDate} and #{endDate}
 		]]>
 	</select>
 	
