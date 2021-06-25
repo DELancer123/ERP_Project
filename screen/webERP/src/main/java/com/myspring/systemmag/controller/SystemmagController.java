@@ -27,6 +27,7 @@ public interface SystemmagController {
 	//창고/공정/외주공정등록
 	public ModelAndView viewOutware(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	
+	//물류관리내역등록
+	public ModelAndView viewLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
 			
 }

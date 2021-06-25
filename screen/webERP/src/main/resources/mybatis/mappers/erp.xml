@@ -331,6 +331,9 @@
 	<select id="selectAllLogisticsManagement" resultMap="logisticsManagementResult">
 		<![CDATA[select * from SM_BIM_LOG_MAN]]>
 	</select>
+	<select id="selectOneLogisticsManagement" parameterType="String" resultMap="logisticsManagementResult">
+		<![CDATA[select * from SM_BIM_LOG_MAN where logistics_In_Code = #{com_code}]]>
+	</select>
 	
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">

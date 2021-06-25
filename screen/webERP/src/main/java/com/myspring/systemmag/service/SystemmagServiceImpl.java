@@ -103,6 +103,23 @@ public class SystemmagServiceImpl implements SystemmagService {
 		return outwareList;
 	}
 	
+	//물류관리내역등록
+	@Override
+	public List viewAllLogistics() throws DataAccessException {
+		List logisticsList = null;
+		logisticsList = systemmagDAO.viewAllLogistics();
+		return logisticsList;
+	}
+	
+	//물류관리내역등록
+	@Override
+	public List viewSelectedLogistics(String com_code) throws DataAccessException {
+		List logisticsList = null;
+		logisticsList = systemmagDAO.viewSelectedLogistics(com_code);
+		return logisticsList;
+	}
+	
+	
 	
 
 	

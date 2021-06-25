@@ -34,4 +34,9 @@ public interface SystemmagDAO {
 	public List viewAllProWorOutware() throws DataAccessException;
 	
 	public List viewAllOutWorOutware() throws DataAccessException;
+	
+	//물류관리내역등록
+	public List viewAllLogistics() throws DataAccessException;
+	
+	public List viewSelectedLogistics(String com_code) throws DataAccessException;
 }

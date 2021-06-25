@@ -104,6 +104,21 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		outwareList = sqlSession.selectList("mappers.erp.selectAllOutWorOutware");
 		return outwareList;
 	}
+	
+	//물류관리내역등록
+	@Override
+	public List viewAllLogistics() throws DataAccessException {
+		List<SystemmagVO> logisticsList = null;
+		logisticsList = sqlSession.selectList("mappers.erp.selectAllLogisticsManagement");
+		return logisticsList;
+	}
+	
+	@Override
+	public List viewSelectedLogistics(String com_code) throws DataAccessException {
+		List<SystemmagVO> logisticsList = null;
+		logisticsList = sqlSession.selectList("mappers.erp.selectOneLogisticsManagement", com_code);
+		return logisticsList;
+	}
 
 	
 

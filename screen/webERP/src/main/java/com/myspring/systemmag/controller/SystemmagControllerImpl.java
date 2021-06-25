@@ -63,14 +63,11 @@ public class SystemmagControllerImpl implements SystemmagController {
 		String viewName = getViewName(request);	
 		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
-		String zipCode = (String) request.getParameter("zipCode");
-		String customerCode = (String) request.getParameter("customerCode");//검색부의값을 겟파라미터로 가져옴
 		
 		System.out.println("viewName:"+viewName);
-		System.out.println("customerCode:"+customerCode);
 		System.out.println("submit:"+submit);
 		
-		if (code == null && submit == null  && customerCode == null) { //첫접속이라면?
+		if (code == null || submit == null) { //첫접속이라면?
 			System.out.println("1번분기들어옴");
 			List comView = systemmagService.viewAllCustomer(); //select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
@@ -78,22 +75,13 @@ public class SystemmagControllerImpl implements SystemmagController {
 			return mav;
 		}
 
-		else if (submit != null) { //목록을 선택했을때, 즉 조회를 했을때
+		else if (submit.equals("1")) { //목록을 선택했을때, 즉 조회를 했을때
 			System.out.println("2번분기들어옴");
 			List comView = systemmagService.viewAllCustomer(); //select문에
 			List comcom = systemmagService.viewCustomer(code); //where절을 추가한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
-		}
-		else if (customerCode != null && submit == null) {
-			System.out.println("3번분기들어옴");
-			System.out.println("customerCode:"+customerCode);
-			System.out.println("viewName:"+viewName);
-			List comView = systemmagService.searchCustomer(customerCode);
-			mav = new ModelAndView("/member/regbasicacc");
-			mav.addObject(comView);
-			System.out.println("size:"+comView.size());
 		}
 		return mav;
 	}
@@ -218,6 +206,38 @@ public class SystemmagControllerImpl implements SystemmagController {
 			return mav;
 		}
 
+		return mav;
+	}
+
+	//물류관리내역등록-조회
+	@Override
+	@RequestMapping(value = "/member/logistics_manage.do", method = RequestMethod.GET)
+	public ModelAndView viewLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);	
+		String submit = (String) request.getParameter("submit"); //첫접속인지 체크하는 변수임 , url로 넘어옴
+		String code = (String) request.getParameter("com_code"); //몇번째 목록인지 체크하는 변수임, url로 넘어옴
+	
+		System.out.println("viewName:"+viewName);
+		System.out.println("submit:"+submit);
+		
+		if (code == null && submit == null) { //첫접속이라면?
+			System.out.println("1번분기들어옴");
+			List logisticsView = systemmagService.viewAllLogistics(); //select all 쿼리를 호출한다
+			mav = new ModelAndView(viewName);
+			mav.addObject("logisticsView", logisticsView);
+			return mav;
+		}
+
+		else if (submit.equals("1")) { //목록을 선택했을때, 즉 조회를 했을때
+			System.out.println("2번분기들어옴");
+			List logisticsView = systemmagService.viewAllLogistics(); //select문에
+			List logisticsSelectedView = systemmagService.viewSelectedLogistics(code); //where절을 추가한다
+			mav = new ModelAndView(viewName);
+			mav.addObject("logisticsView", logisticsView);
+			mav.addObject("logisticsSelectedView", logisticsSelectedView);
+		}
+		
 		return mav;
 	}
 	 
