@@ -301,6 +301,7 @@
 		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
 		<result property="outsourcing_Status" column="outsourcing_Status" />
 	</resultMap>
+	<!-- 윗칸 데이터 -->
 	<select id="selectAllHouOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_HOU_REG]]>
 	</select>
@@ -309,6 +310,16 @@
 	</select>
 	<select id="selectAllOutOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_OUT_REG]]>
+	</select>
+	<!-- 아랫칸 데이터 -->
+	<select id="selectAllHouWorOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_WOR_REG]]>
+	</select>
+	<select id="selectAllProWorOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_PRO_WOR_REG]]>
+	</select>
+	<select id="selectAllOutWorOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_OUT_WOR_REG]]>
 	</select>
 	
 	<!-- 외주발주등록 파트 -->

@@ -273,6 +273,106 @@ public class SystemmagVO {
 		this.outsourcing_Status = outsourcing_Status;
 	}
 	
+	//SM_BIM_WOR_REG => 창고/장소 하위테이블
+	private String location_Code;
+	private String location_Name;
+	private String location_Explanation;
+	private String release_Code;
+	private String release_Customer;
+	private String suitability;
+	private String availability;
+	private String status;
+
+	public String getLocation_Code() {
+		return location_Code;
+	}
+	public void setLocation_Code(String location_Code) {
+		this.location_Code = location_Code;
+	}
+	public String getLocation_Name() {
+		return location_Name;
+	}
+	public void setLocation_Name(String location_Name) {
+		this.location_Name = location_Name;
+	}
+	public String getLocation_Explanation() {
+		return location_Explanation;
+	}
+	public void setLocation_Explanation(String location_Explanation) {
+		this.location_Explanation = location_Explanation;
+	}
+	public String getRelease_Code() {
+		return release_Code;
+	}
+	public void setRelease_Code(String release_Code) {
+		this.release_Code = release_Code;
+	}
+	public String getRelease_Customer() {
+		return release_Customer;
+	}
+	public void setRelease_Customer(String release_Customer) {
+		this.release_Customer = release_Customer;
+	}
+	public String getSuitability() {
+		return suitability;
+	}
+	public void setSuitability(String suitability) {
+		this.suitability = suitability;
+	}
+	public String getAvailability() {
+		return availability;
+	}
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	//SM_BIM_PRO_WOR_REG => 생산공정/작업장 하위테이블
+	private String workplace_Code;
+	private String workplace_Name; 
+	private String workplace_Explanation;
+	
+	public String getWorkplace_Code() {
+		return workplace_Code;
+	}
+	public void setWorkplace_Code(String workplace_Code) {
+		this.workplace_Code = workplace_Code;
+	}
+	public String getWorkplace_Name() {
+		return workplace_Name;
+	}
+	public void setWorkplace_Name(String workplace_Name) {
+		this.workplace_Name = workplace_Name;
+	}
+	public String getWorkplace_Explanation() {
+		return workplace_Explanation;
+	}
+	public void setWorkplace_Explanation(String workplace_Explanation) {
+		this.workplace_Explanation = workplace_Explanation;
+	}
+
+	//SM_BIM_OUT_WOR_REG => 외주공정/작업장 하위테이블
+	private String outcustomer;
+	private String outcustomer_Name;
+
+	public String getOutcustomer() {
+		return outcustomer;
+	}
+	public void setOutcustomer(String outcustomer) {
+		this.outcustomer = outcustomer;
+	}
+	public String getOutcustomer_Name() {
+		return outcustomer_Name;
+	}
+	public void setOutcustomer_Name(String outcustomer_Name) {
+		this.outcustomer_Name = outcustomer_Name;
+	}
+	
 	
 	
 	
