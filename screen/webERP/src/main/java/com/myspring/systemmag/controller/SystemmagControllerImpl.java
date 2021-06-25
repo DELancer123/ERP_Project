@@ -297,6 +297,18 @@ public class SystemmagControllerImpl implements SystemmagController {
 	 	 
 		return mav; 
 	}
+	
+	@ResponseBody
+	   @RequestMapping(value = "/member/searchPopName.do", method = RequestMethod.GET)
+	   public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+	      ModelAndView mav = new ModelAndView();
+	      List<StockManageVO> popName = null;
+	      popName = stockManageservice.searchPopName(itemName);
+	      mav.addObject("popName", popName);
+	      mav.setViewName("jsonView");
+
+	      return mav;
+	   } 
 	 
 }
 
