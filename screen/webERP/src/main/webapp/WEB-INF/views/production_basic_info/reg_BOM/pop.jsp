@@ -111,7 +111,7 @@
     		var words = $('#name').val();
     			$.ajax({
     				type : 'GET',
-    			url : '/webERP/member/searchoutPop.do',
+    			url : '/webERP/member/searchbom2.do',
     					//words값을 "itemName"이라는 이름의 파라미터로 전송한다.
     				data : { "itemName" : words},
     				success : function(responseData){
