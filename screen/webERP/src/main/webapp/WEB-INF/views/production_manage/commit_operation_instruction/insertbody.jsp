@@ -177,17 +177,21 @@
   					<c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
   					 	<td><input type="checkbox" name="content2"/></td>                        
+                        <td><input type="hidden" name="DetailVO[${status.index }].forwardingNumber" value="${detail.forwardingNumber }" readonly/></td>
+                        <td><input type="hidden" name="DetailVO[${status.index }].billingDate" value="${detail.billingDate }" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.indicated}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].loss" /></td>                                                
+                        <td><input type="hidden" value = '${detail.indicated*detail.loss}' readonly/></td>                                               
                         <td><input type="text" name="DetailVO[${status.index }].note" /></td>
                         <td><input type="hidden" name="DetailVO[${status.index }].workOrderNumber" value="${param.workOrderNumber }" /></td>
   					 </tr>
                     </c:forEach>
-                    <tr>
+                    <!-- 
+                                        <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>                        
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemCode"/></td>
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].itemName"/></td>
@@ -197,6 +201,7 @@
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].loss"/></td>
                         <td><input type="text" name="DetailVO[${fn:length(infoList)}].note"/></td>                                         
                     </tr>
+                    -->
                     </tbody>
                 </table>
                 </form>

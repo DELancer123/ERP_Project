@@ -204,8 +204,8 @@
 	<insert id="insertReleaseData" parameterType="OperationDetailVO">
 		<![CDATA[
 		 insert into CPM_PM_PRO_MAT_FOR_DET
-		 values(F_GET_NEXT_SEQ('CPM_PM_Pro_Mat_For_Det'), to_char(sysdate,'YYYYMMDD'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
-		 #{precisionQuantity}, #{note}, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), #{workOrderNumber} )
+		 values(F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), '20210625', #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
+		 (precisionQuantity*loss), #{note}, #{workOrderNumber} )
 		]]>  
 	</insert>
 	

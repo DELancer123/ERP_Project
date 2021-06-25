@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OperationDetailVO {
 	private int no;
-	private String workOrderNumber;
+	private String forwardingNumber;
 	private Date billingDate;
 	private String itemCode;
 	private String itemName;
@@ -17,6 +17,7 @@ public class OperationDetailVO {
 	private int loss;	
 	private int comfirmQuantity;
 	private String note;
+	private String workOrderNumber;
 	private List<OperationDetailVO> DetailVO;
 	
 	public OperationDetailVO() {
@@ -122,6 +123,14 @@ public class OperationDetailVO {
 
 	public void setWorkOrderNumber(String workOrderNumber) {
 		this.workOrderNumber = workOrderNumber;
+	}
+
+	public String getForwardingNumber() {
+		return forwardingNumber;
+	}
+
+	public void setForwardingNumber(String forwardingNumber) {
+		this.forwardingNumber = forwardingNumber;
 	}
 	
 	
