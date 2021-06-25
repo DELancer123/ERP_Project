@@ -26,6 +26,7 @@ import com.myspring.salesmanage.salesplan.vo.spVO;
 
 @Controller
 //@EnableAspectJAutoProxy
+
 public class SpViewControllerImpl implements SpViewController {
 	private static final Logger logger = LoggerFactory.getLogger(SpViewControllerImpl.class);
 	@Autowired

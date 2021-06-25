@@ -445,7 +445,7 @@
 		<![CDATA[
 		update SM_BIM_Sal_Pla_Reg
 		set Newplan_Item_Quantity = #{newPlanItemQuantity}, Newplan_Unit_Price = #{newPlanUnitPrice}
-		where No = #{no}
+		where Item_Code = #{itemCode}
 		]]>
 	</update>
 </mapper>
