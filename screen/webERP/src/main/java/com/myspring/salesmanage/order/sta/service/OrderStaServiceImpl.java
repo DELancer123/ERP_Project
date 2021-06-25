@@ -19,7 +19,7 @@ public class OrderStaServiceImpl implements OrderStaService {
 		List orderList = null;
 		orderList = orderDAO.selectOrderCorList();
 		return orderList;
-	}//COR"."GENERAL_CUSTOMER_CODE"
+	}
 
 	@Override
 	public List listCusts() throws DataAccessException {
