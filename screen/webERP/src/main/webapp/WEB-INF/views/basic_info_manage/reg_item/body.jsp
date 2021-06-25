@@ -134,11 +134,11 @@
                 <tr>
                     <td>품목군</td>
                     <td>
-                        <input type=text name = "type_code" style="width:80px;" value="${type_code}" />
+                        <input type=text name = "type_code" style="width:80px;" value="${param.itemgNumber}" />
                         <a href="javascript:searchitemg()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                     <td>
-                        <input type=text name = "type_name" value='${type_name}' />
+                        <input type=text name = "type_name" value='${param.itemg_name}' />
                     </td>
                 </tr>
                
@@ -363,6 +363,15 @@
      	    		alert('수정되었습니다'); 
             	/* } */      	
             }
+     	  view_button.onclick = function(){
+     		  console.log('확인');
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '2');
+			  const newParam = URLSearch.toString();
+
+			  window.open(location.pathname + '?' + newParam, '_self');
+    	}
+
      	//삭제함수
      	    function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
      	      	var item = document.getElementsByName("checkedContent").length;
@@ -390,6 +399,7 @@
      	 function setChildValue(code, name) {
              $('input[name=type_code]').val(code);
              $('input[name=type_name]').val(name);
+            
           }
 
 	

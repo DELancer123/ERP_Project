@@ -36,6 +36,7 @@ public interface SystemmagDAO {
 	public List allviewItem(String item_code) throws DataAccessException;
 	public void updateItem(itemVO itemVO) throws DataAccessException;
 	public void deleteItem(String[] noary) throws DataAccessException;
+	public List SearchItemg(String itemNumber) throws DataAccessException;
 	//품목군등록
 	public int addItemg(ItemgVO itemgVO) throws DataAccessException;
 	public List allviewItemg() throws DataAccessException;

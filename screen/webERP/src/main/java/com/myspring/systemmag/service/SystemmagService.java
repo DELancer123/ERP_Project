@@ -35,6 +35,7 @@ public interface SystemmagService {
 	public List comitem(String item_code) throws DataAccessException;
 	public void updItem(itemVO itemVO) throws DataAccessException;
 	public void delItem(String[] noary) throws DataAccessException;
+	public List Searchitemg(String itemNumber) throws DataAccessException;
 	//품목군등록
 	public int addItemg(ItemgVO itemgVO) throws Exception;
 	public List itemgView() throws DataAccessException;

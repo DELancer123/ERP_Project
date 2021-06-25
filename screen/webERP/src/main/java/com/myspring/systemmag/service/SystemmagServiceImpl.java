@@ -97,6 +97,13 @@ public class SystemmagServiceImpl implements SystemmagService {
 		System.out.println("sercom= :"+itemList);
 		return itemList;
 	}
+	//품목군(조건조회)	
+	@Override
+	public List Searchitemg(String itemNumber) throws DataAccessException {
+		List searchList = null;
+		searchList = systemmagDAO.SearchItemg(itemNumber);
+		return searchList;
+	}
 	@Override
 	public List comitem(String item_code) throws DataAccessException {
 		List itemList = systemmagDAO.allviewItem(item_code);

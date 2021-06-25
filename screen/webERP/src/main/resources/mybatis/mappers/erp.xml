@@ -342,6 +342,11 @@
 	<select id="selectAllitemList" resultMap="itemResult" parameterType="String">
 		<![CDATA[select * from SM_BIM_Ite_Reg where item_Code = #{item_Code}]]>	
 	</select>
+	<!-- 조건조회 -->
+	<select id="searchitemg" resultMap="itemResult"
+		parameterType="String">
+		<![CDATA[select * from SM_BIM_Ite_Reg where item_Group_Code = #{itemNumber}]]>
+	</select>
 	<!-- 등록 -->
 	<insert id="insertItem" parameterType="itemVO">
 	<![CDATA[

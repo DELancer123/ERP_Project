@@ -103,9 +103,11 @@ a {
 			}
 			
 			function submitClick(form) {
-				opener.setChildValue(text_code.value, text_name.value);
+				opener.parent.location = "${contextPath}/member/regitem.do?itemgNumber=" + text_code.value+"&&itemg_name="+text_name.value;
 				window.close();
 			}
+			//
+			
 			
 		</script>
 	</form>

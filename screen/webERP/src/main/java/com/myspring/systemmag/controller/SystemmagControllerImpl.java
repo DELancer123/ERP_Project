@@ -198,9 +198,10 @@ public class SystemmagControllerImpl implements SystemmagController{
 		public ModelAndView viewItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			ModelAndView mav = null;
 			String viewName = getViewName(request);
+			String number = (String) request.getParameter("itemgNumber");
 			String submit = (String) request.getParameter("submit");
 			String code = (String) request.getParameter("item_code");
-			if(code == null || submit == null) {
+			if(code == null && submit == null) {
 				List itemView = systemmagService.itemView();
 				mav = new ModelAndView(viewName);
 				mav.addObject("itemView", itemView);
@@ -213,6 +214,12 @@ public class SystemmagControllerImpl implements SystemmagController{
 				mav.addObject("itemView", itemView);
 				mav.addObject("comitem",comitem);
 				
+			}else if(submit.equals("2")){
+				List itemgView = systemmagService.Searchitemg(number);
+				
+				mav = new ModelAndView(viewName);
+				
+				mav.addObject("itemView", itemgView);
 			}
 			return mav;
 		}

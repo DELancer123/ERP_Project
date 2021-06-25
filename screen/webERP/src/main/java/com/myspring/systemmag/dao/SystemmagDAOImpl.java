@@ -119,6 +119,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: "+item_code);
 		return itemList;
 	}
+	//품목군(조건조회)
+	@Override
+	public List SearchItemg(String itemNumber) throws DataAccessException{
+		System.out.println(itemNumber);
+		List<itemVO> searchList = null;
+		searchList = sqlSession.selectList("mappers.erp.searchitemg",itemNumber);
+		return searchList;
+	}
 	//품목등록(팝업)
 	@Override
 	public List viewItg() throws DataAccessException {

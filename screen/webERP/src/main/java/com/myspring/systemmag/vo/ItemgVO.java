@@ -14,12 +14,7 @@ public class ItemgVO {
 	private String explanation;
 	private List<ItemgVO> ListVO;
 	
-	public List<ItemgVO> getListVO() {
-		return ListVO;
-	}
-	public void setListVO(List<ItemgVO> listVO) {
-		ListVO = listVO;
-	}
+	
 	public String getItem_Group_Code() {
 		return item_Group_Code;
 	}
@@ -44,4 +39,13 @@ public class ItemgVO {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
-}
+	public List<ItemgVO> getListVO() {
+		return ListVO;
+	}
+	public void setListVO(List<ItemgVO> listVO) {
+		ListVO = listVO;
+	}
+	
+	
+	}
+
