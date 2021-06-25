@@ -17,5 +17,6 @@ public interface RegistOperationPerformanceDAO {
 	public List<String> MaterialUse(String[] numberAry) throws DataAccessException;
 	public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPVO) throws DataAccessException;
 	public List houseCodeViewPop() throws DataAccessException;
+	public List processCodeViewPop() throws DataAccessException;
 
 }

@@ -67,8 +67,8 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>창고코드</td>
-                    <td>창고명</td>
+                    <td>곻정코드</td>
+                    <td>공정명</td>
                 </tr>
     <c:forEach var="process" items="${itemView}" >     
 		<tr align="center">
@@ -92,7 +92,7 @@
     	submit_button.onclick = function(){
     		var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url+'&processCode='+text_code.value;
+    		opener.parent.location=url+'&processName='+text_name.value;
     		window.close();
     	}
     </script>

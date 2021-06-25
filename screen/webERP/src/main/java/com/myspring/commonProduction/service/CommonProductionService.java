@@ -46,5 +46,6 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException;
   public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException;
   public List houseCodeSearch() throws DataAccessException;
+  public List processCodeSearch() throws DataAccessException;
   }
  
