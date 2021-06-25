@@ -11,7 +11,7 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>창고/공정/외주공정현황</title>
 <style>
  #contents1{
             position: absolute;

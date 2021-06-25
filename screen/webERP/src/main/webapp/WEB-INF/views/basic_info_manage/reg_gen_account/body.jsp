@@ -25,7 +25,7 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>일반거래처등록</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
  		#contents1{
