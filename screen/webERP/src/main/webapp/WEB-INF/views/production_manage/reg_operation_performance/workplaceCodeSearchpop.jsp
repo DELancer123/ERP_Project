@@ -72,8 +72,8 @@
                 </tr>
     <c:forEach var="work" items="${itemView}" >     
 		<tr align="center">
-      		<td><a href="javascript:popFunction('${work.workpalceCode}','${work.workplaceName }')">${work.workplaceCode}</a></td>
-      		<td><a href="#">${process.processName}</a></td>
+      		<td><a href="javascript:popFunction('${work.workplaceCode}','${work.workplaceName }')">${work.workplaceCode}</a></td>
+      		<td><a href="#">${work.workplaceName}</a></td>
     	</tr> 
     </c:forEach> 
             </table>
