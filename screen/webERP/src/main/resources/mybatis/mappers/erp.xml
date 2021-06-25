@@ -249,119 +249,112 @@
 	   delete from  SM_BIM_Sal_Pla_Reg where plan_code=#{plancode}
 	]]>      
   </delete>	
-		<resultMap id="cust" type="orderVO">
-		<result property="custCode" column="General_Customer_Code" />
-        <result property="custName" column="General_Customer_Name" />
-        <result property="comNum" column="Company_Registration_Number" />
-        <result property="repName" column="Representativs_Name" />	
-	</resultMap> 
-	
-		<select id="orderCustList" resultMap="cust">
-      <![CDATA[
-         select * from SM_BIM_Gen_Cus_Reg 
-      ]]>
-	</select>
-	<!-- order&cor (join)	 -->
-	<resultMap id="orderList" type="orderVO">
-		<result property="ordCode" column="ordersNum" />
-        <result property="ordDate" column="ordersdate" />
-        <result property="custCode" column="customerCode" />
-        <result property="tax" column="tax" />
-        <result property="note" column="note" />
+ 
+		<!-- order&cor sta -->
+	<resultMap id="orderJoinList" type="orderVO">
+			<result property="ordCode" column="ordersNum" />
+        	<result property="ordDate" column="ordersdate" />
+        	<result property="tax" column="tax" />
+        	<result property="note" column="note" />
+        	<result property="custCode" column="General_Customer_Code" />
+       		 <result property="custName" column="General_Customer_Name" />
+        	<result property="comNum" column="Company_Registration_Number" />
+        	<result property="repName" column="Representativs_Name" />	
         <collection property="corVO" javaType="CorVO">
-        <id property="custCode" column="customerCode" />
-        <result property="item_code" column="item_code" />
-        <result property="item_name" column="item_name" />        
-        <result property="stand" column="standard" />
-        <result property="unit" column="inventory_unit" />
-        <result property="dueDate" column="dueDate" />
-        <result property="orderQuant" column="ordersQuantity" />
-        <result property="price" column="productPrice" />
-        <result property="expDate" column="expectedDate" />
-        <result property="relDate" column="releaseExpectedDate" />
-        <result property="inspection" column="inspection" />
-        <result property="orderOX" column="orderOX" />
+        	<id property="ordCode" column="code" />
+        	<result property="item_code" column="item_code" />
+        	<result property="item_name" column="item_name" />        
+        	<result property="stand" column="standard" />
+        	<result property="unit" column="inventory_unit" />
+        	<result property="dueDate" column="dueDate" />
+        	<result property="orderQuant" column="ordersQuantity" />
+        	<result property="price" column="productPrice" />
+        	<result property="expDate" column="expectedDate" />
+        	<result property="inspection" column="inspection" />
+        	<result property="orderOX" column="orderOX" />
         </collection>
 	</resultMap> 
+
 	
-		<select id="selectOrderList" resultMap="orderList">
+	<select id="allCustForStaOrder" resultMap="orderJoinList">
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+	</select><!-- popCust-->
+	
+		<select id="submitStaOrdCust" resultMap="orderJoinList" parameterType="String">
+      <![CDATA[
+      select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
+       where ORD.ordersNum = COR.code
+       and ORD.General_Customer_Code = #{custCode}
+        ]]>
+	</select>
+	
+	<select id="StaOrderList" resultMap="orderJoinList">
       <![CDATA[
         select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
-		 where ORD.customerCode = COR.customerCode
+		 where ORD.ordersNum = COR.code
         ]]>
-	</select>
+	</select>	
 	
-	<select id="submitOrderCust" resultMap="orderList">
-      <![CDATA[
-        select * from CSM_SM_Ord_Reg ORD,CSM_SM_COR_Reg COR
-		 where ORD.customerCode = COR.customerCode
-		 and COR.customerCode = #{custCode}
-        ]]>
-	</select>
-	
-	  <select id="selOrdercode" resultMap="orderList" parameterType="String">
-		<![CDATA[
-		SELECT LAST_NUMBER FROM USER_SEQUENCES
-		 WHERE SEQUENCE_NAME = upper('seq_CSM_SM_Ord_Reg_no')
-		]]>
-	</select> 
-	<insert id="insertOrder" parameterType="orderVO">
-		<![CDATA[
-		 insert into CSM_SM_Ord_Reg
-		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'), #{ordDate}, #{custCode}, #{tax}, #{note})
-		]]>  
-	</insert>
-				<!--popcust  F_GET_CURR_SEQ('SM_BIM_Gen_Cus_Reg')
-	<resultMap id="custResult" type="estimateVO">
+ <!-- order supReg -->
+	<resultMap id="orderRegList" type="orderVO">
 		<result property="custCode" column="General_Customer_Code" />
         <result property="custName" column="General_Customer_Name" />
         <result property="comNum" column="Company_Registration_Number" />
         <result property="repName" column="Representativs_Name" />	
-	</resultMap> 
-	
-		<select id="selectCustList" resultMap="custResult">
-      <![CDATA[
-         select * from SM_BIM_Gen_Cus_Reg 
-      ]]>
-	</select>
-	
-	<delete id="delOrd"  parameterType="String">
-	<![CDATA[
-	   delete from CSM_SM_Ord_Reg where ordersNum=#{obj}
-	]]>      
-  </delete>	
-	<resultMap id="estList" type="estimateVO">
-		<id property="estCode" column="estimateNum" />
-        <result property="estDate" column="estimateDate" />
-        <result property="custCode" column="customerCode" />
-        <result property="tax" column="tax" />
-        <result property="note" column="note" />
-        <collection property="corVO" javaType="CorVO">
-        <id property="custCode" column="customerCode" />
+        <result property="ordCode" column="ordersNum" />	
+        <result property="ordDate" column="ordersdate" />	
+        <result property="tax" column="tax" />	
+        <result property="note" column="Note" />        
+	</resultMap>
+
+	<!-- order subReg -->
+	<resultMap id="orderCorRegList" type="corVO">
+	    <result property="ordCode" column="code" />
         <result property="item_code" column="item_code" />
         <result property="item_name" column="item_name" />        
         <result property="stand" column="standard" />
         <result property="unit" column="inventory_unit" />
-        <result property="dueDate" column="dueDate" />
         <result property="orderQuant" column="ordersQuantity" />
         <result property="price" column="productPrice" />
-        </collection>
-	</resultMap> 
+        <result property="dueDate" column="dueDate" />
+        <result property="expDate" column="expectedDate" />
+        <result property="inspection" column="inspection" />
+        <result property="orderOX" column="orderOX" />
+	</resultMap> 	
 	
-		<select id="selectEstCorList" resultMap="estList">
+	<select id="allCustForRegOrder" resultMap="orderRegList">
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+	</select><!-- popCust-->
+	
+	<select id="RegOrderSupList" resultMap="orderRegList">
+      <![CDATA[select * from CSM_SM_Ord_Reg]]>      
+	</select><!-- regSupOrder -->
+
+		
+	<select id="submitOrderSupReg" resultMap="orderRegList" parameterType="String">
       <![CDATA[
-        select * from CSM_SM_Est_Reg EST,CSM_SM_COR_Reg COR
-		 where EST.customerCode = COR.customerCode
+          select * from CSM_SM_Ord_Reg
+		 where General_Customer_Code = #{custCode}
         ]]>
+	</select><!-- regSupOrder -->
+
+	
+		<select id="orderCorList" resultMap="orderCorRegList">
+      <![CDATA[select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
+		 where ORD.ordersNum = COR.code]]>
 	</select>
 	
-	<select id="submitEstSta" resultMap="estList">
+	<select id="submitSubOrdReg" resultMap="orderCorRegList" parameterType="String">
       <![CDATA[
-        select * from CSM_SM_Est_Reg EST,CSM_SM_COR_Reg COR
-		 where EST.customerCode = COR.customerCode
-		 and COR.customerCode = #{custCode}
+		select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
+		 where ORD.ordersNum = COR.code	
+		 and ORD.ordersNum = #{ordCode}
         ]]>
-	</select>-->
+	</select><!-- regSupOrder -->
+	
+	<delete id="delSupOrd" parameterType="String">
+		<![CDATA[delete from CSM_SM_Ord_Reg where ordersNum=#{ordcode}]]>      
+  </delete>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
@@ -389,63 +382,4 @@
 				where pro.customerCode = reg.customerCode and pro.releaseDate between #{startDate} and #{endDate}
 		]]>
 	</select>
-	
-		<!-- 판매계획등록(재원) -->
-	<resultMap id="spView" type="spVO">
-		<result property="planDate" column="Plan_Date" />
-		<result property="itemCode" column="Item_Code" />
-		<result property="itemName" column="Item_Name" />
-		<result property="standard" column="Standard" />
-		<result property="inventoryUnit" column="Inventory_Unit" />
-		<result property="planItemQuantity" column="Plan_Item_Quantity" />
-		<result property="planUnitPrice" column="Plan_Unit_Price" />
-		<result property="newPlanItemQuantity" column="Newplan_Item_Quantity" />
-		<result property="newPlanUnitPrice" column="Newplan_Unit_Price" />
-	</resultMap>
-	<resultMap id="spView1" type="spVO">
-		<result property="itemCode" column="Item_Code" />
-		<result property="itemName" column="Item_Name" />
-		<result property="standard" column="Standard" />
-		<result property="inventoryUnit" column="Inventory_Unit" />
-	</resultMap>
-	<resultMap id="spPopView" type="spVO">
-		<result property="itemCode" column="Item_Code" />
-		<result property="itemName" column="Item_Name" />
-		<result property="standard" column="Standard" />
-	</resultMap>
-
-	<select id="spSelectAllMemberList" resultMap="spView">
-		<![CDATA[select * from SM_BIM_Sal_Pla_Reg]]>
-	</select>
-	<select id="spSearchItem" resultMap="spView" parameterType="String">
-		<![CDATA[select * from SM_BIM_Sal_Pla_Reg where Item_Code = #{itemCode}]]>
-	</select>
-	<select id="spSelectItem1" resultMap="spView1" parameterType="String">
-		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
-	</select>
-	<select id="spSelectPopList1" resultMap="spPopView">
-		<![CDATA[select * from SM_BIM_Sal_Pla_Reg]]>
-	</select>
-	<select id="spSelectPopList2" resultMap="spPopView">
-		<![CDATA[select * from SM_BIM_Ite_Reg]]>
-	</select>
-	<select id="spChildView" resultMap="spView1" parameterType="java.util.HashMap">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
-	</select>
-	<insert id="insertSp" parameterType="spVO">
-		<![CDATA[
-		insert into SM_BIM_Sal_Pla_Reg (Plan_Code, Plan_Date, Item_Code, Item_Name, Standard, Inventory_Unit, Plan_Item_Quantity, Plan_Unit_Price, Newplan_Item_Quantity, Newplan_Unit_Price) 
-		values (F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), #{planDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{planItemQuantity}, #{planUnitPrice}, #{newPlanItemQuantity}, #{newPlanUnitPrice})
-		]]>  
-	</insert>
-	<delete id="deleteSp">
-		delete from SM_BIM_Sal_Pla_Reg where Item_Code = #{itemCode}
-	</delete>
-	<update id="updateSp" parameterType="spVO">
-		<![CDATA[
-		update SM_BIM_Sal_Pla_Reg
-		set Newplan_Item_Quantity = #{newPlanItemQuantity}, Newplan_Unit_Price = #{newPlanUnitPrice}
-		where Item_Code = #{itemCode}
-		]]>
-	</update>
 </mapper>

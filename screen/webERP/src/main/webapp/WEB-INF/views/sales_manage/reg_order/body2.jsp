@@ -80,26 +80,28 @@
                     <td>과세구분</td>
                     <td>비고</td>
                 </thead>
-                <c:forEach var="cust" items="${orderList}" varStatus="status"> 
+                <c:forEach var="supOrder" items="${orderSupList}" varStatus="status"> 
                 <tbody>
                     <td><input type="checkbox" value="${cust.ordCode}" name="content"/></td>
-                    <td><input type="text" id="ordCode" name="ListOrd[${status.index}].ordCode" value="${cust.ordCode}"/></td>
-                    <td><input type="date" name="ListOrd[${status.index}].ordDate"value="${cust.ordDate}"/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].custCode" value="${cust.custCode}"/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].tax" value="${cust.tax}"/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].note" value="${cust.note}"/></td>
+                    <td><input type="text" id="ordCode" name="ListOrd[${status.index}].ordCode" value="${supOrder.ordCode}" ondblclick="submit1()" readonly/></td>
+                    <td><input type="date" name="ListOrd[${status.index}].ordDate"value="${supOrder.ordDate}" ondblclick="submit1()" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].custCode" value="${supOrder.custCode}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].tax" value="${supOrder.tax}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].note" value="${supOrder.note}" readonly/></td>
                 </tbody>
                 </c:forEach>
                 <tbody>
                     <td><input type="checkbox" name="content"/></td>
-                    <td><input type="text" id="ordCode" name="ListOrd[${fn:length(orderInsert)}].ordCode" value="${ordCode}"/></td>
-                    <td><input type="date" name="ListOrd[${fn:length(orderInsert)}].ordDate" value="${ordDate}"/></td>
+                    <td><input type="text" id="ordCode" name="ListOrd[${fn:length(orderInsert)}].ordCode" value="${ordCode}" /></td>
+                    <td><input type="date" name="ListOrd[${fn:length(orderInsert)}].ordDate" value="${ordDate}" /></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].custCode" value="${custCode}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].tax" value="${tax}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].note" value="${note}"/></td>
                 </tbody>
            </table>
         </container2>
+        </form>
+        <form id="submitOrd" method="get" >
         <container3 id="contents3">
             <table id="addOrder">
                 <thead>
@@ -116,26 +118,27 @@
                     <td>합계액</td>
                     <td>검사</td>
                 </thead>
-                   <c:forEach var="cust" items="${orderList}" varStatus="status"> 
+                   <c:forEach var="subOrder" items="${subOrderList}" varStatus="status"> 
                 <tbody>
-                    <td><input type="checkbox" value = "${cust.corVO.item_code}" name="content"/></td>
-                    <td><input type="text" id="item_code" value="${cust.corVO.item_code}" ondblclick="search2()" readonly/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].corVO.item_name" value="${cust.corVO.item_name}" ondblclick="search2()" readonly/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].corVO.stand" value="${cust.corVO.stand}" readonly/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].corVO.unit" value="${cust.corVO.unit}" readonly/></td>
-                    <td><input type="date" name="ListOrd[${status.index}].corVO.dueDate" value="${cust.corVO.dueDate}" readonly/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].corVO.orderQuant" value="${cust.corVO.orderQuant}" readonly/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].corVO.price" value="${cust.corVO.price}" readonly/></td>
-                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
-                    <td><input type="text" value="${(cust.corVO.orderQuant*cust.corVO.price)*0.1}" readonly/></td>
-                    <td><input type="text" value="${cust.corVO.orderQuant*cust.corVO.price}" readonly/></td>
-                    <td><input type="text" name="ListOrd[${status.index}].corVO.orderOX" value="${cust.corVO.orderOX}"readonly/></td>
+                    <td><input type="checkbox" value = "${cust.item_code}" name="content"/></td>
+                    <td><input type="text" id="item_code" value="${cust.item_code}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].item_name" value="${subOrder.item_name}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}]stand" value="${subOrder.stand}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].unit" value="${subOrder.unit}" readonly/></td>
+                    <td><input type="date" name="ListOrd[${status.index}].dueDate" value="${subOrder.dueDate}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].orderQuant" value="${subOrder.orderQuant}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].price" value="${subOrder.price}" readonly/></td>
+                    <td><input type="text" value="${subOrder.orderQuant*subOrder.price}" readonly/></td>
+                    <td><input type="text" value="${(subOrder.orderQuant*subOrder.price)*0.1}" readonly/></td>
+                    <td><input type="text" value="${subOrder.orderQuant*subOrder.price}" readonly/></td>
+                    <td><input type="text" name="ListOrd[${status.index}].orderOX" value="${subOrder.orderOX}"readonly/></td>
                 </tbody>
                 </c:forEach>
+                <!-- 
                 <tbody>
                     <td><input type="checkbox" name="content"/></td>
-                    <td><input type="text" id="item_code" name="ListOrd[${fn:length(orderList)}].corVO.item_code" value="${corVO.item_code}"  ondblclick="search2()"/></td>
-                    <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].corVO.item_name" value="${corVO.item_name}" ondblclick="search2()"/></td>
+                    <td><input type="text" id="item_code" name="ListOrd[${fn:length(orderList)}].corVO.item_code" value="${corVO.item_code}"/></td>
+                    <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].corVO.item_name" value="${corVO.item_name}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].corVO.stand" value="${corVO.stand}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].corVO.unit" value="${corVO.unit}"/></td>
                     <td><input type="date" name="ListOrd[${fn:length(orderInsert)}].corVO.dueDate" value="${corVO.dueDate}"/></td>
@@ -145,7 +148,7 @@
                     <td><input type="text" value="${(corVO.orderQuant*corVO.price)*0.1}"/></td>
                     <td><input type="text" value="${corVO.orderQuant*corVO.price}"/></td>
                     <td><input type="text" name="ListOrd[${fn:length(orderInsert)}].corVO.orderOX" value="${corVO.orderOX}"/></td>
-                </tbody>
+                </tbody> -->
             </table>
         </container3>
         </form>
@@ -197,13 +200,37 @@
             }
             
         }*/
-
+		function submit(){
+        	var addOrder = document.getElementById('addOrder');
+            var row = addOrder.insertRow();
+			var link = document.location.href;
+			var articleNOInput = document.createElement("input");
+		     articleNOInput.setAttribute("type","hidden");
+		     articleNOInput.setAttribute("name","path");
+		     articleNOInput.setAttribute("value", link);
+		     document.getElementById('submitOrd').appendChild(articleNOInput);
+          document.getElementById('submitOrd').action = "${contextPath}/member/suborderlist.do";
+          /*openWindowPop('http://localhost:8090/webERP/member/addorder.do?custCode="+custCode','addorder'); */
+			document.getElementById('submitOrd').submit(); 
+        }
         function search2(){
         	
           	openWindowPop('http://localhost:8090/webERP/sales_manage/pop/regorderItem.do','regorderItem');
         	 
           }
-        
+   function submit1(){
+	 	var subOrder = document.getElementById('subOrder');
+        var row = subOrder.subOrderRow();
+		var link = document.location.href;
+		var articleNOInput = document.createElement("input");
+	     articleNOInput.setAttribute("type","hidden");
+	     articleNOInput.setAttribute("name","path");
+	     articleNOInput.setAttribute("value", link);
+	     document.getElementById('submitOrd').appendChild(articleNOInput);
+      document.getElementById('submitOrd').action = "${contextPath}/member/suborderlist.do";
+      /*openWindowPop('http://localhost:8090/webERP/member/addorder.do?custCode="+custCode','addorder'); */
+		document.getElementById('submitOrd').submit(); 
+          }
 
         function deleteData() {
         
