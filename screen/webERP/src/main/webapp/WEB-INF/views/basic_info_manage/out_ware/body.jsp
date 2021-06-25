@@ -55,7 +55,6 @@ request.setCharacterEncoding("UTF-8");
         }
       
         /* ----------------버튼-------------------- */
-
         #view2 td:not(.ch){
             width: 8%;
             font-size: 15px;
@@ -104,6 +103,9 @@ request.setCharacterEncoding("UTF-8");
         input{
         	text-align:center;
         }
+        .non {
+			width: 5%;
+		}
 </style>
 </head>
 <body>
@@ -151,8 +153,7 @@ request.setCharacterEncoding("UTF-8");
                     <th>사용여부</th>
                 </thead>
                 <c:forEach var="out" items="${houOutwareList}">
-                <tbody>
-                
+                <tbody>                
                     <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${out.house_Code }"/></td>
                     <td><input type="text" value="${out.house_Name }"/></td>
@@ -228,41 +229,80 @@ request.setCharacterEncoding("UTF-8");
         <container3 id="contents3">
         <div class="tab-1 tab-content current">
             <table id="view2">
-                <tr>
-                    <td>위치코드</td>
-                    <td>위치명</td>
-                    <td>위치설명</td>
-                    <td>가출고 코드</td>
-                    <td>가출고 거래처명</td>
-                    <td>적합여부</td>
-                    <td>가용재고여부</td>
-                    <td>사용여부</td>
-                </tr>
+                <thead>
+                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                    <th>위치코드</th>
+                    <th>위치명</th>
+                    <th>위치설명</th>
+                    <th>가출고 코드</th>
+                    <th>가출고 거래처명</th>
+                    <th>적합여부</th>
+                    <th>가용재고여부</th>
+                    <th>사용여부</th>
+                </thead>
+                <c:forEach var="houWor" items="${houWorOutwareList}">
+                <tbody>
+                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td><input type="text" value="${houWor.location_Code }"/></td>
+                    <td><input type="text" value="${houWor.location_Name }"/></td>
+                    <td><input type="text" value="${houWor.location_Explanation }"/></td>
+                    <td><input type="text" value="${houWor.release_Code }"/></td>
+                    <td><input type="text" value="${houWor.release_Customer }"/></td>
+                    <td><input type="text" value="${houWor.suitability }"/></td>
+                    <td><input type="text" value="${houWor.availability }"/></td>
+                    <td><input type="text" value="${houWor.status }"/></td>
+                </tbody>
+                </c:forEach>
             </table>
         </div>
         <div class="tab-2 tab-content">
             <table id="view2">
-                <tr>
-                    <td>작업장코드</td>
-                    <td>작업장명</td>
-                    <td>작업장설명</td>
-                    <td>적합여부</td>
-                    <td>공정설명</td>
-                    <td>사용여부</td>
-                </tr>
+                <thead>
+                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                    <th>작업장코드</th>
+                    <th>작업장명</th>
+                    <th>작업장설명</th>
+                    <th>적합여부</th>
+                    <th>공정설명</th>
+                    <th>사용여부</th>
+                </thead>
+                <c:forEach var="proWor" items="${proWorOutwareList}">
+                <tbody>
+                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td><input type="text" value="${proWor.workplace_Code }"/></td>
+                    <td><input type="text" value="${proWor.workplace_Name }"/></td>
+                    <td><input type="text" value="${proWor.workplace_Explanation }"/></td>
+                    <td><input type="text" value="${proWor.process_Explanation }"/></td>
+                    <td><input type="text" value="${proWor.release_Customer }"/></td>
+                    <td><input type="text" value="${proWor.status }"/></td>
+                </tbody>
+                </c:forEach>
             </table>
         </div>
         <div class="tab-3 tab-content">
             <table id="view2">
-                <tr>
-                    <td>작업장코드</td>
-                    <td>외주거래처코드</td>
-                    <td>작업장명</td>
-                    <td>외주거래처명</td>
-                    <td>작업장설명</td>
-                    <td>적합여부</td>
-                    <td>사용여부</td>
-                </tr>
+                <thead>
+                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                    <th>작업장코드</th>
+                    <th>외주거래처코드</th>
+                    <th>작업장명</th>
+                    <th>외주거래처명</th>
+                    <th>작업장설명</th>
+                    <th>적합여부</th>
+                    <th>사용여부</th>
+                </thead>
+                <c:forEach var="outWor" items="${outWorOutwareList}">
+                <tbody>
+                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td><input type="text" value="${outWor.workplace_Code }"/></td>
+                    <td><input type="text" value="${outWor.outcustomer }"/></td>
+                    <td><input type="text" value="${outWor.workplace_Name }"/></td>
+                    <td><input type="text" value="${outWor.outcustomer_Name }"/></td>
+                    <td><input type="text" value="${outWor.workplace_Explanation }"/></td>
+                    <td><input type="text" value="${outWor.suitability }"/></td>
+                    <td><input type="text" value="${outWor.status }"/></td>
+                </tbody>
+                </c:forEach>
             </table>
         </div>
         </container3>

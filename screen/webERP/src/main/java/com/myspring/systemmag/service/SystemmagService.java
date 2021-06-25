@@ -28,5 +28,11 @@ public interface SystemmagService {
 	public List viewAllProOutware() throws DataAccessException;
 	
 	public List viewAllOutOutware() throws DataAccessException;
+	
+	public List viewAllHouWorOutware() throws DataAccessException;
+	
+	public List viewAllProWorOutware() throws DataAccessException;
+	
+	public List viewAllOutWorOutware() throws DataAccessException;
 		
 }

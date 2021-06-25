@@ -204,10 +204,17 @@ public class SystemmagControllerImpl implements SystemmagController {
 			List proOutwareList = systemmagService.viewAllProOutware();
 			List outOutwareList = systemmagService.viewAllOutOutware();
 			
+			List houWorOutwareList = systemmagService.viewAllHouWorOutware(); //select all 쿼리를 호출한다
+			List proWorOutwareList = systemmagService.viewAllProWorOutware();
+			List outWorOutwareList = systemmagService.viewAllOutWorOutware();
+			
 			mav = new ModelAndView(viewName);
 			mav.addObject("houOutwareList", houOutwareList);
 			mav.addObject("proOutwareList", proOutwareList);
 			mav.addObject("outOutwareList", outOutwareList);
+			mav.addObject("houWorOutwareList", houWorOutwareList);
+			mav.addObject("proWorOutwareList", proWorOutwareList);
+			mav.addObject("outWorOutwareList", outWorOutwareList);
 			return mav;
 		}
 

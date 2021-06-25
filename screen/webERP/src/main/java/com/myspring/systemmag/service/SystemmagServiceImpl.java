@@ -82,6 +82,27 @@ public class SystemmagServiceImpl implements SystemmagService {
 		return outwareList;
 	}
 	
+	@Override
+	public List viewAllHouWorOutware() throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewAllHouWorOutware();	
+		return outwareList;
+	}
+	
+	@Override
+	public List viewAllProWorOutware() throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewAllProWorOutware();	
+		return outwareList;
+	}
+	
+	@Override
+	public List viewAllOutWorOutware() throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewAllOutWorOutware();	
+		return outwareList;
+	}
+	
 	
 
 	
