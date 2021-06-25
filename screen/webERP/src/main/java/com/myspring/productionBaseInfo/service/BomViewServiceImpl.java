@@ -187,4 +187,18 @@ public class BomViewServiceImpl implements BomViewService{
 		
 	}
 
+	@Override
+	public List<bomVO> searchbomPop1(String itemName) throws DataAccessException {
+		List popView = null;
+		popView = bomDAO.searchbomPop1(itemName);
+		return popView;
+	}
+
+	@Override
+	public List<bomVO> searchbomPop2(String itemName) throws DataAccessException {
+		List popView = null;
+		popView = bomDAO.searchbomPop2(itemName);
+		return popView;
+	}
+
 }

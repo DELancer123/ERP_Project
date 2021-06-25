@@ -497,6 +497,18 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="bomPopSearch1" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where not division='부품' and Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<select id="bomPopSearch2" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where not division='완제품' and Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
@@ -540,7 +552,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
 		<![CDATA[SELECT * FROM outPriceView
-where outsourcing_code = #{0} and outcustomer=#{1}]]>
+		where outsourcing_code = #{0} and outcustomer=#{1}]]>
 	</select>
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[
