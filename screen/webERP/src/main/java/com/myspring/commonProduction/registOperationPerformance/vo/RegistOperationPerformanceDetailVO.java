@@ -19,6 +19,7 @@ public class RegistOperationPerformanceDetailVO {
 	private String inspection;
 	private String note;
 	private String workOrderNumber;
+	private String houseCode;
 	private List<RegistOperationPerformanceDetailVO> DetailVO;
 	
 	@Override
@@ -34,7 +35,6 @@ public class RegistOperationPerformanceDetailVO {
 	public void setPerformanceDate(Date performanceDate) {
 		this.performanceDate = performanceDate;
 	}
-
 
 	public String getInspection() {
 		return inspection;
@@ -68,7 +68,6 @@ public class RegistOperationPerformanceDetailVO {
 	public void setPerformanceQuantity(int performanceQuantity) {
 		this.performanceQuantity = performanceQuantity;
 	}
-
 
 	public String getMaterialUseStatus() {
 		return materialUseStatus;
@@ -112,6 +111,18 @@ public class RegistOperationPerformanceDetailVO {
 
 	public void setOpNumber(String opNumber) {
 		this.opNumber = opNumber;
+	}
+
+
+
+	public String getHouseCode() {
+		return houseCode;
+	}
+
+
+
+	public void setHouseCode(String houseCode) {
+		this.houseCode = houseCode;
 	}
 
 	
