@@ -134,11 +134,11 @@
                 <tr>
                     <td>Ç°¸ñ±º</td>
                     <td>
-                        <input type=text style="width:80px;" value='${param.item_Group_Code}' />
+                        <input type=text name = "type_code" style="width:80px;" value="${type_code}" />
                         <a href="javascript:searchitemg()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                     <td>
-                        <input type=text value='${param.item_Group_Name}' />
+                        <input type=text name = "type_name" value='${type_name}' />
                     </td>
                 </tr>
                
@@ -387,6 +387,11 @@
 		
 		openWindowPop('${contextPath}/member/itemgpop.do','itemgpopup');
 	}
+     	 function setChildValue(code, name) {
+             $('input[name=type_code]').val(code);
+             $('input[name=type_name]').val(name);
+          }
+
 	
         </script>
         

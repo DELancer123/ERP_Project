@@ -48,4 +48,5 @@ public interface SystemmagDAO {
 	public int addDep(DepartmentVO departmentVO) throws DataAccessException;
 	public void updateDep(DepartmentVO departmentVO) throws DataAccessException;
 	public void deleteDep(String[] noary) throws DataAccessException;
+	public List<ItemgVO> viewserachPopName(String itemName);
 }

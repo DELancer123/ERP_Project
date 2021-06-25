@@ -489,6 +489,14 @@
 		
 		
 	</resultMap>
+	
+	<!-- 장순웅 검색 -->
+	<select id="selectPopitemList"  parameterType="String" resultMap="itemgResult">
+		<![CDATA[ select Item_Group_Code, Item_Group_Name
+		  from SM_BIM_Ite_gro_Reg
+		  where Item_Group_Name like '%'||#{item_Group_Name}||'%'
+		]]>
+	</select>
 	<!-- 외주발주등록 파트 -->
 	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />

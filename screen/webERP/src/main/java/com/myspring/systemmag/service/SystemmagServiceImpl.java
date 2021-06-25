@@ -191,4 +191,8 @@ public class SystemmagServiceImpl implements SystemmagService {
 			secList = systemmagDAO.viewSec();
 			return secList;
 		}
+		@Override
+		public List<ItemgVO> searchPopName(String itemName) {
+			return systemmagDAO.viewserachPopName(itemName);
+		}
 }

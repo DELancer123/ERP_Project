@@ -229,4 +229,11 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			secList = sqlSession.selectList("mappers.erp.selectSector");
 			return secList;
 		}
+
+		@Override
+		public List<ItemgVO> viewserachPopName(String itemName) {
+			List<ItemgVO> popList = null;
+			popList = sqlSession.selectList("mappers.erp.selectPopitemList",itemName);
+			return popList;
+		}
 }

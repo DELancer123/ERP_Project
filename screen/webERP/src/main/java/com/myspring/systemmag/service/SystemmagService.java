@@ -47,4 +47,5 @@ public interface SystemmagService {
 	public List departmentView() throws DataAccessException;
 	public void updDep(DepartmentVO departmentVO) throws DataAccessException;
 	public void delDep(String[] noary) throws DataAccessException;
+	public List<ItemgVO> searchPopName(String itemName);
 }

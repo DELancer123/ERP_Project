@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -399,6 +400,22 @@ public class SystemmagControllerImpl implements SystemmagController{
 					return mav;
 				}
 	//°Ùºä³×ÀÓ
+				
+				//Àå¼ø¿õ °Ë»ö ÆË¾÷
+				@ResponseBody
+				@RequestMapping(value = "/member/searchPopItemgName.do", method = RequestMethod.GET)
+				public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+					ModelAndView mav = new ModelAndView();
+					List<ItemgVO> popName = null;
+					popName = systemmagService.searchPopName(itemName);
+					mav.addObject("popName", popName);
+					mav.setViewName("jsonView");
+
+					return mav;
+				} 
+				
+				
+				
 	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
