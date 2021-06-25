@@ -95,7 +95,12 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 
 	// 팝업부 기능구현
 	
-	
+	@Override
+	public List houseCodeViewPop() throws DataAccessException {
+		List<FactoryViewVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectHouseCodeList");
+		return popList;
+	}
 
 }
 

@@ -308,6 +308,17 @@ where (status = '확정' or status = '마감')
 		]]>  
 	</update>	
 	
+	<!-- 작업실적등록 팝업부  -->
+	
+	<resultMap id="HouseCodeSearchResult" type="HouseCodeSearchVO">
+		<result property="houseCode" column="house_Code" />
+		<result property="houseName" column="house_Name" />
+	</resultMap>
+	
+	<select id="selectHouseCodeList" resultMap="HouseCodeSearchResult">
+		select * from SM_BIM_HOU_REG
+	</select>
+	
 		<!-- 기초정보등록 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
 		<result property="item_Code" column="Item_Code"	/>
