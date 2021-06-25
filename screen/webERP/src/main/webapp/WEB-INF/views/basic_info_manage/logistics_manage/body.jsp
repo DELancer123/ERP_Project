@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>물류관리내역등록</title>
 <style>
  #contents1{
             position: absolute;

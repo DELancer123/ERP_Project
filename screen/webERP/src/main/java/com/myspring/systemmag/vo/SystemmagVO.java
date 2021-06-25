@@ -373,7 +373,37 @@ public class SystemmagVO {
 		this.outcustomer_Name = outcustomer_Name;
 	}
 	
-	
+	//물류관리내역등록
+	//SM_BIM_LOG_MAN
+	private String logistics_In_Code;
+	private String logistics_In_Name;
+	private String explanation;
+	private String remarks;
+
+	public String getLogistics_In_Code() {
+		return logistics_In_Code;
+	}
+	public void setLogistics_In_Code(String logistics_In_Code) {
+		this.logistics_In_Code = logistics_In_Code;
+	}
+	public String getLogistics_In_Name() {
+		return logistics_In_Name;
+	}
+	public void setLogistics_In_Name(String logistics_In_Name) {
+		this.logistics_In_Name = logistics_In_Name;
+	}
+	public String getExplanation() {
+		return explanation;
+	}
+	public void setExplanation(String explanation) {
+		this.explanation = explanation;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	
 	
 
