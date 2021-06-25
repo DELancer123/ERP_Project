@@ -64,8 +64,8 @@ public class SpViewServiceImpl implements SpViewService{
 	}
 	
 	@Override
-	public void delSp(String[] noary) throws DataAccessException{
-		spDAO.delSp(noary);
+	public void delSp(String[] itemCodeary) throws DataAccessException{
+		spDAO.delSp(itemCodeary);
 	}
 
 	@Override

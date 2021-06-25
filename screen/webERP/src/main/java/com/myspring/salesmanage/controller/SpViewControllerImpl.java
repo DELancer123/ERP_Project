@@ -95,7 +95,7 @@ public class SpViewControllerImpl implements SpViewController {
 	@Override
 	@RequestMapping(value="/member/delSp.do" ,method = RequestMethod.GET)
 	public ModelAndView spDelMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String itemCode = (String) request.getParameter("itemCode");
+		String itemCode = request.getParameter("itemCode");
 		String viewName = getViewName(request);
 		String[] numberary = itemCode.split(",");
 		spViewService.delSp(numberary);

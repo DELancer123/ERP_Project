@@ -14,6 +14,6 @@ public interface SpViewService {
 	public List SearchView(String itemCode) throws DataAccessException;
 	public List itemSet() throws DataAccessException;
 	public int addSp(spVO spVO) throws DataAccessException;
-	public void delSp(String[] noary) throws DataAccessException;
+	public void delSp(String[] itemCodeary) throws DataAccessException;
 	public int updateSp(spVO spVO) throws DataAccessException;
 }

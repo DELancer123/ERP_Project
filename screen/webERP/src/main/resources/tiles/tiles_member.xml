@@ -109,8 +109,27 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-   <!--  -->
-   
+   <!-- 판매계획등록 popup layout -->
+	<definition name="SpPopupLayout1"  template="/WEB-INF/views/sales_manage/reg_salesplan/pop1.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+    <definition name="SpPopupLayout2"  template="/WEB-INF/views/sales_manage/reg_salesplan/pop2.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/spcodehelper1" extends="SpPopupLayout1">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/spcodehelper2" extends="SpPopupLayout2">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
 
     
    <definition name="/member/regcompany" extends="baseLayout">
@@ -176,10 +195,9 @@
       <put-attribute name="body" value="/WEB-INF/views/basic_info_manage/reg_setcomponent/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
-   <definition name="/member/regsalesplan" extends="baseLayout3">
+   <definition name="/member/regsalesplan" extends="baseLayout">
       <put-attribute name="title" value="판매계획등록" />
-	<put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_salesplan/body.jsp" />
-	<put-attribute name="body2" value="/WEB-INF/views/sales_manage/reg_salesplan/body2.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_salesplan/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/regestimate" extends="baseLayout3">

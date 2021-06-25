@@ -58,9 +58,9 @@ public class SpViewDAOImpl implements SpViewDAO{
 	}
 	
 	@Override
-	public void delSp(String[] noary) throws DataAccessException{
-		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteSp", Integer.parseInt(obj));		
+	public void delSp(String[] itemCodeary) throws DataAccessException{
+		for(String obj: itemCodeary) {
+			sqlSession.delete("mappers.erp.deleteSp",obj);		
 			System.out.println("DAO.delSp");
 		}
 	}
