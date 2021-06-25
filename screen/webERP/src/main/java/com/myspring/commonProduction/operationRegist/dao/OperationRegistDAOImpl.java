@@ -143,7 +143,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getNo());
+		System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
 		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
 		System.out.println("DAOresult:"+result);
 		}
@@ -220,7 +220,10 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	@Override
 	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
 		int idx = ORVO.getDetailVO().size()-1;
-		int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(idx));
+		
+		for(int i = 0; i<idx; i++) {			
+		int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
+		}
 		return 0;
 	}
 }

@@ -39,7 +39,7 @@
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
-		<result property="no" column="NO" />
+		<result property="forwardingNumber" column="FORWARDINGNUMBER" />
 		<result property="billingDate" column="BILLINGDATE" />
 		<result property="itemCode" column="ITEM_CODE" />
 		<result property="itemName" column="ITEM_NAME" />
@@ -204,13 +204,13 @@
 	<insert id="insertReleaseData" parameterType="OperationDetailVO">
 		<![CDATA[
 		 insert into CPM_PM_PRO_MAT_FOR_DET
-		 values(F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), '20210625', #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
-		 (precisionQuantity*loss), #{note}, #{workOrderNumber} )
+		 values(F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), SYSDATE, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
+		 #{comfirmQuantity}, #{note}, #{workOrderNumber} )
 		]]>  
 	</insert>
 	
 	<select id="selectWorkOrderNumber" resultType="string">
-		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
+		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</select>
 	
 	<update id="materialSet">
@@ -220,7 +220,7 @@
 	</update>
 	
 	<delete id="deleteCommitOperation" parameterType="OperationDetailVO">
-		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
+		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</delete>
 	
 	<!-- 작업실적등록 CRUD -->
@@ -497,6 +497,18 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="bomPopSearch1" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where not division='부품' and Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<select id="bomPopSearch2" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where not division='완제품' and Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
@@ -540,7 +552,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	
 	<select id="outpriceView" resultMap="outpriView" parameterType="java.util.HashMap">
 		<![CDATA[SELECT * FROM outPriceView
-where outsourcing_code = #{0} and outcustomer=#{1}]]>
+		where outsourcing_code = #{0} and outcustomer=#{1}]]>
 	</select>
 	<insert id="addoutprice" parameterType="outpriVO">
 		<![CDATA[

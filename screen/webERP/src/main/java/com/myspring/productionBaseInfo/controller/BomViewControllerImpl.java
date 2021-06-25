@@ -243,10 +243,31 @@ public class BomViewControllerImpl implements BomViewController {
 	@ResponseBody
 	@RequestMapping(value = "/member/searchoutPop.do", method = RequestMethod.GET)
 	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
-		System.out.println("아이템" + itemName);
 		ModelAndView mav = new ModelAndView();
 		List<bomVO> popName = null;
 		popName = viewService.searchPopName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	@ResponseBody
+	@RequestMapping(value = "/member/searchbom1.do", method = RequestMethod.GET)
+	public ModelAndView searchbomPop1(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<bomVO> popName = null;
+		popName = viewService.searchbomPop1(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	@ResponseBody
+	@RequestMapping(value = "/member/searchbom2.do", method = RequestMethod.GET)
+	public ModelAndView searchbomPop2(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<bomVO> popName = null;
+		popName = viewService.searchbomPop2(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 
