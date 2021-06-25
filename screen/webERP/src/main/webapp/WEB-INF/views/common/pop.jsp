@@ -147,8 +147,8 @@
 			var initCode = 	$(this).find('input[id=iCode]').val();	
 			var initName = 	$(this).find('input[id=iName]').val();
 			//var inputCode = document.getElementById('iCode').value;	
-			$('input[name=code]').val(initCode);
-			$('input[name=name]').val(initName);
+			$('input[id=code]').val(initCode);
+			$('input[id=name]').val(initName);
 		});
     </script>
 </body>
