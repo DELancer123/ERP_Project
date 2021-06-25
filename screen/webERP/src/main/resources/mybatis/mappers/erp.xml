@@ -250,7 +250,7 @@
 	]]>      
   </delete>	
  
-		<!-- order&cor sta -->
+			<!-- order&cor sta -->
 	<resultMap id="orderJoinList" type="orderVO">
 			<result property="ordCode" column="ordersNum" />
         	<result property="ordDate" column="ordersdate" />
@@ -277,7 +277,7 @@
 
 	
 	<select id="allCustForStaOrder" resultMap="orderJoinList">
-      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
 	</select><!-- popCust-->
 	
 		<select id="submitStaOrdCust" resultMap="orderJoinList" parameterType="String">
@@ -285,13 +285,14 @@
       select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
        where ORD.ordersNum = COR.code
        and ORD.General_Customer_Code = #{custCode}
+       order by COR.item_code
         ]]>
 	</select>
 	
 	<select id="StaOrderList" resultMap="orderJoinList">
       <![CDATA[
         select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
-		 where ORD.ordersNum = COR.code
+		 where ORD.ordersNum = COR.code order by ORD.ordersNum
         ]]>
 	</select>	
 	
@@ -323,39 +324,38 @@
 	</resultMap> 	
 	
 	<select id="allCustForRegOrder" resultMap="orderRegList">
-      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
 	</select><!-- popCust-->
 	
 	<select id="RegOrderSupList" resultMap="orderRegList">
-      <![CDATA[select * from CSM_SM_Ord_Reg]]>      
+      <![CDATA[select * from CSM_SM_Ord_Reg order by ordersNum]]>      
 	</select><!-- regSupOrder -->
 
 		
 	<select id="submitOrderSupReg" resultMap="orderRegList" parameterType="String">
       <![CDATA[
           select * from CSM_SM_Ord_Reg
-		 where General_Customer_Code = #{custCode}
+		 where General_Customer_Code = #{custCode} order by ordersNum
         ]]>
 	</select><!-- regSupOrder -->
 
 	
 		<select id="orderCorList" resultMap="orderCorRegList">
       <![CDATA[select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
-		 where ORD.ordersNum = COR.code]]>
+		 where ORD.ordersNum = COR.code order by ORD.ordersNum desc]]>
 	</select>
 	
 	<select id="submitSubOrdReg" resultMap="orderCorRegList" parameterType="String">
       <![CDATA[
 		select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
 		 where ORD.ordersNum = COR.code	
-		 and ORD.ordersNum = #{ordCode}
+		 and ORD.ordersNum = #{ordCode} order by ORD.ordersNum desc
         ]]>
 	</select><!-- regSupOrder -->
 	
 	<delete id="delSupOrd" parameterType="String">
 		<![CDATA[delete from CSM_SM_Ord_Reg where ordersNum=#{ordcode}]]>      
   </delete>
-	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
 		<result property="releaseNum" column="releaseNum" />
