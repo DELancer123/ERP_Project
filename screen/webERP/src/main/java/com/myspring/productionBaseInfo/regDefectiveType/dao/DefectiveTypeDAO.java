@@ -20,6 +20,8 @@ public interface DefectiveTypeDAO {
 
 	int addDefpop(DefectiveTypeVO defVO) throws DataAccessException;
 
+	Object deldefPop(String[] numberary) throws DataAccessException;
+
 
 
 }

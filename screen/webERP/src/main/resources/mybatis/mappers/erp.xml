@@ -206,13 +206,13 @@
 	<insert id="insertReleaseData" parameterType="OperationDetailVO">
 		<![CDATA[
 		 insert into CPM_PM_PRO_MAT_FOR_DET
-		 values(F_GET_NEXT_SEQ('NO'), to_char(sysdate,'YYYYMMDD'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
+		 values(F_GET_NEXT_SEQ('CPM_PM_Pro_Mat_For_Det'), to_char(sysdate,'YYYYMMDD'), #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
 		 #{precisionQuantity}, #{note}, F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), #{workOrderNumber} )
 		]]>  
 	</insert>
 	
 	<select id="selectWorkOrderNumber" resultType="string">
-		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
 	</select>
 	
 	<update id="materialSet">
@@ -221,8 +221,8 @@
 		where workOrderNumber = #{workOrderNumber}]]>
 	</update>
 	
-	<delete id="deleteOperationInstruction" parameterType="OperationDetailVO">
-		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where no = #{no}]]>
+	<delete id="deleteCommitOperation" parameterType="OperationDetailVO">
+		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where NO = #{no}]]>
 	</delete>
 	
 	<!-- 작업실적등록 CRUD -->
@@ -258,6 +258,7 @@
 	<result property="inspection" column="inspection" />
 	<result property="note" column="note" />
 	<result property="workOrderNumber" column="workOrderNumber" />
+	<result property="houseCode" column="house_Code" />
 </resultMap>	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
@@ -279,10 +280,20 @@ where (status = '확정' or status = '마감')
 	</select>
 	
 		<select id="selectAllRegistOperationPerformanceInfoDetail" resultMap="RegistOperationPerformanceResultDetail">
-		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection,note FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
+		<![CDATA[SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) as processCode, func_pro_wor_reg(workplace_code) as workplaceCode, sortation, performanceQuantity, inspection,note, house_Code 
+		FROM CPM_PM_Ope_Per_Reg_Det where workOrderNumber = #{workOrderNumber}
 ]]>
 	</select>
 	
+	
+	
+	<insert id="insertRegistOperationPerformanceInfoDetail" parameterType="RegistOperationPerformanceDetailVO">
+		<![CDATA[
+		
+		 insert into CPM_PM_Ope_Per_Reg_Det
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무', #{performanceDate}, #{processCode}, #{workplaceCode}, #{sortation}, #{performanceQuantity}, #{inspection},#{note}, #{workOrderNumber})
+		]]>  
+	</insert>
 
 	
 	<select id="checkMaterialUse" resultType="string">
@@ -296,6 +307,26 @@ where (status = '확정' or status = '마감')
 		where  OPNumber = #{OPNumber} and materialUseStatus = '무'
 		]]>  
 	</update>	
+	
+	<!-- 작업실적등록 팝업부  -->
+	
+	<resultMap id="HouseCodeSearchResult" type="HouseCodeSearchVO">
+		<result property="houseCode" column="house_Code" />
+		<result property="houseName" column="house_Name" />
+	</resultMap>
+	
+	<select id="selectHouseCodeList" resultMap="HouseCodeSearchResult">
+		<![CDATA[select * from SM_BIM_HOU_REG]]>
+	</select>
+	
+	<resultMap id="ProcessCodeSearchResult" type="ProcessCodeSearchVO">
+		<result property="processCode" column="process_Code" />
+		<result property="processName" column="process_Name" />
+	</resultMap>
+	
+	<select id="selectProcessCodeList" resultMap="ProcessCodeSearchResult">
+		<![CDATA[select * from SM_BIM_PRO_REG]]>
+	</select>
 	
 		<!-- 기초정보등록 품목등록 -->
 		<resultMap id="itemResult" type="itemVO">
@@ -464,6 +495,13 @@ order by oprd.OPNumber]]>
 	<select id="selectPopList2" resultMap="popView">
 		<![CDATA[select * from SM_BIM_Ite_Reg where not division = '완제품' order by division desc]]>
 	</select>
+	<select id="outPopSearch" resultMap="popView" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<select id="childView" resultMap="bomView" parameterType="java.util.HashMap">
 		<![CDATA[select bom.* from (select parent_item_code, item_code,item_name from cpm_bim_bom_reg where parent_item_code =#{0}) pc, (select * from cpm_bim_bom_reg) bom where pc.item_code = bom.parent_item_code and pc.item_name=#{1}]]>
 	</select>
@@ -566,6 +604,9 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<delete id="deldeftype">
 		delete from cpm_bim_def_typ_reg where DEFECTCODE = #{no}
 	</delete>
+	<delete id="deldefPop" >
+		delete from cpm_bim_def_group where DEFECTIVETYPENAME = #{no}
+	</delete>
 	<!-- mainPaln 파트 -->
 	<resultMap id="mainplanResult" type="mainplanVO">
 		<result property="plandate" column="plandate" />
@@ -603,7 +644,7 @@ where out.item_code = ite.item_code and out.outsourcing_code = #{0} and out.outc
 	<select id="selectAllMpsosList" resultMap="MpsOSResult">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
-
+	
 	<!-- billing파트 -->
 	<resultMap id="billingResult" type="billingVO">
 		<result property="claim_no" column="claim_no" />

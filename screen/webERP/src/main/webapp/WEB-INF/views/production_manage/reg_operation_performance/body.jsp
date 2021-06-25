@@ -67,14 +67,10 @@
         #workOrderInfo {
             width: 100%;
             overflow: scroll;
-            height: 90%;
+            height: 100%;
         }
         /* 컨테이너 스타일부 종료 */
-        /* 출력부 스타일부 */
-        #detailPrint1{
-            border: 1px solid;
-            height: 10%;
-        }
+        
 
 </style>
 </head>
@@ -109,12 +105,6 @@
 
                         <td>
                             <input type="button" value="자재사용" onClick="materialUse();" style="padding: 5px; margin-left: 30px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="생산자원등록" style="padding: 5px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="검색상세" style="padding: 5px;"></input>
                         </td>
                     </tr>
                 </table>
@@ -191,6 +181,8 @@
                         <td>실적수량</td>
                         <td>검사</td>
                         <td>비고</td>
+                        <td>작업지시번호</td>
+                        <td>입고창고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
@@ -206,34 +198,30 @@
                         <td><input type="text" name="DetailVO[${status.index }].performanceQuantity" value="${detail.performanceQuantity}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                      
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
+                        <td><input type="text" name="DetailVO[${status.index }].workOrderNumber" value="${param.searchNumber}" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].houseCode" value="${detail.houseCode}"/></td>
   					 </tr>
                     </c:forEach>
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].opNumber" readonly /></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].materialUseStatus" readonly /></td>
-                        <td><input type="date" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.workDate }"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
-                        <td><input type="text" name="DetailVO[${fn:length(detailList)}].note" value="${param.note }"/></td>
+                        <td><input type="text" id="opNumber" name="DetailVO[${fn:length(detailList)}].opNumber" value="${param.opNumber }" readonly /></td>
+                        <td><input type="text" id="materialUseStatus" name="DetailVO[${fn:length(detailList)}].materialUseStatus" value="${param.materialUseStatus }" readonly /></td>
+                        <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
+                        <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }" ondblclick="processCodeSearch()"/></td>
+                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }"/></td>
+                        <td><input type="text" id="sortation" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
+                        <td><input type="text" id="performanceQuantity" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
+                        <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
+                        <td><input type="text" id="note" name="DetailVO[${fn:length(detailList)}].note" value="${param.note }"/></td>
+                        <td><input type="text" id="workOrderNumber" name="DetailVO[${fn:length(detailList)}].workOrderNumber" value="${param.searchNumber }"/></td>
+                        <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" ondblclick="houseCodeSearch()" value="${param.houseCode }" /></td>
                     </tr>
                     </tbody>
                 </table>
                 </form>
             </div>
             <!-- 컨테이너 출력 종료 -->
-            <!-- 출력부 -->
             
-            <div id="detailPrint1">
-                입고 창고<input type="text" name="cargoName" style="width: 75px;"><a href="#" onclick="showPopup();"> <i class="fas fa-search"></i></a><input type="text" name="printCargoName" disabled>
-                재작업<select>
-                    <option>부</option>
-                    <option>여</option>
-                </select>
-            </div>
         </container3>
       
 </body>
@@ -304,9 +292,9 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
-  			document.getElementById('dataForm').submit();  
+  		    document.getElementById('dataForm1').appendChild(linkPath);
+            document.getElementById('dataForm1').action = "${contextPath}/member/addRegistOperationPerformanceInfoDetail.do";
+  			document.getElementById('dataForm1').submit();  
 		
       }
       
@@ -357,5 +345,13 @@
         		window.location.href = "${contextPath}/member/materialUse.do?opNumber="+ary;
         
         }
-
+	/*  팝업 조회부*/
+  
+ 	function houseCodeSearch(){
+ 			openWindowPop('http://localhost:8090/webERP/member/houseCodeSearchPop.do','houseCodeSearch');
+		}
+	
+ 	function processCodeSearch(){
+			openWindowPop('http://localhost:8090/webERP/member/processCodeSearchPop.do','processCodeSearch');
+	}
       </script>

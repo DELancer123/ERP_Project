@@ -143,6 +143,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
+		System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getNo());
 		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
 		System.out.println("DAOresult:"+result);
 		}

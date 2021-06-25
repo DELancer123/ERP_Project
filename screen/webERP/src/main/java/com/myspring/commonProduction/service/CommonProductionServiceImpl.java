@@ -23,6 +23,7 @@ import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import
   com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.commonProduction.registOperationPerformance.dao.RegistOperationPerformanceDAO;
+import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
@@ -176,12 +177,24 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		  infolist = ROPdao.selectAllRegistOperationPerformanceInfoDetail(number);
 		  return infolist; 
 		  }
+	
+	 @Override
+	 public int addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO) throws DataAccessException {
+			return ROPdao.addRegistOperationPerformanceInfoDetail(ROPDVO);
+		}
 
 	@Override
 		public List<String> MaterialUse(String[] numberAry) throws DataAccessException{
 		  List<String> message = new ArrayList(); 
 		  ROPdao.MaterialUse(numberAry);
 		  return message;
+		}
+	
+	 @Override
+	  public List houseCodeSearch() throws DataAccessException {
+		  List popList = null;
+		  popList = ROPdao.houseCodeViewPop();
+		  return popList;
 		}
   
 //작업지시마감처리 기능부

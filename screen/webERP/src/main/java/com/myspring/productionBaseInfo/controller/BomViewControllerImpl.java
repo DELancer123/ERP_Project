@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.productionBaseInfo.service.*;
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.productionBaseInfo.BOM.vo.*;
 import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 
@@ -233,11 +235,23 @@ public class BomViewControllerImpl implements BomViewController {
 	@RequestMapping(value="/member/outpricehelper.do" ,method = RequestMethod.GET)
 	public ModelAndView outpriceHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List bomList = viewService.bomView();
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("bomlist",bomList);
+		List bomlist = viewService.bomView();
+		mav.addObject("bomlist",bomlist);
 		return mav;
 	}
+	@ResponseBody
+	@RequestMapping(value = "/member/searchoutPop.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+		System.out.println("아이템" + itemName);
+		ModelAndView mav = new ModelAndView();
+		List<bomVO> popName = null;
+		popName = viewService.searchPopName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
 	@Override
 	@RequestMapping(value="/member/addoutprice.do" ,method = RequestMethod.GET)
 	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -248,7 +262,8 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:"+path);
 		return mav;
 	}
-
+	
+	
 	@Override
 	@RequestMapping(value="/member/updoutprice.do" ,method = RequestMethod.GET)
 	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO, HttpServletRequest request,
@@ -281,8 +296,6 @@ public class BomViewControllerImpl implements BomViewController {
 			outVO1.get(i).setOutsourcing_Code(code);
 			outVO1.get(i).setItem_code(numberary[i]);
 		}
-		System.out.println(outVO1.get(0).getItem_code());
-		System.out.println(outVO1.get(1).getItem_code());
 		result = viewService.doutprice(outVO1);
 		ModelAndView mav = new ModelAndView("redirect:/member/outprice.do?itemNumber="+code+"&&placeCode="+place+"&&submit=1");
 		return mav;
@@ -366,6 +379,17 @@ public class BomViewControllerImpl implements BomViewController {
 		int result = 0;
 		result = viewService.addDefpop(defVO);
 		ModelAndView mav = new ModelAndView("redirect:"+path);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/member/deldefPop.do" ,method = RequestMethod.GET)
+	public ModelAndView deldefPop(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String number = (String) request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		viewService.deldefPop(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/deftypepop.do");
 		return mav;
 	}
 }

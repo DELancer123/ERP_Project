@@ -78,7 +78,7 @@
                 </tr>
                 <c:forEach var="group" items='${defGroupList }' varStatus="status">
    <tr align="center">
-   <td><input type="checkbox" name="content"/></td>
+   <td><input type="checkbox" name="content" value='${group.defectiveItemGroupCode }'/></td>
       <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroupCode }</a></td>
       <td><a href="">${group.defectiveItemGroup }</a></td>
       <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${group.defectiveItemGroupCode }'/>
@@ -101,7 +101,7 @@
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
     	var save_pop = document.getElementById("save_pop");
-    		
+    	var delete_pop = document.getElementById("delete_pop");
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
@@ -130,6 +130,18 @@
                 checkbox.checked = selectAll.checked;
             })
         }
+    	delete_pop.onclick = function(){
+			 var item = document.getElementsByName("content").length;
+	    	  var no = "";
+	    	  var ary = [];
+	    	  for(var i=0; i<item;i++){
+	    		  if(document.getElementsByName("content")[i].checked==true){
+	    			  no = document.getElementsByName("content")[i].value;
+	    			  ary.push(no);
+	    		  }
+	    			    window.location.href = "${contextPath}/member/deldefPop.do?no="+ary; 
+	    	  }
+		}
     </script>
 </body>
 </html>

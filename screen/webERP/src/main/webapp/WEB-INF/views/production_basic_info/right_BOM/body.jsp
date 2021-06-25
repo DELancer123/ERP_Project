@@ -137,7 +137,6 @@
                         <td>${bom.loss }</td>
                         <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
                     </tbody>
-                    </c:forEach>
                     	
                     <c:forEach var="child" items="${childView}">  
                     <tbody align="center">
@@ -153,6 +152,7 @@
                         <td>${child.precisionQuantity+(child.precisionQuantity * (child.loss * 0.01)) }</td>
                     </tbody>
                     	
+                    </c:forEach>
                     </c:forEach>
                     
                 </table>
