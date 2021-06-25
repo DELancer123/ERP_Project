@@ -167,6 +167,16 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="/member/processCodeSearchPop"  template="/WEB-INF/views/production_manage/reg_operation_performance/processCodeSearchpop.jsp">
+      <put-attribute name="title" value="공정코드팝업" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/workplaceCodeSearchPop"  template="/WEB-INF/views/production_manage/reg_operation_performance/workplaceCodeSearchpop.jsp">
+      <put-attribute name="title" value="작업장코드팝업" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <!--  -->
    
 <!--외주 팝업 -->
@@ -406,12 +416,12 @@
       <put-attribute name="body" value="/WEB-INF/views/inventory_manage/status_base_inventory/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-	<definition name="/member/curinvenstat" extends="baseLayout">
+	<definition name="/member/curinvenstat" extends="itemlayout">
       <put-attribute name="title" value="현재고현황(재고)" />
       <put-attribute name="body" value="/WEB-INF/views/inventory_collection_status/current_inventory_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-   <definition name="/member/curfinishedinvenstat" extends="baseLayout">
+   <definition name="/member/curfinishedinvenstat" extends="itemlayout">
       <put-attribute name="title" value="현재고현황(완제품)" />
       <put-attribute name="body" value="/WEB-INF/views/inventory_collection_status/current_inventory_finished_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
@@ -554,10 +564,14 @@
       <put-attribute name="side" value="" />
    </definition>
    
-   <definition name="/member/searchtype2" template="/WEB-INF/views/inventory_collection_status/current_inventory_finished_status/searchtype.jsp">
+   <definition name="/member/finishedsearchtype" template="/WEB-INF/views/inventory_collection_status/current_inventory_finished_status/searchtype.jsp">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-   
+   <definition name="itemlayout"  template="/WEB-INF/views/inventory_collection_status/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
 </tiles-definitions>

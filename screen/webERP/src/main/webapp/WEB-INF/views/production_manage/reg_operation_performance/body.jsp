@@ -106,12 +106,6 @@
                         <td>
                             <input type="button" value="자재사용" onClick="materialUse();" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
-                        <td>
-                            <input type="button" value="생산자원등록" style="padding: 5px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="검색상세" style="padding: 5px;"></input>
-                        </td>
                     </tr>
                 </table>
                 </form>
@@ -213,8 +207,8 @@
                         <td><input type="text" id="opNumber" name="DetailVO[${fn:length(detailList)}].opNumber" value="${param.opNumber }" readonly /></td>
                         <td><input type="text" id="materialUseStatus" name="DetailVO[${fn:length(detailList)}].materialUseStatus" value="${param.materialUseStatus }" readonly /></td>
                         <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
-                        <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }"/></td>
-                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }"/></td>
+                        <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processName }" ondblclick="processCodeSearch()"/></td>
+                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceName }" ondblclick="workplaceCodeSearch()"/></td>
                         <td><input type="text" id="sortation" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
                         <td><input type="text" id="performanceQuantity" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
                         <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
@@ -357,4 +351,11 @@
  			openWindowPop('http://localhost:8090/webERP/member/houseCodeSearchPop.do','houseCodeSearch');
 		}
 	
+ 	function processCodeSearch(){
+			openWindowPop('http://localhost:8090/webERP/member/processCodeSearchPop.do','processCodeSearch');
+	}
+ 	
+ 	function workplaceCodeSearch(){
+		openWindowPop('http://localhost:8090/webERP/member/workplaceCodeSearchPop.do','workplaceCodeSearch');
+	}
       </script>
