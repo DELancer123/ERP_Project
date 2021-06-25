@@ -10,16 +10,14 @@ import org.springframework.stereotype.Component;
 public class rsVO {
 	private String itemCode; //품번
 	private String itemName; //품명
-	private String standard; //규격
-	private String inventoryUnit; //단위
 	private Date dueDate; //납기일
-	private int orderQuantity; //주문수량
+	private int ordersQuantity; //주문수량
 	private int productPrice; //단가
-	private Date expectedDate; //출하예정일(수주)
-	private Date releaseExpectedDate; //출고예정일(의뢰)
-	private String inspection; //검사(의뢰,수주)
+	private int vatPrice; //부가세계산용단가
 	private String orderOX; //출고구분
-	private String customerCode; //고객코드
+	private Date startDate;
+	private Date endDate;
+	rsjVO rsjVO;
 	private List<rsVO> ListVO;
 	
 	@Override
@@ -47,22 +45,6 @@ public class rsVO {
 		this.itemName = itemName;
 	}
 
-	public String getStandard() {
-		return standard;
-	}
-
-	public void setStandard(String standard) {
-		this.standard = standard;
-	}
-
-	public String getInventoryUnit() {
-		return inventoryUnit;
-	}
-
-	public void setInventoryUnit(String inventoryUnit) {
-		this.inventoryUnit = inventoryUnit;
-	}
-
 	public Date getDueDate() {
 		return dueDate;
 	}
@@ -71,12 +53,12 @@ public class rsVO {
 		this.dueDate = dueDate;
 	}
 
-	public int getOrderQuantity() {
-		return orderQuantity;
+	public int getOrdersQuantity() {
+		return ordersQuantity;
 	}
 
-	public void setOrderQuantity(int orderQuantity) {
-		this.orderQuantity = orderQuantity;
+	public void setOrdersQuantity(int ordersQuantity) {
+		this.ordersQuantity = ordersQuantity;
 	}
 
 	public int getProductPrice() {
@@ -86,29 +68,13 @@ public class rsVO {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-
-	public Date getExpectedDate() {
-		return expectedDate;
+	
+	public int getVatPrice() {
+		return vatPrice;
 	}
 
-	public void setExpectedDate(Date expectedDate) {
-		this.expectedDate = expectedDate;
-	}
-
-	public Date getReleaseExpectedDate() {
-		return releaseExpectedDate;
-	}
-
-	public void setReleaseExpectedDate(Date releaseExpectedDate) {
-		this.releaseExpectedDate = releaseExpectedDate;
-	}
-
-	public String getInspection() {
-		return inspection;
-	}
-
-	public void setInspection(String inspection) {
-		this.inspection = inspection;
+	public void setVatPrice(int vatPrice) {
+		this.vatPrice = vatPrice;
 	}
 
 	public String getOrderOX() {
@@ -119,12 +85,28 @@ public class rsVO {
 		this.orderOX = orderOX;
 	}
 
-	public String getCustomerCode() {
-		return customerCode;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public rsjVO getRsjVO() {
+		return rsjVO;
+	}
+
+	public void setRsjVO(rsjVO rsjVO) {
+		this.rsjVO = rsjVO;
 	}
 
 	public List<rsVO> getListVO() {
@@ -134,6 +116,5 @@ public class rsVO {
 	public void setListVO(List<rsVO> listVO) {
 		ListVO = listVO;
 	}
-	
-	
+
 }

@@ -39,14 +39,19 @@ public class RsViewControllerImpl implements RsViewController {
 	public ModelAndView viewRs(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String dueDate = request.getParameter("dueDate");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String submit = (String) request.getParameter("submit");
+		System.out.println("Ω√¿€");
 		System.out.println(submit);
-		if(dueDate == null || dueDate.length() == 0 || submit.equals("0")) {
+		System.out.println("≥°");
+//		System.out.println(startDate);
+//		System.out.println(endDate);
+		if(startDate == null || startDate.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 		}
 		else if(submit.equals("1")) {
-			List rsView = rsViewService.searchView(dueDate);
+			List rsView = rsViewService.searchView(startDate,endDate);
 			mav = new ModelAndView(viewName);
 			mav.addObject("rsView",rsView);
 		}
@@ -71,7 +76,6 @@ public class RsViewControllerImpl implements RsViewController {
 		} else {
 			end = uri.length();
 		}
-		
 		String viewName = uri.substring(begin, end);
 		if(viewName.indexOf(".") !=-1) {
 			viewName = viewName.substring(0,viewName.lastIndexOf("."));
