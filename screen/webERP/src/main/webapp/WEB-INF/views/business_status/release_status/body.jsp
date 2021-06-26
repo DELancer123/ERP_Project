@@ -161,21 +161,6 @@ String dueDate = (String) request.getAttribute("dueDate");
 					window.open(location.pathname + '?' + newParam, '_self');
 				}
 			}
-			
-			function calcSum() {
-				  // table element 찾기
-				  const table = document.getElementById('ordersQuantity');
-				  
-				  // 합계 계산
-				  let sum = 0;
-				  for(let i = 0; i < table.rows.length; i++)  {
-				    sum += parseInt(table.rows[i].cells[1].innerHTML);
-				  }
-				  
-				  // 합계 출력
-				  document.getElementById('sum').innerText = sum;
-				  
-				}
 		</script>
 	</form>
 </body>
