@@ -315,10 +315,7 @@ request.setCharacterEncoding("UTF-8");
         }  */
         
         function searchData() {
-        	alert('서치자바스크립트');
-        	
         	var searchForm = $('#searchForm');
-        	
         	searchForm.submit();
         }
         

@@ -75,9 +75,12 @@ public class SystemmagControllerImpl implements SystemmagController {
 				System.out.println("3번분기들어옴");
 				System.out.println("customerCode:"+customerCode);
 				List customerList = null;
-				customerList = systemmagService.searchCustomer(customerCode);
+				List comcom = null;
+				customerList = systemmagService.viewCustomer(customerCode);
+				comcom = systemmagService.viewCustomer(customerCode);
 				mav = new ModelAndView(viewName);
-				mav.addObject("comView", customerList);				
+				mav.addObject("comView", customerList);	
+				mav.addObject("comcom", comcom);
 				return mav;
 			}
 			else {
