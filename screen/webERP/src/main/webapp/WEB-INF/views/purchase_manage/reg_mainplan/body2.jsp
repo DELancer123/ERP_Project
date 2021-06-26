@@ -91,23 +91,16 @@
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
  				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'ondblclick="search2()" readonly/></td>				
-<%--  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.CorVO.item_Code}' readonly/></td>	 --%>			
+ 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'ondblclick="search2()" readonly/></td>					
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
-<%--  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.CorVO.item_Name}' readonly/></td>				 --%>
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
-<%--  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.CorVO.stand}' style="width:100%" /></td>				 --%>
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
-<%--  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.CorVO.unit}' style="width:100%" readonly/></td>				 --%>
   		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
- 				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' readonly/></td>				
-<%--  				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.CorVO.expdate}' readonly/></td>				 --%>
+ 				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' /></td>				
  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
-<%--  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.CorVO.duedate}' /></td>				 --%>
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
-<%--  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.CorVO.note}' /></td>				 --%>
 			</tr>
 		</c:forEach>		
  		<tr id="insertTest" align="center">
@@ -115,43 +108,41 @@
     	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
     	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
     	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${param.item_Code}' ondblclick="search2()" readonly/></td>
-    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${item_Name}' readonly/></td>
-    	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${standard}' style="width:100%"/></td>
-    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${inventory_unit}' style="width:100%" /></td>
+    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${param.item_Name}' readonly/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
+    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
     	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${inputSeq}' readonly style="width:100%"/></td>
-    	<td><input type="date" id="expected_date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${expected_date}'readonly/></td>
+    	<td><input type="date" id="expected_date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${expected_date}'/></td>
     	<td><input type="date" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${due_date}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${plan_quantity}' /></td>
-    	<td><input type="text" id="buyer" name="ListVO[${fn:length(mainplanList) }].buyer" value='${buyer}'readonly/></td>
-    	<td><input type="text" id="note" name="ListVO[${fn:length(mainplanList) }].note"value='${note}'/></td>
+    	<td><input type="text" id="buyer" name="ListVO[${fn:length(mainplanList) }].buyer" value='${param.buyer}'readonly/></td>
+    	<td><input type="text" id="note" name="ListVO[${fn:length(mainplanList) }].note"value='${param.note}'/></td>
     </tr>
 	</tbody>
 	</table>
 	</div>
 </container2>
 <script type="text/javascript">
-var itemNumber = document.getElementById("itemCode");
-
 function search2(){
 	
   	openWindowPop('http://localhost:8090/webERP/member/applyorder.do','applyorder');
 	 
   }
-  function setChildValue(name){
-	  
+function setChildValue(code,name,buyer,standard,inventory_unit,note){
 	  const URLSearch = new URLSearchParams(location.search);
 	  URLSearch.set('submit', '2');
 	  const newParam = URLSearch.toString();
-    if(URLSearch.get('itemCode') == null){
-	window.location.href = location.pathname +'?'+newParam + '&itemCode=' + name;
-    }
-    else{
-    	URLSearch.set('itemCode', name);
-    	const newParam = URLSearch.toString();
-    	window.location.href = location.pathname +'?'+newParam;
-    }
-    
-}
+  if(URLSearch.get('item_Code') == null){
+		window.location.href = location.pathname +'?'+newParam +'&item_Code='+code+'&item_Name='+name+'&buyer='+buyer+'&standard='+standard
+		+'&inventory_unit='+inventory_unit+'&note='+note;
+  }
+  else{
+  	URLSearch.set('item_Code',name,buyer,standard,inventory_unit,note);
+  	const newParam = URLSearch.toString();
+  	window.location.href = location.pathname +'?'+newParam;
+  }
+  
+}}
 
 function deleteRow() {
 	  var item = document.getElementsByName("content").length;

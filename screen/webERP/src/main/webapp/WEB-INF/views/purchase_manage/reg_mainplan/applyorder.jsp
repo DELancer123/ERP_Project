@@ -32,7 +32,7 @@ a {
 }
 
 #button {
-	margin-top: 3%;
+	margin-top: -10%;
 	margin-right: 3%;
 	text-align: right;
 }
@@ -58,6 +58,21 @@ a {
 						<td><input type="text" id="name" name="name" class="name" /></td>
 					</tr>
 					<tr>
+						<td><input type="hidden" id="buyer" name="buyer"/></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="standard" name="standard"/></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="inventory_unit" name="inventory_unit"/></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="expected_Date" name="expected_Date"/></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="note" name="note"/></td>
+					</tr>
+					<tr>
 			</table>
 			<div id="button">	
 				<button id="submit" onclick="submitClick(this.form)">적용</button>
@@ -72,8 +87,14 @@ a {
 				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
-					      <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }')">${MpsOS.item_Code}</a></td>
+					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.buyer }'
+					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
+      					  <td><intput type="hidden" value="${MpsOS.buyer}"></td>
+      					  <td><intput type="hidden" value="${MpsOS.standard}"></td>
+      					  <td><intput type="hidden" value="${MpsOS.inventory_unit}"></td>
+      					  <td><intput type="hidden" value="${MpsOS.expected_Date}"></td>
+      					  <td><intput type="hidden" value="${MpsOS.note}"></td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -87,17 +108,38 @@ a {
 var submit_button = document.getElementById("submit");
 var text_code = document.getElementById("code");
 var text_name = document.getElementById("name");
+var text_buyer = document.getElementById("buyer");
+var text_standard = document.getElementById("standard");
+var text_inventory_unit = document.getElementById("inventory_unit");
+var text_note = document.getElementById("note");
+
 		
-	function popFunction(code,name){
+	function popFunction(code,name,buyer,standard,inventory_unit,note){
 			text_code.value = code;
 			text_name.value = name;
+			text_buyer.value = buyer;
+			text_standard.value = standard;
+			text_inventory_unit.value = inventory_unit;
+			text_note.value = note;
+
 			
 	}
- 	function submitClick(form){
-		opener.setChildValue(text_code.value)
-		window.close(); 
-	}
- 	
+submit_button.onclick = function(){
+		
+	text_code.setAttribute("item_Code",text_code.value);
+	text_name.setAttribute("item_Name",text_name.value);
+	text_buyer.setAttribute("buyer",text_buyer.value);
+	text_standard.setAttribute("standard",text_standard.value);
+	text_inventory_unit.setAttribute("inventory_unit",text_inventory_unit.value);
+	text_note.setAttribute("note",text_note.value);
+
+	
+		var url = window.opener.document.location.href;
+		var url_arr = url.split('?');
+		opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value+
+	'&&buyer='+text_buyer.value+'&&standard='+text_standard.value+'&&inventory_unit='+text_inventory_unit.value+'&&note='+text_note.value+'&&submit='+0;
+		window.close();
+	}	
 //ajax 구문
 $('.name').keyup(function(){
 //변수 words에 id가 name인것의 값을 저장한다
