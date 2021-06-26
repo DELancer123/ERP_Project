@@ -40,8 +40,8 @@ String dueDate = (String) request.getAttribute("dueDate");
 	padding: 0;
 	text-align: center;
 	position: absolute;
-	top: 25%;
-	left: 15%;
+	top: 30%;
+	left: 25%;
 }
 
 #rsTable {
@@ -67,8 +67,8 @@ String dueDate = (String) request.getAttribute("dueDate");
 	<form id="searchForm">
 		<table class="con1_search">
 			<tr>
-				<td>출고일자검색</td>
-				<td colspan="2" style="width: 80px;">
+				<td colspan="">출고일자 범위를 입력 해주세요</td>
+				<td colspan="3" style="width: 80px;">
 				<input type="date" id="searchStartDate" value="${param.startDate }" style="width: 100%;" />
 				</td>
 				<td>~</td>
@@ -86,12 +86,12 @@ String dueDate = (String) request.getAttribute("dueDate");
 				<thead>
 					<td>출고번호</td>
 					<td>출고일자</td>
-					<td>고객</td>
-					<td>품번</td>
-					<td>풍명</td>
+					<td>고 객</td>
+					<td>품 번</td>
+					<td>품 명</td>
 					<td>납기일</td>
 					<td>주문수량</td>
-					<td>단가</td>
+					<td>단 가</td>
 					<td></td>
 					<td>공급가</td>
 					<td>부가세</td>
