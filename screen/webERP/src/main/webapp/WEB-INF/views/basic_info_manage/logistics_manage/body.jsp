@@ -75,7 +75,7 @@ request.setCharacterEncoding("UTF-8");
                 <c:forEach var="logis" items="${logisticsView}" >
 	                <tr>
 	                    <td>
-	                    	<input type="checkbox" name="checkedContent" value="${logis.logistics_In_Code}"/>
+	                    	<input type="checkbox" id="checkedContent" name="content" value="${logis.logistics_In_Code}"/>
 	                    </td>                   
 	                    <td>
 	                        <input type="text" onfocus = "searchView(this.value)" value="${logis.logistics_In_Code}"/>
@@ -114,7 +114,7 @@ request.setCharacterEncoding("UTF-8");
 	                </tr>
 	            </table>
             </form>
-            <form mehotd="get" id="logisticsUpdateForm">
+            <form method="get" id="logisticsUpdateForm">
 	            <table id="table3">
 	                <thead>
 	                    <td align="center">관리내역코드</td>
@@ -213,7 +213,7 @@ request.setCharacterEncoding("UTF-8");
 	        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
 	        	$('#logisticsUpdateForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
 	        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
-	        	    	is_empty = true;      	    	
+	        	    	is_empty = true;   
 	        	    }      	 
 	        	});       	 
 	        	if(is_empty) { //비어있는내용이 있는지 체크함
@@ -225,7 +225,8 @@ request.setCharacterEncoding("UTF-8");
 		    		alert('수정되었습니다'); 
 	        	}      	
 	        } 
-	         
+        
+
 	        function searchCode() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
 	        	openWindowPop("${contextPath}/member/logisticsPopup.do", "logisticsPopup");
 	        }

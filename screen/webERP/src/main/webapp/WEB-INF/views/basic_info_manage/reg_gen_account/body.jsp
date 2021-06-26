@@ -375,7 +375,7 @@ request.setCharacterEncoding("UTF-8");
         	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
         }
         
-        function searchZip() { //우편번호 검색 팝업
+        function searchZip() { //우편번호 검색 팝업을 띄우는 함수
         	openWindowPop("${contextPath}/member/regbasicaccZipPopup.do", "regbasicaccZipPopup");
         } 
                
