@@ -24,7 +24,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>품목단가등록</title>
 <style>
 #contents1{
             position: absolute;
@@ -74,19 +74,22 @@
 			<table class="con1_search">
                 <tr>
                     <td>
-                    	품번
+                    	단가 등록 된 품목 검색(삭제,수정)
                     </td>
-                    <td style="width: 50px;">
-                    	<input type="text" style="width: 100%;" name="" value='${param.itemNumber }' />
+                    <td style="width: 100px;">
+                    	<input type="text" style="width: 100%;" name="" value='${param.itemNumber }'/>
                     </td>
                     <td>
                     	<a href="javascript:search1()">
                     		<i class="fas fa-search" style="color: blue;"></i>
                     	</a>
                     </td> 
-                    <td colspan="3">
+                    <td colspan="4" style="width:200px;">
                     	<input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/>
                     </td>
+                </tr>
+                <tr>
+                	<td colspan="4">단가 등록은 하단의 품번 박스를 더블 클릭 해주세요.</td>
                 </tr>
 			</table>
 		</form>
@@ -119,11 +122,11 @@
 				</c:forEach>
                 	<tr id="insertIup" align="center">
                 		<td></td>
-              			<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%"></td>
-                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" /></td>
-                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(iupView) }].itemName" value='${itemName }' /></td>
-                    	<td><input type="text" id="standard" name="ListVO[${fn:length(iupView) }].standard" value='${standard }' /></td>
-                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(iupView) }].inventoryUnit" value='${inventoryUnit }' /></td>
+              			<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%" readonly></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" readonly/></td>
+                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(iupView) }].itemName" value='${itemName }' readonly/></td>
+                    	<td><input type="text" id="standard" name="ListVO[${fn:length(iupView) }].standard" value='${standard }' readonly/></td>
+                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(iupView) }].inventoryUnit" value='${inventoryUnit }' readonly/></td>
                     	<td>
                     	<input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }'/>
                     	</td>

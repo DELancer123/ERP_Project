@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>품목단가등록팝업</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <style>
 a {
@@ -56,28 +56,25 @@ a {
 			<div id="searchBox">
 				<table id="search">
 					<tr>
-						<td>검색1</td>
+						<td>품 번</td>
 						<td><input type="text" id="code" /></td>
 					</tr>
 					<tr>
-						<td>검색2</td>
+						<td>품 명</td>
 						<td><input type="text" id="name" /></td>
 					</tr>
 				</table>
 				<div id="button">
-					<button id="search">조회</button>
 					<button id="submit" onclick="submitClick(this.form)">적용</button>
 					<input type="hidden" name="inputNo" value="" />
-
-					<button>버튼3</button>
 				</div>
 			</div>
 			<div id="view">
 				<table style="width: 100%;">
 					<tr align="center">
-						<td>품목코드</td>
-						<td>품명</td>
-						<td>규격</td>
+						<td>품 번</td>
+						<td>품 명</td>
+						<td>규 격</td>
 					</tr>
 					<c:forEach var="iup" items="${itemView}">
 						<tr align="center">
