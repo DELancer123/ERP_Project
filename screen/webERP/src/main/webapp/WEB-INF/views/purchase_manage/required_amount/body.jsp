@@ -119,12 +119,12 @@ String sequence = (String) request.getAttribute("sequence");
 			<td><input type="checkbox" name="content" value="${mrp.sequence}" /></td>
 			<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${mrp.bomVO.itemNumber}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].itemName" value='${mrp.bomVO.itemName}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly style="width:100%"/></td>
-	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly style="width:100%"/></td>
+				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly/></td>
+				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly /></td>
+	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly  style="width:100%"/></td>
 				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
  				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity}'/></td>
-				<td style="width:33px;"><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly style="width:100%"/></td>
+				<td><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly  style="width:100%"/></td>
 			</tr>	
 		</c:forEach>
 		</tbody>

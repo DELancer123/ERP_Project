@@ -234,10 +234,9 @@
             where pm.item_code = bom.item_code 
             and  bom.item_code = mr.item_code
     		    ]]>
- 	<where>
-		<if test="startDate != '' and startDate != null">due_date between #{startDate} and #{endDate} </if>
-		<if test="endDate != '' and endDate != null">and due_date between #{startDate} and #{endDate} </if>
-	</where>
+		<if test="startDate != '' and startDate != null">expected_order between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and expected_order between #{startDate} and #{endDate} </if>
+
 	</select>
 	
 	<!-- orderclosing 발주마감 -->
