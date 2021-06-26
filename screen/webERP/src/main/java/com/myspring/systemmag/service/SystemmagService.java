@@ -22,6 +22,8 @@ public interface SystemmagService {
 	
 	public List zipViewCustomer() throws DataAccessException;
 	
+	public List<SystemmagVO> searchPopName(String itemName) throws DataAccessException;
+	
 	//창고/공정/외주공정등록
 	public List viewAllHouOutware() throws DataAccessException;
 	

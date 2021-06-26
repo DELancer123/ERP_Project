@@ -58,6 +58,11 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List zipViewCustomer() throws DataAccessException {
 		return systemmagDAO.zipViewCustomer();
 	}
+	
+	@Override
+	public List<SystemmagVO> searchPopName(String itemName) {
+		return systemmagDAO.viewsearchPopName(itemName);
+	}
 
 	
 	//창고/공정/외주공정등록

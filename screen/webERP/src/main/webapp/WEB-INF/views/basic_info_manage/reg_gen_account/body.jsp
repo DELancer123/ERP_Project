@@ -298,7 +298,7 @@ request.setCharacterEncoding("UTF-8");
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
         }
         
-        function searchData() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        /* function searchData() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
         	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
         	    if(!$(this).val()) { //#searchForm는 form태그의 id값임
@@ -312,7 +312,15 @@ request.setCharacterEncoding("UTF-8");
 	        	document.getElementById('searchForm').action = "${contextPath}/member/regbasicacc.do?"
 	    		document.getElementById('searchForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 
         	}      	
-        } 
+        }  */
+        
+        function searchData() {
+        	alert('서치자바스크립트');
+        	
+        	var searchForm = $('#searchForm');
+        	
+        	searchForm.submit();
+        }
         
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("checkedContent").length;

@@ -62,6 +62,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		return zipList;
 	}
 	
+	@Override
+	public List<SystemmagVO> viewsearchPopName(String itemName) {
+		List<SystemmagVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopCustomerList",itemName);
+		return popList;
+	}
+	
 	//창고/공정/외주공정등록
 	@Override /* 창고/장소 쿼리 */
 	public List viewAllHouOutware() throws DataAccessException {

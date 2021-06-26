@@ -277,6 +277,12 @@
 	<select id="selectZipList" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_CRI_ZIP]]>
 	</select>
+	<select id="selectPopCustomerList" resultMap="basicInfoResult">
+		<![CDATA[ select general_Customer_Code, general_Customer_Name
+		  from SM_BIM_GEN_CUS_REG
+		  where general_Customer_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	<!-- 기초정보관리_창고/공정/외주공정등록 -->
 	<resultMap id="outwareInfoResult" type="SystemmagVO">
 		<!-- 창고/장소파트 -->
