@@ -60,25 +60,18 @@
                 <table>
                     <tr>
                         <td>
-                            모품목
+                            자품목
                         </td>
-                        <Td>
-                            <input type="text" name="factory" style="width: 120px; background-color: yellow;">
+                         <Td>
+                            <input type="text" name="factory" value='${param.itemNumber }' style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
-                            <i class="fas fa-search" style="color: blue;"></i>
+                            <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
                         </td>
                         <td>
-                            <input type="text" name="ckfactory" style="width: 120px;" disabled>
+                            <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
                         </td>
-                        <!-- 모품목 규격 -->
-                        <td>
-                            <input type="text" style="width: 150px; background-color: skyblue;" disabled>
-                        </td>
-                        <!-- 모품목 단위 -->
-                        <td>
-                            <input type="text" style="width: 120px; background-color: skyblue;" disabled>
-                        </td>
+                       
                     </tr>
                     <tr>
                         <td>
@@ -130,6 +123,36 @@
             </div>
             <!-- 합계 출력부 종료 -->
         </container2>
+      <script>
+      function openWindowPop(url, name){
+          var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+          window.open(url, name, options);
+      }
       
+      function search1(){
+    	  openWindowPop('http://localhost:8090/webERP/member/reservePop.do','codehelper');
+      }
+      view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+ 	}
+      function childSearch(name){
+    	  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '2');
+		  const newParam = URLSearch.toString();
+		  if(URLSearch.get('childCode') == null)
+		  window.open(location.pathname + '?' + newParam + "&&childCode=" + name.innerText, '_self');
+		  else{
+			  URLSearch.set('childCode',name.innerText);
+			  const newParam = URLSearch.toString();
+	          window.location.href = location.pathname +'?'+newParam;
+		  }
+			  
+      }
+		
+      </script>
 </body>
 </html>

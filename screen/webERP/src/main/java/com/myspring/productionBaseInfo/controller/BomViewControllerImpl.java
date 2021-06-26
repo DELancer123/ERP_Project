@@ -89,6 +89,15 @@ public class BomViewControllerImpl implements BomViewController {
 		mav.addObject("itemView", itemView);
 		return mav;
 	}
+	@RequestMapping(value="/member/reservePop.do" ,method = RequestMethod.GET)
+	public ModelAndView BOMreserveHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		String itemNumber = (String) request.getParameter("itemCode");
+		List itemView = viewService.itemView2();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("itemView", itemView);
+		return mav;
+	}
 	
 	@Override
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
