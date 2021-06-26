@@ -89,36 +89,12 @@ String sequence = (String) request.getAttribute("sequence");
 	<container1 id=contents1>
 	<table class="con1_search">
 		<tr>
-		<!-- 	<td>사업장</td>
-			<td style="width: 70px;"><input type="text" style="width: 100%;" /></td>
-			<td><i class="fas fa-search" style="color: blue;"></td>
-			<td><input type="text" disabled /></td> -->
 			<td>계획기간</td>
 			<td colspan="2" style="width: 50px;"><input type="date"
 				id='searchStartDate' style="width: 100%;" /></td>
 			<td>~</td>
 			<td><input type="date" id='searchEndDate' style="width: 100%;" /></td>
 			<td></td>
-			<td>품번</td>
-			<td style="width: 70px;"><input type="text" style="width: 100%;" /></td>
-			<td><i class="fas fa-search" style="color: blue;"></td>
-			<td><input type="text" disabled /></td>
-		</tr>
-		<tr>
-			<td>전개구분</td>
-			<td colspan="3"><select name="division" style="width: 80%;">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4" selected>4</option>
-			</select>
-			<td>계정구분</td>
-			<td colspan="3"><select name="division" style="width: 80%;">
-					<option value="">원재료</option>
-					<option value="">반제품</option>
-					<option value="">제품</option>
-			</select></td>
-			</td>
 		</tr>
 	</table>
 	</container1>

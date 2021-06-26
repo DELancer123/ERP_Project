@@ -81,15 +81,6 @@
 		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
 		]]>  
 	</insert>
-	<!-- 
-		<update id="updateBOM" parameterType="bomVO">
-		<![CDATA[
-		update CPM_BIM_BOM_REG
-		set no=#{no}, item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit},precisionQuantity=#{precisionQuantity}, loss=#{loss},actualCost=#{actualCost}, outSourcingUnitPrice=#{outSourcingUnitPrice}, startDate=#{startDate}, endDate=#{endDate}, note=#{note}
-		where  item_code=#{itemNumber}
-		]]>  
-	</update>
-	-->
 	<update id="updateBOM" parameterType="bomVO">
 		<![CDATA[
 		update CPM_BIM_BOM_REG
@@ -360,80 +351,4 @@
 		where No = #{no}
 		]]>
 	</update>
-
-	<!-- 외주발주등록 파트 -->
-	<!-- <resultMap id="outsourcingView" type="RegOutsourcingVO">
-		<result property="workOrderNumber" column="workOrderNumber" />
-		<result property="instructionDate" column="instructionDate" />
-		<result property="dueDate" column="dueDate" />
-		<result property="Item_Code" column="Item_Code" />
-		<result property="Item_Name" column="Item_Name" />
-		<result property="Standard" column="Standard" />
-		<result property="Inventory_Unit" column="Inventory_Unit" />
-		<result property="indicatedQuantity" column="indicatedQuantity" />
-		<result property="unitPrice" column="unitPrice" />		
-		<result property="Price" column="indicatedQuantity*unitPrice" />		
-		<result property="status" column="status" />
-		<result property="inspection" column="inspection" />
-		<result property="note" column="note" />
-	</resultMap> -->
-	
-	
-	<!-- <select id="selectAllOutsourcingList" resultMap="outsourcingView">
-		<![CDATA[select workOrderNumber,instructionDate,dueDate,Item_Code,Item_Name,Standard,Inventory_Unit,indicatedQuantity,unitPrice,indicatedQuantity*unitPrice,status,inspection,note  from CPM_OM_Out_Per_Reg]]>
-	</select>
-	
-	
-	<insert id="insertOutsourcing" parameterType="regOutsourcingVO">
-		<![CDATA[insert into CPM_OM_Out_Per_Reg(id,pwd,name,email) values(#{id}, #{pwd}, #{name}, #{email}]]>
-	</insert>
-
-	
-	<delete id="deleteOutsourcing" parameterType="int">
-		<![CDATA[delete from t_member where id=#{id}]]>
-	</delete> -->
-
-
-	<!-- saleplan파트 -->
-	<!-- <resultMap id="salesplanResult" type="salesplanVO"> 
-			<result property="Plan_Item_Code" column="Plan_Item_Code" /> 
-			<result property="Plan_Item_Name" column="Plan_Item_Name" /> 
-			<result property="Plan_Item_Unit" column="Plan_Item_Unit" /> 
-			<result property="Plan_Item_Quantity" column="Plan_Item_Quantity" /> 
-			<result property="Newplan_Item_Quabtity" column="Newplan_Item_Quabtity" /> 
-			<result property="Newplan_Item_Unit_Price" column="Newplan_Item_Unit_Price" /> 
-			</resultMap> 
-			<resultMap id="planItemResult" type="java.util.HashMap"> 
-				<result property="Plan_Item_Code" column="Plan_Item_Code" /> 
-				<result property="Plan_Item_Name" column="Plan_Item_Name" /> 
-				<result property="Plan_Item_Unit" column="Plan_Item_Unit" /> 
-				<result property="Plan_Item_Quantity" column="Plan_Item_Quantity" /> 
-				<result property="Newplan_Item_Quabtity" column="Newplan_Item_Quabtity" /> 
-				<result property="Newplan_Item_Unit_Price" column="Newplan_Item_Unit_Price" />
-			 </resultMap> 
-		<select id="selectAllSalesplanList" resultMap="salesplanResult"> 
-		<![CDATA[ 
-			select Plan_Item_Code, Plan_Item_Name, Plan_Item_Unit, Plan_Item_Quantity, 
-			Newplan_Item_Quantity, Newplan_Unit_Price from SM_BIM_Sal_Pla_Reg order by 
-			Plan_Item_Code desc 
-		]]> 
-		</select> 
-		<insert id="insertSalesplan" parameterType="salesplanVO"> 
-		<![CDATA[ insert into SM_BIM_Sal_Pla_Reg(Plan_Date, Plan_Item_Code,Plan_Item_Name,Plan_Item_Unit, 
-			Plan_Item_Quantity,Plan_Uint_Price) values(#{Plan_Date}, #{Plan_Item_Code}, 
-			#{Plan_Item_Name}, #{Plan_Item_Unit}, #{Plan_Item_Quantity},#{Plan_Uint_Price}) 
-		]]>
-		 </insert> 
-		 <insert id="insertNewSalesplan" parameterType="salesplanVO"> 
-		 <![CDATA[ insert into SM_BIM_Sal_Pla_Reg(Newplan_Item_Quantity, Newplan_Unit_Price) 
-			values(#{Newplan_Item_Quantity},#{Newplan_Unit_Price}) 
-		]]>
-		 </insert> 
-		 <delete id="deleteSalesplan" parameterType="String"> 
-		 <![CDATA[ delete from t_member where Plan_Item_Code=#{Plan_Item_Code} ]]> 
-		 </delete> 
-		 
-		 <select id="loginById" resultType="memberVO" parameterType="memberVO" > 
-		 <![CDATA[ select * from t_member where id=#{id} and pwd=#{pwd} ]]> 
-		 </select> -->
 </mapper>
