@@ -212,26 +212,19 @@
 	</resultMap> 
 
 	<select id="selectAllItemList" resultMap="itemResult">
-      <![CDATA[
-         select * from SM_BIM_Ite_Reg 
-      ]]>
+      <![CDATA[select * from SM_BIM_Ite_Reg order by item_code]]>
 	</select>
 	
 	<select id="selectAllSalesplanList" resultMap="salesplan">
-      <![CDATA[
-         select * from SM_BIM_Sal_Pla_Reg 
-      ]]>
+      <![CDATA[select * from SM_BIM_Sal_Pla_Reg order by plan_code]]>
 	</select>
 	
      <select id="submititemview" resultMap="salesplan" parameterType="String">
-		<![CDATA[
-		 select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code}
-		]]>   
+		<![CDATA[select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code} order by plan_code]]>   
 	</select> 
 	
 	  <select id="selPlancode" resultMap="salesplan" parameterType="int">
-		<![CDATA[
-		SELECT LAST_NUMBER FROM USER_SEQUENCES
+		<![CDATA[ SELECT LAST_NUMBER FROM USER_SEQUENCES
 		 WHERE SEQUENCE_NAME = upper('seq_SM_BIM_Gen_Cus_Reg_no')
 		]]>
 	</select> 

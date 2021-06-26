@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
 
 @Repository("forwardRegDAO")
@@ -36,11 +37,27 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		supForwardList = sqlSession.selectList("mappers.erp.allSupForward");
 		return supForwardList;
 	}
+	
+	@Override
+	public List submitSubForwardCustReg(String relCode) throws DataAccessException {
+		List<CorVO> submitCustList = null;
+		submitCustList = sqlSession.selectList("mappers.erp.submitForwardItem",relCode);
+		return submitCustList;
+	}
+
+	@Override
+	public List selectForwardSubList() throws DataAccessException {
+		List<CorVO> ForwardItemList = null;
+		ForwardItemList = sqlSession.selectList("mappers.erp.allForwardItem");
+		return ForwardItemList;
+	}
 
 
 	@Override
 	public void delSupForward(String[] noary) throws DataAccessException {
-		// TODO Auto-generated method stub
+		for(String relCode: noary) {
+			sqlSession.delete("mappers.erp.delSupOrd",relCode);
+			}
 		
 	}
 

@@ -12,4 +12,7 @@ public interface ForwardRegDAO {
 	public List selectSupForwardList() throws DataAccessException;
 	public List submitForwardCustSupReg(String custCode) throws DataAccessException;
 	public void delSupForward(String[] noary) throws DataAccessException;
+	
+	public List selectForwardSubList() throws DataAccessException;
+	public List submitSubForwardCustReg(String relCode) throws DataAccessException;
 }

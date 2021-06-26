@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component("corVO")
 public class CorVO {
 
+	private String relCode;
 	private String ordCode;
 	private String item_code;
 	private String item_name;
@@ -126,6 +127,14 @@ public class CorVO {
 
 	public void setOrderOX(String orderOX) {
 		this.orderOX = orderOX;
+	}
+
+	public String getRelCode() {
+		return relCode;
+	}
+
+	public void setRelCode(String relCode) {
+		this.relCode = relCode;
 	}
 	
 }
