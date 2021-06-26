@@ -50,8 +50,8 @@
             padding:0;
             text-align: center;
             /* position: absolute; 칸 모잘라서 지움*/
-            top: 25%;
-            left: 18%;
+            top: 22%;
+            left: 25%;
         }
         #spTable1,#view2{
             width: 100%;
@@ -74,9 +74,9 @@
 			<table class="con1_search">
                 <tr>
                     <td>
-                    	품번
+                    	검색하시려는 품목번호를 조회
                     </td>
-                    <td style="width: 50px;">
+                    <td style="width: 100px;">
                     	<input type="text" style="width: 100%;" name="" value='${param.itemCode }' />
                     </td>
                     <td>
@@ -88,6 +88,9 @@
                     	<input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/>
                     </td>
                 </tr>
+                <tr>
+                	<td colspan="4">등록 하시려면 아래 품번 밑의 박스를 더블 클릭 해주세요</td>
+                </tr>
 			</table>
 		</form>
         </container1>
@@ -98,9 +101,9 @@
                 	<thead align="center" style="background-color:gray">                    
                     	<td style="width: 5%;"><input type="checkbox" name="content" onclick="selectAll(this)"></td>
                     	<td align="center">등록일자</td>
-						<td align="center">품번</td>
-						<td align="center">품명</td>
-						<td align="center">규격</td>
+						<td align="center">품 번</td>
+						<td align="center">품 명</td>
+						<td align="center">규 격</td>
 						<td align="center">단위(관리)</td>
 						<td align="center">판매 계획 수량</td>
 						<td align="center">판매 계획단가</td>
@@ -128,16 +131,16 @@
                 	<tr id="insertSp" align="center">
                 		<td></td>
               			<td><input type="date" id="planDate" name="ListVO[${fn:length(spView) }].planDate" value='${planDate }' ></td>
-                    	<td><input type="text" id="itemCode" name="ListVO[${fn:length(spView) }].itemCode" value='${itemCode }' ondblclick="search2()" /></td>
-                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(spView) }].itemName" value='${itemName }' /></td>
-                    	<td><input type="text" id="standard" name="ListVO[${fn:length(spView) }].istandard" value='${standard }' /></td>
-                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(spView) }].inventoryUnit" value='${inventoryUnit }' /></td>
+                    	<td><input type="text" id="itemCode" name="ListVO[${fn:length(spView) }].itemCode" value='${itemCode }' ondblclick="search2()" readonly/></td>
+                    	<td><input type="text" id="itemName" name="ListVO[${fn:length(spView) }].itemName" value='${itemName }' readonly/></td>
+                    	<td><input type="text" id="standard" name="ListVO[${fn:length(spView) }].istandard" value='${standard }' readonly/></td>
+                    	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(spView) }].inventoryUnit" value='${inventoryUnit }' readonly/></td>
                     	<td><input type="text" id="planItemQuantity" name="ListVO[${fn:length(spView) }].planItemQuantity" value='${planItemQuantity }' /></td>
                     	<td><input type="text" id="planUnitPrice" name="ListVO[${fn:length(spView) }].planUnitPrice" value='${planUnitPrice }' /></td>
-                    	<td><input type="text" value='${planItemQuantity * planUnitPrice }' /></td>
-                    	<td><input type="text" id="newPlanItemQuantity" name="ListVO[${fn:length(spView) }].newPlanItemQuantity" value='${newPlanItemQuantity }' /></td>
-                    	<td><input type="text" id="newPlanUnitPrice" name="ListVO[${fn:length(spView) }].newPlanUnitPrice" value='${newPlanUnitPrice }' /></td>
-                    	<td><input type="text" value='${newPlanItemQuantity * newPlanUnitPrice }' /></td>                                         
+                    	<td><input type="text" value='${planItemQuantity * planUnitPrice }' readonly/></td>
+                    	<td><input type="text" id="newPlanItemQuantity" name="ListVO[${fn:length(spView) }].newPlanItemQuantity" value='${newPlanItemQuantity }' readonly/></td>
+                    	<td><input type="text" id="newPlanUnitPrice" name="ListVO[${fn:length(spView) }].newPlanUnitPrice" value='${newPlanUnitPrice }' readonly/></td>
+                    	<td><input type="text" value='${newPlanItemQuantity * newPlanUnitPrice }' readonly/></td>                                         
                 	</tr>
             	</table>
 			</div>

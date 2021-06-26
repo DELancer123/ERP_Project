@@ -53,26 +53,24 @@ a {
 			<div id="searchBox">
 				<table id="search">
 					<tr>
-						<td>검색1</td>
+						<td>품 번</td>
 						<td><input type="text" id="code" /></td>
 					</tr>
 					<tr>
-						<td>검색2</td>
+						<td>품 명</td>
 						<td><input type="text" id="name" /></td>
 					</tr>
 				</table>
 				<div id="button">
-					<button id="search">조회</button>
 					<button id="submit">적용</button>
-					<button>버튼3</button>
 				</div>
 			</div>
 			<div id="view">
 				<table style="width: 100%;">
 					<tr align="center">
-						<td>품목코드</td>
-						<td>품명</td>
-						<td>규격</td>
+						<td>품 번</td>
+						<td>품 명</td>
+						<td>규 격</td>
 					</tr>
 					<c:forEach var="sp" items="${itemView}">
 						<tr align="center">
