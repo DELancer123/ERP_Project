@@ -39,4 +39,5 @@ public interface BomViewService {
 	public List<bomVO> searchPopName(String itemName) throws DataAccessException;
 	public List<bomVO> searchbomPop1(String itemName) throws DataAccessException;
 	public List<bomVO> searchbomPop2(String itemName) throws DataAccessException;
+	public List ResearveView(String number) throws DataAccessException;
 }

@@ -201,4 +201,11 @@ public class BomViewServiceImpl implements BomViewService{
 		return popView;
 	}
 
+	@Override
+	public List ResearveView(String number) throws DataAccessException {
+		List bomList = null;
+		bomList = bomDAO.researveView(number);
+		return bomList;
+	}
+
 }

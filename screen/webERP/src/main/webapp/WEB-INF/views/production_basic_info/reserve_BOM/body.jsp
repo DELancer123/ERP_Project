@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +57,6 @@
         }
         #workOrderTable{
             width: 100%;
-            font-weight: bold;
         }
 
 </style>
@@ -96,10 +103,7 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <tr>
-                        <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>LEVEL</td>
-                        <td>순번</td>
+                    <tr align="center" style="font-weight:bold;background-color:gray">
                         <td>품번</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -107,14 +111,20 @@
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <td>필요수량</td>
-                        <td>표준원가</td>
-                        <td>실제원가</td>
-                        <td>외주</td>
-                        <td>사용여부</td>
-                        <td>비고</td>
+                        <td>계정</td>
                     </tr>
-                    <!-- BOM 역전개는 입력부 불필요 -->
-                    
+                   <c:forEach var="bom" items="${bomView}">  
+                    <tbody align="center">
+                        <td>${bom.itemNumber }</td>
+                        <td>${bom.itemName}</td>
+                        <td>${bom.standard}</td>
+                        <td>${bom.unit}</td>
+                        <td>${bom.precisionQuantity }</td>
+                        <td>${bom.loss }</td>
+                        <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
+                        <td>${bom.division }</td>
+                    </tbody>
+                    </c:forEach>
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -139,19 +149,7 @@
 
 		  window.open(location.pathname + '?' + newParam, '_self');
  	}
-      function childSearch(name){
-    	  const URLSearch = new URLSearchParams(location.search);
-		  URLSearch.set('submit', '2');
-		  const newParam = URLSearch.toString();
-		  if(URLSearch.get('childCode') == null)
-		  window.open(location.pathname + '?' + newParam + "&&childCode=" + name.innerText, '_self');
-		  else{
-			  URLSearch.set('childCode',name.innerText);
-			  const newParam = URLSearch.toString();
-	          window.location.href = location.pathname +'?'+newParam;
-		  }
-			  
-      }
+
 		
       </script>
 </body>

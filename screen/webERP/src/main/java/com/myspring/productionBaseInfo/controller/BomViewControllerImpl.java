@@ -195,7 +195,29 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return mav;
 	}
+	@Override
+	@RequestMapping(value="/member/reservebom.do" ,method = RequestMethod.GET)
+	public ModelAndView reservebom(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String number = (String) request.getParameter("itemNumber");
+		String submit = (String) request.getParameter("submit");
+		String childCode = (String) request.getParameter("childCode");
+		int sum = 0;
+		if(number == null || number.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List bomView = viewService.ResearveView(number);
+			
+			mav = new ModelAndView(viewName);
+			
+			mav.addObject("bomView", bomView);
+		}
 
+		return mav;
+	}
 	@Override
 	@RequestMapping(value="/member/outprice.do" ,method = RequestMethod.GET)
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -422,4 +444,5 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/deftypepop.do");
 		return mav;
 	}
+	
 }

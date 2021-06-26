@@ -175,6 +175,14 @@ public class bomViewDAOImpl implements bomViewDAO{
 		return outList1;
 	}
 
+	@Override
+	public List researveView(String number) throws DataAccessException {
+		List<bomVO> bomList = null;
+		bomList = sqlSession.selectList("mappers.erp.researveView",number);
+		System.out.println(bomList.size());
+		return bomList;
+	}
+
 	
 	
 
