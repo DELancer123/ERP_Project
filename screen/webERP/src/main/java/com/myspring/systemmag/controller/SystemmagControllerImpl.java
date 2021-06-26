@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,23 +64,35 @@ public class SystemmagControllerImpl implements SystemmagController {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String submit = (String) request.getParameter("submit"); // 첫접속인지 체크하는 변수임 , url로 넘어옴
-		String code = (String) request.getParameter("com_code"); // 몇번째 목록인지 체크하는 변수임, url로 넘어옴
+		String com_code = (String) request.getParameter("com_code"); // 몇번째 목록인지 체크하는 변수임, url로 넘어옴
+		String customerCode = (String) request.getParameter("customerCode");
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
 
-		if (code == null || submit == null) { // 첫접속이라면?
-			System.out.println("1번분기들어옴");
-			List comView = systemmagService.viewAllCustomer(); // select all 쿼리를 호출한다
-			mav = new ModelAndView(viewName);
-			mav.addObject("comView", comView);
-			return mav;
+		if (com_code == null || submit == null) { // 첫접속이라면?
+			if(customerCode != null) {				
+				System.out.println("3번분기들어옴");
+				System.out.println("customerCode:"+customerCode);
+				List customerList = null;
+				customerList = systemmagService.searchCustomer(customerCode);
+				mav = new ModelAndView(viewName);
+				mav.addObject("comView", customerList);				
+				return mav;
+			}
+			else {
+				System.out.println("1번분기들어옴");
+				List comView = systemmagService.viewAllCustomer(); // select all 쿼리를 호출한다
+				mav = new ModelAndView(viewName);
+				mav.addObject("comView", comView);
+				return mav;
+			}
 		}
 
 		else if (submit.equals("1")) { // 목록을 선택했을때, 즉 조회를 했을때
 			System.out.println("2번분기들어옴");
 			List comView = systemmagService.viewAllCustomer(); // select문에
-			List comcom = systemmagService.viewCustomer(code); // where절을 추가한다
+			List comcom = systemmagService.viewCustomer(com_code); // where절을 추가한다
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
