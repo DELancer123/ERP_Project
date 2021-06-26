@@ -98,6 +98,10 @@ String dueDate = (String) request.getAttribute("dueDate");
 					<td>공급대가</td>
 					<td>출고구분</td>
 				</thead>
+				<c:set var = "qtot" value="0" />
+				<c:set var = "ptot" value="0" />
+				<c:set var = "vtot" value="0" />
+				<c:set var = "pvtot" value="0" />
 				<c:forEach var="rs" items="${rsView }" varStatus="status">
 				<tr>
 					<td><input type="text" id="releaseNum" value='${rs.rsjVO.releaseNum }' readonly/></td>
@@ -114,16 +118,21 @@ String dueDate = (String) request.getAttribute("dueDate");
 					<td><input type="number" id="totVatPrice" value='${(rs.ordersQuantity * rs.productPrice) + (rs.ordersQuantity * rs.vatPrice)}' readonly/>
 					<td><input type="text" id="orderOX" name="ListVO[${fn:length(rsView) }].orderOX" value='${rs.orderOX }' readonly/></td>
 				</tr>
+				<c:set var="qtot" value="${qtot + rs.ordersQuantity}" />
+				<c:set var="ptot" value="${ptot + rs.ordersQuantity * rs.productPrice}" />
+				<c:set var="vtot" value="${vtot + rs.ordersQuantity * rs.vatPrice}" />
+				<c:set var="pvtot" value="${pvtot + ((rs.ordersQuantity * rs.productPrice) + (rs.ordersQuantity * rs.vatPrice))}" />
 				</c:forEach>
 			</table>
 		</div>
+		
 		<div id="rsSum">
-			수량합계: <input type="text" disabled /> 
-			공급가 합계: <input type="text" disabled /> 
-			부가세 합계: <input type="text" disabled /> 
-			합계액: <input type="text" disabled />
+			수량합계: <input type="text" disabled value= <c:out value="${qtot }" /> style="text-align:center"/>
+			공급가 합계: <input type="text" disabled value= <c:out value="${ptot }"/> style="text-align:center"/>
+			부가세 합계: <input type="text" disabled value= <c:out value="${vtot }"/> style="text-align:center"/>
+			합계액: <input type="text" disabled value= <c:out value="${pvtot }"/> style="text-align:center"/>
 		</div>
-
+		
 		</container2>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script>
@@ -152,6 +161,21 @@ String dueDate = (String) request.getAttribute("dueDate");
 					window.open(location.pathname + '?' + newParam, '_self');
 				}
 			}
+			
+			function calcSum() {
+				  // table element 찾기
+				  const table = document.getElementById('ordersQuantity');
+				  
+				  // 합계 계산
+				  let sum = 0;
+				  for(let i = 0; i < table.rows.length; i++)  {
+				    sum += parseInt(table.rows[i].cells[1].innerHTML);
+				  }
+				  
+				  // 합계 출력
+				  document.getElementById('sum').innerText = sum;
+				  
+				}
 		</script>
 	</form>
 </body>
