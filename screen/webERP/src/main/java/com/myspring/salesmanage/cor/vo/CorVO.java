@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.myspring.salesmanage.forward.vo.ForwardVO;
+
 @Component("corVO")
 public class CorVO {
 
@@ -27,7 +29,8 @@ public class CorVO {
 	@Override
 	public String toString() {
 		return Arrays.toString(ListCor.toArray());
-	}
+	}	
+
 	
 	public CorVO() {
 		super();

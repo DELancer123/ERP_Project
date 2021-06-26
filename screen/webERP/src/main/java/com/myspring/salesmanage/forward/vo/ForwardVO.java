@@ -22,13 +22,13 @@ public class ForwardVO {
 	private String custName;
 	private String comNum;
 	private String repName;
-	private List<ForwardVO> ListFor;
+	private List<ForwardVO> ListVO;
 	private CorVO corVO;
 	
 	
 	@Override
 	public String toString() {
-		return Arrays.toString(ListFor.toArray());
+		return Arrays.toString(ListVO.toArray());
 	}	
 
 	public ForwardVO() {
@@ -99,12 +99,12 @@ public class ForwardVO {
 		this.repName = repName;
 	}
 
-	public List<ForwardVO> getListOrd() {
-		return ListFor;
+	public List<ForwardVO> getListVO() {
+		return ListVO;
 	}
 
-	public void setListOrd(List<ForwardVO> listFor) {
-		ListFor = listFor;
+	public void setListVO(List<ForwardVO> listVO) {
+		ListVO = listVO;
 	}
 
 	public CorVO getCorVO() {
