@@ -75,11 +75,11 @@ String inputNo = (String)request.getAttribute("inputNo");
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${relCode}" readonly/></td>
-                    <td><input type="date" id="relDate" name="ListVO[${fn:length(forward)}].relDate" value="${relDate}" readonly /></td>
-                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" ondblclick="search2()" readonly /></td>
-                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(forward)}].deadLine" value="${deadLine}" readonly /></td>
-                    <td><input type="text" id="note" name="ListVO[${fn:length(forward)}].note" value="${note}" readonly /></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${relCode}" /></td>
+                    <td><input type="date" id="relDate" name="ListVO[${fn:length(forward)}].relDate" value="${relDate}" /></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" ondblclick="search2()" readonly/></td>
+                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(forward)}].deadLine" value="${deadLine}" /></td>
+                    <td><input type="text" id="note" name="ListVO[${fn:length(forward)}].note" value="${note}" /></td>
                 </tbody>
            </table>
         </container2>
@@ -124,11 +124,23 @@ String inputNo = (String)request.getAttribute("inputNo");
 			
 		}
        	function submit1(){
-       		text_code.setAttribute("relCode",text_code.value);
-			text_name.setAttribute("custCode",text_name.value); 
+       		text_code.setAttribute("custCode",text_code.value);
+			text_name.setAttribute("custName",text_name.value); 
        		window.location.href = "${contextPath}/member/forwardcodehelper3.do?" ;
         }
-       		
+    	function setChildValue(name){
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('submit','2');
+			const newParam = URLSearch.toString();
+			if(URLSearch.get('custCode') == null){
+				window.location.href = location.pathname + '?' + newParam + '&custCode=' + code;
+			}
+			else{
+				URLSearch.set('custCode',name);
+				const newParam = URLSearch.toString();
+				window.location.href = location.pathname + '?' + newParam;
+			}
+		}	
        	
         </script>
 </body>
