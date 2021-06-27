@@ -1,12 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"
+    isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<%
+request.setCharacterEncoding("UTF-8");
+%>
+<c:forEach var="com" items="${comcom}" >     
+ 	<c:set var="general_Customer_Code" value="${com.general_Customer_Code }"/>
+ 	<c:set var="general_Customer_Name" value="${com.general_Customer_Name }"/>
+ 	<c:set var="general_Customer_Division" value="${com.general_Customer_Division }"/>
+ 	<c:set var="company_Registration_Number" value="${com.company_Registration_Number }"/>
+ 	<c:set var="resident_Registration_Number" value="${com.resident_Registration_Number }"/>
+ 	<c:set var="representativs_Name" value="${com.representativs_Name }"/>>
+ 	<c:set var="upstate" value="${com.upstate }"/>
+ 	<c:set var="industry" value="${com.industry }"/>
+ 	<c:set var="zipCode" value="${com.zipCode }"/>
+ 	<c:set var="workplace_Address" value="${com.workplace_Address }"/>
+ 	<c:set var="generalCustomer_Tel" value="${com.generalCustomer_Tel }"/>
+ 	<c:set var="wholesale_Retail_Business_Code" value="${com.wholesale_Retail_Business_Code }"/>
+</c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>일반거래처등록</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
- #contents1{
+ 		#contents1{
             position: absolute;
             left: 15%;
             top: 15%;
@@ -102,30 +124,35 @@
 </style>
 </head>
 <body>
-<container1 id = contents1>
-            <table id="table1" align="center">
-                <tr>
-                    <td align="center">거래처코드</td>
-                    <td>
-                        <input type=text name="customerCode"
-                        pattern="[0-9]{4}" maxlength="4"/>
-                    </td>
-                    <td align="center">거래처명</td>
-                    <td>
-                        <input type=text name="customerName">
-                    </td>
-                    <td align="center">거래처구분</td>
-                    <td>
-                        <select name="customerType" >
-                            <option value="default">일반/무역/주민</option>
-                            <option value="1">1.일반</option>
-                            <option value="2">2.무역</option>
-                            <option value="3">3.주민</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+		<container1 id = contents1>
+			<form method="get" id="searchForm">
+	            <table id="table1" align="center">
+	                <tr align="center">
+	                    <td align="center" style="width:80px;">거래처코드</td>
+	                    <td style="width:50px;">
+	                        <input type=text name="customerCode" id="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="5"/>
+	                    </td>
+	     				<td style="width:8px;">
+	     					<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+	     				</td>
+	                    <td style="width:80px; text-align:left;">
+	                    	<input type=text name="ckcustomerCode" id="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>	                    
+	                    </td>	
+	                   
+	                    
+	                    <td align="center" style="width:100px; padding-right:7px;">거래처구분</td>
+	                    <td style="width:100px; text-align:left" >
+	                        <select name="customerType" >
+	                            <option value="default">1.일반</option>
+	                            <option value="2">2.무역</option>
+	                            <option value="3">3.주민</option>
+	                        </select>
+	                    </td>
+	                </tr>
+	            </table>
+	        </form>
         </container1>
+        
         <container2 id= contents2>
             <table id="table2" align="center">
                 <thead>
@@ -134,83 +161,213 @@
                     <td align="center">거래처명</td>
                     <td align="center">구분</td>
                 </thead>
+                    
                 <tbody>
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)"></td>
-                    <td>
-                        <input type="text" name="temp">
+                <c:forEach var="com" items="${comView}" >
+	                
+	                <tr class="repeatedRow">
+	                    <td>
+	                    	<input type="checkbox" name="checkedContent" value="${com.general_Customer_Code}"/>
+	                    </td>                   
+	                    <td>
+	                        <input type="text" onfocus = "searchView(this.value)" value="${com.general_Customer_Code}"/>
+	                    </td>     
+	                    <td>
+	                        <input type="text" value="${com.general_Customer_Name}"/>
+	                    </td>                    
+	                    <td>
+	                        <input type="text" value="${com.general_Customer_Division}"/>
+	                    </td>
+	                </tr>
+	               
+                </c:forEach>
+                <tr>
+                    <td colspan="5">
+                        <button onclick="searchView(this.value)"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none; 
+                        text-align: center; width:99%">새로등록</button>
                     </td>
-                    <td>
-                        <input type="text" name="temp">
-                    </td>
-                    <td>
-                        <input type="text" name="temp">
-                    </td>
+                </tr>
                 </tbody>
+                
             </table>
         </container2>
         <container3 id="contents3">
-            <table id="table3" align="center">
+        <form  method="get" id="reg_gen_account"> <!-- ****폼태그**** -->
+            <table id="table3" align="center" style="margin-top:10px;">
                 <tr>
-                    <p><td colspan = "4" span style="color:black" align="center">기본등록사항</td></p>
+                    <p><td colspan = "4" style="color:black;" align="center">기본등록사항</td></p>
+                </tr>
+                <tr>
+                    <td align="center">코드</td>
+                    <td colspan="3">
+                        <input type="text" name="general_Customer_Code" id="general_Customer_Code" value="${general_Customer_Code }"
+                        	style="background-color:yellow;">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">거래처명</td>
+                    <td colspan="3">
+                        <input type="text" name="general_Customer_Name" id="general_Customer_Name" value="${general_Customer_Name }">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">구분</td>
+                    <td colspan="3">
+                        <input type="text" name="general_Customer_Division" id="general_Customer_Division" value="${general_Customer_Division }">
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="registrationNumber" id="reqInput"
+                        <input type="text" name="company_Registration_Number" id="company_Registration_Number" value="${company_Registration_Number}"
                         pattern="[0-9]{10}" maxlength="10"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="socialNumber" pattern="[0-9]{13}" maxlength="13"/>
+                        <input type="text" name="resident_Registration_Number" id="resident_Registration_Number" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="3">
-                        <input type="text" name="ceoName">
+                        <input type="text" name="representativs_Name" id="representativs_Name" value="${representativs_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="3">
-                        <input type="text" name="business">
+                        <input type="text" name="upstate" id="upstate" value="${upstate }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="3">
-                        <input type="text" name="specific">
+                        <input type="text" name="industry" id="industry" value="${industry }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" pattern="[0-9]{5}" maxlength="5" 
-                        style="width:150px;"/>
-                        <i class="fas fa-search" style="color: blue;"></i>
+                        <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
+                        style="width:150px; background-color:#eee;" readonly/>
+                        <a href="javascript:searchZip()"><i class="fas fa-search" style="color :blue;"></i></a>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업장주소</td>
                     <td colspan="3">
-                        <input type="text" name="workSpaceAddress">
+                        <input type="text" name="workplace_Address" id="workplace_Address" value="${workplace_Address }" 
+                        	style="background-color:#eee;" readonly>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="3">
-                        <input type="text" name="phoneNumber" pattern="[0-9]{10}" maxlength="10"/>
+                        <input type="text" name="generalCustomer_Tel" id="generalCustomer_Tel" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주류코드</td>
                     <td>
-                        <input type="text" name="inchargeManager">
+                        <input type="text" name="wholesale_Retail_Business_Code" id="wholesale_Retail_Business_Code" value="${wholesale_Retail_Business_Code }">
                     </td>
                 </tr>
             </table>
+        </form>
         </container3>
+        <script>
+        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+        deleteButton.addEventListener('click', function(){deleteData();}, false);
+        
+        var deleteButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
+        deleteButton.addEventListener('click', function(){searchData();}, false);
+        
+        var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
+        registButton.addEventListener('click', function(){newRow();}, false);
+        
+        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateRow();}, false); 
+        
+       
+        
+        function searchView(name) { //조회를 담당하는 자바스크립트임
+            window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
+        }
+        
+        
+        function searchData() {
+        	var searchForm = $('#searchForm');
+        	searchForm.submit();
+        }
+        
+        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
+        	var item = document.getElementsByName("checkedContent").length;
+        	var no = "";
+        	var ary = [];
+        	
+        	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+        		if(document.getElementsByName("checkedContent")[i].checked==true) {
+        			no = document.getElementsByName("checkedContent")[i].value;
+        			ary.push(no);
+        		}       		
+        	}
+        	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+    			alert('삭제할 목록의 체크박스를 선택해주세요');
+    			window.location.href = "${contextPath}/member/regbasicacc.do";
+    		}
+        	else {//컨트롤러로 해당목록의 no값을 보낸다
+        		alert('삭제 되었습니다');
+    			window.location.href = "${contextPath}/member/deleteBasicacc.do?no="+ary;
+        	}
+        }
+        
+        function newRow(){      	
+			alert('등록되었습니다');        	
+    		const URLSearch = new URLSearchParams(location.search);
+    		URLSearch.set('submit','1');
+    		const newParam = URLSearch.toString();
+    		var link = location.pathname +'?'+newParam;
+    		var articleNOInput = document.createElement("input");
+    		articleNOInput.setAttribute("type","hidden");
+    		articleNOInput.setAttribute("name","path");
+    		articleNOInput.setAttribute("value", link);
+    		document.getElementById('reg_gen_account').appendChild(articleNOInput);
+    		document.getElementById('reg_gen_account').action = "${contextPath}/member/addbasicacc.do";
+    		document.getElementById('reg_gen_account').submit();
+    	}
+        
+        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#reg_gen_account').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});       	 
+        	if(is_empty) { //비어있는내용이 있는지 체크함
+        	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+        	}
+        	else{
+	        	document.getElementById('reg_gen_account').action = "${contextPath}/member/updateBasicacc.do";
+	    		document.getElementById('reg_gen_account').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+	    		alert('수정되었습니다'); 
+        	}      	
+        } 
+         
+        function searchCode() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
+        	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
+        }
+        
+        function searchZip() { //우편번호 검색 팝업을 띄우는 함수
+        	openWindowPop("${contextPath}/member/regbasicaccZipPopup.do", "regbasicaccZipPopup");
+        } 
+               
+       
+  
+		</script>
+        
 </body>
 </html>

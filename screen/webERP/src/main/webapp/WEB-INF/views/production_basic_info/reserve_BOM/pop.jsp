@@ -34,7 +34,7 @@
             border: 1px solid black;
         }
         #button{
-            margin-top: 3%;
+            margin-top: 3%;.
             margin-right: 3%;
             text-align: right;
         }

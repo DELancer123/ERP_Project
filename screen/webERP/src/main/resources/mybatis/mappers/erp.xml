@@ -925,6 +925,316 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 		<result property="parentInspection" column="inspection" />
 		<result property="parentNote" column="note" />		
 	</resultMap>
+	<!-- 회사등록(조회) 파트 -->
+	<resultMap id="comResult" type="SystemmagVO">
+		<result property="company_Code" column="Company_Code"	/>
+		<result property="company_Name" column="Company_Name"	/>
+		<result property="sortation" column="Sortation"	/>
+		<result property="fiscal_Year_Number" column="Fiscal_Year_Number"	/>
+		<result property="fiscal_Year_Dates" column="Fiscal_Year_Dates"	/>
+		<result property="fiscal_Year_Datee" column="Fiscal_Year_Datee"	/>
+		<result property="company_Registration_Number" column="Company_Registration_Number"	/>
+		<result property="corporate_Registration_Number" column="Corporate_Registration_Number"	/>
+		<result property="representatives_Name" column="Representatives_Name"	/>
+		<result property="resident_Registration_Number" column="Resident_Registration_Number"	/>
+		<result property="main_Store_Postal_Code" column="Main_Store_Postal_Code"	/>
+		<result property="main_Store_Address" column="Main_Store_Address"	/>
+		<result property="main_Branch_Number" column="Main_Branch_Number"	/>
+		<result property="main_Store_Tel" column="Main_Store_Tel"	/>
+		<result property="upstate" column="Upstate"	/>
+		<result property="industry" column="Industry"	/>
+		<result property="date_Of_Establishment" column="Date_Of_Establishment"	/>
+		<result property="whether_To_Use_Status" column="Whether_To_Use_Status"	/>
+	<!-- 조회 -->
+	</resultMap>
+	<select id="selectcomList" resultMap="comResult">
+		<![CDATA[select company_Code,company_Name,sortation from SM_CRI_Com_Reg]]>	
+	</select>
+	<select id="selectAllcomList" resultMap="comResult" parameterType="String">
+		<![CDATA[select * from SM_CRI_Com_Reg where company_code = #{company_Code}]]>	
+	</select>
+	<!-- 등록 -->
+	<insert id="insertCom" parameterType="systemmagVO">
+	<![CDATA[
+	insert into SM_CRI_Com_Reg
+	values(#{company_Code},#{company_Name}, #{sortation}, #{fiscal_Year_Number}, #{fiscal_Year_Dates}, #{fiscal_Year_Datee},
+	 #{company_Registration_Number},#{corporate_Registration_Number}, #{representatives_Name}, #{resident_Registration_Number}, #{main_Store_Postal_Code}, #{main_Store_Address},
+	 #{main_Branch_Number},#{main_Store_Tel}, #{upstate}, #{industry}, #{date_Of_Establishment}, #{whether_To_Use_Status})]]>
+	</insert>
+	<!-- 수정 -->
+	<update id="updatecompany" parameterType="SystemmagVO">
+		<![CDATA[
+			update SM_CRI_Com_Reg
+			set	company_Name=#{company_Name},
+			sortation=#{sortation},
+			fiscal_Year_Number=#{fiscal_Year_Number},
+			fiscal_Year_Dates=#{fiscal_Year_Dates},
+			fiscal_Year_Datee=#{fiscal_Year_Datee},
+			company_Registration_Number=#{company_Registration_Number},
+			corporate_Registration_Number=#{corporate_Registration_Number},
+			representatives_Name=#{representatives_Name},
+			resident_Registration_Number=#{resident_Registration_Number},
+			main_Store_Postal_Code=#{main_Store_Postal_Code},
+			main_Store_Address=#{main_Store_Address},
+			main_Branch_Number=#{main_Branch_Number},
+			main_Store_Tel=#{main_Store_Tel},
+			upstate=#{upstate},
+			industry=#{industry},
+			date_Of_Establishment=#{date_Of_Establishment},
+			whether_To_Use_Status=#{whether_To_Use_Status}
+			where company_Code=#{company_Code}
+		]]>
+	</update>
+	<!-- 삭제 -->
+	<delete id="deletecompany">
+		delete from SM_CRI_Com_Reg where Company_Code = #{no}
+	</delete>
+	<!-- 팝업 -->
+	<resultMap id="ZipViewResult" type="ZipcodeVO">
+		<result property="zipcode" column="Zipcode" />
+		<result property="road_address" column="Road_Address" />
+		<result property="lot_address" column="Lot_Address" />
+	</resultMap>
+	<select id="selectZipList" resultMap="ZipViewResult">
+		<![CDATA[select * from SM_CRI_Zip]]>
+	</select>
+	<select id="selectzip" resultMap="ZipViewResult"
+		parameterType="String">
+		<![CDATA[select zipcode,road_address,lot_address from SM_CRI_Zip where zipcode=#{zipNumber}]]>
+	</select>
+	<!-- 사업장등록 -->
+		<resultMap id="worResult" type="WorkplaceVO">
+		<result property="workplace_Code" column="Workplace_Code"	/>
+		<result property="workplace_Name" column="Workplace_Name"	/>
+		<result property="worcompany_Registration_Number" column="Company_Registration_Number"	/>
+		<result property="worcorporate_Registration_Number" column="Corporate_Registration_Number"	/>
+		<result property="worrepresentatives_Name" column="Representatives_Name"	/>
+		<result property="workplace_Zipcode" column="Workplace_Zipcode"	/>
+		<result property="workplace_Address" column="Workplace_Address"	/>
+		<result property="workplace_Number" column="Workplace_Number"	/>
+		<result property="workplace_Tel" column="Workplace_Tel"	/>
+		<result property="worupstate" column="Upstate"	/>
+		<result property="worindustry" column="industry"	/>
+		<result property="main_Store_Status" column="Main_Store_Status"	/>
+	</resultMap>
+	<!-- 조회 -->
+	<select id="selectworList" resultMap="worResult">
+		<![CDATA[select workplace_Code,workplace_Name from SM_CRI_Wor_Reg]]>	
+	</select>
+	<select id="selectAllworList" resultMap="worResult" parameterType="String">
+		<![CDATA[select * from SM_CRI_Wor_Reg where workplace_Code = #{workplace_Code}]]>	
+	</select>
+	<!-- 등록 -->
+	<insert id="insertWor" parameterType="workplaceVO">
+	<![CDATA[
+	insert into SM_CRI_Wor_Reg
+	values(#{workplace_Code},#{workplace_Name}, #{worcompany_Registration_Number}, #{worcorporate_Registration_Number}, #{worrepresentatives_Name}, #{workplace_Zipcode},
+	 #{workplace_Address},#{workplace_Number}, #{workplace_Tel}, #{worupstate}, #{worindustry}, #{main_Store_Status})]]>
+	</insert>
+	<!-- 수정 -->
+	<update id="updateworkplace" parameterType="workplaceVO">
+		<![CDATA[
+			update SM_CRI_Wor_Reg
+			set	workplace_Name=#{workplace_Name},
+			company_Registration_Number=#{worcompany_Registration_Number},
+			corporate_Registration_Number=#{worcorporate_Registration_Number},
+			representatives_Name=#{worrepresentatives_Name},
+			workplace_Zipcode=#{workplace_Zipcode},
+			workplace_Address=#{workplace_Address},
+			workplace_Number=#{workplace_Number},
+			workplace_Tel=#{workplace_Tel},
+			upstate=#{worupstate},
+			industry=#{worindustry},
+			main_Store_Status=#{main_Store_Status}
+			where workplace_Code=#{workplace_Code}
+		]]>
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteWor">
+		delete from SM_CRI_Wor_Reg where Workplace_Code = #{no}
+	</delete>
+	<!-- 품목등록 -->
+		<resultMap id="regitemResult" type="itemRegVO">
+		<result property="item_Code" column="Item_Code"	/>
+		<result property="item_Name" column="Item_Name"	/>
+		<result property="standard" column="Standard"	/>
+		<result property="inventory_Unit" column="Inventory_Unit"	/>
+		<result property="whether_LOT" column="Whether_LOT"	/>
+		<result property="sET_Item" column="SET_Item"	/>
+		<result property="inspection_Status" column="Inspection_Status"	/>
+		<result property="use_Status" column="Use_Status"	/>
+		<result property="lOT_Quantity" column="LOT_Quantity"	/>
+		<result property="drawing_Number" column="Drawing_Number"	/>
+		<result property="hs_Code" column="Hs_Code"	/>
+		<result property="width" column="Width"	/>
+		<result property="length" column="Length"	/>
+		<result property="height" column="Height"	/>
+		<result property="cost" column="Cost"	/>
+		<result property="item_Group_Code" column="Item_Group_Code"	/>
+		<result property="division" column="Division"	/>
+		<result property="notes" column="Notes"	/>
+		<result property="daily_production" column="Daily_production"	/>
+		</resultMap>
+	<!-- 조회 -->
+		<select id="selectRegitemList" resultMap="regitemResult">
+		<![CDATA[select item_Code,item_Name,standard from SM_BIM_Ite_Reg]]>	
+	</select>
+	<select id="selectAllRegitemList" resultMap="regitemResult" parameterType="String">
+		<![CDATA[select * from SM_BIM_Ite_Reg where item_Code = #{item_Code}]]>	
+	</select>
+	<!-- 조건조회 -->
+	<select id="searchitemg" resultMap="regitemResult"
+		parameterType="String">
+		<![CDATA[select * from SM_BIM_Ite_Reg where item_Group_Code = #{itemNumber}]]>
+	</select>
+	<!-- 등록 -->
+	<insert id="insertItem" parameterType="itemVO">
+	<![CDATA[
+	insert into SM_BIM_Ite_Reg
+	values(#{item_Code},#{item_Name}, #{standard}, #{inventory_Unit}, #{whether_LOT}, #{sET_Item},
+	 #{inspection_Status}, #{use_Status}, #{lOT_Quantity}, #{drawing_Number}, #{hs_Code}, #{width}, #{length}
+	 , #{height}, #{cost}, #{item_Group_Code}, #{division}, #{notes}, #{daily_production})]]>
+	</insert>
+	<!-- 수정 -->
+	<update id="updateItem" parameterType="itemVO">
+		<![CDATA[
+			update SM_BIM_Ite_Reg
+			set	item_Name=#{item_Name},
+			standard=#{standard},
+			inventory_Unit=#{inventory_Unit},
+			whether_LOT=#{whether_LOT},
+			sET_Item=#{sET_Item},
+			inspection_Status=#{inspection_Status},
+			use_Status=#{use_Status},
+			lOT_Quantity=#{lOT_Quantity},
+			drawing_Number=#{drawing_Number},
+			hs_Code=#{hs_Code},
+			width=#{width},
+			length=#{length},
+			height=#{height},
+			cost=#{cost},
+			item_Group_Code=#{item_Group_Code},
+			division=#{division},
+			notes=#{notes},
+			DAILYPRODUCTION=#{daily_production}
+			where item_Code=#{item_Code}
+		]]>
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteItem">
+		delete from SM_BIM_Ite_Reg where Item_Code = #{no}
+	</delete>
+	<!-- 품목군등록 -->	
+		<resultMap id="itemgResult" type="ItemgVO">
+		<result property="item_Group_Code" column="Item_Group_Code"	/>
+		<result property="item_Group_Name" column="Item_Group_Name"	/>
+		<result property="use_Status" column="Use_Status"	/>
+		<result property="explanation" column="Explanation"	/>
+		</resultMap>
+	<!-- 조회 -->
+	<select id="selectAllitemgList" resultMap="itemgResult">
+		<![CDATA[select * from SM_BIM_Ite_gro_Reg]]>	
+	</select>
+	<!-- 등록 -->
+	<insert id="insertItemg" parameterType="ItemgVO">
+	<![CDATA[
+	insert into SM_BIM_Ite_gro_Reg
+	values(#{item_Group_Code},#{item_Group_Name}, #{use_Status}, #{explanation})]]>
+	</insert>
+	<!-- 수정 -->
+	<update id="updateitemg" parameterType="ItemgVO">
+		<![CDATA[
+			update SM_BIM_Ite_gro_Reg
+			set	ITEM_GROUP_NAME=#{item_Group_Name},
+				USE_STATUS=#{use_Status},
+				EXPLANATION=#{explanation}
+			where ITEM_GROUP_CODE=#{item_Group_Code}
+		]]>
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteItemg">
+		delete from SM_BIM_Ite_gro_Reg where Item_Group_Code = #{no}
+	</delete>
+	<!-- 사원조회 -->
+	<resultMap id="employeeResult" type="EmployeeVO">
+		<result property="employee_Code" column="Employee_Code"	/>
+		<result property="employee_Name" column="Employee_Name"	/>
+		<result property="department_Code" column="Department_Code"	/>
+		<result property="department_Name" column="Department_Name"	/>
+		<result property="joinDate" column="JoinDate"	/>
+		<result property="resignationDate" column="ResignationDate"	/>
+		<result property="emergency_Contact_Network" column="Emergency_Contact_Network"	/>
+		</resultMap>
+	<select id="selectAllemployeeList" resultMap="employeeResult">
+		<![CDATA[select * from SM_CRI_Emp_Reg]]>	
+	</select>
+	
+	<!-- 부서등록 -->
+	<resultMap id="departmentResult" type="DepartmentVO">
+		<result property="department_Code" column="Department_Code"	/>
+		<result property="department_Name" column="Department_Name"	/>
+		<result property="workplace_Code" column="Workplace_Code"	/>
+		<result property="workplace_Name" column="Workplace_Name"	/>
+		<result property="sector_Code" column="Sector_Code"	/>
+		<result property="sector_Name" column="Sector_Name"	/>
+		<result property="usedate" column="Usedate"	/>
+		</resultMap>
+	<!-- 조회 -->
+	<select id="selectAlldepartmentList" resultMap="departmentResult">
+		<![CDATA[select * from SM_CRI_Dep_Reg]]>	
+	</select>
+	<!-- 등록 -->
+	<insert id="insertDep" parameterType="DepartmentVO">
+	<![CDATA[
+	insert into SM_CRI_Dep_Reg
+	values(#{department_Code},#{department_Name}, #{workplace_Code}, #{workplace_Name}, #{sector_Code}, #{sector_Name},
+	 #{usedate})]]>
+	</insert>
+	<!-- 수정 -->
+	<update id="updatedepartment" parameterType="DepartmentVO">
+		<![CDATA[
+			update SM_CRI_Dep_Reg
+			set	department_Name=#{department_Name},
+			workplace_Code=#{workplace_Code},
+			workplace_Name=#{workplace_Name},
+			sector_Code=#{sector_Code},
+			sector_Name=#{sector_Name},
+			usedate=#{usedate}
+			where department_Code=#{department_Code}
+		]]>
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteDep">
+		delete from SM_CRI_Dep_Reg where Department_Code = #{no}
+	</delete>
+	<!-- 부문 -->
+		<resultMap id="sectorResult" type="SectorVO">
+		<result property="sector_Code" column="Sector_Code"	/>
+		<result property="sector_Name" column="Sector_Name"	/>
+		<result property="useDate" column="UseDate"	/>
+		</resultMap>
+	<!-- 조회 -->
+	<select id="selectSector" resultMap="sectorResult">
+		<![CDATA[select * from SM_CRI_Sec_Reg]]>	
+	</select>
+	<!--기초정보관리파트-->
+	<!--기초정보관리_일반거래처등록-->
+	<resultMap id="basicInfoResult" type="SystemmagVOMJ">
+		<result property="general_Customer_Code" column="general_Customer_Code" />
+		<result property="general_Customer_Name" column="general_Customer_Name" />
+		<result property="general_Customer_Division" column="general_Customer_Division" />
+		<result property="company_Registration_Number" column="company_Registration_Number" />
+		<result property="resident_Registration_Number" column="resident_Registration_Number" />
+		<result property="representativs_Name" column="representativs_Name" />
+		<result property="upstate" column="upstate" />
+		<result property="industry" column="industry" />
+		<result property="zipCode" column="zipCode" />
+		<result property="workplace_Address" column="workplace_Address" />
+		<result property="generalCustomer_Tel" column="generalCustomer_Tel" />
+		<result property="wholesale_Retail_Business_Code" column="wholesale_Retail_Business_Code" />	
+		<result property="road_Address" column="road_Address" />
+		<result property="lot_Address" column="lot_Address" />
+	</resultMap>
 
 	<select id="selectAllRegOutPerformanceList" resultMap="regOutPerformanceView">
 		<![CDATA[select distinct(out.workordernumber),out.materialforwardingstatus,func_out_wor_reg(out.workplace_code),out.instructiondate,out.duedate,out.item_code,out.item_name,out.standard,out.inventory_unit,
@@ -1057,6 +1367,7 @@ ORDER BY out.workordernumber]]>
 	</resultMap>
 	
 	
+
 	<select id="selectcusList" resultMap="sujuView">
 		<![CDATA[ select *
 		  from CSM_SM_Ord_Reg
@@ -1100,41 +1411,146 @@ ORDER BY out.workordernumber]]>
 		  where menu = #{searchWord}
 		]]>
 	</select>
+	<!-- 장순웅 검색 -->
+	<select id="selectPopitemList"  parameterType="String" resultMap="itemgResult">
+		<![CDATA[ select Item_Group_Code, Item_Group_Name
+		  from SM_BIM_Ite_gro_Reg
+		  where Item_Group_Name like '%'||#{item_Group_Name}||'%'
+		]]>
+	</select>
 	
+
+	<select id="selectAllBasicList" resultMap="basicInfoResult">
+		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG order by GENERAL_CUSTOMER_CODE]]>
+	</select>
+	<select id="selectSearchBasicList" parameterType="String" resultMap="basicInfoResult">
+		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{customerCode}]]>
+	</select>
+	<select id="selectBasicList" parameterType="String" resultMap="basicInfoResult">
+		<![CDATA[select * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
+	</select>
+	<delete id="deleteBasicList">
+		delete from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{no}
+	</delete>
+	<update id="updateBasicList" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_GEN_CUS_REG
+			set	general_Customer_Name=#{general_Customer_Name},
+			general_Customer_Division=#{general_Customer_Division},
+			company_Registration_Number=#{company_Registration_Number},
+			resident_Registration_Number=#{resident_Registration_Number},
+			representativs_Name=#{representativs_Name},
+			upstate=#{upstate},
+			industry=#{industry},
+			zipCode=#{zipCode},
+			workplace_Address=#{workplace_Address},
+			generalCustomer_Tel=#{generalCustomer_Tel},
+			wholesale_Retail_Business_Code=#{wholesale_Retail_Business_Code}
+			where general_Customer_Code=#{general_Customer_Code}			
+		]]>
+	</update>
+	<insert id="insertNewCustomer" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_GEN_CUS_REG
+			values(#{general_Customer_Code},
+			#{general_Customer_Name}, 
+			#{general_Customer_Division}, 
+			#{company_Registration_Number}, 
+			#{resident_Registration_Number}, 
+			#{representativs_Name},
+			#{upstate}, 
+			#{industry},
+			#{zipCode}, 
+			#{workplace_Address}, 
+			#{generalCustomer_Tel}, 
+			#{wholesale_Retail_Business_Code})]]>
+	</insert>
+	<select id="selectZipList1" parameterType="String" resultMap="basicInfoResult">
+		<![CDATA[select * from SM_CRI_ZIP]]>
+	</select>
+	<select id="selectPopCustomerList" resultMap="basicInfoResult">
+		<![CDATA[ select general_Customer_Code, general_Customer_Name
+		  from SM_BIM_GEN_CUS_REG
+		  where general_Customer_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<!-- 기초정보관리_창고/공정/외주공정등록 -->
+	<resultMap id="outwareInfoResult" type="SystemmagVOMJ">
+		<!-- 창고/장소파트 -->
+		<result property="house_Code" column="house_Code" />
+		<result property="house_Name" column="house_Name" />
+		<result property="house_Location_In" column="house_Location_In" />
+		<result property="house_Location_Out" column="house_Location_Out" />
+		<result property="house_Explanation" column="house_Explanation" />
+		<result property="house_Status" column="house_Status" />
+		<!-- 생산공정/작업장 -->
+		<result property="process_Code" column="process_Code" />
+		<result property="process_Name" column="process_Name" />
+		<result property="process_Location_In" column="process_Location_In" />
+		<result property="process_Location_Out" column="process_Location_Out" />
+		<result property="process_Explanation" column="process_Explanation" />
+		<result property="process_Status" column="process_Status" />
+		<!-- 외주공정/작업장 -->	
+		<result property="outsourcing_Code" column="outsourcing_Code" />
+		<result property="outsourcing_Name" column="outsourcing_Name" />
+		<result property="outsourcing_Location_In" column="outsourcing_Location_In" />
+		<result property="outsourcing_Location_Out" column="outsourcing_Location_Out" />
+		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
+		<result property="outsourcing_Status" column="outsourcing_Status" />
+	</resultMap>
+	<!-- 윗칸 데이터 -->
+	<select id="selectAllHouOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_HOU_REG]]>
+	</select>
+	<select id="selectAllProOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_PRO_REG]]>
+	</select>
+	<select id="selectAllOutOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_OUT_REG]]>
+	</select>
+	<!-- 아랫칸 데이터 -->
+	<select id="selectAllHouWorOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_WOR_REG]]>
+	</select>
+	<select id="selectAllProWorOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_PRO_WOR_REG]]>
+	</select>
+	<select id="selectAllOutWorOutware" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_OUT_WOR_REG]]>
+	</select>
 	
+	<!-- 기초정보관리_물류관리내역등록 -->
+	<resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
+		<result property="logistics_In_Code" column="logistics_In_Code" />
+		<result property="logistics_In_Name" column="logistics_In_Name" />
+		<result property="explanation" column="explanation" />
+		<result property="remarks" column="remarks" />
+	</resultMap>
+	<select id="selectAllLogisticsManagement" resultMap="logisticsManagementResult">
+		<![CDATA[select * from SM_BIM_LOG_MAN]]>
+	</select>
+	<select id="selectOneLogisticsManagement" parameterType="String" resultMap="logisticsManagementResult">
+		<![CDATA[select * from SM_BIM_LOG_MAN where logistics_In_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteLogisticsManagement">
+		delete from SM_BIM_LOG_MAN where logistics_In_Code = #{no}
+	</delete>
+	<update id="updateLogisticsManagement" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_LOG_MAN
+			set	logistics_In_Name=#{logistics_In_Name},
+			explanation=#{explanation},
+			remarks=#{remarks},
+			where logistics_In_Code=#{logistics_In_Code}			
+		]]>
+	</update>
+	<insert id="insertNewLogisticsManagement" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_LOG_MAN
+			values(#{logistics_In_Code},
+			#{logistics_In_Name}, 
+			#{explanation}, 
+			#{remarks})]]>
+	</insert>
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

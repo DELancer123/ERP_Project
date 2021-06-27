@@ -312,7 +312,63 @@ input {
 		</div>
 		<footer id=footer> footer </footer>
 	</div>
-	<script>
+    <div id=wrap>
+        <header id = header>
+            <img src="src/main/webapp/resources/image/kingdomlogo.png" class="logo"/>
+            <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
+            <ul id="etc_menu">
+                <li><a href="#">로그아웃</a></li>
+                <li><a href="#">기타메뉴1</a></li>
+                <li><a href="#">기타메뉴2</a></li>
+                <li><a href="#">기타메뉴3</a></li>
+            </ul>
+            <input type="text" value=" 메뉴 검색" id="search"/>
+            <input type="button" value="검색" class="search_button"/>
+        </header>
+        <nav id = nav1>
+            <ul id="gnb">
+                <li><a href="http://localhost:8090/webERP/member/systemmain.do">시스템관리</a>
+                    <ul id="sub" >
+                        <li><a href="#">회사등록정보</a></li>
+                        <li><a href="#">기초정보관리</a></li>
+                    </ul></li>
+                <li><a href="http://localhost:8090/webERP/member/businessmain.do">영업관리</a>
+                    <ul id="sub" style="left: -101%;">
+                        <li><a href="#">영업관리</a></li>
+                        <li><a href="#">영업현황</a></li>
+                    </ul></li>
+                <li><a href="http://localhost:8090/webERP/member/purchasemain.do">구매/자재관리</a>
+                    <ul id="sub" style="left: -202%;">
+                        <li><a href="#">구매관리</a></li>
+                        <li><a href="#">재고관리</a></li>
+                        <li><a href="#">재고수불현황</a></li>
+                        <li><a href="#">기초정보관리</a></li>
+                    </ul></li>
+                <li><a href="http://localhost:8090/webERP/member/productionmain.do">생산관리공통</a>
+                    <ul id="sub" style="left: -303%;">
+                        <li><a href="#">생산관리</a></li>
+                        <li><a href="#">외주관리</a></li>
+                        <li><a href="#">기초정보관리</a></li>
+                    </ul></li>
+            </ul>
+        </nav>
+        <nav id="nav2">
+            <button id="delete" onclick="">삭제</button>
+            <button id="view_button">조회</button>
+            <button id="save" onclick="newRow()">저장</button>
+            <button id="update">수정</button>
+        </nav>
+        <div>
+            <tiles:insertAttribute name="side"/>
+        </div>
+        <div>
+        	<tiles:insertAttribute name="body"/>
+        </div>
+        <footer id= footer>
+            footer
+        </footer>
+    </div>
+    <script>
         var side_button1 = document.getElementById('side1');
         var side_button2 = document.getElementById('side2');
         var side_button3 = document.getElementById('side3');
@@ -321,7 +377,7 @@ input {
         var num_box = document.getElementById('num');
         var save_button = document.getElementById('save');
         var delete_button = document.getElementById('delete');
-        var update_button = document.getElementById('update');
+        /* var update_button = document.getElementById('update'); */
         var view_button = document.getElementById('view_button');
         var itemcode = document.getElementById('itemcode');
         side_button1.onclick = function(){
@@ -353,18 +409,20 @@ input {
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
         }
-       
+        
+        
+        
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
             })
         }
+        
         function openWindowPop(url, name){
-            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+            var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
         }
-        
 		view_button.onclick = function(){
 			  const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
@@ -373,7 +431,6 @@ input {
 			  window.open(location.pathname + '?' + newParam, '_self');
       	}
 		</script>
-	/////////////////
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
@@ -416,20 +473,6 @@ input {
 		}); //end ajax	
 	});
 	
-	/* function displayResult(jsonInfo){
-		var count = jsonInfo.length;
-		if(count > 0) {
-		    var html = '';
-		    for(var i =0 ; i<count ; i++){
-			   html += "<a href=\"javascript:select('"+jsonInfo.keyword[i]+"')\">"+jsonInfo.keyword[i]+"</a><br/>";
-		    }
-		    var listView = document.getElementById("suggestList");
-		    listView.innerHTML = html;
-		    show('suggest');
-		}else{
-		    hide('suggest');
-		} 
-	} */
 	$(document).on("click", "#yahoo", function (e){
 		var initCode = 	$(this).find('input[id=iCode]').val();	
 		$('input[name=searchWord]').val(initCode);
@@ -449,7 +492,6 @@ input {
 		  element.style.display = 'none'; 
 	   }
 	}
-		
     </script>
 </body>
 </html>

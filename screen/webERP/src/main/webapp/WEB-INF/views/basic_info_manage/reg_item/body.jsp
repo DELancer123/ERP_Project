@@ -1,10 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
+<c:forEach var="item1" items="${comitem}" >     
+ 	<c:set var="item_Code" value="${item1.item_Code  }"/>
+ 	<c:set var="item_Name" value="${item1.item_Name }"/>
+ 	<c:set var="standard" value="${item1.standard }"/>
+ 	<c:set var="inventory_Unit" value="${item1.inventory_Unit }"/>
+ 	<c:set var="whether_LOT" value="${item1.whether_LOT }"/>
+ 	<c:set var="sET_Item" value="${item1.sET_Item }"/>
+ 	<c:set var="inspection_Status" value="${item1.inspection_Status }"/>
+ 	<c:set var="use_Status" value="${item1.use_Status }"/>
+ 	<c:set var="lOT_Quantity" value="${item1.lOT_Quantity }"/>
+ 	<c:set var="drawing_Number" value="${item1.drawing_Number}"/>
+ 	<c:set var="hs_Code" value="${item1.hs_Code }"/>
+ 	<c:set var="width" value="${item1.width }"/>
+ 	<c:set var="length" value="${item1.length }"/>
+ 	<c:set var="height" value="${item1.height }"/>
+ 	<c:set var="cost" value="${item1.cost }"/>
+ 	<c:set var="item_Group_Code" value="${item1.item_Group_Code}"/>
+ 	<c:set var="division" value="${item1.division }"/> 	
+ 	<c:set var="notes" value="${item1.notes }"/>
+ 	<c:set var="daily_production" value="${item1.daily_production }"/>
+
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
 		#contents1{
             position: absolute;
@@ -88,74 +117,70 @@
             width: 100%; 
         }
         #bottom1 {
-            position: absolute;
-            bottom: 0px;
+			position:fixed;
+			bottom:0px;
         }
         
-        #reqInput {
+        .reqInput {
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
 </style>
 </head>
 <body>
+<form  method="get" id="regitem">
 <container1 id = contents1>
             <table id="table1">
                 <tr>
                     <td>품목군</td>
                     <td>
-                        <input type=text style="width:80px;">
-                        <i class="fas fa-search" style="color: blue;"></i>
+                        <input type=text name = "type_code" style="width:80px;" value="${param.itemgNumber}" />
+                        <a href="javascript:searchitemg()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                     <td>
-                        <input type=text>
+                        <input type=text name = "type_name" value='${param.itemg_name}' />
                     </td>
                 </tr>
-                <tr>
-                    <td>검색조건</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="0">0.시작문자열</option>
-                            <option value="1">1.포함문자열</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" value=" 품번 검색" id="search1">
-                    </td>
-                    <td>
-                        <input type="text" value=" 품명 검색" id="search2">
-                    </td>
-                    <td>
-                        <input type="text" value=" 규격 검색" id="search3">
-                    </td>
-                </tr>
+               
             </table>
         </container1>
         <container2 id= contents2>
             <table id="table2">
                 <thead>
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                    <td><input type="checkbox" name="checkedContent" onclick="selectAll1(this)" id="focus1" /></td>
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
                 </thead>
+                <c:set var="cnt" value="0" />
+                <c:forEach var="item" items="${itemView}" > 
                 <tbody>
-                    <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td><input type="checkbox" value='${item.item_Code }' id="chec-k" name="checkedContent"/></td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${item.item_Code }' ondblclick="searchView(this.value)">
                     </td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${item.item_Name }'>
                     </td>
                     <td>
-                        <input type="text">
+                        <input type="text" value='${item.standard }'>
                     </td>
                 </tbody>
+                <c:set var="cnt" value="${cnt +1}" />
+                </c:forEach>
+                <tr>
+                    <td colspan="3">
+                        <button onclick="searchView(this.value)"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none; 
+                        text-align: center; width:150%">새로등록</button>
+                    </td>
+                </tr>
             </table>
             <div id=bottom1>
                 <table>
                     <td>조회품목수</td>
-                    <td><input type="text" style="width: 50px;">개</td>
+                    <td><input type="text" style="width: 50px;" value=<c:out value="${cnt }" /> />개</td>
                 </table>
             </div>
         </container2>
@@ -164,143 +189,222 @@
                 <tr>
                     <td align="center">품번</td>
                     <td>
-                        <input type="text" disabled>
+                        <input type="text" name="item_Code" id=item_Code class="reqInput" value='${item_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">품명</td>
                     <td>
-                        <input type="text" disabled>
+                        <input type="text" name="item_Name" id=item_Name class="reqInput" value='${item_Name }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">규격</td>
                     <td>
-                        <input type="text" disabled>
+                        <input type="text" name="standard" id=standard value='${standard }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">재고단위</td>
                     <td>
-                        <input type="text" id="reqInput">
+                        <input type="text" name="inventory_Unit" id=inventory_Unit  value='${inventory_Unit }'>
                     </td>
                 </tr>
-                <!-- <tr>
-                    <td align="center">품목군</td>
-                    <td>
-                        <input type="text" style="width: 70px;">
-                        <button>+</button>
-                        <input type="text" style="width: 100px;">
-                    </td>
-                </tr> -->
                 <tr>
                     <td align="center">LOT여부</td>
                     <td>
-                        <select name="" id="reqInput">
-                            <option value="0">0.미사용</option>
-                            <option value="1">1.미사용</option>
+                        <select name="whether_LOT" id="whether_LOT">
+                            <option value=0 <c:if test="${whether_LOT == 0}">selected</c:if>>0.미사용</option>
+                            <option value=1 <c:if test="${whether_LOT == 1}">selected</c:if>>1.사용</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">SET품목</td>
                     <td>
-                        <select name="" id="reqInput">
-                            <option value="0">0.부</option>
-                            <option value="1">1.여</option>
+                        <select name="sET_Item" id="sET_Item">
+                            <option value=0 <c:if test="${sET_Item == 0}">selected</c:if>>0.부</option>
+                            <option value=1 <c:if test="${sET_Item == 1}">selected</c:if>>1.여</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">검사여부</td>
                     <td>
-                        <select name="" id="reqInput">
-                            <option value="0">0.무검사</option>
-                            <option value="1">1.검사</option>
+                        <select name="inspection_Status" id="inspection_Status">
+                            <option value=0 <c:if test="${inspection_Status == 0}">selected</c:if>>0.무검사</option>
+                            <option value=1 <c:if test="${inspection_Status == 1}">selected</c:if>>1.검사</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사용여부</td>
                     <td>
-                        <select id="reqInput">
-                            <option value="0.">0.부</option>
-                            <option value="1">1.여</option>
+                        <select name="use_Status" id="use_Status">
+                            <option value=0 <c:if test="${use_Status == 0}">selected</c:if>>0.부</option>
+                            <option value=1 <c:if test="${use_Status == 1}">selected</c:if>>1.여</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">LOT수량</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="lOT_Quantity" id="lOT_Quantity" value='${lOT_Quantity }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">도면번호</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="drawing_Number" id="drawing_Number" value='${drawing_Number }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">HS CODE</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="hs_Code" id="hs_Code" value='${hs_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">폭</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="width" id="width" value='${width }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">길이</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="length" id="length" value='${length } '>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">높이</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="height" id="height" value='${height }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">원가</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="cost" id="cost" value='${cost }'>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">품목군</td>
+                    <td>
+                        <input type="text" name="item_Group_Code" id="item_Group_Code" value='${item_Group_Code}'>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">반/완제품</td>
+                    <td>
+                        <input type="text" name="division" id="division" value='${division }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">비고</td>
                     <td>
-                        <input type="text">
+                        <input type="text" name="notes" id="notes" value='${notes }'>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">일생산량</td>
+                    <td>
+                        <input type="text" name="daily_production" id="daily_production" class="reqInput" value='${daily_production }'>
                     </td>
                 </tr>
             </table>
         </container3>
+        </form>
         <script>
-        	var search_box1 = document.getElementById('search1');
-        	var search_box2 = document.getElementById('search2');
-        	var search_box3 = document.getElementById('search3');
-        	search_box1.onfocus = function(){
-                document.getElementById("search1").value = '';
+      //체크박스함수
+    	function selectAll1(selectAll1){
+        	const checkbox = document.getElementsByName('checkedContent');
+        	checkbox.forEach((checkbox) => {
+            	checkbox.checked = selectAll1.checked;
+        	})
+    	}
+        
+        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
+    	deleteButton.addEventListener('click', function(){deleteData();}, false);
+        
+        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
+        updateButton.addEventListener('click', function(){updateRow();}, false); 
+        
+            function searchView(name) {
+            	console.log('확인');
+             	window.location.href = "${contextPath}/member/regitem.do?submit=1&&item_code=" + name; 
             }
-            search_box1.onblur = function(){
-                document.getElementById("search1").value = ' 품번 검색';
+            //등록함수
+            function newRow(){
+        		const URLSearch = new URLSearchParams(location.search);
+        		URLSearch.set('submit','1');
+        		const newParam = URLSearch.toString();
+        		var link = location.pathname +'?'+newParam;
+        		var articleNOInput = document.createElement("input");
+        		articleNOInput.setAttribute("type","hidden");
+        		articleNOInput.setAttribute("name","path");
+        		articleNOInput.setAttribute("value", link);
+        		document.getElementById('regitem').appendChild(articleNOInput);
+        		document.getElementById('regitem').action = "${contextPath}/member/additem.do";
+        		document.getElementById('regitem').submit();
+        		}
+          //수정함수
+     	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+            	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+            	/* $('#regitem').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+            	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+            	    	is_empty = true;      	    	
+            	    }      	 
+            	});       	 
+            	if(is_empty) { //비어있는내용이 있는지 체크함
+            	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+            	}
+            	else{ */
+     	        	document.getElementById('regitem').action = "${contextPath}/member/upditem.do";
+     	    		document.getElementById('regitem').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+     	    		alert('수정되었습니다'); 
+            	/* } */      	
             }
-            search_box2.onfocus = function(){
-                document.getElementById("search2").value = '';
-            }
-            search_box2.onblur = function(){
-                document.getElementById("search2").value = ' 품명 검색';
-            }
-            search_box3.onfocus = function(){
-                document.getElementById("search3").value = '';
-            }
-            search_box3.onblur = function(){
-                document.getElementById("search3").value = ' 규격 검색';
-            }
+     	  view_button.onclick = function(){
+     		  console.log('확인');
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '2');
+			  const newParam = URLSearch.toString();
+
+			  window.open(location.pathname + '?' + newParam, '_self');
+    	}
+
+     	//삭제함수
+     	    function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
+     	      	var item = document.getElementsByName("checkedContent").length;
+     	      	var no = "";
+     	      	var ary = [];
+     	      	
+     	      	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+     	      		if(document.getElementsByName("checkedContent")[i].checked==true) {
+     	      			no = document.getElementsByName("checkedContent")[i].value;
+     	      			ary.push(no);
+     	      		}       		
+     	      	}
+     	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+     	  			alert('삭제할 목록의 체크박스를 선택해주세요')
+     	  			window.location.href = "${contextPath}/member/regitem.do";
+     	  		}
+     	      	else //컨트롤러로 해당목록의 no값을 보낸다
+     	  			window.location.href = "${contextPath}/member/deleteitem.do?no="+ary;       	
+     	      }
+     	//팝업
+     	function searchitemg(){
+		
+		openWindowPop('${contextPath}/member/itemgpop.do','itemgpopup');
+	}
+     	 function setChildValue(code, name) {
+             $('input[name=type_code]').val(code);
+             $('input[name=type_name]').val(name);
+            
+          }
+
+	
         </script>
         
 </body>

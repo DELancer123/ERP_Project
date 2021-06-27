@@ -47,11 +47,20 @@
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
-	<!-- jsonview 설정 -->
-	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-    <beans:property name="contentType" value="application/json;charset=UTF-8"> </beans:property>
+
+
+	<!-- jsonview 장순웅 설정 -->
+	<beans:bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<beans:property name="contentType"
+			value="application/json;charset=UTF-8">
+		</beans:property>
 	</beans:bean>
-	<beans:bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"  />
+	<beans:bean id="beanNameResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	<!-- 장순웅 설정 끝 -->
+
+
 	<context:component-scan
 		base-package="com.myspring.*" />
 
@@ -79,13 +88,10 @@
 			<beans:bean
 				class="com.myspring.Billing.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
-		
-		<!-- <mvc:interceptor>
-			<mvc:mapping path="/*/*.do" />
-			<beans:bean
-				class="com.myspring.outsourcing_manage.RegOutsourcing.interceptor.ViewNameInterceptor" />
-		</mvc:interceptor> -->
-		
+
+		<!-- <mvc:interceptor> <mvc:mapping path="/*/*.do" /> <beans:bean class="com.myspring.outsourcing_manage.RegOutsourcing.interceptor.ViewNameInterceptor" 
+			/> </mvc:interceptor> -->
+
 	</mvc:interceptors>
 
 	<mvc:annotation-driven />
