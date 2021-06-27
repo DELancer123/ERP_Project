@@ -49,6 +49,7 @@
 	</beans:bean>
 
 
+
 	<!-- jsonview 장순웅 설정 -->
 	<beans:bean id="jsonView"
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
@@ -58,7 +59,8 @@
 	</beans:bean>
 	<beans:bean id="beanNameResolver"
 		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-		<!-- 장순웅 설정 끝 -->
+	<!-- 장순웅 설정 끝 -->
+
 
 	<context:component-scan
 		base-package="com.myspring.*" />

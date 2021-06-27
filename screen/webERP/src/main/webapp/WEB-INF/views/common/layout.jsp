@@ -220,7 +220,7 @@
 <body>
     <div id=wrap>
         <header id = header>
-            <img src="img/ani_spade.png" class="logo"/>
+            <img src="src/main/webapp/resources/image/kingdomlogo.png" class="logo"/>
             <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
             <ul id="etc_menu">
                 <li><a href="#">로그아웃</a></li>
@@ -261,7 +261,7 @@
         <nav id="nav2">
             <button id="delete" onclick="">삭제</button>
             <button id="view_button">조회</button>
-            <button id="save">저장</button>
+            <button id="save" onclick="newRow()">저장</button>
             <button id="update">수정</button>
         </nav>
         <div>
@@ -315,47 +315,8 @@
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
         }
-        save_button.onclick = function(){
-            // dao에서 저장
-            var view1 = document.getElementById('table1');
-            var view2 = document.getElementById('view2');
-            focus = document.activeElement;
-            if(view1 == focus){
-            var row = view1.insertRow( view1.rows.length ); 
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
-            cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-            cell2.innerHTML = "<input type='text'/>";
-            cell4.innerHTML = "<input type='text' />";
-            cell5.innerHTML = "<input type='text' />";
-            cell3.innerHTML =  "<input type='date' />";
-            }
-        }
         
-     /*update_button.onclick = function(){
-            // dao에서 저장
-            var view1 = document.getElementById('table1');
-            var view2 = document.getElementById('view2');
-            focus = document.activeElement;
-            if(view1 == focus){
-            var row = view1.insertRow( view1.rows.length ); 
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
-            cell1.innerHTML = "<input type='checkbox' name='content'/>";;
-            cell2.innerHTML = "<input type='text'/>";
-            cell4.innerHTML = "<input type='text' />";
-            cell5.innerHTML = "<input type='text' />";
-            cell3.innerHTML =  "<input type='date' />";
-            }
-        } */
         
-
         
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
@@ -363,13 +324,6 @@
                 checkbox.checked = selectAll.checked;
             })
         }
-        /* view_button.onclick = function(){
-			  const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '1');
-			  const newParam = URLSearch.toString();
-
-			  window.open(location.pathname + '?' + newParam, '_self');
-    	}  */
         
         function openWindowPop(url, name){
             var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
