@@ -228,7 +228,10 @@
         
         var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
         updateButton.addEventListener('click', function(){updateRow();}, false); 
-        
+        function openWindowPop1(url, name){
+            var options = 'top=330, left=400, width=1130, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+            window.open(url, name, options);
+        }
         function searchView(name) {
         	console.log('확인');
          	window.location.href = "${contextPath}/member/regbusiness.do?submit=1&&wor_code=" + name; 

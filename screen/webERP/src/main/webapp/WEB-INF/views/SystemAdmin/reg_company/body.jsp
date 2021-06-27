@@ -314,7 +314,10 @@
         	checkbox.checked = selectAll1.checked;
     	})
 	}
-
+	function openWindowPop1(url, name){
+        var options = 'top=330, left=400, width=1130, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+        window.open(url, name, options);
+    }
 	var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
 	deleteButton.addEventListener('click', function(){deleteData();}, false);
 
