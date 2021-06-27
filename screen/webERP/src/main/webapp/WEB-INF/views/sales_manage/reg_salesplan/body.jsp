@@ -74,7 +74,7 @@
 			<table class="con1_search">
                 <tr>
                     <td>
-                    	검색하시려는 품목번호를 조회
+                    	검색하시려는 품목번호를 조회(삭제,수정)
                     </td>
                     <td style="width: 100px;">
                     	<input type="text" style="width: 100%;" name="" value='${param.itemCode }' />
@@ -116,7 +116,7 @@
 					<tr id="updateSp" align="center">
                     	<td style="width: 5%;"><input type="checkbox" value="${param.itemCode }" name="content" /></td>
                     	<td><input type="text" name="ListVO[${status.index}].planDate" value="${sp.planDate}" readonly/></td>
-						<td><input type="text" name="ListVO[${status.index}].itemCode" value="${param.itemCode}" readonly/></td>
+						<td><input type="text" name="ListVO[${status.index}].itemCode" value="${sp.itemCode}" readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value="${sp.itemName}" readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value="${sp.standard}" readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value="${sp.inventoryUnit}" readonly/></td>

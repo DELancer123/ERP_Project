@@ -44,8 +44,9 @@ public class SpViewControllerImpl implements SpViewController {
 		int sum = 0;
 		System.out.println(submit);
 		if(itemCode == null||itemCode.length() ==0 || submit.equals("0")) {
+			List spView = spViewService.spView();
 			mav = new ModelAndView(viewName);
-			return mav;
+			mav.addObject("spView", spView);
 		}
 		else if(submit.equals("1")){
 			List spView = spViewService.SearchView(itemCode);
