@@ -339,7 +339,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 // 	작업실적 등록 팝업부
  	
  		@Override
-	  @RequestMapping(value="/member/houseCodeSearchPop.do" ,method = RequestMethod.GET)
+ 		@RequestMapping(value="/member/houseCodeSearchPop.do" ,method = RequestMethod.GET)
 		public ModelAndView houseCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = getViewName(request);
 			List itemView = productionService.houseCodeSearch();
@@ -349,10 +349,20 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		}
   	 
  		@Override
-	  @RequestMapping(value="/member/processCodeSearchPop.do" ,method = RequestMethod.GET)
+ 		@RequestMapping(value="/member/processCodeSearchPop.do" ,method = RequestMethod.GET)
 		public ModelAndView processCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = getViewName(request);
 			List itemView = productionService.processCodeSearch();
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("itemView", itemView);
+			return mav;
+		}
+ 		
+ 		@Override
+ 		@RequestMapping(value="/member/workplaceCodeSearchPop.do" ,method = RequestMethod.GET)
+		public ModelAndView workplaceCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = getViewName(request);
+			List itemView = productionService.workplaceCodeSearch();
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("itemView", itemView);
 			return mav;

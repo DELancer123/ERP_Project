@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OperationDetailVO {
-	private int no;
+	private String forwardingNumber;
 	private String workOrderNumber;
 	private Date billingDate;
 	private String itemCode;
@@ -27,12 +27,13 @@ public class OperationDetailVO {
 		return Arrays.toString(DetailVO.toArray());
 	}
 
-	public int getNo() {
-		return no;
+
+	public String getForwardingNumber() {
+		return forwardingNumber;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public void setForwardingNumber(String forwardingNumber) {
+		this.forwardingNumber = forwardingNumber;
 	}
 
 	public Date getBillingDate() {
@@ -96,7 +97,7 @@ public class OperationDetailVO {
 	}
 
 	public void setComfirmQuantity(int comfirmQuantity) {
-		this.comfirmQuantity = comfirmQuantity;
+		this.comfirmQuantity = this.precisionQuantity + (this.precisionQuantity / 100 * this.loss);
 	}
 
 	public String getNote() {

@@ -89,6 +89,15 @@ public class BomViewControllerImpl implements BomViewController {
 		mav.addObject("itemView", itemView);
 		return mav;
 	}
+	@RequestMapping(value="/member/reservePop.do" ,method = RequestMethod.GET)
+	public ModelAndView BOMreserveHelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		String itemNumber = (String) request.getParameter("itemCode");
+		List itemView = viewService.itemView2();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("itemView", itemView);
+		return mav;
+	}
 	
 	@Override
 	@RequestMapping(value="/member/addBOM.do" ,method = RequestMethod.GET)
@@ -186,7 +195,29 @@ public class BomViewControllerImpl implements BomViewController {
 		}
 		return mav;
 	}
+	@Override
+	@RequestMapping(value="/member/reservebom.do" ,method = RequestMethod.GET)
+	public ModelAndView reservebom(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String number = (String) request.getParameter("itemNumber");
+		String submit = (String) request.getParameter("submit");
+		String childCode = (String) request.getParameter("childCode");
+		int sum = 0;
+		if(number == null || number.length() == 0 || submit.equals("0")) {
+			mav = new ModelAndView(viewName);
+			return mav;
+		}
+		else if(submit.equals("1")){
+			List bomView = viewService.ResearveView(number);
+			
+			mav = new ModelAndView(viewName);
+			
+			mav.addObject("bomView", bomView);
+		}
 
+		return mav;
+	}
 	@Override
 	@RequestMapping(value="/member/outprice.do" ,method = RequestMethod.GET)
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -243,10 +274,31 @@ public class BomViewControllerImpl implements BomViewController {
 	@ResponseBody
 	@RequestMapping(value = "/member/searchoutPop.do", method = RequestMethod.GET)
 	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
-		System.out.println("아이템" + itemName);
 		ModelAndView mav = new ModelAndView();
 		List<bomVO> popName = null;
 		popName = viewService.searchPopName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	@ResponseBody
+	@RequestMapping(value = "/member/searchbom1.do", method = RequestMethod.GET)
+	public ModelAndView searchbomPop1(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<bomVO> popName = null;
+		popName = viewService.searchbomPop1(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	@ResponseBody
+	@RequestMapping(value = "/member/searchbom2.do", method = RequestMethod.GET)
+	public ModelAndView searchbomPop2(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<bomVO> popName = null;
+		popName = viewService.searchbomPop2(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 
@@ -392,4 +444,5 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/deftypepop.do");
 		return mav;
 	}
+	
 }

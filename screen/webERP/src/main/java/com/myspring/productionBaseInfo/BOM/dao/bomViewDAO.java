@@ -38,5 +38,10 @@ public interface bomViewDAO {
 
 	public List<bomVO> searchoutPop(String itemName) throws DataAccessException;
 
+	public List searchbomPop1(String itemName) throws DataAccessException;
+	public List searchbomPop2(String itemName) throws DataAccessException;
+
+	public List researveView(String number) throws DataAccessException;
+
 
 }

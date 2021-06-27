@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 @Component("OperationRegistVO")
 public class OperationRegistVO {
 	private String workOrderNumber;
+	private String forwardingNumber;
+	private Date billingDate;
 	private String materialstatus;
 	private String workPlaceCode;
 	private Date instructionDate;
@@ -29,7 +31,7 @@ public class OperationRegistVO {
 	private String productionFacility;
 	private String taskTeam;
 	private String workplaceCode;
-
+	private int loss;	
 	public String getProductionFacility() {
 		return productionFacility;
 	}
@@ -207,6 +209,30 @@ public class OperationRegistVO {
 
 	public void setWorkSortation(String workSortation) {
 		this.workSortation = workSortation;
+	}
+
+	public String getForwardingNumber() {
+		return forwardingNumber;
+	}
+
+	public void setForwardingNumber(String forwardingNumber) {
+		this.forwardingNumber = forwardingNumber;
+	}
+
+	public Date getBillingDate() {
+		return billingDate;
+	}
+
+	public void setBillingDate(Date billingDate) {
+		this.billingDate = billingDate;
+	}
+
+	public int getLoss() {
+		return loss;
+	}
+
+	public void setLoss(int loss) {
+		this.loss = loss;
 	}
 	
 	

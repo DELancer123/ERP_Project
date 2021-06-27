@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +57,6 @@
         }
         #workOrderTable{
             width: 100%;
-            font-weight: bold;
         }
 
 </style>
@@ -60,25 +67,18 @@
                 <table>
                     <tr>
                         <td>
-                            모품목
+                            자품목
                         </td>
-                        <Td>
-                            <input type="text" name="factory" style="width: 120px; background-color: yellow;">
+                         <Td>
+                            <input type="text" name="factory" value='${param.itemNumber }' style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
-                            <i class="fas fa-search" style="color: blue;"></i>
+                            <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
                         </td>
                         <td>
-                            <input type="text" name="ckfactory" style="width: 120px;" disabled>
+                            <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
                         </td>
-                        <!-- 모품목 규격 -->
-                        <td>
-                            <input type="text" style="width: 150px; background-color: skyblue;" disabled>
-                        </td>
-                        <!-- 모품목 단위 -->
-                        <td>
-                            <input type="text" style="width: 120px; background-color: skyblue;" disabled>
-                        </td>
+                       
                     </tr>
                     <tr>
                         <td>
@@ -103,10 +103,7 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <tr>
-                        <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                        <td>LEVEL</td>
-                        <td>순번</td>
+                    <tr align="center" style="font-weight:bold;background-color:gray">
                         <td>품번</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -114,14 +111,20 @@
                         <td>정미수량</td>
                         <td>LOSS(%)</td>
                         <td>필요수량</td>
-                        <td>표준원가</td>
-                        <td>실제원가</td>
-                        <td>외주</td>
-                        <td>사용여부</td>
-                        <td>비고</td>
+                        <td>계정</td>
                     </tr>
-                    <!-- BOM 역전개는 입력부 불필요 -->
-                    
+                   <c:forEach var="bom" items="${bomView}">  
+                    <tbody align="center">
+                        <td>${bom.itemNumber }</td>
+                        <td>${bom.itemName}</td>
+                        <td>${bom.standard}</td>
+                        <td>${bom.unit}</td>
+                        <td>${bom.precisionQuantity }</td>
+                        <td>${bom.loss }</td>
+                        <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
+                        <td>${bom.division }</td>
+                    </tbody>
+                    </c:forEach>
                 </table>
             </div>
             <!-- 합계 출력부 -->
@@ -130,6 +133,24 @@
             </div>
             <!-- 합계 출력부 종료 -->
         </container2>
+      <script>
+      function openWindowPop(url, name){
+          var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+          window.open(url, name, options);
+      }
       
+      function search1(){
+    	  openWindowPop('http://localhost:8090/webERP/member/reservePop.do','codehelper');
+      }
+      view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+ 	}
+
+		
+      </script>
 </body>
 </html>

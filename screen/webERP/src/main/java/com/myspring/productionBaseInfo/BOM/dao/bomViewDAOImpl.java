@@ -161,6 +161,28 @@ public class bomViewDAOImpl implements bomViewDAO{
 		return outList1;
 	}
 
+	@Override
+	public List searchbomPop1(String itemName) throws DataAccessException {
+		List<bomVO> outList1 = null;
+		outList1 = sqlSession.selectList("mappers.erp.bomPopSearch1",itemName);
+		return outList1;
+	}
+
+	@Override
+	public List searchbomPop2(String itemName) throws DataAccessException {
+		List<bomVO> outList1 = null;
+		outList1 = sqlSession.selectList("mappers.erp.bomPopSearch2",itemName);
+		return outList1;
+	}
+
+	@Override
+	public List researveView(String number) throws DataAccessException {
+		List<bomVO> bomList = null;
+		bomList = sqlSession.selectList("mappers.erp.researveView",number);
+		System.out.println(bomList.size());
+		return bomList;
+	}
+
 	
 	
 

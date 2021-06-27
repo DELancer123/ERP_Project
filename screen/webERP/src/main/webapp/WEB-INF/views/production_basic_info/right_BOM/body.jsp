@@ -83,14 +83,7 @@
                         <td>
                             <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
                         </td>
-                        <!-- 모품목 규격 -->
-                        <td>
-                            <input type="text" style="width: 150px; background-color: skyblue;" disabled>
-                        </td>
-                        <!-- 모품목 단위 -->
-                        <td>
-                            <input type="text" style="width: 120px; background-color: skyblue;" disabled>
-                        </td>
+                        
                     </tr>
                     <tr>
                         <td>
@@ -170,10 +163,7 @@
       }
       
       function search1(){
-    	  
     	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');
-
-    	  
       }
       view_button.onclick = function(){
 		  const URLSearch = new URLSearchParams(location.search);

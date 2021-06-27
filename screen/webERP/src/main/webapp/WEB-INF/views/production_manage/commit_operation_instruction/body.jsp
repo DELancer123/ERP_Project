@@ -175,7 +175,7 @@
                     <tbody>
   					<c:forEach var="detail" items="${detailList}" varStatus="status">
   					 <tr>
-  					 	<td><input type="checkbox" value="${detail.no }" name="content2"/></td>
+  					 	<td><input type="checkbox" value="${detail.forwardingNumber }" name="content2"/></td>
                         <td><input type="date" name="DetailVO[${status.index }].billingDate" value="${detail.billingDate }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}"/></td>
@@ -185,7 +185,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].loss" value="${detail.loss}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.comfirmQuantity}"/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
-                        <td><input type="hidden" name="DetailVO[${status.index }].no"value="${detail.no }" /></td>
+                        <td><input type="hidden" name="DetailVO[${status.index }].forwardingNumber"value="${detail.forwardingNumber }" /></td>
   					 </tr>
                     </c:forEach>              
                     <tr>

@@ -204,6 +204,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		  return popList;
 		}
 	 
+	 @Override
+	  public List workplaceCodeSearch() throws DataAccessException {
+		  List popList = null;
+		  popList = ROPdao.workplaceCodeViewPop();
+		  return popList;
+		}
+	 
 //작업지시마감처리 기능부
 	@Override 
 	public List<OperationInsClosingVO> selectAllOperationInsClosingInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 

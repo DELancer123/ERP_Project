@@ -25,6 +25,7 @@ public interface BomViewController {
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView rightbom(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView reservebom(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView regoutsourcing(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updoutprice(@ModelAttribute("out") RegOutSourcingPriceVO outVO,HttpServletRequest request, HttpServletResponse response) throws Exception;

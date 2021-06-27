@@ -37,4 +37,7 @@ public interface BomViewService {
 	public int doutprice(List<RegOutSourcingPriceVO> outVO1) throws DataAccessException;
 	public void deldefPop(String[] numberary) throws DataAccessException;
 	public List<bomVO> searchPopName(String itemName) throws DataAccessException;
+	public List<bomVO> searchbomPop1(String itemName) throws DataAccessException;
+	public List<bomVO> searchbomPop2(String itemName) throws DataAccessException;
+	public List ResearveView(String number) throws DataAccessException;
 }

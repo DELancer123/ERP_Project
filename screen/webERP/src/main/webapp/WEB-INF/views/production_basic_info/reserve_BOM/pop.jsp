@@ -82,22 +82,24 @@
             
         </div>
     </div>
-    <script>
-			var submit_button = document.getElementById("submit");
-			var text_code = document.getElementById("code");
-			var text_name = document.getElementById("name");
-			
-			function popFunction(code, name) {
-				text_code.value = code;
-				text_name.value = name;
-			}
-			
-			function submitClick(form) {
-				opener.setChildValue(text_code.value, text_name.value);
-				window.close();
-			}
-			
-		</script>
+      <script>
+    var submit_button = document.getElementById("submit");
+    		var text_code = document.getElementById("code");
+    		var text_name = document.getElementById("name");
+    	function popFunction(code,name){
+    		text_code.value = code;
+    		text_name.value = name;
+    	}
+    	submit_button.onclick = function(){
+    		
+    		text_code.setAttribute("itemNumber",text_code.value);
+			text_name.setAttribute("itemName",text_name.value);
+			var url = window.opener.document.location.href;
+			var url_arr = url.split('?');
+    		opener.parent.location=url_arr[0] + '?itemNumber='+text_code.value+'&&itemName='+text_name.value+'&&submit='+0;
+    		window.close();
+    	}
+    </script>
     </form>
     
    <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -151,3 +153,4 @@
     </script>
 </body>
 </html>
+  
