@@ -145,8 +145,8 @@
                         <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.productionFacility }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" value="${param.taskTeam }"/></td>
+                        <td><input type="text" id="productionFacility" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.productionFacility }"/></td>
+                        <td><input type="text" id="taskTeam" name="ListVO[${fn:length(infoList)}].taskTeam" value="${param.taskTeam }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
                         <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
                      </tr>
@@ -164,6 +164,9 @@
  var instructionDate = document.getElementById('instructionDate').value;
  var dueDate = document.getElementById('dueDate').value;
  var indicated = document.getElementById('indicated').value;
+ var productionFacility = document.getElementById('productionFacility').value;
+ var taskTeam = document.getElementById('taskTeam').value;
+
 
  function isExist(val) {
 		if (val == "" || val == null || val == undefined || (val != null && typeof val == "object" && !Object.keys(val).length)) {
@@ -225,7 +228,8 @@
 		 	const newParam = URLSearch.toString();
 			var link = location.pathname +'?'+newParam;
 			
-			if(isExist(instructionDate)){
+			if(isExist(instructionDate)&&isExist(dueDate)&&isExist(indicated)){
+				
   			var linkPath = document.createElement("input");
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
@@ -234,6 +238,7 @@
   		    document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
   			document.getElementById('dataForm').submit();  
+  			document.getElementById('dataForm').action = "${contextPath}/member/regoperins.do";
 				
 			}else{
 				alert("모든 값을 입력해주세요!");
@@ -247,9 +252,12 @@
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
   		 	var link = location.pathname +'?'+newParam;
+  		 	if(!isExist(instructionDate)&&!isExist(dueDate)&&!isExist(indicated)){
+		    document.getElementById("instructionDate").disabled = true;
   		 	document.getElementById("dueDate").disabled = true;
 		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
+  		 		
+  		 	}else{
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
@@ -257,25 +265,29 @@
   		    document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
     		document.getElementById('dataForm').submit();  
+  		 	}
         }
         
-      
         function deleteData() {
-      	  var item = document.getElementsByName("content").length;
-      	  var no = "";
-      	  var ary = [];
-      	  for(var i=0; i<item;i++){
-      		  if(document.getElementsByName("content")[i].checked==true){
-      			  no = document.getElementsByName("content")[i].value;
-      			  ary.push(no);
-      		  }
-      		  else if(isExist(workOrderNumber)){
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
-      	  }else{
-      		  alert("삭제할 값을 선택해주세요!");
-      		window.location.href = "${contextPath}/member/regoperins.do";
-      	  }
-      	  
-      	  }
-        }
+        	  var item = document.getElementsByName("content").length;
+        	  var no = "";
+        	  var ary = [];
+        	  for(var i=0; i<item;i++){
+        		  if(document.getElementsByName("content")[i].checked==true){
+        			  no = document.getElementsByName("content")[i].value;
+        			  ary.push(no);
+	        		  if(isExist(no)){
+	        			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+	        		  }else {
+	        			  alert("체크할 값을 선택해주세요!");
+				          window.location.href = "${contextPath}/member/regoperins.do";
+	        			  break;
+	        		  }
+        		  }
+        		  
+        	  }
+          }
+        
+        
+       
       </script>
