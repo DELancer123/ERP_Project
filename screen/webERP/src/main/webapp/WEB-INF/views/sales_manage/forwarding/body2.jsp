@@ -86,13 +86,24 @@ String custCode = request.getParameter("custCode");
         </container2>
         
         <script type="text/javascript">
-        var text_code = document.getElementById("code");
-    	var text_name = document.getElementById("name");
+      	var relCode = document.getElementById("relCode");
+       	var relDate = document.getElementById("relDate");
+        var custCode = document.getElementById("custCode");
+        var deadLine = document.getElementById("deadLine");
+        var note = document.getElementById("note");
+		
+		var view_button = document.getElementById("view_button");
+		var save_button = document.getElementById("save");
+		var update_button = document.getElementById("update");
         function popFunction(code,name){
 			text_code.value = code;
 			text_name.value = name;
 			
 	}
+    	function openWindowPop(url, name){
+			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+			window.open(url, name, options);
+		}
 		function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
