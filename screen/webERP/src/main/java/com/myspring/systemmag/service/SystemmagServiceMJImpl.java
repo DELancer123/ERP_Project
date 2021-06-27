@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myspring.systemmag.dao.SystemmagDAO;
-import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.dao.SystemmagDAOMJ;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 @Service("SystemmagService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class SystemmagServiceImpl implements SystemmagService {
+public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Autowired
-	private SystemmagDAO systemmagDAO;
+	private SystemmagDAOMJ systemmagDAO;
 	
 	//일반거래처등록
 	@Override
-	public int addCustomer (SystemmagVO systemmagVO) throws Exception{
+	public int addCustomer (SystemmagVOMJ systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
 		return result;
     }
@@ -50,7 +50,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 
 	@Override
-	public void updCustomer(SystemmagVO systemmagVO) throws DataAccessException {		
+	public void updCustomer(SystemmagVOMJ systemmagVO) throws DataAccessException {		
 		systemmagDAO.updateCustomer(systemmagVO);
 	}
 
@@ -60,7 +60,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 	
 	@Override
-	public List<SystemmagVO> searchPopName(String itemName) {
+	public List<SystemmagVOMJ> searchPopName(String itemName) {
 		return systemmagDAO.viewsearchPopName(itemName);
 	}
 
@@ -124,7 +124,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 	
 	@Override
-	public int addLogistics (SystemmagVO systemmagVO) throws Exception{
+	public int addLogistics (SystemmagVOMJ systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewLogistics(systemmagVO);
 		return result;
     }
@@ -135,7 +135,7 @@ public class SystemmagServiceImpl implements SystemmagService {
 	}
 
 	@Override
-	public void updateLogistics(SystemmagVO systemmagVO) throws DataAccessException {		
+	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException {		
 		systemmagDAO.updateLogistics(systemmagVO);
 	}
 

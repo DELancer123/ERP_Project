@@ -4,25 +4,25 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
-public interface SystemmagDAO {
+public interface SystemmagDAOMJ {
 	//일반거래처등록
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
 	
-	public int insertNewCustomer (SystemmagVO systemmagVO) throws DataAccessException;
+	public int insertNewCustomer (SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
 	public List searchCustomer(String customerCode) throws DataAccessException;
 	
 	public void deleteCustomer(String[] noary) throws DataAccessException;
 	
-	public void updateCustomer(SystemmagVO systemmagVO) throws DataAccessException;
+	public void updateCustomer(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
 	public List zipViewCustomer() throws DataAccessException;
 	
-	public List<SystemmagVO> viewsearchPopName(String itemName) throws DataAccessException;
+	public List<SystemmagVOMJ> viewsearchPopName(String itemName) throws DataAccessException;
 	
 	//창고/공정/외주공정등록
 	public List viewAllHouOutware() throws DataAccessException;
@@ -42,9 +42,9 @@ public interface SystemmagDAO {
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
 	
-	public int insertNewLogistics (SystemmagVO systemmagVO) throws DataAccessException;
+	public int insertNewLogistics (SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
 	public void deleteLogistics(String[] noary) throws DataAccessException;
 	
-	public void updateLogistics(SystemmagVO systemmagVO) throws DataAccessException;
+	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException;
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component("SystemmagVO")
-public class SystemmagVO {
+public class SystemmagVOMJ {
 	//일반거래처등록
 	//SM_BIM_GEN_CUS_REG
 	private String general_Customer_Code;
@@ -24,7 +24,7 @@ public class SystemmagVO {
 	private String road_Address;
 	private String lot_Address;
 	
-	private List<SystemmagVO> ListVO;
+	private List<SystemmagVOMJ> ListVO;
 	
 	public String getGeneral_Customer_Code() {
 		return general_Customer_Code;
@@ -98,10 +98,10 @@ public class SystemmagVO {
 	public void setWholesale_Retail_Business_Code(String wholesale_Retail_Business_Code) {
 		this.wholesale_Retail_Business_Code = wholesale_Retail_Business_Code;
 	}
-	public List<SystemmagVO> getListVO() {
+	public List<SystemmagVOMJ> getListVO() {
 		return ListVO;
 	}
-	public void setListVO(List<SystemmagVO> listVO) {
+	public void setListVO(List<SystemmagVOMJ> listVO) {
 		ListVO = listVO;
 	}
 	public String getRoad_Address() {

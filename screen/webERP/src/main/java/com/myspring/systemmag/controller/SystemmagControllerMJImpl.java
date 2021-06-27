@@ -27,24 +27,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.myspring.systemmag.dao.SystemmagDAO;
-import com.myspring.systemmag.service.SystemmagService;
-import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.dao.SystemmagDAOMJ;
+import com.myspring.systemmag.service.SystemmagServiceMJ;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 //회사등록
 @Controller("SystemmagController")
-public class SystemmagControllerImpl implements SystemmagController {
+public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Autowired
-	private SystemmagService systemmagService;
+	private SystemmagServiceMJ systemmagService;
 	@Autowired
-	private SystemmagVO systemmagVO;
+	private SystemmagVOMJ systemmagVO;
 	@Autowired
-	private SystemmagDAO systemmagDAO;
+	private SystemmagDAOMJ systemmagDAO;
 
 	// 일반거래처등록-등록
 	@Override
 	@RequestMapping(value = "/member/addbasicacc.do", method = RequestMethod.GET)
-	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVO systemmagVO, HttpServletRequest request,
+	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
@@ -153,7 +153,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	// 일반거래처등록-수정
 	@Override
 	@RequestMapping(value = "/member/updateBasicacc.do", method = RequestMethod.GET)
-	public ModelAndView updateCustomer(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+	public ModelAndView updateCustomer(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		systemmagService.updCustomer(systemmagVO);// 서비스파트의 업데이트함수에 매개변수로 VO를전달함
@@ -180,7 +180,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	// 일반거래처등록-우편번호팝업
 	@Override
 	@RequestMapping(value = "/member/regbasicaccZipPopup.do", method = RequestMethod.GET)
-	public ModelAndView popupZipCustomer(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+	public ModelAndView popupZipCustomer(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = null;
@@ -261,7 +261,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	// 물류관리내역등록-등록
 	@Override
 	@RequestMapping(value = "/member/addLogistics_manage.do", method = RequestMethod.GET)
-	public ModelAndView addLogistics(@ModelAttribute("logistics") SystemmagVO systemmagVO, HttpServletRequest request,
+	public ModelAndView addLogistics(@ModelAttribute("logistics") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
@@ -291,7 +291,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	// 물류관리내역등록-수정
 	@Override
 	@RequestMapping(value = "/member/updateLogistics_manage.do", method = RequestMethod.GET)
-	public ModelAndView updateLogistics(@ModelAttribute("") SystemmagVO systemmagVO, HttpServletRequest request,
+	public ModelAndView updateLogistics(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		systemmagService.updateLogistics(systemmagVO);// 서비스파트의 업데이트함수에 매개변수로 VO를전달함
@@ -319,7 +319,7 @@ public class SystemmagControllerImpl implements SystemmagController {
 	@RequestMapping(value = "/member/searchPopName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		List<SystemmagVO> popName = null;
+		List<SystemmagVOMJ> popName = null;
 		popName = systemmagService.searchPopName(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
