@@ -30,6 +30,7 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <!-- bom 역전개 팝업 레이아웃 -->
    <definition name="reservePop"  template="/WEB-INF/views/production_basic_info/reserve_BOM/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -40,16 +41,19 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <!-- bom 팝업 레이아웃 -->
     <definition name="BOMPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_BOM/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <!-- 외주 팝업 레이아웃 -->
     <definition name="outPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_outsourcing_price/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <!-- 외주 자동입력 팝업 레이아웃 -->
     <definition name="outPopupLayout2"  template="/WEB-INF/views/production_basic_info/reg_outsourcing_price/pop2.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -60,6 +64,7 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <!-- 불량유형 팝업 레이아웃 -->
    <definition name="defPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_defective_type/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -71,6 +76,7 @@
       <put-attribute name="body" value="/WEB-INF/views/SystemAdmin/reg_company/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
    </definition>
+   <!-- bom역전개 팝업 -->
    <definition name="/member/reservePop" extends="reservePop">
       <put-attribute name="title" value="역전개팝업" />
       <put-attribute name="body" value="" />
