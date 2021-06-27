@@ -53,7 +53,7 @@
                         <td>
                         </td>
                         <Td>
-                            <input type="text" name="factory" value='${param.item_Code }' style="width: 120px; background-color: yellow;">
+                       품번<input type="text" name="factory" value='${param.item_Code }' style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
                             <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
@@ -61,15 +61,6 @@
                         <td>
                             <input type="text" name="ckfactory" value='${param.item_Name }' style="width: 120px;" disabled>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            기준일자
-                        </td>
-                        <td colspan="2">
-                            <input type="date" name="department" style="width: 120px;">
-                        </td>
-                        
                     </tr>
                 </table>
                 </form>              

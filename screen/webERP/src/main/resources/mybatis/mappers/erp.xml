@@ -120,7 +120,9 @@
 		<result column="expected_Date" property="expected_Date" />
 		<result column="note" property="note" />
 	</resultMap>
-
+	<select id="selectAllMainPlanList" resultMap="mainplanResult">
+		<![CDATA[select * from pmm_pm_mps]]>
+	</select>
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
@@ -146,20 +148,20 @@
 		 	 where item_Name like '%'||#{item_Name}||'%']]>
 	</select>
 	
-  	<select id="searchMRP" resultMap="MpsOSResult" parameterType="String">
-		<![CDATA[select * from pmm_pm_mps_os where item_code = #{item_code} order by sequence desc]]>
+  	<select id="searchMRP" resultMap="mainplanResult" parameterType="String">
+		<![CDATA[select * from pmm_pm_mps where item_code = #{item_code}]]>
 	</select>
 	
 	<select id="selectMRP" resultMap="MpsOSResult" parameterType="String">
-		<![CDATA[select buyer,item_code,item_name,standard,inventory_unit,expected_Date,note from pmm_pm_mps_os where item_code=#{item_code}]]>
+		<![CDATA[select buyer,item_code,item_name,standard,inventory_unit,note from pmm_pm_mps_os where item_code=#{item_code}]]>
 	</select>
 	
 	<select id="selectSeq" resultType="int">
 		<![CDATA[select MAX(sequence) from pmm_pm_mps]]>
 	</select>
 	
-	<select id="inputMRP" resultMap="bomView" parameterType="String">
-		<![CDATA[select sequence,buyer,item_code,item_name,standard,inventory_unit,expected_Date,note from pmm_pm_mps_os where item_code=#{item_code}]]>
+	<select id="inputMRP" resultMap="mainplanResult" parameterType="String">
+		<![CDATA[select * from pmm_pm_mps where item_code=#{item_code}]]>
 	</select>
 	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
@@ -233,11 +235,8 @@
 			pm.due_date, pm.sequence , mr.expected_order
     		from CPM_BIM_BOM_REG bom, pmm_pm_mps pm, pmm_pm_mrp mr
             where pm.item_code = bom.item_code 
-            and  bom.item_code = mr.item_code and
+            and  bom.item_code = mr.item_code and expected_order between #{startDate} and #{endDate}
     		    ]]>
-		<if test="startDate != '' and startDate != null">expected_order between #{startDate} and #{endDate} </if>
-		<if test="endDate != '' and endDate != null">and expected_order between #{startDate} and #{endDate} </if>
-
 	</select>
 	
 	<!-- orderclosing 발주마감 -->

@@ -9,6 +9,20 @@
 	request.setCharacterEncoding("UTF-8");
 	String inputSeq = (String)request.getAttribute("inputSeq");
 %>
+ <c:forEach var="mainplan" items="${MPSInsert}" >     
+ 	<c:set var="planNO" value="${mainplan.planNO }"/>
+ 	<c:set var="plandate" value="${mainplan.plandate }"/>
+ 	<c:set var="item_Code" value="${mainplan.item_Code }"/>
+ 	<c:set var="item_Name" value="${mainplan.item_Name }"/>
+ 	<c:set var="standard" value="${mainplan.standard }"/>
+ 	<c:set var="inventory_unit" value="${mainplan.inventory_unit }"/>
+ 	<c:set var="sequence" value="${mainplan.sequence }"/>
+ 	<c:set var="expected_date" value="${mainplan.expected_date }"/>
+ 	<c:set var="due_date" value="${mainplan.due_date }"/>
+ 	<c:set var="plan_quantity" value="${mainplan.plan_quantity }"/>
+ 	<c:set var="buyer" value="${mainplan.buyer }"/>
+ 	<c:set var="note" value="${mainplan.note }"/>
+ </c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,12 +100,12 @@
 			<td>비고</td>
 		</thead>
 		<tbody>
-		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
+		<c:forEach var="mainplan" items="${MPSView}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
  				<td><input type="text"  value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'ondblclick="search2()" readonly/></td>					
+ 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'readonly/></td>					
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
@@ -107,7 +121,7 @@
 		<td></td>    	
     	<td><input type="text" id="planNO"  value='${planNO}' readonly/></td>
     	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
-    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${param.item_Code}' ondblclick="search2()" readonly/></td>
+    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${param.item_Code}'readonly/></td>
     	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${param.item_Name}' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
     	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
@@ -122,6 +136,9 @@
 	</table>
 	</div>
 </container2>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 function search2(){
 	
@@ -202,13 +219,14 @@ function InsertRow(){
 		document.getElementById('MainPlan').submit();
 	}
 
- view_button.onclick = function(){
+view_button.onclick = function(){
 	const URLSearch = new URLSearchParams(location.search);
 	URLSearch.set('submit', '1');
 	const newParam = URLSearch.toString();
 
 	window.open(location.pathname + '?' + newParam, '_self');
 }
+
 </script>
 </form>
 </body>

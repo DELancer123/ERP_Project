@@ -157,13 +157,9 @@ String sequence = (String) request.getAttribute("sequence");
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-/* input date의 현재 날짜 기본값 설정*/
-document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
-document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
-
 /* 검색부 date onChange 함수 설정 */
-		var startDate = new Date().toISOString().substring(0,10);;
-   	var endDate = new Date().toISOString().substring(0,10);;
+	var startDate = new Date().toISOString().substring(0,10);
+   	var endDate = new Date().toISOString().substring(0,10);
    	
    	$('#searchStartDate').change(function (){
            var date = $('#searchStartDate').val();

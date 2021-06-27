@@ -43,9 +43,7 @@ public class MainPlanControllerImpl implements MainPlanController {
 		}
 		else if(submit.equals("1")){
 			List MPSView = mainplanService.SearchView(number);
-			
-			mav = new ModelAndView(viewName);
-			
+			mav = new ModelAndView(viewName);			
 			mav.addObject("MPSView", MPSView);
 		}
 		else if(submit.equals("2")) {
@@ -64,10 +62,8 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@Override
 	@RequestMapping(value = "member/applyorder.do", method = RequestMethod.GET)
 	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String startDate = request.getParameter("dateStart");
-		String endDate = request.getParameter("dateEnd");
 		String viewName = (String) request.getAttribute("viewName");
-		List mpsosList = mainplanService.selectAllMpsosList(startDate, endDate);
+		List mpsosList = mainplanService.selectAllMpsosList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mpsosList", mpsosList);
 		return mav;

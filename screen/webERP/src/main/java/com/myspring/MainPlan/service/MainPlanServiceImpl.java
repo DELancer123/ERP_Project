@@ -19,15 +19,15 @@ public class MainPlanServiceImpl implements MainPlanService{
 	private MainPlanDAO mainplanDAO;
 	
 	@Override
-	public List viewMPS() throws DataAccessException {
-		List MPSList = null;
-		MPSList = mainplanDAO.viewMPS();
-		return MPSList;
+	public List viewMPS() throws Exception {
+		List MPSView = null;
+		MPSView = mainplanDAO.viewMPS();
+		return MPSView;
 	}
 	
 	@Override
-	public List<MpsOSVO>selectAllMpsosList(String startDate, String endDate)throws Exception{
-		List<MpsOSVO>mpsosList = mainplanDAO.selectAllMpsosList(startDate,endDate);
+	public List<MpsOSVO>selectAllMpsosList()throws Exception{
+		List<MpsOSVO>mpsosList = mainplanDAO.selectAllMpsosList();
 		return mpsosList;
 	}
 	
