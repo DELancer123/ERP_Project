@@ -68,9 +68,9 @@
                         <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></td> 
     
                         <td colspan="5" style="width: 80px;">ºÎ¼­</td>
-                        <td style="width: 80px;"><input type="text" value="${param.departmentCode }" style="width: 100%; background-color: yellow;"/></td>
-                        <td><input type="text" value="${param.departmentName }" disabled/></td>
-                        <td><a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></td>
+                        <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
+                        <td><input type="text" name="" disabled/></td>
+                        <td> <i class="fas fa-search" style="color: blue;"></i></td>
                         
                     </tr>
                     
@@ -250,4 +250,5 @@
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
         }
+      	
       </script>

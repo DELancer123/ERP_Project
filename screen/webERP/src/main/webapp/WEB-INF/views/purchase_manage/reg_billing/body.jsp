@@ -11,44 +11,13 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-function func_Popup(){
-	var url = "mrpamount.do";
-	var name = "mrpamount";
-	var option = "width = 1500, height= 600, top = 100, left = 200"
-	window.open(url, name, option);
-}
-$(function() {
-	 $("#checkJson").click(function() {
-	  $.ajax({
-        type:"get", 
-        url:"${pageContext.request.contextPath}/member/regbilling.do",
-        success:function (data,textStatus){
-           var jsonInfo;
-           var listArray = new Array();
-           var bottomInfo ="청구번호별 리스트<br>";
-           		bottomInfo += "=======<br>";
-	           for(var i in jsonInfo.listArray){
-	        	   bottomInfo += "순서: " + jsonInfo.listArray[i].sequence+"<br>";
-	        	   bottomInfo += "품번: " + jsonInfo.listArray[i].item_Code+"<br>";
-	        	   bottomInfo += "품명: " + jsonInfo.listArray[i].item_Name+"<br>";
-	        	   bottomInfo += "규격: " + jsonInfo.listArray[i].standard+"<br>";
-	        	   bottomInfo += "요청일: " + jsonInfo.listArray[i].requestdate+"<br>";
-	        	   bottomInfo += "재고단위: " + jsonInfo.listArray[i].inventory_unit+"<br>";
-	        	   bottomInfo += "재고단위수량: " + jsonInfo.listArray[i].inventory_qy+"<br><br>";
-	        	   bottomInfo += "청구단위: " + jsonInfo.listArray[i].claim_unit+"<br><br>";
-	        	   bottomInfo += "청구단위수량: " + jsonInfo.listArray[i].claim_quantity+"<br><br>";
-	        	   bottomInfo += "주거래처: " + jsonInfo.listArray[i].customer_name+"<br><br>";
-	           }
-	           $("#output").html(consertInfo);
-	        },
-	        error:function(data,textStatus){
-	           alert("에러가 발생했습니다.");
-	        }
-	      }); 
-    });
- });
+<script>
+	function func_Popup(){
+		var url = "mrpamount.do";
+		var name = "mrpamount";
+		var option = "width = 1500, height= 600, top = 100, left = 200"
+		window.open(url, name, option);
+	}
 </script>
 <style>
 #contents1 {
@@ -70,7 +39,6 @@ $(function() {
 	height: 35%;
 	border: 1px solid black;
 	z-index: 1;
-	cursor:pointer
 }
 
 #contents3 {
@@ -111,7 +79,6 @@ $(function() {
 
 #contents3 {
 	/* overflow: scroll; */
-	
 }
 
 #total td {
@@ -125,9 +92,6 @@ $(function() {
 #reqInput {
 	background-color: rgb(255, 255, 149);
 	text-align: center;
-}
-#Popup{
-	float: right;
 }
 </style>
 </head>
@@ -159,18 +123,18 @@ $(function() {
 			<td colspan="5">사원</td>
 			<td style="width: 80px;"><input type="text" id="reqInput"
 				style="width: 100%;" /></td>
-			<td><input type="text" name="" disabled /></td> 
+			<td><input type="text" name="" disabled /></td>
 			<td><i class="fas fa-search" style="color: blue;"></i></td>
 		</tr>
 	</table>
-	<div>
+	<div id="button">
 		<input type="button" id="Popup" onclick="func_Popup();" value="소요량적용" />
 	</div>
 	</container1>
 	<container2 id="contents2">
 	<table id="view1">
 		<thead align="center" style="background-color: gray">
-			<td><input type="button" value="조회" id="checkJson";/></td>
+			<td><input type="checkbox" name="content"/></td>
 			<td>청구번호</td>
 			<td>청구일자</td>
 			<td>청구구분</td>
@@ -178,7 +142,7 @@ $(function() {
 		</thead>
 		<c:forEach var="cm" items="${cmList}">
 			<tr align="center">
-				<td><input type="checkbox" name="content"/></td>
+				<td><input type="checkbox" name="content" /></td>
 				<td>${cm.claim_no}</td>
 				<td>${cm.claim_date}</td>
 				<td>${cm.claim_division}</td>
@@ -188,9 +152,9 @@ $(function() {
 	</table>
 	</container2>
 	<container3 id="contents3">
- 	<table id="view2">
-		<thead align="center" style="background-color: gray">
-			<td><input type="checkbox" name="content""/></td>
+	<table id="view2">
+				<thead align="center" style="background-color: gray">
+			<td><input type="checkbox" name="content"/></td>
 			<td>순서</td>
 			<td>품번</td>
 			<td>품명</td>
@@ -201,23 +165,22 @@ $(function() {
 			<td>청구단위</td>
 			<td>청구단위수량</td>
 			<td>주거래처</td>
-			<div id="output"/>
 		</thead>
-<%-- 		 <c:forEach var="btm" items="${bottomList}">
+		<c:forEach var="btm" items="${bottomList}">
 			<tr align="center">
 				<td><input type="checkbox" name="content" /></td>
- 				<td>${btm.sequence}</td>
-				<td>${btm.item_Code}</td>
-				<td>${btm.item_Name}</td>
-				<td>${btm.standard}</td>
-				<td>${btm.requestdate}</td>
-				<td>${btm.inventory_unit}</td>
-				<td>${btm.inventory_qy}</td>
-				<td>${btm.claim_unit}</td>
-				<td>${btm.claim_quantity}</td>
-				<td>${btm.customer_name}</td> 
+				<td>${btm.sequence}</td>
+					<td>${btm.itemNumber}</td>
+					<td>${btm.itemName}</td>
+					<td>${btm.standard}</td>
+					<td>${btm.requestdate}</td>
+					<td>${btm.inventory_unit}</td>
+					<td>${btm.inventory_qy}</td>
+					<td>${btm.claim_unit}</td>
+					<td>${btm.claim_quantity}</td>
+					<td>${btm.buyer}</td>
 			</tr>
-		</c:forEach>  --%>
+		</c:forEach>
 	</table>
 	<div id="total">
 		<table>

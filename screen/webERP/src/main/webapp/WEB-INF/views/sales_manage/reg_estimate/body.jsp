@@ -1,9 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" 
+    isELIgnored="false"  %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 #contents1{
@@ -51,17 +59,17 @@
 <container1 id = contents1>
             <table class="con1_search">
                 <tr>
-                    <td align="center">»ç¾÷Àå</td>
+                    <td align="center">ì‚¬ì—…ìž¥</td>
                     <td><input type="text" name="" id=""></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td><input type="text" disabled></td>
-                    <td align="center">°ßÀû±â°£</td>
+                    <td align="center">ê²¬ì ê¸°ê°„</td>
                     <td><input type="date"></td>
                     <td>~</td>
                     <td><input type="date"></td>
                 </tr>
                 <tr>
-                    <td align="center">°í°´</td>
+                    <td align="center">ê³ ê°</td>
                     <td><input type="text"></td>
                     <td><i class="fas fa-search" style="color: blue;"></i></td>
                     <td><input type="text" disabled></td>
@@ -72,12 +80,12 @@
            <table id="view">
                 <thead>
                     <td><input type="checkbox" id="check" name="content" onclick="selectAll(this)"/></td>
-                    <td align="center">°ßÀû¹øÈ£</td>
-                    <td align="center">°ßÀûÀÏÀÚ</td>
-                    <td align="center">°í°´</td>
-                    <td align="center">°ú¼¼±¸ºÐ</td>
-                    <td align="center">´Ü°¡±¸ºÐ</td>
-                    <td align="center">ºñ°í</td>
+                    <td align="center">ê²¬ì ë²ˆí˜¸</td>
+                    <td align="center">ê²¬ì ì¼ìž</td>
+                    <td align="center">ê³ ê°</td>
+                    <td align="center">ê³¼ì„¸êµ¬ë¶„</td>
+                    <td align="center">ë‹¨ê°€êµ¬ë¶„</td>
+                    <td align="center">ë¹„ê³ </td>
                 </thead>
                 <tbody>
                     <td><input type="checkbox" value = "check1" id="check" name="content"/></td>
@@ -94,15 +102,15 @@
             <table id="view">
                 <thead>
                     <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
-                    <td align="center">Ç°¹ø</td>
-                    <td align="center">Ç°¸í</td>
-                    <td align="center">±Ô°Ý</td>
-                    <td align="center">³³±âÀÏ</td>
-                    <td align="center">°ßÀû¼ö·®</td>
-                    <td align="center">´Ü°¡</td>
-                    <td align="center">°ø±Þ°¡</td>
-                    <td align="center">ºÎ°¡¼¼</td>
-                    <td align="center">ÇÕ°è¾×</td>
+                    <td align="center">í’ˆë²ˆ</td>
+                    <td align="center">í’ˆëª…</td>
+                    <td align="center">ê·œê²©</td>
+                    <td align="center">ë‚©ê¸°ì¼</td>
+                    <td align="center">ê²¬ì ìˆ˜ëŸ‰</td>
+                    <td align="center">ë‹¨ê°€</td>
+                    <td align="center">ê³µê¸‰ê°€</td>
+                    <td align="center">ë¶€ê°€ì„¸</td>
+                    <td align="center">í•©ê³„ì•¡</td>
                 </thead>
                 <tbody>
                     <td style="width: 5%;"><input type="checkbox" value = "check1" id="check" name="content1"/></td>

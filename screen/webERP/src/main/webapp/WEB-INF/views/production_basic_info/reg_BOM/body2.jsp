@@ -71,7 +71,6 @@
                     <thead align="center" style="background-color:gray">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td style="width:10px;">No</td>
-                        <td>모품목코드</td>
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>

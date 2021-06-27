@@ -1,10 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" 
+    isELIgnored="false"  %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>ÏàòÏ£º ÌòÑÌô©</title>
 <style>
 #contents1{
             position: absolute;
@@ -12,15 +20,6 @@
             top: 15%;
             width: 85%;
             height: 10%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-        #contents2{
-            position: absolute;
-            left: 15%;
-            top: 25%;
-            width: 85%;
-            height: 70%;
             border: 1px solid black;
             z-index: 1;
         }
@@ -54,57 +53,43 @@
 <container1 id = contents1>
             <table class="con1_search">
                 <tr>
-                    <td>ªÁæ˜¿Â</td>
-                    <td style="width: 50px;"><input type="text" id="reqInput" style="width: 100%;"/></td>
-
-                    <td colspan="3"><input type="text" name="" disabled style="width: 100%;"/></td>
-                    <td><i class="fas fa-search" style="color: blue;"></td>
-                    <td colspan="5" style="width: 100px;">∞≈∑°±∏∫–</td>
+                    <td>Í±∞ÎûòÏ≤ò Î™Ö</td>
+                    <td style="width: 50px;"><input type="text" name="cust" value='${param.custCode}' style="width: 100%;" disabled /></td>
+                    <td colspan="3"><input type="text" name="cust" value='${param.custName}' style="width: 100%;"disabled /></td>
+                    <td><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
+                    <td colspan="5" style="width: 100px;">Í±∞ÎûòÍµ¨Î∂Ñ</td>
                     <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                     <td><input type="text" name="" disabled/></td>
                     <td ><i class="fas fa-search" style="color: blue;"></td>
                     
                 </tr> 
                 <tr>
-                    <td>ºˆ¡÷±‚∞£</td>
+                    <td>ÏàòÏ£ºÍ∏∞Í∞Ñ</td>
                     <td colspan="2" style="width: 80px;"><input type="date" id="reqInput" style="width: 100%;"/></td>
                     <td>~</td>
                     <td><input type="date" id="reqInput" style="width: 100%;"/></td>
                     <td></td>
-                    <td colspan="5">ªÁø¯</td>
+                    <td colspan="5">ÏÇ¨Ïõê</td>
                     <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                     <td><input type="text" name="" disabled/></td>
                     <td><i class="fas fa-search" style="color: blue;"></td>
                 </tr>
             </table>
         </container1>
-        <container2 id= contents2>
-            <table id="view1">
-                <tr>
-                    <th><input type="checkbox" name="content"/></th>
-                    <th>¡÷πÆπ¯»£</th>
-                    <th>¡÷πÆ¿œ¿⁄</th>
-                    <th>∞Ì   ∞¥</th>
-                    <th>¥„¥Á¿⁄</th>
-                    <th>No</td>
-                    <th>«∞π¯</th>
-                    <th>«∞∏Ì</th>
-                    <th>¥‹¿ß</th>
-                    <th>ºˆ∑Æ</th>
-                    <th>¥‹∞°</th>
-                    <th>∞¯±ﬁ∞°</th>
-                    <th>∫Œ∞°ºº</th>
-                    <th>«’∞Ëæ◊</th>
-                    <th>≥≥±‚¿œ</th>
-                    <th>√‚«œøπ¡§¿œ</td>
-                </tr>
-            </table>
-            <div>
-                ºˆ∑Æ«’∞Ë: <input type="text" disabled/>
-                ∞¯±ﬁ∞° «’∞Ë: <input type="text" disabled/>
-                ∫Œ∞°ºº «’∞Ë: <input type="text" disabled/>
-                «’∞Ëæ◊: <input type="text" disabled/>
-            </div>
-        </container2>
+        	</container1>
+	   <script>
+	   function openWindowPop(url, name){
+           var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+           window.open(url, name, options);
+       }
+          function search1(){
+    	  
+        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/CustByOrderSta.do','CustOrderSta');  
+    }
+          function search2(){
+        	  
+        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/ItemByOrderSta.do','ItemOrderSta');  
+    }
+    </script>
 </body>
 </html>

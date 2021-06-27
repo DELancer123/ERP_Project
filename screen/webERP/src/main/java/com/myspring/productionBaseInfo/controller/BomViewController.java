@@ -15,12 +15,7 @@ import com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO;
 public interface BomViewController {
 	public ModelAndView viewBOM(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addMember(@ModelAttribute("bom") bomVO bomVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
-	/*public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView login(@ModelAttribute("member") bomVO member,
-                              RedirectAttributes rAttr,
-                              HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception; 
-*/
+
 
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception;

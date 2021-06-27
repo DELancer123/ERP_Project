@@ -44,4 +44,5 @@ public interface bomViewDAO {
 	public List researveView(String number) throws DataAccessException;
 
 
+	public int updateBOM(bomVO bomVO) throws DataAccessException;
 }

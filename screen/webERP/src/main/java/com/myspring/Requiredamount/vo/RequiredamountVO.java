@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component("mrpVO")
 public class RequiredamountVO {
-private String item_Code;
-private String item_Name;
+private String itemnumber;
+private String itemname;
 private String standard;
 private Date need_date;
 private int sequence;
@@ -17,11 +17,11 @@ private String unit;
 
 public RequiredamountVO() {}
 
-public RequiredamountVO(String item_Code,String item_Name,String standard,Date need_date,int sequence,Date expected_order,
+public RequiredamountVO(String itemnumber,String itemname,String standard,Date need_date,int sequence,Date expected_order,
 		int expected_quantity,String unit)
 {
-	this.item_Code=item_Code;
-	this.item_Name=item_Name;
+	this.itemnumber=itemnumber;
+	this.itemname=itemname;
 	this.standard=standard;
 	this.need_date=need_date;
 	this.sequence=sequence;
@@ -30,11 +30,11 @@ public RequiredamountVO(String item_Code,String item_Name,String standard,Date n
 	this.unit=unit;
 }
 
-public String getItem_Code() {return item_Code;}
-public void setItem_Code(String item_Code) {this.item_Code=item_Code;}
+public String getItemnumber() {return itemnumber;}
+public void setItemnumber(String itemnumber) {this.itemnumber=itemnumber;}
 
-public String getItem_Name() {return item_Name;}
-public void setItem_Name(String item_Name) {this.item_Name=item_Name;}
+public String getItemname() {return itemname;}
+public void setItemname(String itemname) {this.itemname=itemname;}
 
 public String getStandard() {return standard;}
 public void setStandard(String standard) {this.standard=standard;}

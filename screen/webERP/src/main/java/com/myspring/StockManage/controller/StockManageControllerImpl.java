@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -194,17 +193,6 @@ public class StockManageControllerImpl implements StockManageController {
 		mav.setViewName("jsonView");
 			return mav;
 	}
-	
-//	@RequestMapping(value="/member/searchmenu.do" ,method = RequestMethod.GET)
-//	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
-//			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		String viewName=(String)request.getAttribute("viewName");
-//		List<StockManageVO> menuList=stockManageservice.searchMenu(searchWord);
-//		ModelAndView mav = new ModelAndView("redirect:/member"+menuList);
-//		mav.addObject("menuList", menuList);
-//		return mav;
-//		
-//	}
 	@RequestMapping(value = "/member/searchmenu.do", method = RequestMethod.GET)
 	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord) throws Exception {
 		ModelAndView mav = new ModelAndView();

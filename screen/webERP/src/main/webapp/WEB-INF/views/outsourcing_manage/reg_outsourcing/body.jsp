@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
@@ -23,8 +22,15 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var itemcode = document.getElementById('itemcode');
+	itemcode.onclick = function(){
+		window.open('http://localhost:8090/webERP/member/codehelper.do','codehelper','width = 300, height = 200');
+	}
+}
+</script>
 <style>
 #contents1{
             position: absolute;
@@ -87,31 +93,33 @@
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
-                        
+                    </tr>
+                    
+                    <tr>
                         <td>외주처</td>
                         <td style="width: 50px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td colspan="3"><input type="text" style="width: 100%;"/></td>
                         <td> <i class="fas fa-search" style="color: blue;"></i></td>
-    
                     </tr>
-                    
                     <tr>
-
-    
     					<td>지시기간</td>
                         <td colspan="2" style="width: 50px;"><input type="date"  id='searchStartDate' style="width: 100%;"/></td>
                         <td>~</td>
                         <td ><input type="date" id='searchEndDate' style="width: 100%;"/></td>
                         <td></td>	
-    					
                         <td colspan="4" style="width: 80px;">사원</td>
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
-
-
                         <td>
                             <input type="button" value="생산계획조회" style="padding: 5px;" onClick="searchPlan()"></input>
+                            <input type="button" value="청구조회" style="padding: 5px; margin-left: 30px;"></input>
+                        </td>
+                        <td>
+                            <input type="button" value="주문조회" style="padding: 5px;"></input>
+                        </td>
+                        <td>
+                            <input type="button" value="생산계획조회" style="padding: 5px; " ondblclick="openWindowPop('codehelper.do#','codehelper')"></input>
                         </td>
                     </tr>
                 </table>
@@ -175,7 +183,6 @@
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].note" value='${param.note }'/></td>
     	<td><input type="text" name="ListVO[${fn:length(outsourcingView) }].productionPlanCode" value='${param.productionPlanCode}' disabled/></td>
     </tr>
-
                 </table>
                 </form>
             </div>

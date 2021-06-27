@@ -48,5 +48,7 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public List houseCodeSearch() throws DataAccessException;
   public List processCodeSearch() throws DataAccessException;
   public List workplaceCodeSearch() throws DataAccessException;
+  public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException; 
+  public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException;
   }
  

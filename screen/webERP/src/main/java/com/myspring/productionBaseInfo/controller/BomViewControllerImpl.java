@@ -49,6 +49,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
 		int sum = 0;
+		System.out.println("�븘�씠�뀥肄붾뱶:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -122,8 +123,6 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
 		return mav;
 		}
-	
-	@Override
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMember(@ModelAttribute("bom") bomVO bomVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
@@ -134,7 +133,6 @@ public class BomViewControllerImpl implements BomViewController {
 		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
-		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -341,7 +339,7 @@ public class BomViewControllerImpl implements BomViewController {
 		String[] numberary = number.split(",");
 		RegOutSourcingPriceVO outVO = new RegOutSourcingPriceVO();
 		List<RegOutSourcingPriceVO> outVO1= new ArrayList<RegOutSourcingPriceVO>();
-		System.out.println("길이" + numberary.length);
+		System.out.println("湲몄씠" + numberary.length);
 		for(int i = 0;i<numberary.length;i++) {
 			outVO1.add(i,outVO);
 			outVO1.get(i).setOutcustomer(place);

@@ -353,10 +353,10 @@ input {
             </ul>
         </nav>
         <nav id="nav2">
-            <button id="delete" onclick="">삭제</button>
+            <button id="delete" onclick="deleteData()">삭제</button>
             <button id="view_button">조회</button>
             <button id="save" onclick="newRow()">저장</button>
-            <button id="update">수정</button>
+            <button id="update" onclick="updateRow()">수정</button>
         </nav>
         <div>
             <tiles:insertAttribute name="side"/>
@@ -410,9 +410,7 @@ input {
             document.getElementById("search").value = ' 메뉴 검색';
         }
         
-        
-        
-        function selectAll(selectAll){
+       function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
@@ -492,6 +490,8 @@ input {
 		  element.style.display = 'none'; 
 	   }
 	}
+
+        
     </script>
 </body>
 </html>

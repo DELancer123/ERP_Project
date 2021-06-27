@@ -1,8 +1,0 @@
-diff a/screen/webERP/src/main/java/com/myspring/Billing/controller/BIllIngController.java b/screen/webERP/src/main/java/com/myspring/Billing/controller/BIllIngController.java	(rejected hunks)
-@@ -9,6 +9,4 @@
- 
- 	ModelAndView cmList(HttpServletRequest request, HttpServletResponse response) throws Exception;
- 
--	ModelAndView mrpamount(HttpServletRequest request, HttpServletResponse response) throws Exception;
--
- }

@@ -54,7 +54,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			}				
 			return mav;
 	  	}
-  
+
 	  @Override
 	  @RequestMapping(value="/member/itemCodePop.do" ,method = RequestMethod.GET)
 		public ModelAndView itemCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -64,7 +64,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			mav.addObject("itemView", itemView);
 			return mav;
 		}
-//	생산계획 등록 CRUD
+//	�깮�궛怨꾪쉷 �벑濡� CRUD
 	  	@Override
 		@RequestMapping(value="/member/delProductionPlan.do" ,method = RequestMethod.GET)
 		public ModelAndView delProductionPlan(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -102,14 +102,14 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			ModelAndView mav = new ModelAndView("redirect:"+path);
 			return mav;
 		}
-//	작업지시등록 기능 부
+//	�옉�뾽吏��떆�벑濡� 湲곕뒫 遺�
   @Override
   @RequestMapping(value="/member/regoperins.do" ,method = RequestMethod.GET)
   public ModelAndView listOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
 	  String startDate = request.getParameter("startDate");
 	  String endDate = request.getParameter("endDate");
 	  String viewName = (String)request.getAttribute("viewName");
-	  logger.debug("debug �젅諛� : viewName = " + viewName); 
+	  logger.debug("debug 占쎌쟿獄쏉옙 : viewName = " + viewName); 
 	  List infoList = productionService.selectAllOperationInfo(startDate, endDate); 
 	  ModelAndView mav = new ModelAndView(viewName); 
 	  mav.addObject("infoList", infoList); 
@@ -126,7 +126,6 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		return mav;
 	}
   
-  @Override
   @RequestMapping(value="/member/departmentSearch.do" ,method = RequestMethod.GET)
 	public ModelAndView departmentSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
@@ -192,7 +191,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		return mav;
 		}
   	
-//  작업지시 확정 기능부 
+//  �옉�뾽吏��떆 �솗�젙 湲곕뒫遺� 
   	 @Override
   	  @RequestMapping(value="/member/comoperins.do" ,method = RequestMethod.GET)
   	  public ModelAndView listCommitOpertaionInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
@@ -224,7 +223,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List<String> message = new ArrayList();
  		message = productionService.confirmDetail(numberary);
  		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
- 		System.out.println("컨트롤러 확인"+message);
+ 		System.out.println("而⑦듃濡ㅻ윭 �솗�씤"+message);
  		mav.addObject("message",message);
  		return mav;
  		}
@@ -238,7 +237,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List<String> message = new ArrayList();
  		message = productionService.revertDetail(numberary);
  		ModelAndView mav = new ModelAndView("redirect:/member/comoperins.do");
- 		System.out.println("컨트롤러 확인"+message);
+ 		System.out.println("而⑦듃濡ㅻ윭 �솗�씤"+message);
  		mav.addObject("message",message);
  		return mav;
  	}
@@ -254,7 +253,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  		return mav;
   		}
  	
-// 작업지시 확정 자재출고 부 기능
+// �옉�뾽吏��떆 �솗�젙 �옄�옱異쒓퀬 遺� 湲곕뒫
 
  	@Override
  	@RequestMapping(value="/member/inscomoperins.do" ,method = RequestMethod.GET)
@@ -285,7 +284,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	}
  	
  	
-//  작업실적등록 기능부 
+//  �옉�뾽�떎�쟻�벑濡� 湲곕뒫遺� 
   	 @Override
   	  @RequestMapping(value="/member/regoperperf.do" ,method = RequestMethod.GET)
   	  public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
@@ -331,12 +330,12 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		List<String> message = new ArrayList();
  		message = productionService.MaterialUse(numberary);
  		ModelAndView mav = new ModelAndView("redirect:/member/regoperperf.do");
- 		System.out.println("컨트롤러 확인"+message);
+ 		System.out.println("而⑦듃濡ㅻ윭 �솗�씤"+message);
  		mav.addObject("message",message);
  		return mav;
  	}
  	
-// 	작업실적 등록 팝업부
+// 	�옉�뾽�떎�쟻 �벑濡� �뙘�뾽遺�
  	
  		@Override
  		@RequestMapping(value="/member/houseCodeSearchPop.do" ,method = RequestMethod.GET)
@@ -367,7 +366,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			mav.addObject("itemView", itemView);
 			return mav;
 		}
-//  작업지시 마감처리 기능부 
+//  �옉�뾽吏��떆 留덇컧泥섎━ 湲곕뒫遺� 
   	 @Override
   	  @RequestMapping(value="/member/operinsclo.do" ,method = RequestMethod.GET)
   	  public ModelAndView listOperationInsClosingInfo(HttpServletRequest request, HttpServletResponse response) throws Exception { 
@@ -418,7 +417,6 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  		}
   	 
- 	
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
 	  String uri = (String) request.getAttribute("javax.servlet.include.request_uri"); 

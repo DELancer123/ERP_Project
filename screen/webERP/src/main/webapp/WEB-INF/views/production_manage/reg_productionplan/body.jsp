@@ -89,6 +89,27 @@
                         <td>규격</td>
                         <td>단위</td>
                         <td>일생산량</td>
+                    </thead>
+                    <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
+                    <tbody>
+                   	<c:forEach var="info" items="${infoList}" >   
+                     <tr>
+                     	<td>${info.itemCode }</td>
+                     	<td><a href="#">${info.itemName }</a></td>
+                     	<td>${info.standard }</td>
+                     	<td>${info.inventoryUnit }</td>
+                     	<td>${info.dailyProduction }</td>
+                     </tr>
+                     </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 컨테이너 출력 종료 -->
+            <!-- 컨테이너 2 출력 -->
+            <div id="pdcDetail">
+                <table id="pdcDetailTable">
+                    <thead>
+                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
                         <td>순서</td>
                         <td>작업예정일</td>
                         <td>수량</td>

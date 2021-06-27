@@ -14,8 +14,8 @@ String parent = request.getParameter("itemNumber");
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Л┬≤Лё╪ К⌠╠К║²</title>
 <style>
 #contents1 {
 	position: absolute;
@@ -69,7 +69,7 @@ String parent = request.getParameter("itemNumber");
 		action="${pageContext.request.contextPath }/member/regorder.do">
 		<table class="con1_search">
 			<tr>
-				<td>╩Г╬ВюЕ</td>
+				<td>О©╫О©╫О©╫О©╫О©╫</td>
 				<td><input type="text" id="reqInput" name="bus_code"
 					style="width: 100%;" value="${bus_code}" /></td>
 				<td><a href="javascript:search1()"><i class="fas fa-search"
@@ -85,11 +85,11 @@ String parent = request.getParameter("itemNumber");
 		<thead>
 			<td><input type="checkbox" id="check" name="content"
 				onclick="selectAll(this)" /></td>
-			<td>аж╧╝╧Ьхё</td>
-			<td>аж╧╝юоюз</td>
-			<td>ЁЁг╟цЁ</td>
-			<td>╨н╟║╪╪╠╦╨п</td>
-			<td>╨Я╟М</td>
+			<td>О©╫ж╧О©╫О©╫О©╫хё</td>
+			<td>О©╫ж╧О©╫О©╫О©╫О©╫О©╫</td>
+			<td>О©╫О©╫г╟цЁ</td>
+			<td>О©╫н╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫</td>
+			<td>О©╫О©╫О©╫</td>
 		</thead>
 		<tbody id="table1">
 			<c:forEach var="item" items="${customerList}" varStatus="sts">
@@ -131,15 +131,15 @@ String parent = request.getParameter("itemNumber");
 		<thead>
 			<td style="width: 5%;"><input type="checkbox" name="content1"
 				onclick="selectAll1(this)"></td>
-			<td>г╟╧Ь</td>
-			<td>г╟╦М</td>
-			<td>╠т╟щ</td>
-			<td>╢эю╖</td>
-			<td>ЁЁ╠Бюо</td>
-			<td>аж╧╝╪Ж╥╝</td>
-			<td>╢э╟║</td>
-			<td>цБго©╧а╓юо</td>
-			<td>╟к╩Г</td>
+			<td>г╟О©╫О©╫</td>
+			<td>г╟О©╫О©╫</td>
+			<td>О©╫т╟О©╫</td>
+			<td>О©╫О©╫О©╫О©╫</td>
+			<td>О©╫О©╫О©╫О©╫О©╫О©╫</td>
+			<td>О©╫ж╧О©╫О©╫О©╫О©╫О©╫</td>
+			<td>О©╫э╟О©╫</td>
+			<td>О©╫О©╫О©╫о©О©╫О©╫О©╫О©╫О©╫</td>
+			<td>О©╫к╩О©╫</td>
 		</thead>
 		<tbody>
 			<td style="width: 5%;"><input type="checkbox" value="check1"

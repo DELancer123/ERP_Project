@@ -3,7 +3,6 @@ package com.myspring.productionBaseInfo.BOM.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
@@ -122,7 +121,11 @@ public class bomViewDAOImpl implements bomViewDAO{
 		int result = 0;
 		int idx = outVO.getOutpriveVO().size()-1;
 			result = sqlSession.update("mappers.erp.addoutprice",outVO.getOutpriveVO().get(idx));	
-		
+		return result;
+	}
+	@Override
+	public int updateBOM(bomVO bomVO) throws DataAccessException {
+		int result = sqlSession.update("mappers.erp.updateBOM",bomVO);
 		return 0;
 	}
 
@@ -182,9 +185,5 @@ public class bomViewDAOImpl implements bomViewDAO{
 		System.out.println(bomList.size());
 		return bomList;
 	}
-
-	
-	
-
 
 }

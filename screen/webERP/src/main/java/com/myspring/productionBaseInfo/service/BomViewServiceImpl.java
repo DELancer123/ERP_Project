@@ -207,5 +207,4 @@ public class BomViewServiceImpl implements BomViewService{
 		bomList = bomDAO.researveView(number);
 		return bomList;
 	}
-
 }

@@ -98,16 +98,16 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
 		for(String obj: numberAry) {
 			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
-			if(check.equals("계획")) {
+			if(check.equals("怨꾪쉷")) {
 			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);
 			} else {
-				System.out.println("확정,마감 상태의 정보는 삭제할 수 없습니다.");
+				System.out.println("�솗�젙,留덇컧 �긽�깭�쓽 �젙蹂대뒗 �궘�젣�븷 �닔 �뾾�뒿�땲�떎.");
 				continue;
 			}
 		}
 	}
 	
-//	작업지시확정 기능부
+//	�옉�뾽吏��떆�솗�젙 湲곕뒫遺�
 	@Override
 	public List selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException {
 		List<OperationRegistVO> infoList = null;
@@ -143,7 +143,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
-		System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
+		System.out.println("�떎�삤 異쒕젰 �솗�씤"+ODVO.getDetailVO().get(i).getForwardingNumber());
 		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
 		System.out.println("DAOresult:"+result);
 		}
@@ -151,7 +151,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		return result;
 	}
 	
-//	확정 버튼 기능부
+//	�솗�젙 踰꾪듉 湲곕뒫遺�
 	@Override
 	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
 		List<String> message = new ArrayList();
@@ -159,11 +159,11 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(String number: numberAry) {
 			
 			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
-			if(check.equals("계획")) {
+			if(check.equals("怨꾪쉷")) {
 				sqlSession.update("mappers.erp.updConfirmDetail", number);
-				message.add("업데이트 완료!");
+				message.add("�뾽�뜲�씠�듃 �셿猷�!");
 			} else {
-				message.add("확정, 마감상태의 작업은 변경 할 수 없습니다!");
+				message.add("�솗�젙, 留덇컧�긽�깭�쓽 �옉�뾽�� 蹂�寃� �븷 �닔 �뾾�뒿�땲�떎!");
 			}
 		}
 		return message;
@@ -176,25 +176,25 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		for(String number: numberAry) {
 			
 			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
-			System.out.println("다오 체크 확인" + check);
-			if(check.equals("계획")) {
-				message.add("이미 계획상태입니다!");
-			} else if(check.equals("마감")) {
-				message.add("마감된 작업은 수정할 수 없습니다!");
+			System.out.println("�떎�삤 泥댄겕 �솗�씤" + check);
+			if(check.equals("怨꾪쉷")) {
+				message.add("�씠誘� 怨꾪쉷�긽�깭�엯�땲�떎!");
+			} else if(check.equals("留덇컧")) {
+				message.add("留덇컧�맂 �옉�뾽�� �닔�젙�븷 �닔 �뾾�뒿�땲�떎!");
 			} else {
 				String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
 				if(count.equals("0")) {
 					sqlSession.update("mappers.erp.updRevertDetail", number);
-					message.add("업데이트 완료!");
+					message.add("�뾽�뜲�씠�듃 �셿猷�!");
 				} else {
-					message.add("출고 정보가 있는 경우 상태를 변경할 수 없습니다!");
+					message.add("異쒓퀬 �젙蹂닿� �엳�뒗 寃쎌슦 �긽�깭瑜� 蹂�寃쏀븷 �닔 �뾾�뒿�땲�떎!");
 				}
 			}
 		}
 		return message;
 	}
 	
-//	작업지시확정 자재출고 기능부
+//	�옉�뾽吏��떆�솗�젙 �옄�옱異쒓퀬 湲곕뒫遺�
 
 	@Override
 	public List selectRelease(String number) throws DataAccessException, ParseException {
@@ -212,7 +212,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		if(count.equals("0")) {
 			infoList = sqlSession.selectList("mappers.erp.selectReleaseDetail",number);
 		} else {
-			System.out.println("출고 정보가 이미 존재합니다!");
+			System.out.println("異쒓퀬 �젙蹂닿� �씠誘� 議댁옱�빀�땲�떎!");
 		}
 		return infoList;
 	}

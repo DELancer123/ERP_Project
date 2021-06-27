@@ -1,4 +1,3 @@
-
 package com.myspring.commonProduction.commitOperationInstruction.vo;
  
 import java.sql.Date;
@@ -7,8 +6,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-@Component("CommitOperationInstructionVO") 
-public class CommitOperationInstructionVO { 
+
+
+
+@Component("CommitOperationInstructionVO")
+public class CommitOperationInstructionVO {
 	private int NO; 
 	private String productionPlanCode;
 	private String itemCode;
@@ -24,8 +26,6 @@ public class CommitOperationInstructionVO {
 	private String note;
 	private List<CommitOperationInstructionVO> ListVO;
 	
-	public CommitOperationInstructionVO() {
-	}
 
 	public int getNO() {
 		return NO;
@@ -41,6 +41,10 @@ public class CommitOperationInstructionVO {
 
 	public void setNO(int nO) {
 		NO = nO;
+	}
+	
+	public CommitOperationInstructionVO() {
+		super();
 	}
 
 	public String getItemCode() {
