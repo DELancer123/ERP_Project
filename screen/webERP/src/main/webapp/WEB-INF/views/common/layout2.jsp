@@ -230,7 +230,7 @@
                 <li><a href="#">기타메뉴3</a></li>
             </ul>
             <input type="text" value=" 메뉴 검색" id="search" style="text-align:left"/>
-            <input type="button" value="검색" class="search_button"/>
+            <input type="button" value="검색2" class="search_button"/>
         </header>
         <nav id = nav1>
             <ul id="gnb">

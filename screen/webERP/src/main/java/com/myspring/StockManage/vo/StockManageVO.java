@@ -43,6 +43,7 @@ public class StockManageVO {
 	int quantity;	//재고수량
 	
 	
+	
 	String 	busCode;
 	String 	busName;
 	java.util.Date startDate, endDate;
@@ -325,5 +326,51 @@ public class StockManageVO {
 return valueStr;
 	}
 	
+	
+	// 수주등록 파트
+	String ordersNum;
+	Date   ordersdate;
+	String customerCode;
+	String tax;
+	String Note;
+
+
+	public String getOrdersNum() {
+		return ordersNum;
+	}
+	public void setOrdersNum(String ordersNum) {
+		this.ordersNum = ordersNum;
+	}
+	public Date getOrdersdate() {
+		return ordersdate;
+	}
+	public void setOrdersdate(Date ordersdate) {
+		this.ordersdate = ordersdate;
+	}
+	public String getCustomerCode() {
+		return customerCode;
+	}
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
+	}
+	public String getTax() {
+		return tax;
+	}
+	public void setTax(String tax) {
+		this.tax = tax;
+	}
+	///////// 메뉴검색바
+	
+	String menu;
+
+
+	public String getMenu() {
+		return menu;
+	}
+	public void setMenu(String menu) {
+		this.menu = menu;
+	}
+	
+
 	
 }

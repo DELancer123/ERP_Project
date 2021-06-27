@@ -28,6 +28,14 @@ public interface StockManageService {
 
 	List<StockManageVO> searchPopName2(String itemName);
 
+	List cusView();
+
+	List<StockManageVO> searchPopCus(String itemName);
+
+	List<StockManageVO> Searchsuju(String customerCode);
+
+	List<String> keywordSearch(String keyword);
+
 
 
 

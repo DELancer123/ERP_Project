@@ -26,6 +26,14 @@ public interface StockManageDAO {
 
 	List<StockManageVO> viewserachPopName2(String itemName);
 
+	List cusView();
+
+	List<StockManageVO> viewserachPopCus(String itemName);
+
+	List<StockManageVO> Searchsuju(String customerCode);
+
+	List<String> selectKeywordSearch(String keyword);
+
 //	List viewType();
 //
 //	List<StockManageVO> SearchStock(String type) throws DataAccessException;

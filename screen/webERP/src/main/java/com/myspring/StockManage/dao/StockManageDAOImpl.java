@@ -1,5 +1,6 @@
 package com.myspring.StockManage.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -74,6 +75,33 @@ public class StockManageDAOImpl implements StockManageDAO {
 		List<StockManageVO> popList = null;
 		popList = sqlSession.selectList("mappers.erp.selectPopstockList2",itemName);
 		return popList;
+	}
+
+	@Override
+	public List cusView() {
+		List<StockManageVO> nameList = null;
+		nameList = sqlSession.selectList("mappers.erp.selectcusList");
+		return nameList;
+	}
+
+	@Override
+	public List<StockManageVO> viewserachPopCus(String itemName) {
+		List<StockManageVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopCusList",itemName);
+		return popList;
+	}
+
+	@Override
+	public List<StockManageVO> Searchsuju(String customerCode) {
+		List<StockManageVO> nameList = null;
+		nameList = sqlSession.selectList("mappers.erp.selectsujuList",customerCode);
+		return nameList;
+	}
+
+	@Override
+	public List<String> selectKeywordSearch(String keyword) {
+		 List<String> list=(ArrayList)sqlSession.selectList("mappers.erp.selectKeywordSearch",keyword);
+		 return list;
 	}
 
 

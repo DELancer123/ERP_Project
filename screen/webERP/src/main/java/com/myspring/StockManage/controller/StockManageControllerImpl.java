@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -124,7 +125,95 @@ public class StockManageControllerImpl implements StockManageController {
 
 		return mav;
 	} 
+	
+	//수주등록 파트
+	
+	@RequestMapping(value = "/member/regorder.do", method = RequestMethod.GET)
+	public ModelAndView viewStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		mav = new ModelAndView(viewName);
 
+		String customerCode = request.getParameter("bus_code");
+
+
+		StockManageVO searchVO = new StockManageVO();
+
+		if (StringUtils.hasText(customerCode)) {
+			searchVO.setCustomerCode(customerCode);
+
+			List<StockManageVO> customerList = null;
+			customerList = stockManageservice.Searchsuju(customerCode);
+
+			mav.addObject("customerList", customerList);
+		}
+
+
+
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/member/searchcus.do", method = RequestMethod.GET)
+	public ModelAndView searchcus(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List nameView = stockManageservice.cusView();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("nameView", nameView);
+
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchPopCus.do", method = RequestMethod.GET)
+	public ModelAndView searchPopCus(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<StockManageVO> popName = null;
+		popName = stockManageservice.searchPopCus(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	/////////////////////////메뉴검색바
+	
+	@RequestMapping(value="/member/keywordSearch.do",method = RequestMethod.GET,produces = "application/text; charset=utf8")
+	public @ResponseBody ModelAndView  keywordSearch(@RequestParam("keyword") String keyword,
+			                                  HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		//System.out.println(keyword);
+		if(keyword == null || keyword.equals(""))
+		   return null ;
+	
+		keyword = keyword.toUpperCase();
+	    List<String> keywordList =stockManageservice.keywordSearch(keyword);
+	    mav.addObject("keywordList", keywordList);
+		mav.setViewName("jsonView");
+			return mav;
+//	 // 최종 완성될 JSONObject 선언(전체)
+//		JSONObject jsonObject = new JSONObject();
+//		jsonObject.put("keyword", keywordList);
+//		 		
+//	    String jsonInfo = jsonObject.toString();
+//	   // System.out.println(jsonInfo);
+//	    return jsonInfo ;
+	}
+	
+//	@RequestMapping(value="/searchGoods.do" ,method = RequestMethod.GET)
+//	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
+//			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		String viewName=(String)request.getAttribute("viewName");
+//		List<StockManageVO> goodsList=stockManageservice.searchGoods(searchWord);
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("goodsList", goodsList);
+//		return mav;
+//		
+//	}
+//	
+	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

@@ -276,7 +276,7 @@
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_estimate/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/regorder" extends="baseLayout">
+   <definition name="/member/regorder" extends="basesujuLayout">
       <put-attribute name="title" value="수주등록" />
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/reg_order/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
@@ -569,4 +569,19 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   
+   <!-- 수주등록 거래처등록팝 -->
+   <definition name="/member/searchcus" template="/WEB-INF/views/sales_manage/reg_order/searchcustomer.jsp">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
+   <definition name="basesujuLayout"  template="/WEB-INF/views/sales_manage/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   
+   
 </tiles-definitions>

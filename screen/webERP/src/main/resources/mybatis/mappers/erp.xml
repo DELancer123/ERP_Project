@@ -1032,6 +1032,52 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	
+	<!--  수주등록 파트 -->
+	<resultMap id="sujuView" type="StockManageVO">
+		<result property="ordersNum" column="ordersNum" />
+		<result property="ordersdate" column="ordersdate" />
+		<result property="customerCode" column="customerCode" />
+		<result property="tax" column="tax" />
+		<result property="note" column="Note" />
+	</resultMap>
+	
+	
+	<select id="selectcusList" resultMap="sujuView">
+		<![CDATA[ select *
+		  from CSM_SM_Ord_Reg
+		]]>
+	</select>
+	
+	<select id="selectPopCusList" resultMap="sujuView">
+		<![CDATA[ select customerCode
+		  from CSM_SM_Ord_Reg
+		  where customerCode like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
+	<select id="selectsujuList" resultMap="sujuView">
+		<![CDATA[ select *
+		  from CSM_SM_Ord_Reg
+		  where customerCode = #{customerCode}
+		]]>
+	</select>
+	
+	
+	
+	<!-- 메뉴검색바  -->
+	<resultMap id="menuView" type="StockManageVO">
+		<result property="menu" column="menu" />
+	</resultMap>
+	
+	<select id="selectKeywordSearch" resultMap="menuView"  >
+	    <![CDATA[
+       	select menu
+		  from Menu
+		  where menu like '%'||#{keyword}||'%'
+		]]>
+	</select>
+	
 
 </mapper>
 

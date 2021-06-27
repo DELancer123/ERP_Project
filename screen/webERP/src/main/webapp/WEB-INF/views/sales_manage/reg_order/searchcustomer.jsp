@@ -52,7 +52,6 @@ a {
 	overflow: scroll;
 }
 
-
 </style>
 </head>
 <body>
@@ -61,11 +60,11 @@ a {
 			<div id="searchBox">
 				<table id="search">
 					<tr>
-						<td>품목코드</td>
+						<td>거래처코드</td>
 						<td><input type="text" id="code" name ="code"/></td>
 					</tr>
 					<tr>
-						<td>품목명</td>
+						<td>거래처명</td>
 						<td><input type="text" id="name" name = "name" class="name" /></td>
 					</tr>
 				</table>
@@ -77,15 +76,15 @@ a {
 			<div id="view">
 				<table style="width: 100%;">
 					<tr>
-						<td> &nbsp;&nbsp;&nbsp;품목코드</td>
-						<td>품목명</td>
+						<td> &nbsp;&nbsp;&nbsp;거래처코드</td>
+						<td>거래처명</td>
 					</tr>
 				</table>
 				<table id="searchItem" style="width: 100 %;">
 					<c:forEach var="type" items="${nameView}">
 						<tr align="center">
-							<td><a href="javascript:popFunction('${type.itemCode }','${type.itemName }')">${type.itemCode}</a></td>
-							<td><a href="#">${type.itemName}</a></td>
+							<td><a href="javascript:popFunction('${type.customerCode }','${type.customerCode }')">${type.customerCode}</a></td>
+							<td><a href="#">${type.customerCode}</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -122,7 +121,7 @@ a {
 		var words = $('#name').val();
 			$.ajax({
 				type : 'GET',
-				url : '/webERP/member/searchPopName.do',
+				url : '/webERP/member/searchPopCus.do',
 				//words값을 "itemName"이라는 이름의 파라미터로 전송한다.
 				data : { "itemName" : words},
 				success : function(responseData){
@@ -134,10 +133,10 @@ a {
 						for(var i = 0 ; i<data.length ; i++){
 						var str = '';
 							str += 	'<tr align="center" id = "yahoo">';
-							str +=  '<td><a href = "#">'+ data[i].itemCode + '</a></td>';  
-							str +=  '<td><a href = "#">'+ data[i].itemName + '</a></td>';  
-							str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].itemCode+'"></td>';  
-							str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].itemName+'" ></td>';  
+							str +=  '<td><a href = "#">'+ data[i].customerCode + '</a></td>';  
+							str +=  '<td><a href = "#">'+ data[i].customerCode + '</a></td>';  
+							str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].customerCode+'"></td>';  
+							str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].customerCode+'" ></td>';  
 							str +=	'</tr>';
 							//반복문을 사용하여 searchItem table에 추가
 						$("#searchItem").append(str);

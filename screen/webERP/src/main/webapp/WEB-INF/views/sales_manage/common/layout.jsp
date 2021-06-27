@@ -3,7 +3,7 @@
  %>
  <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,7 +214,9 @@
             background-color: rgb(255, 255, 149);
             text-align: center;
         }
-
+		input{
+			text-align: center;
+		}
     </style>    
 </head>
 <body>
@@ -228,14 +230,8 @@
                 <li><a href="#">기타메뉴2</a></li>
                 <li><a href="#">기타메뉴3</a></li>
             </ul>
-            <div id="search" >
-           <form action="${contextPath}/goods/searchGoods.do">
-            <input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()">
-            <input type="submit" name="search" class="btn1"  value="검 색1" >
-            </form>
-            </div>
-            <div id="suggest">
-        <div id="suggestList"></div>
+            <input type="text" value=" 메뉴 검색" id="search" style="text-align:left"/>
+            <input type="button" value="검색" class="search_button"/>
         </header>
         <nav id = nav1>
             <ul id="gnb">
@@ -265,10 +261,10 @@
             </ul>
         </nav>
         <nav id="nav2">
-            <button id="delete" onclick="deleteData()">삭제</button>
-            <button id="view_button">조회</button>
-            <button id="save" onClick="newRow();">저장</button>
-            <button id="update" onClick="updateRow()">수정</button>
+            <button id="delete" onclick="">삭제</button>
+            <button id="view_button" >조회ㅈ</button>
+            <button id="save">저장</button>
+            <button id="update">수정</button>
         </nav>
         <div>
             <tiles:insertAttribute name="side"/>
@@ -292,7 +288,6 @@
         var update_button = document.getElementById('update');
         var view_button = document.getElementById('view_button');
         var itemcode = document.getElementById('itemcode');
-        
         side_button1.onclick = function(){
             var l_sub1 = document.getElementById('l_sub1');
             if(l_sub1.style.display == 'none' || l_sub1.style.display==''){
@@ -304,7 +299,6 @@
                 l_sub1.style.display = "none";
             }
         }
-        
         side_button2.onclick = function(){
             var l_sub2 = document.getElementById('l_sub2');
             if(l_sub2.style.display == 'none' || l_sub2.style.display==''){
@@ -323,7 +317,7 @@
         search_box.onblur = function(){
             document.getElementById("search").value = ' 메뉴 검색';
         }
-        
+       
         function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
@@ -335,11 +329,7 @@
             window.open(url, name, options);
         }
         
-        function openWindowBroadPop(url, name){
-            var options = 'top=0, left=0, width=1100, height=900, status=no, menubar=no, toolbar=no, resizable=no';
-            window.open(url, name, options);
-        }
- 
+		
     </script>
 </body>
 </html>
