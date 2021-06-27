@@ -104,6 +104,13 @@ public class StockManageDAOImpl implements StockManageDAO {
 		 return list;
 	}
 
+	@Override
+	public String searchMenu(String searchWord) {
+		String urlList = null;
+		urlList = sqlSession.selectOne("mappers.erp.searchMenu", searchWord);
+		return urlList;
+	}
+
 
 
 	

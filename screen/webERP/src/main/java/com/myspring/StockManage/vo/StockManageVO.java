@@ -362,8 +362,15 @@ return valueStr;
 	///////// 메뉴검색바
 	
 	String menu;
+	String url;
 
 
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public String getMenu() {
 		return menu;
 	}

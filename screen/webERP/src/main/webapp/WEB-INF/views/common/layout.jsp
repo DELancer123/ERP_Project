@@ -258,7 +258,7 @@ input {
 				<li><a href="#">기타메뉴3</a></li>
 			</ul>
 			<div id="search1">
-				<form name="frmSearch" action="${contextPath}/goods/searchGoods.do">
+				<form name="frmSearch" action="${contextPath}/member/searchmenu.do">
 					<input name="searchWord" class="main_input" id="search" type="text"
 						style="text-align: left"> <input type="submit"
 						name="search" class="btn1" value="검 색">

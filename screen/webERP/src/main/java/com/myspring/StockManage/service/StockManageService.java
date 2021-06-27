@@ -36,6 +36,8 @@ public interface StockManageService {
 
 	List<String> keywordSearch(String keyword);
 
+	String searchMenu(String searchWord);
+
 
 
 
