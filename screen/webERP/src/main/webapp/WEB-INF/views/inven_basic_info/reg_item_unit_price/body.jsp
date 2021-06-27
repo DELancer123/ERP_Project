@@ -89,7 +89,7 @@
                     </td>
                 </tr>
                 <tr>
-                	<td colspan="4">단가 등록은 하단의 품번 박스를 더블 클릭 해주세요.</td>
+                	<td colspan="4">단가 등록은 하단의 품번 박스를 더블 클릭 해주세요</td>
                 </tr>
 			</table>
 		</form>
@@ -112,7 +112,7 @@
 					<tr id="updateIup" align="center">
                     	<td><input type="checkbox" name="content" value="${iup.no }"/></td>
                     	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value='${iup.no }' readonly style="width:100%;"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${param.itemNumber }' readonly /></td>
+                    	<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${iup.itemNumber }' readonly /></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
