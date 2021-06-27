@@ -64,6 +64,10 @@
             right: 10px;
             top: 10px;
         }
+        a{
+        	display:inline-block;
+        	width:100%;
+        }
 </style>
 </head>
 <body>
@@ -85,22 +89,10 @@
                         </td>
                         
                     </tr>
-                    <tr>
-                        <td>
-                            기준일자
-                        </td>
-                        <td colspan="2">
-                            <input type="date" name="department" style="width: 120px;"><a href="#" onclick="showPopup();"></a>
-                        </td>
-                        
-                    </tr>
+                   
                 </table>
                 </form>
-                <div id="button">
-                    <input type="button" value="BOM 복사" style="padding: 5px; margin-left: 40px;"></input>
-                    
-                    <input type="button" value="일괄자재변경" style="padding: 5px;"></input>
-                </div>
+
                 
         </container1>
         <container2 id= contents2>
@@ -119,10 +111,10 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
-                    <tbody align="center">
+                    <tbody align="center" style="background-color:yellow">
                         <td>${bom.no }</td>
                         <td>${bom.itemNumber}</td>
-                        <td><a href="#" name="item"  onclick="childSearch(this)">${bom.itemName}</a></td>
+                        <td><a href="#" name="item"  onclick="childSearch(this)" >${bom.itemName}</a></td>
                         <td>${bom.standard}</td>
                         <td>${bom.unit }</td>
                         <td>${bom.division }</td>
@@ -134,7 +126,6 @@
                     <c:forEach var="child" items="${childView}">  
                     <tbody align="center">
                         <td>${child.no }</td>
-                        
                         <td>${child.itemNumber}</td>
                         <td>${child.itemName}</td>
                         <td>${child.standard}</td>

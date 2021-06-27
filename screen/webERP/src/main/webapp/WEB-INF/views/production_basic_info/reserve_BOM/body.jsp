@@ -80,23 +80,7 @@
                         </td>
                        
                     </tr>
-                    <tr>
-                        <td>
-                            기준일자
-                        </td>
-                        <td colspan="2">
-                            <input type="date" name="department" style="width: 120px; background-color: yellow;"><a href="#" onclick="showPopup();"></a>
-                        </td>
-                        <td>
-                            <input type="checkbox">BOM 총전개
-                        </td>
-                        <td>
-                            <input type="button" value="<< 이전품목" style="padding: 5px; margin-left: 70px;"></input>
-                        </td>
-                        <td>
-                        <input type="button" value="다음품목 >>" style="padding: 5px;"></input>
-                        </td>
-                    </tr>
+                    
                 </table>
                 </form>
         </container1>

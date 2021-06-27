@@ -80,24 +80,7 @@
                         
                     </tr>
                     
-                    <tr>
-                        <td>품목군</td>
-                        <td style="width: 80px;"><input type="text"  style="width: 100%;"/></td>
-                        <td>  <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
-                        <td><input type="text" name="" disabled/></td>
-    
-                        <td colspan="5" style="width: 80px;">사원</td>
-                        <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                        <td > <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
-                        <td><input type="text" name="" disabled/></td>
-
-                        <td>
-                            <input type="button" value="품목전개" style="padding: 5px; margin-left: 30px;"></input>
-                        </td>
-                        <td>
-                            <input type="button" value="품목복사" style="padding: 5px;"></input>
-                        </td>
-                    </tr>
+                   
                 </table>
             
         </container1>

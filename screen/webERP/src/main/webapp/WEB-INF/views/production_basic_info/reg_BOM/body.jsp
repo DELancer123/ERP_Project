@@ -62,31 +62,11 @@
                         <td>
                             <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
                         </td>
-                        <!-- 모품목 규격 -->
-                        <td>
-                            <input type="text" style="width: 150px; background-color: skyblue;" disabled>
-                        </td>
-                        <!-- 모품목 단위 -->
-                        <td>
-                            <input type="text" style="width: 120px; background-color: skyblue;" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            기준일자
-                        </td>
-                        <td colspan="2">
-                            <input type="date" name="department" style="width: 120px;">
-                        </td>
                         
                     </tr>
+                    
                 </table>
                 </form>
-                <div id="button">
-                    <input type="button" value="BOM 복사" style="padding: 5px; margin-left: 40px;"></input>
-                    
-                    <input type="button" value="일괄자재변경" style="padding: 5px;"></input>
-                </div>
                 
         </container1>
         
