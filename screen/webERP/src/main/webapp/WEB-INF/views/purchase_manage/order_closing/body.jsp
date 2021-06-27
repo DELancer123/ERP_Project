@@ -110,7 +110,7 @@ String sequence = (String) request.getAttribute("sequence");
 						varStatus="status">
 						<tr align="center">
 				<td><input type="checkbox" name="content" value="${OrderClosing.sequence}" /></td>
-				<td><input type="text" value='${OrderClosing.order_no}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
 				<td><input type="text" name="ListVO[${status.index}].code" value='${OrderClosing.code}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].buyer" value='${OrderClosing.buyer}' readonly /></td>

@@ -103,7 +103,7 @@
 		<c:forEach var="mainplan" items="${MPSView}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
- 				<td><input type="text"  value = '${mainplan.planNO}' readonly /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'readonly/></td>					
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
