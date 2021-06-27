@@ -91,7 +91,7 @@
 	
 <!-- 구매관리파트 -->
 	<!-- mainPaln 주계획 -->
-	<resultMap id="mainplanResult" type="mainplanVO">
+	<resultMap id="MPSResult" type="mainplanVO">
 		<result property="planNO" column="planNO" />
 		<result property="plandate" column="plandate" />
 		<result property="item_Code" column="item_Code" />
@@ -120,9 +120,10 @@
 		<result column="expected_Date" property="expected_Date" />
 		<result column="note" property="note" />
 	</resultMap>
-	<select id="selectAllMainPlanList" resultMap="mainplanResult">
-		<![CDATA[select * from pmm_pm_mps]]>
+	<select id="selectAllMainPlanList" resultMap="MPSResult">
+		<![CDATA[ select * from pmm_pm_mps]]>
 	</select>
+	
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
@@ -131,8 +132,9 @@
 	</select>
 	<update id="updateMPS" >
 		<![CDATA[update pmm_pm_mps
-			set  plandate=#{plandate},due_date=#{due_date},plan_quantity=#{plan_quantity},note=#{note}
-			where sequence = #{sequence}]]>  
+			set  planNO=#{planNO},plandate=#{plandate},item_Code=#{item_Code},item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit}
+			,sequence=#{sequence},expected_date=#{expected_date},due_date=#{due_date},plan_quantity=#{plan_quantity},buyer=#{buyer},note=#{note}
+			where planNO = #{planNO}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
 		<![CDATA[insert into pmm_pm_mps(planNO,plandate,item_Code,item_Name,standard,inventory_unit,sequence,
@@ -148,7 +150,7 @@
 		 	 where item_Name like '%'||#{item_Name}||'%']]>
 	</select>
 	
-  	<select id="searchMRP" resultMap="mainplanResult" parameterType="String">
+  	<select id="searchMRP" resultMap="MPSResult" parameterType="String">
 		<![CDATA[select * from pmm_pm_mps where item_code = #{item_code}]]>
 	</select>
 	
@@ -160,7 +162,7 @@
 		<![CDATA[select MAX(sequence) from pmm_pm_mps]]>
 	</select>
 	
-	<select id="inputMRP" resultMap="mainplanResult" parameterType="String">
+	<select id="inputMRP" resultMap="MPSResult" parameterType="String">
 		<![CDATA[select * from pmm_pm_mps where item_code=#{item_code}]]>
 	</select>
 	<!-- billing 청구등록 -->
@@ -227,7 +229,7 @@
 		<result property="expected_quantity" column="expected_quantity" />
 		<result property="inventory_unit" column="inventory_unit" />
 		<collection property="bomVO" resultMap="bomView"/>
-		<collection property="mainplanVO" resultMap="mainplanResult"/>
+		<collection property="mainplanVO" resultMap="MPSResult"/>
 	</resultMap>
 
 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
@@ -285,7 +287,9 @@
 	</insert> 
 	<update id="updateClosing">
 		<![CDATA[update PMM_PM_ORDER
-			set order_quantity=#{order_quantity} 
+			set order_no=#{order_no},order_date=#{order_date},code=#{code},buyer=#{buyer},sequence=#{sequence},item_Code=#{item_Code},
+			item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit},order_quantity=#{order_quantity},price=#{price},
+			deadline=#{deadline},note=#{note}
 			where sequence=#{sequence}]]>
 	</update>
 	

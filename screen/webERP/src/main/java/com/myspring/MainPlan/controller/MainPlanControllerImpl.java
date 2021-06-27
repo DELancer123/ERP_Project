@@ -33,19 +33,21 @@ public class MainPlanControllerImpl implements MainPlanController {
 	public ModelAndView viewMPS(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String number = (String) request.getParameter("itemNumber");
+		String number = (String) request.getParameter("item_Code");
 		String submit = (String) request.getParameter("submit");
-		String itemNumber = (String) request.getParameter("itemCode");
+		String itemNumber = (String) request.getParameter("item_Code");
 		int sum = 0;
 		if(number == null || number.length() == 0 || submit.equals("0")) {
+			
 			mav = new ModelAndView(viewName);
 			return mav;
-		}
-		else if(submit.equals("1")){
-			List MPSView = mainplanService.SearchView(number);
-			mav = new ModelAndView(viewName);			
-			mav.addObject("MPSView", MPSView);
-		}
+		}	
+		 else if(submit.equals("1")){
+		  List MPSView = mainplanService.SearchView(number); 
+		  System.out.println("MPSView:"+MPSView.size());
+		  mav = new ModelAndView(viewName);
+		  mav.addObject("MPSView", MPSView); 	  	  
+		 }		
 		else if(submit.equals("2")) {
 			List MPSView = mainplanService.SearchView(number);
 			List MPSInsert = mainplanService.setText(itemNumber);
@@ -73,16 +75,24 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@RequestMapping(value = "/member/delMps.do", method = RequestMethod.GET)
 	public ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String no = (String) request.getParameter("sequence");
+		String submit = request.getParameter("submit");
+		String item_Code = request.getParameter("item_Code");
+		String item_Name = request.getParameter("item_Name");
+		String buyer = request.getParameter("buyer");
+		String standard = request.getParameter("standard");
+		String inventory_unit = request.getParameter("inventory_unit");
+		String note = request.getParameter("note");
 		String viewName = getViewName(request);
 		String[] numberary  = no.split(",");
 		mainplanService.delMps(numberary);
-		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do?submit="+submit +"&item_Code="+item_Code+"&item_Name="+item_Name+
+				  "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note);
 		return mav;
 	}	
 	
 	@Override
 	@RequestMapping(value = "/member/addMPS.do", method = RequestMethod.GET)
-	public ModelAndView addMPS(@ModelAttribute("mainplanList") MainPlanVO vo,
+	public ModelAndView addMPS(@ModelAttribute("mainplan") MainPlanVO vo,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String path = request.getParameter("path");
@@ -98,10 +108,11 @@ public class MainPlanControllerImpl implements MainPlanController {
 	@RequestMapping(value="/member/updateMPS.do" ,method = RequestMethod.GET)
 	public ModelAndView updateMPS(@ModelAttribute("mainplan") MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
 		int result = 0;
 		result = mainplanService.updateMPS(vo);
-		System.out.println("result "+result);
-		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do");
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
 

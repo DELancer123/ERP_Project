@@ -117,20 +117,20 @@
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
 		</c:forEach>		
- 		<tr id="insertTest" align="center">
+  	<tr id="insertTest" align="center">
 		<td></td>    	
     	<td><input type="text" id="planNO"  value='${planNO}' readonly/></td>
-    	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
-    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${param.item_Code}'readonly/></td>
-    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${param.item_Name}' readonly/></td>
-    	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
-    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
+    	<td><input type="date" id="plandate" name="ListVO[${fn:length(MPSView) }].plandate" value = '${plandate}'/></td>
+    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(MPSView) }].item_Code" value='${param.item_Code}'readonly/></td>
+    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(MPSView) }].item_Name" value='${param.item_Name}' readonly/></td>
+    	<td><input type="text" id="standard" name="ListVO[${fn:length(MPSView) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
+    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(MPSView) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
     	<td><input type="text" id="sequence" value='${inputSeq}' readonly style="width:100%"/></td>
-    	<td><input type="date" id="expected_date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${expected_date}'/></td>
-    	<td><input type="date" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${due_date}'/></td>
-    	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${plan_quantity}' /></td>
-    	<td><input type="text" id="buyer" name="ListVO[${fn:length(mainplanList) }].buyer" value='${param.buyer}'readonly/></td>
-    	<td><input type="text" id="note" name="ListVO[${fn:length(mainplanList) }].note"value='${param.note}'/></td>
+    	<td><input type="date" id="expected_date" name="ListVO[${fn:length(MPSView) }].expected_date" value='${expected_date}'/></td>
+    	<td><input type="date" id="due_date" name="ListVO[${fn:length(MPSView) }].due_date" value='${due_date}'/></td>
+    	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(MPSView) }].plan_quantity" value='${plan_quantity}' /></td>
+    	<td><input type="text" id="buyer" name="ListVO[${fn:length(MPSView) }].buyer" value='${param.buyer}'readonly/></td>
+    	<td><input type="text" id="note" name="ListVO[${fn:length(MPSView) }].note"value='${param.note}'/></td>
     </tr>
 	</tbody>
 	</table>
@@ -163,6 +163,14 @@ function setChildValue(code,name,buyer,standard,inventory_unit,note){
 
 function deleteRow() {
 	  var item = document.getElementsByName("content").length;
+	  const URLSearch = new URLSearchParams(location.search); 	
+	  var submit = URLSearch.get('submit');
+	  var item_Code = URLSearch.get('item_Code');
+	  var item_Name = URLSearch.get('item_Name');
+	  var buyer = URLSearch.get('buyer');
+	  var standard = URLSearch.get('standard');
+	  var inventory_unit = URLSearch.get('inventory_unit');
+	  var note = URLSearch.get('note');
 	  var no = "";
 	  var ary = [];
 	  for(var i=0; i<item;i++){
@@ -170,13 +178,14 @@ function deleteRow() {
 			  sequence = document.getElementsByName("content")[i].value;
 			  ary.push(sequence);
 		  }
-		  
-			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary;
+			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary+"&submit=" + submit+"&item_Code="+item_Code+"&item_Name="+item_Name+
+			 "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note;
 	  }
 }
 
 function InsertRow(){	 
    		const URLSearch = new URLSearchParams(location.search);
+   		
 	 	URLSearch.set('submit', '1');
 		const newParam = URLSearch.toString();
 		var link = location.pathname + '?' + newParam;
@@ -198,13 +207,13 @@ function InsertRow(){
           URLSearch.set('submit', '1');
 			const newParam = URLSearch.toString();
 			var link = location.pathname + '?' + newParam;
-		document.getElementById("sequence").disabled = true;
 		document.getElementById("planNO").disabled = true;		
 		document.getElementById("plandate").disabled = true;
 		document.getElementById("item_Code").disabled = true;
 		document.getElementById("item_Name").disabled = true;
 		document.getElementById("standard").disabled = true;
 		document.getElementById("inventory_unit").disabled = true;
+		document.getElementById("sequence").disabled = true;
 		document.getElementById("expected_date").disabled = true;
 		document.getElementById("due_date").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;

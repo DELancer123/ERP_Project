@@ -29,5 +29,4 @@ public interface MainPlanDAO {
 	List selectAllMpsosList() throws Exception;
 
 	List viewMPS() throws Exception;
-
 }

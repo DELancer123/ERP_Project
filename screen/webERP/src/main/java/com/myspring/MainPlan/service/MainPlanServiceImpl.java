@@ -17,7 +17,7 @@ import com.myspring.MainPlan.vo.MainPlanVO;
 public class MainPlanServiceImpl implements MainPlanService{
 	@Autowired
 	private MainPlanDAO mainplanDAO;
-	
+
 	@Override
 	public List viewMPS() throws Exception {
 		List MPSView = null;
