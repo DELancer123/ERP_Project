@@ -105,12 +105,10 @@ request.setCharacterEncoding("UTF-8");
 	                    <td style="width:25%;">
 	                        <input type="text">
 	                    </td>    
-	                    <td><i class="fas fa-search" style="color: blue;"></i></td>
-	                    <td align="center" style="width:20%; text-align:right;">관리항목명</td>
+	                    <td style="width:2%;"><div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div></td>
 	                    <td style="width:25%;">
 	                        <input type="text">
 	                    </td>
-	                    <td><i class="fas fa-search" style="color: blue;"></i></td>
 	                </tr>
 	            </table>
             </form>

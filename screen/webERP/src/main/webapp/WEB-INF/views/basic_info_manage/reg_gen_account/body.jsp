@@ -298,21 +298,6 @@ request.setCharacterEncoding("UTF-8");
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
         }
         
-        /* function searchData() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-        	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-        	    if(!$(this).val()) { //#searchForm는 form태그의 id값임
-        	    	is_empty = true;      	    	
-        	    }      	 
-        	});       	 
-        	if(is_empty) { //비어있는내용이 있는지 체크함
-        	    alert('검색 내용이 비어있습니다');
-        	}
-        	else{
-	        	document.getElementById('searchForm').action = "${contextPath}/member/regbasicacc.do?"
-	    		document.getElementById('searchForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 
-        	}      	
-        }  */
         
         function searchData() {
         	var searchForm = $('#searchForm');
@@ -341,6 +326,7 @@ request.setCharacterEncoding("UTF-8");
         }
         
         function newRow(){      	
+			alert('등록되었습니다');        	
     		const URLSearch = new URLSearchParams(location.search);
     		URLSearch.set('submit','1');
     		const newParam = URLSearch.toString();
