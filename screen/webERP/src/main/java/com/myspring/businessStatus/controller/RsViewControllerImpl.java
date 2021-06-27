@@ -42,13 +42,10 @@ public class RsViewControllerImpl implements RsViewController {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		String submit = (String) request.getParameter("submit");
-		System.out.println("Ω√¿€");
-		System.out.println(submit);
-		System.out.println("≥°");
-//		System.out.println(startDate);
-//		System.out.println(endDate);
 		if(startDate == null || startDate.length() == 0 || submit.equals("0")) {
+			List rsView = rsViewService.rsView();
 			mav = new ModelAndView(viewName);
+			mav.addObject("rsView",rsView);
 		}
 		else if(submit.equals("1")) {
 			List rsView = rsViewService.searchView(startDate,endDate);
