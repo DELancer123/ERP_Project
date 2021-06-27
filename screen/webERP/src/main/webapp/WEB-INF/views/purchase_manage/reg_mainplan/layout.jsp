@@ -318,9 +318,7 @@
             document.getElementById("search").value = ' 메뉴 검색';
         }
         
-        delete_button.onclick = function(){
-            //dao에서 체크항목 삭제
-        }
+
         
      
         

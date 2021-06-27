@@ -89,13 +89,13 @@
 		<c:forEach var="mainplan" items="${mainplanList}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
- 				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
+ 				<td><input type="text"  value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'ondblclick="search2()" readonly/></td>					
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
-  		 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
+  		 	<td style="width:13px;"><input type="text"  value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' /></td>				
  				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
@@ -105,13 +105,13 @@
 		</c:forEach>		
  		<tr id="insertTest" align="center">
 		<td></td>    	
-    	<td><input type="text" id="planNO" name="ListVO[${fn:length(mainplanList) }].planNO" value='${planNO}' readonly/></td>
+    	<td><input type="text" id="planNO"  value='${planNO}' readonly/></td>
     	<td><input type="date" id="plandate" name="ListVO[${fn:length(mainplanList) }].plandate" value = '${plandate}'/></td>
     	<td><input type="text" id="item_Code" name="ListVO[${fn:length(mainplanList) }].item_Code" value='${param.item_Code}' ondblclick="search2()" readonly/></td>
     	<td><input type="text" id="item_Name" name="ListVO[${fn:length(mainplanList) }].item_Name" value='${param.item_Name}' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(mainplanList) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
     	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(mainplanList) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
-    	<td><input type="text" id="sequence" name="ListVO[${fn:length(mainplanList) }].sequence" value='${inputSeq}' readonly style="width:100%"/></td>
+    	<td><input type="text" id="sequence" value='${inputSeq}' readonly style="width:100%"/></td>
     	<td><input type="date" id="expected_date" name="ListVO[${fn:length(mainplanList) }].expected_date" value='${expected_date}'/></td>
     	<td><input type="date" id="due_date" name="ListVO[${fn:length(mainplanList) }].due_date" value='${due_date}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(mainplanList) }].plan_quantity" value='${plan_quantity}' /></td>
@@ -142,7 +142,7 @@ function setChildValue(code,name,buyer,standard,inventory_unit,note){
   	window.location.href = location.pathname +'?'+newParam;
   }
   
-}}
+}
 
 function deleteRow() {
 	  var item = document.getElementsByName("content").length;

@@ -32,7 +32,7 @@ a {
 }
 
 #button {
-	margin-top: -10%;
+	margin-top: -5%;
 	margin-right: 3%;
 	text-align: right;
 }

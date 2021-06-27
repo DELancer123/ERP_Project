@@ -110,11 +110,11 @@ String sequence = (String) request.getAttribute("sequence");
 						varStatus="status">
 						<tr align="center">
 				<td><input type="checkbox" name="content" value="${OrderClosing.sequence}" /></td>
-				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
+				<td><input type="text" value='${OrderClosing.order_no}' readonly /></td>
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
 				<td><input type="text" name="ListVO[${status.index}].code" value='${OrderClosing.code}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].buyer" value='${OrderClosing.buyer}' readonly /></td>
-			<td style="width: 13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
+			<td style="width: 13px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}' readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
@@ -130,11 +130,11 @@ String sequence = (String) request.getAttribute("sequence");
 					</c:forEach>
 				<tr align="center">
 					<td></td>
-				<td><input type="text" id="order_no" name="ListVO[${fn:length(ClosingList) }].order_no" value='${order_no}' readonly/></td>
+				<td><input type="text" id="order_no"  value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
 				<td><input type="text" id="code" name="ListVO[${fn:length(ClosingList) }].code" value='${code}' style="width: 100%" /></td>
 				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}'  /></td>
-				<td><input type="text" id="sequence" name="ListVO[${fn:length(ClosingList) }].sequence" value='${sequence}' style="width: 100%" /></td>
+				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
 				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' /></td>
 				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' /></td>
 				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
