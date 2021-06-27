@@ -196,6 +196,7 @@
   		 	document.getElementById("scheduled").disabled = true;
 		    document.getElementById("quantity").disabled = true;
 		    document.getElementById("standard").disabled = true;
+		    document.getElementById("dailyProduction").disabled = true;
 		    document.getElementById("note").disabled = true;
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");

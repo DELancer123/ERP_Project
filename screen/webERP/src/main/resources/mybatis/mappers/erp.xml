@@ -145,7 +145,7 @@
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		 insert into CPM_PM_OPE_PER_REG
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획', '비검사', #{note}, #{productionPlanCode}, #{productionFacility}, #{taskTeam})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획','작업지시','비검사', #{note}, #{productionPlanCode}, #{productionFacility}, #{taskTeam})
 		]]>  
 	</insert>
 	<update id="updateOperationInstruction" parameterType="OperationRegistVO">
@@ -155,9 +155,9 @@
 		where  workOrderNumber = #{workOrderNumber}
 		]]>  
 	</update>	
-	<!-- <delete id="deleteOperationInstruction">
+	<delete id="deleteOperationInstruction">
 		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
-	</delete> -->
+	</delete>
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
