@@ -71,6 +71,7 @@
                     <thead align="center" style="background-color:gray">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td style="width:10px;">No</td>
+                        <td>모품목코드</td>
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -110,6 +111,7 @@
     	<td><input type="text" id="loss" name="ListVO[${fn:length(bomView) }].loss" /></td>
     	<td><input type="text" readonly id="actualQuantity"/></td>
     </tr>
+     
                 </table>
                  
             </div>
@@ -119,6 +121,7 @@
             </div>
             <!-- 합계 출력부 종료 -->
         </container2>
+        
       <script>
       var itemNumber = document.getElementById("itemCode");
 
@@ -179,6 +182,8 @@
 		     document.getElementById('regBOM').appendChild(articleNOInput);
            document.getElementById('regBOM').action = "${contextPath}/member/updateBOM.do";
   			document.getElementById('regBOM').submit();  
+           document.getElementByName('updateTest').action = "${contextPath}/member/updateBOM.do";
+  			document.getElementByName('updateTest').submit(); 
       }
       view_button.onclick = function(){
 		  const URLSearch = new URLSearchParams(location.search);
@@ -200,6 +205,10 @@
   		     articleNOInput.setAttribute("name","path");
   		     articleNOInput.setAttribute("value", link);
   		     document.getElementById('regBOM').appendChild(articleNOInput);
+          var workOrderTable = document.getElementById('workOrderTable');
+          var row = workOrderTable.insertRow(); 
+  			var link = document.location.href;
+  			document.getElementById("path").value = link;
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
 		
@@ -215,7 +224,6 @@
     			  no = document.getElementsByName("content")[i].value;
     			  ary.push(no);
     		  }
-    		  
     			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
     	  }
       }

@@ -9,39 +9,125 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
 
 @Controller("mainplanController")
-public class MainPlanControllerImpl implements MainPlanController{
+public class MainPlanControllerImpl implements MainPlanController {
 	private static final Logger logger = LoggerFactory.getLogger(MainPlanControllerImpl.class);
 	@Autowired
 	private MainPlanService mainplanService;
 	@Autowired
 	private MainPlanVO mainplanVO;
-	
+
 	@Override
-	@RequestMapping(value="member/mainplan.do", method = RequestMethod.GET)
-	public ModelAndView listMainPlan(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		String viewName = (String)request.getAttribute("viewName");
-		List mainplanList = mainplanService.selectAllMainPlanList();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("mainplanList", mainplanList);
+	@RequestMapping(value="/member/mainplan.do" ,method = RequestMethod.GET)
+	public ModelAndView viewMPS(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String number = (String) request.getParameter("item_Code");
+		String submit = (String) request.getParameter("submit");
+		String itemNumber = (String) request.getParameter("item_Code");
+		int sum = 0;
+		if(number == null || number.length() == 0 || submit.equals("0")) {
+			
+			mav = new ModelAndView(viewName);
+			return mav;
+		}	
+		 else if(submit.equals("1")){
+		  List MPSView = mainplanService.SearchView(number); 
+		  System.out.println("MPSView:"+MPSView.size());
+		  mav = new ModelAndView(viewName);
+		  mav.addObject("MPSView", MPSView); 	  	  
+		 }		
+		else if(submit.equals("2")) {
+			List MPSView = mainplanService.SearchView(number);
+			List MPSInsert = mainplanService.setText(itemNumber);
+			mav = new ModelAndView(viewName);
+			mav.addObject("MPSView", MPSView);
+			mav.addObject("MPSInsert",MPSInsert);
+			int inputSeq = mainplanService.inputSeq();
+			String inSeq = Integer.toString(inputSeq+1);
+			request.setAttribute("inputSeq", inSeq);
+		}
 		return mav;
 	}
-	
-	@RequestMapping(value="member/applyorder.do", method=RequestMethod.GET)
-	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		String viewName = (String)request.getAttribute("viewName");
+
+	@Override
+	@RequestMapping(value = "member/applyorder.do", method = RequestMethod.GET)
+	public ModelAndView MpsOSList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
 		List mpsosList = mainplanService.selectAllMpsosList();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mpsosList", mpsosList);
 		return mav;
 	}
+
+	@Override
+	@RequestMapping(value = "/member/delMps.do", method = RequestMethod.GET)
+	public ModelAndView delMps(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String no = (String) request.getParameter("sequence");
+		String submit = request.getParameter("submit");
+		String item_Code = request.getParameter("item_Code");
+		String item_Name = request.getParameter("item_Name");
+		String buyer = request.getParameter("buyer");
+		String standard = request.getParameter("standard");
+		String inventory_unit = request.getParameter("inventory_unit");
+		String note = request.getParameter("note");
+		String viewName = getViewName(request);
+		String[] numberary  = no.split(",");
+		mainplanService.delMps(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/mainplan.do?submit="+submit +"&item_Code="+item_Code+"&item_Name="+item_Name+
+				  "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note);
+		return mav;
+	}	
+	
+	@Override
+	@RequestMapping(value = "/member/addMPS.do", method = RequestMethod.GET)
+	public ModelAndView addMPS(@ModelAttribute("mainplan") MainPlanVO vo,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		System.out.println("url" + path);
+		int result = 0;
+		result = mainplanService.addMPS(vo);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/member/updateMPS.do" ,method = RequestMethod.GET)
+	public ModelAndView updateMPS(@ModelAttribute("mainplan") MainPlanVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = mainplanService.updateMPS(vo);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/member/searchMPSOS.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<MpsOSVO> popName = null;
+		popName = mainplanService.searchMPSOS(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

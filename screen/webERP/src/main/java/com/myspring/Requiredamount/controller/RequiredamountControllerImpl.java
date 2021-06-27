@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.Requiredamount.service.RequiredamountService;
 import com.myspring.Requiredamount.vo.RequiredamountVO;
+import com.myspring.order_closing.vo.OrderClosingVO;
 
 @Controller("mrpController")
 public class RequiredamountControllerImpl implements RequiredamountController{
@@ -24,13 +27,15 @@ public class RequiredamountControllerImpl implements RequiredamountController{
 	@Override
 	@RequestMapping(value="member/requiredamount.do", method = RequestMethod.GET)
 	public ModelAndView mrpList(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String viewName = (String)request.getAttribute("viewName");
-		List mrpList = mrpService.selectAllMrpList();
+		List mrpList = mrpService.selectAllMrpList(startDate, endDate);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("mrpList", mrpList);
 		return mav;
 	}
-	
+
 	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

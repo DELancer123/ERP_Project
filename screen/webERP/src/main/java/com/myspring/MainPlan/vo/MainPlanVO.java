@@ -1,55 +1,96 @@
 package com.myspring.MainPlan.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+
 @Component("mainplanVO")
 public class MainPlanVO {
+	private String planNO;
 	private Date plandate;
-	private String itemnumber;
-	private String itemName;
+	private String item_Code;
+	private String item_Name;
 	private String standard;
-	private String unit;
+	private String inventory_unit;
 	private int sequence;
 	private Date expected_date;
 	private Date due_date;
 	private int plan_quantity;
 	private String buyer;
 	private String note;
+	private Date startDate;
+	private Date endDate;	
+	private List<MainPlanVO> ListVO;
+//	private OrderVO;
+//	private CorVO;
 	
-	public MainPlanVO() {}
-	
-	public MainPlanVO(Date plandate,String itemnumber,String itemName,String standard,String unit,int sequence,
-			Date expected_date,Date due_date,int plan_quantity,String buyer,String note) 
-	{
-		this.plandate=plandate;
-		this.itemnumber=itemnumber;
-		this.itemName=itemName;
-		this.standard=standard;
-		this.unit=unit;
-		this.sequence=sequence;
-		this.expected_date=expected_date;
-		this.due_date=due_date;
-		this.plan_quantity=plan_quantity;
-		this.buyer=buyer;
-		this.note=note;
+
+//	public OrderVO getOrderVO() {
+//		return OrderVO;
+//	}
+//
+//	public void setOrderVO(OrderVO OrderVO) {
+//		this.OrderVO = OrderVO;
+//	}
+//
+//	public CorVO getCorVO() {
+//		return mainplanVO;
+//	}
+//
+//	public void setCorVO(CorVO CorVO) {
+//		this.CorVO = CorVO;
+//	}
+
+
+	public Date getStartDate() {
+		return startDate;
 	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
+
+	@Override
+	public String toString() {return Arrays.toString(ListVO.toArray());}
 	
+	public MainPlanVO() {super();}
+	
+	public List<MainPlanVO> getListVO() {return ListVO;}
+	public void setListVO(List<MainPlanVO> listVO) {ListVO = new ArrayList();}
+		
 	public Date getPlandate() {return plandate;}
 	public void setPlandate(Date plandate) {this.plandate=plandate;}
 	
-	public String getItemnumber() {return itemnumber;}
-	public void setItemnumber(String itemnumber) {this.itemnumber=itemnumber;}
+	public String getItem_Code() {return item_Code;}
+	public void setItem_Code(String item_Code) {this.item_Code=item_Code;}
 	
-	public String getItemName() {return itemName;}
-	public void setItemName(String itemName) {this.itemName=itemName;}
+	public String getItem_Name() {return item_Name;}
+	public void setItem_Name(String item_Name) {this.item_Name= item_Name;}
 	
 	public String getStandard() {return standard;}
 	public void setStandard(String standard) {this.standard=standard;}
 	
-	public String getUnit() {return unit;}
-	public void setUnit(String unit) {this.unit=unit;}
+	public String getInventory_unit() {return inventory_unit;}
+	public void setInventory_unit(String inventory_unit) {this.inventory_unit=inventory_unit;}
 	
 	public int getSequence() {return sequence;}
 	public void setSequence(int sequence) {this.sequence=sequence;}
@@ -68,5 +109,8 @@ public class MainPlanVO {
 	
 	public String getNote() {return note;}
 	public void setNote(String note) {this.note=note;}
+	
+	public String getPlanNO() {return planNO;}
+	public void setPlanNO(String planNO) {this.planNO=planNO;}
 	
 }

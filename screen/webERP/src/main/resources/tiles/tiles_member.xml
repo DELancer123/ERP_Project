@@ -30,6 +30,11 @@
       <put-attribute name="body" value="" />
    </definition>
    <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
+	  <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="MPSbaseLayout"  template="/WEB-INF/views/purchase_manage/reg_mainplan/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -46,12 +51,32 @@
       <put-attribute name="body" value="" />
    </definition>
     <definition name="PopupLayout1"  template="/WEB-INF/views/common/applyorder.jsp">
+		<put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="CMbaseLayout"  template="/WEB-INF/views/purchase_manage/reg_billing/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
    <!-- bom 팝업 레이아웃 -->
     <definition name="BOMPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_BOM/pop.jsp">
+	<put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="MRPbaseLayout"  template="/WEB-INF/views/purchase_manage/required_amount/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="OrderClosingbaseLayout"  template="/WEB-INF/views/purchase_manage/order_closing/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -74,6 +99,12 @@
       <put-attribute name="body" value="" />
    </definition>
    <definition name="PopupLayout2"  template="/WEB-INF/views/common/mrpamount.jsp">
+		 <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   
+    <definition name="BOMPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_BOM/pop.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -84,7 +115,6 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-
    <definition name="main" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
       <put-attribute name="body" value="/WEB-INF/views/SystemAdmin/reg_company/body.jsp" />
@@ -135,16 +165,32 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-      <definition name="/member/applyorder" extends="PopupLayout1">
+   
+   <!-- 구매관리파트 팝업 -->
+   <definition name="MPSPopupLayout"  template="/WEB-INF/views/purchase_manage/reg_mainplan/applyorder.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/applyorder" extends="MPSPopupLayout">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-      <definition name="/member/mrpamount" extends="PopupLayout2">
+   
+   <definition name="MRPPopupLayout"  template="/WEB-INF/views/purchase_manage/reg_billing/mrpamount.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/mrpamount" extends="MRPPopupLayout">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
+   
+
+   
    
    <!-- 생산파트 popup layout -->
    <definition name="/member/itemCodePop"  template="/WEB-INF/views/production_manage/reg_productionplan/itemCodepop.jsp">
@@ -173,17 +219,38 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <!-- 구매파트 popup layout -->
+    <definition name="PopupLayout1"  template="/WEB-INF/views/inven_basic_info/reg_item_unit_price/pop1.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
     <definition name="SpPopupLayout2"  template="/WEB-INF/views/sales_manage/reg_salesplan/pop2.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+    <definition name="PopupLayout2"  template="/WEB-INF/views/inven_basic_info/reg_item_unit_price/pop2.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="/member/spcodehelper1" extends="SpPopupLayout1">
+	  <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/iupcodehelper1" extends="PopupLayout1">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
    <definition name="/member/spcodehelper2" extends="SpPopupLayout2">
+	   <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/iupcodehelper2" extends="PopupLayout2">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
@@ -255,7 +322,6 @@
       <put-attribute name="body" value="" />
    </definition>
    <!--  -->
-   
 <!--외주 팝업 -->
    <definition name="ProductionPlanPopupLayoutOut"  template="/WEB-INF/views/outsourcing_manage/reg_outsourcing/productionPlanSearchpop.jsp">
       <put-attribute name="title" value="" />
@@ -425,17 +491,18 @@
       <put-attribute name="body" value="/WEB-INF/views/business_status/rel_return_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/mainplan" extends="baseLayout">
+   <definition name="/member/mainplan" extends="MPSbaseLayout">
       <put-attribute name="title" value="주계획작성" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/reg_mainplan/body.jsp" />
+      <put-attribute name="body2" value="/WEB-INF/views/purchase_manage/reg_mainplan/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-   <definition name="/member/requiredamount" extends="baseLayout">
+   <definition name="/member/requiredamount" extends="MRPbaseLayout">
       <put-attribute name="title" value="소요량전개" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/required_amount/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-   <definition name="/member/regbilling" extends="baseLayout">
+   <definition name="/member/regbilling" extends="CMbaseLayout">
       <put-attribute name="title" value="청구등록" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/reg_billing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
@@ -460,7 +527,7 @@
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/receive_process/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-	<definition name="/member/orderclosing" extends="baseLayout">
+	<definition name="/member/orderclosing" extends="OrderClosingbaseLayout">
       <put-attribute name="title" value="발주마감처리" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/order_closing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />

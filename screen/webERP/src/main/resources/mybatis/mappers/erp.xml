@@ -628,101 +628,158 @@ order by bom.parent_item_code]]>
 	</select>
 	
 	
-
-	<!-- mainPaln 파트 -->
-	<resultMap id="mainplanResult" type="mainplanVO">
+<!-- 구매관리파트 -->
+	<!-- mainPaln 주계획 -->
+	<resultMap id="MPSResult" type="mainplanVO">
+		<result property="planNO" column="planNO" />
 		<result property="plandate" column="plandate" />
-		<result property="itemnumber" column="itemnumber" />
-		<result property="itemName" column="itemName" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="unit" column="unit" />
+		<result property="inventory_unit" column="inventory_unit" />
 		<result property="sequence" column="sequence" />
 		<result property="expected_date" column="expected_date" />
 		<result property="due_date" column="due_date" />
 		<result property="plan_quantity" column="plan_quantity" />
 		<result property="buyer" column="buyer" />
 		<result property="note" column="note" />
+ 		<result property="startDate" column="startDate" />
+		<result property="endDate" column="endDate" />
 	</resultMap>
 	<resultMap type="mpsosVO" id="MpsOSResult">
-		<result column="ordersno" property="ordersno" />
+		<result column="orderno" property="orderno" />
 		<result column="sequence" property="sequence" />
 		<result column="orderdate" property="orderdate" />
-		<result column="okeydate" property="okeydate" />
 		<result column="buyer" property="buyer" />
-		<result column="itemnumber" property="itemnumber" />
-		<result column="itemName" property="itemName" />
+		<result column="item_Code" property="item_Code" />
+		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
-		<result column="unit" property="unit" />
+		<result column="inventory_unit" property="inventory_unit" />
 		<result column="order_quantity" property="order_quantity" />
-		<result column="apply_quantity" property="apply_quantity" />
-		<result column="order_Balance" property="order_Balance" />
 		<result column="expected_Date" property="expected_Date" />
 		<result column="note" property="note" />
 	</resultMap>
-
-	<select id="selectAllMainPlanList" resultMap="mainplanResult">
-		<![CDATA[SELECT * from pmm_pm_mps]]>
+	<select id="selectAllMainPlanList" resultMap="MPSResult">
+		<![CDATA[ select * from pmm_pm_mps]]>
 	</select>
-	<select id="selectAllMpsosList" resultMap="MpsOSResult">
+	
+ 	<delete id="deleteMps">
+		delete from pmm_pm_mps where sequence = #{sequence}
+	</delete>
+	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
 	
 	<!-- billing파트 -->
+	<update id="updateMPS" >
+		<![CDATA[update pmm_pm_mps
+			set  planNO=#{planNO},plandate=#{plandate},item_Code=#{item_Code},item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit}
+			,sequence=#{sequence},expected_date=#{expected_date},due_date=#{due_date},plan_quantity=#{plan_quantity},buyer=#{buyer},note=#{note}
+			where planNO = #{planNO}]]>  
+	</update>
+	<insert id="insertMPS" parameterType="MainPlanVO">
+		<![CDATA[insert into pmm_pm_mps(planNO,plandate,item_Code,item_Name,standard,inventory_unit,sequence,
+				expected_date,due_date,plan_quantity,buyer,note)
+			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},
+			F_GET_NEXT_SEQ('SEQ'),#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
+		]]>
+	</insert>
+		
+	<select id="searchMPSOS" resultMap="MpsOSResult">
+		<![CDATA[ select item_Code, item_Name
+		  	from pmm_pm_mps_os
+		 	 where item_Name like '%'||#{item_Name}||'%']]>
+	</select>
+	
+  	<select id="searchMRP" resultMap="MPSResult" parameterType="String">
+		<![CDATA[select * from pmm_pm_mps where item_code = #{item_code}]]>
+	</select>
+	
+	<select id="selectMRP" resultMap="MpsOSResult" parameterType="String">
+		<![CDATA[select buyer,item_code,item_name,standard,inventory_unit,note from pmm_pm_mps_os where item_code=#{item_code}]]>
+	</select>
+	
+	<select id="selectSeq" resultType="int">
+		<![CDATA[select MAX(sequence) from pmm_pm_mps]]>
+	</select>
+	
+	<select id="inputMRP" resultMap="MPSResult" parameterType="String">
+		<![CDATA[select * from pmm_pm_mps where item_code=#{item_code}]]>
+	</select>
+	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
+ 		<result property="sequence" column="sequence" />
 		<result property="claim_no" column="claim_no" />
 		<result property="claim_date" column="claim_date" />
 		<result property="claim_division" column="claim_division" />
-		<result property="note" column="note" />
-	</resultMap>
-	<resultMap id="ListResult" type="listVO">
-		<result column="sequence" property="sequence" />
-		<result column="itemNumber" property="itemNumber" />
-		<result column="itemName" property="itemName" />
+		<result column="item_Code" property="item_Code" />
+		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
 		<result column="requestdate" property="requestdate" />
-		<result column="inventory_unit" property="inventory_unit" />
-		<result column="inventory_qy" property="inventory_qy" />
-		<result column="claim_unit" property="claim_unit" />
+		<result column="inventory_qty" property="inventory_qty" />
 		<result column="claim_quantity" property="claim_quantity" />
 		<result column="buyer" property="buyer" />		
+		<result property="note" column="note" />
 	</resultMap>
 	<resultMap id="mrpamountResult" type="requiredamountVO">
 		<result property="need_date" column="need_date" />
 		<result property="expected_order" column="expected_order" />
-		<result property="itemnumber" column="itemnumber" />
-		<result property="itemname" column="itemname" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="unit" column="unit" />
+		<result property="inventory_unit" column="inventory_unit" />
 		<result property="expected_quantity" column="expected_quantity" />
 	</resultMap>
 
-	<select id="selectAllcmList" resultMap="billingResult">
+	<select id="selectAllcmList" resultMap="billingResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from PMM_PM_CM]]>
-	</select>
-	
-	<select id="selectAllBottomList" resultMap="ListResult">
-		<![CDATA[select * from pmm_pm_cm_list]]>
-	</select>
-	
+	<where>
+		<if test="startDate != '' and startDate != null">claim_date between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and requestdate between #{startDate} and #{endDate} </if>
+	</where>
+	</select>	
 	<select id="selectAllMrpaMount" resultMap="mrpamountResult">
-		<![CDATA[select need_date,expected_order,itemnumber,itemname,standard,unit,expected_quantity
+		<![CDATA[select need_date,expected_order,item_Code,item_Name,standard,inventory_unit,expected_quantity
 			from pmm_pm_mrp]]>
 	</select>
-
-	<!-- mrp파트 -->
+ 	<delete id="delbilling">
+		delete from PMM_PM_CM where sequence = #{sequence}
+	</delete>
+	<update id="updatebilling" >
+		<![CDATA[update PMM_PM_CM
+			set claim_division=#{claim_division},requestdate=#{requestdate},inventory_qty=#{inventory_qty},
+			claim_quantity=#{claim_quantity},buyer=#{buyer},note=#{note}
+			where sequence = #{sequence}]]>  
+	</update>
+ 	<insert id="insertbilling" parameterType="billingVO">
+		<![CDATA[insert into PMM_PM_CM
+		values(F_GET_NEXT_SEQ('SEQ'),F_GET_NEXT_SEQ('PMM_PM_CM'),#{claim_date},#{claim_division},#{item_Code},#{item_Name},#{standard},#{requestdate},
+		#{inventory_qty},#{claim_quantity},#{buyer},#{note})
+		]]>
+	</insert> 
+	
+	
+	<!-- mrp 소요량 -->
 	<resultMap id="mrpResult" type="requiredamountVO">
-		<result property="itemnumber" column="itemnumber" />
-		<result property="itemname" column="itemname" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="need_date" column="need_date" />
+		<result property="due_date" column="due_date" />
 		<result property="sequence" column="sequence" />
 		<result property="expected_order" column="expected_order" />
 		<result property="expected_quantity" column="expected_quantity" />
-		<result property="unit" column="unit" />
+		<result property="inventory_unit" column="inventory_unit" />
+		<collection property="bomVO" resultMap="bomView"/>
+		<collection property="mainplanVO" resultMap="MPSResult"/>
 	</resultMap>
 
-	<select id="selectAllMrpList" resultMap="mrpResult">
-		<![CDATA[SELECT * from pmm_pm_mrp]]>
+	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
+		<![CDATA[select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
+			pm.due_date, pm.sequence , mr.expected_order
+    		from CPM_BIM_BOM_REG bom, pmm_pm_mps pm, pmm_pm_mrp mr
+            where pm.item_code = bom.item_code 
+            and  bom.item_code = mr.item_code and expected_order between #{startDate} and #{endDate}
+    		    ]]>
 	</select>
 
 	<resultMap id="salesplan" type="itemviewVO">
@@ -1815,6 +1872,119 @@ ORDER BY out.workordernumber]]>
 		update SM_BIM_Sal_Pla_Reg
 		set Newplan_Item_Quantity = #{newPlanItemQuantity}, Newplan_Unit_Price = #{newPlanUnitPrice}
 		where Item_Code = #{itemCode}
+		]]>
+	</update>
+	<!-- orderclosing 발주마감 -->
+	<resultMap id="orderclosingResult" type="orderclosingVO">
+		<result property="order_no" column="order_no" />
+		<result property="order_date" column="order_date" />
+		<result property="code" column="code" />
+		<result property="buyer" column="buyer" />
+		<result property="sequence" column="sequence" />
+		<result property="item_Code" column="item_Code" />
+		<result property="item_Name" column="item_Name" />
+		<result property="standard" column="standard" />
+		<result property="inventory_unit" column="inventory_unit" />
+		<result property="order_quantity" column="order_quantity" />
+		<result property="price" column="price" />
+		<result property="deadline" column="deadline" />
+		<result property="note" column="note" />
+	</resultMap>
+	
+	<select id="selectAllClosingList" resultMap="orderclosingResult">
+		<![CDATA[select sequence,order_no,order_date,code,buyer,item_Code,item_Name,standard,
+		inventory_unit,order_quantity,price, order_quantity*price as applyPrice, 
+		(order_quantity*price*0.1) as vat, order_quantity*price+(order_quantity*price*0.1) 
+		sumPrice,deadline,note
+		from PMM_PM_ORDER]]>
+	<where>
+		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
+		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
+	</where>
+
+	</select>
+	
+	<update id="updateOrderClosing">
+		<![CDATA[update PMM_PM_ORDER
+			set deadline = '마감'
+			where sequence=#{sequence}and deadline ='진행']]>
+	</update>
+	<delete id="delClosing">
+		delete from PMM_PM_ORDER where sequence = #{sequence}
+	</delete>
+	<insert id="insertClosing" parameterType="orderclosingVO">
+		<![CDATA[insert into PMM_PM_ORDER
+		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{buyer},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},#{standard},
+		#{inventory_unit},#{order_quantity},#{price},#{deadline},#{note})
+		]]>
+	</insert> 
+	<update id="updateClosing">
+		<![CDATA[update PMM_PM_ORDER
+			set order_no=#{order_no},order_date=#{order_date},code=#{code},buyer=#{buyer},sequence=#{sequence},item_Code=#{item_Code},
+			item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit},order_quantity=#{order_quantity},price=#{price},
+			deadline=#{deadline},note=#{note}
+			where sequence=#{sequence}]]>
+	</update>
+	
+	<!-- 품목단가등록(재원) 파트 -->
+
+	<resultMap id="iupView" type="iupVO">
+		<result property="no" column="No" />
+		<result property="itemNumber" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+		<result property="purchasePrice" column="Purchase_Price" />
+		<result property="salesPrice" column="Sales_Price" />
+	</resultMap>
+	<resultMap id="iupView1" type="iupVO">
+		<result property="itemNumber" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+		<result property="inventoryUnit" column="Inventory_Unit" />
+	</resultMap>
+	<resultMap id="iupPopView" type="iupVO">
+		<result property="itemNumber" column="Item_Code" />
+		<result property="itemName" column="Item_Name" />
+		<result property="standard" column="Standard" />
+	</resultMap>
+
+	<select id="iupSelectAllMemberList" resultMap="iupView">
+		<![CDATA[select * from PM_SM_Ite_Pri]]>
+	</select>
+	<select id="iupSelectNo" resultType="int">
+		<![CDATA[select MAX(no) from PM_SM_Ite_Pri]]>
+	</select>
+	<select id="iupSearchItem" resultMap="iupView" parameterType="String">
+		<![CDATA[select * from PM_SM_Ite_Pri where Item_Code = #{itemNumber}]]>
+	</select>
+	<select id="iupSelectItem1" resultMap="iupView1" parameterType="String">
+		<![CDATA[select Item_Code, Item_Name, Standard, Inventory_Unit from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	</select>
+	<select id="iupSelectPopList1" resultMap="iupPopView">
+		<![CDATA[select * from PM_SM_Ite_Pri]]>
+	</select>
+	<select id="iupSelectPopList2" resultMap="iupPopView">
+		<![CDATA[select * from SM_BIM_Ite_Reg]]>
+	</select>
+	<select id="iupChildView" resultMap="iupView1" parameterType="java.util.HashMap">
+		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemNumber}]]>
+	</select>
+	<insert id="insertIup" parameterType="iupVO">
+		<![CDATA[
+		 insert into PM_SM_Ite_Pri(No, Item_Code, Item_Name, Standard, Inventory_Unit, Purchase_Price, Sales_Price)
+		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{inventoryUnit}, #{purchasePrice}, #{salesPrice})
+		]]>  
+	</insert>
+
+	<delete id="deleteIup">
+		delete from PM_SM_Ite_Pri where No = #{no}
+	</delete>
+	<update id="updateIup" parameterType="iupVO">
+		<![CDATA[
+		update PM_SM_Ite_Pri
+		set Purchase_Price = #{purchasePrice}, Sales_Price = #{salesPrice}
+		where No = #{no}
 		]]>
 	</update>
 </mapper>

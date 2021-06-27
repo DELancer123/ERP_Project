@@ -90,7 +90,6 @@ local.properties
 #*.tar.gz
 #*.rar
 
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -489,14 +488,3 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web,visualstudio
-screen/webERP/src/main/java/com/myspring/commonProduction/operationRegist/vo/ProductionPalnViewVO.java
-screen/webERP(06041953).zip
-screen/webERP(202106071842).zip
-screen/webERP(202106072022).zip
-screen/webERP/src/main/webapp/WEB-INF/lib/ojdbc6.jar
-screen/webERP/webERP/src/main/webapp/WEB-INF/lib/ojdbc6.jar
-screen/webERP(202106151551) 외주발주등록.zip
-screen/webERP(202106151729).zip
-screen/webERP(202106171249).zip
-screen/webERP(202106221549).zip
-screen/webERP(202106231941).zip

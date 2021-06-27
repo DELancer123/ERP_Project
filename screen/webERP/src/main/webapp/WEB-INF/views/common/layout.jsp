@@ -410,7 +410,7 @@ input {
             document.getElementById("search").value = ' 메뉴 검색';
         }
         
-       function selectAll(selectAll){
+        function selectAll(selectAll){
             const checkbox = document.getElementsByName('content');
             checkbox.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
