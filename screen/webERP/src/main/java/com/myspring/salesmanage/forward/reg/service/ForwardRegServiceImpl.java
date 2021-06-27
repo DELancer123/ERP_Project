@@ -37,10 +37,10 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 
 	@Override
 	public List listCust() throws DataAccessException {
-		List custList = null;
-		custList = forwardDAO.selectCustList();
-		return custList;
-	}
+		List itemList = null;
+//		itemList = forwardDAO.selectCustList();
+		return itemList;
+	}//selectAllCustList
 
 	@Override
 	public List submitCustByInsert(String custCode) throws DataAccessException {

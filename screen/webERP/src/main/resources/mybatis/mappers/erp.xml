@@ -273,7 +273,7 @@
         <result property="note" column="Note" />        
 	</resultMap>
 
-<!-- forwarding regstration -->
+<!-- forwarding registration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
@@ -284,17 +284,22 @@
 		<result property="comNum" column="Company_Registration_Number" />
 		<result property="repName" column="Representativs_Name" />
 	</resultMap>  
-	<select id="allCustforward" resultMap="forward">
+	<select id="selCustforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
 	</select><!-- popCust-->
-	<select id="allSupForward" resultMap="forward">
-		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
-	</select>
 	<select id="submitSupForward" resultMap="forward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{custCode}]]>
 	</select>
-		<select id="selcustforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
+	<select id="allSupForward" resultMap="forward">
+		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
+	</select>
+	<select id="allCustforward" resultMap="forward">
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL
+		 where REL.General_Customer_Code = GEN.General_Customer_Code
+		  order by REL.General_Customer_Code]]>
+	</select><!-- popCust-->
+		<select id="selItemforward" resultMap="forward">
+		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
 	</select><!-- popCust-->
 	<select id="supForwardInsert" resultMap="forward">
 		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>

@@ -75,7 +75,7 @@
       					<td><b>사업자 명</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${custList}" >
+ 					<c:forEach var="cust" items="${forwardCustList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</a></td>
       						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custName}</a></td>

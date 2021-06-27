@@ -12,7 +12,8 @@ public interface ForwardRegDAO {
 
 	//pop
 	public List selectAllCustList() throws DataAccessException;	
-	public List selectCustList() throws DataAccessException;	
+	public List selectAllCustsList() throws DataAccessException;	
+	public List selectAllItemList() throws DataAccessException;	
 	//super reg
 	public List submitForwardCustSupReg(String custCode) throws DataAccessException;
 	public List selectSupForwardList() throws DataAccessException;

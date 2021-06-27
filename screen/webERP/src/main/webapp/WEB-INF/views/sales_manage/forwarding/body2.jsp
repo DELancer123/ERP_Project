@@ -9,6 +9,7 @@
 %>    
 <% 
 String inputNo = (String)request.getAttribute("inputNo");
+String custCode = request.getParameter("custCode");
 	String relCode = request.getParameter("relCode");
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -65,7 +66,7 @@ String inputNo = (String)request.getAttribute("inputNo");
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
                     <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
-                    <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" readonly/></a></td>
+                    <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="submit1()"readonly/></a></td>
                     <td><input type="text"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].custCode" value="${supForward.custCode}" ondblclick="search2()" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
@@ -75,7 +76,7 @@ String inputNo = (String)request.getAttribute("inputNo");
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${relCode}" /></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${param.relCode}" readonly/></td>
                     <td><input type="date" id="relDate" name="ListVO[${fn:length(forward)}].relDate" value="${relDate}" /></td>
                     <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" ondblclick="search2()" readonly/></td>
                     <td><input type="text" id="deadLine" name="ListVO[${fn:length(forward)}].deadLine" value="${deadLine}" /></td>
@@ -118,15 +119,15 @@ String inputNo = (String)request.getAttribute("inputNo");
 	  		}
 		}
        	
-    	function popFunction(code,name){
+    	function popFunction(code,relCode){
 			text_code.value = code;
-			text_name.value = name;
+			text_relCode.value = relCode;
 			
 		}
        	function submit1(){
        		text_code.setAttribute("custCode",text_code.value);
-			text_name.setAttribute("custName",text_name.value); 
-       		window.location.href = "${contextPath}/member/forwardcodehelper3.do?" ;
+			text_name.setAttribute("relCode",text_relCode.value); 
+       		window.location.href = "${contextPath}/member/insertByItem.do?" ;
         }
     	function setChildValue(name){
 			const URLSearch = new URLSearchParams(location.search);
@@ -136,7 +137,7 @@ String inputNo = (String)request.getAttribute("inputNo");
 				window.location.href = location.pathname + '?' + newParam + '&custCode=' + code;
 			}
 			else{
-				URLSearch.set('custCode',name);
+				URLSearch.set('custCode',relCode);
 				const newParam = URLSearch.toString();
 				window.location.href = location.pathname + '?' + newParam;
 			}
