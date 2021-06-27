@@ -142,11 +142,11 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 		int idx = ODVO.getDetailVO().size();
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
-		System.out.println("idx : "+idx);
-		System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
-		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
-		System.out.println("DAOresult:"+result);
-		}
+			System.out.println("idx : "+idx);
+			System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
+			result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
+			System.out.println("DAOresult:"+result);
+			}
 		sqlSession.update("mappers.erp.materialSet", workOrderNumber);
 		return result;
 	}
@@ -220,10 +220,12 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
 	@Override
 	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
 		int idx = ORVO.getDetailVO().size()-1;
+		String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ORVO.getDetailVO().get(0));
 		
 		for(int i = 0; i<idx; i++) {			
 		int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
 		}
+		sqlSession.update("mappers.erp.materialComplete", workOrderNumber);
 		return 0;
 	}
 }

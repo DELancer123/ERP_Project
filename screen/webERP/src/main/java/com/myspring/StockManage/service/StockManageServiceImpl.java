@@ -92,6 +92,12 @@ public class StockManageServiceImpl implements StockManageService{
 		return list;
 	}
 
+	@Override
+	public String searchMenu(String searchWord) {
+		String list=stockManageDAO.searchMenu(searchWord);
+		return list;
+	}
+
 
 
 

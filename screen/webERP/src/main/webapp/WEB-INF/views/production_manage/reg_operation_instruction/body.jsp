@@ -159,6 +159,20 @@
 </body>
 </html>
  <script>
+ /*변수 설정*/
+ var workOrderNumber = document.getElementById('workOrderNumber').value;
+ var instructionDate = document.getElementById('instructionDate').value;
+ var dueDate = document.getElementById('dueDate').value;
+ var indicated = document.getElementById('indicated').value;
+
+ function isExist(val) {
+		if (val == "" || val == null || val == undefined || (val != null && typeof val == "object" && !Object.keys(val).length)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
  /* input date의 현재 날짜 기본값 설정*/
  document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
  document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
@@ -210,13 +224,21 @@
           	const URLSearch = new URLSearchParams(location.search);
 		 	const newParam = URLSearch.toString();
 			var link = location.pathname +'?'+newParam;
+			
+			if(isExist(instructionDate)){
   			var linkPath = document.createElement("input");
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
+  		    
   		    document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
   			document.getElementById('dataForm').submit();  
+				
+			}else{
+				alert("모든 값을 입력해주세요!");
+				window.location.href = "${contextPath}/member/regoperins.do";
+     		 }
 		
       }
       
@@ -247,7 +269,13 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
+      		  else if(isExist(workOrderNumber)){
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      	  }else{
+      		  alert("삭제할 값을 선택해주세요!");
+      		window.location.href = "${contextPath}/member/regoperins.do";
+      	  }
+      	  
       	  }
         }
       </script>

@@ -193,26 +193,29 @@ public class StockManageControllerImpl implements StockManageController {
 	    mav.addObject("keywordList", keywordList);
 		mav.setViewName("jsonView");
 			return mav;
-//	 // 최종 완성될 JSONObject 선언(전체)
-//		JSONObject jsonObject = new JSONObject();
-//		jsonObject.put("keyword", keywordList);
-//		 		
-//	    String jsonInfo = jsonObject.toString();
-//	   // System.out.println(jsonInfo);
-//	    return jsonInfo ;
 	}
 	
-//	@RequestMapping(value="/searchGoods.do" ,method = RequestMethod.GET)
+//	@RequestMapping(value="/member/searchmenu.do" ,method = RequestMethod.GET)
 //	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
 //			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
 //		String viewName=(String)request.getAttribute("viewName");
-//		List<StockManageVO> goodsList=stockManageservice.searchGoods(searchWord);
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("goodsList", goodsList);
+//		List<StockManageVO> menuList=stockManageservice.searchMenu(searchWord);
+//		ModelAndView mav = new ModelAndView("redirect:/member"+menuList);
+//		mav.addObject("menuList", menuList);
 //		return mav;
 //		
 //	}
-//	
+	@RequestMapping(value = "/member/searchmenu.do", method = RequestMethod.GET)
+	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String urlList = null;
+		urlList = stockManageservice.searchMenu(searchWord);
+		mav.addObject("urlList", urlList);
+		mav.setViewName("redirect:/member"+urlList);
+
+		return mav;
+	}
+	
 	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
