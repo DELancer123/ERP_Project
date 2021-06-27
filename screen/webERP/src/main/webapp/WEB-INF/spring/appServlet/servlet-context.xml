@@ -22,13 +22,10 @@
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 
-	
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<beans:property name="prefix" value="/WEB-INF/views/" /> 
-		<beans:property name="suffix" value=".jsp" /> 
-	</beans:bean>
- 
-  <context:component-scan	base-package="com.myspring" />
+	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
+		name="suffix" value=".jsp" /> </beans:bean> -->
+
 
 	<!-- 타일즈 실습 설정 -->
 
@@ -50,19 +47,11 @@
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
-
-
-	<!-- jsonview 장순웅 설정 -->
-	<beans:bean id="jsonView"
-		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-		<beans:property name="contentType"
-			value="application/json;charset=UTF-8">
-		</beans:property>
+	<!-- jsonview 설정 -->
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+    <beans:property name="contentType" value="application/json;charset=UTF-8"> </beans:property>
 	</beans:bean>
-	<beans:bean id="beanNameResolver"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-	<!-- 장순웅 설정 끝 -->
-
+	<beans:bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"  />
 	<context:component-scan
 		base-package="com.myspring.*" />
 
@@ -91,11 +80,11 @@
 				class="com.myspring.Billing.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
 		
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/*/*.do" />
 			<beans:bean
-				class="com.myspring.order_closing.interceptor.ViewNameInterceptor" />
-		</mvc:interceptor>
+				class="com.myspring.outsourcing_manage.RegOutsourcing.interceptor.ViewNameInterceptor" />
+		</mvc:interceptor> -->
 		
 	</mvc:interceptors>
 
