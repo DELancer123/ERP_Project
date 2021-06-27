@@ -21,7 +21,6 @@ public interface ForwardRegService {
 	public List submitCustByInsert(String custCode) throws DataAccessException;
 	public List listForwardCust() throws DataAccessException;
 	//delete by forward
-	public int inputNo() throws DataAccessException;
 	public void removeForward(String[] noary) throws DataAccessException;
 	
 }

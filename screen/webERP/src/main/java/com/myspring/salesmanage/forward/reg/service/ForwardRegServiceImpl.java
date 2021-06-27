@@ -60,11 +60,6 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		return supForwardInsert;
 	}
 
-
-	@Override
-	public int inputNo() throws DataAccessException {
-		return forwardDAO.selRelCode();
-	}
 	@Override
 	public void removeForward(String[] noary) throws DataAccessException {
 		forwardDAO.delSupForward(noary);

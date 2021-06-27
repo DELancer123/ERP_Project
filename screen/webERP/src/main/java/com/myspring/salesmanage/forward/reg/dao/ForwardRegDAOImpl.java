@@ -91,11 +91,6 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	}
 	
 	@Override
-	public int selRelCode() throws DataAccessException {	
-		return sqlSession.selectOne("mappers.erp.selRelCode");
-	}//choice for delete
-
-	@Override
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException {
 		for(String relCode: forwardCodeary) {
 			sqlSession.delete("mappers.erp.delSupforward",relCode);
@@ -112,6 +107,21 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 	@Override
 	public int updForward(ForwardVO forwardVO) throws DataAccessException {
+		int result = 0; 
+
+		int idx = forwardVO.getListVO().size();
+		for(int i = 0; i<idx; i++) {
+			System.out.println("i" + i);
+		System.out.println("idx : " + idx);
+		result = sqlSession.update("mappers.erp.updateForward", forwardVO.getListVO().get(i));		
+		System.out.println("DAOresult:"+result);
+		}
+		return result;
+	}
+
+	@Override
+	public int updSubForward(ForwardVO forwardVO) throws DataAccessException {
+		
 		int result = 0; 
 
 		int idx = forwardVO.getListVO().size();

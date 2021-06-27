@@ -307,11 +307,6 @@
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{custCode}]]>
 	</select>
-	<select id="selRelCode" resultMap="forward" parameterType="int">
-		<![CDATA[ SELECT LAST_NUMBER FROM USER_SEQUENCES
-		 WHERE SEQUENCE_NAME = upper('seq_CSM_SM_Rel_Pro_no')
-		]]>
-	</select> 
 		<select id="selItemforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
 	</select><!-- popItem-->
@@ -330,7 +325,7 @@
 	<update id="updateForward" parameterType="forwardVO">
 		<![CDATA[
 		update CSM_SM_Rel_Pro
-		set releaseDate = #{relDate}, General_Customer_Code = #{custCode}, deadLine = #{deadLine}, note =#{note}
+		set deadLine = #{deadLine}
 		where releaseNum = #{relCode}
 		]]>
 	</update>
