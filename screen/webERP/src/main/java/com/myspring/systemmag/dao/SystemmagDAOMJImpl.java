@@ -58,7 +58,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Override
 	public List zipViewCustomer() throws DataAccessException {
 		List zipList = null;
-		zipList = sqlSession.selectList("mappers.erp.selectZipList");
+		zipList = sqlSession.selectList("mappers.erp.selectZipList1");
 		return zipList;
 	}
 	
