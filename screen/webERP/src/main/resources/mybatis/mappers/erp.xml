@@ -260,19 +260,6 @@
 		 where ORD.ordersNum = COR.code order by ORD.ordersNum
         ]]>
 	</select>	
-	
- <!-- order supReg -->
-	<resultMap id="orderRegList" type="orderVO">
-		<result property="custCode" column="General_Customer_Code" />
-        <result property="custName" column="General_Customer_Name" />
-        <result property="comNum" column="Company_Registration_Number" />
-        <result property="repName" column="Representativs_Name" />	
-        <result property="ordCode" column="ordersNum" />	
-        <result property="ordDate" column="ordersdate" />	
-        <result property="tax" column="tax" />	
-        <result property="note" column="Note" />        
-	</resultMap>
-
 <!-- forwarding registration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
@@ -323,11 +310,9 @@
 		]]>  
 	</insert>
 	<update id="updateForward" parameterType="forwardVO">
-		<![CDATA[
-		update CSM_SM_Rel_Pro
+		<![CDATA[update CSM_SM_Rel_Pro
 		set deadLine = #{deadLine}
-		where releaseNum = #{relCode}
-		]]>
+		where releaseNum = #{relCode}]]>
 	</update>
 	
 	  	<resultMap id="Corforward" type="forwardVO">
@@ -355,7 +340,11 @@
 	<select id="allForwardItem" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_COR_Reg order by code]]>
 	</select>
-
+	<update id="updateSubForward" parameterType="forwardVO">
+		<![CDATA[update CSM_SM_COR_Reg
+		set inspection = #{inspection}, orderOX=#{orderOX}
+		where code = #{relCode}]]>
+	</update>
 	
 	
 	<!-- 출고현황(재원) -->

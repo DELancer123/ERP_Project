@@ -34,15 +34,15 @@
             border: 1px solid black;
             z-index: 1;
         }
-         #view{
+         #forwardingTable{
             width: 100%;
             text-align: center;
             border: 1px solid black;
         }
-        #view td:not(#no){
+        #forwardingTable td:not(#no){
             width: 8%;
         }
-        #view td input{
+        #forwardingTable td input{
             width: 100%;
         }
 </style>
@@ -52,9 +52,6 @@
             <div id="forwardingInfo">
             <form id="dataForm" mehtod="get" commandName="ListVO">
            <table id="forwardingTable">
-               <thead>
-                   <td colspan="7">주문출고</td>
-               </thead>
                 <thead>
                     <td><input type="checkbox" id="check" name="content" onclick="selectAll(this)"/></td>
                     <td>출고번호</td>

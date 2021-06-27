@@ -128,7 +128,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		for(int i = 0; i<idx; i++) {
 			System.out.println("i" + i);
 		System.out.println("idx : " + idx);
-		result = sqlSession.update("mappers.erp.updateForward", forwardVO.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.updateSubForward", forwardVO.getListVO().get(i));		
 		System.out.println("DAOresult:"+result);
 		}
 		return result;
