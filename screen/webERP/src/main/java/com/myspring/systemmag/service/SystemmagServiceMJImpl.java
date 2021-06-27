@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.systemmag.dao.SystemmagDAOMJ;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
-@Service("SystemmagService")
+@Service("SystemmagServiceMJ")
 @Transactional(propagation=Propagation.REQUIRED)
 public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Autowired

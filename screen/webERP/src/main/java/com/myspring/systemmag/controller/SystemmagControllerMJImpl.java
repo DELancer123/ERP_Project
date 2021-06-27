@@ -32,7 +32,7 @@ import com.myspring.systemmag.service.SystemmagServiceMJ;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 //회사등록
-@Controller("SystemmagController")
+@Controller("SystemmagControllerMJ")
 public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Autowired
 	private SystemmagServiceMJ systemmagService;

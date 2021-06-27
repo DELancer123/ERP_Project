@@ -479,7 +479,7 @@
 	</select>
 	<!--기초정보관리파트-->
 	<!--기초정보관리_일반거래처등록-->
-	<resultMap id="basicInfoResult" type="SystemmagVO">
+	<resultMap id="basicInfoResult" type="SystemmagVOMJ">
 		<result property="general_Customer_Code" column="general_Customer_Code" />
 		<result property="general_Customer_Name" column="general_Customer_Name" />
 		<result property="general_Customer_Division" column="general_Customer_Division" />
@@ -518,7 +518,7 @@
 	<delete id="deleteBasicList">
 		delete from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{no}
 	</delete>
-	<update id="updateBasicList" parameterType="SystemmagVO">
+	<update id="updateBasicList" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			update SM_BIM_GEN_CUS_REG
 			set	general_Customer_Name=#{general_Customer_Name},
@@ -535,7 +535,7 @@
 			where general_Customer_Code=#{general_Customer_Code}			
 		]]>
 	</update>
-	<insert id="insertNewCustomer" parameterType="systemmagVO">
+	<insert id="insertNewCustomer" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_GEN_CUS_REG
 			values(#{general_Customer_Code},
@@ -551,7 +551,7 @@
 			#{generalCustomer_Tel}, 
 			#{wholesale_Retail_Business_Code})]]>
 	</insert>
-	<select id="selectZipList" parameterType="String" resultMap="basicInfoResult">
+	<select id="selectZipList1" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_CRI_ZIP]]>
 	</select>
 	<select id="selectPopCustomerList" resultMap="basicInfoResult">
@@ -561,7 +561,7 @@
 		]]>
 	</select>
 	<!-- 기초정보관리_창고/공정/외주공정등록 -->
-	<resultMap id="outwareInfoResult" type="SystemmagVO">
+	<resultMap id="outwareInfoResult" type="SystemmagVOMJ">
 		<!-- 창고/장소파트 -->
 		<result property="house_Code" column="house_Code" />
 		<result property="house_Name" column="house_Name" />
@@ -606,7 +606,7 @@
 	</select>
 	
 	<!-- 기초정보관리_물류관리내역등록 -->
-	<resultMap id="logisticsManagementResult" type="SystemmagVO">	
+	<resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
 		<result property="logistics_In_Code" column="logistics_In_Code" />
 		<result property="logistics_In_Name" column="logistics_In_Name" />
 		<result property="explanation" column="explanation" />
@@ -621,7 +621,7 @@
 	<delete id="deleteLogisticsManagement">
 		delete from SM_BIM_LOG_MAN where logistics_In_Code = #{no}
 	</delete>
-	<update id="updateLogisticsManagement" parameterType="SystemmagVO">
+	<update id="updateLogisticsManagement" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			update SM_BIM_LOG_MAN
 			set	logistics_In_Name=#{logistics_In_Name},
@@ -630,7 +630,7 @@
 			where logistics_In_Code=#{logistics_In_Code}			
 		]]>
 	</update>
-	<insert id="insertNewLogisticsManagement" parameterType="SystemmagVO">
+	<insert id="insertNewLogisticsManagement" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_LOG_MAN
 			values(#{logistics_In_Code},

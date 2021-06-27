@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-@Component("SystemmagVO")
+@Component("SystemmagVOMJ")
 public class SystemmagVOMJ {
 	//일반거래처등록
 	//SM_BIM_GEN_CUS_REG

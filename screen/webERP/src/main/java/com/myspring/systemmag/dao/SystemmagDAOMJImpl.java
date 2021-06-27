@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
-@Repository("SystemmagDAO")
+@Repository("SystemmagDAOMJ")
 public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Autowired
 	private SqlSession sqlSession;

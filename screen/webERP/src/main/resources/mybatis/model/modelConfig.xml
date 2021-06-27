@@ -39,5 +39,7 @@
 		<typeAlias type="com.myspring.systemmag.vo.ZipcodeVO" alias="ZipcodeVO" />
 		<!-- 부문(팝업) -->
 		<typeAlias type="com.myspring.systemmag.vo.SectorVO" alias="SectorVO" />
+		<!-- 성명제 -->
+		<typeAlias type="com.myspring.systemmag.vo.SystemmagVOMJ" alias="SystemmagVOMJ"	/>
 	</typeAliases>
 </configuration>	 
