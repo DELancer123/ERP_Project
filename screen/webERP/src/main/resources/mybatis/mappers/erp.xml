@@ -273,54 +273,6 @@
         <result property="note" column="Note" />        
 	</resultMap>
 
-	<!-- order subReg -->
-	<resultMap id="orderCorRegList" type="corVO">
-	    <result property="ordCode" column="code" />
-        <result property="item_code" column="item_code" />
-        <result property="item_name" column="item_name" />        
-        <result property="stand" column="standard" />
-        <result property="unit" column="inventory_unit" />
-        <result property="orderQuant" column="ordersQuantity" />
-        <result property="price" column="productPrice" />
-        <result property="dueDate" column="dueDate" />
-        <result property="expDate" column="expectedDate" />
-        <result property="inspection" column="inspection" />
-        <result property="orderOX" column="orderOX" />
-	</resultMap> 	
-	
-	<select id="allCustForRegOrder" resultMap="orderRegList">
-      <![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
-	</select><!-- popCust-->
-	
-	<select id="RegOrderSupList" resultMap="orderRegList">
-      <![CDATA[select * from CSM_SM_Ord_Reg order by ordersNum]]>      
-	</select><!-- regSupOrder -->
-
-		
-	<select id="submitOrderSupReg" resultMap="orderRegList" parameterType="String">
-      <![CDATA[
-          select * from CSM_SM_Ord_Reg
-		 where General_Customer_Code = #{custCode} order by ordersNum
-        ]]>
-	</select><!-- regSupOrder -->
-
-	
-		<select id="orderCorList" resultMap="orderCorRegList">
-      <![CDATA[select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
-		 where ORD.ordersNum = COR.code order by ORD.ordersNum desc]]>
-	</select>
-	
-	<select id="submitSubOrdReg" resultMap="orderCorRegList" parameterType="String">
-      <![CDATA[
-		select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
-		 where ORD.ordersNum = COR.code	
-		 and ORD.ordersNum = #{ordCode} order by ORD.ordersNum desc
-        ]]>
-	</select><!-- regSupOrder -->
-	
-	<delete id="delSupOrd" parameterType="String">
-		<![CDATA[delete from CSM_SM_Ord_Reg where ordersNum=#{ordcode}]]>      
-  </delete>
 <!-- forwarding regstration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />

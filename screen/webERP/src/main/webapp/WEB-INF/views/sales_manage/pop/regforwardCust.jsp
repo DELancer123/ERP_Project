@@ -85,7 +85,7 @@
 				</table>
 			</div>
 		</div>
-		        <script>
+	<script>
     var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
     		var text_name = document.getElementById("name");
@@ -102,7 +102,7 @@
     	submit_button.onclick = function(){
     		text_code.setAttribute("custCode",text_code.value);
 			text_name.setAttribute("custName",text_name.value);
-			opener.parent.location='${contextPath}/member/forwarding.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+1;
+			opener.parent.location='${contextPath}/member/forwarding.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+0;
     		window.close();
     	}
     </script>

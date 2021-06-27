@@ -65,23 +65,25 @@ String inputNo = (String)request.getAttribute("inputNo");
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
                     <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
-                    <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" readonly/></td>
+                    <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" readonly/></a></td>
                     <td><input type="text"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].custCode" value="${supForward.custCode}" ondbclick="search2()" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].custCode" value="${supForward.custCode}" ondblclick="search2()" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" readonly /></td>
+                    
                 </tbody>
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
                     <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${relCode}" readonly/></td>
                     <td><input type="date" id="relDate" name="ListVO[${fn:length(forward)}].relDate" value="${relDate}" readonly /></td>
-                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" readonly /></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" ondblclick="search2()" readonly /></td>
                     <td><input type="text" id="deadLine" name="ListVO[${fn:length(forward)}].deadLine" value="${deadLine}" readonly /></td>
                     <td><input type="text" id="note" name="ListVO[${fn:length(forward)}].note" value="${note}" readonly /></td>
                 </tbody>
            </table>
         </container2>
+        
         <script type="text/javascript">
         var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
@@ -90,7 +92,13 @@ String inputNo = (String)request.getAttribute("inputNo");
 			text_name.value = name;
 			
 	}
-        
+		function selectAll(selectAll){
+            const checkbox = document.getElementsByName('content');
+            checkbox.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            });
+        }
+		        
        	function search2(){
       	  
         openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper2.do','cust');  
@@ -109,12 +117,19 @@ String inputNo = (String)request.getAttribute("inputNo");
 		 	  	window.location.href = "${contextPath}/member/delforward.do?no="+ary;
 	  		}
 		}
+       	
+    	function popFunction(code,name){
+			text_code.value = code;
+			text_name.value = name;
+			
+		}
        	function submit1(){
        		text_code.setAttribute("relCode",text_code.value);
 			text_name.setAttribute("custCode",text_name.value); 
        		window.location.href = "${contextPath}/member/forwardcodehelper3.do?" ;
         }
        		
+       	
         </script>
 </body>
 </html>
