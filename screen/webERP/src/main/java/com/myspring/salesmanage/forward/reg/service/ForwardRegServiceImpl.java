@@ -37,9 +37,13 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 
 	@Override
 	public List listCust() throws DataAccessException {
-		List itemList = null;
+		List custList = null;
+		custList = forwardDAO.selectCustsList();
+		return custList;
+//		
+//		List itemList = null;
 //		itemList = forwardDAO.selectCustList();
-		return itemList;
+//		return itemList;
 	}//selectAllCustList
 
 	@Override

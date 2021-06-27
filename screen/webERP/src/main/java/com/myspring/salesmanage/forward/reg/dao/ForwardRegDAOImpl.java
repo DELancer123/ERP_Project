@@ -23,6 +23,12 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		forwardCustList = sqlSession.selectList("mappers.erp.allCustforward");
 		return forwardCustList;
 	}
+	@Override
+	public List selectCustsList() throws DataAccessException {
+		List<ForwardVO> custList = null;
+		custList = sqlSession.selectList("mappers.erp.selCustforward");
+		return custList;
+	}
 	
 	@Override
 	public List submitForwardCustSupReg(String custCode) throws DataAccessException {
@@ -30,19 +36,14 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",custCode);
 		return submitCustList;
 	}
-
+	
 	@Override
 	public List selectSupForwardList() throws DataAccessException {
 		List<ForwardVO> supForwardList = null;
 		supForwardList = sqlSession.selectList("mappers.erp.allSupForward");
 		return supForwardList;
 	}
-	@Override
-	public List selectAllCustsList() throws DataAccessException {
-		List<ForwardVO> custList = null;
-		custList = sqlSession.selectList("mappers.erp.selCustforward");
-		return custList;
-	}
+	
 	@Override
 	public List selectAllItemList() throws DataAccessException {
 		List<ForwardVO> itemList = null;

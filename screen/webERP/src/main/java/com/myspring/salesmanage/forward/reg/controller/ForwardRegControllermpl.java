@@ -89,9 +89,9 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	@RequestMapping(value="/member/forwardcodehelper2.do",method = RequestMethod.GET)
 	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-		List forwardCustList = forwardRegService.listCusts();
+		List custList = forwardRegService.listCust();
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("forwardCustList", forwardCustList);
+		mav.addObject("custList", custList);
 
 		return mav;
 	}
