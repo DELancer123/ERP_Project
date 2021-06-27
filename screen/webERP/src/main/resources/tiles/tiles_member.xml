@@ -567,12 +567,12 @@
       <put-attribute name="body" value="/WEB-INF/views/inventory_manage/status_base_inventory/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-	<definition name="/member/curinvenstat" extends="baseLayout">
+	<definition name="/member/curinvenstat" extends="basestockLayout">
       <put-attribute name="title" value="현재고현황(재고)" />
       <put-attribute name="body" value="/WEB-INF/views/inventory_collection_status/current_inventory_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-   <definition name="/member/curfinishedinvenstat" extends="baseLayout">
+   <definition name="/member/curfinishedinvenstat" extends="basestockLayout">
       <put-attribute name="title" value="현재고현황(완제품)" />
       <put-attribute name="body" value="/WEB-INF/views/inventory_collection_status/current_inventory_finished_status/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
@@ -801,6 +801,12 @@
    		<put-attribute name="title"></put-attribute>
    		<put-attribute name="side"></put-attribute>
    		<put-attribute name="body"></put-attribute>
+   </definition>
+   
+   <definition name="basestockLayout"  template="/WEB-INF/views/inventory_collection_status/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
    </definition>
    
    <!-- 수주등록 거래처등록팝 -->
