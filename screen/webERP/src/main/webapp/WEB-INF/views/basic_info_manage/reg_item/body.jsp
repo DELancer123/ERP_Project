@@ -152,6 +152,7 @@
                     <td>품명</td>
                     <td>규격</td>
                 </thead>
+                <c:set var="cnt" value="0" />
                 <c:forEach var="item" items="${itemView}" > 
                 <tbody>
                     <td><input type="checkbox" value='${item.item_Code }' id="chec-k" name="checkedContent"/></td>
@@ -165,6 +166,7 @@
                         <input type="text" value='${item.standard }'>
                     </td>
                 </tbody>
+                <c:set var="cnt" value="${cnt +1}" />
                 </c:forEach>
                 <tr>
                     <td colspan="3">
@@ -178,7 +180,7 @@
             <div id=bottom1>
                 <table>
                     <td>조회품목수</td>
-                    <td><input type="text" style="width: 50px;">개</td>
+                    <td><input type="text" style="width: 50px;" value=<c:out value="${cnt }" /> />개</td>
                 </table>
             </div>
         </container2>
