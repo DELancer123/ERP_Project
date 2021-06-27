@@ -269,7 +269,13 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
+      		  else if(isExist(workOrderNumber)){
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      	  }else{
+      		  alert("삭제할 값을 선택해주세요!");
+      		window.location.href = "${contextPath}/member/regoperins.do";
+      	  }
+      	  
       	  }
         }
       </script>

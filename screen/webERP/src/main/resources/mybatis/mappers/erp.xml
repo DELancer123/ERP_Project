@@ -216,7 +216,13 @@
 	<update id="materialSet">
 		<![CDATA[update CPM_PM_OPE_PER_REG
 		set MATERIALFORWARDINGSTATUS = '출고대기'
-		where workOrderNumber = #{workOrderNumber}]]>
+		where workOrderNumber = #{workOrderNumber} and MATERIALFORWARDINGSTATUS = '출고완료']]>
+	</update>
+	
+	<update id="materialComplete">
+		<![CDATA[update CPM_PM_OPE_PER_REG
+		set MATERIALFORWARDINGSTATUS = '출고완료'
+		where workOrderNumber = #{workOrderNumber} and  MATERIALFORWARDINGSTATUS = '출고대기']]>
 	</update>
 	
 	<delete id="deleteCommitOperation" parameterType="OperationDetailVO">
