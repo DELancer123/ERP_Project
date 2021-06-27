@@ -41,12 +41,12 @@ public class IupViewControllerImpl implements IupViewController {
 		String viewName = getViewName(request);
 		String itemNumber = (String) request.getParameter("itemNumber");
 		String submit = (String) request.getParameter("submit");
-
-//		String itemCode = (String) request.getParameter("itemCode");
 		int sum = 0;
 		System.out.println(submit);
 		if(itemNumber == null||itemNumber.length() ==0 || submit.equals("0")) {
+			List iupView = iupViewService.iupView();
 			mav = new ModelAndView(viewName);
+			mav.addObject("iupView", iupView);
 			return mav;
 		}
 		else if(submit.equals("1")){
@@ -58,7 +58,7 @@ public class IupViewControllerImpl implements IupViewController {
 			List iupInsert = iupViewService.setText(itemNumber);
 			mav = new ModelAndView(viewName);
 			mav.addObject("iupInsert",iupInsert);
-			System.out.println("È®ÀÎ" + iupInsert.size());
+			System.out.println("È®ï¿½ï¿½" + iupInsert.size());
 			int inputNo = iupViewService.inputNo();
 			String inNo = Integer.toString(inputNo+1);
 			System.out.println(inNo);
