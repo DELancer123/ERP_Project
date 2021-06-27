@@ -76,9 +76,9 @@ String custCode = request.getParameter("custCode");
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${param.relCode}" readonly/></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${relCode}" readonly/></td>
                     <td><input type="date" id="relDate" name="ListVO[${fn:length(forward)}].relDate" value="${relDate}" /></td>
-                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" ondblclick="search2()" readonly/></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${param.custCode}" ondblclick="search2()" readonly/></td>
                     <td><input type="text" id="deadLine" name="ListVO[${fn:length(forward)}].deadLine" value="${deadLine}" /></td>
                     <td><input type="text" id="note" name="ListVO[${fn:length(forward)}].note" value="${note}" /></td>
                 </tbody>
@@ -104,6 +104,13 @@ String custCode = request.getParameter("custCode");
       	  
         openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper2.do','cust');  
         }
+       	view_button.onclick = function(){
+      	  const URLSearch = new URLSearchParams(location.search);
+      	  URLSearch.set('submit', '1');
+      	  const newParam = URLSearch.toString();
+
+      	  window.open(location.pathname + '?' + newParam, '_self');
+      }
        	function deleteData() {
     
 	  		var item = document.getElementsByName("content").length;

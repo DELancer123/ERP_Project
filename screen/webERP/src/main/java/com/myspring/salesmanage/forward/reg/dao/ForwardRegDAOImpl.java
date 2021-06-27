@@ -22,50 +22,54 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		List<ForwardVO> forwardCustList = null;
 		forwardCustList = sqlSession.selectList("mappers.erp.allCustforward");
 		return forwardCustList;
-	}
-	@Override
-	public List selectCustsList() throws DataAccessException {
-		List<ForwardVO> custList = null;
-		custList = sqlSession.selectList("mappers.erp.selCustforward");
-		return custList;
-	}
-	
-	@Override
-	public List submitForwardCustSupReg(String custCode) throws DataAccessException {
-		List<ForwardVO> submitCustList = null;
-		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",custCode);
-		return submitCustList;
-	}
+	}//popRegForwardCust1
 	
 	@Override
 	public List selectSupForwardList() throws DataAccessException {
 		List<ForwardVO> supForwardList = null;
 		supForwardList = sqlSession.selectList("mappers.erp.allSupForward");
 		return supForwardList;
-	}
+	}//all superForward 
 	
 	@Override
-	public List selectAllItemList() throws DataAccessException {
-		List<ForwardVO> itemList = null;
-		itemList = sqlSession.selectList("mappers.erp.selItemforward");
-		return itemList;
-	}
+	public List submitForwardCustSupReg(String custCode) throws DataAccessException {
+		List<ForwardVO> submitCustList = null;
+		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",custCode);
+		return submitCustList;
+	}//choice custCode by superForward 
+	
+	@Override
+	public List selectCustsList() throws DataAccessException {
+		List<ForwardVO> custList = null;
+		custList = sqlSession.selectList("mappers.erp.selCustforward");
+		return custList;
+	}//pop cust for insert
+	
+	
+	@Override
+	public List selectCustInsert() throws DataAccessException {
+		List<ForwardVO> supForwardInsert = null;
+		supForwardInsert = sqlSession.selectList("mappers.erp.supForwardInsert");
+		return supForwardInsert;
+	}//all super Forward by insert
+	
+
 
 	@Override
 	public List submitForwardCustReg(String custCode) throws DataAccessException {
 		List<ForwardVO> submitCustList = null;
 		submitCustList = sqlSession.selectList("mappers.erp.submitCustForward",custCode);
 		return submitCustList;
-	}
+	}//choice custCode by insert
+
+
 
 	@Override
-	public List selectCustInsert() throws DataAccessException {
-		List<ForwardVO> supForwardInsert = null;
-		supForwardInsert = sqlSession.selectList("mappers.erp.supForwardInsert");
-		return supForwardInsert;
+	public List selectAllItemList() throws DataAccessException {
+		List<ForwardVO> itemList = null;
+		itemList = sqlSession.selectList("mappers.erp.selItemforward");
+		return itemList;
 	}
-
-	
 	@Override
 	public List ChildView() throws DataAccessException {
 		return sqlSession.selectList("mappers.erp.ChildView");
@@ -89,7 +93,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	@Override
 	public int selRelCode() throws DataAccessException {	
 		return sqlSession.selectOne("mappers.erp.selRelCode");
-	}
+	}//choice for delete
 
 	@Override
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException {
@@ -97,7 +101,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 			sqlSession.delete("mappers.erp.delSupforward",relCode);
 			}
 		
-	}	
+	}//delete super Forward
 
 	@Override
 	public int addForward(ForwardVO forwardVO) throws DataAccessException {
