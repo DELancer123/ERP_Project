@@ -130,10 +130,9 @@
 	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="MainPlanVO">
 		<![CDATA[SELECT * from pmm_pm_mps_os]]>
 	</select>
-	<update id="updateMPS" >
+	<update id="updateMPS" parameterType="MainPlanVO">
 		<![CDATA[update pmm_pm_mps
-			set  planNO=#{planNO},plandate=#{plandate},item_Code=#{item_Code},item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit}
-			,sequence=#{sequence},expected_date=#{expected_date},due_date=#{due_date},plan_quantity=#{plan_quantity},buyer=#{buyer},note=#{note}
+			SET  plandate=#{plandate},plan_quantity=#{plan_quantity}
 			where planNO = #{planNO}]]>  
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
@@ -285,12 +284,12 @@
 		#{inventory_unit},#{order_quantity},#{price},#{deadline},#{note})
 		]]>
 	</insert> 
-	<update id="updateClosing">
+	<update id="updateClosing" parameterType="orderclosingVO">
 		<![CDATA[update PMM_PM_ORDER
-			set order_no=#{order_no},order_date=#{order_date},code=#{code},buyer=#{buyer},sequence=#{sequence},item_Code=#{item_Code},
+			SET order_date=#{order_date},code=#{code},buyer=#{buyer},item_Code=#{item_Code},
 			item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit},order_quantity=#{order_quantity},price=#{price},
 			deadline=#{deadline},note=#{note}
-			where sequence=#{sequence}]]>
+			where item_Code=#{item_Code}]]>
 	</update>
 	
 	<!-- 품목단가등록(재원) 파트 -->

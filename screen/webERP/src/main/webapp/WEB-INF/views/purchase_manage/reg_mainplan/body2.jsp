@@ -103,7 +103,7 @@
 		<c:forEach var="mainplan" items="${MPSView}"  varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
- 				<td><input type="text"  value = '${mainplan.planNO}' readonly /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'readonly/></td>					
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
@@ -207,17 +207,17 @@ function InsertRow(){
           URLSearch.set('submit', '1');
 			const newParam = URLSearch.toString();
 			var link = location.pathname + '?' + newParam;
-		document.getElementById("planNO").disabled = true;		
+	 	//document.getElementById("planNO").disabled = true;	
 		document.getElementById("plandate").disabled = true;
-		document.getElementById("item_Code").disabled = true;
+ 	 	document.getElementById("item_Code").disabled = true;
 		document.getElementById("item_Name").disabled = true;
 		document.getElementById("standard").disabled = true;
 		document.getElementById("inventory_unit").disabled = true;
-		document.getElementById("sequence").disabled = true;
+		document.getElementById("sequence").disabled = true; 
 		document.getElementById("expected_date").disabled = true;
-		document.getElementById("due_date").disabled = true;
+		document.getElementById("due_date").disabled = true; 
 		document.getElementById("plan_quantity").disabled = true;
-		document.getElementById("buyer").disabled = true;
+ 		document.getElementById("buyer").disabled = true;
 		document.getElementById("note").disabled = true;
 		var Input = document.createElement("input");
 		Input.setAttribute("type", "hidden");
