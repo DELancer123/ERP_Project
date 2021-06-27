@@ -29,7 +29,7 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	private ForwardRegService forwardRegService;
 	
 	@Override
-	@RequestMapping(value="/sales_manage/pop/regforwardCust.do",method = RequestMethod.GET)
+	@RequestMapping(value="/member/forwardcodehelper1.do",method = RequestMethod.GET)
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 //		logger.info("viewName: "+ viewName);
@@ -65,13 +65,51 @@ public class ForwardRegControllermpl implements ForwardRegController{
 			mav = new ModelAndView(viewName);
 			mav.addObject("supForwardList", supForwardList);
 			mav.addObject("forwardInsert", forwardInsert);
-//			int inputNo = orderService.inputNo();
-//			String inNo = Integer.toString(inputNo+1);
-//			request.setAttribute("inputNo", inNo);
+			int inputNo = forwardRegService.inputNo();
+			String inNo = Integer.toString(inputNo+1);
+			request.setAttribute("inputNo", inNo);
 		}
 		return mav;
 	}
 
+	@Override
+	@RequestMapping(value="/member/forwardcodehelper2.do",method = RequestMethod.GET)
+	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+//		logger.info("viewName: "+ viewName);
+//		logger.debug("viewName: "+ viewName);
+		List custList = forwardRegService.listCust();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("custList", custList);
+
+		return mav;
+	}
+
+	@Override
+	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	@RequestMapping(value="/member/delforward.do", method = RequestMethod.GET)
+	public ModelAndView delForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String code = (String)request.getParameter("no");
+		String viewName = getViewName(request);
+		String[] codeary = code.split(",");
+		System.out.println(codeary+"codeary");
+		System.out.println(code+"code");
+		forwardRegService.removeForward(codeary);
+		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		
+		return mav;
+	}
 	private String getViewName(HttpServletRequest request)  throws Exception{
 		String contextPath = request.getContextPath();
 	String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -101,4 +139,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	}
 	return viewName;
 	}
+
+
 }

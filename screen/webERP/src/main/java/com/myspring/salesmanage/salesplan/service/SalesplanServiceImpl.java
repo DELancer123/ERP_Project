@@ -33,7 +33,6 @@ public class SalesplanServiceImpl implements SalesplanService{
 	@Override
 	public List listItems() throws DataAccessException {
 		List allItemList = null;
-		System.out.println("由ъ뒪�듃�븘�씠�뀥"); 
 		allItemList = salesplanDAO.selectAllItemList();
 		return allItemList;
 	}
@@ -44,27 +43,5 @@ public class SalesplanServiceImpl implements SalesplanService{
 		return searchItemList;
 	}//searchitem
 
-
-	@Override
-	public int inputNo() throws DataAccessException {
-		return salesplanDAO.selCode();
-		
-	}
-	
-	@Override
-	public List itemText(String item_code) throws DataAccessException {
-		List additemList = null;
-//		additemList = salesplanDAO.salesText(item_code);
-		return additemList;
-	}
-	@Override
-	public int addItem(ItemViewVO itemview) throws DataAccessException {
-		return salesplanDAO.insertItem(itemview);
-	}
-
-	@Override
-	public void removeItem(String[] planAry) throws DataAccessException {
-		salesplanDAO.deletePlan(planAry);
-	}
 
 }

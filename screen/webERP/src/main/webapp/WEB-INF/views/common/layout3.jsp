@@ -274,6 +274,9 @@
         <div id = "body2">
         	<tiles:insertAttribute name="body2"/>
         </div>
+         <div id = "body3">
+        	<tiles:insertAttribute name="body3"/>
+        </div>
         <footer id="footer">
             footer
         </footer>

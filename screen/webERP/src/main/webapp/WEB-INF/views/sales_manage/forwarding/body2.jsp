@@ -7,7 +7,18 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-
+<% 
+String inputNo = (String)request.getAttribute("inputNo");
+	String relCode = request.getParameter("relCode");
+%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<c:forEach var="forward" items="${forwardInsert}">
+	<c:set var="relCode" value="${forward.relCode}"/>
+	<c:set var="relDate" value="${forward.relDate}"/>
+	<c:set var="custCode" value="${forward.custCode}"/>
+	<c:set var="deadLine" value="${forward.deadLine}"/>
+	<c:set var="note" value="${forward.note}"/>
+	</c:forEach>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +29,6 @@
             position: absolute;
             right: 0;
             top: 25%;
-            width: 85%;
-            height: 35%;
-            border: 1px solid black;
-            z-index: 1;
-        }
-        #contents3{
-            position: absolute;
-            right: 0;
-            top:60%;
             width: 85%;
             height: 35%;
             border: 1px solid black;
@@ -46,7 +48,7 @@
 </style>
 </head>
 <body>
-        <container2 id="contents2">
+            <container2 id="contents2">
            <table id="view">
                <thead>
                    <td colspan="7">주문출고</td>
@@ -59,45 +61,60 @@
                     <td>마감</td>
                     <td>비고</td>
                 </thead>
-                <c:forEach var="supForwarding" items="${supForwardList}" varStatus="status">
-                <tbody>
-                    <td><input type="checkbox" value = "${supForwarding.relCode}" id="check" name="content"/></td>
-                    <td><input type="text" value="${supForwarding.relCode}" readonly/></td>
-                    <td><input type="text" value="${supForwarding.relDate}" readonly /></td>
-                    <td><input type="text" value="${supForwarding.custCode}" readonly /></td>
-                    <td><input type="text" value="${supForwarding.deadLine}" readonly /></td>
-                    <td><input type="text" value="${supForwarding.note}" readonly /></td>
+                <c:forEach var="supForward" items="${supForwardList}" varStatus="status">
+                <tbody id="updsupForward" align="center">
+                    <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
+                    <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
+                    <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" readonly/></td>
+                    <td><input type="text"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].custCode" value="${supForward.custCode}" ondbclick="search2()" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" readonly /></td>
                 </tbody>
                 </c:forEach>
+                    <tbody id="insertsupForward" align="center">
+                    <td><input type="checkbox"/></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].relCode" value="${relCode}" readonly/></td>
+                    <td><input type="date" id="relDate" name="ListVO[${fn:length(forward)}].relDate" value="${relDate}" readonly /></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(forward)}].custCode" value="${custCode}" readonly /></td>
+                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(forward)}].deadLine" value="${deadLine}" readonly /></td>
+                    <td><input type="text" id="note" name="ListVO[${fn:length(forward)}].note" value="${note}" readonly /></td>
+                </tbody>
            </table>
         </container2>
-        <container3 id="contents3">
-            <table id="view">
-                <thead>
-                    <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
-                    <td>품번</td>
-                    <td>품명</td>
-                    <td>규격</td>
-                    <td>주문단위수량</td>
-                    <td>단위</td>
-                    <td>단가</td>
-                    <td>공급가</td>
-                    <td>부가세</td>
-                    <td>합계액</td>
-                </thead>
-                <tbody>
-                    <td style="width: 5%;"><input type="checkbox" value = "check1" id="check" name="content1"/></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                </tbody>
-            </table>
-        </container3>
+        <script type="text/javascript">
+        var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
+        function popFunction(code,name){
+			text_code.value = code;
+			text_name.value = name;
+			
+	}
+        
+       	function search2(){
+      	  
+        openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper2.do','cust');  
+        }
+       	function deleteData() {
+    
+	  		var item = document.getElementsByName("content").length;
+	  		var no = "";
+	  		var ary = [];
+	  		for(var i=0; i<item;i++){
+		  		if(document.getElementsByName("content")[i].checked==true){
+					no = document.getElementsByName("content")[i].value;
+			
+			   		ary.push(no); 
+		  		}
+		 	  	window.location.href = "${contextPath}/member/delforward.do?no="+ary;
+	  		}
+		}
+       	function submit1(){
+       		text_code.setAttribute("relCode",text_code.value);
+			text_name.setAttribute("custCode",text_name.value); 
+       		window.location.href = "${contextPath}/member/forwardcodehelper3.do?" ;
+        }
+       		
+        </script>
 </body>
 </html>

@@ -32,6 +32,39 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		List supForwardList = null;
 		supForwardList = forwardDAO.selectSupForwardList();
 		return supForwardList;
+	}	
+
+
+	@Override
+	public List listCust() throws DataAccessException {
+		List custList = null;
+		custList = forwardDAO.selectCustList();
+		return custList;
+	}
+
+	@Override
+	public List submitCustByInsert(String custCode) throws DataAccessException {
+		List submitCustList = null;
+		submitCustList = forwardDAO.submitForwardCustReg(custCode);
+		return submitCustList;
+	}
+
+	@Override
+	public List listForwardCust() throws DataAccessException {
+		List supForwardInsert = null;
+		supForwardInsert = forwardDAO.selectCustInsert();
+		return supForwardInsert;
+	}
+
+
+	@Override
+	public int inputNo() throws DataAccessException {
+		return forwardDAO.selRelCode();
+	}
+	@Override
+	public void removeForward(String[] noary) throws DataAccessException {
+		forwardDAO.delSupForward(noary);
+		
 	}
 
 }

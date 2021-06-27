@@ -221,6 +221,7 @@
       <put-attribute name="title" value="출고처리" />
       <put-attribute name="body" value="/WEB-INF/views/sales_manage/forwarding/body.jsp" />
       <put-attribute name="body2" value="/WEB-INF/views/sales_manage/forwarding/body2.jsp" />
+      <put-attribute name="body3" value="/WEB-INF/views/sales_manage/forwarding/body3.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    <definition name="/member/transactionissue" extends="baseLayout">
@@ -234,7 +235,7 @@
       <put-attribute name="body2" value="/WEB-INF/views/business_status/quotation_status/body2.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
-   <definition name="/member/salesplanstat" extends="baseLayout4">
+   <definition name="/member/salesplanstat" extends="baseLayout3">
       <put-attribute name="title" value="판매계획현황" />
       <put-attribute name="body" value="/WEB-INF/views/business_status/salesplan_status/body.jsp" />
       <put-attribute name="body2" value="/WEB-INF/views/business_status/salesplan_status/body2.jsp" />

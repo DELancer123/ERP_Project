@@ -9,4 +9,10 @@ public interface ForwardRegController {
 
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
+	
+
+	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 }

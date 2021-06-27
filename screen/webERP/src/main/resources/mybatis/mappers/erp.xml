@@ -189,15 +189,7 @@
 	<select id="selectAllMrpList" resultMap="mrpResult">
 		<![CDATA[SELECT * from pmm_pm_mrp]]>
 	</select>
-	
-	
-		<!--popitem-->
-	<resultMap id="itemResult" type="itemviewVO">
-		<result property="item_code" column="item_code" />
-        <result property="item_name" column="item_name" />        
-        <result property="standard" column="standard" />
-        <result property="inventory_unit" column="inventory_unit" />
-	</resultMap> 
+
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />
 		<result property="item_code" column="item_code" />
@@ -211,7 +203,7 @@
         <result property="plandate" column="plan_date" />
 	</resultMap> 
 
-	<select id="selectAllItemList" resultMap="itemResult">
+	<select id="selectAllItemList" resultMap="salesplan">
       <![CDATA[select * from SM_BIM_Ite_Reg order by item_code]]>
 	</select>
 	
@@ -222,26 +214,6 @@
      <select id="submititemview" resultMap="salesplan" parameterType="String">
 		<![CDATA[select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code} order by plan_code]]>   
 	</select> 
-	
-	  <select id="selPlancode" resultMap="salesplan" parameterType="int">
-		<![CDATA[ SELECT LAST_NUMBER FROM USER_SEQUENCES
-		 WHERE SEQUENCE_NAME = upper('seq_SM_BIM_Gen_Cus_Reg_no')
-		]]>
-	</select> 
-	
-	<insert id="insertSalesplan" parameterType="itemviewVO">
-		<![CDATA[
-		 insert into SM_BIM_Sal_Pla_Reg
-		 values(F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), #{item_code}, #{item_name}, #{standard}, #{inventory_unit},
-		  #{planquantity}, #{planprice}, #{actualQuantity}, '0', '0',sysdate)
-		]]>  
-	</insert>
-	
-	<delete id="deletePlan"  parameterType="String">
-	<![CDATA[
-	   delete from  SM_BIM_Sal_Pla_Reg where plan_code=#{plancode}
-	]]>      
-  </delete>	
  
 			<!-- order&cor sta -->
 	<resultMap id="orderJoinList" type="orderVO">
@@ -349,7 +321,7 @@
 	<delete id="delSupOrd" parameterType="String">
 		<![CDATA[delete from CSM_SM_Ord_Reg where ordersNum=#{ordcode}]]>      
   </delete>
-  <!-- forwarding regstration -->
+<!-- forwarding regstration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
@@ -369,6 +341,67 @@
 	<select id="submitSupForward" resultMap="forward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{custCode}]]>
 	</select>
+		<select id="selcustforward" resultMap="forward">
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
+	</select><!-- popCust-->
+	<select id="supForwardInsert" resultMap="forward">
+		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
+	</select>
+	<select id="submitCustForward" resultMap="forward" parameterType="String">
+		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{custCode}]]>
+	</select>
+	<select id="selRelCode" resultMap="forward" parameterType="int">
+		<![CDATA[ SELECT LAST_NUMBER FROM USER_SEQUENCES
+		 WHERE SEQUENCE_NAME = upper('seq_CSM_SM_Rel_Pro_no')
+		]]>
+	</select> 
+	
+	<delete id="delSupforward" parameterType="String">
+		<![CDATA[delete from CSM_SM_Rel_Pro where releaseNum=#{relCode}]]>      
+  </delete>
+	<select id="ChildView" resultMap="forward" parameterType="java.util.HashMap">
+		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
+	</select>
+	<insert id="insertSupForward" parameterType="forwardVO">
+		<![CDATA[
+		insert into CSM_SM_Rel_Pro
+		values (F_GET_NEXT_SEQ('SM_BIM_Ite_Reg'), #{relDate}, #{custCode}, #{deadLine}, #{note})
+		]]>  
+	</insert>
+	<update id="updateForward" parameterType="forwardVO">
+		<![CDATA[
+		update CSM_SM_Rel_Pro
+		set releaseDate = #{relDate}, General_Customer_Code = #{custCode}, deadLine = #{deadLine}, note =#{note}
+		where releaseNum = #{relCode}
+		]]>
+	</update>
+	
+	  	<resultMap id="Corforward" type="forwardVO">
+		<result property="relCode" column="releaseNum" />
+		<result property="custCode" column="General_Customer_Code" />
+		        <collection property="corVO" javaType="CorVO">
+        	<id property="relCode" column="code" />
+        	<result property="item_code" column="item_code" />
+        	<result property="item_name" column="item_name" />        
+        	<result property="stand" column="standard" />
+        	<result property="unit" column="inventory_unit" />
+        	<result property="dueDate" column="dueDate" />
+        	<result property="orderQuant" column="ordersQuantity" />
+        	<result property="price" column="productPrice" />
+        	<result property="expDate" column="expectedDate" />
+        	<result property="inspection" column="inspection" />
+        	<result property="orderOX" column="orderOX" />
+        </collection>
+</resultMap>  
+	<select id="submitForwardItem" resultMap="Corforward">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code	
+		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
+	</select>
+	<select id="allForwardItem" resultMap="Corforward">
+		<![CDATA[select * from CSM_SM_COR_Reg order by code]]>
+	</select>
+
 	
 	
 	<!-- 출고현황(재원) -->
