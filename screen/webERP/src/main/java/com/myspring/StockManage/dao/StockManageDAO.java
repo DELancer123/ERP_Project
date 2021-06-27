@@ -34,6 +34,8 @@ public interface StockManageDAO {
 
 	List<String> selectKeywordSearch(String keyword);
 
+	String searchMenu(String searchWord);
+
 //	List viewType();
 //
 //	List<StockManageVO> SearchStock(String type) throws DataAccessException;

@@ -1088,6 +1088,7 @@ ORDER BY out.workordernumber]]>
 	<!-- 메뉴검색바  -->
 	<resultMap id="menuView" type="StockManageVO">
 		<result property="menu" column="menu" />
+		<result property="url" column="url" />
 	</resultMap>
 	
 	<select id="selectKeywordSearch" resultMap="menuView"  >
@@ -1097,6 +1098,15 @@ ORDER BY out.workordernumber]]>
 		  where menu like '%'||#{keyword}||'%'
 		]]>
 	</select>
+	
+	<select id="searchMenu"  parameterType="String" resultType = "String"  >
+	    <![CDATA[
+       	select url
+		  from Menu
+		  where menu = #{searchWord}
+		]]>
+	</select>
+	
 	
 
 </mapper>
