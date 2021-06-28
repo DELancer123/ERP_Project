@@ -130,7 +130,7 @@ request.setCharacterEncoding("UTF-8");
 	                <tr align="center">
 	                    <td align="center" style="width:80px;">거래처코드</td>
 	                    <td style="width:50px;">
-	                        <input type=text name="customerCode" id="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="5"/>
+	                        <input type=text name="customerCode" id="customerCode" style="width:100%;" value="${param.itemNumber }" pattern="[0-9]{4}" maxlength="12"/>
 	                    </td>
 	     				<td style="width:8px;">
 	     					<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div>
@@ -253,7 +253,7 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
-                        <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
+                        <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="12" value="${zipCode }"
                         style="width:150px; background-color: rgb(255, 255, 149);" readonly/>
                         <a href="javascript:searchZip()"><i class="fas fa-search" style="color :blue;"></i></a>
                     </td>
