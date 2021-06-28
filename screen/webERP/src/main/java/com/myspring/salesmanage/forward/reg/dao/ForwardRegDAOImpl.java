@@ -37,7 +37,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		List<ForwardVO> submitCustList = null;
 		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",general_Customer_Code);
 		return submitCustList;
-	}//choice custCode by superForward 
+	}//choice custCode by superForward
 	
 	@Override
 	public List selectCustsList() throws DataAccessException {

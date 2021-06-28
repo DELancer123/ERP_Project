@@ -15,9 +15,9 @@ public class RequiredamountVO {
 private String item_Code;
 private String item_Name;
 private String standard;
-private Date due_date;
+private Date dueDate;
 private int sequence;
-private Date expected_order;
+private Date expectedDate;
 private int expected_quantity;
 private String inventory_unit;
 private List<RequiredamountVO> ListVO;
@@ -42,14 +42,27 @@ public void setItem_Name(String item_Name) {this.item_Name=item_Name;}
 public String getStandard() {return standard;}
 public void setStandard(String standard) {this.standard=standard;}
 
-public Date getDue_date() {return due_date;}
-public void setDue_date(Date due_date) {this.due_date=due_date;}
+
+public Date getDueDate() {
+	return dueDate;
+}
+
+public void setDueDate(Date dueDate) {
+	this.dueDate = dueDate;
+}
 
 public int getSequence() {return sequence;}
 public void setSequence(int sequence) {this.sequence=sequence;}
 
-public Date getExpected_order() {return expected_order;}
-public void setExpected_order(Date expected_order) {this.expected_order=expected_order;}
+
+
+public Date getExpectedDate() {
+	return expectedDate;
+}
+
+public void setExpectedDate(Date expectedDate) {
+	this.expectedDate = expectedDate;
+}
 
 public int getExpected_quantity() {return expected_quantity;}
 public void setExpected_quantity(int expected_quantity) {this.expected_quantity=expected_quantity;}
