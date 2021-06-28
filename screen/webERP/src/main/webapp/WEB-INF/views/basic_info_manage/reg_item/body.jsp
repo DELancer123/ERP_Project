@@ -201,13 +201,13 @@
                 <tr>
                     <td align="center">규격</td>
                     <td>
-                        <input type="text" name="standard" id=standard value='${standard }'>
+                        <input type="text" name="standard" id=standard style="background-color: rgb(235,235,235); border-style: none;" value='${standard }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">재고단위</td>
                     <td>
-                        <input type="text" name="inventory_Unit" id=inventory_Unit  value='${inventory_Unit }'>
+                        <input type="text" name="inventory_Unit" id=inventory_Unit style="background-color: rgb(235,235,235); border-style: none;" value='${inventory_Unit }'>
                     </td>
                 </tr>
                 <tr>
@@ -249,67 +249,67 @@
                 <tr>
                     <td align="center">LOT수량</td>
                     <td>
-                        <input type="text" name="lOT_Quantity" id="lOT_Quantity" value='${lOT_Quantity }'>
+                        <input type="text" name="lOT_Quantity" id="lOT_Quantity" style="background-color: rgb(235,235,235); border-style: none;" value='${lOT_Quantity }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">도면번호</td>
                     <td>
-                        <input type="text" name="drawing_Number" id="drawing_Number" value='${drawing_Number }'>
+                        <input type="text" name="drawing_Number" id="drawing_Number" style="background-color: rgb(235,235,235); border-style: none;" value='${drawing_Number }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">HS CODE</td>
                     <td>
-                        <input type="text" name="hs_Code" id="hs_Code" value='${hs_Code }'>
+                        <input type="text" name="hs_Code" id="hs_Code" style="background-color: rgb(235,235,235); border-style: none;" value='${hs_Code }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">폭</td>
                     <td>
-                        <input type="text" name="width" id="width" value='${width }'>
+                        <input type="text" name="width" id="width" style="background-color: rgb(235,235,235); border-style: none;" value='${width }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">길이</td>
                     <td>
-                        <input type="text" name="length" id="length" value='${length } '>
+                        <input type="text" name="length" id="length" style="background-color: rgb(235,235,235); border-style: none;" value='${length } '>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">높이</td>
                     <td>
-                        <input type="text" name="height" id="height" value='${height }'>
+                        <input type="text" name="height" id="height" style="background-color: rgb(235,235,235); border-style: none;" value='${height }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">원가</td>
                     <td>
-                        <input type="text" name="cost" id="cost" value='${cost }'>
+                        <input type="text" name="cost" id="cost" style="background-color: rgb(235,235,235); border-style: none;" value='${cost }'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">품목군</td>
                     <td>
-                        <input type="text" name="item_Group_Code" id="item_Group_Code" value='${item_Group_Code}'>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">반/완제품</td>
-                    <td>
-                        <input type="text" name="division" id="division" value='${division }'>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">비고</td>
-                    <td>
-                        <input type="text" name="notes" id="notes" value='${notes }'>
+                        <input type="text" name="item_Group_Code" id="item_Group_Code" style="background-color: rgb(235,235,235); border-style: none;" value='${item_Group_Code}'>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">일생산량</td>
                     <td>
-                        <input type="text" name="daily_production" id="daily_production" class="reqInput" value='${daily_production }'>
+                        <input type="text" name="daily_production" id="daily_production" style="background-color: rgb(255, 255, 149);" value='${daily_production }' >
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">반/완제품</td>
+                    <td>
+                        <input type="text" style="background-color: rgb(255, 255, 149);" name="division"  id="division" value='${division }'>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">비고</td>
+                    <td>
+                        <input type="text" name="notes" id="notes" style="background-color: rgb(235,235,235); border-style: none;" value='${notes }'>
                     </td>
                 </tr>
             </table>

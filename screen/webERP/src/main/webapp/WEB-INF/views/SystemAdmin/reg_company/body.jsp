@@ -182,9 +182,9 @@
                         기
                     </td>
                     <td>
-                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" value='${fiscal_Year_Dates }'/>
+                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Dates }'/>
                         ~
-                        <input type="date" name="fiscal_Year_Datee" id="fiscal_year_Datee" value='${fiscal_Year_Datee }'/>
+                        <input type="date" name="fiscal_Year_Datee" id="fiscal_year_Datee" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Datee }'/>
                     </td>
                 </tr>
                 <tr>
@@ -226,13 +226,12 @@
                         개인의 경우 필수입력항목
                     </td>
                 </tr>
-				
                 <tr>
                     <td align="center">본점우편번호</td>
                     <td colspan="2">
                         <input type="text" name="main_Store_Postal_Code" id="zipcode" readonly
-                        style="background-color: rgb(235,235,235);
-                        border-style: none; width: 205px;
+                        style="background-color: rgb(255, 255, 149);
+                        width: 205px;
                         text-align: center;" pattern="[0-9]{5}" maxlength="6"
                         value='${main_Store_Postal_Code }' />
                         <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
@@ -251,7 +250,7 @@
                     <td colspan="2">
                         <input type="text" name="main_Branch_Number" id="address2"
                         style="background-color: rgb(235,235,235);
-                        border-style: none; width: 240px;
+                        width: 240px;
                         text-align: center;"	
                         value='${main_Branch_Number }' />
                     </td>
@@ -287,8 +286,7 @@
                     <td colspan="2">
                         <input type="date" name="date_Of_Establishment"
                         value='${date_Of_Establishment }'
-                        style="background-color: rgb(235,235,235);
-                        border-style: none;
+                        style="background-color: rgb(255, 255, 149);
                         text-align: center;" 
                         
                         />
