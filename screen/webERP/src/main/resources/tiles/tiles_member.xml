@@ -262,7 +262,7 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-    <definition name="PopupLayoutForward"  template="/WEB-INF/views/sales_manage/pop/regforwardCust2.jsp">
+    <definition name="PopupLayoutForward"  template="/WEB-INF/views/sales_manage/pop/regforwardCust.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
