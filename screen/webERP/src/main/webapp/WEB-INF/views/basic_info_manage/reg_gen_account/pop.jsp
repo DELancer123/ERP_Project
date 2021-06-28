@@ -121,7 +121,7 @@ a {
 								$
 										.ajax({
 											type : 'GET',
-											url : '/webERP/member/searchPopName1.do',
+											url : '/webERP/member/searchPopCustomerName.do',
 											//words값을 "itemName"이라는 이름의 파라미터로 전송한다.
 											data : {
 												"itemName" : words

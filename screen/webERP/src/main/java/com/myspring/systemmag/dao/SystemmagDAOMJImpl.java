@@ -145,5 +145,12 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		sqlSession.update("mappers.erp.updateLogisticsManagement", systemmagVO);
 	}
 	
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopLogisticsList",itemName);
+		return popList;
+	}
+	
 
 }
