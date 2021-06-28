@@ -270,19 +270,19 @@ input {
 		</header>
 		<nav id=nav1>
 			<ul id="gnb">
-				<li><a href="http://localhost:8090/webERP/member/systemmain.do">시스템관리</a>
+				<li><a href="${contextPath }/member/systemmain.do">시스템관리</a>
 					<ul id="sub">
 						<li><a href="#">회사등록정보</a></li>
 						<li><a href="#">기초정보관리</a></li>
 					</ul></li>
 				<li><a
-					href="http://localhost:8090/webERP/member/businessmain.do">영업관리</a>
+					href="${contextPath }/member/businessmain.do">영업관리</a>
 					<ul id="sub" style="left: -101%;">
 						<li><a href="#">영업관리</a></li>
 						<li><a href="#">영업현황</a></li>
 					</ul></li>
 				<li><a
-					href="http://localhost:8090/webERP/member/purchasemain.do">구매/자재관리</a>
+					href="${contextPath }/member/purchasemain.do">구매/자재관리</a>
 					<ul id="sub" style="left: -202%;">
 						<li><a href="#">구매관리</a></li>
 						<li><a href="#">재고관리</a></li>
@@ -290,7 +290,7 @@ input {
 						<li><a href="#">기초정보관리</a></li>
 					</ul></li>
 				<li><a
-					href="http://localhost:8090/webERP/member/productionmain.do">생산관리공통</a>
+					href="${contextPath }/member/productionmain.do">생산관리공통</a>
 					<ul id="sub" style="left: -303%;">
 						<li><a href="#">생산관리</a></li>
 						<li><a href="#">외주관리</a></li>
@@ -312,62 +312,6 @@ input {
 		</div>
 		<footer id=footer> footer </footer>
 	</div>
-    <div id=wrap>
-        <header id = header>
-            <img src="src/main/webapp/resources/image/kingdomlogo.png" class="logo"/>
-            <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
-            <ul id="etc_menu">
-                <li><a href="#">로그아웃</a></li>
-                <li><a href="#">기타메뉴1</a></li>
-                <li><a href="#">기타메뉴2</a></li>
-                <li><a href="#">기타메뉴3</a></li>
-            </ul>
-            <input type="text" value=" 메뉴 검색" id="search"/>
-            <input type="button" value="검색" class="search_button"/>
-        </header>
-        <nav id = nav1>
-            <ul id="gnb">
-                <li><a href="http://localhost:8090/webERP/member/systemmain.do">시스템관리</a>
-                    <ul id="sub" >
-                        <li><a href="#">회사등록정보</a></li>
-                        <li><a href="#">기초정보관리</a></li>
-                    </ul></li>
-                <li><a href="http://localhost:8090/webERP/member/businessmain.do">영업관리</a>
-                    <ul id="sub" style="left: -101%;">
-                        <li><a href="#">영업관리</a></li>
-                        <li><a href="#">영업현황</a></li>
-                    </ul></li>
-                <li><a href="http://localhost:8090/webERP/member/purchasemain.do">구매/자재관리</a>
-                    <ul id="sub" style="left: -202%;">
-                        <li><a href="#">구매관리</a></li>
-                        <li><a href="#">재고관리</a></li>
-                        <li><a href="#">재고수불현황</a></li>
-                        <li><a href="#">기초정보관리</a></li>
-                    </ul></li>
-                <li><a href="http://localhost:8090/webERP/member/productionmain.do">생산관리공통</a>
-                    <ul id="sub" style="left: -303%;">
-                        <li><a href="#">생산관리</a></li>
-                        <li><a href="#">외주관리</a></li>
-                        <li><a href="#">기초정보관리</a></li>
-                    </ul></li>
-            </ul>
-        </nav>
-        <nav id="nav2">
-            <button id="delete" onclick="deleteData()">삭제</button>
-            <button id="view_button">조회</button>
-            <button id="save" onclick="newRow()">저장</button>
-            <button id="update" onclick="updateRow()">수정</button>
-        </nav>
-        <div>
-            <tiles:insertAttribute name="side"/>
-        </div>
-        <div>
-        	<tiles:insertAttribute name="body"/>
-        </div>
-        <footer id= footer>
-            footer
-        </footer>
-    </div>
     <script>
         var side_button1 = document.getElementById('side1');
         var side_button2 = document.getElementById('side2');

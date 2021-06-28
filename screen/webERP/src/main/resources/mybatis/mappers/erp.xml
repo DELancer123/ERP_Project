@@ -1665,7 +1665,7 @@ ORDER BY out.workordernumber]]>
 			update SM_BIM_LOG_MAN
 			set	logistics_In_Name=#{logistics_In_Name},
 			explanation=#{explanation},
-			remarks=#{remarks},
+			remarks=#{remarks}
 			where logistics_In_Code=#{logistics_In_Code}			
 		]]>
 	</update>
