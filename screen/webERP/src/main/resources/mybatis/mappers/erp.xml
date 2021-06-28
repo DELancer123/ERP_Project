@@ -1500,7 +1500,11 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
-
+	<resultMap id="systemmagZipResult" type="SystemmagVOMJ">
+		<result property="zipCode" column="zipCode" />
+		<result property="road_Address" column="road_Address" />
+		<result property="lot_Address" column="lot_Address" />
+	</resultMap>
 	<select id="selectAllBasicList" resultMap="basicInfoResult">
 		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG order by GENERAL_CUSTOMER_CODE]]>
 	</select>
@@ -1555,6 +1559,13 @@ ORDER BY out.workordernumber]]>
 		  where general_Customer_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="selectPopZipCodeList" resultMap="systemmagZipResult">
+		<![CDATA[ select zipCode, road_Address
+		  from SM_CRI_ZIP
+		  where road_Address like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<!-- 기초정보관리_창고/공정/외주공정등록 -->
 	<resultMap id="outwareInfoResult" type="SystemmagVOMJ">
 		<!-- 창고/장소파트 -->

@@ -322,7 +322,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	//----------------------------------
-	@ResponseBody//ajax관련 컨트롤러
+	@ResponseBody//ajax관련 컨트롤러(거래처코드)
 	@RequestMapping(value = "/member/searchPopCustomerName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopCustomerName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -334,7 +334,19 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax관련 컨트롤러
+	@ResponseBody//ajax관련 컨트롤러(우편번호)
+	@RequestMapping(value = "/member/searchPopZipCodeName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopZipCodeName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = systemmagService.searchPopZipCodeName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	@ResponseBody//ajax관련 컨트롤러(물류관리등록)
 	@RequestMapping(value = "/member/searchPopLogisticsName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopLogisticsName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();

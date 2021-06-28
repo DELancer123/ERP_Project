@@ -63,6 +63,11 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopCustomerName(String itemName) {
 		return systemmagDAO.viewsearchPopName(itemName);
 	}
+	
+	@Override
+	public List<SystemmagVOMJ> searchPopZipCodeName(String itemName) {
+		return systemmagDAO.viewsearchPopZipCodeName(itemName);
+	}
 
 	
 	//창고/공정/외주공정등록
