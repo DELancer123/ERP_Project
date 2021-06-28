@@ -123,18 +123,18 @@ request.setCharacterEncoding("UTF-8");
 	                <tbody>
 	                	<tr>
 		                    <td>
-		                        <input type="text" name="logistics_In_Code" id="logistics_In_Code" style="background-color: rgb(255, 255, 149);" value="${logistics_In_Code }">
+		                        <input type="text" name="logistics_In_Code" id="logistics_In_Code" style="background-color: rgb(255, 255, 149);" value="${logistics_In_Code }" maxlength="12">
 		                    </td>
 		                    <td>
-		                        <input type="text" name="logistics_In_Name" id="logistics_In_Name" style="background-color: rgb(255, 255, 149);" value="${logistics_In_Name }">
+		                        <input type="text" name="logistics_In_Name" id="logistics_In_Name" style="background-color: rgb(255, 255, 149);" value="${logistics_In_Name }" maxlength="50">
 		                    </td>
 		                    <td>
 		                        <input type="text" name="explanation" id="explanation" style="background-color: rgb(235,235,235);
-                            border-style: none;" value="${explanation }">
+                            border-style: none;" value="${explanation }" maxlength="200">
 		                    </td>
 		                    <td>
 		                        <input type="text" name="remarks" id="remarks" style="background-color: rgb(235,235,235);
-                            border-style: none;" value="${remarks }">
+                            border-style: none;" value="${remarks }" maxlength="200">
 		                    </td>
 	                    </tr>
 	                </tbody>

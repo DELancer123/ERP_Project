@@ -203,19 +203,19 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">코드</td>
                     <td colspan="3">
                         <input type="text" name="general_Customer_Code" id="general_Customer_Code" value="${general_Customer_Code }"
-                        	style="background-color: rgb(255, 255, 149);">
+                        	style="background-color: rgb(255, 255, 149);" maxlength="12">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">거래처명</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Name" id="general_Customer_Name" style="background-color: rgb(255, 255, 149);" value="${general_Customer_Name }">
+                        <input type="text" name="general_Customer_Name" id="general_Customer_Name" style="background-color: rgb(255, 255, 149);" value="${general_Customer_Name }" maxlength="50">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">구분</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Division" id="general_Customer_Division" style="background-color: rgb(255, 255, 149);" value="${general_Customer_Division }">
+                        <input type="text" name="general_Customer_Division" id="general_Customer_Division" style="background-color: rgb(255, 255, 149);" value="${general_Customer_Division }" maxlength="10">
                     </td>
                 </tr>
                 <tr>
@@ -229,25 +229,25 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">주민등록번호</td>
                     <td colspan="3">
                         <input type="text" name="resident_Registration_Number" id="resident_Registration_Number" pattern="[0-9]{13}" maxlength="15" style="background-color: rgb(235,235,235);
-                            border-style: none;" value="${resident_Registration_Number}"/>
+                            border-style: none;" value="${resident_Registration_Number}" maxlength="15"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="3">
-                        <input type="text" name="representativs_Name" id="representativs_Name" style="background-color: rgb(255, 255, 149);" value="${representativs_Name }">
+                        <input type="text" name="representativs_Name" id="representativs_Name" style="background-color: rgb(255, 255, 149);" value="${representativs_Name }" maxlength="50">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="3">
-                        <input type="text" name="upstate" id="upstate" style="background-color: rgb(255, 255, 149);" value="${upstate }">
+                        <input type="text" name="upstate" id="upstate" style="background-color: rgb(255, 255, 149);" value="${upstate }" maxlength="20">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="3">
-                        <input type="text" name="industry" id="industry" style="background-color: rgb(255, 255, 149);" value="${industry }">
+                        <input type="text" name="industry" id="industry" style="background-color: rgb(255, 255, 149);" value="${industry }" maxlength="20">
                     </td>
                 </tr>
                 <tr>
@@ -262,7 +262,7 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">사업장주소</td>
                     <td colspan="3">
                         <input type="text" name="workplace_Address" id="workplace_Address" value="${workplace_Address }" 
-                        	style="background-color: rgb(255, 255, 149);" readonly>
+                        	style="background-color: rgb(255, 255, 149);" maxlength="60" readonly>
                     </td>
                 </tr>
                 <tr>
@@ -276,7 +276,7 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">주류코드</td>
                     <td>
                         <input type="text" name="wholesale_Retail_Business_Code" id="wholesale_Retail_Business_Code" style="background-color: rgb(235,235,235);
-                            border-style: none;" value="${wholesale_Retail_Business_Code }">
+                            border-style: none;" value="${wholesale_Retail_Business_Code }" maxlength="12">
                     </td>
                 </tr>
             </table>
