@@ -260,7 +260,7 @@ input {
 			<div id="search1">
 				<form name="frmSearch" action="${contextPath}/member/searchmenu.do">
 					<input name="searchWord" class="main_input" id="search" type="text"
-						style="text-align: left"> <input type="submit"
+						style="text-align: left" value = ' 메뉴 검색'> <input type="submit"
 						name="search" class="btn1" value="검 색">
 				</form>
 			</div>
@@ -348,10 +348,14 @@ input {
         }
         
         search_box.onfocus = function(){
+        	if(document.getElementById("search").value == ' 메뉴 검색'){
             document.getElementById("search").value = '';
+        	}
         }
         search_box.onblur = function(){
+        	if(document.getElementById("search").value == ''){
             document.getElementById("search").value = ' 메뉴 검색';
+        	}
         }
         
         function selectAll(selectAll){
