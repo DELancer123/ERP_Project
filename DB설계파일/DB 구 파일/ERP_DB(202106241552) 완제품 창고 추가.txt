@@ -1372,6 +1372,9 @@ INSERT INTO CSM_SM_Req_Reg
 values (F_GET_NEXT_SEQ('CSM_SM_Req_Reg'),sysdate+8,F_GET_NEXT_SEQ('SM_BIM_Gen_Cus_Reg'),null,'M100',null, '20210902',null);
 SELECT * FROM CSM_SM_Req_Reg;
 -----------------------------------------------------------------------------------
+
+
+----출고처리
 --테이블 생성
 create table CSM_SM_Rel_Pro(
 --출고 번호(PK)
@@ -1437,10 +1440,10 @@ VALUES(F_GET_NEXT_SEQ('CSM_SM_Rel_Pro'),'20210526',F_GET_NEXT_SEQ('SM_BIM_Gen_Cu
 SELECT * FROM CSM_SM_Rel_Pro;
 
 ------------------------------------------------------공통 주문 등록(common orders registration)
-
+--출고처리
 --테이블 생성
 create table CSM_SM_COR_Reg(
---품번(공통)(FK)
+--품번(공통)(FK) 
 Item_Code varchar2(12) not null,
 --품명(공통)(FK)
 Item_Name varchar2(50) not null,
@@ -1452,7 +1455,7 @@ Inventory_Unit varchar2(5) DEFAULT 'EA',
 dueDate date not null,
 --주문 수량(공통)
 ordersQuantity Number(5) DEFAULT '0',
---단가(견적, 수주, 출고처리)
+--단가(견적, 수주, ㅌ)
 productPrice Number(15) DEFAULT '0',
 --출하예정일(수주)
 expectedDate DATE not null,
