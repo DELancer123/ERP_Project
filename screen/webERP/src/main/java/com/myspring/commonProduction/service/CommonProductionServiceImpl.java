@@ -109,6 +109,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
       ORdao.delOperationInstruction(numberAry);
    }
   
+  @Override
+  public List facilitySearch() throws DataAccessException {
+     List popList = null;
+     popList = ORdao.facilityViewPop();
+     return popList;
+   }
+  
 //  작업지시확정 기능부
   @Override 
   public List<OperationRegistVO> selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException{ 

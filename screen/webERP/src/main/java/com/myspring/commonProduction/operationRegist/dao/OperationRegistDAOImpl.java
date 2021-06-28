@@ -107,6 +107,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
       }
    }
    
+   @Override
+	public List facilityViewPop() throws DataAccessException {
+		List<DepartmentViewVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectItemCodeView");
+		return popList;
+	}
+   
 //   작업지시확정 기능부
    @Override
    public List selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException {
