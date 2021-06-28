@@ -132,7 +132,7 @@ public class bomViewDAOImpl implements bomViewDAO{
 	@Override
 	public List inputText(String itemCode) throws DataAccessException {
 		List<bomVO> textList = null;
-		textList = sqlSession.selectList("mappers.erp.selectitem",itemCode);
+		textList = sqlSession.selectList("mappers.erp.selectoutitem",itemCode);
 		return textList;
 	}
 
