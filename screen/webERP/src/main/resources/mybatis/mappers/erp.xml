@@ -160,6 +160,18 @@
 		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
 	</delete>
 	
+	<!-- 작업지시 등록 팝업부 -->
+	
+	<resultMap id="FacilitySearchResult" type="FacilitySearchVO">
+		<result property="productionFacility" column="productionFacility" />
+		<result property="taskTeam" column="taskTeam" />
+	</resultMap>
+	
+	<select id="selectFacilitySearch" resultMap="FacilitySearchResult">
+		<![CDATA[select * from SM_BIM_PRO_LINE_REG]]>
+	</select>
+	
+	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
 		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
