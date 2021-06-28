@@ -1683,7 +1683,7 @@ ORDER BY out.workordernumber]]>
  
 			<!-- order&cor sta -->
 	<resultMap id="orderJoinList" type="orderVO">
-			<result property="ordCode" column="ordersNum" />
+			<id property="ordCode" column="ordersNum" />
         	<result property="ordDate" column="ordersdate" />
         	<result property="tax" column="tax" />
         	<result property="note" column="note" />
@@ -1692,7 +1692,8 @@ ORDER BY out.workordernumber]]>
         	<result property="comNum" column="Company_Registration_Number" />
         	<result property="repName" column="Representativs_Name" />	
         <collection property="corVO" javaType="CorVO">
-        	<id property="ordCode" column="code" />
+        	<result property="ordCode" column="code" />
+        	<result property="custCode" column="General_Customer_Code" />
         	<result property="item_code" column="item_code" />
         	<result property="item_name" column="item_name" />        
         	<result property="stand" column="standard" />
@@ -1708,8 +1709,8 @@ ORDER BY out.workordernumber]]>
 
 	
 	<select id="allCustForStaOrder" resultMap="orderJoinList">
-      <![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
-	</select><!-- popCust-->
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+	</select><!-- popCust  allCustForStaOrder-->
 	
 		<select id="submitStaOrdCust" resultMap="orderJoinList" parameterType="String">
       <![CDATA[
@@ -1726,19 +1727,6 @@ ORDER BY out.workordernumber]]>
 		 where ORD.ordersNum = COR.code order by ORD.ordersNum
         ]]>
 	</select>	
-	
- <!-- order supReg -->
-	<resultMap id="orderRegList" type="orderVO">
-		<result property="custCode" column="General_Customer_Code" />
-        <result property="custName" column="General_Customer_Name" />
-        <result property="comNum" column="Company_Registration_Number" />
-        <result property="repName" column="Representativs_Name" />	
-        <result property="ordCode" column="ordersNum" />	
-        <result property="ordDate" column="ordersdate" />	
-        <result property="tax" column="tax" />	
-        <result property="note" column="Note" />        
-	</resultMap>
-
 <!-- forwarding registration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
@@ -1773,11 +1761,6 @@ ORDER BY out.workordernumber]]>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{custCode}]]>
 	</select>
-	<select id="selRelCode" resultMap="forward" parameterType="int">
-		<![CDATA[ SELECT LAST_NUMBER FROM USER_SEQUENCES
-		 WHERE SEQUENCE_NAME = upper('seq_CSM_SM_Rel_Pro_no')
-		]]>
-	</select> 
 		<select id="selItemforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
 	</select><!-- popItem-->
@@ -1794,11 +1777,9 @@ ORDER BY out.workordernumber]]>
 		]]>  
 	</insert>
 	<update id="updateForward" parameterType="forwardVO">
-		<![CDATA[
-		update CSM_SM_Rel_Pro
-		set releaseDate = #{relDate}, General_Customer_Code = #{custCode}, deadLine = #{deadLine}, note =#{note}
-		where releaseNum = #{relCode}
-		]]>
+		<![CDATA[update CSM_SM_Rel_Pro
+		set deadLine = #{deadLine}
+		where releaseNum = #{relCode}]]>
 	</update>
 	
 	  	<resultMap id="Corforward" type="forwardVO">
@@ -1826,7 +1807,11 @@ ORDER BY out.workordernumber]]>
 	<select id="allForwardItem" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_COR_Reg order by code]]>
 	</select>
-
+	<update id="updateSubForward" parameterType="forwardVO">
+		<![CDATA[update CSM_SM_COR_Reg
+		set inspection = #{inspection}, orderOX=#{orderOX}
+		where code = #{relCode}]]>
+	</update>
 	
 	
 	<!-- 출고현황(재원) -->

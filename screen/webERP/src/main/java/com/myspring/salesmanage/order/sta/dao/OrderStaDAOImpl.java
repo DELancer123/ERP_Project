@@ -23,7 +23,7 @@ public class OrderStaDAOImpl implements OrderStaDAO {
 		List<OrderVO> orderCustList = null;
 		orderCustList = sqlSession.selectList("mappers.erp.allCustForStaOrder");
 		return orderCustList;
-	}
+	}//allCustForStaOrder
 	
 	@Override
 	public List submitOrdCust(String custCode) throws DataAccessException {

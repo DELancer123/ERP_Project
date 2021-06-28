@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.myspring.salesmanage.forward.reg.dao.ForwardRegDAO;
+import com.myspring.salesmanage.forward.vo.ForwardVO;
 
 @Service("forwardRegService")
 public class ForwardRegServiceImpl implements ForwardRegService {
@@ -59,12 +60,14 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		supForwardInsert = forwardDAO.selectCustInsert();
 		return supForwardInsert;
 	}
-
+	
 
 	@Override
-	public int inputNo() throws DataAccessException {
-		return forwardDAO.selRelCode();
+	public int addForward(ForwardVO forwardVO) throws DataAccessException {
+		return forwardDAO.addForward(forwardVO);
 	}
+
+
 	@Override
 	public void removeForward(String[] noary) throws DataAccessException {
 		forwardDAO.delSupForward(noary);

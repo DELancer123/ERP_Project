@@ -25,9 +25,9 @@ public interface ForwardRegDAO {
 	public List submitSubForwardCustReg(String relCode) throws DataAccessException;
 	public List selectForwardSubList() throws DataAccessException;
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException;
-	public int selRelCode() throws DataAccessException;
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
+	public int updSubForward(ForwardVO forwardVO) throws DataAccessException;
 	
 	
 	
