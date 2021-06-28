@@ -36,6 +36,7 @@
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
+		<result property="loss" column="loss" />
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
@@ -158,6 +159,18 @@
 	<delete id="deleteOperationInstruction">
 		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
 	</delete>
+	
+	<!-- 작업지시 등록 팝업부 -->
+	
+	<resultMap id="FacilitySearchResult" type="FacilitySearchVO">
+		<result property="productionFacility" column="productionFacility" />
+		<result property="taskTeam" column="taskTeam" />
+	</resultMap>
+	
+	<select id="selectFacilitySearch" resultMap="FacilitySearchResult">
+		<![CDATA[select * from SM_BIM_PRO_LINE_REG]]>
+	</select>
+	
 	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
@@ -288,7 +301,7 @@ where (status = '확정' or status = '마감')
 
 	
 	<select id="checkMaterialUse" resultType="string">
-		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where OPNumber = #{OPNumber}]]>
+		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where opNumber = #{opNumber}]]>
 	</select>
 	
 	<update id="updMaterialUse">
@@ -298,6 +311,10 @@ where (status = '확정' or status = '마감')
 		where  OPNumber = #{OPNumber} and materialUseStatus = '무'
 		]]>  
 	</update>	
+	
+		<delete id="deleteRegistOperationPerformanceInfoDetail" parameterType="RegistOperationPerformanceDetailVO">
+		<![CDATA[delete from CPM_PM_Ope_Per_Reg_Det where opNumber = #{opNumber}]]>
+	</delete>
 	
 	<!-- 작업실적등록 팝업부  -->
 	
@@ -1136,25 +1153,25 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	</delete>
 	<!-- 품목등록 -->
 		<resultMap id="regitemResult" type="itemRegVO">
-		<result property="item_Code" column="Item_Code"	/>
-		<result property="item_Name" column="Item_Name"	/>
-		<result property="standard" column="Standard"	/>
-		<result property="inventory_Unit" column="Inventory_Unit"	/>
-		<result property="whether_LOT" column="Whether_LOT"	/>
-		<result property="sET_Item" column="SET_Item"	/>
-		<result property="inspection_Status" column="Inspection_Status"	/>
-		<result property="use_Status" column="Use_Status"	/>
-		<result property="lOT_Quantity" column="LOT_Quantity"	/>
-		<result property="drawing_Number" column="Drawing_Number"	/>
-		<result property="hs_Code" column="Hs_Code"	/>
-		<result property="width" column="Width"	/>
-		<result property="length" column="Length"	/>
-		<result property="height" column="Height"	/>
-		<result property="cost" column="Cost"	/>
-		<result property="item_Group_Code" column="Item_Group_Code"	/>
-		<result property="division" column="Division"	/>
-		<result property="notes" column="Notes"	/>
-		<result property="daily_production" column="Daily_production"	/>
+		<result property="item_Code" column="Item_Code"/>
+		<result property="item_Name" column="Item_Name"/>
+		<result property="standard" column="Standard"/>
+		<result property="inventory_Unit" column="Inventory_Unit"/>
+		<result property="whether_LOT" column="Whether_LOT"/>
+		<result property="sET_Item" column="SET_Item"/>
+		<result property="inspection_Status" column="Inspection_Status"/>
+		<result property="use_Status" column="Use_Status"/>
+		<result property="lOT_Quantity" column="LOT_Quantity"/>
+		<result property="drawing_Number" column="Drawing_Number"/>
+		<result property="hs_Code" column="Hs_Code"/>
+		<result property="width" column="Width"/>
+		<result property="length" column="Length"/>
+		<result property="height" column="Height"/>
+		<result property="cost" column="Cost"/>
+		<result property="item_Group_Code" column="Item_Group_Code"/>
+		<result property="division" column="Division"/>
+		<result property="notes" column="Notes"/>
+		<result property="daily_production" column="Dailyproduction"/>
 		</resultMap>
 	<!-- 조회 -->
 		<select id="selectRegitemList" resultMap="regitemResult">
@@ -1174,7 +1191,7 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	insert into SM_BIM_Ite_Reg
 	values(#{item_Code},#{item_Name}, #{standard}, #{inventory_Unit}, #{whether_LOT}, #{sET_Item},
 	 #{inspection_Status}, #{use_Status}, #{lOT_Quantity}, #{drawing_Number}, #{hs_Code}, #{width}, #{length}
-	 , #{height}, #{cost}, #{item_Group_Code}, #{division}, #{notes}, #{daily_production})]]>
+	 , #{height}, #{cost}, #{item_Group_Code}, #{daily_production}, #{division}, #{notes} )]]>
 	</insert>
 	<!-- 수정 -->
 	<update id="updateItem" parameterType="itemVO">
@@ -1500,7 +1517,11 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
-
+	<resultMap id="systemmagZipResult" type="SystemmagVOMJ">
+		<result property="zipCode" column="zipCode" />
+		<result property="road_Address" column="road_Address" />
+		<result property="lot_Address" column="lot_Address" />
+	</resultMap>
 	<select id="selectAllBasicList" resultMap="basicInfoResult">
 		<![CDATA[select GENERAL_CUSTOMER_CODE,GENERAL_CUSTOMER_NAME,GENERAL_CUSTOMER_DIVISION from SM_BIM_GEN_CUS_REG order by GENERAL_CUSTOMER_CODE]]>
 	</select>
@@ -1555,6 +1576,13 @@ ORDER BY out.workordernumber]]>
 		  where general_Customer_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="selectPopZipCodeList" resultMap="systemmagZipResult">
+		<![CDATA[ select zipCode, road_Address, lot_Address
+		  from SM_CRI_ZIP
+		  where road_Address like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<!-- 기초정보관리_창고/공정/외주공정등록 -->
 	<resultMap id="outwareInfoResult" type="SystemmagVOMJ">
 		<!-- 창고/장소파트 -->

@@ -317,15 +317,15 @@
         
       
         function deleteData() {
-      	  var item = document.getElementsByName("content").length;
+      	  var item = document.getElementsByName("content2").length;
       	  var no = "";
       	  var ary = [];
       	  for(var i=0; i<item;i++){
-      		  if(document.getElementsByName("content")[i].checked==true){
-      			  no = document.getElementsByName("content")[i].value;
+      		  if(document.getElementsByName("content2")[i].checked==true){
+      			  no = document.getElementsByName("content2")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      			  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
       	  }
         }
         

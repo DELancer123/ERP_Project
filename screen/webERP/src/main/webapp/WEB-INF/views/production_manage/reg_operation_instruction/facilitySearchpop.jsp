@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공정검색</title>
+    <title>창고검색</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <style>
     	a{
@@ -67,13 +67,13 @@
         <div id="view">
             <table style="width: 100%;">
                 <tr align="center">
-                    <td>곻정코드</td>
-                    <td>공정명</td>
+                    <td>생산설비</td>
+                    <td>작업팀</td>
                 </tr>
-    <c:forEach var="process" items="${itemView}" >     
+    <c:forEach var="facility" items="${itemView}" >     
 		<tr align="center">
-      		<td><a href="javascript:popFunction('${process.processCode}','${process.processName }')">${process.processCode}</a></td>
-      		<td><a href="#">${process.processName}</a></td>
+      		<td><a href="javascript:popFunction('${facility.productionFacility}','${facility.taskTeam}')">${facility.productionFacility}</a></td>
+      		<td><a href="#">${facility.taskTeam}</a></td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -92,7 +92,7 @@
     	submit_button.onclick = function(){
     		var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url+'&processCode='+text_code.value;
+    		opener.parent.location=url+'&facility='+text_code.value+'&taskTeam='+text_name.value;
     		window.close();
     	}
     </script>

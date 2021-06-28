@@ -69,6 +69,13 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return popList;
 	}
 	
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopZipCodeList",itemName);
+		return popList;
+	}
+	
 	//창고/공정/외주공정등록
 	@Override /* 창고/장소 쿼리 */
 	public List viewAllHouOutware() throws DataAccessException {

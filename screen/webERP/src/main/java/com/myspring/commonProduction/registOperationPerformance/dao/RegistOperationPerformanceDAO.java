@@ -19,5 +19,6 @@ public interface RegistOperationPerformanceDAO {
 	public List houseCodeViewPop() throws DataAccessException;
 	public List processCodeViewPop() throws DataAccessException;
 	public List workplaceCodeViewPop() throws DataAccessException;
+	public void deleteRegistOperationPerformanceInfoDetail(String[] numberAry);
 
 }

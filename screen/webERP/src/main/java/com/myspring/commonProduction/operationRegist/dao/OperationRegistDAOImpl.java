@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
+import com.myspring.commonProduction.operationRegist.vo.FacilitySearchVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
@@ -106,6 +107,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
          }
       }
    }
+   
+   @Override
+	public List facilityViewPop() throws DataAccessException {
+		List<FacilitySearchVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectFacilitySearch");
+		return popList;
+	}
    
 //   작업지시확정 기능부
    @Override
@@ -219,7 +227,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
    
    @Override
    public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
-      int idx = ORVO.getDetailVO().size()-1;
+      int idx = ORVO.getDetailVO().size();
       
       for(int i = 0; i<idx; i++) {         
       int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));

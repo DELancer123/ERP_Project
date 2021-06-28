@@ -128,15 +128,15 @@
                 <tbody>
                  <tr id ="insertTest" align="center" >
     <td></td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Code" id="item_Group_Code1" /></td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Name" id="item_Group_Name1" /></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Code" id="item_Group_Code1" style="background-color: rgb(255, 255, 149);" maxlength="12"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].item_Group_Name" id="item_Group_Name1" style="background-color: rgb(255, 255, 149);" maxlength="50"/></td>
     	<td>
-    	<select name="ListVO[${fn:length(itemgView) }].use_Status" id="use_Status1">
+    	<select name="ListVO[${fn:length(itemgView) }].use_Status" id="use_Status1" style="background-color: rgb(235,235,235);">
     	<option value=0 <c:if test="${itemg.use_Status == 0}">selected</c:if>>0.ºÎ</option>
     	<option value=1 <c:if test="${itemg.use_Status == 1}">selected</c:if>>1.¿©</option>
     	</select>
     	</td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" id="explanation1"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" id="explanation1" style="background-color: rgb(235,235,235);" maxlength="200"/></td>
     </tr>
                  </tbody>
             </table>
