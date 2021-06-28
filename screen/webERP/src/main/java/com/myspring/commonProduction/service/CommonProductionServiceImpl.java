@@ -190,6 +190,11 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
         return message;
       }
    
+   @Override
+   public void deleteRegistOperationPerformanceInfoDetail(String[] numberAry) throws DataAccessException{
+	   ROPdao.deleteRegistOperationPerformanceInfoDetail(numberAry);
+   }
+   
     @Override
      public List houseCodeSearch() throws DataAccessException {
         List popList = null;
