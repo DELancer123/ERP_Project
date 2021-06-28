@@ -196,8 +196,8 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>                        
+                        <td><input type="text" ondblclick="facilitySearch()"/></td>
+                        <td><input type="text" ondblclick="taskTeamSearch()"/></td>                        
                         <td><input type="text"/></td>
                     </tr>
                     </tbody>
@@ -343,4 +343,12 @@
       			window.location.href = "${contextPath}/member/inscomoperins.do?workOrderNumber="+no;
       	  }
         }
+        
+        function facilitySearch(){
+			openWindowPop('http://localhost:8090/webERP/member/facilitySearchPop.do','facilitySearch');
+			}
+        
+        function taskTeamSearch(){
+			openWindowPop('http://localhost:8090/webERP/member/taskTeamSearchPop.do','taskTeamSearch');
+			}
       </script>
