@@ -36,6 +36,7 @@
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
+		<result property="loss" column="loss" />
 		<result property="productionPlanCode" column="ProductionPlanCode" />
 	</resultMap>
 	<resultMap id="OpePerRegDetResult" type="OperationDetailVO">
