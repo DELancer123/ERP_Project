@@ -165,7 +165,7 @@
 	</select>
 	
 	<select id="checkConfirmDetail" resultType="string">
-		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{obj}]]>
 	</select>
 	
 	<!-- 작업지시확정 추가 기능 -->
