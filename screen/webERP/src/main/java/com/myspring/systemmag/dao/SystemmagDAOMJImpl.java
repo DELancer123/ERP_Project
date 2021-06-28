@@ -136,7 +136,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Override
 	public void deleteLogistics(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteLogisticsManagement", Integer.parseInt(obj));	
+			sqlSession.delete("mappers.erp.deleteLogisticsManagement", obj);	
 		}	
 	}
 

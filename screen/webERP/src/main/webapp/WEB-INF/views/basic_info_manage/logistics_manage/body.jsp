@@ -68,14 +68,14 @@ request.setCharacterEncoding("UTF-8");
 <container id = contents1>
             <table id="table1">            	
                 <tr>
-                    <td style="width:5%;"><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                    <td style="width:5%;"><input type="checkbox" id="chec" name="content" onclick="selectAll(this)"/></td>
                     <td style="width:47.5%;">内靛</td>
                     <td style="width:47.5%;">包府亲格疙</td>
                 </tr>
                 <c:forEach var="logis" items="${logisticsView}" >
 	                <tr>
 	                    <td>
-	                    	<input type="checkbox" id="checkedContent" name="content" value="${logis.logistics_In_Code}"/>
+	                    	<input type="checkbox"  name="checkedContent" value="${logis.logistics_In_Code}"/>
 	                    </td>                   
 	                    <td>
 	                        <input type="text" onfocus = "searchView(this.value)" value="${logis.logistics_In_Code}"/>
