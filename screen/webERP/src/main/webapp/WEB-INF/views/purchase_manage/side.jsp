@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,36 +40,36 @@
                 <ul id="lnb">
                     <li><a href="#"  id="side1">구매관리</a>
                         <ul id="l_sub1">
-                            <li><a href="http://localhost:8090/webERP/member/mainplan.do">주계획작성</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/requiredamount.do">소요량전개</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regbilling.do">청구등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regordering.do">발주등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regreceivereq.do">입고의뢰등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regreceiveins.do">입고검사등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/receiveprocess.do">입고처리</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/orderclosing.do">발주마감처리</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/purchaseclosing.do">매입마감</a></li>
+                            <li><a href="${contextPath }/member/mainplan.do">주계획작성</a></li>
+                            <li><a href="${contextPath }/member/requiredamount.do">소요량전개</a></li>
+                            <li><a href="${contextPath }/member/orderclosing.do">발주마감처리</a></li>
+                            <%-- <li><a href="${contextPath }/member/regbilling.do">청구등록</a></li>
+                            <li><a href="${contextPath }/member/regordering.do">발주등록</a></li>
+                            <li><a href="${contextPath }/member/regreceivereq.do">입고의뢰등록</a></li>
+                            <li><a href="${contextPath }/member/regreceiveins.do">입고검사등록</a></li>
+                            <li><a href="${contextPath }/member/receiveprocess.do">입고처리</a></li>
+                            <li><a href="${contextPath }/member/purchaseclosing.do">매입마감</a></li> --%>
                         </ul></li>
-                    <li><a href="#" id="side2">재고관리</a>
+                   <%--  <li><a href="#" id="side2">재고관리</a>
                         <ul id="l_sub2">
-                            <li><a href="http://localhost:8090/webERP/member/moveware.do">재고이동등록(창고)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/movebusiness.do">재고이동등록(사업장)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/baseinventory.do">기초재고/재고조정등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/baseinventorystat.do">기초재고/재고조정현황</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/supplyadj.do">SET품수불조정등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/supplyadjstat.do">SET품수불조정현황</a></li>
-                        </ul></li>
+                            <li><a href="${contextPath }/member/moveware.do">재고이동등록(창고)</a></li>
+                            <li><a href="${contextPath }/member/movebusiness.do">재고이동등록(사업장)</a></li>
+                            <li><a href="${contextPath }/member/baseinventory.do">기초재고/재고조정등록</a></li>
+                            <li><a href="${contextPath }/member/baseinventorystat.do">기초재고/재고조정현황</a></li>
+                            <li><a href="${contextPath }/member/supplyadj.do">SET품수불조정등록</a></li>
+                            <li><a href="${contextPath }/member/supplyadjstat.do">SET품수불조정현황</a></li>
+                        </ul></li> --%>
                     <li><a href="#" id="side3">재고수불현황</a>
                         <ul id="l_sub3">
-                            <li><a href="http://localhost:8090/webERP/member/curinvenstat.do#">현재고현황(재고)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/curfinishedinvenstat.do#">현재고현황(완제품)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/supplystat.do#">재고수불현황(일자,유형별)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/lotbusiness.do#">현재고(LOT)현황(전사,사업장)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/lotware.do#">현재고(LOT)현황(창고,장소)</a></li>
+                            <li><a href="${contextPath }/member/curinvenstat.do">현재고현황(재고)</a></li>
+                            <li><a href="${contextPath }/member/curfinishedinvenstat.do">현재고현황(완제품)</a></li>
+                            <%-- <li><a href="${contextPath }/member/supplystat.do#">재고수불현황(일자,유형별)</a></li>
+                            <li><a href="${contextPath }/member/lotbusiness.do#">현재고(LOT)현황(전사,사업장)</a></li>
+                            <li><a href="${contextPath }/member/lotware.do#">현재고(LOT)현황(창고,장소)</a></li> --%>
                         </ul></li>
                     <li><a href="#" id="side4">기초정보관리</a>
                         <ul id="l_sub4">
-                            <li><a href="http://localhost:8090/webERP/member/itemunitprice.do">품목단가등록</a></li>
+                            <li><a href="${contextPath }/member/itemunitprice.do">품목단가등록</a></li>
                         </ul></li>
                 </ul>
             </div>
@@ -87,7 +90,7 @@
                 l_sub1.style.display = "none";
             }
         }
-        side_button2.onclick = function(){
+/*         side_button2.onclick = function(){
             var l_sub2 = document.getElementById('l_sub2');
             if(l_sub2.style.display == 'none' || l_sub2.style.display==''){
             l_sub2.style.display = "block";
@@ -98,7 +101,7 @@
                 l_sub2.style.display = "none";
             }
         }
-        side_button3.onclick = function(){
+ */        side_button3.onclick = function(){
             var l_sub3 = document.getElementById('l_sub3');
             if(l_sub3.style.display == 'none' || l_sub3.style.display==''){
             l_sub3.style.display = "block";
