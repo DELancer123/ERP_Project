@@ -663,6 +663,8 @@ order by bom.parent_item_code]]>
 		<result column="order_quantity" property="order_quantity" />
 		<result column="expected_Date" property="expected_Date" />
 		<result column="note" property="note" />
+		<collection property="orderVO" resultMap="orderJoinList" />
+		<collection property="corVO" javaType="CorVO" />
 	</resultMap>
 	<select id="selectAllMainPlanList" resultMap="MPSResult">
 		<![CDATA[ select * from pmm_pm_mps]]>
@@ -671,8 +673,11 @@ order by bom.parent_item_code]]>
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
-	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="MainPlanVO">
-		<![CDATA[SELECT * from pmm_pm_mps_os]]>
+  	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="java.util.HashMap">
+		<![CDATA[select DISTINCT co.ordersNum, co.ordersdate, co.general_customer_code, co.Note,
+   			 cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
+  			 cc.expectedDate,cc.ordersQuantity from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc
+   		 	where cc.expectedDate=co.ordersdate]]>
 	</select>
 	<update id="updateMPS" parameterType="MainPlanVO">
 		<![CDATA[update pmm_pm_mps
