@@ -41,6 +41,8 @@ public interface CommonProductionController {
 	public ModelAndView houseCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView processCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView workplaceCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView deleteRegistOperationPerformanceInfoDetail(HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
 	public ModelAndView facilitySearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
