@@ -1510,7 +1510,7 @@ ORDER BY out.workordernumber]]>
 	<select id="selectBasicList" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
 	</select>
-	<delete id="deleteBasicList">
+	<delete id="deleteBasicList" parameterType="String">
 		delete from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{no}
 	</delete>
 	<update id="updateBasicList" parameterType="SystemmagVOMJ">
