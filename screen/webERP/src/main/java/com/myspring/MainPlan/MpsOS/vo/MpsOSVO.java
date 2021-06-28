@@ -4,6 +4,9 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.myspring.salesmanage.cor.vo.CorVO;
+import com.myspring.salesmanage.order.vo.OrderVO;
+
 @Component("mpsosVO")
 public class MpsOSVO {
 	private String orderno;
@@ -20,26 +23,18 @@ public class MpsOSVO {
 	private int order_Balance;
 	private Date expected_Date;
 	private String note;
-	//private OrderVO;
-	//private CorVO;
+	private OrderVO orderVO;
+	private CorVO corVO;
 
 public MpsOSVO() {}
 
-//public OrderVO getOrderVO() {
-//return OrderVO;
-//}
-//
-//public void setOrderVO(OrderVO OrderVO) {
-//this.OrderVO = OrderVO;
-//}
-//
-//public CorVO getCorVO() {
-//return mainplanVO;
-//}
-//
-//public void setCorVO(CorVO CorVO) {
-//this.CorVO = CorVO;
-//}
+
+
+public CorVO getCorVO() {return corVO;}
+public void setCorVO(CorVO corVO) {this.corVO = corVO;}
+
+public OrderVO getOrderVO() {return orderVO;}
+public void setOrderVO(OrderVO orderVO) {this.orderVO = orderVO;}
 
 public String getOrderno() {return orderno;}
 public void setOrderno(String orderno) {this.orderno=orderno;}
@@ -57,7 +52,7 @@ public String getBuyer() {return buyer;}
 public void setBuyer(String buyer) {this.buyer=buyer;}
 
 public String getItem_Code() {return item_Code;}
-public void getItem_Code(String item_Code) {this.item_Code=item_Code;}
+public void setItem_Code(String item_Code) {this.item_Code=item_Code;}
 
 public String getItem_Name() {return item_Name;}
 public void setItem_Name(String item_Name) {this.item_Name=item_Name;}

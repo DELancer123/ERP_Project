@@ -93,7 +93,6 @@ a {
       					  <td><intput type="hidden" value="${MpsOS.buyer}"></td>
       					  <td><intput type="hidden" value="${MpsOS.standard}"></td>
       					  <td><intput type="hidden" value="${MpsOS.inventory_unit}"></td>
-      					  <td><intput type="hidden" value="${MpsOS.expected_Date}"></td>
       					  <td><intput type="hidden" value="${MpsOS.note}"></td>
 					</tr>
 				</c:forEach>

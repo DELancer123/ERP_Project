@@ -123,7 +123,7 @@
       }
       
       function search1(){
-    	  openWindowPop('http://localhost:8090/webERP/member/reservePop.do','codehelper');
+    	  openWindowPop('${contextPath}/member/reservePop.do','codehelper');
       }
       view_button.onclick = function(){
 		  const URLSearch = new URLSearchParams(location.search);

@@ -136,13 +136,20 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Override
 	public void deleteLogistics(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteLogisticsManagement", Integer.parseInt(obj));	
+			sqlSession.delete("mappers.erp.deleteLogisticsManagement", obj);	
 		}	
 	}
 
 	@Override
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updateLogisticsManagement", systemmagVO);
+	}
+	
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopLogisticsList",itemName);
+		return popList;
 	}
 	
 

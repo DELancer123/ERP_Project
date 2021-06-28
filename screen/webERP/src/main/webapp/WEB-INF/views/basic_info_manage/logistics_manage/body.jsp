@@ -68,14 +68,14 @@ request.setCharacterEncoding("UTF-8");
 <container id = contents1>
             <table id="table1">            	
                 <tr>
-                    <td style="width:5%;"><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                    <td style="width:5%;"><input type="checkbox" id="chec" name="content" onclick="selectAll(this)"/></td>
                     <td style="width:47.5%;">内靛</td>
                     <td style="width:47.5%;">包府亲格疙</td>
                 </tr>
                 <c:forEach var="logis" items="${logisticsView}" >
 	                <tr>
 	                    <td>
-	                    	<input type="checkbox" id="checkedContent" name="content" value="${logis.logistics_In_Code}"/>
+	                    	<input type="checkbox"  name="checkedContent" value="${logis.logistics_In_Code}"/>
 	                    </td>                   
 	                    <td>
 	                        <input type="text" onfocus = "searchView(this.value)" value="${logis.logistics_In_Code}"/>
@@ -103,11 +103,11 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td align="center" style="width:25%; text-align:right;">内靛</td>
 	                    <td style="width:25%;">
-	                        <input type="text">
+	                        <input type="text" id="logisSearchBox">
 	                    </td>    
 	                    <td style="width:2%;"><div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div></td>
 	                    <td style="width:25%;">
-	                        <input type="text">
+	                        <input type="text" id="logisSearchBox2">
 	                    </td>
 	                </tr>
 	            </table>
@@ -123,16 +123,16 @@ request.setCharacterEncoding("UTF-8");
 	                <tbody>
 	                	<tr>
 		                    <td>
-		                        <input type="text" value="${logistics_In_Code }">
+		                        <input type="text" name="logistics_In_Code" id="logistics_In_Code" value="${logistics_In_Code }">
 		                    </td>
 		                    <td>
-		                        <input type="text" value="${logistics_In_Name }">
+		                        <input type="text" name="logistics_In_Name" id="logistics_In_Name" value="${logistics_In_Name }">
 		                    </td>
 		                    <td>
-		                        <input type="text" value="${explanation }">
+		                        <input type="text" name="explanation" id="explanation" value="${explanation }">
 		                    </td>
 		                    <td>
-		                        <input type="text" value="${remarks }">
+		                        <input type="text" name="remarks" id="remarks" value="${remarks }">
 		                    </td>
 	                    </tr>
 	                </tbody>

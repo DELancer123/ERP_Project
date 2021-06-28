@@ -47,4 +47,6 @@ public interface SystemmagDAOMJ {
 	public void deleteLogistics(String[] noary) throws DataAccessException;
 	
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) throws DataAccessException;
 }

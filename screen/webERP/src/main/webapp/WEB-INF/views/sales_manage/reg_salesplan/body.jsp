@@ -77,7 +77,7 @@
                     	검색하시려는 품목번호를 조회(삭제,수정)
                     </td>
                     <td style="width: 100px;">
-                    	<input type="text" style="width: 100%;" name="" value='${param.itemCode }' />
+                    	<input type="text" style="width: 100%; background-color:rgb(255,255,149);" name="" value='${param.itemCode }'/>
                     </td>
                     <td>
                     	<a href="javascript:search1()">
@@ -123,20 +123,20 @@
                     	<td><input type="text" name="ListVO[${status.index}].planItemQuantity" value="${sp.planItemQuantity}" readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].planUnitPrice" value="${sp.planUnitPrice}" readonly/></td>
                     	<td><input type="text" value="${sp.planItemQuantity * sp.planUnitPrice}" readonly/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].newPlanItemQuantity" value="${sp.newPlanItemQuantity}"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].newPlanUnitPrice" value="${sp.newPlanUnitPrice}"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].newPlanItemQuantity" value="${sp.newPlanItemQuantity}" style="background-color:rgb(255,255,149);"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].newPlanUnitPrice" value="${sp.newPlanUnitPrice}" style="background-color:rgb(255,255,149);"/></td>
                     	<td><input type="text" value="${sp.newPlanItemQuantity * sp.newPlanUnitPrice}" readonly/></td>                                                                      
                 	</tr>
 				</c:forEach>
                 	<tr id="insertSp" align="center">
                 		<td></td>
-              			<td><input type="date" id="planDate" name="ListVO[${fn:length(spView) }].planDate" value='${planDate }' ></td>
-                    	<td><input type="text" id="itemCode" name="ListVO[${fn:length(spView) }].itemCode" value='${itemCode }' ondblclick="search2()" readonly/></td>
+              			<td><input type="date" id="planDate" name="ListVO[${fn:length(spView) }].planDate" value='${planDate }' style="background-color:rgb(255,255,149);"></td>
+                    	<td><input type="text" id="itemCode" name="ListVO[${fn:length(spView) }].itemCode" value='${itemCode }' ondblclick="search2()" readonly style="background-color:rgb(149,149,255);"/></td>
                     	<td><input type="text" id="itemName" name="ListVO[${fn:length(spView) }].itemName" value='${itemName }' readonly/></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn:length(spView) }].istandard" value='${standard }' readonly/></td>
                     	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(spView) }].inventoryUnit" value='${inventoryUnit }' readonly/></td>
-                    	<td><input type="text" id="planItemQuantity" name="ListVO[${fn:length(spView) }].planItemQuantity" value='${planItemQuantity }' /></td>
-                    	<td><input type="text" id="planUnitPrice" name="ListVO[${fn:length(spView) }].planUnitPrice" value='${planUnitPrice }' /></td>
+                    	<td><input type="text" id="planItemQuantity" name="ListVO[${fn:length(spView) }].planItemQuantity" value='${planItemQuantity }' style="background-color:rgb(255,255,149);"/></td>
+                    	<td><input type="text" id="planUnitPrice" name="ListVO[${fn:length(spView) }].planUnitPrice" value='${planUnitPrice }' style="background-color:rgb(255,255,149);"/></td>
                     	<td><input type="text" value='${planItemQuantity * planUnitPrice }' readonly/></td>
                     	<td><input type="text" id="newPlanItemQuantity" name="ListVO[${fn:length(spView) }].newPlanItemQuantity" value='${newPlanItemQuantity }' readonly/></td>
                     	<td><input type="text" id="newPlanUnitPrice" name="ListVO[${fn:length(spView) }].newPlanUnitPrice" value='${newPlanUnitPrice }' readonly/></td>

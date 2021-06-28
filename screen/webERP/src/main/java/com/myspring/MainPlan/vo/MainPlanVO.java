@@ -26,25 +26,6 @@ public class MainPlanVO {
 	private Date startDate;
 	private Date endDate;	
 	private List<MainPlanVO> ListVO;
-//	private OrderVO;
-//	private CorVO;
-	
-
-//	public OrderVO getOrderVO() {
-//		return OrderVO;
-//	}
-//
-//	public void setOrderVO(OrderVO OrderVO) {
-//		this.OrderVO = OrderVO;
-//	}
-//
-//	public CorVO getCorVO() {
-//		return mainplanVO;
-//	}
-//
-//	public void setCorVO(CorVO CorVO) {
-//		this.CorVO = CorVO;
-//	}
 
 
 	public Date getStartDate() {

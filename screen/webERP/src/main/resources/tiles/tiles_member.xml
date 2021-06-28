@@ -690,24 +690,33 @@
    </definition>
 
    
-   <!-- 일반거래처등록팝업 -->
+   <!-- 일반거래처등록팝업(코드검색부) -->
    <definition name="regbasicaccPopupLayout"  template="/WEB-INF/views/basic_info_manage/reg_gen_account/pop.jsp">
        <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-
-   <!-- 우편번호 팝업 -->
-     <definition name="ZippopupLayout"  template="/WEB-INF/views/common/zippopup.jsp">
-      <put-attribute name="title" value="" />
-      <put-attribute name="side" value="" />
-      <put-attribute name="body" value="" />
-   </definition>
-
    <definition name="/member/regbasicaccPopup" extends="regbasicaccPopupLayout">
       <put-attribute name="title" value="일반거래처등록_검색부팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
+   </definition>
+   <!-- 물류관리내역등록팝업(코드검색부) -->
+   <definition name="logisticsPopupLayout"  template="/WEB-INF/views/basic_info_manage/logistics_manage/pop.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/logisticsPopup" extends="logisticsPopupLayout">
+      <put-attribute name="title" value="일반거래처등록_검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <!-- 우편번호 팝업(일반거래처등록) -->
+     <definition name="ZippopupLayout"  template="/WEB-INF/views/common/zippopup.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
    </definition>
    <definition name="regbasicaccZipPopupLayout"  template="/WEB-INF/views/basic_info_manage/reg_gen_account/zippop.jsp">
    <put-attribute name="title" value="" />

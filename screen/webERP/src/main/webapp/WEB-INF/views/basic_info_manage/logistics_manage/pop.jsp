@@ -77,13 +77,12 @@ a {
 						<td>규격</td>
 					</tr>
 
-					<c:forEach var="com" items="${comView}">
+					<c:forEach var="lv" items="${logisticsView}">
 						<tr align="center">
 							<td><a
-								href="javascript:popFunction('${com.general_Customer_Code }','${com.general_Customer_Name }')">${com.general_Customer_Code }</a></td>
+								href="javascript:popFunction('${lv.logistics_In_Code }','${lv.logistics_In_Name }')">${lv.logistics_In_Code }</a></td>
 							<td><a
-								href="javascript:popFunction('${com.general_Customer_Code }','${com.general_Customer_Name }')">${com.general_Customer_Name }</a></td>
-							<td><a href="#">${com.general_Customer_Division }</a></td>
+								href="javascript:popFunction('${lv.logistics_In_Code }','${lv.logistics_In_Name }')">${lv.logistics_In_Name }</a></td>
 						</tr>
 					</c:forEach>
 
@@ -103,8 +102,8 @@ a {
 				text_name.value = name;
 			}
 			submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
-				$(opener.document).find("#customerCode").val($("#code").val()); //find()는 body.jsp의 텍스트박스의값임, val()는 팝업.jsp의 텍스트박스의값임
-				$(opener.document).find("#ckcustomerCode")
+				$(opener.document).find("#logisSearchBox").val($("#code").val()); //find()는 body.jsp의 텍스트박스의값임, val()는 팝업.jsp의 텍스트박스의값임
+				$(opener.document).find("#logisSearchBox2")
 						.val($("#name").val());
 				window.close();
 			}
@@ -121,7 +120,7 @@ a {
 								$
 										.ajax({
 											type : 'GET',
-											url : '/webERP/member/searchPopCustomerName.do',
+											url : '/webERP/member/searchPopLogisticsName.do',
 											//words값을 "itemName"이라는 이름의 파라미터로 전송한다.
 											data : {
 												"itemName" : words
@@ -141,8 +140,8 @@ a {
 													str += '<td><a href = "#">'
 															+ data[i].itemName
 															+ '</a></td>';
-													str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].general_Customer_Code+'"></td>';
-													str += '<td><input type = "hidden" id="iName" value = "'+data[i].general_Customer_Name+'" ></td>';
+													str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].logistics_In_Code+'"></td>';
+													str += '<td><input type = "hidden" id="iName" value = "'+data[i].logistics_In_Name+'" ></td>';
 													str += '</tr>';
 													//반복문을 사용하여 searchItem table에 추가
 													$("#searchItem")
