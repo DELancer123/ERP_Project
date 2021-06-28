@@ -36,7 +36,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>회사등록</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
 #contents1{

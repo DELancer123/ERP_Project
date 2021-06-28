@@ -56,42 +56,43 @@
             <table id="search">
                 <tr>
                     <td>우편번호</td>
-                    <td><input type="text" id="zipcode"/></td>
+                    <td><input type="text" id="code" name="code"/></td>
                 </tr>
                 <tr>
                     <td>주소</td>
-                    <td><input type="text" id="address1"/></td>
+                    <td><input type="text" id="name" class="name" name="name"/></td>
                 </tr>
                 <tr>
                     <td>주소2</td>
-                    <td><input type="text" id="address2"/></td>
+                    <td><input type="text" id="name2" class="name2" name="name2"/></td>
                 </tr>
             </table>
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
+                <button id="close">닫기</button>
             </div>
         </div>
         <div id="view">
-            <table style="width: 100%;">
+            <table id="searchItem" style="width: 100%;">
                 <tr align="center">
                     <td id="test">우편번호</td>
                     <td>주소</td>
                     <td>주소2</td>
                 </tr>
                 <c:forEach var="zip" items="${zipView}" >     
-   <tr align="center">
-      <td><a href="javascript:popFunction('${zip.zipcode }','${zip.road_address }','${zip.lot_address }')">${zip.zipcode }</a></td>
-      <td><a href="#">${zip.road_address}</a></td>
-      <td><a href="#">${zip.lot_address}</a></td>
-    </tr>
-    </c:forEach> 
+				     <tr align="center">
+				      <td><a href="javascript:popFunction('${zip.zipcode }','${zip.road_address }','${zip.lot_address }')">${zip.zipcode }</a></td>
+				      <td><a href="javascript:popFunction('${zip.zipcode }','${zip.road_address }','${zip.lot_address }')">${zip.road_address}</a></td>
+				      <td><a href="javascript:popFunction('${zip.zipcode }','${zip.road_address }','${zip.lot_address }')">${zip.lot_address}</a></td>
+				     </tr>
+   				</c:forEach> 
             </table>
         </div>
     </div>
     
     <script>
-    var submit_button = document.getElementById("submit");
+    /* var submit_button = document.getElementById("submit");
     		var text_zipcode = document.getElementById("zipcode");
     		var text_address1 = document.getElementById("address1");
     		var text_address2 = document.getElementById("address2");
@@ -106,7 +107,96 @@
             $(opener.document).find("#address1").val($("#address1").val());
             $(opener.document).find("#address2").val($("#address2").val());
             window.close();
+    	} */
+    	
+    	var submit_button = document.getElementById("submit");
+	    var close_button = document.getElementById("close");
+	    
+		var text_code = document.getElementById("code");
+		var text_name = document.getElementById("name");
+		var text_name2 = document.getElementById("name2");
+    
+    	function popFunction(code,name,name2){
+    			text_code.value = code;
+    			text_name.value = name;
+    			text_name2.value = name2;
     	}
+    	
+    	submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
+    		$(opener.document).find("#zipcode").val($("#code").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+    		$(opener.document).find("#address1").val($("#name").val());
+    		$(opener.document).find("#address2").val($("#name2").val());
+    		window.close();
+    	}
+	
+  
+    	close_button.onclick = function(){
+    		window.close();
+    	}
+    	
+    	$('.name')
+		.keyup(
+				function() {
+					//변수 words에 id가 name인것의 값을 저장한다
+					var words = $('#name').val();
+					$.ajax({
+						type : 'GET',
+						url : '/webERP/member/searchPopCompanyZipCode.do',
+						//words값을 "itemName"이라는 이름의 파라미터로 전송한다.
+						data : {
+							"itemName" : words
+						},
+						success : function(responseData) {
+							var data = responseData.popName;
+
+							//검색을 시작할시 원래 있던 데이터를 지운다.
+							$("#searchItem").empty();
+
+							for (var i = 0; i < data.length; i++) {
+								var str = '';
+								str += '<tr align="center" id = "yahoo">';
+								str += '<td><a href = "#">'
+										+ data[i].zipCode
+										+ '</a></td>';
+								str += '<td><a href = "#">'
+										+ data[i].road_Address
+										+ '</a></td>';
+								str += '<td><a href = "#">'
+										+ data[i].lot_Address
+										+ '</a></td>';
+								str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].zipCode+'"></td>';
+								str += '<td><input type = "hidden" id="iName" value = "'+data[i].road_Address+'" ></td>';
+								str += '<td><input type = "hidden" id="iName2" value = "'+data[i].lot_Address+'" ></td>';
+								str += '</tr>';
+								//반복문을 사용하여 searchItem table에 추가
+								$("#searchItem")
+										.append(str);
+							}
+
+						},
+						error : function(request, status,
+								error) {
+							alert("code:" + request.status
+									+ "\n" + "message:"
+									+ request.responseText
+									+ "\n" + "error:"
+									+ error);
+						}
+					});
+
+		});
+							
+
+		$(document).on("click", "#yahoo", function(e) {
+		
+			var initCode = $(this).find('input[id=iCode]').val();
+			var initName = $(this).find('input[id=iName]').val();
+			var initName2 = $(this).find('input[id=iName2]').val();
+			//var inputCode = document.getElementById('iCode').value;	
+			$('input[name=code]').val(initCode);
+			$('input[name=name]').val(initName);
+			$('input[name=name2]').val(initName2);
+		});
     	
     </script>
     </form>
