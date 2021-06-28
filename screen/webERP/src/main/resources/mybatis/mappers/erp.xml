@@ -209,8 +209,7 @@
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[SELECT * FROM releasedetailview where workordernumber = #{number}
-                ]]>
+		<![CDATA[SELECT * FROM releasedetailview where WORKORDERNUMBER = #{number}]]>
 	</select>
 	
 	<!-- 작업지시확정 자재출고 CRUD -->
