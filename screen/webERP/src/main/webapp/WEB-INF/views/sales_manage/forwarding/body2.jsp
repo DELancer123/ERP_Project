@@ -58,6 +58,7 @@
                     <td>출고번호</td>
                     <td>출고일자</td>
                     <td>고객</td>
+                    <td>출고 구분</td>
                     <td>마감</td>
                     <td>비고</td>
                 </thead>
@@ -68,18 +69,20 @@
                     <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}"readonly/></a></td>
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
-                    <input type="hidden" value=""${param.general_Customer_Name}""></td>
+                    <input type="hidden" value="${param.general_Customer_Name}"></td>
+                    <td><input type="text" name="ListVO[${status.index}].releaseOX" value="${supForward.releaseOX}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" readonly /></td>
                 </tbody>
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id="relCode" name="ListVO[${fn:length(supForwardList)}].relCode" value="${relCode}" /></td>
-                    <td><input type="date" id="relDate" name="ListVO[${fn:length(supForwardList)}].relDate" value="${relDate}" /></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(supForwardList)}].relCode"/></td>
+                    <td><input type="date" id="relDate" name="ListVO[${fn:length(supForwardList)}].relDate" /></td>
                     <td><input type="text" id="custCode" name="ListVO[${fn:length(supForwardList)}].general_Customer_Code" value="${param.custCode}" ondblclick="search2()" readonly/></td>
-                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(supForwardList)}].deadLine" value="${deadLine}" /></td>
-                    <td><input type="text" id="note" name="ListVO[${fn:length(supForwardList)}].note" value="${note}" /></td>
+                    <td><input type="text" id="releaseOX" name="ListVO[${fn:length(supForwardList)}].releaseOX"/></td>
+                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(supForwardList)}].deadLine"/></td>
+                    <td><input type="text" id="note" name="ListVO[${fn:length(supForwardList)}].note"/></td>
                 </tbody>
            </table>
            </form>
@@ -93,6 +96,7 @@
        	var relDate = document.getElementById("relDate");
         var custCode = document.getElementById("custCode");
         var deadLine = document.getElementById("deadLine");
+        var releaseOX = document.getElementById("releaseOX");
         var note = document.getElementById("note");
         
         function popFunction(code,name){

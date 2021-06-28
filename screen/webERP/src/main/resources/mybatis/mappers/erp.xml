@@ -1734,6 +1734,7 @@ ORDER BY out.workordernumber]]>
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
 		<result property="deadLine" column="deadLine" />
+		<result property="releaseOX" column="releaseOX" />
 		<result property="note" column="note" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
 		<result property="general_Customer_Name" column="General_Customer_Name" />
@@ -1771,7 +1772,7 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
-		values (F_GET_NEXT_SEQ('SM_BIM_Ite_Reg'), #{relDate}, #{custCode}, #{deadLine}, #{note})
+		values (F_GET_NEXT_SEQ('CSM_SM_Rel_Pro'), #{relDate}, #{general_Customer_Code},#{releaseOX}, #{deadLine}, #{note})
 		]]>  
 	</insert>
 	<update id="updateForward" parameterType="forwardVO">
