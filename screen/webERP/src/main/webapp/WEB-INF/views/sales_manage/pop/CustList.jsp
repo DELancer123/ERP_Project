@@ -75,7 +75,7 @@
       					<td><b>사업자 번호</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${forwardCustList}" >
+ 					<c:forEach var="cust" items="${custList}" >
    						<tr align="center">
       						<td><a href="javascript:popFunction('${cust.general_Customer_Code}','${cust.general_Customer_Name}')">${cust.general_Customer_Code}</a></td>
       						<td><a href="javascript:popFunction('${cust.general_Customer_Code}','${cust.general_Customer_Name}')">${cust.general_Customer_Name}</a></td>

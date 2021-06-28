@@ -281,6 +281,8 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@RequestMapping(value = "/member/deleteLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView deleteLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("no"); // 체크가된 체크박스의 값들을 가져오는 변수임
+		System.out.println("삭제구현중");
+		System.out.println("number:"+number);
 		String viewName = getViewName(request);
 		String[] numberary = number.split(","); // 쉼표를 기준으로 나누어 배열에 저장한다
 
@@ -319,13 +321,37 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/member/searchPopName1.do", method = RequestMethod.GET)
-	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+	//----------------------------------
+	@ResponseBody//ajax관련 컨트롤러(거래처코드)
+	@RequestMapping(value = "/member/searchPopCustomerName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopCustomerName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<SystemmagVOMJ> popName = null;
-		popName = systemmagService.searchPopName(itemName);
+		popName = systemmagService.searchPopCustomerName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	@ResponseBody//ajax관련 컨트롤러(우편번호)
+	@RequestMapping(value = "/member/searchPopZipCodeName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopZipCodeName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = systemmagService.searchPopZipCodeName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	@ResponseBody//ajax관련 컨트롤러(물류관리등록)
+	@RequestMapping(value = "/member/searchPopLogisticsName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopLogisticsName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = systemmagService.searchPopLogisticsName(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 

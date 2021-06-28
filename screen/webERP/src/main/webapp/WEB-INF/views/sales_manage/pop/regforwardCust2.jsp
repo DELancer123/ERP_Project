@@ -68,14 +68,14 @@
                    <tr align="center">
                      <td><b>거래처 코드</b></td>
                      <td><b>거래처명</b></td>
-                     <td><b>사업자 명</b></td>
+                     <td><b>사업자 번호</b></td>
                  </tr>
    
                 <c:forEach var="cust" items="${custList}" >
                      <tr align="center">
-                        <td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</a></td>
-                        <td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custName}</a></td>
-                        <td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.repName}</a></td>
+                        <td><a href="javascript:popFunction('${cust.general_Customer_Code}','${cust.general_Customer_Name}')">${cust.general_Customer_Code}</a></td>
+                        <td><a href="javascript:popFunction('${cust.general_Customer_Code}','${cust.general_Customer_Name}')">${cust.general_Customer_Name}</a></td>
+                        <td><a href="javascript:popFunction('${cust.general_Customer_Code}','${cust.general_Customer_Name}')">${cust.company_Registration_Number}</a></td>
                   </tr>
                  </c:forEach>   
             </table>
@@ -94,10 +94,9 @@
    submit_button.onclick = function(){
           var url = window.opener.document.location.href;
          var url_arr = url.split('?');
-         opener.parent.location='${contextPath}/member/forwarding.do?custCode='+text_code.value+'&&custName='+text_name.value+'&&submit='+1;
+         opener.parent.location=url_arr[0] + '?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value+'&&submit='+2;
           window.close();
        }
-
     </script>
 
 

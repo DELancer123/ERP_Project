@@ -28,8 +28,8 @@
             <table class="con1_search">
                 <tr>
                     <td>거래처 명</td>
-                    <td><input type="text" name="cust" value='${param.custCode}'disabled /></td>
-                    <td><input type="text" name="cust" value='${param.custName}'disabled /></td>
+                    <td><input type="text" name="cust" value='${param.general_Customer_Code}'disabled /></td>
+                    <td><input type="text" name="cust" value='${param.general_Customer_Name}'disabled /></td>
                     <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                     <td>출고기간</td>
                     <td><input type="date" id="reqInput"></td>
@@ -53,7 +53,7 @@
 <script>
 function search1(){
 	  
-	openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper1.do','regforwardCust');  
+	openWindowPop('http://localhost:8090/webERP/member/salesmanagepop.do','salesmanagepop');  
 	}
 	
 view_button.onclick = function(){

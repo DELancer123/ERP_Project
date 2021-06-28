@@ -60,8 +60,13 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	}
 	
 	@Override
-	public List<SystemmagVOMJ> searchPopName(String itemName) {
+	public List<SystemmagVOMJ> searchPopCustomerName(String itemName) {
 		return systemmagDAO.viewsearchPopName(itemName);
+	}
+	
+	@Override
+	public List<SystemmagVOMJ> searchPopZipCodeName(String itemName) {
+		return systemmagDAO.viewsearchPopZipCodeName(itemName);
 	}
 
 	
@@ -138,6 +143,13 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException {		
 		systemmagDAO.updateLogistics(systemmagVO);
 	}
+	
+	@Override
+	public List<SystemmagVOMJ> searchPopLogisticsName(String itemName) {
+		return systemmagDAO.viewsearchPopLogisticsName(itemName);
+	}
+	
+	
 
 	
 	

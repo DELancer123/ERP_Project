@@ -153,7 +153,7 @@
 	  			document.getElementById('searchForm').submit();  
 		}
       	function search1(){
-	      	openWindowPop('http://localhost:8090/webERP/member/deftypepop.do','codehelper');
+	      	openWindowPop('${contextPath}/member/deftypepop.do','codehelper');
       	}
       	delete_button.onclick = function(){
       		var item = document.getElementsByName("content").length;

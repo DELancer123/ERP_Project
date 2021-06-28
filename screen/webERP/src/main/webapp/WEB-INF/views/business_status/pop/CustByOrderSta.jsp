@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title>회원 정보 출력창</title>
+<title>일반거래처 검색창</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <style>
     	a{

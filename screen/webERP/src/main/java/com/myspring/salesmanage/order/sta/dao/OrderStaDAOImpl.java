@@ -20,10 +20,10 @@ public class OrderStaDAOImpl implements OrderStaDAO {
 	//////////////////////popCust
 	@Override
 	public List selectAllCustList() throws DataAccessException {
-		List<OrderVO> orderCustList = null;
-		orderCustList = sqlSession.selectList("mappers.erp.allCustForStaOrder");
-		return orderCustList;
-	}//allCustForStaOrder
+		List<OrderVO> custList = null;
+		custList = sqlSession.selectList("mappers.erp.allCustForStaOrder");
+		return custList;
+	}
 	
 	@Override
 	public List submitOrdCust(String custCode) throws DataAccessException {

@@ -98,7 +98,7 @@
       
       function search1(){
     	  
-    	      	openWindowPop('http://localhost:8090/webERP/member/codehelper.do','codehelper');
+    	      	openWindowPop('${contextPath}/member/codehelper.do','codehelper');
 
     	  
       }
