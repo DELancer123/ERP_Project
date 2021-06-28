@@ -68,7 +68,6 @@
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
                 <button id="submit">적용</button>
                 <button id="close">닫기</button>
             </div>
