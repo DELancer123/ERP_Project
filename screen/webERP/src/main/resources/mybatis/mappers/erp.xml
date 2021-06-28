@@ -164,7 +164,7 @@
 		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
-	<select id="checkConfirmDetail" resultType="string">
+	<select id="checkConfirmDetail" resultType="String">
 		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{obj}]]>
 	</select>
 	
