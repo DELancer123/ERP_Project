@@ -69,6 +69,20 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	}
 	
 	@Override
+	public ModelAndView addForward(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		System.out.println(forwardVO.getCustCode());
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = forwardRegService.addForward(forwardVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		return mav;
+	}
+
+	
+	@Override
 	@RequestMapping(value="/member/delforward.do", method = RequestMethod.GET)
 	public ModelAndView delForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String code = (String)request.getParameter("no");
@@ -158,6 +172,5 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	}
 	return viewName;
 	}
-
 
 }
