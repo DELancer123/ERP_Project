@@ -158,7 +158,7 @@
       }
       
       function search1(){
-    	      	openWindowPop('http://localhost:8090/webERP/member/outsourcingPop.do?div=1','codehelper');
+    	      	openWindowPop('${contextPath}/member/outsourcingPop.do?div=1','codehelper');
       }
       function search2(){
     	  var outcode = document.getElementById('outcode');
