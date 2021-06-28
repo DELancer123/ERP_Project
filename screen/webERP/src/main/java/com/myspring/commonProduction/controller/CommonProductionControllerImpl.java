@@ -191,6 +191,16 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		return mav;
 		}
   	
+  	@Override
+	@RequestMapping(value="/member/facilityCodeSearchPop.do" ,method = RequestMethod.GET)
+	public ModelAndView facilitySearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List itemView = productionService.facilitySearch();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("itemView", itemView);
+		return mav;
+	}
+  	
 //  �옉�뾽吏��떆 �솗�젙 湲곕뒫遺� 
   	 @Override
   	  @RequestMapping(value="/member/comoperins.do" ,method = RequestMethod.GET)

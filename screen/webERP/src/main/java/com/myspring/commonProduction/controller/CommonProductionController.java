@@ -35,8 +35,7 @@ public interface CommonProductionController {
 	public ModelAndView releaseDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listRegistOperationPerformanceInfo(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView MaterialUse(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO,
-			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addRegistOperationPerformanceInfoDetail(RegistOperationPerformanceDetailVO ROPDVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addReleaseData(OperationDetailVO ORVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delCommitOperation(OperationDetailVO ODVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView houseCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -44,5 +43,6 @@ public interface CommonProductionController {
 	public ModelAndView workplaceCodeSearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView deleteRegistOperationPerformanceInfoDetail(HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
+	public ModelAndView facilitySearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

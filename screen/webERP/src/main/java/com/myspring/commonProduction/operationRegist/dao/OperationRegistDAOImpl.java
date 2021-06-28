@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
+import com.myspring.commonProduction.operationRegist.vo.FacilitySearchVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
@@ -106,6 +107,13 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
          }
       }
    }
+   
+   @Override
+	public List facilityViewPop() throws DataAccessException {
+		List<FacilitySearchVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectFacilitySearch");
+		return popList;
+	}
    
 //   작업지시확정 기능부
    @Override

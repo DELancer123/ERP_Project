@@ -51,5 +51,6 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException; 
   public List<OperationRegistVO> selectAllOperationInfo() throws DataAccessException;
   public void deleteRegistOperationPerformanceInfoDetail(String[] numberAry) throws DataAccessException;
+  public List facilitySearch() throws DataAccessException;
   }
  
