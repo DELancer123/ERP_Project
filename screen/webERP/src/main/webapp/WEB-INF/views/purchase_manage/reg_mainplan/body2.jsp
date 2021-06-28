@@ -17,8 +17,8 @@
  	<c:set var="standard" value="${mainplan.standard }"/>
  	<c:set var="inventory_unit" value="${mainplan.inventory_unit }"/>
  	<c:set var="sequence" value="${mainplan.sequence }"/>
- 	<c:set var="expected_date" value="${mainplan.expected_date }"/>
- 	<c:set var="due_date" value="${mainplan.due_date }"/>
+ 	<c:set var="expectedDate" value="${mainplan.expectedDate }"/>
+ 	<c:set var="dueDate" value="${mainplan.dueDate }"/>
  	<c:set var="plan_quantity" value="${mainplan.plan_quantity }"/>
  	<c:set var="buyer" value="${mainplan.buyer }"/>
  	<c:set var="note" value="${mainplan.note }"/>
@@ -110,8 +110,8 @@
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
   		 	<td style="width:13px;"><input type="text"  value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
- 				<td><input type="date" name="ListVO[${status.index}].expected_date" value = '${mainplan.expected_date}' /></td>				
- 				<td><input type="date" name="ListVO[${status.index}].due_date" value = '${mainplan.due_date}' /></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].expectedDate" value = '${mainplan.expectedDate}' /></td>				
+ 				<td><input type="date" name="ListVO[${status.index}].dueDate" value = '${mainplan.dueDate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
@@ -126,10 +126,10 @@
     	<td><input type="text" id="standard" name="ListVO[${fn:length(MPSView) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
     	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(MPSView) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
     	<td><input type="text" id="sequence" value='${inputSeq}' readonly style="width:100%"/></td>
-    	<td><input type="date" id="expected_date" name="ListVO[${fn:length(MPSView) }].expected_date" value='${expected_date}'/></td>
-    	<td><input type="date" id="due_date" name="ListVO[${fn:length(MPSView) }].due_date" value='${due_date}'/></td>
+    	<td><input type="date" id="expectedDate" name="ListVO[${fn:length(MPSView) }].expectedDate" value='${expectedDate}'/></td>
+    	<td><input type="date" id="dueDate" name="ListVO[${fn:length(MPSView) }].dueDate" value='${dueDate}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(MPSView) }].plan_quantity" value='${plan_quantity}' /></td>
-    	<td><input type="text" id="buyer" name="ListVO[${fn:length(MPSView) }].buyer" value='${param.buyer}'readonly/></td>
+    	<td><input type="text" id="buyer" name="ListVO[${fn:length(MPSView) }].buyer" value='${param.buyer}'/></td>
     	<td><input type="text" id="note" name="ListVO[${fn:length(MPSView) }].note"value='${param.note}'/></td>
     </tr>
 	</tbody>
@@ -214,8 +214,8 @@ function InsertRow(){
 		document.getElementById("standard").disabled = true;
 		document.getElementById("inventory_unit").disabled = true;
 		document.getElementById("sequence").disabled = true;
-		document.getElementById("expected_date").disabled = true;
-		document.getElementById("due_date").disabled = true;
+		document.getElementById("expectedDate").disabled = true;
+		document.getElementById("dueDate").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
 		document.getElementById("buyer").disabled = true;
 		document.getElementById("note").disabled = true;

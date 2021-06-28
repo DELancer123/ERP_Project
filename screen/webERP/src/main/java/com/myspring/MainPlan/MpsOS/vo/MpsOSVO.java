@@ -11,30 +11,19 @@ import com.myspring.salesmanage.order.vo.OrderVO;
 public class MpsOSVO {
 	private String orderno;
 	private int sequence;
-	private Date orderdate;
-	private Date okeydate;
+	private Date ordersdate;
 	private String buyer;
 	private String item_Code;
 	private String item_Name;
 	private String standard;
 	private String inventory_unit;
-	private int order_quantity;
-	private int apply_quantity;
-	private int order_Balance;
-	private Date expected_Date;
+	private int ordersQuantity;
+	private Date expectedDate;
 	private String note;
-	private OrderVO orderVO;
-	private CorVO corVO;
+
 
 public MpsOSVO() {}
 
-
-
-public CorVO getCorVO() {return corVO;}
-public void setCorVO(CorVO corVO) {this.corVO = corVO;}
-
-public OrderVO getOrderVO() {return orderVO;}
-public void setOrderVO(OrderVO orderVO) {this.orderVO = orderVO;}
 
 public String getOrderno() {return orderno;}
 public void setOrderno(String orderno) {this.orderno=orderno;}
@@ -42,11 +31,8 @@ public void setOrderno(String orderno) {this.orderno=orderno;}
 public int getSequence() {return sequence;}
 public void setSequence(int sequence) {this.sequence=sequence;}
 
-public Date getOrderdate() {return orderdate;}
-public void setOrderdate(Date orderdate) {this.orderdate=orderdate;}
-
-public Date getOkeydate() {return okeydate;}
-public void setOkeydate(Date okeydate) {this.okeydate=okeydate;}
+public Date getOrdersdate() {return ordersdate;}
+public void setOrdersdate(Date ordersdate) {this.ordersdate=ordersdate;}
 
 public String getBuyer() {return buyer;}
 public void setBuyer(String buyer) {this.buyer=buyer;}
@@ -63,17 +49,27 @@ public void setStandard(String standard) {this.standard=standard;}
 public String getInventory_unit() {return inventory_unit;}
 public void setInventory_unit(String inventory_unit) {this.inventory_unit=inventory_unit;}
 
-public int getApply_quantity() {return apply_quantity;}
-public void setApply_quantity(int apply_quantity) {this.apply_quantity=apply_quantity;}
 
-public int getOrder_Balance() {return order_Balance;}
-public void setOrder_Balance(int order_Balance) {this.order_Balance=order_Balance;}
 
-public int getOrder_quantity() {return order_quantity;}
-public void setOrder_quantity(int order_quantity) {this.order_quantity=order_quantity;}
+public int getOrdersQuantity() {
+	return ordersQuantity;
+}
 
-public Date getExpected_Date() {return expected_Date;}
-public void setExpected_Date(Date expected_Date) {this.expected_Date=expected_Date;}
+
+public void setOrdersQuantity(int ordersQuantity) {
+	this.ordersQuantity = ordersQuantity;
+}
+
+
+public Date getExpectedDate() {
+	return expectedDate;
+}
+
+
+public void setExpectedDate(Date expectedDate) {
+	this.expectedDate = expectedDate;
+}
+
 
 public String getNote() {return note;}
 public void setNote(String note) {this.note=note;}

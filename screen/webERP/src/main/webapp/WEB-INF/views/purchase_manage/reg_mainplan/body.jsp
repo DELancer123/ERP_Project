@@ -53,7 +53,7 @@
                         <td>
                         </td>
                         <Td>
-                       품번<input type="text" name="factory" value='${param.item_Code }' style="width: 120px; background-color: yellow;">
+                       검색<input type="text" name="factory" value='${param.item_Code }' style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
                             <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>

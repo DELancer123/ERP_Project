@@ -67,9 +67,6 @@ a {
 						<td><input type="hidden" id="inventory_unit" name="inventory_unit"/></td>
 					</tr>
 					<tr>
-						<td><input type="hidden" id="expected_Date" name="expected_Date"/></td>
-					</tr>
-					<tr>
 						<td><input type="hidden" id="note" name="note"/></td>
 					</tr>
 					<tr>
@@ -84,12 +81,16 @@ a {
 				<tr align="center">
 					<td>품번</td>
 					<td>품명</td>
+					<td>주문수량</td>
+					<td>발주예정일</td>
 				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
 					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.buyer }'
 					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
+      					  <td><a href="#">${MpsOS.ordersQuantity}</a></td>
+      					  <td><a href="#">${MpsOS.expectedDate}</a></td>
       					  <td><intput type="hidden" value="${MpsOS.buyer}"></td>
       					  <td><intput type="hidden" value="${MpsOS.standard}"></td>
       					  <td><intput type="hidden" value="${MpsOS.inventory_unit}"></td>
