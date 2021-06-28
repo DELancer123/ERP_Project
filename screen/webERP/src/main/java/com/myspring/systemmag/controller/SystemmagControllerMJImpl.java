@@ -323,7 +323,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/member/searchPopName1.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/searchPopNameMJ.do", method = RequestMethod.GET)
 	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<SystemmagVOMJ> popName = null;
