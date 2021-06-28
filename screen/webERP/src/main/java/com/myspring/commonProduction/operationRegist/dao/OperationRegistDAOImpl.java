@@ -219,7 +219,7 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
    
    @Override
    public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
-      int idx = ORVO.getDetailVO().size()-1;
+      int idx = ORVO.getDetailVO().size();
       
       for(int i = 0; i<idx; i++) {         
       int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
