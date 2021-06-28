@@ -44,7 +44,6 @@ public class MainPlanControllerImpl implements MainPlanController {
 		}	
 		 else if(submit.equals("1")){
 		  List MPSView = mainplanService.SearchView(number); 
-		  System.out.println("MPSView:"+MPSView.size());
 		  mav = new ModelAndView(viewName);
 		  mav.addObject("MPSView", MPSView); 	  	  
 		 }		

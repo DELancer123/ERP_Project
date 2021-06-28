@@ -36,7 +36,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>회사등록</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- 제이쿼리사용을위한CDN -->
 <style>
 #contents1{
@@ -107,19 +107,19 @@
                         <input type="text"  ondblclick="searchView(this.value)" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" maxlength="12" />
+                        text-align: center;" readonly />
                     </td>
                     <td>
                         <input type="text" value='${com.company_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;"/>
+                        text-align: center;" readonly/>
                     </td>
                     <td>
                         <select id="sortation1" name="sortation1"
                         style="background-color:rgb(235, 235, 235); 
-                        border-style: none;
-                        text-align: center;">
+                        border-style: none; 
+                        text-align: center;" >
                             <option value=0 <c:if test="${com.sortation == 0}">selected</c:if>>법인</option>
                             <option value=1 <c:if test="${com.sortation == 1}">selected</c:if>>개인</option>
                         </select>
@@ -182,9 +182,9 @@
                         기
                     </td>
                     <td>
-                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" value='${fiscal_Year_Dates }'/>
+                        <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Dates }'/>
                         ~
-                        <input type="date" name="fiscal_Year_Datee" id="fiscal_year_Datee" value='${fiscal_Year_Datee }'/>
+                        <input type="date" name="fiscal_Year_Datee" id="fiscal_year_Datee" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Datee }'/>
                     </td>
                 </tr>
                 <tr>
@@ -211,7 +211,7 @@
                     <td colspan="2">
                         <input type="text" name="representatives_Name" id="representatives_Name" class= "reqInput"
                         style="width: 240px;"
-                        value='${representatives_Name }' />
+                        value='${representatives_Name }' maxlength="50"/>
                     </td>
                 </tr>
                 <tr>
@@ -221,19 +221,18 @@
                         value='${resident_Registration_Number }'
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
-                        text-align: center;" pattern="[0-9]{13}" maxlength="13"
+                        text-align: center;" maxlength="15"
                          />
                         개인의 경우 필수입력항목
                     </td>
                 </tr>
-				
                 <tr>
                     <td align="center">본점우편번호</td>
                     <td colspan="2">
                         <input type="text" name="main_Store_Postal_Code" id="zipcode" readonly
-                        style="background-color: rgb(235,235,235);
-                        border-style: none; width: 205px;
-                        text-align: center;" pattern="[0-9]{5}" maxlength="6"
+                        style="background-color: rgb(255, 255, 149);
+                        width: 205px;
+                        text-align: center;" pattern="[0-9]{5}" maxlength="12"
                         value='${main_Store_Postal_Code }' />
                         <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
@@ -243,7 +242,7 @@
                     <td colspan="2">
                         <input type="text" name="main_Store_Address" id="address1" class= "reqInput" readonly
 						value='${main_Store_Address }'
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="60" />
                     </td>
                 </tr>
                 <tr>
@@ -253,7 +252,7 @@
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"	
-                        value='${main_Branch_Number }' />
+                        value='${main_Branch_Number }' maxlength="60"/>
                     </td>
                 </tr>
                 <tr>
@@ -262,7 +261,7 @@
                         <input type="text" name="main_Store_Tel"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
-                            text-align: center;" pattern="[0-9]{12}" maxlength="10"
+                            text-align: center;" pattern="[0-9]{12}" maxlength="13"
                             value='${main_Store_Tel }' />
                     </td>
                 </tr>
@@ -271,7 +270,7 @@
                     <td colspan="2">
                         <input type="text" name="upstate" id="upstate" class= "reqInput" 
                         value='${upstate }'
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
@@ -279,7 +278,7 @@
                     <td colspan="2">
                         <input type="text" name="industry" id="industry" class= "reqInput"
                         value='${industry }'
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
@@ -287,8 +286,7 @@
                     <td colspan="2">
                         <input type="date" name="date_Of_Establishment"
                         value='${date_Of_Establishment }'
-                        style="background-color: rgb(235,235,235);
-                        border-style: none;
+                        style="background-color: rgb(255, 255, 149);
                         text-align: center;" 
                         
                         />
@@ -314,7 +312,10 @@
         	checkbox.checked = selectAll1.checked;
     	})
 	}
-
+	function openWindowPop1(url, name){
+        var options = 'top=330, left=400, width=1130, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+        window.open(url, name, options);
+    }
 	var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
 	deleteButton.addEventListener('click', function(){deleteData();}, false);
 

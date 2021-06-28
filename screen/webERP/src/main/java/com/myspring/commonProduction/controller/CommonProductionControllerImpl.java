@@ -191,6 +191,16 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		return mav;
 		}
   	
+  	@Override
+	@RequestMapping(value="/member/facilitySearchPop.do" ,method = RequestMethod.GET)
+	public ModelAndView facilitySearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List itemView = productionService.facilitySearch();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("itemView", itemView);
+		return mav;
+	}
+  	
 //  �옉�뾽吏��떆 �솗�젙 湲곕뒫遺� 
   	 @Override
   	  @RequestMapping(value="/member/comoperins.do" ,method = RequestMethod.GET)
@@ -334,6 +344,17 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		mav.addObject("message",message);
  		return mav;
  	}
+ 	
+ 	@Override
+	@RequestMapping(value="/member/deleteRegistOperationPerformanceInfoDetail.do" ,method = RequestMethod.GET)
+	public ModelAndView deleteRegistOperationPerformanceInfoDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("opNumber");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+		productionService.deleteRegistOperationPerformanceInfoDetail(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regoperperf.do");
+		return mav;
+		}
  	
 // 	�옉�뾽�떎�쟻 �벑濡� �뙘�뾽遺�
  	

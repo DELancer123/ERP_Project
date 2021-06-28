@@ -40,17 +40,17 @@
                             <li><a href="http://localhost:8090/webERP/member/proplanreg.do">생산계획등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regoperins.do">작업지시등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/comoperins.do">작업지시확정</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/prometfor.do">생산자재출고</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regoperperf.do">작업실적등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/operinsclo.do">작업지시마감처리</a></li>
+                            <!-- <li><a href="http://localhost:8090/webERP/member/prometfor.do">생산자재출고</a></li> -->
                         </ul></li>
                     <li><a href="#" id="side2">외주관리</a>
                         <ul id="l_sub2">
                             <li><a href="http://localhost:8090/webERP/member/regoutsourcing.do">외주발주등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/comoutsourcing.do">외주발주확정</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/outrelease.do">외주자재출고</a></li>
                             <li><a href="http://localhost:8090/webERP/member/regoutper.do">외주실적등록</a></li>
                             <li><a href="http://localhost:8090/webERP/member/outclosing.do">외주마감</a></li>
+                            <!-- <li><a href="http://localhost:8090/webERP/member/outrelease.do">외주자재출고</a></li> -->
                         </ul></li>
                     <li><a href="#" id="side3">기초정보관리</a>
                         <ul id="l_sub3">

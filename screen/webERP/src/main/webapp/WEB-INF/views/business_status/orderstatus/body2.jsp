@@ -7,7 +7,9 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-
+<% 
+	String custCode = request.getParameter("custCode");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +89,7 @@
                     <th>납 기 일</th>
                     <th>출하예정일</th>
                 </tr>
-                 <c:forEach var="cust" items="${orderList}" varStatus="status" > 
+                 <c:forEach var="cust" items="${submitOrderCust}" varStatus="status" > 
                 <tr>
                 	<th><input type="checkbox" name="content"/></th>
                 	<th><input type="text" value="${cust.ordCode}" readonly/></th>

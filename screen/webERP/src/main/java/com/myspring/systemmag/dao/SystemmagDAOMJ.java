@@ -24,6 +24,8 @@ public interface SystemmagDAOMJ {
 	
 	public List<SystemmagVOMJ> viewsearchPopName(String itemName) throws DataAccessException;
 	
+	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) throws DataAccessException;
+	
 	//창고/공정/외주공정등록
 	public List viewAllHouOutware() throws DataAccessException;
 	
@@ -47,4 +49,6 @@ public interface SystemmagDAOMJ {
 	public void deleteLogistics(String[] noary) throws DataAccessException;
 	
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) throws DataAccessException;
 }

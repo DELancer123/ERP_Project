@@ -22,7 +22,9 @@ public interface SystemmagServiceMJ {
 	
 	public List zipViewCustomer() throws DataAccessException;
 	
-	public List<SystemmagVOMJ> searchPopName(String itemName) throws DataAccessException;
+	public List<SystemmagVOMJ> searchPopCustomerName(String itemName) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopZipCodeName(String itemName) throws DataAccessException;
 	
 	//창고/공정/외주공정등록
 	public List viewAllHouOutware() throws DataAccessException;
@@ -47,5 +49,7 @@ public interface SystemmagServiceMJ {
 	public void deleteLogistics(String[] noary) throws DataAccessException;
 	
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopLogisticsName(String itemName) throws DataAccessException;
 		
 }

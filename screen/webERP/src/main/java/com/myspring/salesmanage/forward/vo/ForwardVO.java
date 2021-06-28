@@ -14,14 +14,13 @@ public class ForwardVO {
 
 	private String relCode;
 	private Date relDate;
-	private String custCode;
+	private String general_Customer_Code;
+	private String general_Customer_Name;
+	private String company_Registration_Number;
+	private String releaseOX;
 	private String deadLine;
 	private String note;
 
-	//cust
-	private String custName;
-	private String comNum;
-	private String repName;
 	private List<ForwardVO> ListVO;
 	private CorVO corVO;
 	
@@ -51,12 +50,20 @@ public class ForwardVO {
 		this.relDate = relDate;
 	}
 
-	public String getCustCode() {
-		return custCode;
+	public String getGeneral_Customer_Code() {
+		return general_Customer_Code;
 	}
 
-	public void setCustCode(String custCode) {
-		this.custCode = custCode;
+	public void setGeneral_Customer_Code(String general_Customer_Code) {
+		this.general_Customer_Code = general_Customer_Code;
+	}
+
+	public String getGeneral_Customer_Name() {
+		return general_Customer_Name;
+	}
+
+	public void setGeneral_Customer_Name(String general_Customer_Name) {
+		this.general_Customer_Name = general_Customer_Name;
 	}
 
 	public String getDeadLine() {
@@ -75,30 +82,6 @@ public class ForwardVO {
 		this.note = note;
 	}
 
-	public String getCustName() {
-		return custName;
-	}
-
-	public void setCustName(String custName) {
-		this.custName = custName;
-	}
-
-	public String getComNum() {
-		return comNum;
-	}
-
-	public void setComNum(String comNum) {
-		this.comNum = comNum;
-	}
-
-	public String getRepName() {
-		return repName;
-	}
-
-	public void setRepName(String repName) {
-		this.repName = repName;
-	}
-
 	public List<ForwardVO> getListVO() {
 		return ListVO;
 	}
@@ -114,4 +97,22 @@ public class ForwardVO {
 	public void setCorVO(CorVO corVO) {
 		this.corVO = corVO;
 	}
+
+	public String getCompany_Registration_Number() {
+		return company_Registration_Number;
+	}
+
+	public void setCompany_Registration_Number(String company_Registration_Number) {
+		this.company_Registration_Number = company_Registration_Number;
+	}
+
+	public String getReleaseOX() {
+		return releaseOX;
+	}
+
+	public void setReleaseOX(String releaseOX) {
+		this.releaseOX = releaseOX;
+	}
+
+
 }

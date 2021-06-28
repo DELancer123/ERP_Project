@@ -146,7 +146,7 @@
 
       function search2(){
     	
-      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+      	openWindowPop('${contextPath}/member/bomcodehelper.do','codehelper');
     	 
       }
       function setChildValue(name){
@@ -205,10 +205,6 @@
   		     articleNOInput.setAttribute("name","path");
   		     articleNOInput.setAttribute("value", link);
   		     document.getElementById('regBOM').appendChild(articleNOInput);
-          var workOrderTable = document.getElementById('workOrderTable');
-          var row = workOrderTable.insertRow(); 
-  			var link = document.location.href;
-  			document.getElementById("path").value = link;
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
 		

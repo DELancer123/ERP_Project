@@ -69,6 +69,13 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return popList;
 	}
 	
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopZipCodeList",itemName);
+		return popList;
+	}
+	
 	//창고/공정/외주공정등록
 	@Override /* 창고/장소 쿼리 */
 	public List viewAllHouOutware() throws DataAccessException {
@@ -136,13 +143,20 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Override
 	public void deleteLogistics(String[] noary) throws DataAccessException {
 		for(String obj: noary) {
-			sqlSession.delete("mappers.erp.deleteLogisticsManagement", Integer.parseInt(obj));	
+			sqlSession.delete("mappers.erp.deleteLogisticsManagement", obj);	
 		}	
 	}
 
 	@Override
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updateLogisticsManagement", systemmagVO);
+	}
+	
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopLogisticsList",itemName);
+		return popList;
 	}
 	
 

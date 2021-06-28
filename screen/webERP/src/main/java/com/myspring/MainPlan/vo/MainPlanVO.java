@@ -18,33 +18,14 @@ public class MainPlanVO {
 	private String standard;
 	private String inventory_unit;
 	private int sequence;
-	private Date expected_date;
-	private Date due_date;
+	private Date expectedDate;
+	private Date dueDate;
 	private int plan_quantity;
 	private String buyer;
 	private String note;
 	private Date startDate;
 	private Date endDate;	
 	private List<MainPlanVO> ListVO;
-//	private OrderVO;
-//	private CorVO;
-	
-
-//	public OrderVO getOrderVO() {
-//		return OrderVO;
-//	}
-//
-//	public void setOrderVO(OrderVO OrderVO) {
-//		this.OrderVO = OrderVO;
-//	}
-//
-//	public CorVO getCorVO() {
-//		return mainplanVO;
-//	}
-//
-//	public void setCorVO(CorVO CorVO) {
-//		this.CorVO = CorVO;
-//	}
 
 
 	public Date getStartDate() {
@@ -95,12 +76,23 @@ public class MainPlanVO {
 	public int getSequence() {return sequence;}
 	public void setSequence(int sequence) {this.sequence=sequence;}
 	
-	public Date getExpected_date() {return expected_date;}
-	public void setExpected_date(Date expected_date) {this.expected_date=expected_date;}
 	
-	public Date getDue_date() {return due_date;}
-	public void setDue_date(Date due_date) {this.due_date=due_date;}
-	
+	public Date getExpectedDate() {
+		return expectedDate;
+	}
+
+	public void setExpectedDate(Date expectedDate) {
+		this.expectedDate = expectedDate;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
 	public int getPlan_quantity() {return plan_quantity;}
 	public void setPlan_quantity(int plan_quantity) {this.plan_quantity=plan_quantity;}
 	

@@ -120,9 +120,9 @@ String sequence = (String) request.getAttribute("sequence");
 			<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${mrp.bomVO.itemNumber}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].itemName" value='${mrp.bomVO.itemName}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly/></td>
-				<td><input type="date" name="ListVO[${status.index}].due_date" value='${mrp.mainplanVO.due_date}' readonly /></td>
+				<td><input type="date" name="ListVO[${status.index}].dueDate" value='${mrp.mainplanVO.dueDate}' readonly /></td>
 	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly  style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].expected_order" value='${mrp.expected_order}' readonly/></td>
+				<td><input type="date" name="ListVO[${status.index}].expectedDate" value='${mrp.mainplanVO.expectedDate}' readonly/></td>
  				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity}'/></td>
 				<td><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly  style="width:100%"/></td>
 			</tr>	
@@ -138,8 +138,8 @@ String sequence = (String) request.getAttribute("sequence");
 <script type="text/javascript">
 
 /* 검색부 date onChange 함수 설정 */
-	var startDate = new Date().toISOString().substring(0,10);
-   	var endDate = new Date().toISOString().substring(0,10);
+	var startDate;
+   	var endDate;
    	
    	$('#searchStartDate').change(function (){
            var date = $('#searchStartDate').val();
@@ -150,20 +150,27 @@ String sequence = (String) request.getAttribute("sequence");
            endDate = date;
        });
    	
-   	 /* 조회버튼 클릭시 기능 구현 */
-        view_button.onclick = function(){
- 		  if(startDate>endDate){
- 			  alert(" 종료일은 시작일보다 작을수 없습니다.");
- 		  } else{
- 			  
-     	  const URLSearch = new URLSearchParams(location.search);
- 		  URLSearch.set('startDate', startDate);
- 		  URLSearch.set('endDate', endDate);
- 		  const newParam = URLSearch.toString();
 
- 		  window.open(location.pathname + '?' + newParam, '_self');
- 		  }
-  } 
+	/* 조회버튼 클릭시 기능 구현 */
+	view_button.onclick = function() {
+		if (startDate == null && endDate == null) {
+			alert("시작일과 종료일은 필수 입력 요소입니다!");
+		} else if (startDate == null) {
+			alert("시작일은 필수 입력 요소입니다!");
+		} else if (endDate == null) {
+			alert("종료일은 필수 입력 요소입니다!");
+		} else if (startDate > endDate) {
+			alert("종료일은 시작일보다 커야합니다!");
+		} else {
+
+			const URLSearch = new URLSearchParams(location.search);
+			URLSearch.set('startDate', startDate);
+			URLSearch.set('endDate', endDate);
+			const newParam = URLSearch.toString();
+
+			window.open(location.pathname + '?' + newParam, '_self');
+		}
+	}
 </script>
 </body>
 </html>

@@ -488,3 +488,5 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web,visualstudio
+screen/webERP(202106280123).zip
+screen/webERP/webERP/src/main/webapp/WEB-INF/lib/ojdbc6.jar

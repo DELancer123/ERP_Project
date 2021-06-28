@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,22 +40,22 @@
                 <ul id="lnb">
                     <li><a href="#"  id="side1">회사등록정보</a>
                         <ul id="l_sub1">
-                            <li><a href="http://localhost:8090/webERP/member/regcompany.do">회사등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regbusiness.do">사업장등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regdepartment.do">부서등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/inquiryemployees.do">사원조회</a></li>
+                            <li><a href="${contextPath }/member/regcompany.do">회사등록</a></li>
+                            <li><a href="${contextPath }/member/regbusiness.do">사업장등록</a></li>
+                            <li><a href="${contextPath }/member/regdepartment.do">부서등록</a></li>
+                            <li><a href="${contextPath }/member/inquiryemployees.do">사원조회</a></li>
                         </ul></li>
                     <li><a href="#" id="side2">기초정보관리</a>
                         <ul id="l_sub2">
-                            <li><a href="http://localhost:8090/webERP/member/regbasicacc.do">일반거래처등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regitemgroup.do">품목군등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regitem.do">품목등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/outware.do">창고/공정/외주공정등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/logistics_manage.do">물류관리내역등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/logperbusi.do">물류실적담당자등록(거래차)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/logperitem.do">물류실적담당자등록(품목)</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/reginspection.do">검사유형등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regsetcom.do">SET구성품등록</a></li>
+                            <li><a href="${contextPath }/member/regbasicacc.do">일반거래처등록</a></li>
+                            <li><a href="${contextPath }/member/regitemgroup.do">품목군등록</a></li>
+                            <li><a href="${contextPath }/member/regitem.do">품목등록</a></li>
+                            <li><a href="${contextPath }/member/outware.do">창고/공정/외주공정등록</a></li>
+                            <li><a href="${contextPath }/member/logistics_manage.do">물류관리내역등록</a></li>
+                            <%-- <li><a href="${contextPath }/member/logperbusi.do">물류실적담당자등록(거래차)</a></li>
+                            <li><a href="${contextPath }/member/logperitem.do">물류실적담당자등록(품목)</a></li>
+                            <li><a href="${contextPath }/member/reginspection.do">검사유형등록</a></li>
+                            <li><a href="${contextPath }/member/regsetcom.do">SET구성품등록</a></li> --%>
                         </ul></li>
                 </ul>
             </div>

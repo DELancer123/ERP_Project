@@ -196,7 +196,7 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text"/></td>
+                        <td><input type="text" /></td>
                         <td><input type="text"/></td>                        
                         <td><input type="text"/></td>
                     </tr>
@@ -343,4 +343,7 @@
       			window.location.href = "${contextPath}/member/inscomoperins.do?workOrderNumber="+no;
       	  }
         }
+        
+      
+        
       </script>

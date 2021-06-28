@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
+import com.myspring.commonProduction.operationRegist.vo.FacilitySearchVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
 import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
@@ -22,208 +23,215 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 
 @Repository("OperationRegistDAO")
 public class OperationRegistDAOImpl implements OperationRegistDAO{
-	@Autowired
-	private SqlSession sqlSession;
-	
-	@Override
-	public List selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;
-		
-		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date start = new Date(sdf.parse(startDate).getTime());
-		Date end = new Date(sdf.parse(endDate).getTime());
-		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
-		COIvo.setStartDate(start);
-		COIvo.setEndDate(end);
-		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
-		} else {
-			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
-		}
-		
-		return infoList;
-	}
-	
-	@Override
-	public List viewPop() throws DataAccessException {
-		List<FactoryViewVO> popList = null;
-		popList = sqlSession.selectList("mappers.erp.selectFactoryList");
+   @Autowired
+   private SqlSession sqlSession;
+   
+   @Override
+   public List selectAllOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException {
+      List<OperationRegistVO> infoList = null;
+      
+      if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      Date start = new Date(sdf.parse(startDate).getTime());
+      Date end = new Date(sdf.parse(endDate).getTime());
+      CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+      COIvo.setStartDate(start);
+      COIvo.setEndDate(end);
+      infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
+      } else {
+         infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
+      }
+      
+      return infoList;
+   }
+   
+   @Override
+   public List viewPop() throws DataAccessException {
+      List<FactoryViewVO> popList = null;
+      popList = sqlSession.selectList("mappers.erp.selectFactoryList");
+      return popList;
+   }
+   
+   @Override
+   public List departmentViewPop() throws DataAccessException {
+      List<DepartmentViewVO> popList = null;
+      popList = sqlSession.selectList("mappers.erp.selectDepartmentList");
+      return popList;
+   }
+   
+   @Override
+   public List productionPlanPop(String startDate, String endDate) throws DataAccessException, ParseException {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      Date start = new Date(sdf.parse(startDate).getTime());
+      Date end = new Date(sdf.parse(endDate).getTime());
+      CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+      COIvo.setStartDate(start);
+      COIvo.setEndDate(end);
+      List<CommitOperationInstructionVO> COIList = null;
+      COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList", COIvo);
+      return COIList;
+   }
+   
+   @Override
+   public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
+      int idx = ORVO.getListVO().size()-1;
+      int result = sqlSession.insert("mappers.erp.insertOperationInstruction",ORVO.getListVO().get(idx));
+      return 0;
+   }
+   
+   @Override
+   public int updOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
+      int result = 0; 
+
+      int idx = ORVO.getListVO().size()-1;
+      for(int i = 0; i<idx;i++) {
+         System.out.println("i"+i);
+      System.out.println("idx : "+idx);
+      result = sqlSession.update("mappers.erp.updateOperationInstruction",ORVO.getListVO().get(i));      
+      System.out.println("DAOresult:"+result);
+      //bomList.add(bomVO);
+      //}
+      }
+      return result;
+   }
+   
+   @Override
+   public void delOperationInstruction(String[] numberAry) throws DataAccessException{
+      for(String obj: numberAry) {
+         String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
+         if(check.equals("계획")) {
+        	 sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);
+         } else {
+            System.out.println("확정,마감 상태의 정보는 삭제할 수 없습니다.");
+            continue;
+         }
+      }
+   }
+   
+   @Override
+	public List facilityViewPop() throws DataAccessException {
+		List<FacilitySearchVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectFacilitySearch");
 		return popList;
 	}
-	
-	@Override
-	public List departmentViewPop() throws DataAccessException {
-		List<DepartmentViewVO> popList = null;
-		popList = sqlSession.selectList("mappers.erp.selectDepartmentList");
-		return popList;
-	}
-	
-	@Override
-	public List productionPlanPop(String startDate, String endDate) throws DataAccessException, ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date start = new Date(sdf.parse(startDate).getTime());
-		Date end = new Date(sdf.parse(endDate).getTime());
-		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
-		COIvo.setStartDate(start);
-		COIvo.setEndDate(end);
-		List<CommitOperationInstructionVO> COIList = null;
-		COIList = sqlSession.selectList("mappers.erp.selectProductionPlanList", COIvo);
-		return COIList;
-	}
-	
-	@Override
-	public int addOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
-		int idx = ORVO.getListVO().size()-1;
-		int result = sqlSession.insert("mappers.erp.insertOperationInstruction",ORVO.getListVO().get(idx));
-		return 0;
-	}
-	
-	@Override
-	public int updOperationInstruction(OperationRegistVO ORVO) throws DataAccessException {
-		int result = 0; 
+   
+//   작업지시확정 기능부
+   @Override
+   public List selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException {
+      List<OperationRegistVO> infoList = null;
+      
+      if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      Date start = new Date(sdf.parse(startDate).getTime());
+      Date end = new Date(sdf.parse(endDate).getTime());
+      CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
+      COIvo.setStartDate(start);
+      COIvo.setEndDate(end);
+      infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
+      } else {
+         infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
+      }
+      
+      return infoList;
+   }
+   
+   @Override
+   public List selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException {
+      List<OperationDetailVO> infoList = null;      
+      infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
+      return infoList;
+   }
+   
+   @Override
+   public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
+      int result = 0; 
+      String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
 
-		int idx = ORVO.getListVO().size()-1;
-		for(int i = 0; i<idx;i++) {
-			System.out.println("i"+i);
-		System.out.println("idx : "+idx);
-		result = sqlSession.update("mappers.erp.updateOperationInstruction",ORVO.getListVO().get(i));		
-		System.out.println("DAOresult:"+result);
-		//bomList.add(bomVO);
-		//}
-		}
-		return result;
-	}
-	
-	@Override
-	public void delOperationInstruction(String[] numberAry) throws DataAccessException{
-		for(String obj: numberAry) {
-			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", obj);
-			if(check.equals("怨꾪쉷")) {
-			sqlSession.delete("mappers.erp.deleteOperationInstruction", obj);
-			} else {
-				System.out.println("�솗�젙,留덇컧 �긽�깭�쓽 �젙蹂대뒗 �궘�젣�븷 �닔 �뾾�뒿�땲�떎.");
-				continue;
-			}
-		}
-	}
-	
-//	�옉�뾽吏��떆�솗�젙 湲곕뒫遺�
-	@Override
-	public List selectAllCommitOperationInfo(String startDate, String endDate) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;
-		
-		if(startDate != null && startDate !=  "" && endDate != null && endDate != "") {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date start = new Date(sdf.parse(startDate).getTime());
-		Date end = new Date(sdf.parse(endDate).getTime());
-		CommitOperationInstructionVO COIvo = new CommitOperationInstructionVO();
-		COIvo.setStartDate(start);
-		COIvo.setEndDate(end);
-		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfoCondition", COIvo);
-		} else {
-			infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistInfo");
-		}
-		
-		return infoList;
-	}
-	
-	@Override
-	public List selectAllCommitOperationInfoDetail(String number) throws DataAccessException, ParseException {
-		List<OperationDetailVO> infoList = null;		
-		infoList = sqlSession.selectList("mappers.erp.selectAllOperationRegistDetail", number);
-		return infoList;
-	}
-	
-	@Override
-	public int delCommitOperation(OperationDetailVO ODVO) throws DataAccessException {
-		int result = 0; 
-		String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
+      int idx = ODVO.getDetailVO().size();
+      for(int i = 0; i<idx;i++) {
+         System.out.println("i"+i);
+      System.out.println("idx : "+idx);
+      System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
+      result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
+      System.out.println("DAOresult:"+result);
+      }
+      sqlSession.update("mappers.erp.materialSet", workOrderNumber);
+      return result;
+   }
+   
+//   확정 버튼 기능부
+   @Override
+   public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
+      List<String> message = new ArrayList();
+      
+      for(String number: numberAry) {
+         
+         String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
+         if(check.equals("계획")) {
+            sqlSession.update("mappers.erp.updConfirmDetail", number);
+            message.add("업데이트 완료!");
+         } else {
+            message.add("확정, 마감상태의 작업은 변경 할 수 없습니다!");
+         }
+      }
+      return message;
+   }
+   
+   @Override
+   public List<String> revertDetail(String[] numberAry) throws DataAccessException{
+      List<String> message = new ArrayList();
+      
+      for(String number: numberAry) {
+         
+         String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
+         System.out.println("다오 체크 확인" + check);
+         if(check.equals("계획")) {
+            message.add("이미 계획상태입니다!");
+         } else if(check.equals("마감")) {
+            message.add("마감된 작업은 수정할 수 없습니다!");
+         } else {
+            String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
+            if(count.equals("0")) {
+               sqlSession.update("mappers.erp.updRevertDetail", number);
+               message.add("업데이트 완료!");
+            } else {
+               message.add("출고 정보가 있는 경우 상태를 변경할 수 없습니다!");
+            }
+         }
+      }
+      return message;
+   }
+   
+//   작업지시확정 자재출고 기능부
 
-		int idx = ODVO.getDetailVO().size();
-		for(int i = 0; i<idx;i++) {
-			System.out.println("i"+i);
-		System.out.println("idx : "+idx);
-		System.out.println("�떎�삤 異쒕젰 �솗�씤"+ODVO.getDetailVO().get(i).getForwardingNumber());
-		result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
-		System.out.println("DAOresult:"+result);
-		}
-		sqlSession.update("mappers.erp.materialSet", workOrderNumber);
-		return result;
-	}
-	
-//	�솗�젙 踰꾪듉 湲곕뒫遺�
-	@Override
-	public List<String> confirmDetail(String[] numberAry) throws DataAccessException{
-		List<String> message = new ArrayList();
-		
-		for(String number: numberAry) {
-			
-			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
-			if(check.equals("怨꾪쉷")) {
-				sqlSession.update("mappers.erp.updConfirmDetail", number);
-				message.add("�뾽�뜲�씠�듃 �셿猷�!");
-			} else {
-				message.add("�솗�젙, 留덇컧�긽�깭�쓽 �옉�뾽�� 蹂�寃� �븷 �닔 �뾾�뒿�땲�떎!");
-			}
-		}
-		return message;
-	}
-	
-	@Override
-	public List<String> revertDetail(String[] numberAry) throws DataAccessException{
-		List<String> message = new ArrayList();
-		
-		for(String number: numberAry) {
-			
-			String check = sqlSession.selectOne("mappers.erp.checkConfirmDetail", number);
-			System.out.println("�떎�삤 泥댄겕 �솗�씤" + check);
-			if(check.equals("怨꾪쉷")) {
-				message.add("�씠誘� 怨꾪쉷�긽�깭�엯�땲�떎!");
-			} else if(check.equals("留덇컧")) {
-				message.add("留덇컧�맂 �옉�뾽�� �닔�젙�븷 �닔 �뾾�뒿�땲�떎!");
-			} else {
-				String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
-				if(count.equals("0")) {
-					sqlSession.update("mappers.erp.updRevertDetail", number);
-					message.add("�뾽�뜲�씠�듃 �셿猷�!");
-				} else {
-					message.add("異쒓퀬 �젙蹂닿� �엳�뒗 寃쎌슦 �긽�깭瑜� 蹂�寃쏀븷 �닔 �뾾�뒿�땲�떎!");
-				}
-			}
-		}
-		return message;
-	}
-	
-//	�옉�뾽吏��떆�솗�젙 �옄�옱異쒓퀬 湲곕뒫遺�
-
-	@Override
-	public List selectRelease(String number) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;
-		
-		infoList = sqlSession.selectList("mappers.erp.selectRelease", number);		
-		return infoList;
-	}
-	
-	@Override
-	public List selectReleaseDetail(String number) throws DataAccessException, ParseException {
-		List<OperationRegistVO> infoList = null;
-		
-		String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
-		if(count.equals("0")) {
-			infoList = sqlSession.selectList("mappers.erp.selectReleaseDetail",number);
-		} else {
-			System.out.println("異쒓퀬 �젙蹂닿� �씠誘� 議댁옱�빀�땲�떎!");
-		}
-		return infoList;
-	}
-	
-	@Override
-	public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
-		int idx = ORVO.getDetailVO().size()-1;
-		
-		for(int i = 0; i<idx; i++) {			
-		int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
-		}
-		return 0;
-	}
+   @Override
+   public List selectRelease(String number) throws DataAccessException, ParseException {
+      List<OperationRegistVO> infoList = null;
+      
+      infoList = sqlSession.selectList("mappers.erp.selectRelease", number);      
+      return infoList;
+   }
+   
+   @Override
+   public List selectReleaseDetail(String number) throws DataAccessException, ParseException {
+      List<OperationRegistVO> infoList = null;
+      
+      String count = sqlSession.selectOne("mappers.erp.countWorkOrderNumber",number);
+      if(count.equals("0")) {
+         infoList = sqlSession.selectList("mappers.erp.selectReleaseDetail",number);
+      } else {
+         System.out.println("출고 정보가 이미 존재합니다!");
+      }
+      return infoList;
+   }
+   
+   @Override
+   public int addReleaseData(OperationDetailVO ORVO) throws DataAccessException {
+      int idx = ORVO.getDetailVO().size();
+      
+      for(int i = 0; i<idx; i++) {         
+      int result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
+      }
+      return 0;
+   }
 }
