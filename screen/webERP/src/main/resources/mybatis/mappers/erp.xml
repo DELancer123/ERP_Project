@@ -1563,7 +1563,7 @@ ORDER BY out.workordernumber]]>
 	<select id="selectPopZipCodeList" resultMap="systemmagZipResult">
 		<![CDATA[ select zipCode, road_Address, lot_Address
 		  from SM_CRI_ZIP
-		  where road_Address like '%'||#{itemName}||'%' and not lot_Address is null;
+		  where road_Address like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
