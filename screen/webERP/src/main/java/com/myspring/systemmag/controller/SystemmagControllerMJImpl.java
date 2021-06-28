@@ -281,6 +281,8 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@RequestMapping(value = "/member/deleteLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView deleteLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("no"); // 체크가된 체크박스의 값들을 가져오는 변수임
+		System.out.println("삭제구현중");
+		System.out.println("number:"+number);
 		String viewName = getViewName(request);
 		String[] numberary = number.split(","); // 쉼표를 기준으로 나누어 배열에 저장한다
 
@@ -321,7 +323,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/member/searchPopName1.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/searchPopNameMJ.do", method = RequestMethod.GET)
 	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<SystemmagVOMJ> popName = null;

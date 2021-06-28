@@ -843,51 +843,7 @@ order by bom.parent_item_code]]>
 	<select id="selectAllItemList" resultMap="salesplan">
       <![CDATA[select * from SM_BIM_Ite_Reg order by item_code]]>
 	</select>
-	
-	<!-- 품목단가등록파트 재원-->
-	<!-- <resultMap id="itemView" type="itemVO">
-		<result property="Item_Code" column="Item_Code" /> 품번
-		<result property="Item_Name" column="Item_Name" /> 품명
-		<result property="Standard" column="Standard" /> 규격
-		<result property="Inventory_Unit" column="Inventory_Unit" /> 단위
-		<result property="Kind" column="Kind" /> 종류(구매단가,판매단가)
-		<result property="Purchase_Price" column="Purchase_Price" /> 구매단가
-		<result property="Sales_Price" column="Sales_Price" /> 판매단가, 구매단가입력시 Null
-	</resultMap>
-	<resultMap id="popView" type="itemVO">
-		<result property="Item_Code" column="Item_Code" />
-		<result property="Item_Name" column="Item_Name" />
-		<result property="standard" column="standard" />
-	</resultMap>
 
-	<select id="selectAllMemberList" resultMap="itemView">
-		<![CDATA[select * from CPM_BIM_BOM_REG]]>
-	</select>
-	<select id="searchitem" resultMap="itemView"
-		parameterType="String">
-		<![CDATA[select * from CPM_BIM_BOM_REG where item_code = #{itemNumber}]]>
-	</select>
-	<select id="selectitem" resultMap="itemView"
-		parameterType="String">
-		<![CDATA[select item_code,item_name,standard,inventory_unit from CPM_BIM_BOM_REG where item_code=#{itemNumber}]]>
-	</select>
-	<select id="selectPopList" resultMap="popView">
-		<![CDATA[select * from CPM_BIM_BOM_REG]]>
-	</select>
-	<insert id="insertItem" parameterType="itemVO">
-		<![CDATA[
-		 insert into CPM_BIM_BOM_REG
-		 values(#{no}, #{itemNumber}, #{itemName}, #{standard}, #{unit}, #{precisionQuantity}, #{loss}, #{actualQuantity}, #{actualCost}, #{outSourcingUnitPrice}, #{startDate}, #{endDate}, #{note})
-		]]>  
-	</insert>
-	<update id="updateItem" parameterType="itemVO">
-		<![CDATA[
-		update CPM_BIM_BOM_REG
-		set item_name=#{itemName}, standard=#{standard}, inventory_unit=#{unit}
-		where  item_code=#{itemNumber}
-		]]>  
-	</update> -->
-	
 	<!-- 외주발주등록 파트 -->
 <resultMap id="outsourcingView" type="RegOutsourcingVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
@@ -1554,7 +1510,7 @@ ORDER BY out.workordernumber]]>
 	<select id="selectBasicList" parameterType="String" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{com_code}]]>
 	</select>
-	<delete id="deleteBasicList">
+	<delete id="deleteBasicList" parameterType="String">
 		delete from SM_BIM_GEN_CUS_REG where GENERAL_CUSTOMER_CODE = #{no}
 	</delete>
 	<update id="updateBasicList" parameterType="SystemmagVOMJ">
