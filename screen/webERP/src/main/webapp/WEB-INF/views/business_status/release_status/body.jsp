@@ -69,11 +69,11 @@ String dueDate = (String) request.getAttribute("dueDate");
 			<tr>
 				<td colspan="">출고일자 범위를 입력 해주세요</td>
 				<td colspan="3" style="width: 80px;">
-				<input type="date" id="searchStartDate" value="${param.startDate }" style="width: 100%;" />
+				<input type="date" id="searchStartDate" value="${param.startDate }" style="width: 100%; background-color:rgb(255,255,149);" />
 				</td>
 				<td>~</td>
 				<td>
-				<input type="date" id="searchEndDate" value="${param.endDate }"style="width: 100%;" />
+				<input type="date" id="searchEndDate" value="${param.endDate }"style="width: 100%; background-color:rgb(255,255,149);" />
 				</td>
 			</tr>
 		</table>
