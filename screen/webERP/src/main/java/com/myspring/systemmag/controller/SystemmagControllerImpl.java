@@ -23,9 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.systemmag.service.SystemmagService;
+import com.myspring.systemmag.service.SystemmagServiceMJ;
 import com.myspring.systemmag.vo.DepartmentVO;
 import com.myspring.systemmag.vo.ItemgVO;
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 import com.myspring.systemmag.vo.WorkplaceVO;
 import com.myspring.systemmag.vo.itemVO;
 
@@ -34,8 +36,11 @@ public class SystemmagControllerImpl implements SystemmagController{
 	@Autowired
 	private SystemmagService systemmagService;
 	@Autowired
+	private SystemmagServiceMJ systemmagServiceMJ;
+	@Autowired
 	private SystemmagVO systemmagVO;
-	
+	@Autowired
+	private SystemmagVOMJ systemmagVOMJ;
 	//회사등록
 	@Override
 	@RequestMapping(value="/member/addcompany.do" ,method = RequestMethod.GET)
@@ -457,6 +462,20 @@ public class SystemmagControllerImpl implements SystemmagController{
 	@Override
 	public ModelAndView adressZip(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return null;
+	}
+	
+	//------------------------------ajax Controller
+	@ResponseBody//ajax관련 컨트롤러(거래처코드)
+	@RequestMapping(value = "/member/searchPopCompanyZipCode.do", method = RequestMethod.GET)
+	public ModelAndView searchPopCompanyZipCode(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+//		popName = systemmagService.searchPopCustomerName(itemName);
+		popName = systemmagServiceMJ.searchPopZipCodeName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
 	}
 	
 	
