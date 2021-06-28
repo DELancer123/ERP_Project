@@ -286,8 +286,8 @@ request.setCharacterEncoding("UTF-8");
         var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
         deleteButton.addEventListener('click', function(){deleteData();}, false);
         
-        var deleteButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
-        deleteButton.addEventListener('click', function(){searchData();}, false);
+        var viewButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
+        viewButton.addEventListener('click', function(){searchData();}, false);
         
         var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
         registButton.addEventListener('click', function(){newRow();}, false);
@@ -303,6 +303,7 @@ request.setCharacterEncoding("UTF-8");
         
         
         function searchData() {
+        	alert('조회오류수정중임');
         	var searchForm = $('#searchForm');
         	searchForm.submit();
         }

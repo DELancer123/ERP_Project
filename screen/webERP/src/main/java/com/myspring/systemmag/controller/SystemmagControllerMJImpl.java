@@ -70,8 +70,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
 		System.out.println("comcode:"+com_code);
+		System.out.println("customercode:"+customerCode);
 
-		if (com_code == null || submit == null) { // 첫접속이라면?
+		if (com_code == null && submit == null) { // 첫접속이라면?
 			if(customerCode != null) {				
 				System.out.println("3번분기들어옴");
 				System.out.println("customerCode:"+customerCode);
@@ -97,6 +98,8 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 			System.out.println("2번분기들어옴");
 			List comView = systemmagService.viewAllCustomer(); // select문에
 			List comcom = systemmagService.viewCustomer(com_code); // where절을 추가한다
+			System.out.println("comViewSize:"+comView.size());
+			System.out.println("comcomSize:"+comcom.size());
 			mav = new ModelAndView(viewName);
 			mav.addObject("comView", comView);
 			mav.addObject("comcom", comcom);
@@ -204,7 +207,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		String submit = (String) request.getParameter("submit"); // 첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); // 몇번째 목록인지 체크하는 변수임, url로 넘어옴
 
-		if (code == null || submit == null) { // 첫접속이라면?
+		if (code == null && submit == null) { // 첫접속이라면?
 			System.out.println("1번분기들어옴");
 			List houOutwareList = systemmagService.viewAllHouOutware(); // select all 쿼리를 호출한다
 			List proOutwareList = systemmagService.viewAllProOutware();
