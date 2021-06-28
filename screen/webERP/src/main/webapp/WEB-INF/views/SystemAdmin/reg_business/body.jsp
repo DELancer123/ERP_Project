@@ -147,7 +147,7 @@
                     <td align="center">대표자명</td>
                     <td colspan="2">
                         <input type="text" name="worrepresentatives_Name" id="reqInput" value="${worrepresentatives_Name }"
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="50"/>
                     </td>
                 </tr>
                 <tr>
@@ -156,7 +156,7 @@
                         <input type="text" name="workplace_Zipcode" value="${workplace_Zipcode }" id="zipcode" readonly
                         style="background-color: rgb(255, 255, 149);
                         width: 205px;
-                        text-align: center;" pattern="[0-9]{5}" maxlength="5"/>
+                        text-align: center;" pattern="[0-9]{5}" maxlength="12"/>
                         <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
                 </tr>
@@ -164,7 +164,7 @@
                     <td align="center">사업장주소</td>
                     <td colspan="2">
                         <input type="text" name="workplace_Address" id="address1" value="${workplace_Address}" readonly
-                        style="width: 240px;" />
+                        style="width: 240px;" maxlength="60"/>
                     </td>
                 </tr>
                 <tr>
@@ -173,7 +173,7 @@
                         <input type="text" name="workplace_Number"  value="${workplace_Number}" id="address2"
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
-                        text-align: center;"/>
+                        text-align: center;" maxlength="60"/>
                     </td>
                 </tr>
                 <tr>
@@ -189,14 +189,14 @@
                     <td align="center">업태</td>
                     <td colspan="2">
                         <input type="text" name="worupstate" id="reqInput" value="${worupstate }"
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="2">
                         <input type="text" name="worindustry" id="reqInput" value="${worindustry }"
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>

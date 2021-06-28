@@ -107,19 +107,19 @@
                         <input type="text"  ondblclick="searchView(this.value)" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" maxlength="13" />
+                        text-align: center;" readonly />
                     </td>
                     <td>
                         <input type="text" value='${com.company_Name }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;"/>
+                        text-align: center;" readonly/>
                     </td>
                     <td>
                         <select id="sortation1" name="sortation1"
                         style="background-color:rgb(235, 235, 235); 
-                        border-style: none;
-                        text-align: center;">
+                        border-style: none; 
+                        text-align: center;" >
                             <option value=0 <c:if test="${com.sortation == 0}">selected</c:if>>법인</option>
                             <option value=1 <c:if test="${com.sortation == 1}">selected</c:if>>개인</option>
                         </select>
@@ -211,7 +211,7 @@
                     <td colspan="2">
                         <input type="text" name="representatives_Name" id="representatives_Name" class= "reqInput"
                         style="width: 240px;"
-                        value='${representatives_Name }' />
+                        value='${representatives_Name }' maxlength="50"/>
                     </td>
                 </tr>
                 <tr>
@@ -221,7 +221,7 @@
                         value='${resident_Registration_Number }'
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
-                        text-align: center;" pattern="[0-9]{13}" maxlength="14"
+                        text-align: center;" maxlength="15"
                          />
                         개인의 경우 필수입력항목
                     </td>
@@ -232,7 +232,7 @@
                         <input type="text" name="main_Store_Postal_Code" id="zipcode" readonly
                         style="background-color: rgb(255, 255, 149);
                         width: 205px;
-                        text-align: center;" pattern="[0-9]{5}" maxlength="6"
+                        text-align: center;" pattern="[0-9]{5}" maxlength="12"
                         value='${main_Store_Postal_Code }' />
                         <a href="javascript:searchzip()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
@@ -242,7 +242,7 @@
                     <td colspan="2">
                         <input type="text" name="main_Store_Address" id="address1" class= "reqInput" readonly
 						value='${main_Store_Address }'
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="60" />
                     </td>
                 </tr>
                 <tr>
@@ -252,7 +252,7 @@
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
                         text-align: center;"	
-                        value='${main_Branch_Number }' />
+                        value='${main_Branch_Number }' maxlength="60"/>
                     </td>
                 </tr>
                 <tr>
@@ -261,7 +261,7 @@
                         <input type="text" name="main_Store_Tel"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
-                            text-align: center;" pattern="[0-9]{12}" maxlength="12"
+                            text-align: center;" pattern="[0-9]{12}" maxlength="13"
                             value='${main_Store_Tel }' />
                     </td>
                 </tr>
@@ -270,7 +270,7 @@
                     <td colspan="2">
                         <input type="text" name="upstate" id="upstate" class= "reqInput" 
                         value='${upstate }'
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
@@ -278,7 +278,7 @@
                     <td colspan="2">
                         <input type="text" name="industry" id="industry" class= "reqInput"
                         value='${industry }'
-                        style="width: 240px;"/>
+                        style="width: 240px;" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
