@@ -68,7 +68,7 @@
         
       <script>
        function openWindowPop(url, name){
-          var options = 'top=0, left=0, width=420, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+          var options = 'top=0, left=0, width=600, height=420, status=no, menubar=no, toolbar=no, resizable=no';
           window.open(url, name, options);
       }
       

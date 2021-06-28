@@ -140,11 +140,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-function search2(){
-	
-  	openWindowPop('http://localhost:8090/webERP/member/applyorder.do','applyorder');
-	 
-  }
+
 function setChildValue(code,name,buyer,standard,inventory_unit,note){
 	  const URLSearch = new URLSearchParams(location.search);
 	  URLSearch.set('submit', '2');
@@ -229,12 +225,17 @@ function InsertRow(){
 	}
 
 view_button.onclick = function(){
-	const URLSearch = new URLSearchParams(location.search);
-	URLSearch.set('submit', '1');
-	const newParam = URLSearch.toString();
-
-	window.open(location.pathname + '?' + newParam, '_self');
+	if(item_Code == null){
+		alert("품명,품번 검색 먼저하시오!")
+	}else{
+		const URLSearch = new URLSearchParams(location.search);
+		URLSearch.set('submit', '1');
+		const newParam = URLSearch.toString();
+		
+		window.open(location.pathname + '?' + newParam, '_self');
+	}
 }
+
 
 </script>
 </form>

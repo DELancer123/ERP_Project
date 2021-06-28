@@ -20,7 +20,7 @@ a {
 }
 
 #wrap {
-	width: 300px;
+	width: 600px;
 	height: 400px;
 	border: 1px solid black;
 }
@@ -58,6 +58,12 @@ a {
 						<td><input type="text" id="name" name="name" class="name" /></td>
 					</tr>
 					<tr>
+						<td><input type="hidden" id="OdQty" name="OdQty" /></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="expectedDate" name="ExpDate" /></td>
+					</tr>
+					<tr>
 						<td><input type="hidden" id="buyer" name="buyer"/></td>
 					</tr>
 					<tr>
@@ -69,7 +75,6 @@ a {
 					<tr>
 						<td><input type="hidden" id="note" name="note"/></td>
 					</tr>
-					<tr>
 			</table>
 			<div id="button">	
 				<button id="submit" onclick="submitClick(this.form)">적용</button>
@@ -87,7 +92,7 @@ a {
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
 					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.buyer }'
-					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
+					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
       					  <td><a href="#">${MpsOS.ordersQuantity}</a></td>
       					  <td><a href="#">${MpsOS.expectedDate}</a></td>
@@ -108,6 +113,8 @@ a {
 var submit_button = document.getElementById("submit");
 var text_code = document.getElementById("code");
 var text_name = document.getElementById("name");
+var text_OdQty = document.getElementById("OdQty");
+var text_ExpDate = document.getElementById("ExpDate");
 var text_buyer = document.getElementById("buyer");
 var text_standard = document.getElementById("standard");
 var text_inventory_unit = document.getElementById("inventory_unit");
@@ -132,13 +139,14 @@ submit_button.onclick = function(){
 	text_standard.setAttribute("standard",text_standard.value);
 	text_inventory_unit.setAttribute("inventory_unit",text_inventory_unit.value);
 	text_note.setAttribute("note",text_note.value);
-
 	
-		var url = window.opener.document.location.href;
-		var url_arr = url.split('?');
-		opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value+
-	'&&buyer='+text_buyer.value+'&&standard='+text_standard.value+'&&inventory_unit='+text_inventory_unit.value+'&&note='+text_note.value+'&&submit='+0;
-		window.close();
+	var url = window.opener.document.location.href;
+	var url_arr = url.split('?');
+	opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value+
+	'&&buyer='+text_buyer.value+'&&standard='+text_standard.value+'&&inventory_unit='+text_inventory_unit.value+
+	'&&note='+text_note.value+'&&submit='+0;
+	
+	window.close();
 	}	
 //ajax 구문
 $('.name').keyup(function(){
@@ -158,10 +166,18 @@ $.ajax({
 		for(var i = 0 ; i<data.length ; i++){
 			var str = '';
 				str += 	'<tr align="center" id = "yahoo">';
+				str += 	'<td>품번: </td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Code + '</a></td>';  
+				str += 	'<td>품명 :</td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Name + '</a></td>';  
+				str += 	'<td>주문수량 :</td>';
+				str +=  '<td><a href = "#">'+ data[i].ordersQuantity + '</a></td>';  
+				str += 	'<td>예정발주일 :</td>';
+				str +=  '<td><a href = "#">'+ data[i].expectedDate + '</a></td>';  
 				str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].item_Code+'"></td>';  
 				str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].item_Name+'" ></td>';  
+				str +=  '<td><input type = "hidden" id="iOdQty" value = "'+data[i].ordersQuantity+'" ></td>';  
+				str +=  '<td><input type = "hidden" id="iExpDate" value = "'+data[i].expectedDate+'" ></td>';  
 				str +=	'</tr>';
 				//반복문을 사용하여 searchItem table에 추가
 				$("#searchItem").append(str);
@@ -178,9 +194,13 @@ $(document).on("click", "#yahoo", function (e){
 
 var initCode = 	$(this).find('input[id=iCode]').val();	
 var initName = 	$(this).find('input[id=iName]').val();
+var initOdQty = 	$(this).find('input[id=iOdQty]').val();
+var initExpDate = 	$(this).find('input[id=iExpDate]').val();
 
 $('input[name=code]').val(initCode);
 $('input[name=name]').val(initName);
+$('input[name=OdQty]').val(initOdQty);
+$('input[name=ExpDate]').val(initExpDate);
 
 });
 </script>
