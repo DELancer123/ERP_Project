@@ -107,7 +107,7 @@
                         <input type="text"  ondblclick="searchView(this.value)" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
-                        text-align: center;" maxlength="12" />
+                        text-align: center;" maxlength="13" />
                     </td>
                     <td>
                         <input type="text" value='${com.company_Name }'
@@ -221,7 +221,7 @@
                         value='${resident_Registration_Number }'
                         style="background-color: rgb(235,235,235);
                         border-style: none; width: 240px;
-                        text-align: center;" pattern="[0-9]{13}" maxlength="13"
+                        text-align: center;" pattern="[0-9]{13}" maxlength="14"
                          />
                         개인의 경우 필수입력항목
                     </td>
@@ -262,7 +262,7 @@
                         <input type="text" name="main_Store_Tel"
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
-                            text-align: center;" pattern="[0-9]{12}" maxlength="10"
+                            text-align: center;" pattern="[0-9]{12}" maxlength="12"
                             value='${main_Store_Tel }' />
                     </td>
                 </tr>
