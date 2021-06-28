@@ -321,13 +321,25 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/member/searchPopName1.do", method = RequestMethod.GET)
-	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+	//----------------------------------
+	@ResponseBody//ajax관련 컨트롤러
+	@RequestMapping(value = "/member/searchPopCustomerName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopCustomerName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<SystemmagVOMJ> popName = null;
-		popName = systemmagService.searchPopName(itemName);
+		popName = systemmagService.searchPopCustomerName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	@ResponseBody//ajax관련 컨트롤러
+	@RequestMapping(value = "/member/searchPopLogisticsName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopLogisticsName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = systemmagService.searchPopLogisticsName(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 

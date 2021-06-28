@@ -1633,6 +1633,13 @@ ORDER BY out.workordernumber]]>
 			#{explanation}, 
 			#{remarks})]]>
 	</insert>
+	<select id="selectPopLogisticsList" resultMap="logisticsManagementResult">
+		<![CDATA[ select logistics_In_Code, logistics_In_Name
+		  from SM_BIM_LOG_MAN
+		  where logistics_In_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<!-- 물류관리내역등록끝 -->
 
 	<select id="selectAllSalesplanList" resultMap="salesplan">
       <![CDATA[select * from SM_BIM_Sal_Pla_Reg order by plan_code]]>

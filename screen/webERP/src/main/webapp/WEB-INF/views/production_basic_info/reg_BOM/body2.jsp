@@ -146,7 +146,7 @@
 
       function search2(){
     	
-      	openWindowPop('http://localhost:8090/webERP/member/bomcodehelper.do','codehelper');
+      	openWindowPop('${contextPath}/member/bomcodehelper.do','codehelper');
     	 
       }
       function setChildValue(name){

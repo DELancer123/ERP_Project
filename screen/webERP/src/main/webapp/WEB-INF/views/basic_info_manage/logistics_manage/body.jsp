@@ -103,11 +103,11 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td align="center" style="width:25%; text-align:right;">ÄÚµå</td>
 	                    <td style="width:25%;">
-	                        <input type="text">
+	                        <input type="text" id="logisSearchBox">
 	                    </td>    
 	                    <td style="width:2%;"><div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div></td>
 	                    <td style="width:25%;">
-	                        <input type="text">
+	                        <input type="text" id="logisSearchBox2">
 	                    </td>
 	                </tr>
 	            </table>

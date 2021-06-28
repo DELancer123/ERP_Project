@@ -77,7 +77,7 @@
                     	단가 등록 된 품목 검색(삭제,수정)
                     </td>
                     <td style="width: 100px;">
-                    	<input type="text" style="width: 100%;" name="" value='${param.itemNumber }'/>
+                    	<input type="text" style="width: 100%; background-color:rgb(255,255,149);" name="" value='${param.itemNumber }'/>
                     </td>
                     <td>
                     	<a href="javascript:search1()">
@@ -116,22 +116,22 @@
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value='${iup.itemName }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].standard" value='${iup.standard }' readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].inventoryUnit" value='${iup.inventoryUnit }' readonly/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' /></td>
-                    	<td><input type="text" name="ListVO[${status.index}].salesPrice" value='${iup.salesPrice }'/></td>                                                                            
+                    	<td><input type="text" name="ListVO[${status.index}].purchasePrice" value='${iup.purchasePrice }' style="background-color:rgb(255,255,149);"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].salesPrice" value='${iup.salesPrice }' style="background-color:rgb(255,255,149);"/></td>                                                                            
                 	</tr>
 				</c:forEach>
                 	<tr id="insertIup" align="center">
                 		<td></td>
               			<td><input type="text" id="no" name="ListVO[${fn:length(iupView) }].no" value='${inputNo }' style="width:100%" readonly></td>
-                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" readonly/></td>
+                    	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(iupView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" readonly style="background-color:rgb(149,149,255);"/></td>
                     	<td><input type="text" id="itemName" name="ListVO[${fn:length(iupView) }].itemName" value='${itemName }' readonly/></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn:length(iupView) }].standard" value='${standard }' readonly/></td>
                     	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(iupView) }].inventoryUnit" value='${inventoryUnit }' readonly/></td>
                     	<td>
-                    	<input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }'/>
+                    	<input type="text" id="purchasePrice" name="ListVO[${fn:length(iupView) }].purchasePrice" value='${purchasePrice }' style="background-color:rgb(255,255,149);"/>
                     	</td>
                     	<td>
-                    	<input type="text" id="salesPrice" name="ListVO[${fn:length(iupView) }].salesPrice" value='${salesPrice }'/>
+                    	<input type="text" id="salesPrice" name="ListVO[${fn:length(iupView) }].salesPrice" value='${salesPrice }' style="background-color:rgb(255,255,149);"/>
                     	</td>                                               
                 	</tr>
             	</table>
