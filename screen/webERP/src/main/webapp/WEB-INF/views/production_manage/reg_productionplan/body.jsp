@@ -112,7 +112,7 @@
                      </tr>
                      </c:forEach>
                      <tr>
-                        <td><input type="checkbox" value = "check1" name="content"/></td>
+                        <td><input type="checkbox" value ="check1" name="content"/></td>
                         <td><input type="text" id="itemCode" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
                         <td><input type="text" id="itemName" name="ListVO[${fn:length(infoList)}].itemName" value="${param.itemName }"/></td>
                         <td><input type="text" id="standard" name="ListVO[${fn:length(infoList)}].standard" value="${param.standard }"/></td>

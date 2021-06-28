@@ -164,8 +164,8 @@
 		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
 	</select>
 	
-	<select id="checkConfirmDetail" resultType="string">
-		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{workOrderNumber}]]>
+	<select id="checkConfirmDetail" resultType="String">
+		<![CDATA[select status from CPM_PM_Ope_Per_Reg where workOrderNumber = #{obj}]]>
 	</select>
 	
 	<!-- 작업지시확정 추가 기능 -->
@@ -1652,6 +1652,10 @@ ORDER BY out.workordernumber]]>
 	</select>
 	<!-- 물류관리내역등록끝 -->
 
+	<!-- popCust--> 
+	<select id="allCustList" resultMap="basicInfoResult">
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
+	</select>
 	<select id="selectAllSalesplanList" resultMap="salesplan">
       <![CDATA[select * from SM_BIM_Sal_Pla_Reg order by plan_code]]>
 	</select>
@@ -1706,27 +1710,25 @@ ORDER BY out.workordernumber]]>
 		 where ORD.ordersNum = COR.code order by ORD.ordersNum
         ]]>
 	</select>	
+	
+
 <!-- forwarding registration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
-		<result property="custCode" column="General_Customer_Code" />
 		<result property="deadLine" column="deadLine" />
 		<result property="note" column="note" />
-		<result property="custName" column="General_Customer_Name" />
-		<result property="comNum" column="Company_Registration_Number" />
-		<result property="repName" column="Representativs_Name" />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
+		<result property="general_Customer_Name" column="General_Customer_Name" />
+		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
 	
-	<!-- popCust--> 
-	<select id="allCustforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
-	</select>
+
 	<select id="allSupForward" resultMap="forward">
 		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
 	</select>
 	<select id="submitSupForward" resultMap="forward" parameterType="String">
-		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{custCode}]]>
+		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
 	<select id="selCustforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL

@@ -8,14 +8,14 @@
   request.setCharacterEncoding("UTF-8");
 %>    
 <% 
-	String custCode = request.getParameter("custCode");
+	String custCode = request.getParameter("general_Customer_Code");
 	String relCode = request.getParameter("relCode");
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	<c:forEach var="forward" items="${forwardInsert}">
 	<c:set var="relCode" value="${forward.relCode}"/>
 	<c:set var="relDate" value="${forward.relDate}"/>
-	<c:set var="custCode" value="${forward.custCode}"/>
+	<c:set var="custCode" value="${forward.general_Customer_Code}"/>
 	<c:set var="deadLine" value="${forward.deadLine}"/>
 	<c:set var="note" value="${forward.note}"/>
 	</c:forEach>
@@ -60,24 +60,24 @@
                     <td>마감</td>
                     <td>비고</td>
                 </thead>
-                <c:forEach var="supForward" items="${supForwardList}" varStatus="status">
+                <c:forEach var="supForward" items="${submitCustList}" varStatus="status">
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
                     <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
                     <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="submit1()"readonly/></a></td>
-                    <td><input type="text"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].custCode" value="${supForward.custCode}" readonly /></td>
+                    <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" readonly /></td>
                 </tbody>
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id="relCode" name="ListVO[${fn:length(supForwardList)}].relCode" value="${param.relCode}" readonly/></td>
-                    <td><input type="date" id="relDate" name="ListVO[${fn:length(supForwardList)}].relDate" value="${param.relDate}" /></td>
-                    <td><input type="text" id="custCode" name="ListVO[${fn:length(supForwardList)}].custCode" value="${param.custCode}" ondblclick="search2()" readonly/></td>
-                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(supForwardList)}].deadLine" value="${param.deadLine}" /></td>
-                    <td><input type="text" id="note" name="ListVO[${fn:length(supForwardList)}].note" value="${param.note}" /></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(supForwardList)}].relCode" value="${relCode}" /></td>
+                    <td><input type="date" id="relDate" name="ListVO[${fn:length(supForwardList)}].relDate" value="${relDate}" /></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(supForwardList)}].general_Customer_Code" value="${general_Customer_Code}" ondblclick="search2()" readonly/></td>
+                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(supForwardList)}].deadLine" value="${deadLine}" /></td>
+                    <td><input type="text" id="note" name="ListVO[${fn:length(supForwardList)}].note" value="${note}" /></td>
                 </tbody>
            </table>
            </form>
@@ -110,35 +110,24 @@
 		        
        	function search2(){
       	  
-        openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper2.do','cust');  
+        openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper.do','cust');  
         }
        	view_button.onclick = function(){
       	  const URLSearch = new URLSearchParams(location.search);
       	  URLSearch.set('submit', '1');
       	  const newParam = URLSearch.toString();
-
       	  window.open(location.pathname + '?' + newParam, '_self');
       }
        
-    	function popFunction(code,relCode){
-			text_code.value = code;
-			text_name.value = name;
-			
-		}
-       	function submit1(){
-       		text_code.setAttribute("custCode",text_code.value);
-			text_name.setAttribute("custName",text_name.value); 
-       		window.location.href = "${contextPath}/member/insertByItem.do?" ;
-        }
     	function setChildValue(name){
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','2');
 			const newParam = URLSearch.toString();
-			if(URLSearch.get('custCode') == null){
-				window.location.href = location.pathname + '?' + newParam + '&custCode=' + text_code;
+			if(URLSearch.get('general_Customer_Code') == null){
+				window.location.href = location.pathname + '?' + newParam + '&general_Customer_Code=' + text_code;
 			}
 			else{
-				URLSearch.set('custCode',name);
+				URLSearch.set('general_Customer_Code',name);
 				const newParam = URLSearch.toString();
 				window.location.href = location.pathname + '?' + newParam;
 			}

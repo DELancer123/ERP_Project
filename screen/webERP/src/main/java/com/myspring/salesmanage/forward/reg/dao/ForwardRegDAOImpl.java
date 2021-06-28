@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 @Repository("forwardRegDAO")
 public class ForwardRegDAOImpl implements ForwardRegDAO{
@@ -19,9 +20,9 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	//popCust
 	@Override
 	public List selectAllCustList() throws DataAccessException {
-		List<ForwardVO> forwardCustList = null;
-		forwardCustList = sqlSession.selectList("mappers.erp.allCustforward");
-		return forwardCustList;
+		List<SystemmagVOMJ> custList = null;
+		custList = sqlSession.selectList("mappers.erp.allCustList");
+		return custList;
 	}//popRegForwardCust1
 	
 	@Override
@@ -32,17 +33,17 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	}//all superForward 
 	
 	@Override
-	public List submitForwardCustSupReg(String custCode) throws DataAccessException {
+	public List submitForwardCustSupReg(String general_Customer_Code) throws DataAccessException {
 		List<ForwardVO> submitCustList = null;
-		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",custCode);
+		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",general_Customer_Code);
 		return submitCustList;
 	}//choice custCode by superForward 
 	
 	@Override
 	public List selectCustsList() throws DataAccessException {
-		List<ForwardVO> custList = null;
-		custList = sqlSession.selectList("mappers.erp.selCustforward");
-		return custList;
+		List<ForwardVO> custForwardList = null;
+		custForwardList = sqlSession.selectList("mappers.erp.selCustforward");
+		return custForwardList;
 	}//pop cust for insert
 	
 	
@@ -57,9 +58,9 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 	@Override
 	public List submitForwardCustReg(String custCode) throws DataAccessException {
-		List<ForwardVO> submitCustList = null;
-		submitCustList = sqlSession.selectList("mappers.erp.submitCustForward",custCode);
-		return submitCustList;
+		List<ForwardVO> submitList = null;
+		submitList = sqlSession.selectList("mappers.erp.submitCustForward",custCode);
+		return submitList;
 	}//choice custCode by insert
 
 
