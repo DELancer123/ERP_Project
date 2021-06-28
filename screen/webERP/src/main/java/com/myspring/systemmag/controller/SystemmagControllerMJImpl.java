@@ -69,6 +69,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
+		System.out.println("comcode:"+com_code);
 
 		if (com_code == null || submit == null) { // 첫접속이라면?
 			if(customerCode != null) {				
@@ -237,8 +238,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
+		System.out.println("code:"+code);
 
-		if (code == null && submit == null) { // 첫접속이라면?
+		if (code == null || submit == null) { // 첫접속이라면?
 			System.out.println("1번분기들어옴");
 			List logisticsView = systemmagService.viewAllLogistics(); // select all 쿼리를 호출한다
 			mav = new ModelAndView(viewName);
@@ -291,14 +293,17 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	// 물류관리내역등록-수정
 	@Override
 	@RequestMapping(value = "/member/updateLogistics_manage.do", method = RequestMethod.GET)
-	public ModelAndView updateLogistics(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
+	public ModelAndView updateLogistics(SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		System.out.println("업데이트구현중");
 		request.setCharacterEncoding("utf-8");
+		System.out.println("explanation:"+request.getParameter("explanation"));
 		systemmagService.updateLogistics(systemmagVO);// 서비스파트의 업데이트함수에 매개변수로 VO를전달함
 		ModelAndView mav = new ModelAndView(
-				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getLogistics_In_Code());
+				"redirect:/member/logistics_manage.do?submit=1&&com_code=" + systemmagVO.getLogistics_In_Code());
 		return mav;
 	}
+	
 
 	// 물류관리내역등록-팝업
 	@Override

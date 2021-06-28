@@ -123,16 +123,16 @@ request.setCharacterEncoding("UTF-8");
 	                <tbody>
 	                	<tr>
 		                    <td>
-		                        <input type="text" value="${logistics_In_Code }">
+		                        <input type="text" name="logistics_In_Code" id="logistics_In_Code" value="${logistics_In_Code }">
 		                    </td>
 		                    <td>
-		                        <input type="text" value="${logistics_In_Name }">
+		                        <input type="text" name="logistics_In_Name" id="logistics_In_Name" value="${logistics_In_Name }">
 		                    </td>
 		                    <td>
-		                        <input type="text" value="${explanation }">
+		                        <input type="text" name="explanation" id="explanation" value="${explanation }">
 		                    </td>
 		                    <td>
-		                        <input type="text" value="${remarks }">
+		                        <input type="text" name="remarks" id="remarks" value="${remarks }">
 		                    </td>
 	                    </tr>
 	                </tbody>
