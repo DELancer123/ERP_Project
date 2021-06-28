@@ -217,7 +217,7 @@
  
 			<!-- order&cor sta -->
 	<resultMap id="orderJoinList" type="orderVO">
-			<result property="ordCode" column="ordersNum" />
+			<id property="ordCode" column="ordersNum" />
         	<result property="ordDate" column="ordersdate" />
         	<result property="tax" column="tax" />
         	<result property="note" column="note" />
@@ -226,7 +226,8 @@
         	<result property="comNum" column="Company_Registration_Number" />
         	<result property="repName" column="Representativs_Name" />	
         <collection property="corVO" javaType="CorVO">
-        	<id property="ordCode" column="code" />
+        	<result property="ordCode" column="code" />
+        	<result property="custCode" column="General_Customer_Code" />
         	<result property="item_code" column="item_code" />
         	<result property="item_name" column="item_name" />        
         	<result property="stand" column="standard" />
@@ -242,8 +243,8 @@
 
 	
 	<select id="allCustForStaOrder" resultMap="orderJoinList">
-      <![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
-	</select><!-- popCust-->
+      <![CDATA[select * from SM_BIM_Gen_Cus_Reg]]>
+	</select><!-- popCust  allCustForStaOrder-->
 	
 		<select id="submitStaOrdCust" resultMap="orderJoinList" parameterType="String">
       <![CDATA[
