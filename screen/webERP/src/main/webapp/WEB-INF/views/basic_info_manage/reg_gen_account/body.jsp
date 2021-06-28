@@ -203,57 +203,58 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">코드</td>
                     <td colspan="3">
                         <input type="text" name="general_Customer_Code" id="general_Customer_Code" value="${general_Customer_Code }"
-                        	style="background-color:yellow;">
+                        	style="background-color: rgb(255, 255, 149);">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">거래처명</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Name" id="general_Customer_Name" value="${general_Customer_Name }">
+                        <input type="text" name="general_Customer_Name" id="general_Customer_Name" style="background-color: rgb(255, 255, 149);" value="${general_Customer_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">구분</td>
                     <td colspan="3">
-                        <input type="text" name="general_Customer_Division" id="general_Customer_Division" value="${general_Customer_Division }">
+                        <input type="text" name="general_Customer_Division" id="general_Customer_Division" style="background-color: rgb(255, 255, 149);" value="${general_Customer_Division }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="company_Registration_Number" id="company_Registration_Number" value="${company_Registration_Number}"
-                        pattern="[0-9]{10}" maxlength="10"/>
+                        <input type="text" name="company_Registration_Number" id="company_Registration_Number" style="background-color: rgb(255, 255, 149);" value="${company_Registration_Number}"
+                        pattern="[0-9]{10}" maxlength="13"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주민등록번호</td>
                     <td colspan="3">
-                        <input type="text" name="resident_Registration_Number" id="resident_Registration_Number" pattern="[0-9]{13}" maxlength="13" value="${resident_Registration_Number}"/>
+                        <input type="text" name="resident_Registration_Number" id="resident_Registration_Number" pattern="[0-9]{13}" maxlength="15" style="background-color: rgb(235,235,235);
+                            border-style: none;" value="${resident_Registration_Number}"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">대표자성명</td>
                     <td colspan="3">
-                        <input type="text" name="representativs_Name" id="representativs_Name" value="${representativs_Name }">
+                        <input type="text" name="representativs_Name" id="representativs_Name" style="background-color: rgb(255, 255, 149);" value="${representativs_Name }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="3">
-                        <input type="text" name="upstate" id="upstate" value="${upstate }">
+                        <input type="text" name="upstate" id="upstate" style="background-color: rgb(255, 255, 149);" value="${upstate }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="3">
-                        <input type="text" name="industry" id="industry" value="${industry }">
+                        <input type="text" name="industry" id="industry" style="background-color: rgb(255, 255, 149);" value="${industry }">
                     </td>
                 </tr>
                 <tr>
                     <td align="center">우편번호</td>
                     <td>
                         <input type="text" name="zipCode" id="zipCode" pattern="[0-9]{5}" maxlength="5" value="${zipCode }"
-                        style="width:150px; background-color:#eee;" readonly/>
+                        style="width:150px; background-color: rgb(255, 255, 149);" readonly/>
                         <a href="javascript:searchZip()"><i class="fas fa-search" style="color :blue;"></i></a>
                     </td>
                 </tr>
@@ -261,19 +262,21 @@ request.setCharacterEncoding("UTF-8");
                     <td align="center">사업장주소</td>
                     <td colspan="3">
                         <input type="text" name="workplace_Address" id="workplace_Address" value="${workplace_Address }" 
-                        	style="background-color:#eee;" readonly>
+                        	style="background-color: rgb(255, 255, 149);" readonly>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="3">
-                        <input type="text" name="generalCustomer_Tel" id="generalCustomer_Tel" pattern="[0-9]{10}" maxlength="10" value="${generalCustomer_Tel }"/>
+                        <input type="text" name="generalCustomer_Tel" id="generalCustomer_Tel" pattern="[0-9]{10}" maxlength="13" style="background-color: rgb(235,235,235);
+                            border-style: none;" value="${generalCustomer_Tel }"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">주류코드</td>
                     <td>
-                        <input type="text" name="wholesale_Retail_Business_Code" id="wholesale_Retail_Business_Code" value="${wholesale_Retail_Business_Code }">
+                        <input type="text" name="wholesale_Retail_Business_Code" id="wholesale_Retail_Business_Code" style="background-color: rgb(235,235,235);
+                            border-style: none;" value="${wholesale_Retail_Business_Code }">
                     </td>
                 </tr>
             </table>

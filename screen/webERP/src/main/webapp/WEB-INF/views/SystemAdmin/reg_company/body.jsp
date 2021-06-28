@@ -250,7 +250,7 @@
                     <td colspan="2">
                         <input type="text" name="main_Branch_Number" id="address2"
                         style="background-color: rgb(235,235,235);
-                        width: 240px;
+                        border-style: none; width: 240px;
                         text-align: center;"	
                         value='${main_Branch_Number }' />
                     </td>
