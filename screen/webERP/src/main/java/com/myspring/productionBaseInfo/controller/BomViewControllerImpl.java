@@ -64,6 +64,7 @@ public class BomViewControllerImpl implements BomViewController {
 		else if(submit.equals("2")) {
 			List bomView = viewService.SearchView(number);
 			List bomInsert = viewService.setText(itemNumber);
+			System.out.println(bomInsert.size());
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
