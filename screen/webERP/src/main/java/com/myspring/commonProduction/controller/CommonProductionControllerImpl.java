@@ -192,7 +192,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 		}
   	
   	@Override
-	@RequestMapping(value="/member/facilityCodeSearchPop.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/member/facilitySearchPop.do" ,method = RequestMethod.GET)
 	public ModelAndView facilitySearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List itemView = productionService.facilitySearch();
