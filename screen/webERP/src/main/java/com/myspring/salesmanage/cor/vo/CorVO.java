@@ -10,7 +10,7 @@ import com.myspring.salesmanage.forward.vo.ForwardVO;
 
 @Component("corVO")
 public class CorVO {
-
+	
 	private String relCode;
 	private String ordCode;
 	private String item_code;
@@ -23,7 +23,8 @@ public class CorVO {
 	private Date expDate;
 	private String inspection;
 	private String orderOX;
-	
+	private String general_Customer_Code;
+	private String vatprice;
 	private List<CorVO> ListCor;
 	
 	@Override
@@ -138,6 +139,26 @@ public class CorVO {
 
 	public void setRelCode(String relCode) {
 		this.relCode = relCode;
+	}
+
+
+	public String getGeneral_Customer_Code() {
+		return general_Customer_Code;
+	}
+
+
+	public void setGeneral_Customer_Code(String general_Customer_Code) {
+		general_Customer_Code = general_Customer_Code;
+	}
+
+
+	public String getVatprice() {
+		return vatprice;
+	}
+
+
+	public void setVatprice(String vatprice) {
+		this.vatprice = vatprice;
 	}
 	
 }
