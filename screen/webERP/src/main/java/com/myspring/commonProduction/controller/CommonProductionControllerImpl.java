@@ -64,6 +64,17 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			mav.addObject("itemView", itemView);
 			return mav;
 		}
+	  
+	  @Override
+	  @RequestMapping(value="/member/checkStock.do" ,method = RequestMethod.GET)
+		public ModelAndView checkStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = getViewName(request);
+			String itemCode = (String) request.getParameter("parentItemCode");
+			List itemView = productionService.checkStock(itemCode);
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("itemView", itemView);
+			return mav;
+		}
 //	�깮�궛怨꾪쉷 �벑濡� CRUD
 	  	@Override
 		@RequestMapping(value="/member/delProductionPlan.do" ,method = RequestMethod.GET)

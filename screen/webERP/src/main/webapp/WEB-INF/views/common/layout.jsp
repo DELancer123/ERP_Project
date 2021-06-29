@@ -249,7 +249,7 @@ input {
 <body>
 	<div id=wrap>
 		<header id=header>
-			<img src="img/ani_spade.png" class="logo" />
+			<img src="img/kingdomlogo.png" class="logo" />
 			<p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
 			<ul id="etc_menu">
 				<li><a href="#">로그아웃</a></li>

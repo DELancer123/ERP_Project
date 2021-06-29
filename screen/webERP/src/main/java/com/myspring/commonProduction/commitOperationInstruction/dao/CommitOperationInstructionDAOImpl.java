@@ -75,4 +75,11 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 			sqlSession.delete("mappers.erp.deleteProductionPlan", obj);	
 		}
 	}
+	
+	@Override
+	public List checkStock(String itemCode) throws DataAccessException {
+		List<DepartmentViewVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.checkStockView", itemCode);
+		return popList;
+	}
 }
