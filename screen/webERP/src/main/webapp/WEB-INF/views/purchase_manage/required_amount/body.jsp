@@ -123,7 +123,7 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="date" name="ListVO[${status.index}].dueDate" value='${mrp.mainplanVO.dueDate}' readonly /></td>
 	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly  style="width:100%"/></td>
 				<td><input type="date" name="ListVO[${status.index}].expectedDate" value='${mrp.mainplanVO.expectedDate}' readonly/></td>
- 				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity}'/></td>
+ 				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity+mrp.mainplanVO.plan_quantity}'/></td>
 				<td><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly  style="width:100%"/></td>
 			</tr>	
 		</c:forEach>

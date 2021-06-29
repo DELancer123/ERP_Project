@@ -84,7 +84,7 @@
        }
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/member/salemanagepop.do','CustOrderSta');  
+        	  openWindowPop('http://localhost:8090/webERP/member/ordercodehelper.do','CustOrderSta');  
     }
           function search2(){
         	  
