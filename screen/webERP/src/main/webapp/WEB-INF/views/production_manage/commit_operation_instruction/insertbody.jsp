@@ -289,16 +289,17 @@
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
   		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
+  		 	//document.getElementById("dueDate").disabled = true;
+		    //document.getElementById("indicated").disabled = true;
+		    //document.getElementById("instructionDate").disabled = true;
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
-    		document.getElementById('dataForm').submit();  
+  		    //document.getElementById('dataForm').appendChild(linkPath);
+            //document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+    		//document.getElementById('dataForm').submit();  
+    		window.history.back();
         }
         
       

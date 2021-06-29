@@ -228,8 +228,22 @@
 </html>
 
 <script>
+var sortation = document.getElementById("sortation").value;
+var inspection = document.getElementById("inspection").value;
+var note = document.getElementById("note").value;
+var performanceDate = document.getElementById("performanceDate").value;
+var performanceQuantity = document.getElementById("performanceQuantity").value;
+
+function isEmpty(str){
+    
+    if(typeof str == "undefined" || str == null || str == "")
+        return true;
+    
+    else
+        return false ;
+    
+	}
 /* input date의 현재 날짜 기본값 설정*/
- /* input date의 현재 날짜 기본값 설정*/
  document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
  document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
  
@@ -281,7 +295,7 @@
       
       /* 저장 버튼 기능 구현 */
       
-        function newRow(){
+        function newRow(){//잠시 보류
           // dao에서 저장
     	 
         	var row = workOrderTable.insertRow(); 
@@ -292,27 +306,38 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
+  		    
+   		  // if (isEmpty(performanceDate)||isEmpty(performanceQuantity)){
+		    //  		alert("값이 비어져있습니다. 값을 추가해주세요!");
+		     //       document.getElementById('dataForm1').action = "${contextPath}/member/regoperperf.do";
+	  //}else{
   		    document.getElementById('dataForm1').appendChild(linkPath);
             document.getElementById('dataForm1').action = "${contextPath}/member/addRegistOperationPerformanceInfoDetail.do";
   			document.getElementById('dataForm1').submit();  
+	  		   
+	  			alert("값이 저장되었습니다!");
+	 // }
+  		    
+  		    
 		
       }
       
         function updateRow() {
-        	var row = workOrderTable.insertRow(); 
-        	const URLSearch = new URLSearchParams(location.search);
-        	const newParam = URLSearch.toString();
-  		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
-    		var linkPath = document.createElement("input");
-    		linkPath.setAttribute("type","hidden");
-    		linkPath.setAttribute("name","path");
-    		linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
-    		document.getElementById('dataForm').submit();  
+        	//var row = workOrderTable.insertRow(); 
+        	//const URLSearch = new URLSearchParams(location.search);
+        	//const newParam = URLSearch.toString();
+  		 	//var link = location.pathname +'?'+newParam;
+  		 	//document.getElementById("dueDate").disabled = true;
+		    //document.getElementById("indicated").disabled = true;
+		    //document.getElementById("instructionDate").disabled = true;
+    		//var linkPath = document.createElement("input");
+    		//linkPath.setAttribute("type","hidden");
+    		//linkPath.setAttribute("name","path");
+    		//linkPath.setAttribute("value", link);
+  		    //document.getElementById('dataForm').appendChild(linkPath);
+            //document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+    		//document.getElementById('dataForm').submit();  
+    		alert("확정, 마감인 상태는 수정할 수 없습니다!");
         }
         
       
@@ -325,8 +350,17 @@
       			  no = document.getElementsByName("content2")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
       	  }
+      	  
+      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+			alert('체크박스를 선택하지 않았거나 삭제할 수 없는 값입니다!');
+			window.location.href = "${contextPath}/member/regoperperf.do";
+		}
+    	else {//컨트롤러로 해당목록의 no값을 보낸다
+    		alert('삭제되었습니다');
+		  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
+
+    	}
         }
         
         
