@@ -145,7 +145,7 @@
                         <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.productionFacility }"/></td>
+                        <td><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.facility }" ondblclick="facilitySearch()"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" value="${param.taskTeam }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
                         <td><input type="hidden" name="ListVO[${fn:length(infoList)}].productionPlanCode" value="${param.productionPlanCode }" /></td>
@@ -250,4 +250,8 @@
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
         }
+        
+        function facilitySearch(){
+			openWindowPop('http://localhost:8090/webERP/member/facilitySearchPop.do','facilitySearch');
+			}
       </script>

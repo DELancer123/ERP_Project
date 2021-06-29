@@ -207,8 +207,8 @@
                         <td><input type="text" id="opNumber" name="DetailVO[${fn:length(detailList)}].opNumber" value="${param.opNumber }" readonly /></td>
                         <td><input type="text" id="materialUseStatus" name="DetailVO[${fn:length(detailList)}].materialUseStatus" value="${param.materialUseStatus }" readonly /></td>
                         <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
-                        <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processName }" ondblclick="processCodeSearch()"/></td>
-                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceName }" ondblclick="workplaceCodeSearch()"/></td>
+                        <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }" ondblclick="processCodeSearch()"/></td>
+                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }" ondblclick="workplaceCodeSearch()"/></td>
                         <td><input type="text" id="sortation" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
                         <td><input type="text" id="performanceQuantity" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
                         <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
@@ -317,15 +317,15 @@
         
       
         function deleteData() {
-      	  var item = document.getElementsByName("content").length;
+      	  var item = document.getElementsByName("content2").length;
       	  var no = "";
       	  var ary = [];
       	  for(var i=0; i<item;i++){
-      		  if(document.getElementsByName("content")[i].checked==true){
-      			  no = document.getElementsByName("content")[i].value;
+      		  if(document.getElementsByName("content2")[i].checked==true){
+      			  no = document.getElementsByName("content2")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      			  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
       	  }
         }
         

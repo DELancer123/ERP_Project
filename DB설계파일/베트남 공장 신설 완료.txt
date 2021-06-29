@@ -1,0 +1,236 @@
+create user erp_vietnam identified by erp_vietnam;
+ grant create public database link to erp_admin;
+ grant connect, resource to erp_vietnam;
+
+create public database link dblk_seoul
+connect to erp_admin
+identified by erp_admin
+using 'ERP_DB';
+
+DROP TABLE CPM_PM_Pro_Pla_Reg_vietnam;
+DROP TABLE Pla_Reg_vietnam_erp_admin_IF;
+DROP TABLE CPM_PM_Pro_Pla_Reg_erp_admin;
+set serveroutput on
+create table CPM_PM_Pro_Pla_Reg_vietnam(
+    --생산계획번호(PK)
+    ProductionPlanCode varchar2(12) PRIMARY KEY,
+    --품번(FK)
+    Item_Code varchar2(12) NOT NULL, 
+    --품명(FK)
+    Item_Name varchar2(50) NOT NULL,
+    --규격
+    Standard varchar2(20), 
+    --재고단위
+    Inventory_Unit varchar2(5) DEFAULT 'EA',
+    --일 생산량
+    dailyProduction number(5) not null,
+    --순서
+    sequence number(5),
+    --작업예정일
+    scheduledDateOfOperation date,
+    --수량
+    Quantity number(5),
+    --비고
+    note varchar2(1000),
+    --생산/작업/외주 구분
+    productionDivision varchar2(10) DEFAULT '생산',
+     --생산설비
+    productionFacility varchar2(50),
+    --작업팀
+    taskTeam varchar2(50),
+    CONSTRAINT PLAREGviet_Item_Code_FK FOREIGN KEY(Item_Code) REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade
+);
+
+
+
+
+create table Pla_Reg_vietnam_erp_admin_IF(
+    --생산계획번호(PK)
+    ProductionPlanCode varchar2(12) PRIMARY KEY,
+    --품번(FK)
+    Item_Code varchar2(12) NOT NULL, 
+    --품명(FK)
+    Item_Name varchar2(50) NOT NULL,
+    --규격
+    Standard varchar2(20), 
+    --재고단위
+    Inventory_Unit varchar2(5) DEFAULT 'EA',
+    --일 생산량
+    dailyProduction number(5) not null,
+    --순서
+    sequence number(5),
+    --작업예정일
+    scheduledDateOfOperation date,
+    --수량
+    Quantity number(5),
+    --비고
+    note varchar2(1000),
+    --생산/작업/외주 구분
+    productionDivision varchar2(10) DEFAULT '생산',
+     --생산설비
+    productionFacility varchar2(50),
+    --작업팀
+    taskTeam varchar2(50),
+    --upload여부
+     ErpUpload VARCHAR2(1),
+    CONSTRAINT PROPLAREGviet_Item_Code_FK FOREIGN KEY(Item_Code) REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade
+);
+
+--
+--INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+--VALUES (F_GET_CURR_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_CURR_SEQ('SEQ'),sysdate,100,null,'생산','본체라인1호', '생산1반');
+--INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_NEXT_SEQ('SEQ'),sysdate+1,110,null,'생산','본체라인2호', '생산2반');
+--INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_NEXT_SEQ('SEQ'),sysdate+2,80,null,'생산','본체라인3호', '생산3반');
+--INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_NEXT_SEQ('SEQ'),sysdate+3,80,null,'생산','본체라인4호', '생산4반');
+
+create table CPM_PM_Pro_Pla_Reg_erp_admin(
+    --생산계획번호(PK)
+    ProductionPlanCode varchar2(12),
+    --품번(FK)
+    Item_Code varchar2(12) NOT NULL, 
+    --품명(FK)
+    Item_Name varchar2(50) NOT NULL,
+    --규격
+    Standard varchar2(20), 
+    --재고단위
+    Inventory_Unit varchar2(5) DEFAULT 'EA',
+    --일 생산량
+    dailyProduction number(5) not null,
+    --순서
+    sequence number(5),
+    --작업예정일
+    scheduledDateOfOperation date,
+    --수량
+    Quantity number(5),
+    --비고
+    note varchar2(1000),
+    --공장코드
+    factoryCode varchar2(12),
+    --생산/작업/외주 구분
+    productionDivision varchar2(10) DEFAULT '생산',
+     --생산설비
+    productionFacility varchar2(50),
+    --작업팀
+    taskTeam varchar2(50),
+    PRIMARY KEY(ProductionPlanCode, factoryCode),
+    CONSTRAINT PROPLAREGerpadmin_Item_Code_FK FOREIGN KEY(Item_Code) REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade
+);
+
+create or replace trigger TRG_TB_ERP_VIETNAM_INSERT
+AFTER INSERT ON CPM_PM_Pro_Pla_Reg_vietnam
+FOR EACH ROW
+BEGIN 
+INSERT INTO Pla_Reg_vietnam_erp_admin_IF(
+     ProductionPlanCode,Item_Code,Item_Name,Standard,Inventory_Unit,dailyProduction,sequence,scheduledDateOfOperation,Quantity,note,productionDivision,productionFacility,taskTeam)
+     VALUES(:NEW.ProductionPlanCode,:NEW.Item_Code,:NEW.Item_Name,:NEW.Standard,:NEW.Inventory_Unit,:NEW.dailyProduction,
+     :NEW.sequence,:NEW.scheduledDateOfOperation,:NEW.Quantity,:NEW.note,:NEW.productionDivision,:NEW.productionFacility,:NEW.taskTeam);
+ END;
+ /
+    
+    
+create or replace trigger TRG_TB_ERP_VIETNAM_UPDATE
+AFTER UPDATE ON CPM_PM_Pro_Pla_Reg_vietnam
+FOR EACH ROW
+BEGIN 
+  UPDATE Pla_Reg_vietnam_erp_admin_IF
+    SET Item_Code = :NEW.Item_Code, Item_Name = :NEW.Item_Name,
+    Standard = :NEW.Standard, Inventory_Unit = :NEW.Inventory_Unit,dailyProduction=:NEW.dailyProduction,
+    sequence = :NEW.sequence,scheduledDateOfOperation=:NEW.scheduledDateOfOperation,Quantity=:NEW.Quantity,
+    note = :NEW.note, productionDivision = :NEW.productionDivision,productionFacility =  :NEW.productionFacility,
+    taskTeam = :NEW.taskTeam
+    WHERE ProductionPlanCode = :NEW.ProductionPlanCode; 
+END;
+ /
+    
+create or replace trigger TRG_TB_ERP_VIETNAM_DELETE
+AFTER DELETE ON CPM_PM_Pro_Pla_Reg_vietnam
+FOR EACH ROW
+BEGIN 
+    DELETE FROM Pla_Reg_vietnam_erp_admin_IF
+    WHERE ProductionPlanCode = :NEW.ProductionPlanCode;
+ END;
+ /       
+    
+create or replace package erp_pkg is
+    procedure oqc_upload( p_ITEM_CODE in varchar2, p_pro_date in varchar2 );
+end erp_pkg;
+/
+create or replace package body erp_pkg is
+
+    procedure erp_upload( p_ITEM_CODE in varchar2, p_pro_date in varchar2 )
+    is
+        vn_cnt number :=0;
+        e_no_data exception;
+        r_erp_result Pla_Reg_vietnam_erp_admin_IF%rowtype;
+    begin
+        select count(*)
+          into vn_cnt
+          from Pla_Reg_vietnam_erp_admin_IF
+         where ITEM_CODE = p_ITEM_CODE
+           and to_char(scheduledDateOfOperation, 'yyyymmdd') = p_pro_date
+           and erpupload is null;
+    
+         if vn_cnt = 0 then
+            raise e_no_data;
+         end if;
+    
+         select  ProductionPlanCode,Item_Code,Item_Name,Standard,Inventory_Unit,dailyProduction,sequence,scheduledDateOfOperation,Quantity,note,productionDivision,productionFacility,taskTeam
+           into r_erp_result.ProductionPlanCode, r_erp_result.Item_Code,
+                r_erp_result.Item_Name, r_erp_result.Standard, r_erp_result.Inventory_Unit,
+                r_erp_result.dailyProduction, r_erp_result.sequence,r_erp_result.scheduledDateOfOperation,
+                r_erp_result.Quantity,r_erp_result.note,r_erp_result.productionDivision,
+                r_erp_result.productionFacility,r_erp_result.taskTeam
+           from Pla_Reg_vietnam_erp_admin_IF
+          where ITEM_CODE = p_ITEM_CODE
+            and to_char(scheduledDateOfOperation, 'yyyymmdd') = p_pro_date
+            and erpupload is null;
+        
+         insert into CPM_PM_Pro_Pla_Reg_erp_admin@dblk_seoul
+                    (ProductionPlanCode,Item_Code,Item_Name,Standard,Inventory_Unit,dailyProduction,sequence,scheduledDateOfOperation,Quantity,note,productionDivision,productionFacility,taskTeam
+                    )
+         values     (r_erp_result.ProductionPlanCode, r_erp_result.Item_Code,
+                r_erp_result.Item_Name, r_erp_result.Standard, r_erp_result.Inventory_Unit,
+                r_erp_result.dailyProduction, r_erp_result.sequence,r_erp_result.scheduledDateOfOperation,
+                r_erp_result.Quantity,r_erp_result.note,r_erp_result.productionDivision,
+                r_erp_result.productionFacility,r_erp_result.taskTeam);    
+        
+         update Pla_Reg_vietnam_erp_admin_IF
+            set ErpUpload = 'Y'
+          where ITEM_CODE = p_ITEM_CODE;
+        
+         commit;
+        
+         dbms_output.put_line(p_ITEM_CODE || ' 의 ERP_VIETNAM 생산실적이 ERP_DB에 성공적으로 업로드되었습니다.');
+        
+         exception when e_no_data then
+            dbms_output.put_line('ERP_DB에 업로드 할 ERP_VIETNAM 생산실적이 없습니다.');
+            rollback;
+         when others then
+            dbms_output.put_line(sqlerrm);
+            rollback;
+    end erp_upload;
+
+end erp_pkg;   
+/
+    
+select seq_CPM_PM_Pro_Pla_Reg_no.nextval from dual;
+select seq_seq.nextval from dual;
+INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+VALUES (F_GET_CURR_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_CURR_SEQ('SEQ'),sysdate,100,null,'생산','본체라인1호', '생산1반');
+INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_NEXT_SEQ('SEQ'),sysdate+1,110,null,'생산','본체라인2호', '생산2반');
+INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_NEXT_SEQ('SEQ'),sysdate+2,80,null,'생산','본체라인3호', '생산3반');
+INSERT INTO CPM_PM_Pro_Pla_Reg_vietnam
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Pro_Pla_Reg'),'DT01','피카소VEGA8',NULL,'EA',100,F_GET_NEXT_SEQ('SEQ'),sysdate+3,80,null,'생산','본체라인4호', '생산4반');
+
+UPDATE CPM_PM_Pro_Pla_Reg_vietnam
+SET scheduledDateOfOperation = '210630'
+WHERE ProductionPlanCode = 'PP2106000221';
+
+select * from CPM_PM_Pro_Pla_Reg_vietnam;
+select * from Pla_Reg_vietnam_erp_admin_IF;
+select * from CPM_PM_Pro_Pla_Reg_erp_admin;  

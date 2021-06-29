@@ -46,7 +46,9 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String code = (String)request.getParameter("general_Customer_Code");
+		String custCode = (String)request.getParameter("custCode");
 		String submit = (String)request.getParameter("submit");
+		System.out.println(code);
 		
 		if(code == null || code.length() == 0||submit.equals("0")) {
 		
@@ -57,11 +59,10 @@ public class ForwardRegControllermpl implements ForwardRegController{
 			List submitCustList = forwardRegService.submitCust(code);
 			mav = new ModelAndView(viewName);
 			mav.addObject("submitCustList", submitCustList);
-			return mav;
 			
 		}else if(submit.equals("2")) {
 			List submitCustList = forwardRegService.submitCust(code);
-			List submitList = forwardRegService.submitCustByInsert(code);
+			List submitList = forwardRegService.submitCustByInsert(custCode);
 			mav = new ModelAndView(viewName);
 			mav.addObject("submitCustList", submitCustList);
 			mav.addObject("submitList", submitList);
@@ -108,34 +109,34 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value="/member/insertByItem.do",method = RequestMethod.GET)
-	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub  submitForwardCustReg
-		ModelAndView mav = null;
-		String viewName = getViewName(request);
-		String code = (String)request.getParameter("custCode");
-		String submit = (String)request.getParameter("submit");
-		
-		if(code == null || code.length() == 0||submit.equals("0")) {
-		
-			mav = new ModelAndView(viewName);
-			return mav;
-		}
-		else if(submit.equals("1")) {
-			List submitCustList = forwardRegService.submitCustByInsert(code);
-			mav = new ModelAndView(viewName);
-			mav.addObject("submitCustList", submitCustList);
-			
-		}else if(submit.equals("2")) {
-			List submitCustList = forwardRegService.submitCustByInsert(code);
-			List supForwardInsert = forwardRegService.listForwardCust();
-			mav = new ModelAndView(viewName);
-			mav.addObject("submitCustList", submitCustList);
-			mav.addObject("supForwardInsert", supForwardInsert);
-		}
-		return mav;
-	}
+//	@Override
+//	@RequestMapping(value="/member/insertByItem.do",method = RequestMethod.GET)
+//	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		// TODO Auto-generated method stub  submitForwardCustReg
+//		ModelAndView mav = null;
+//		String viewName = getViewName(request);
+//		String code = (String)request.getParameter("custCode");
+//		String submit = (String)request.getParameter("submit");
+//		
+//		if(code == null || code.length() == 0||submit.equals("0")) {
+//		
+//			mav = new ModelAndView(viewName);
+//			return mav;
+//		}
+//		else if(submit.equals("1")) {
+//			List submitCustList = forwardRegService.submitCustByInsert(code);
+//			mav = new ModelAndView(viewName);
+//			mav.addObject("submitCustList", submitCustList);
+//			
+//		}else if(submit.equals("2")) {
+//			List submitCustList = forwardRegService.submitCustByInsert(code);
+//			List supForwardInsert = forwardRegService.listForwardCust();
+//			mav = new ModelAndView(viewName);
+//			mav.addObject("submitCustList", submitCustList);
+//			mav.addObject("supForwardInsert", supForwardInsert);
+//		}
+//		return mav;
+//	}
 
 	@Override
 	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception {

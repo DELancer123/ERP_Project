@@ -196,7 +196,7 @@
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
                         <td><input type="text"/></td>
-                        <td><input type="text" ondblclick="facilitySearch()"/></td>
+                        <td><input type="text" /></td>
                         <td><input type="text"/></td>                        
                         <td><input type="text"/></td>
                     </tr>
@@ -344,8 +344,6 @@
       	  }
         }
         
-        function facilitySearch(){
-			openWindowPop('http://localhost:8090/webERP/member/facilitySearchPop.do','facilitySearch');
-			}
+      
         
       </script>

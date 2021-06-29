@@ -92,7 +92,7 @@
     	submit_button.onclick = function(){
     		var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
-    		opener.parent.location=url+'&workplaceName='+text_name.value;
+    		opener.parent.location=url+'&workplaceCode='+text_code.value;
     		window.close();
     	}
     </script>

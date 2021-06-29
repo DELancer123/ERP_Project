@@ -17,6 +17,7 @@ public class ForwardVO {
 	private String general_Customer_Code;
 	private String general_Customer_Name;
 	private String company_Registration_Number;
+	private String releaseOX;
 	private String deadLine;
 	private String note;
 
@@ -103,6 +104,14 @@ public class ForwardVO {
 
 	public void setCompany_Registration_Number(String company_Registration_Number) {
 		this.company_Registration_Number = company_Registration_Number;
+	}
+
+	public String getReleaseOX() {
+		return releaseOX;
+	}
+
+	public void setReleaseOX(String releaseOX) {
+		this.releaseOX = releaseOX;
 	}
 
 

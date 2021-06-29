@@ -160,6 +160,18 @@
 		<![CDATA[delete from CPM_PM_OPE_PER_REG where workOrderNumber = #{workOrderNumber}]]>
 	</delete>
 	
+	<!-- 작업지시 등록 팝업부 -->
+	
+	<resultMap id="FacilitySearchResult" type="FacilitySearchVO">
+		<result property="productionFacility" column="productionFacility" />
+		<result property="taskTeam" column="taskTeam" />
+	</resultMap>
+	
+	<select id="selectFacilitySearch" resultMap="FacilitySearchResult">
+		<![CDATA[select * from SM_BIM_PRO_LINE_REG]]>
+	</select>
+	
+	
 	<!-- 작업지시 확정 CRUD -->
 	<select id="selectAllOperationRegistDetail" resultMap="OpePerRegDetResult">
 		<![CDATA[select * from CPM_PM_Pro_Mat_For_Det where workOrderNumber = #{number} ]]>
@@ -197,8 +209,7 @@
 	</select>
 	
 	<select id="selectReleaseDetail" resultMap="OpePerRegResult">
-		<![CDATA[SELECT * FROM releasedetailview where workordernumber = #{number}
-                ]]>
+		<![CDATA[SELECT * FROM releasedetailview where WORKORDERNUMBER = #{number}]]>
 	</select>
 	
 	<!-- 작업지시확정 자재출고 CRUD -->
@@ -289,7 +300,7 @@ where (status = '확정' or status = '마감')
 
 	
 	<select id="checkMaterialUse" resultType="string">
-		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where OPNumber = #{OPNumber}]]>
+		<![CDATA[select materialUseStatus from CPM_PM_Ope_Per_Reg_Det where opNumber = #{opNumber}]]>
 	</select>
 	
 	<update id="updMaterialUse">
@@ -299,6 +310,10 @@ where (status = '확정' or status = '마감')
 		where  OPNumber = #{OPNumber} and materialUseStatus = '무'
 		]]>  
 	</update>	
+	
+		<delete id="deleteRegistOperationPerformanceInfoDetail" parameterType="RegistOperationPerformanceDetailVO">
+		<![CDATA[delete from CPM_PM_Ope_Per_Reg_Det where opNumber = #{opNumber}]]>
+	</delete>
 	
 	<!-- 작업실적등록 팝업부  -->
 	
@@ -644,8 +659,8 @@ order by bom.parent_item_code]]>
 		<result property="standard" column="standard" />
 		<result property="inventory_unit" column="inventory_unit" />
 		<result property="sequence" column="sequence" />
-		<result property="expected_date" column="expected_date" />
-		<result property="due_date" column="due_date" />
+		<result property="expectedDate" column="expectedDate" />
+		<result property="dueDate" column="dueDate" />
 		<result property="plan_quantity" column="plan_quantity" />
 		<result property="buyer" column="buyer" />
 		<result property="note" column="note" />
@@ -655,47 +670,51 @@ order by bom.parent_item_code]]>
 	<resultMap type="mpsosVO" id="MpsOSResult">
 		<result column="orderno" property="orderno" />
 		<result column="sequence" property="sequence" />
-		<result column="orderdate" property="orderdate" />
+		<result column="ordersdate" property="ordersdate" />
 		<result column="buyer" property="buyer" />
 		<result column="item_Code" property="item_Code" />
 		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
 		<result column="inventory_unit" property="inventory_unit" />
-		<result column="order_quantity" property="order_quantity" />
-		<result column="expected_Date" property="expected_Date" />
+		<result column="ordersQuantity" property="ordersQuantity" />
+		<result column="expectedDate" property="expectedDate" />
 		<result column="note" property="note" />
-		<collection property="orderVO" resultMap="orderJoinList" />
-		<collection property="corVO" javaType="CorVO" />
+
 	</resultMap>
 	<select id="selectAllMainPlanList" resultMap="MPSResult">
-		<![CDATA[ select * from pmm_pm_mps]]>
+		<![CDATA[ select cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
+   				cc.dueDate, cc.expectedDate,
+  				mp.plandate, mp.plan_Quantity, mp.buyer, mp.note
+   				from CSM_SM_COR_Reg cc, PMM_PM_MPS mp
+   				where cc.Item_Code = mp.Item_Code]]>
 	</select>
 	
  	<delete id="deleteMps">
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
   	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="java.util.HashMap">
-		<![CDATA[select DISTINCT co.ordersNum, co.ordersdate, co.general_customer_code, co.Note,
-   			 cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
-  			 cc.expectedDate,cc.ordersQuantity from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc
-   		 	where cc.expectedDate=co.ordersdate]]>
+		<![CDATA[select co.ordersdate,co.Note,
+   			cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
+  			cc.expectedDate,cc.ordersQuantity
+   			from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc
+    		where cc.EXPECTEDDATE=co.ORDERSDATE]]>
 	</select>
 	<update id="updateMPS" parameterType="MainPlanVO">
 		<![CDATA[update pmm_pm_mps
-			SET  plandate=#{plandate},plan_quantity=#{plan_quantity},expected_date=#{expected_date},due_date=#{due_date}
+			SET  plandate=#{plandate},plan_quantity=#{plan_quantity},expectedDate=#{expectedDate},dueDate=#{dueDate}
 			where planNO = #{planNO}]]>
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
 		<![CDATA[insert into pmm_pm_mps(planNO,plandate,item_Code,item_Name,standard,inventory_unit,sequence,
-				expected_date,due_date,plan_quantity,buyer,note)
+				expectedDate,dueDate,plan_quantity,buyer,note)
 			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},
-			F_GET_NEXT_SEQ('SEQ'),#{expected_date}, #{due_date}, #{plan_quantity}, #{buyer}, #{note})
+			F_GET_NEXT_SEQ('SEQ'),#{expectedDate}, #{dueDate}, #{plan_quantity}, #{buyer}, #{note})
 		]]>
 	</insert>
 		
-	<select id="searchMPSOS" resultMap="MpsOSResult">
-		<![CDATA[ select item_Code, item_Name
-		  	from pmm_pm_mps_os
+ 	<select id="searchMPSOS" resultMap="MpsOSResult">
+		<![CDATA[ select item_Code, item_Name ,ordersQuantity,expectedDate
+		  	from CSM_SM_COR_Reg
 		 	 where item_Name like '%'||#{item_Name}||'%']]>
 	</select>
 	
@@ -758,9 +777,9 @@ order by bom.parent_item_code]]>
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
 		<result property="standard" column="standard" />
-		<result property="due_date" column="due_date" />
+		<result property="dueDate" column="dueDate" />
 		<result property="sequence" column="sequence" />
-		<result property="expected_order" column="expected_order" />
+		<result property="expectedDate" column="expectedDate" />
 		<result property="expected_quantity" column="expected_quantity" />
 		<result property="inventory_unit" column="inventory_unit" />
 		<collection property="bomVO" resultMap="bomView"/>
@@ -769,11 +788,9 @@ order by bom.parent_item_code]]>
 
 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
 		<![CDATA[select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
-			pm.due_date, pm.sequence , mr.expected_order
-    		from CPM_BIM_BOM_REG bom, pmm_pm_mps pm, pmm_pm_mrp mr
-            where pm.item_code = bom.item_code 
-            and  bom.item_code = mr.item_code and expected_order between #{startDate} and #{endDate}
-    		    ]]>
+        	 pm.dueDate, pm.sequence,pm.expectedDate
+          	from CPM_BIM_BOM_REG bom, pmm_pm_mps pm
+            where pm.item_code = bom.item_code and expectedDate between #{startDate} and #{endDate}]]>
 	</select>
 		<!-- orderclosing 발주마감 -->
 	<resultMap id="orderclosingResult" type="orderclosingVO">
@@ -808,7 +825,7 @@ order by bom.parent_item_code]]>
 	<update id="updateOrderClosing">
 		<![CDATA[update PMM_PM_ORDER
 			set deadline = '마감'
-			where order_no=#{order_no}and deadline ='진행']]>
+			where sequence=#{sequence}and deadline ='진행']]>
 	</update>
 	<delete id="delClosing">
 		delete from PMM_PM_ORDER where sequence = #{sequence}
@@ -1718,6 +1735,7 @@ ORDER BY out.workordernumber]]>
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
 		<result property="deadLine" column="deadLine" />
+		<result property="releaseOX" column="releaseOX" />
 		<result property="note" column="note" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
 		<result property="general_Customer_Name" column="General_Customer_Name" />
@@ -1741,7 +1759,7 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
 	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
-		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{custCode}]]>
+		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
 		<select id="selItemforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
@@ -1755,7 +1773,7 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
-		values (F_GET_NEXT_SEQ('SM_BIM_Ite_Reg'), #{relDate}, #{custCode}, #{deadLine}, #{note})
+		values (F_GET_NEXT_SEQ('CSM_SM_Rel_Pro'), #{relDate}, #{general_Customer_Code},#{releaseOX}, #{deadLine}, #{note})
 		]]>  
 	</insert>
 	<update id="updateForward" parameterType="forwardVO">
@@ -1766,7 +1784,7 @@ ORDER BY out.workordernumber]]>
 	
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
-		<result property="custCode" column="General_Customer_Code" />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
 		        <collection property="corVO" javaType="CorVO">
         	<id property="relCode" column="code" />
         	<result property="item_code" column="item_code" />

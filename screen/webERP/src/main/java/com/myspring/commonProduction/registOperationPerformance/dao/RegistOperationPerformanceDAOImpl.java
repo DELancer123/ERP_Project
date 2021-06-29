@@ -118,5 +118,19 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 		popList = sqlSession.selectList("mappers.erp.selectWorkplaceCodeList");
 		return popList;
 	}
+
+	@Override
+	public void deleteRegistOperationPerformanceInfoDetail(String[] numberAry) {
+		 for(String obj: numberAry) {
+	         String check = sqlSession.selectOne("mappers.erp.checkMaterialUse", obj);
+	         if(check.equals("무")) {
+	        	 sqlSession.delete("mappers.erp.deleteRegistOperationPerformanceInfoDetail", obj);
+	         } else {
+	            System.out.println("자재출고된 정보는 삭제할 수 없습니다.");
+	            continue;
+	         }
+	      }
+		
+	}
 }
 
