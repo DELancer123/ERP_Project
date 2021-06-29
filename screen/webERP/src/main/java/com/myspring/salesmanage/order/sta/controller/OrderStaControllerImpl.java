@@ -32,8 +32,6 @@ public class OrderStaControllerImpl implements OrderStaController{
 	@RequestMapping(value="/member/ordercodehelper.do",method = RequestMethod.GET)
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
-//		logger.info("viewName: "+ viewName);
-//		logger.debug("viewName: "+ viewName);
 		List orderCustList = orderService.listCusts();
 		List orderList = orderService.listOrder();
 		ModelAndView mav = new ModelAndView(viewName);
@@ -54,10 +52,10 @@ public class OrderStaControllerImpl implements OrderStaController{
 			return mav;
 		}
 
-			List orderList = orderService.submitCust(code);
+			List submitOrderCust = orderService.submitCust(code);
 			
 			mav = new ModelAndView(viewName);
-			mav.addObject("orderList", orderList);
+			mav.addObject("submitOrderCust", submitOrderCust);
 
 		return mav;
 	}
