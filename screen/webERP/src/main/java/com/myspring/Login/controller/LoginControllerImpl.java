@@ -1,5 +1,7 @@
 package com.myspring.Login.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,14 +37,24 @@ public class LoginControllerImpl implements LoginController{
 	
 	@RequestMapping(value="/member/depcodepop.do" ,method = RequestMethod.GET)
 	public ModelAndView ViewdepPop(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String viewName = getViewName(request);
+		List depView = loginService.depView();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("depView", depView);
+		return mav;
 	}	
 	
 	@RequestMapping(value="/member/empcodepop.do" ,method = RequestMethod.GET)
 	public ModelAndView ViewempPop(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String viewName = getViewName(request);
+		String depCode = (String) request.getParameter("depCode");
+		if(depCode == null || depCode.length() == 0) {
+			return null;
+		}
+		List empView = loginService.empView(depCode);
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("empView", empView);
+		return mav;
 	}
 	
 	private String getViewName(HttpServletRequest request) {
