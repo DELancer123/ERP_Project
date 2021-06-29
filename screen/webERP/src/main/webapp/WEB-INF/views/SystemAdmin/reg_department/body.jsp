@@ -198,7 +198,7 @@
        	    }      	 
        	});       	 
        	if(is_empty) { //비어있는내용이 있는지 체크함
-       	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+       	    alert('필수입력항목이 비었습니다. 다시입력해주세요.');
        	}
        	else{
 	        	document.getElementById('regdepartment2').action = "${contextPath}/member/upddepartment.do";
