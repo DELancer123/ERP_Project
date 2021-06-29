@@ -229,6 +229,7 @@ document.getElementById('OrderClosing').appendChild(Input);
 document.getElementById('OrderClosing').action = "${contextPath}/member/updateClosing.do";
 document.getElementById('OrderClosing').submit();
 }
+
 function deleteRow() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";
@@ -238,8 +239,12 @@ function deleteRow() {
 			  sequence = document.getElementsByName("content")[i].value;
 			  ary.push(sequence);
 		  }
-		  
-			  window.location.href = "${contextPath}/member/delClosing.do?sequence="+ary;
+	  }
+	  if(ary.length === 0 || ary === null){
+		  alert('삭제할 칼럼의 체크박스를 선택해주세요!');
+	  }else{
+		  alert('삭제 되었습니다!');
+		  window.location.href = "${contextPath}/member/delClosing.do?sequence="+ary;	 
 	  }
 }
 function func_DeadLine(){
@@ -251,9 +256,15 @@ function func_DeadLine(){
 			  sequence = document.getElementsByName("content")[i].value;
 			  ary.push(sequence);
 		  }
-		  
-			  window.location.href = "${contextPath}/member/updateOrderClosing.do?sequence="+ary;
 	}
+	  if(ary.length === 0 || ary === null){
+		  alert('마감처리 시킬 칼럼의 체크박스를 선택해주세요!');
+	  }else{
+		  alert('마감처리 되었습니다!');
+		  window.location.href = "${contextPath}/member/updateOrderClosing.do?sequence="+ary; 
+	  }
+			  
 }
+
 </script>
 </html>
