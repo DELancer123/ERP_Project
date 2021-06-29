@@ -271,6 +271,11 @@
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
+   </definition>   
+   <definition name="PopupLayoutSalesplanSta"  template="/WEB-INF/views/business_status/pop/popItem.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
    </definition>
    <definition name="/member/salesmanagepop" extends="PopupLayoutCust">
       <put-attribute name="title" value="영업관리팝업" />
@@ -284,6 +289,11 @@
    </definition>
   <definition name="/member/ordercodehelper" extends="PopupLayoutOrderSta">
       <put-attribute name="title" value="수주팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+     <definition name="/member/salsplanhelper" extends="PopupLayoutSalesplanSta">
+      <put-attribute name="title" value="판매계획현황팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>

@@ -1680,8 +1680,7 @@ ORDER BY out.workordernumber]]>
 	
      <select id="submititemview" resultMap="salesplan" parameterType="String">
 		<![CDATA[select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code} order by plan_code]]>   
-	</select> 
- 
+	</select>  
 			<!-- order&cor sta -->
 	<resultMap id="orderJoinList" type="orderVO">
 			<id property="ordCode" column="ordersNum" />
@@ -1741,11 +1740,7 @@ ORDER BY out.workordernumber]]>
 		<result property="general_Customer_Name" column="General_Customer_Name" />
 		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
-	
 
-	<select id="allSupForward" resultMap="forward">
-		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
-	</select>
 	<select id="submitSupForward" resultMap="forward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
@@ -1754,22 +1749,13 @@ ORDER BY out.workordernumber]]>
 		 where REL.General_Customer_Code = GEN.General_Customer_Code
 		  order by REL.General_Customer_Code]]>
 	</select>
-	
-	<select id="supForwardInsert" resultMap="forward">
-		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
-	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
-		<select id="selItemforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
-	</select><!-- popItem-->
 	<delete id="delSupforward" parameterType="String">
 		<![CDATA[delete from CSM_SM_Rel_Pro where releaseNum=#{relCode}]]>      
   </delete>
-	<select id="ChildView" resultMap="forward" parameterType="java.util.HashMap">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
-	</select>
+
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
@@ -1799,13 +1785,14 @@ ORDER BY out.workordernumber]]>
         	<result property="orderOX" column="orderOX" />
         </collection>
 </resultMap>  
-	<select id="submitForwardItem" resultMap="Corforward">
+	<select id="submitSubForward" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
 	</select>
-	<select id="allForwardItem" resultMap="Corforward">
-		<![CDATA[select * from CSM_SM_COR_Reg order by code]]>
+	<select id="allSubForward" resultMap="Corforward">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code order by code]]>
 	</select>
 	<update id="updateSubForward" parameterType="forwardVO">
 		<![CDATA[update CSM_SM_COR_Reg
