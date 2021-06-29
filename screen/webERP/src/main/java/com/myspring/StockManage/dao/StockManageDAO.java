@@ -36,6 +36,8 @@ public interface StockManageDAO {
 
 	String searchMenu(String searchWord);
 
+	List<StockManageVO> sujusub(String ordersNum);
+
 //	List viewType();
 //
 //	List<StockManageVO> SearchStock(String type) throws DataAccessException;

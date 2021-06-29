@@ -328,9 +328,6 @@ request.setCharacterEncoding("UTF-8");
     
     		})
     		
-    		var viewButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
-       	    viewButton.addEventListener('click', function(){searchData();}, false);
-    		
     		function searchCode1() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
         		openWindowPop("${contextPath}/member/outwarePopup1.do", "outwarePopup1");
         	}

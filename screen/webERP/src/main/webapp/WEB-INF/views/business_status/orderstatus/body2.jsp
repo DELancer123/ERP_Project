@@ -16,16 +16,6 @@
 <meta charset="UTF-8">
 <title>수주 현황</title>
 <style>
-      /*  #contents2{
-            position: absolute;
-            left: 15%;
-            top: 25%;
-            width: 85%;
-            height: 70%;
-            border: 1px solid black;
-            z-index: 1;
-            overflow: scroll;
-        }*/
         #contents2{
             position: absolute;
             right: 0;

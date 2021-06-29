@@ -56,11 +56,13 @@
                 <tr>
                    <td>일생산 가능 최대수량</td>
                    <td><input type="text" id="dailyProduction" value="${param.dailyProduction }" readonly></td>
+                   <td>남은 자재 최소수량</td>
+                   <td><input type="text" id="minValue" value="${minValue }" readonly></td>
                 </tr>
                 <tr>
                    	<td>생산 수량</td>
-                   	<td><input type="text"></td>
-                	<td><input type="button" id="submit" value="적용" /></td>
+                   	<td><input type="text" id="quantity"></td>
+                	<td><input type="button" value="적용" onClick="sendData();"/></td>
                 </tr>   
             </table>
         </div>
@@ -88,23 +90,20 @@
         </div>
     </div>
     <script>
-    	var text_code = document.getElementById("code");
-    	var text_name = document.getElementById("name");
-    	
-    	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+        	
+    	function sendData(){
+    		var dailyProduction = document.getElementById("dailyProduction").value;
+    		var minValue = document.getElementById("minValue").value;
+    		var quantity = document.getElementById("quantity").value;
+    		
+    		if(quantity > dailyProduction){
+    			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
+    		} else if(quantity > minValue){
+    			alert("자재가 모자랍니다!");
+    		} else {
+    			alert("확인");
+    		}
     	}
-    	
-    	function selectAll(selectAll){
-            const checkbox = document.getElementsByName('content');
-            checkbox.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-           });
-    	}
-    	
-    	var min = '<c:out value='${itemView}'/>';
-    	alert(min);
     </script>
     </form>
 </body>

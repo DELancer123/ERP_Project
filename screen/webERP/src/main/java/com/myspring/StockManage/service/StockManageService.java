@@ -38,6 +38,8 @@ public interface StockManageService {
 
 	String searchMenu(String searchWord);
 
+	List<StockManageVO> sujusub(String ordersNum);
+
 
 
 

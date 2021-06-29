@@ -53,5 +53,6 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public void deleteRegistOperationPerformanceInfoDetail(String[] numberAry) throws DataAccessException;
   public List facilitySearch() throws DataAccessException;
   public List checkStock(String itemCode) throws DataAccessException;
+  public int minValue(String itemCode) throws DataAccessException;
   }
  
