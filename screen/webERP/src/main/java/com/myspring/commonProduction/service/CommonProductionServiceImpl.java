@@ -50,6 +50,13 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
      return popList;
    }
   
+  @Override
+  public List checkStock(String itemCode) throws DataAccessException {
+     List popList = null;
+     popList = COIdao.checkStock(itemCode);
+     return popList;
+   }
+  
 //  생산계획 CUD
   @Override
     public void delProductionPlan(String[] numberAry) throws DataAccessException{

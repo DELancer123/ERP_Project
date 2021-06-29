@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.salesmanage.service.SpViewService;
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 import com.myspring.salesmanage.salesplan.vo.spVO;
 
 @Controller
@@ -116,7 +118,30 @@ public class SpViewControllerImpl implements SpViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/regsalesplan.do");
 		return mav; 
 	}
-	 
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchSpName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<spVO> popName = null;
+		popName = spViewService.searchPopName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchSpName2.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName2(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<spVO> popName = null;
+		popName = spViewService.searchPopName2(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
 		
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();

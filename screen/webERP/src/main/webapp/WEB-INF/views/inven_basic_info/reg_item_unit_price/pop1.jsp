@@ -145,8 +145,7 @@ a {
 	$(document).on("click", "#yahoo", function (e){
 		
 		var initCode = 	$(this).find('input[id=iCode]').val();	
-		var initName = 	$(this).find('input[id=iName]').val();
-		//var inputCode = document.getElementById('iCode').value;	
+		var initName = 	$(this).find('input[id=iName]').val();	
 		$('input[name=code]').val(initCode);
 		$('input[name=name]').val(initName);
 	});

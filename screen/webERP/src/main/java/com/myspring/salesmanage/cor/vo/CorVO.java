@@ -24,7 +24,7 @@ public class CorVO {
 	private String inspection;
 	private String orderOX;
 	private String general_Customer_Code;
-	private String vatprice;
+	private int vatprice;
 	private List<CorVO> ListCor;
 	
 	@Override
@@ -152,12 +152,12 @@ public class CorVO {
 	}
 
 
-	public String getVatprice() {
+	public int getVatprice() {
 		return vatprice;
 	}
 
 
-	public void setVatprice(String vatprice) {
+	public void setVatprice(int vatprice) {
 		this.vatprice = vatprice;
 	}
 	
