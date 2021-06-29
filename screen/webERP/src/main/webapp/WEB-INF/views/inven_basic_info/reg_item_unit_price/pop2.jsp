@@ -57,7 +57,7 @@ a {
 				<table id="search">
 					<tr>
 						<td>품 번</td>
-						<td><input type="text" id="code" name="name" /></td>
+						<td><input type="text" id="code" name="code" /></td>
 					</tr>
 					<tr>
 						<td>품 명</td>

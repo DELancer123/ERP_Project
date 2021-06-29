@@ -54,11 +54,11 @@ a {
 				<table id="search">
 					<tr>
 						<td>품 번</td>
-						<td><input type="text" id="code" /></td>
+						<td><input type="text" id="code" name="code"/></td>
 					</tr>
 					<tr>
 						<td>품 명</td>
-						<td><input type="text" id="name" class = "name" /></td>
+						<td><input type="text" id="name" name="name" class = "name" /></td>
 					</tr>
 				</table>
 				<div id="button">
