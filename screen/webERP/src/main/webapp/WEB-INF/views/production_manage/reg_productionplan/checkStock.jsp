@@ -56,6 +56,8 @@
                 <tr>
                    <td>일생산 가능 최대수량</td>
                    <td><input type="text" id="dailyProduction" value="${param.dailyProduction }" readonly></td>
+                   <td>남은 자재 최소수량</td>
+                   <td><input type="text" id="minValue" value="${minValue.qunatity }" readonly></td>
                 </tr>
                 <tr>
                    	<td>생산 수량</td>
@@ -103,8 +105,6 @@
            });
     	}
     	
-    	var min = '<c:out value='${itemView}'/>';
-    	alert(min);
     </script>
     </form>
 </body>
