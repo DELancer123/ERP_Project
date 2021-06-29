@@ -22,6 +22,12 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 
 	@Override
+	public List listCust() throws DataAccessException {
+		List custList = null;
+		custList = forwardDAO.selectCustsList();
+		return custList;
+	}
+	@Override
 	public List submitCust(String custCode) throws DataAccessException {
 		List submitCustList = null;
 		submitCustList = forwardDAO.submitForwardCustSupReg(custCode);
@@ -29,49 +35,20 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 
 	@Override
-	public List listRegForward() throws DataAccessException {
-		List supForwardList = null;
-		supForwardList = forwardDAO.selectSupForwardList();
-		return supForwardList;
-	}	
-
-
-	@Override
-	public List listCust() throws DataAccessException {
-		List custList = null;
-		custList = forwardDAO.selectCustsList();
-		return custList;
-//		
-//		List itemList = null;
-//		itemList = forwardDAO.selectCustList();
-//		return itemList;
-	}//selectAllCustList
-
-	@Override
 	public List submitCustByInsert(String custCode) throws DataAccessException {
 		List submitList = null;
-		submitList = forwardDAO.submitForwardCustReg(custCode);
+		submitList = forwardDAO.submitForwardReg(custCode);
 		return submitList;
 	}
-
-	@Override
-	public List listForwardCust() throws DataAccessException {
-		List supForwardInsert = null;
-		supForwardInsert = forwardDAO.selectCustInsert();
-		return supForwardInsert;
-	}
-	
 
 	@Override
 	public int addForward(ForwardVO forwardVO) throws DataAccessException {
 		return forwardDAO.addForward(forwardVO);
 	}
 
-
 	@Override
 	public void removeForward(String[] noary) throws DataAccessException {
-		forwardDAO.delSupForward(noary);
-		
+		forwardDAO.delSupForward(noary);	
 	}
-
+	
 }

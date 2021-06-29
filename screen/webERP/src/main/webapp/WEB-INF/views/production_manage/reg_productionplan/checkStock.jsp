@@ -54,16 +54,15 @@
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>계획기간</td>
-                    <td><input type="date" id="dateStart" style="background-color: yellow;"/></td>
-                	<td>~</td>
-                    <td><input type="date" id="dateEnd" style="background-color: yellow;"/></td>
+                   <td>일생산 가능 최대수량</td>
+                   <td><input type="text" id="dailyProduction" value="${param.dailyProduction }" readonly></td>
                 </tr>
+                <tr>
+                   	<td>생산 수량</td>
+                   	<td><input type="text"></td>
+                	<td><input type="button" id="submit" value="적용" /></td>
+                </tr>   
             </table>
-            <div id="button">
-                <input type="button" id="planSearch" value="조회" onClick="sendData();" />
-                <input type="button" id="submit" value="적용" />
-            </div>
         </div>
         <div id="view">
             <table style="width: 100%;">
@@ -104,40 +103,8 @@
            });
     	}
     	
-   /* 체크 박스 값 가져오기 함수 */
- 	$("#submit").click(function(){
-    	var rowData = new Array();
-    	var tdArr = new Array();
-   		var checkbox = $("input[name=content]:checked");
- 		
-   		checkbox.each(function(i) {
-   			var tr = checkbox.parent().parent().eq(i);
-   			var td = tr.children();
-   			
-   			var itemCode = td.eq(1).text();
-   			var itemName = td.eq(2).text();
-   			var standard = td.eq(3).text();
-   			var inventoryUnit = td.eq(4).text();
-   			var quantity = td.eq(5).text();
-   			var workDate = td.eq(6).text();
-   			var note = td.eq(7).text();
-   			var productionPlanCode = td.eq(8).text();
-   			
-   			tdArr.push(itemCode);
-   			tdArr.push(itemName);
-   			tdArr.push(standard);
-   			tdArr.push(inventoryUnit);
-   			tdArr.push(quantity);
-   			tdArr.push(workDate);
-   			tdArr.push(note);
-   			tdArr.push(productionPlanCode);
-   			
-   			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7];
-    		window.close();
-
-   		})
- 	})
+    	var min = '<c:out value='${itemView}'/>';
+    	alert(min);
     </script>
     </form>
 </body>

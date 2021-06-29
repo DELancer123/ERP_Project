@@ -55,14 +55,14 @@
                 </tr>
                 <tr>
                     <td>품  목</td>
-                    <td style="width: 50px;"><input type="text" name="item" value='${param.item_name}' style="width: 100%;"/></td>
+                    <td style="width: 50px;"><input type="text" name="item" value='${param.item_code}' style="width: 100%;"/></td>
+                    <td style="width: 120px;"><input type="text" name="item" value='${param.item_name}' style="width: 100%;"/></td>
                     <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
 
                     <td colspan="5">품목군</td>
                     <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
                     <td><input type="text" name="" disabled/></td>
                     <td><i class="fas fa-search"></i></td>
-                    
                 </tr>
             </table>
         </container1>
@@ -74,7 +74,7 @@
     }
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/popItem.do','popupItem');  
+        	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
     }
     </script>
 </body>

@@ -39,6 +39,12 @@ public interface SystemmagDAOMJ {
 	
 	public List viewAllOutWorOutware() throws DataAccessException;
 	
+	public List viewSelectedHouOutware(String search) throws DataAccessException;
+	
+	public List viewSelectedProOutware(String search) throws DataAccessException;
+	
+	public List viewSelectedOutOutware(String search) throws DataAccessException;
+	
 	//물류관리내역등록
 	public List viewAllLogistics() throws DataAccessException;
 	

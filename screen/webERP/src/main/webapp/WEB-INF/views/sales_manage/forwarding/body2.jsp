@@ -24,7 +24,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>출고 처리 등록</title>
+<title>출고 처리 등록2</title>
 <style>
         #contents2{
             position: absolute;
@@ -66,7 +66,7 @@
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
                     <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
-                    <input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}"readonly/></a></td>
+                    	<input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="itemview()" readonly/></a></td>
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
                     <input type="hidden" value="${param.general_Customer_Name}"></td>
@@ -172,9 +172,22 @@
             document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/addforward.do";
            document.getElementById('dataForm').submit();  
+     }
+    	function itemview(){
+            var row = forwardingTable.insertRow(); 
+            const URLSearch = new URLSearchParams(location.search);
+         const newParam = URLSearch.toString();
+        var link = location.pathname +'?'+newParam;
+          var linkPath = document.createElement("input");
+           linkPath.setAttribute("type","hidden");
+           linkPath.setAttribute("name","path");
+           linkPath.setAttribute("value", link);
+           
+           document.getElementById('dataForm').appendChild(linkPath);
+           document.getElementById('dataForm').action = "${contextPath}/member/itemtableview.do";
+          document.getElementById('dataForm').submit();  
 
-      
-      }
+    	}
     	
 		/*수정버튼*/
         function updateRow() {

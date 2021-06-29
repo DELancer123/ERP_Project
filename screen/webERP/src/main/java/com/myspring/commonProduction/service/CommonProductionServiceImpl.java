@@ -51,9 +51,9 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
    }
   
   @Override
-  public List checkStock() throws DataAccessException {
+  public List checkStock(String itemCode) throws DataAccessException {
      List popList = null;
-     popList = COIdao.checkStock();
+     popList = COIdao.checkStock(itemCode);
      return popList;
    }
   
