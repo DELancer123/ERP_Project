@@ -155,7 +155,7 @@ BEGIN
  /       
     
 create or replace package erp_pkg is
-    procedure oqc_upload( p_ITEM_CODE in varchar2, p_pro_date in varchar2 );
+    procedure erp_upload( p_ITEM_CODE in varchar2, p_pro_date in varchar2 );
 end erp_pkg;
 /
 create or replace package body erp_pkg is
