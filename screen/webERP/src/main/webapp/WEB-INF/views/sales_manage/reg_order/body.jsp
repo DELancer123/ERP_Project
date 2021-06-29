@@ -96,7 +96,7 @@ String parent = request.getParameter("itemNumber");
 				<tr class="moveNum2">
 					<td><input type="checkbox" value="${item.ordersNum }"
 						name="content" /></td>
-					<td><input type="text" class="moveNum"
+					<td><input type="text" class="ordersNum" id ="ordersNum"
 						name="StoVO[${sts.index}].moveNum" value="${item.ordersNum }" /></td>
 					<td><input type="date" name="StoVO[${sts.index}].moveDate"
 						value="${item.ordersdate }" /></td>
@@ -174,12 +174,12 @@ String parent = request.getParameter("itemNumber");
 	
 	 var table3 = document.getElementById('table3');
     
-    $('.moveNum').dblclick(function(e) {
+    $('.ordersNum').dblclick(function(e) {
     	
 //	        var checkMoveNum = document.getElementById('moveNum').value;
    //     deleteTbody3();
         
-        var code = $(this).find('input[class=moveNum]').val();
+        var code = $(this).find('input[class=ordersNum]').val();
     	$.ajax({ type: "GET",
     		url: "/webERP/member/searchsujusub.do",
     		data : {	"ordersNum" : code},
@@ -189,37 +189,28 @@ String parent = request.getParameter("itemNumber");
     			// id=table3 안의 모든 요소 지우기
     			$("#table3").empty();
     			
-    			var tbody4index = 0;
+    		/* 	var tbody4index = 0; */
     			for(var i =0; i<data.length; i++){
     				var html = '';
         			html += '<tr>';
         			html += '<td><input type = "checkbox" name = "content2" value = "'+data[i].no+'" "></td>';  	
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].no"  value = "'+data[i].no+'" "></td>';  		
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].moveNum"  value = "'+data[i].moveNum+'" "></td>';  		
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].itemCode" value = "'+data[i].itemCode+'"></td>';  			
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].itemName" value = "'+data[i].itemName+'"></td>';  			
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].standard" value = "'+data[i].standard+'"></td>';  			
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].inventoryUnit" value = "'+data[i].inventoryUnit+'"></td>';  			
-        			html += '<td><input type = "text" name = "updateListStoVO['+ i +'].moveQuantity" value = "'+data[i].moveQuantity+'"></td>';  			
+        			html += '<td><input type = "text" name = ""  value = "'+data[i].code+'" "></td>';  		
+        			html += '<td><input type = "text" name = ""  value = "'+data[i].itemCode +'" "></td>';  		
+        			html += '<td><input type = "text" name = "" value = "'+data[i].itemName +'"></td>';  			
+        			html += '<td><input type = "text" name = "" value = "'+data[i].standard+'"></td>';  			
+        			html += '<td><input type = "text" name = "" value = "'+data[i].inventoryUnit+'"></td>';  			
+        			html += '<td><input type = "date" name = "" value = "'+data[i].dueDate+'"></td>';  			
+        			html += '<td><input type = "text" name = "" value = "'+data[i].ordersQuantity+'"></td>';  			
+        			html += '<td><input type = "text" name = "" value = "'+data[i].productPrice+'"></td>';  			
+        			html += '<td><input type = "text" name = "" value = "'+data[i].vatPrice+'"></td>';  			
+        			html += '<td><input type = "date" name = "" value = "'+data[i].expectedDate+'"></td>';  			
+        			html += '<td><input type = "text" name = "" value = "'+data[i].inspection+'"></td>';  			
         			html += '</tr>';
         			//  id=table3 안에 넣기
         			$("#table3").append(html);
     			} 
-    			<!-- <td style="width: 5%;"><input type="checkbox" value="check1"
-    				id="check" name="content1" /></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="date" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td>
-    			<td><input type="date" name="" id=""></td>
-    			<td><input type="text" name="" id=""></td> -->
     			 
-    			addTbody3();
+    			/* addTbody3(); */
     		},
     		error: function(request,status,error){
     	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -227,7 +218,7 @@ String parent = request.getParameter("itemNumber");
     	});
     });
     
-    /*
+    /* 
     $('#delete').click(function () {
     	deleteData();
     });
@@ -366,8 +357,8 @@ String parent = request.getParameter("itemNumber");
 		     	regForm.action = "${contextPath}/member/updateWareStock.do";
 		     	regForm.submit();  
     }
+	  */
 	 
-	 */
 	</script>
 </body>
 </html>

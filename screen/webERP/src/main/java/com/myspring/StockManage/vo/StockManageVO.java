@@ -333,6 +333,58 @@ return valueStr;
 	String customerCode;
 	String tax;
 	String Note;
+	String code;
+	Date	dueDate;
+	String ordersQuantity;
+	int productPrice;
+	int vatPrice;
+	Date expectedDate;
+	String inspection;
+	
+	public Date getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+	public String getOrdersQuantity() {
+		return ordersQuantity;
+	}
+	public void setOrdersQuantity(String ordersQuantity) {
+		this.ordersQuantity = ordersQuantity;
+	}
+	public int getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+	public int getVatPrice() {
+		return vatPrice;
+	}
+	public void setVatPrice(int vatPrice) {
+		this.vatPrice = vatPrice;
+	}
+	public Date getExpectedDate() {
+		return expectedDate;
+	}
+	public void setExpectedDate(Date expectedDate) {
+		this.expectedDate = expectedDate;
+	}
+	public String getInspection() {
+		return inspection;
+	}
+	public void setInspection(String inspection) {
+		this.inspection = inspection;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
 	private List<StockManageVO> sujuVO;
 
 	public List<StockManageVO> getSujuVO() {

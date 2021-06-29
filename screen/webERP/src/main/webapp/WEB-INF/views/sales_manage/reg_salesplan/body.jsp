@@ -114,7 +114,7 @@
 					</thead>
 				<c:forEach var="sp" items="${spView }" varStatus="status">
 					<tr id="updateSp" align="center">
-                    	<td style="width: 5%;"><input type="checkbox" value="${param.itemCode }" name="content" /></td>
+                    	<td style="width: 5%;"><input type="checkbox" value="${sp.itemCode }" name="content" /></td>
                     	<td><input type="text" name="ListVO[${status.index}].planDate" value="${sp.planDate}" readonly/></td>
 						<td><input type="text" name="ListVO[${status.index}].itemCode" value="${sp.itemCode}" readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].itemName" value="${sp.itemName}" readonly/></td>
@@ -204,8 +204,11 @@
 			}
 		}
 		
+		
 		function updateRow(){
 			var spTable = document.getElementById('spTable');
+			
+				
 			var row = spTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
@@ -225,9 +228,21 @@
 				document.getElementById('regSp').appendChild(articleNoInput);
 				document.getElementById('regSp').action = "${contextPath}/member/updateSp.do";
 				document.getElementById('regSp').submit();
+			
 		}
 		
 		function newRow(){
+			if(planDate.value == "" || itemCode.value == "" || itemName.value == "" ){
+				if(planDate.value == ""){
+					alert("날짜는 필수 입력사항입니다.");
+					return planDate.focus();
+				}else if(itemCode.value == ""){
+					alert("품목코드는 필수 입력사항입니다.");
+					return itemCode.focus();
+				}else if(itemName.value == ""){
+					alert("품명은 필수 입력사항입니다.");
+					return itemName.focus();
+				}}else{
 			var row = spTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
@@ -240,6 +255,8 @@
 			document.getElementById('regSp').appendChild(articleNoInput);
 			document.getElementById('regSp').action = "${contextPath}/member/addSp.do";
 			document.getElementById('regSp').submit();
+		}
+		
 		}
 		
 		function deleteData(){

@@ -1330,7 +1330,7 @@ ordersNum varchar2(12) PRIMARY KEY,
 --주문 일자
 ordersdate Date not null,
 --고객(FK)
-customerCode varchar2(12) not null,
+General_Customer_Code varchar2(12) not null,
 --부가세구분
 tax varchar2(20) not null,
 --비고
@@ -1339,7 +1339,7 @@ Note varchar2(1000),
 --FK
 
 --고객
-CONSTRAINT FK_CSMSMORDREG_BUYER FOREIGN KEY (customerCode) 
+CONSTRAINT FK_CSMSMORDREG_BUYER FOREIGN KEY (General_Customer_Code) 
 REFERENCES SM_BIM_Gen_Cus_Reg(General_Customer_Code) ON DELETE CASCADE
 );
 
@@ -1447,14 +1447,14 @@ SELECT * FROM CSM_SM_ORD_REG;
 --values (F_GET_NEXT_SEQ('CSM_SM_Req_Reg'),sysdate+8,F_GET_NEXT_SEQ('SM_BIM_Gen_Cus_Reg'),null,'M100',null, sysdate+90,null);
 --SELECT * FROM CSM_SM_Req_Reg;
 -----------------------------------------------------------------------------------
---테이블 생성
+--출고처리 테이블 생성 
 create table CSM_SM_Rel_Pro(
 --출고 번호(PK)
 releaseNum Varchar2(12) PRIMARY KEY,
 --출고 일자
 releaseDate Date not null,
 --고객((FK)
-customerCode Varchar2(12) not null,
+General_Customer_Code Varchar2(12) not null,
 --출고 구분
 releaseOX Varchar2(10) not null,
 --마감,
@@ -1465,7 +1465,7 @@ note varchar2(1000),
 --FK
 
 --고객
-CONSTRAINT FK_CSMSMRELREG_BUYER FOREIGN KEY (customerCode) 
+CONSTRAINT FK_CSMSMRELREG_BUYER FOREIGN KEY (General_Customer_Code) 
 REFERENCES SM_BIM_Gen_Cus_Reg(General_Customer_Code) ON DELETE CASCADE
 );
 
