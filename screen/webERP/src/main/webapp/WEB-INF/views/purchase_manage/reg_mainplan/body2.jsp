@@ -139,8 +139,14 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
+var plandate = document.getElementById("plandate");
+var expectedDate = document.getElementById("expectedDate");
+var dueDate = document.getElementById("dueDate");
+var plan_quantity = document.getElementById("plan_quantity");
+var buyer = document.getElementById("buyer");
+var note = document.getElementById("note");
+
 
 function setChildValue(code,name,buyer,standard,inventory_unit,note){
 	  const URLSearch = new URLSearchParams(location.search);
@@ -180,12 +186,33 @@ function deleteRow() {
 	}
 		  if(ary.length === 0 || ary === null){
 			  alert('삭제할 칼럼의 체크박스를 선택해주세요!');
-		  }else
+		  }else{
+			  alert('삭제 되었습니다!');
 			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary+"&submit=" + submit+"&item_Code="+item_Code+"&item_Name="+item_Name+
 			 "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note;
-}
+		  }
+	}
 
 function InsertRow(){
+
+if(plandate.value == "" || expectedDate.value == "" || dueDate.value == "" 	|| plan_quantity.value == ""|| buyer.value == ""){
+    if(plandate.value == ""){
+       alert("날짜는 필수 입력사항입니다.");
+       return planDate.focus();
+    }else if(expectedDate.value == ""){
+       alert("예정발주일은 필수 입력사항입니다.");
+       return expectedDate.focus();
+    }else if(dueDate.value == ""){
+       alert("납기일은 필수 입력사항입니다.");
+       return dueDate.focus();
+    }else if(plan_quantity.value ==""){
+    	alert("계획수량은 필수 입력사항입니다.");
+    	return plan_quantity.focus();
+    }else if(buyer.value ==""){
+    	alert("회사명은 필수 입력사항입니다.");
+    	return buyer.focus();
+    }
+}else{
    		const URLSearch = new URLSearchParams(location.search);
    		
 	 	URLSearch.set('submit', '1');
@@ -198,10 +225,15 @@ function InsertRow(){
 		document.getElementById('MainPlan').appendChild(Input);
 		document.getElementById('MainPlan').action = "${contextPath}/member/addMPS.do";
 		document.getElementById('MainPlan').submit();
-
+    }
 }
 
-	function updateRow() {
+function updateRow() {
+	 var delConfirm = confirm('수정하실껀가요?');
+	if(delConfirm){
+		alert('수정 완료되셨습니다!');
+	
+	
 		  var MPSTable = document.getElementById('MPSTable');
           var row = MPSTable.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
@@ -227,7 +259,15 @@ function InsertRow(){
 		document.getElementById('MainPlan').appendChild(Input);
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit(); 
+		
+	}else{
+		alert('수정을 취소하셨습니다!');
+		location.reload(true);
+		location.href = location.href;
 
+		history.go(0);
+	}
+	
 }
 
 view_button.onclick = function(){
@@ -237,7 +277,6 @@ view_button.onclick = function(){
 		
 		window.open(location.pathname + '?' + newParam, '_self');
 }
-
 
 </script>
 </form>
