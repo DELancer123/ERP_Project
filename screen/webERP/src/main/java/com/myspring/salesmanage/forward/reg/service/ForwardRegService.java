@@ -22,4 +22,6 @@ public interface ForwardRegService {
 	//delete by forward
 	public void removeForward(String[] noary) throws DataAccessException;
 	
+	public List submitItemInfo(String relCode) throws DataAccessException;
+	
 }

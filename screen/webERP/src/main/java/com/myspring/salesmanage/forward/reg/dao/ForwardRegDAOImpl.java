@@ -75,5 +75,13 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		int result = sqlSession.insert("mappers.erp.insertSupForward",forwardVO.getListVO().get(idx));
 		return 0;
 	}
+	
+	@Override
+	public void subForwardItem(String[] forwardCodeary) throws DataAccessException {
+		for(String relCode: forwardCodeary) {
+			sqlSession.selectList("mappers.erp.delSupforward",relCode);
+		
+		}
+	}
 
 }
