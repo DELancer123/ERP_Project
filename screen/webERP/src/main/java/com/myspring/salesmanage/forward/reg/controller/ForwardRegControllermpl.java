@@ -107,18 +107,36 @@ public class ForwardRegControllermpl implements ForwardRegController{
 
 		return mav;
 	}
-
+	
+	@RequestMapping(value="/member/itemtableview.do", method = RequestMethod.GET)
+	public ModelAndView itemTablehelper(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String code = (String)request.getParameter("relCode");
+		String viewName = getViewName(request);
+		String[] codeary = code.split(",");
+		System.out.println(codeary+"codeary");
+		System.out.println(code+"code");
+		forwardRegService.removeForward(codeary);
+		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		
+		return mav;
+	}
 	@Override
 	@RequestMapping(value="/member/itemtableview.do",method = RequestMethod.GET)
 	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		// TODO Auto-generated method stub  submitForwardCustReg
-		request.setCharacterEncoding("utf-8");
-		StringBuffer url = request.getRequestURL();
-		int result = 0;
-		result = forwardRegService.addForward(forwardVO);
-		String resulturl = url.toString();
-		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		String viewName = getViewName(request);
+		List custList = forwardRegService.listCust();
+		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");		
+		
 		return mav;
+		
+//		request.setCharacterEncoding("utf-8");
+//		StringBuffer url = request.getRequestURL();
+//		int result = 0;
+//		result = forwardRegService.addForward(forwardVO);
+//		String resulturl = url.toString();
+//		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+//		return mav;
 	}
 	
 	@Override

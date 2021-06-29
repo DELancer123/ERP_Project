@@ -33,7 +33,6 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		submitCustList = forwardDAO.submitForwardCustSupReg(custCode);
 		return submitCustList;
 	}
-
 	@Override
 	public List submitCustByInsert(String custCode) throws DataAccessException {
 		List submitList = null;
@@ -49,6 +48,13 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	@Override
 	public void removeForward(String[] noary) throws DataAccessException {
 		forwardDAO.delSupForward(noary);	
+	}
+	
+	@Override
+	public List submitItemInfo(String relCode) throws DataAccessException {
+		List submitCustList = null;
+		submitCustList = forwardDAO.submitForwardCustSupReg(relCode);
+		return submitCustList;
 	}
 	
 }

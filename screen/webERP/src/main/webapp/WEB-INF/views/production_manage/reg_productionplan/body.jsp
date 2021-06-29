@@ -121,7 +121,7 @@
                         <td><input type="text" id="dailyProduction" name="ListVO[${fn:length(infoList)}].dailyProduction" value="${param.dailyProduction }" readonly /></td>
                         <td><input type="text" disabled /></td>
                         <td><input type="date" id="scheduled" name="ListVO[${fn:length(infoList)}].scheduled" /></td>
-                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" readonly/></td>
+                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" value="${param.quantity }" readonly/></td>
                         <td><input type="text" id="note" name="ListVO[${fn:length(infoList)}].note" /></td>
                      </tr>
                     </tbody>
