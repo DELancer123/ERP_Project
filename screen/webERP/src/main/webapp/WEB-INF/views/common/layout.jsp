@@ -365,13 +365,7 @@ input {
             var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
         }
-		view_button.onclick = function(){
-			  const URLSearch = new URLSearchParams(location.search);
-			  URLSearch.set('submit', '1');
-			  const newParam = URLSearch.toString();
-
-			  window.open(location.pathname + '?' + newParam, '_self');
-      	}
+		
 		</script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
