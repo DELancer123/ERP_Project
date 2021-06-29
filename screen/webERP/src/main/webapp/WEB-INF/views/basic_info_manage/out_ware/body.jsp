@@ -144,7 +144,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-1 tab-content current">     	
             <table id="view1"><!-- 창고/장소 탭1 -->    
                 <thead>             
-                    <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                    <!-- <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th> -->
                     <th>창고코드</th>
                     <th>창고명</th>
                     <th>입고기본위치</th>
@@ -154,16 +154,13 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${houOutwareList}">
                 <tbody>                
-                    <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <!-- <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td> -->
                     <td><input type="text" value="${out.house_Code }"/></td>
                     <td><input type="text" value="${out.house_Name }"/></td>
                     <td><input type="text" value="${out.house_Location_In }"/></td>
                     <td><input type="text" value="${out.house_Location_Out }"/></td>
                     <td><input type="text" value="${out.house_Explanation }"/></td>
-                    <td><select>
-                        <option value="1">사용</option>
-                        <option value="2">미사용</option>
-                    </select></td>
+                    <td><input type="text" value="${out.house_Status }"/></td>
                 </tbody>
                 </c:forEach>
                 
@@ -172,7 +169,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-2 tab-content">
             <table id="view1"><!-- 생산공정/작업장 탭2-->
                 <thead>
-                    <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                    <!-- <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th> -->
                     <th>생산공정코드</th>
                     <th>생산공정명</th>
                     <th>입고기본위치</th>
@@ -182,17 +179,13 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${proOutwareList}">
                 <tbody>
-                
-                    <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <!-- <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td> -->
                     <td><input type="text" value="${out.process_Code }"/></td>
                     <td><input type="text" value="${out.process_Name }"/></td>
                     <td><input type="text" value="${out.process_Location_In }"/></td>
                     <td><input type="text" value="${out.process_Location_Out }"/></td>
                     <td><input type="text" value="${out.process_Explanation }"/></td>
-                    <td><select>
-                        <option value="1">사용</option>
-                        <option value="2">미사용</option>
-                    </select></td>
+                    <td><input type="text" value="${out.process_Status }"/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -200,7 +193,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-3 tab-content">  
             <table id="view1"><!-- 외주공정/작업장 탭3 -->
                 <thead>
-                    <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                    <!-- <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th> -->
                     <th>외주공정코드</th>
                     <th>외주공정명</th>
                     <th>입고기본위치</th>
@@ -210,17 +203,13 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${outOutwareList}">
                 <tbody>
-                
-                    <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <!-- <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td> -->
                     <td><input type="text" value="${out.outsourcing_Code }"/></td>
                     <td><input type="text" value="${out.outsourcing_Name }"/></td>
                     <td><input type="text" value="${out.outsourcing_Location_In }"/></td>
                     <td><input type="text" value="${out.outsourcing_Location_Out }"/></td>
                     <td><input type="text" value="${out.outsourcing_Explanation }"/></td>
-                    <td><select>
-                        <option value="1">사용</option>
-                        <option value="2">미사용</option>
-                    </select></td>
+                    <td><input type="text" value="${out.outsourcing_Status }"/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -230,7 +219,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-1 tab-content current">
             <table id="view2">
                 <thead>
-                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                	<!-- <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th> -->
                     <th>위치코드</th>
                     <th>위치명</th>
                     <th>위치설명</th>
@@ -242,7 +231,7 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="houWor" items="${houWorOutwareList}">
                 <tbody>
-                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <!-- <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td> -->
                     <td><input type="text" value="${houWor.location_Code }"/></td>
                     <td><input type="text" value="${houWor.location_Name }"/></td>
                     <td><input type="text" value="${houWor.location_Explanation }"/></td>
@@ -258,7 +247,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-2 tab-content">
             <table id="view2">
                 <thead>
-                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                	<!-- <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th> -->
                     <th>작업장코드</th>
                     <th>작업장명</th>
                     <th>작업장설명</th>
@@ -268,7 +257,7 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="proWor" items="${proWorOutwareList}">
                 <tbody>
-                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <!-- <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td> -->
                     <td><input type="text" value="${proWor.workplace_Code }"/></td>
                     <td><input type="text" value="${proWor.workplace_Name }"/></td>
                     <td><input type="text" value="${proWor.workplace_Explanation }"/></td>
@@ -282,7 +271,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-3 tab-content">
             <table id="view2">
                 <thead>
-                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
+                	<!-- <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th> -->
                     <th>작업장코드</th>
                     <th>외주거래처코드</th>
                     <th>작업장명</th>
@@ -293,7 +282,7 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="outWor" items="${outWorOutwareList}">
                 <tbody>
-                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <!-- <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td> -->
                     <td><input type="text" value="${outWor.workplace_Code }"/></td>
                     <td><input type="text" value="${outWor.outcustomer }"/></td>
                     <td><input type="text" value="${outWor.workplace_Name }"/></td>
