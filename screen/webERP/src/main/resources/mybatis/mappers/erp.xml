@@ -139,6 +139,9 @@
 		<![CDATA[delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}]]>
 	</delete>
 	
+	<select id="checkStockView" resultMap="SmBimResult">
+		<![CDATA[select * from PM_SM_PRO_STOCK]]>
+	</select>
 	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
