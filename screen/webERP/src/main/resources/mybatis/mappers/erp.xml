@@ -1842,7 +1842,9 @@ ORDER BY out.workordernumber]]>
 	</resultMap>
 	<select id="rsSelectAllMemberList" resultMap="rsView">
 		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.General_Customer_Code, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
-				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg ]]>
+				from CSM_SM_Rel_Pro pro, CSM_SM_COR_Reg reg 
+				where pro.General_Customer_Code = reg.General_Customer_Code
+				]]>
 	</select>
 	<select id="rsSearchItem" resultMap="rsView" parameterType="java.util.HashMap">
 		<![CDATA[select pro.releaseNum, pro.releaseDate, pro.General_Customer_Code, reg.Item_Code, reg.Item_Name, reg.dueDate, reg.ordersQuantity, reg.productPrice, reg.vatPrice, reg.orderOX 
