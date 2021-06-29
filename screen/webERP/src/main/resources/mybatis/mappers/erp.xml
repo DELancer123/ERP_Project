@@ -235,6 +235,11 @@
 		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</delete>
 	
+	<update id="updateMaterialUse">
+		<![CDATA[update CPM_PM_OPE_PER_REG
+		set MATERIALFORWARDINGSTATUS = '출고완료'
+		where workOrderNumber = #{workOrderNumber}]]>
+	</update>
 	<!-- 작업실적등록 CRUD -->
 	
 <resultMap id="RegistOperationPerformanceResult" type="RegistOperationPerformanceVO">
@@ -1961,4 +1966,18 @@ ORDER BY out.workordernumber]]>
 		where No = #{no}
 		]]>
 	</update>
+	<!-- 품목단가등록 팝 검색기능 -->
+	<select id="selectPopiupList"  parameterType="String" resultMap="iupPopView">
+		<![CDATA[ select Item_Code, Item_Name,Standard
+		  from PM_SM_Ite_Pri
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<select id="selectPopiupList2"  parameterType="String" resultMap="iupPopView">
+		<![CDATA[ select Item_Code, Item_Name
+		  from SM_BIM_Ite_Reg 
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 </mapper>

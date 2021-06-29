@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 
@@ -90,5 +91,20 @@ public class IupViewDAOImpl implements IupViewDAO{
 	public List iupChildView() throws DataAccessException {
 		return sqlSession.selectList("mappers.erp.iupChildView");
 	}
+
+	@Override
+	public List<iupVO> searchPopName(String itemName) throws DataAccessException {
+		List<iupVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopiupList",itemName);
+		return popList;
+	}
+
+	@Override
+	public List<iupVO> searchPopName2(String itemName) throws DataAccessException {
+		List<iupVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopiupList2",itemName);
+		return popList;
+	}
+	
 
 }
