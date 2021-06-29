@@ -146,7 +146,9 @@
                  </tbody>
             </table>
         </container2>
-        	</form>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
       //체크박스함수
     	function selectAll1(selectAll1){
@@ -165,7 +167,7 @@
         		}
         	});
         	if(is_empty) {
-        		alert('필수입력항목이 비었습니다. 다시입력해주세요.');
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
         	}
         	else{
     		const URLSearch = new URLSearchParams(location.search);
@@ -183,29 +185,41 @@
         		}
     		}
         //수정함수
-        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-        	document.getElementById('department_Code1').disabled = true;
-        	document.getElementById('department_Name1').disabled = true;
-        	document.getElementById('workplace_Code1').disabled = true;
-        	document.getElementById('workplace_Name1').disabled = true;
-        	document.getElementById('sector_Code1').disabled = true;
-        	document.getElementById('sector_Name1').disabled = true;
-        	document.getElementById('usedate1').disabled = true;
-       	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-       	$('#regdepartment2').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-       	    if(!$(this).val()) { //#regdepartment2는 form태그의 id값임
-       	    	is_empty = true;      	    	
-       	    }      	 
-       	});       	 
-       	if(is_empty) { //비어있는내용이 있는지 체크함
-       	    alert('필수입력항목이 비었습니다. 다시입력해주세요.');
-       	}
-       	else{
-	        	document.getElementById('regdepartment2').action = "${contextPath}/member/upddepartment.do";
-	    		document.getElementById('regdepartment2').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
-	    		alert('수정되었습니다'); 
-       	 }      	
-       } 
+        function updateRow() {
+    var delConfirm = confirm('수정하실껀가요?');
+   if(delConfirm){
+      alert('수정 완료되셨습니다!');
+        var table2 = document.getElementById('table2');
+          var row = table2.insertRow(); 
+          const URLSearch = new URLSearchParams(location.search);
+          URLSearch.set('submit', '1');
+         const newParam = URLSearch.toString();
+         var link = location.pathname + '?' + newParam;
+      document.getElementById("workplace_Code").disabled = true;      
+      document.getElementById("workplace_Name").disabled = true;
+      document.getElementById("worcompany_Registration_Number").disabled = true;
+      document.getElementById("worrepresentatives_Name").disabled = true;
+      document.getElementById("zipcode").disabled = true;
+      document.getElementById("address1").disabled = true;
+      document.getElementById("worupstate").disabled = true;
+      document.getElementById("worindustry").disabled = true;
+      var Input = document.createElement("input");
+      Input.setAttribute("type", "hidden");
+      Input.setAttribute("name", "path");
+      Input.setAttribute("value", link);
+      document.getElementById('regdepartment2').appendChild(Input);
+      document.getElementById('regdepartment2').action = "${contextPath}/member/upddepartment.do";
+      document.getElementById('regdepartment2').submit(); 
+      
+   }else{
+      alert('수정을 취소하셨습니다!');
+      location.reload(true);
+      location.href = location.href;
+
+      history.go(0);
+   }
+   
+}
       //삭제함수
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
           	var item = document.getElementsByName("checkedContent").length;
@@ -250,5 +264,6 @@
           
       }
         </script>
+       </form>
 </body>
 </html>

@@ -68,8 +68,7 @@
         </div>
         <div id="view">
             <table style="width: 100%;">
-                <tr align="center">
-                	<td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                <tr align="center">     
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
@@ -77,8 +76,7 @@
                     <td>자재잔량</td>                    
                 </tr>
      <c:forEach var="productionPlan" items="${itemView}" >     
-		<tr align="center" id="insertData">
-			<td><input type="checkbox" name="content" /></td>
+		<tr align="center" id="insertData">			
       		<td>${productionPlan.itemCode }</td>
       		<td>${productionPlan.itemName}</td>
       		<td>${productionPlan.standard }</td>
@@ -99,22 +97,21 @@
     		
     		
     		if(quantity > dailyProduction){    		
-    			const URLSearch = new URLSearchParams(location.search);    		 	
+    			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
+    		} else if(quantity > minValue){
+    			alert("자재가 모자랍니다!");
+    		} else {
+    			var url = window.opener.document.location.href;    			
+    			const URLSearch = new URLSearchParams(window.opener.document.location.href);    		 	
     			
     			if(URLSearch.get('quantity') == null){
-    				window.location.href = location.pathname +'&' + '&quantity=' + name;
+    				opener.parent.location = url +'&quantity='+quantity;
     			    } else{
     			     URLSearch.set('quantity', quantity);
     			     const newParam = URLSearch.toString();
-    			     window.location.href = location.pathname +'?'+newParam;
+    			     opener.parent.location = url;
     		    }
     			window.close();
-    		} 
-    		/* else if(quantity > minValue){
-    			alert("자재가 모자랍니다!"); */
-    		/* } */ 
-    		else {
-    			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
     		}
     	}
     </script>

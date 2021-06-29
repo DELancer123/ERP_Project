@@ -153,7 +153,7 @@
       <put-attribute name="body" value="" />
 	  <put-attribute name="side" value="" />
    </definition>
-   <definition name="/member/empcodepop" extends="depcodepopLayout">
+   <definition name="/member/empcodepop" extends="empcodepopLayout">
       <put-attribute name="title" value="로그인" />
       <put-attribute name="body" value="" />
 	  <put-attribute name="side" value="" />

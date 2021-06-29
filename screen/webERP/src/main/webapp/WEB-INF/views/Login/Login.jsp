@@ -179,17 +179,17 @@
                 <div class="login-input-container">
                     <div class="login-input-wrap input-ccode" id="ccode">
                         <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
-                        <input placeholder="부서코드" type="text">
+                        <input placeholder="부서코드" id="depCode" value='${param.depCode }' type="text">
                     </div>
                     <div class="login-input-wrap input-cname">
-                        <input placeholder="부서명" type="text">
+                        <input placeholder="부서명" value='${param.depName }' type="text">
                     </div>
                     <div class="login-input-wrap input-ecode" id="ecode">
-                        <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
-                        <input placeholder="사원코드" type="text">
+                        <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a>
+                        <input placeholder="사원코드" value='${param.empCode }' type="text">
                     </div>
                     <div class="login-input-wrap input-ename">
-                        <input placeholder="사원명" type="text">
+                        <input placeholder="사원명" value='${param.empName }' type="text">
                     </div>
                     <div class="login-input-wrap input-password">
                         <!-- <i class="fas fa-key"></i> -->
@@ -211,8 +211,21 @@
     		openWindowPop('${contextPath}/member/depcodepop.do','codehelper');
     	}
     	function search2(){
-    		openWindowPop('${contextPath}/member/empcodepop.do','codehelper');
+    		var depCode = document.getElementById('depCode');
+    		openWindowPop('${contextPath}/member/empcodepop.do?depCode='+depCode.value,'codehelper');
     	}
+    	 function setChildValue(code,name){
+      	  const URLSearch = new URLSearchParams(location.search);
+          if(URLSearch.get('empCode') == null){
+  		window.location.href = location.href + '&empCode=' + code + '&empName=' + name;
+          }
+          else{
+          	URLSearch.set('empCode', code);
+          	URLSearch.set('empName', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname+'?' +newParam;
+          } 
+    	 }
     </script>
 </body>
 </html>
