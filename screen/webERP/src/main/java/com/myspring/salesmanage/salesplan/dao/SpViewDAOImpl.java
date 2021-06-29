@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 import com.myspring.salesmanage.salesplan.vo.spVO;
 
 @Repository("spViewDAO")
@@ -82,6 +83,20 @@ public class SpViewDAOImpl implements SpViewDAO{
 	@Override
 	public List spChildView() throws DataAccessException {
 		return sqlSession.selectList("mappers.erp.spChildView");
+	}
+	
+	@Override
+	public List<spVO> searchPopName(String itemName) throws DataAccessException {
+		List<spVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopspList",itemName);
+		return popList;
+	}
+
+	@Override
+	public List<spVO> searchPopName2(String itemName) throws DataAccessException {
+		List<spVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopspList2",itemName);
+		return popList;
 	}
 
 }

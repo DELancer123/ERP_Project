@@ -316,6 +316,12 @@
         </container3>
         </form>
         <script>
+        
+        var item_Code = document.getElementById("item_Code");
+        var item_Name = document.getElementById("item_Name");
+        var daily_production = document.getElementById("daily_production");
+        var division = document.getElementById("division");
+        
       //체크박스함수
     	function selectAll1(selectAll1){
         	const checkbox = document.getElementsByName('checkedContent');
@@ -324,18 +330,20 @@
         	})
     	}
         
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-    	deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
-        
             function searchView(name) {
             	console.log('확인');
              	window.location.href = "${contextPath}/member/regitem.do?submit=1&&item_code=" + name; 
             }
             //등록함수
             function newRow(){
+            	if(item_Code.value == "" || item_Name.value == "" || daily_production.value == "" || division.value == "")
+            		{
+            		alert("필수 입력항목이 비어있습니다. 노란색 박스를 모두 채워주세요.");
+            		}
+            	else{
+            	
+        		document.getElementById('lOT_Quantity').value = "0";
+        		document.getElementById('cost').value = "0";
         		const URLSearch = new URLSearchParams(location.search);
         		URLSearch.set('submit','1');
         		const newParam = URLSearch.toString();
@@ -347,23 +355,19 @@
         		document.getElementById('regitem').appendChild(articleNOInput);
         		document.getElementById('regitem').action = "${contextPath}/member/additem.do";
         		document.getElementById('regitem').submit();
-        		}
+        			}
+            	}
           //수정함수
      	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-            	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-            	/* $('#regitem').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-            	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
-            	    	is_empty = true;      	    	
-            	    }      	 
-            	});       	 
-            	if(is_empty) { //비어있는내용이 있는지 체크함
-            	    alert('비어있는 내용이 있습니다. 다시입력하세요');
-            	}
-            	else{ */
+     		  if(item_Code.value == "" || item_Name.value == "" || daily_production.value == "" || division.value == "")
+      		{
+      		alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+      		}
+            	else{ 
      	        	document.getElementById('regitem').action = "${contextPath}/member/upditem.do";
      	    		document.getElementById('regitem').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
      	    		alert('수정되었습니다'); 
-            	/* } */      	
+            	 }     	
             }
      	  view_button.onclick = function(){
      		  console.log('확인');

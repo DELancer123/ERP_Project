@@ -5,23 +5,19 @@
 import java.util.ArrayList;
 import java.util.List;
  
- import org.springframework.beans.factory.annotation.Autowired; import
- org.springframework.dao.DataAccessException; import
-  org.springframework.stereotype.Service; import
-  org.springframework.transaction.annotation.Propagation; import
-  org.springframework.transaction.annotation.Transactional;
-  
-  import com.myspring.commonProduction.commitOperationInstruction.dao.
-  CommitOperationInstructionDAO; import
-  com.myspring.commonProduction.commitOperationInstruction.vo.
-  CommitOperationInstructionVO;
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.dao.DataAccessException; 
+import org.springframework.stereotype.Service; 
+import org.springframework.transaction.annotation.Propagation; 
+import org.springframework.transaction.annotation.Transactional;
+ 
+import com.myspring.commonProduction.commitOperationInstruction.dao.CommitOperationInstructionDAO; 
+import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperationInstructionVO;
 import com.myspring.commonProduction.operationInsClosing.dao.operationInsClosingDAO;
 import com.myspring.commonProduction.operationInsClosing.vo.OperationInsClosingVO;
-import
-  com.myspring.commonProduction.operationRegist.dao.OperationRegistDAO;
+import com.myspring.commonProduction.operationRegist.dao.OperationRegistDAO;
 import com.myspring.commonProduction.operationRegist.vo.OperationDetailVO;
-import
-  com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
+import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.commonProduction.registOperationPerformance.dao.RegistOperationPerformanceDAO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
@@ -51,12 +47,18 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
    }
   
   @Override
-  public List checkStock() throws DataAccessException {
+  public List checkStock(String itemCode) throws DataAccessException {
      List popList = null;
-     popList = COIdao.checkStock();
+     popList = COIdao.checkStock(itemCode);
      return popList;
    }
   
+  @Override
+  public int minValue(String itemCode) throws DataAccessException {
+     int minValue = 0;
+     minValue = COIdao.minValue(itemCode);
+     return minValue;
+   }
 //  생산계획 CUD
   @Override
     public void delProductionPlan(String[] numberAry) throws DataAccessException{

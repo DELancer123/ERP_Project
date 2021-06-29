@@ -110,27 +110,27 @@
                     <p><td colspan = "2" span style="color:black" align="center">기본등록사항</td></p>
                 </tr>
                 <tr>
-                    <td align="center">코드</td>
+                    <td align="center">사업장코드</td>
                     <td colspan="2" >
-                        <input type="text" name="workplace_Code" id="reqInput"
+                        <input type="text" name="workplace_Code" id="workplace_Code"
                         value='${workplace_Code }' 
-                        style="width: 240px;" pattern="[0-9]{10}" maxlength="12"/>
+                        style="width: 240px; background-color: rgb(255, 255, 149);" pattern="[0-9]{10}" maxlength="12"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" >사업장명</td>
                     <td colspan="2" >
-                        <input type="text"  name="workplace_Name" id="reqInput"
+                        <input type="text"  name="workplace_Name" id="workplace_Name"
                         value='${workplace_Name }' 
-                        style="width: 240px;" pattern="[0-9]{10}" maxlength="50"/>
+                        style="width: 240px; background-color: rgb(255, 255, 149);" pattern="[0-9]{10}" maxlength="50"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">사업자등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="worcompany_Registration_Number" id="reqInput"
+                        <input type="text" name="worcompany_Registration_Number" id="worcompany_Registration_Number"
                         value='${worcompany_Registration_Number }' 
-                        style="width: 240px;" pattern="[0-9]{10}" maxlength="13"/>
+                        style="width: 240px; background-color: rgb(255, 255, 149);" pattern="[0-9]{10}" maxlength="13"/>
                     </td>
                 </tr>
                 <tr>
@@ -146,8 +146,8 @@
                 <tr>
                     <td align="center">대표자명</td>
                     <td colspan="2">
-                        <input type="text" name="worrepresentatives_Name" id="reqInput" value="${worrepresentatives_Name }"
-                        style="width: 240px;" maxlength="50"/>
+                        <input type="text" name="worrepresentatives_Name" id="worrepresentatives_Name" value="${worrepresentatives_Name }"
+                        style="width: 240px; background-color: rgb(255, 255, 149);" maxlength="50"/>
                     </td>
                 </tr>
                 <tr>
@@ -179,7 +179,7 @@
                 <tr>
                     <td align="center">전화번호</td>
                     <td colspan="2">
-                        <input type="text" name="workplace_Tel" value="${workplace_Tel }"
+                        <input type="text" name="workplace_Tel" value="${workplace_Tel }" 
                             style="background-color: rgb(235,235,235);
                             border-style: none; width: 240px;
                             text-align: center;" pattern="[0-9]{10}" maxlength="13"/>
@@ -188,15 +188,15 @@
                 <tr>
                     <td align="center">업태</td>
                     <td colspan="2">
-                        <input type="text" name="worupstate" id="reqInput" value="${worupstate }"
-                        style="width: 240px;" maxlength="20"/>
+                        <input type="text" name="worupstate" id="worupstate" value="${worupstate }"
+                        style="width: 240px; background-color: rgb(255, 255, 149);" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">종목</td>
                     <td colspan="2">
-                        <input type="text" name="worindustry" id="reqInput" value="${worindustry }"
-                        style="width: 240px;" maxlength="20"/>
+                        <input type="text" name="worindustry" id="worindustry" value="${worindustry }"
+                        style="width: 240px; background-color: rgb(255, 255, 149);" maxlength="20"/>
                     </td>
                 </tr>
                 <tr>
@@ -215,6 +215,16 @@
         </container>
         </form>
             <script>
+            
+            var workplace_Code = document.getElementById("workplace_Code");
+            var workplace_Name = document.getElementById("workplace_Name");
+            var worcompany_Registration_Number = document.getElementById("worcompany_Registration_Number");
+            var worrepresentatives_Name = document.getElementById("worrepresentatives_Name");
+            var zipcode = document.getElementById("zipcode");
+            var address1 = document.getElementById("address1");
+            var worupstate = document.getElementById("worupstate");
+            var worindustry = document.getElementById("worindustry");
+            
     	//체크박스함수
     	function selectAll1(selectAll1){
             const checkbox = document.getElementsByName('checkedContent');
@@ -223,11 +233,6 @@
             })
         }
     	
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-        deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
         function openWindowPop1(url, name){
             var options = 'top=330, left=400, width=1130, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
@@ -238,6 +243,11 @@
         }
         //등록함수
         function newRow(){
+        	if (workplace_Code.value == "" || workplace_Name.value == "" || worcompany_Registration_Number.value == "" || worrepresentatives_Name.value == "" || zipcode.value == "" || address1.value == "" || worupstate.value == "" || worindustry == "")
+        	{
+        		alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.")	
+        	}
+        	else {
     		document.getElementsByName("workplace_Code").disabled = true;
     		document.getElementsByName("workplace_Name").disabled = true;
     		const URLSearch = new URLSearchParams(location.search);
@@ -251,18 +261,14 @@
     		document.getElementById('regworkplace').appendChild(articleNOInput);
     		document.getElementById('regworkplace').action = "${contextPath}/member/addbusiness.do";
     		document.getElementById('regworkplace').submit();
-    		}
+        	}
+        }
         //수정함수
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-           	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-           	$('#regworkplace').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-           	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
-           	    	is_empty = true;      	    	
-           	    }      	 
-           	});       	 
-           	if(is_empty) { //비어있는내용이 있는지 체크함
-           	    alert('비어있는 내용이 있습니다. 다시입력하세요');
-           	}
+        	if (workplace_Code.value == "" || workplace_Name.value == "" || worcompany_Registration_Number.value == "" || worrepresentatives_Name.value == "" || zipcode.value == "" || address1.value == "" || worupstate.value == "" || worindustry == "")
+        	{
+        		alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.")	
+        	}
            	else{
     	        	document.getElementById('regworkplace').action = "${contextPath}/member/updbusiness.do";
     	    		document.getElementById('regworkplace').submit(); //폼태그*의 목록들을 컨트롤러로 전송함

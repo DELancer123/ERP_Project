@@ -69,9 +69,14 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  @RequestMapping(value="/member/checkStock.do" ,method = RequestMethod.GET)
 		public ModelAndView checkStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = getViewName(request);
-			List itemView = productionService.checkStock();
+			String itemCode = (String) request.getParameter("parentItemCode");
+			String dailyProduction = (String) request.getParameter("dailyProduction");
+			List itemView = productionService.checkStock(itemCode);
+			int minValue = productionService.minValue(itemCode);
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("itemView", itemView);
+			mav.addObject("dailyProduction", dailyProduction);
+			mav.addObject("minValue", minValue);
 			return mav;
 		}
 //	�깮�궛怨꾪쉷 �벑濡� CRUD

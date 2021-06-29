@@ -54,21 +54,21 @@
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>계획기간</td>
-                    <td><input type="date" id="dateStart" style="background-color: yellow;"/></td>
-                	<td>~</td>
-                    <td><input type="date" id="dateEnd" style="background-color: yellow;"/></td>
+                   <td>일생산 가능 최대수량</td>
+                   <td><input type="text" id="dailyProduction" value="${param.dailyProduction }" readonly></td>
+                   <td>남은 자재 최소수량</td>
+                   <td><input type="text" id="minValue" value="${minValue }" readonly></td>
                 </tr>
+                <tr>
+                   	<td>생산 수량</td>
+                   	<td><input type="text" id="quantity"></td>
+                	<td><input type="button" value="적용" onClick="sendData();"/></td>
+                </tr>   
             </table>
-            <div id="button">
-                <input type="button" id="planSearch" value="조회" onClick="sendData();" />
-                <input type="button" id="submit" value="적용" />
-            </div>
         </div>
         <div id="view">
             <table style="width: 100%;">
-                <tr align="center">
-                	<td ><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
+                <tr align="center">     
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
@@ -76,8 +76,7 @@
                     <td>자재잔량</td>                    
                 </tr>
      <c:forEach var="productionPlan" items="${itemView}" >     
-		<tr align="center" id="insertData">
-			<td><input type="checkbox" name="content" /></td>
+		<tr align="center" id="insertData">			
       		<td>${productionPlan.itemCode }</td>
       		<td>${productionPlan.itemName}</td>
       		<td>${productionPlan.standard }</td>
@@ -89,55 +88,32 @@
         </div>
     </div>
     <script>
-    	var text_code = document.getElementById("code");
-    	var text_name = document.getElementById("name");
-    	
-    	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+        	
+    	function sendData(){
+    		var dailyProduction = document.getElementById("dailyProduction").value;
+    		var minValue = document.getElementById("minValue").value;
+    		var quantity = document.getElementById("quantity").value;
+    		alert(dailyProduction +","+ minValue +","+ quantity);
+    		
+    		
+    		if(quantity > dailyProduction){    		
+    			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
+    		} else if(quantity > minValue){
+    			alert("자재가 모자랍니다!");
+    		} else {
+    			var url = window.opener.document.location.href;    			
+    			const URLSearch = new URLSearchParams(window.opener.document.location.href);    		 	
+    			
+    			if(URLSearch.get('quantity') == null){
+    				opener.parent.location = url +'&quantity='+quantity;
+    			    } else{
+    			     URLSearch.set('quantity', quantity);
+    			     const newParam = URLSearch.toString();
+    			     opener.parent.location = url;
+    		    }
+    			window.close();
+    		}
     	}
-    	
-    	function selectAll(selectAll){
-            const checkbox = document.getElementsByName('content');
-            checkbox.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-           });
-    	}
-    	
-   /* 체크 박스 값 가져오기 함수 */
- 	$("#submit").click(function(){
-    	var rowData = new Array();
-    	var tdArr = new Array();
-   		var checkbox = $("input[name=content]:checked");
- 		
-   		checkbox.each(function(i) {
-   			var tr = checkbox.parent().parent().eq(i);
-   			var td = tr.children();
-   			
-   			var itemCode = td.eq(1).text();
-   			var itemName = td.eq(2).text();
-   			var standard = td.eq(3).text();
-   			var inventoryUnit = td.eq(4).text();
-   			var quantity = td.eq(5).text();
-   			var workDate = td.eq(6).text();
-   			var note = td.eq(7).text();
-   			var productionPlanCode = td.eq(8).text();
-   			
-   			tdArr.push(itemCode);
-   			tdArr.push(itemName);
-   			tdArr.push(standard);
-   			tdArr.push(inventoryUnit);
-   			tdArr.push(quantity);
-   			tdArr.push(workDate);
-   			tdArr.push(note);
-   			tdArr.push(productionPlanCode);
-   			
-   			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7];
-    		window.close();
-
-   		})
- 	})
     </script>
     </form>
 </body>

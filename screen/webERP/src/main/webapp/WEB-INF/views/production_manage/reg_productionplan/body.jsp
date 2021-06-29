@@ -73,7 +73,8 @@
                         <td colspan="2" style="width: 50px;"><input type="date"  id='searchStartDate' style="width: 100%; background-color: yellow;"/></td>
                         <td>~</td>
                         <td ><input type="date" id='searchEndDate' style="width: 100%; background-color: yellow;"/></td>
-                        <td></td>
+                        <td></td>                        
+                        <td><input type="button" value="재고 확인" onClick="checkStock();" /></td>
                     </tr>
                 </table>
                 </form>
@@ -120,7 +121,7 @@
                         <td><input type="text" id="dailyProduction" name="ListVO[${fn:length(infoList)}].dailyProduction" value="${param.dailyProduction }" readonly /></td>
                         <td><input type="text" disabled /></td>
                         <td><input type="date" id="scheduled" name="ListVO[${fn:length(infoList)}].scheduled" /></td>
-                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" /></td>
+                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" value="${param.quantity }" readonly/></td>
                         <td><input type="text" id="note" name="ListVO[${fn:length(infoList)}].note" /></td>
                      </tr>
                     </tbody>
@@ -218,5 +219,15 @@
       		  }
       			  window.location.href = "${contextPath}/member/delProductionPlan.do?productionPlanCode="+ary;
       	  }
+        }
+        
+        function checkStock() {
+        	var itemCode = document.getElementById('itemCode').value;
+        	var dailyProduction = document.getElementById('dailyProduction').value;
+        	if(itemCode == null || itemCode == ""){
+        		alert("품번을 선택해 주세요!");
+        	} else{
+        	openWindowBroadPop('http://localhost:8090/webERP/member/checkStock.do?parentItemCode='+itemCode+'&dailyProduction='+dailyProduction,'checkStock');      		
+        	}
         }
       </script>

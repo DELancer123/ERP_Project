@@ -16,8 +16,9 @@ public interface ForwardRegController {
 			HttpServletResponse response) throws Exception;
 	public ModelAndView delForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	
+	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception;
 //	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 }
