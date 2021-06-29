@@ -8,7 +8,9 @@
   request.setCharacterEncoding("UTF-8");
 %>    
 <% 
-	String item_code = request.getParameter("item_code");
+	String custCode1 = request.getParameter("general_Customer_Code");
+	String custCode = request.getParameter("custCode");
+	String relCode = request.getParameter("relCode");	
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="forwarditem" items="${forwardItemInsert}">
@@ -88,15 +90,15 @@
                 </c:forEach>
                     <tbody id="insertsubForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id=item_code name="ListVO[${fn:length(forward)}].item_code" value="${item_code}" readonly/></td>
-                    <td><input type="date" id="item_name" name="ListVO[${fn:length(forward)}].item_name" value="${item_name}" readonly /></td>
-                    <td><input type="text" id="stand" name="ListVO[${fn:length(forward)}].stand" value="${stand}" readonly /></td>
-                    <td><input type="text" id="unit" name="ListVO[${fn:length(forward)}].unit" value="${unit}" readonly /></td>
-                    <td><input type="text" id="orderQuant" name="ListVO[${fn:length(forward)}].orderQuant" value="${orderQuant}" readonly /></td>
-                    <td><input type="text" id="price" name="ListVO[${fn:length(forward)}].price" value="${price}" readonly /></td>
-                    <td><input type="date" id="dueDate" name="ListVO[${fn:length(forward)}].dueDate" value="${dueDate}" readonly /></td>
-                    <td><input type="text" id="expDate" name="ListVO[${fn:length(forward)}].expDate" value="${expDate}" readonly /></td>
-                    <td><input type="text" id="inspection" name="ListVO[${fn:length(forward)}].inspection" value="${inspection}" readonly /></td>
+                    <td><input type="text" id=item_code name="ListVO[${fn:length(forward)}].corVO.item_code" value="${item_code}" readonly/></td>
+                    <td><input type="date" id="item_name" name="ListVO[${fn:length(forward)}].corVO.item_name" value="${item_name}" readonly /></td>
+                    <td><input type="text" id="stand" name="ListVO[${fn:length(forward)}].corVO.stand" value="${stand}" readonly /></td>
+                    <td><input type="text" id="unit" name="ListVO[${fn:length(forward)}].corVO.unit" value="${unit}" readonly /></td>
+                    <td><input type="text" id="orderQuant" name="ListVO[${fn:length(forward)}].corVO.orderQuant" value="${orderQuant}" readonly /></td>
+                    <td><input type="text" id="price" name="ListVO[${fn:length(forward)}].corVO.price" value="${price}" readonly /></td>
+                    <td><input type="date" id="dueDate" name="ListVO[${fn:length(forward)}].corVO.dueDate" value="${dueDate}" readonly /></td>
+                    <td><input type="text" id="expDate" name="ListVO[${fn:length(forward)}].corVO.expDate" value="${expDate}" readonly /></td>
+                    <td><input type="text" id="inspection" name="ListVO[${fn:length(forward)}].corVO.inspection" value="${inspection}" readonly /></td>
                 </tbody>
             </table>
         </container3>

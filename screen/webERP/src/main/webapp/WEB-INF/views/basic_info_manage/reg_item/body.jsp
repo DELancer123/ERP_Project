@@ -324,18 +324,22 @@
         	})
     	}
         
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-    	deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
-        
             function searchView(name) {
             	console.log('확인');
              	window.location.href = "${contextPath}/member/regitem.do?submit=1&&item_code=" + name; 
             }
             //등록함수
             function newRow(){
+            	var is_empty = false;
+            	$('#regitem').find('input[type!="hidden"]').each(function(){
+            		if(!$(this).val()) {
+            			is_empty = true;
+            		}
+            	});
+            	if(is_empty) {
+            		alert('필수입력항목이 비었습니다. 다시입력해주세요.')
+            	}
+            	else{
         		const URLSearch = new URLSearchParams(location.search);
         		URLSearch.set('submit','1');
         		const newParam = URLSearch.toString();
@@ -347,11 +351,12 @@
         		document.getElementById('regitem').appendChild(articleNOInput);
         		document.getElementById('regitem').action = "${contextPath}/member/additem.do";
         		document.getElementById('regitem').submit();
-        		}
+        			}
+            	}
           //수정함수
      	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
             	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-            	/* $('#regitem').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+            	 $('#regitem').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
             	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
             	    	is_empty = true;      	    	
             	    }      	 
@@ -359,11 +364,11 @@
             	if(is_empty) { //비어있는내용이 있는지 체크함
             	    alert('비어있는 내용이 있습니다. 다시입력하세요');
             	}
-            	else{ */
+            	else{ 
      	        	document.getElementById('regitem').action = "${contextPath}/member/upditem.do";
      	    		document.getElementById('regitem').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
      	    		alert('수정되었습니다'); 
-            	/* } */      	
+            	 }     	
             }
      	  view_button.onclick = function(){
      		  console.log('확인');

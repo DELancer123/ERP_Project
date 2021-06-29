@@ -223,11 +223,11 @@
         
         function checkStock() {
         	var itemCode = document.getElementById('itemCode').value;
-        	
+        	var dailyProduction = document.getElementById('dailyProduction').value;
         	if(itemCode == null || itemCode == ""){
         		alert("품번을 선택해 주세요!");
         	} else{
-        	openWindowBroadPop('http://localhost:8090/webERP/member/checkStock.do?parentItemCode='+itemCode,'checkStock');      		
+        	openWindowBroadPop('http://localhost:8090/webERP/member/checkStock.do?parentItemCode='+itemCode+'&dailyProduction='+dailyProduction,'checkStock');      		
         	}
         }
       </script>
