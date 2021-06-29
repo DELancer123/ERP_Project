@@ -39,15 +39,19 @@ public class HomeController {
 
 public class HomeController {
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "main";
 	}
+	
 	@RequestMapping(value = "/member/regcompany", method = RequestMethod.GET)
 	public String regcompany(Locale locale, Model model) {
 		return "/member/regcompany";
+	}
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
+		return "/member/login";
 	}
 	@RequestMapping(value = "/member/regbusiness", method = RequestMethod.GET)
 	public String regbusiness(Locale locale, Model model) {

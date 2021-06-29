@@ -223,11 +223,6 @@
             })
         }
     	
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-        deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
         function openWindowPop1(url, name){
             var options = 'top=330, left=400, width=1130, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
@@ -238,6 +233,16 @@
         }
         //등록함수
         function newRow(){
+        	var is_empty = false;
+        	$('#regworkplace').find('input[type!="hidden"]').each(function() {
+        		if(!$(this).val()) {
+        			is_empty = true;
+        		}
+        	});
+        	if(is_empty) {
+        		alert('필수입력항목이 비었습니다. 다시입력해주세요.')
+        		}
+        	else{
     		document.getElementsByName("workplace_Code").disabled = true;
     		document.getElementsByName("workplace_Name").disabled = true;
     		const URLSearch = new URLSearchParams(location.search);
@@ -251,7 +256,8 @@
     		document.getElementById('regworkplace').appendChild(articleNOInput);
     		document.getElementById('regworkplace').action = "${contextPath}/member/addbusiness.do";
     		document.getElementById('regworkplace').submit();
-    		}
+    			}
+        	}
         //수정함수
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
            	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬

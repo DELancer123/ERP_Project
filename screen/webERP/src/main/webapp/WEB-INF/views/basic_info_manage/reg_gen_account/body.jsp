@@ -138,16 +138,6 @@ request.setCharacterEncoding("UTF-8");
 	                    <td style="width:80px; text-align:left;">
 	                    	<input type=text name="ckcustomerCode" id="ckcustomerCode" value="${param.itemName }" style="width:100%;" disabled/>	                    
 	                    </td>	
-	                   
-	                    
-	                    <td align="center" style="width:100px; padding-right:7px;">거래처구분</td>
-	                    <td style="width:100px; text-align:left" >
-	                        <select name="customerType" >
-	                            <option value="default">1.일반</option>
-	                            <option value="2">2.무역</option>
-	                            <option value="3">3.주민</option>
-	                        </select>
-	                    </td>
 	                </tr>
 	            </table>
 	        </form>
@@ -156,7 +146,7 @@ request.setCharacterEncoding("UTF-8");
         <container2 id= contents2>
             <table id="table2" align="center">
                 <thead>
-                    <td><input type="checkbox" id="chec" name="content" onclick="selectAll(this)"/></td>
+                    <td></td>
                     <td align="center">코드</td>
                     <td align="center">거래처명</td>
                     <td align="center">구분</td>
@@ -186,7 +176,7 @@ request.setCharacterEncoding("UTF-8");
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%">새로등록</button>
+                        text-align: center; width:99%">신규등록</button>
                     </td>
                 </tr>
                 </tbody>
@@ -283,30 +273,27 @@ request.setCharacterEncoding("UTF-8");
         </form>
         </container3>
         <script>
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-        deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var viewButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
-        viewButton.addEventListener('click', function(){searchData();}, false);
-        
-        var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
-        registButton.addEventListener('click', function(){newRow();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
-        
-       
-        
         function searchView(name) { //조회를 담당하는 자바스크립트임
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
         }
         
         
         function searchData() {
-        	alert('조회오류수정중임');
         	var searchForm = $('#searchForm');
-        	searchForm.submit();
+        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});       	 
+        	if(is_empty) { //비어있는내용이 있는지 체크함
+        	    alert('검색내용이 비어있습니다');
+        	}
+        	else{	        	
+	    		searchForm.submit();
+        	} 
         }
+        
         
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("checkedContent").length;

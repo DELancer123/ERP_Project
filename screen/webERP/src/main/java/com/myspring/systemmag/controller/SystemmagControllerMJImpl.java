@@ -206,7 +206,12 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		String viewName = getViewName(request);
 		String submit = (String) request.getParameter("submit"); // 첫접속인지 체크하는 변수임 , url로 넘어옴
 		String code = (String) request.getParameter("com_code"); // 몇번째 목록인지 체크하는 변수임, url로 넘어옴
-
+		String outwareCode = (String) request.getParameter("outwareCode");
+		String processCode = (String) request.getParameter("processCode");
+		String outsourcingCode = (String) request.getParameter("outsourcingCode");
+		System.out.println("outwareCode:"+outwareCode);
+		System.out.println("processCode:"+processCode);
+		System.out.println("outsourcingCode:"+outsourcingCode);
 		if (code == null && submit == null) { // 첫접속이라면?
 			System.out.println("1번분기들어옴");
 			List houOutwareList = systemmagService.viewAllHouOutware(); // select all 쿼리를 호출한다
@@ -218,14 +223,69 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 			List outWorOutwareList = systemmagService.viewAllOutWorOutware();
 
 			mav = new ModelAndView(viewName);
-			mav.addObject("houOutwareList", houOutwareList);
-			mav.addObject("proOutwareList", proOutwareList);
-			mav.addObject("outOutwareList", outOutwareList);
+			if(outwareCode==null) {
+				mav.addObject("houOutwareList", houOutwareList);
+			}else {
+				List  houOutwareSelectedList = systemmagService.viewSelectedHouOutware(outwareCode);
+				mav.addObject("houOutwareList", houOutwareSelectedList);
+			}
+			if(processCode==null) {
+				mav.addObject("proOutwareList", proOutwareList);
+			}else {
+				List  proOutwareSelectedList = systemmagService.viewSelectedProOutware(processCode);
+				mav.addObject("proOutwareList", proOutwareSelectedList);
+			}
+			if(outsourcingCode==null) {
+				mav.addObject("outOutwareList", outOutwareList);
+			}else {
+				List  outOutwareSelectedList = systemmagService.viewSelectedOutOutware(outsourcingCode);
+				mav.addObject("outOutwareList", outOutwareSelectedList);
+			}
 			mav.addObject("houWorOutwareList", houWorOutwareList);
 			mav.addObject("proWorOutwareList", proWorOutwareList);
 			mav.addObject("outWorOutwareList", outWorOutwareList);
 			return mav;
 		}
+
+		return mav;
+	}
+	// 창고/공정/외주공정현황-팝업
+	@Override
+	@RequestMapping(value = "/member/outwarePopup1.do", method = RequestMethod.GET)
+	public ModelAndView popupOutware1(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+
+		List outwareView = systemmagService.viewAllHouOutware(); // select * 문을호출한다음
+		mav = new ModelAndView(viewName);
+		mav.addObject("outwareView", outwareView); // 팝업으로 전달함
+
+		return mav;
+	}
+	@Override
+	@RequestMapping(value = "/member/outwarePopup2.do", method = RequestMethod.GET)
+	public ModelAndView popupOutware2(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+
+		List outwareView = systemmagService.viewAllProOutware(); // select * 문을호출한다음
+		mav = new ModelAndView(viewName);
+		mav.addObject("outwareView", outwareView); // 팝업으로 전달함
+
+		return mav;
+	}
+	@Override
+	@RequestMapping(value = "/member/outwarePopup3.do", method = RequestMethod.GET)
+	public ModelAndView popupOutware3(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+
+		List outwareView = systemmagService.viewAllOutOutware(); // select * 문을호출한다음
+		mav = new ModelAndView(viewName);
+		mav.addObject("outwareView", outwareView); // 팝업으로 전달함
 
 		return mav;
 	}
@@ -237,18 +297,33 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 		String submit = (String) request.getParameter("submit"); // 첫접속인지 체크하는 변수임 , url로 넘어옴
-		String code = (String) request.getParameter("com_code"); // 몇번째 목록인지 체크하는 변수임, url로 넘어옴
+		String code = (String) request.getParameter("com_code"); // 첫접속인지 체크하는 변수임 , url로 넘어옴
+		String logisSearchBox = (String) request.getParameter("logisSearchBox"); // 몇번째 목록인지 체크하는 변수임, url로 넘어옴
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
-		System.out.println("code:"+code);
+		System.out.println("logisSearchBox:"+logisSearchBox);
 
-		if (code == null || submit == null) { // 첫접속이라면?
-			System.out.println("1번분기들어옴");
-			List logisticsView = systemmagService.viewAllLogistics(); // select all 쿼리를 호출한다
-			mav = new ModelAndView(viewName);
-			mav.addObject("logisticsView", logisticsView);
-			return mav;
+		if (code == null && submit == null) { // 첫접속이라면?			
+			if(logisSearchBox != null) {				
+				System.out.println("3번분기들어옴");
+				System.out.println("logisSearchBox:"+logisSearchBox);
+				List allLogisticsList = null;
+				List logisticsList = null;
+				allLogisticsList = systemmagService.viewSelectedLogistics(logisSearchBox);
+				logisticsList = systemmagService.viewSelectedLogistics(logisSearchBox);
+				mav = new ModelAndView(viewName);
+				mav.addObject("logisticsView", allLogisticsList);	
+				mav.addObject("logisticsSeletedView", logisticsList);
+				return mav;
+			}
+			else {
+				System.out.println("1번분기들어옴");
+				List logisticsView = systemmagService.viewAllLogistics(); // select all 쿼리를 호출한다
+				mav = new ModelAndView(viewName);
+				mav.addObject("logisticsView", logisticsView);
+				return mav;
+			}
 		}
 
 		else if (submit.equals("1")) { // 목록을 선택했을때, 즉 조회를 했을때

@@ -107,12 +107,12 @@ String dueDate = (String) request.getAttribute("dueDate");
 					<td><input type="text" id="releaseNum" value='${rs.rsjVO.releaseNum }' readonly/></td>
 					<td><input type="text" id="releaseDate" value='${rs.rsjVO.releaseDate }' readonly/></td>
 					<td><input type="text" id="customerCode" value='${rs.rsjVO.customerCode }' readonly/></td>
-					<td><input type="text" id="itemCode" name="ListVO[${fn:length(rsView) }].itemCode" value='${rs.itemCode }' readonly/></td>
-					<td><input type="text" id="itemName" name="ListVO[${fn:length(rsView) }].itemName" value='${rs.itemName }' readonly/></td>
-					<td><input type="text" id="dueDate" name="ListVO[${fn:length(rsView) }].dueDate" value='${rs.dueDate }' readonly/></td>
-					<td><input type="text" id="ordersQuantity" name="ListVO[${fn:length(rsView) }].ordersQuantity" value='${rs.ordersQuantity }' readonly/></td>
-					<td><input type="text" id="productPrice" name="ListVO[${fn:length(rsView) }].productPrice" value='${rs.productPrice }' readonly/></td>
-					<td><input type="hidden" id="vatPrice" name="ListVO[${fn:length(rsView) }].vatPrice" value='${rs.vatPrice }' readonly/></td>
+					<td><input type="text" id="itemCode"  value='${rs.itemCode }' readonly/></td>
+					<td><input type="text" id="itemName"  value='${rs.itemName }' readonly/></td>
+					<td><input type="text" id="dueDate"  value='${rs.dueDate }' readonly/></td>
+					<td><input type="text" id="ordersQuantity"  value='${rs.ordersQuantity }' readonly/></td>
+					<td><input type="text" id="productPrice"  value='${rs.productPrice }' readonly/></td>
+					<td><input type="hidden" id="vatPrice"  value='${rs.vatPrice }' readonly/></td>
 					<td><input type="number" id="totPrice" value='${rs.ordersQuantity * rs.productPrice }' readonly/></td>
 					<td><input type="number" id="vat" value='${rs.ordersQuantity * rs.vatPrice}' readonly/></td>
 					<td><input type="number" id="totVatPrice" value='${(rs.ordersQuantity * rs.productPrice) + (rs.ordersQuantity * rs.vatPrice)}' readonly/>

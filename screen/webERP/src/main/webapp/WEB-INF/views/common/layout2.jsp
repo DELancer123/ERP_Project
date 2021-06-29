@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  isELIgnored="false"
  %>
+ <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
  <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
@@ -66,7 +67,7 @@
         .logo{
             position: absolute;
             display: inline-block;
-            height: 100%;
+            height: 100px;
             width: 100px;
             left: 20px;
         }
@@ -221,7 +222,7 @@
 <body>
     <div id=wrap>
         <header id = header>
-            <img src="img/ani_spade.png" class="logo"/>
+            <img src="/resources/img/kingdomlogo.png" class="logo"/>
             <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
             <ul id="etc_menu">
                 <li><a href="#">로그아웃</a></li>
@@ -234,24 +235,24 @@
         </header>
         <nav id = nav1>
             <ul id="gnb">
-                <li><a href="http://localhost:8090/webERP/member/systemmain.do">시스템관리</a>
+                <li><a href="${contextPath }/member/systemmain.do">시스템관리</a>
                     <ul id="sub" >
                         <li><a href="#">회사등록정보</a></li>
                         <li><a href="#">기초정보관리</a></li>
                     </ul></li>
-                <li><a href="http://localhost:8090/webERP/member/businessmain.do">영업관리</a>
+                <li><a href="${contextPath }/member/businessmain.do">영업관리</a>
                     <ul id="sub" style="left: -101%;">
                         <li><a href="#">영업관리</a></li>
                         <li><a href="#">영업현황</a></li>
                     </ul></li>
-                <li><a href="http://localhost:8090/webERP/member/purchasemain.do">구매/자재관리</a>
+                <li><a href="${contextPath }/member/purchasemain.do">구매/자재관리</a>
                     <ul id="sub" style="left: -202%;">
                         <li><a href="#">구매관리</a></li>
                         <li><a href="#">재고관리</a></li>
                         <li><a href="#">재고수불현황</a></li>
                         <li><a href="#">기초정보관리</a></li>
                     </ul></li>
-                <li><a href="http://localhost:8090/webERP/member/productionmain.do">생산관리공통</a>
+                <li><a href="${contextPath }/member/productionmain.do">생산관리공통</a>
                     <ul id="sub" style="left: -303%;">
                         <li><a href="#">생산관리</a></li>
                         <li><a href="#">외주관리</a></li>

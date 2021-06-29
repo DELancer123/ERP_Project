@@ -184,7 +184,7 @@
                     <td>
                         <input type="date" name="fiscal_Year_Dates" id="fiscal_Year_Dates" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Dates }'/>
                         ~
-                        <input type="date" name="fiscal_Year_Datee" id="fiscal_year_Datee" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Datee }'/>
+                        <input type="date" name="fiscal_Year_Datee" id="fiscal_Year_Datee" style="background-color: rgb(255, 255, 149);" value='${fiscal_Year_Datee }'/>
                     </td>
                 </tr>
                 <tr>
@@ -198,7 +198,7 @@
                 <tr>
                     <td align="center">법인등록번호</td>
                     <td colspan="2">
-                        <input type="text" name="corporate_Registration_Number"
+                        <input type="text" name="corporate_Registration_Number" 
                         style="background-color: rgb(235,235,235);  
                         border-style: none; width: 240px;
                         text-align: center;" pattern="[0-9]{13}" maxlength="13" 
@@ -284,7 +284,7 @@
                 <tr>
                     <td align="center">설립연월일</td>
                     <td colspan="2">
-                        <input type="date" name="date_Of_Establishment"
+                        <input type="date" name="date_Of_Establishment" id="date_Of_Establishment"
                         value='${date_Of_Establishment }'
                         style="background-color: rgb(255, 255, 149);
                         text-align: center;" 
@@ -306,6 +306,20 @@
 </form>
 <script>
 //체크박스함수
+	var company_Code = document.getElementById("company_Code");
+	var company_Name = document.getElementById("company_Name");
+	var fiscal_Year_Number = document.getElementById("fiscal_Year_Number");
+	var fiscal_Year_Dates = document.getElementById("fiscal_Year_Dates");
+	var fiscal_Year_Datee = document.getElementById("fiscal_Year_Datee");
+	var company_Registration_Number = document.getElementById("company_Registration_Number");
+	var representatives_Name = document.getElementById("representatives_Name");
+	var zipcode = document.getElementById("zipcode");
+	var address1 = document.getElementById("address1");
+	var upstate = document.getElementById("upstate");
+	var industry = document.getElementById("industry");
+	var date_Of_Establishment = document.getElementById("date_Of_Establishment");
+
+	
 	function selectAll1(selectAll1){
     	const checkbox = document.getElementsByName('checkedContent');
     	checkbox.forEach((checkbox) => {
@@ -316,11 +330,7 @@
         var options = 'top=330, left=400, width=1130, height=420, status=no, menubar=no, toolbar=no, resizable=no';
         window.open(url, name, options);
     }
-	var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-	deleteButton.addEventListener('click', function(){deleteData();}, false);
-
-	var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-    updateButton.addEventListener('click', function(){updateRow();}, false); 
+	
 	
 	function searchView(name) {
 		console.log('확인');
@@ -329,6 +339,11 @@
 	
 	//등록함수
 	function newRow(){
+		if(company_Code.value == "" || company_Name.value == "" || fiscal_Year_Number.value == "" || fiscal_Year_Dates.value == "" || fiscal_Year_Datee.value == "" || company_Registration_Number.value == "" || representatives_Name.value == "" || zipcode.value == "" || address1.value == "" || upstate.value == "" || industry.value == "" || date_Of_Establishment.value == "" )
+		{
+			alert("필수입력항목이 비어있습니다. 노란색 박스를 모두 채워주세요.");
+		}
+		else {
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit','1');
 		const newParam = URLSearch.toString();
@@ -341,6 +356,7 @@
 		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
 		document.getElementById('regcompany').submit();
 		alert('등록되었습니다');
+		}
 	}
 	//수정함수
 	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
@@ -351,7 +367,7 @@
        	    }      	 
        	});       	 
        	if(is_empty) { //비어있는내용이 있는지 체크함
-       	    alert('비어있는 내용이 있습니다. 다시입력하세요');
+       	    alert('비어있는 내용이 있습니다. 다시입력해주세요.');
        	}
        	else{
 	        	document.getElementById('regcompany').action = "${contextPath}/member/updcompany.do";
@@ -399,6 +415,7 @@
   			window.location.href = "${contextPath}/member/regcompany.do";
   		}
       	else //컨트롤러로 해당목록의 no값을 보낸다
+      		alert('삭제되었습니다')
   			window.location.href = "${contextPath}/member/deletecompany.do?no="+ary;       	
       }
 </script>

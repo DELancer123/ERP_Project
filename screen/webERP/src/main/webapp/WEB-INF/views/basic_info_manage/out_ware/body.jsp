@@ -109,29 +109,58 @@ request.setCharacterEncoding("UTF-8");
 </style>
 </head>
 <body>
-<container1 id = contents1>
-            <table class="con1_search">
-                <tr>
-                    <td>사업장</td>
-                    <td>
-                        <input type="text" style="width:100px;">
-                        <i class="fas fa-search" style="color: blue;"></i>
-                    </td> 
-                    <td>
-                        <input type="text" disabled>
-                    </td>
-					<td style="width:50px;"></td>
-
-                    <td>거래처</td>
-                    <td>
-                        <input type="text" style="width:100px;">
-                        <i class="fas fa-search" style="color: blue;"></i>
-                    </td>
-                    <td>
-                        <input type="text" disabled>
-                    </td>
-                </tr>
-            </table>
+		<container1 id = contents1>
+			<form method="get" id="searchForm" class="tab-1 tab-content current">
+	            <table class="con1_search" style="margin-left:15%;">
+	                <tr>
+	                    <td>창고코드</td>
+	                    <td>
+	                        <input type="text" style="width:100px;" id="outwareCode" name="outwareCode"/>
+	                    </td>
+	                    <td>
+	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+	                    </td> 
+	                    <td>
+	                        <input type="text" id="outwareName" name="outwareName" disabled/>
+	                    </td>
+						<td style="width:50px;"></td>
+	                </tr>
+	            </table>
+            </form>
+            <form method="get" id="searchForm" class="tab-2 tab-content">
+	            <table class="con1_search" style="margin-left:15%;">
+	                <tr>
+	                    <td>생산공정코드</td>
+	                    <td>
+	                        <input type="text" style="width:100px;" id="processCode" name="processCode">
+	                    </td>
+	                    <td>
+	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode2()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+	                    </td> 
+	                    <td>
+	                        <input type="text" id="processName" name="processName" disabled>
+	                    </td>
+						<td style="width:50px;"></td>
+	                </tr>
+	            </table>
+	        </form>
+            <form method="get" id="searchForm" class="tab-3 tab-content">
+	            <table class="con1_search" style="margin-left:15%;">
+	                <tr>
+	                    <td>외주공정코드</td>
+	                    <td>
+	                        <input type="text" style="width:100px;" id="outsourcingCode" name="outsourcingCode">
+	                    </td>
+	                    <td>
+	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode3()"><i class="fas fa-search" style="color :blue;"></i></a></div>
+	                    </td> 
+	                    <td>
+	                        <input type="text" id="outsourcingName" name="outsourcingName" disabled>
+	                    </td>
+						<td style="width:50px;"></td>
+	                </tr>
+	            </table>
+	        </form>
             <div>
                 <ul class="tabs" style="left:0px; bottom:0px; position: absolute;" >
                     <li class="tab-link current" data-tab="tab-1">창고/장소</li>
@@ -144,7 +173,6 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-1 tab-content current">     	
             <table id="view1"><!-- 창고/장소 탭1 -->    
                 <thead>             
-                    <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
                     <th>창고코드</th>
                     <th>창고명</th>
                     <th>입고기본위치</th>
@@ -154,16 +182,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${houOutwareList}">
                 <tbody>                
-                    <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${out.house_Code }"/></td>
                     <td><input type="text" value="${out.house_Name }"/></td>
                     <td><input type="text" value="${out.house_Location_In }"/></td>
                     <td><input type="text" value="${out.house_Location_Out }"/></td>
                     <td><input type="text" value="${out.house_Explanation }"/></td>
-                    <td><select>
-                        <option value="1">사용</option>
-                        <option value="2">미사용</option>
-                    </select></td>
+                    <td><input type="text" value="${out.house_Status }"/></td>
                 </tbody>
                 </c:forEach>
                 
@@ -172,7 +196,6 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-2 tab-content">
             <table id="view1"><!-- 생산공정/작업장 탭2-->
                 <thead>
-                    <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
                     <th>생산공정코드</th>
                     <th>생산공정명</th>
                     <th>입고기본위치</th>
@@ -182,17 +205,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${proOutwareList}">
                 <tbody>
-                
-                    <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${out.process_Code }"/></td>
                     <td><input type="text" value="${out.process_Name }"/></td>
                     <td><input type="text" value="${out.process_Location_In }"/></td>
                     <td><input type="text" value="${out.process_Location_Out }"/></td>
                     <td><input type="text" value="${out.process_Explanation }"/></td>
-                    <td><select>
-                        <option value="1">사용</option>
-                        <option value="2">미사용</option>
-                    </select></td>
+                    <td><input type="text" value="${out.process_Status }"/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -200,7 +218,6 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-3 tab-content">  
             <table id="view1"><!-- 외주공정/작업장 탭3 -->
                 <thead>
-                    <th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
                     <th>외주공정코드</th>
                     <th>외주공정명</th>
                     <th>입고기본위치</th>
@@ -210,17 +227,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${outOutwareList}">
                 <tbody>
-                
-                    <td id="non"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${out.outsourcing_Code }"/></td>
                     <td><input type="text" value="${out.outsourcing_Name }"/></td>
                     <td><input type="text" value="${out.outsourcing_Location_In }"/></td>
                     <td><input type="text" value="${out.outsourcing_Location_Out }"/></td>
                     <td><input type="text" value="${out.outsourcing_Explanation }"/></td>
-                    <td><select>
-                        <option value="1">사용</option>
-                        <option value="2">미사용</option>
-                    </select></td>
+                    <td><input type="text" value="${out.outsourcing_Status }"/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -230,7 +242,6 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-1 tab-content current">
             <table id="view2">
                 <thead>
-                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
                     <th>위치코드</th>
                     <th>위치명</th>
                     <th>위치설명</th>
@@ -242,7 +253,6 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="houWor" items="${houWorOutwareList}">
                 <tbody>
-                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${houWor.location_Code }"/></td>
                     <td><input type="text" value="${houWor.location_Name }"/></td>
                     <td><input type="text" value="${houWor.location_Explanation }"/></td>
@@ -258,7 +268,6 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-2 tab-content">
             <table id="view2">
                 <thead>
-                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
                     <th>작업장코드</th>
                     <th>작업장명</th>
                     <th>작업장설명</th>
@@ -268,7 +277,6 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="proWor" items="${proWorOutwareList}">
                 <tbody>
-                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${proWor.workplace_Code }"/></td>
                     <td><input type="text" value="${proWor.workplace_Name }"/></td>
                     <td><input type="text" value="${proWor.workplace_Explanation }"/></td>
@@ -282,7 +290,6 @@ request.setCharacterEncoding("UTF-8");
         <div class="tab-3 tab-content">
             <table id="view2">
                 <thead>
-                	<th id="non"><input type="checkbox" name="content" onclick="selectAll(this)" /></th>
                     <th>작업장코드</th>
                     <th>외주거래처코드</th>
                     <th>작업장명</th>
@@ -293,7 +300,6 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="outWor" items="${outWorOutwareList}">
                 <tbody>
-                    <td id="non" style="width:2%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td><input type="text" value="${outWor.workplace_Code }"/></td>
                     <td><input type="text" value="${outWor.outcustomer }"/></td>
                     <td><input type="text" value="${outWor.workplace_Name }"/></td>
@@ -310,17 +316,43 @@ request.setCharacterEncoding("UTF-8");
     	<script>
         	$(document).ready(function(){
         
-        	$('ul.tabs li').click(function(){
-            	var tab_id = $(this).attr('data-tab');
-    
-            	$('ul.tabs li').removeClass('current');
-            	$('.tab-content').removeClass('current');
-    
-            	$(this).addClass('current');
-            	$("."+tab_id).addClass('current');
-       	 	})
+	        	$('ul.tabs li').click(function(){
+	            	var tab_id = $(this).attr('data-tab');
+	    
+	            	$('ul.tabs li').removeClass('current');
+	            	$('.tab-content').removeClass('current');
+	    
+	            	$(this).addClass('current');
+	            	$("."+tab_id).addClass('current');
+	       	 	})
     
     		})
+    		
+    		function searchCode1() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
+        		openWindowPop("${contextPath}/member/outwarePopup1.do", "outwarePopup1");
+        	}
+        	function searchCode2() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
+        		openWindowPop("${contextPath}/member/outwarePopup2.do", "outwarePopup2");
+        	}
+        	function searchCode3() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
+        		openWindowPop("${contextPath}/member/outwarePopup3.do", "outwarePopup3");
+        	}
+        	
+        	function searchData() {
+            	var searchForm = $('#searchForm');
+            	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+            	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+            	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+            	    	is_empty = true;      	    	
+            	    }      	 
+            	});       	 
+            	if(is_empty) { //비어있는내용이 있는지 체크함
+            	    alert('검색내용이 비어있습니다');
+            	}
+            	else{	        	
+    	    		searchForm.submit();
+            	} 
+            }
     </script>
 </body>
 </html>

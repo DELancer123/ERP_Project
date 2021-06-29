@@ -136,7 +136,7 @@
     	<option value=1 <c:if test="${itemg.use_Status == 1}">selected</c:if>>1.여</option>
     	</select>
     	</td>
-    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" id="explanation1" style="background-color: rgb(235,235,235);" maxlength="200"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(itemgView) }].explanation" id="explanation1" style="background-color: rgb(235,235,235); border-style: none;" maxlength="200"/></td>
     </tr>
                  </tbody>
             </table>
@@ -151,13 +151,18 @@
         	})
     	}
         
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-        deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
         //등록함수
         function newRow(){
+        	var is_empty = false;
+        	$('#regItemg').find('input[type!="hidden"]').each(function(){
+        		if(!$(this).val()) {
+        			is_empty = true;
+        		}
+        	});
+        	if(is_empty) {
+        		alert('필수입력항목이 비었습니다. 다시입력해주세요.');
+        	}
+        	else{
     		const URLSearch = new URLSearchParams(location.search);
     		URLSearch.set('submit','1');
     		const newParam = URLSearch.toString();
@@ -169,7 +174,8 @@
     		document.getElementById('regItemg').appendChild(articleNOInput);
     		document.getElementById('regItemg').action = "${contextPath}/member/additemg.do";
     		document.getElementById('regItemg').submit();
-    		}
+    			}
+        	}
       //수정함수
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	document.getElementById('item_Group_Code1').disabled = true;

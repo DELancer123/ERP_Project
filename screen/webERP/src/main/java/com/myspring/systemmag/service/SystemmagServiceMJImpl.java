@@ -112,6 +112,27 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		outwareList = systemmagDAO.viewAllOutWorOutware();	
 		return outwareList;
 	}
+	//창고등록 조회-------
+	@Override
+	public List viewSelectedHouOutware(String search) throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewSelectedHouOutware(search);	
+		return outwareList;
+	}
+	
+	@Override
+	public List viewSelectedProOutware(String search) throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewSelectedProOutware(search);	
+		return outwareList;
+	}
+	
+	@Override
+	public List viewSelectedOutOutware(String search) throws DataAccessException {
+		List outwareList = null;
+		outwareList = systemmagDAO.viewSelectedOutOutware(search);	
+		return outwareList;
+	}
 	
 	//물류관리내역등록
 	@Override
@@ -148,9 +169,5 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopLogisticsName(String itemName) {
 		return systemmagDAO.viewsearchPopLogisticsName(itemName);
 	}
-	
-	
-
-	
 	
 }

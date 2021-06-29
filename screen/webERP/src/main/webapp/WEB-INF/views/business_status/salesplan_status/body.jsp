@@ -48,7 +48,8 @@
             <table class="con1_search">
                 <tr>
                     <td>품  목</td>
-                    <td style="width: 50px;"><input type="text" name="item" value='${param.item_name}' style="width: 100%;"/></td>
+                    <td style="width: 50px;"><input type="text" name="item" value='${param.item_code}' style="width: 100%;"/></td>
+                    <td style="width: 120px;"><input type="text" name="item" value='${param.item_name}' style="width: 100%;"/></td>
                     <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
                 </tr>
             </table>
@@ -61,7 +62,7 @@
     }
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/popItem.do','popupItem');  
+        	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
     }
     </script>
 </body>

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 import com.myspring.salesmanage.salesplan.dao.SpViewDAO;
 import com.myspring.salesmanage.salesplan.vo.spVO;
 
@@ -71,6 +72,16 @@ public class SpViewServiceImpl implements SpViewService{
 	@Override
 	public int updateSp(spVO spVO) throws DataAccessException {
 		return spDAO.updSp(spVO);
+	}
+	
+	@Override
+	public List<spVO> searchPopName(String itemName) throws DataAccessException {
+		return spDAO.searchPopName(itemName);
+	}
+
+	@Override
+	public List<spVO> searchPopName2(String itemName) throws DataAccessException {
+		return spDAO.searchPopName2(itemName);
 	}
 
 }
