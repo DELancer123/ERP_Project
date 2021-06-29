@@ -788,7 +788,7 @@ order by bom.parent_item_code]]>
 
 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
 		<![CDATA[select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
-        	 pm.dueDate, pm.sequence,pm.expectedDate
+        	 pm.dueDate, pm.sequence,pm.expectedDate,pm.plan_quantity
           	from CPM_BIM_BOM_REG bom, pmm_pm_mps pm
             where pm.item_code = bom.item_code and expectedDate between #{startDate} and #{endDate}]]>
 	</select>
