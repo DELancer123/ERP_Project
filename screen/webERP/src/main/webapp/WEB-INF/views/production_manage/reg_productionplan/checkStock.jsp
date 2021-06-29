@@ -95,13 +95,26 @@
     		var dailyProduction = document.getElementById("dailyProduction").value;
     		var minValue = document.getElementById("minValue").value;
     		var quantity = document.getElementById("quantity").value;
+    		alert(dailyProduction +","+ minValue +","+ quantity);
     		
-    		if(quantity > dailyProduction){
+    		
+    		if(quantity > dailyProduction){    		
+    			const URLSearch = new URLSearchParams(location.search);    		 	
+    			
+    			if(URLSearch.get('quantity') == null){
+    				window.location.href = location.pathname +'&' + '&quantity=' + name;
+    			    } else{
+    			     URLSearch.set('quantity', quantity);
+    			     const newParam = URLSearch.toString();
+    			     window.location.href = location.pathname +'?'+newParam;
+    		    }
+    			window.close();
+    		} 
+    		/* else if(quantity > minValue){
+    			alert("자재가 모자랍니다!"); */
+    		/* } */ 
+    		else {
     			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
-    		} else if(quantity > minValue){
-    			alert("자재가 모자랍니다!");
-    		} else {
-    			alert("확인");
     		}
     	}
     </script>
