@@ -1907,7 +1907,19 @@ ORDER BY out.workordernumber]]>
 		where Item_Code = #{itemCode}
 		]]>
 	</update>
-	
+	<!-- 품목단가등록 팝 검색기능 -->
+	<select id="selectPopspList"  parameterType="String" resultMap="spPopView">
+		<![CDATA[ select Item_Code, Item_Name,Standard
+		  from SM_BIM_Sal_Pla_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<select id="selectPopspList2"  parameterType="String" resultMap="spPopView">
+		<![CDATA[ select Item_Code, Item_Name
+		  from SM_BIM_Ite_Reg 
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	<!-- 품목단가등록(재원) 파트 -->
 
 	<resultMap id="iupView" type="iupVO">
