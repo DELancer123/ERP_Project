@@ -273,20 +273,6 @@ request.setCharacterEncoding("UTF-8");
         </form>
         </container3>
         <script>
-        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-        deleteButton.addEventListener('click', function(){deleteData();}, false);
-        
-        var viewButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
-        viewButton.addEventListener('click', function(){searchData();}, false);
-        
-        var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
-        registButton.addEventListener('click', function(){newRow();}, false);
-        
-        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-        updateButton.addEventListener('click', function(){updateRow();}, false); 
-        
-       
-        
         function searchView(name) { //조회를 담당하는 자바스크립트임
             window.location.href = "${contextPath}/member/regbasicacc.do?submit=1&&com_code=" + name; 
         }
