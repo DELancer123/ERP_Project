@@ -125,7 +125,7 @@ public class StockManageControllerImpl implements StockManageController {
 		return mav;
 	} 
 	
-	//¼öÁÖµî·Ï ÆÄÆ®
+	//ìˆ˜ì£¼ë“±ë¡
 	
 	@RequestMapping(value = "/member/regorder.do", method = RequestMethod.GET)
 	public ModelAndView viewStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -175,7 +175,7 @@ public class StockManageControllerImpl implements StockManageController {
 		return mav;
 	}
 	
-	/////////////////////////¸Ş´º°Ë»ö¹Ù
+	/////////////////////////ï¿½Ş´ï¿½ï¿½Ë»ï¿½ï¿½ï¿½
 	
 	@RequestMapping(value="/member/keywordSearch.do",method = RequestMethod.GET,produces = "application/text; charset=utf8")
 	public @ResponseBody ModelAndView  keywordSearch(@RequestParam("keyword") String keyword,
