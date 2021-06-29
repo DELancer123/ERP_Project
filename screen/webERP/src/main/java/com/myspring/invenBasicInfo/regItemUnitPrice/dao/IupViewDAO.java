@@ -19,5 +19,6 @@ public interface IupViewDAO {
 	public int selNo() throws DataAccessException;
 	public List iupChildView() throws DataAccessException;
 	public List<iupVO> searchPopName(String itemName) throws DataAccessException;
+	public List<iupVO> searchPopName2(String itemName) throws DataAccessException;
 
 }

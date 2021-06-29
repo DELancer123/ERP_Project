@@ -19,5 +19,6 @@ public interface IupViewService {
 	public int updateIup(iupVO iupVO) throws DataAccessException;
 	public int inputNo() throws DataAccessException;
 	public List<iupVO> searchPopName(String itemName) throws DataAccessException;
+	public List<iupVO> searchPopName2(String itemName) throws DataAccessException;
 
 }

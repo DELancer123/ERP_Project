@@ -99,4 +99,12 @@ public class IupViewDAOImpl implements IupViewDAO{
 		return popList;
 	}
 
+	@Override
+	public List<iupVO> searchPopName2(String itemName) throws DataAccessException {
+		List<iupVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopiupList2",itemName);
+		return popList;
+	}
+	
+
 }

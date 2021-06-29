@@ -1968,5 +1968,11 @@ ORDER BY out.workordernumber]]>
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="selectPopiupList2"  parameterType="String" resultMap="iupPopView">
+		<![CDATA[ select Item_Code, Item_Name
+		  from SM_BIM_Ite_Reg 
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	
 </mapper>

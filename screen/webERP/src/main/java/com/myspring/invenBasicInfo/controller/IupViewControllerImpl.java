@@ -135,6 +135,18 @@ public class IupViewControllerImpl implements IupViewController {
 
 		return mav;
 	} 
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchIupName2.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName2(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<iupVO> popName = null;
+		popName = iupViewService.searchPopName2(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
 	 
 		
 	private String getViewName(HttpServletRequest request) {
