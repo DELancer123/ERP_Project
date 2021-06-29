@@ -38,6 +38,13 @@ public interface SystemmagServiceMJ {
 	public List viewAllProWorOutware() throws DataAccessException;
 	
 	public List viewAllOutWorOutware() throws DataAccessException;
+			//조회---
+	public List viewSelectedHouOutware(String search) throws DataAccessException;
+	
+	public List viewSelectedProOutware(String search) throws DataAccessException;
+	
+	public List viewSelectedOutOutware(String search) throws DataAccessException;
+	
 	
 	//물류관리등록
 	public List viewAllLogistics() throws DataAccessException;
