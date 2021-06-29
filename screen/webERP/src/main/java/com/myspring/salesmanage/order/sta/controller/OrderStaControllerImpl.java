@@ -52,10 +52,10 @@ public class OrderStaControllerImpl implements OrderStaController{
 			return mav;
 		}
 
-			List orderList = orderService.submitCust(code);
+			List submitOrderCust = orderService.submitCust(code);
 			
 			mav = new ModelAndView(viewName);
-			mav.addObject("orderList", orderList);
+			mav.addObject("submitOrderCust", submitOrderCust);
 
 		return mav;
 	}
