@@ -54,16 +54,15 @@
         <div id="searchBox">
             <table id="search">
                 <tr>
-                    <td>계획기간</td>
-                    <td><input type="date" id="dateStart" style="background-color: yellow;"/></td>
-                	<td>~</td>
-                    <td><input type="date" id="dateEnd" style="background-color: yellow;"/></td>
+                   <td>일생산 가능 최대수량</td>
+                   <td><input type="text" value="${param.dailyProduction }" readonly></td>
                 </tr>
+                <tr>
+                   	<td>생산 수량</td>
+                   	<td><input type="text"></td>
+                	<td><input type="button" id="submit" value="적용" /></td>
+                </tr>   
             </table>
-            <div id="button">
-                <input type="button" id="planSearch" value="조회" onClick="sendData();" />
-                <input type="button" id="submit" value="적용" />
-            </div>
         </div>
         <div id="view">
             <table style="width: 100%;">
