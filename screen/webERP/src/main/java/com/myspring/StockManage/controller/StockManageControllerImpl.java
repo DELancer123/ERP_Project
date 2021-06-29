@@ -164,6 +164,18 @@ public class StockManageControllerImpl implements StockManageController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/member/searchsujusub.do", method = RequestMethod.GET)
+	public ModelAndView searchsujusub(@RequestParam("ordersNum") String ordersNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<StockManageVO> sujusub = null;
+		sujusub = stockManageservice.sujusub(ordersNum);
+		mav.addObject("sujusub", sujusub);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/member/searchPopCus.do", method = RequestMethod.GET)
 	public ModelAndView searchPopCus(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -174,6 +186,9 @@ public class StockManageControllerImpl implements StockManageController {
 
 		return mav;
 	}
+	
+	
+	
 	
 	/////////////////////////�޴��˻���
 	

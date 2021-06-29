@@ -249,7 +249,7 @@ input {
 <body>
 	<div id=wrap>
 		<header id=header>
-			<img src="img/kingdomlogo.png" class="logo" />
+			<p><img src="/resources/img/kingdomlogo.png" class="logo"/></p>
 			<p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
 			<ul id="etc_menu">
 				<li><a href="#">로그아웃</a></li>
@@ -300,7 +300,7 @@ input {
 		</nav>
 		<nav id="nav2">
 			<button id="delete" onclick="deleteData()">삭제</button>
-			<button id="view_button">조회</button>
+			<button id="view_button" onclick="searchData()">조회</button>
 			<button id="save" onclick="newRow()">저장</button>
 			<button id="update" onclick="updateRow()">수정</button>
 		</nav>

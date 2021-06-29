@@ -83,20 +83,26 @@
 			</div>
 		</div>
 	 <script>
-      var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
-    	function popFunction(code,name){
-    		text_code.value = code;
-    		text_name.value = name;
-    	}
-    	submit_button.onclick = function(){
-    		text_code.setAttribute("custCode",text_code.value);
-			text_name.setAttribute("custName",text_name.value);
-    		opener.parent.location='${contextPath}/member/orderstat.do?custCode='+text_code.value+'&&custName='+text_name.value;
-    		window.close();
-    	}
-    </script>
+	    var submit_button = document.getElementById("submit");
+		var text_code = document.getElementById("code");
+		var text_name = document.getElementById("name");
+		
+	function popFunction(code,name){
+			text_code.value = code;
+			text_name.value = name;
+			
+	}
+	function submitClick(form){
+		opener.setChildValue(text_name.value);
+		window.close();
+	}
+	submit_button.onclick = function(){
+		var url = window.opener.document.location.href;
+		var url_arr = url.split('?');
+		opener.parent.location=url_arr[0] + '?custCode='+text_code.value+'&&custName='+text_name.value;
+		window.close();
+	}
+	</script>
 	</form>
 </body>
 </html>

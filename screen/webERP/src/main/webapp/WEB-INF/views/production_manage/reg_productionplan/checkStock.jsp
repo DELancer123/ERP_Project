@@ -55,12 +55,14 @@
             <table id="search">
                 <tr>
                    <td>일생산 가능 최대수량</td>
-                   <td><input type="text" value="${param.dailyProduction }" readonly></td>
+                   <td><input type="text" id="dailyProduction" value="${param.dailyProduction }" readonly></td>
+                   <td>남은 자재 최소수량</td>
+                   <td><input type="text" id="minValue" value="${minValue }" readonly></td>
                 </tr>
                 <tr>
                    	<td>생산 수량</td>
-                   	<td><input type="text"></td>
-                	<td><input type="button" id="submit" value="적용" /></td>
+                   	<td><input type="text" id="qunatity"></td>
+                	<td><input type="button" value="적용" onClick="submit();"/></td>
                 </tr>   
             </table>
         </div>
@@ -103,40 +105,11 @@
            });
     	}
     	
-   /* 체크 박스 값 가져오기 함수 */
- 	$("#submit").click(function(){
-    	var rowData = new Array();
-    	var tdArr = new Array();
-   		var checkbox = $("input[name=content]:checked");
- 		
-   		checkbox.each(function(i) {
-   			var tr = checkbox.parent().parent().eq(i);
-   			var td = tr.children();
-   			
-   			var itemCode = td.eq(1).text();
-   			var itemName = td.eq(2).text();
-   			var standard = td.eq(3).text();
-   			var inventoryUnit = td.eq(4).text();
-   			var quantity = td.eq(5).text();
-   			var workDate = td.eq(6).text();
-   			var note = td.eq(7).text();
-   			var productionPlanCode = td.eq(8).text();
-   			
-   			tdArr.push(itemCode);
-   			tdArr.push(itemName);
-   			tdArr.push(standard);
-   			tdArr.push(inventoryUnit);
-   			tdArr.push(quantity);
-   			tdArr.push(workDate);
-   			tdArr.push(note);
-   			tdArr.push(productionPlanCode);
-   			
-   			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7];
-    		window.close();
-
-   		})
- 	})
+    	function submit(){
+    		var dailyProduction = document.getElementById("dailyProduction").value;
+    		var minValue = document.getElementById("minValue").value;
+    		var quantity = document.getElementById("quantity").value;
+    	}
     </script>
     </form>
 </body>
