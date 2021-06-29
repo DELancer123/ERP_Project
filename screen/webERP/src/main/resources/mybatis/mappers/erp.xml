@@ -1623,6 +1623,16 @@ ORDER BY out.workordernumber]]>
 	<select id="selectAllOutOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_OUT_REG]]>
 	</select>
+	<!-- 윗칸조건검색 -->
+	<select id="selectOneHouOutware" parameterType="String" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_HOU_REG where house_Code = #{search}]]>
+	</select>
+	<select id="selectOneProOutware" parameterType="String" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_PRO_REG where process_Code = #{search}]]>
+	</select>
+	<select id="selectOneOutOutware" parameterType="String" resultMap="outwareInfoResult">
+		<![CDATA[select * from SM_BIM_OUT_REG where outsourcing_Code = #{search}]]>
+	</select>
 	<!-- 아랫칸 데이터 -->
 	<select id="selectAllHouWorOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_WOR_REG]]>

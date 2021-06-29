@@ -119,6 +119,27 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return outwareList;
 	}
 	
+	@Override /* 창고/장소 쿼리 */
+	public List viewSelectedHouOutware(String search) throws DataAccessException {
+		List<SystemmagVOMJ> outwareList = null;
+		outwareList = sqlSession.selectList("mappers.erp.selectOneHouOutware", search);
+		return outwareList;
+	}
+	
+	@Override /* 생산공정/작업장 쿼리 */
+	public List viewSelectedProOutware(String search) throws DataAccessException {
+		List<SystemmagVOMJ> outwareList = null;
+		outwareList = sqlSession.selectList("mappers.erp.selectOneProOutware", search);
+		return outwareList;
+	}
+	
+	@Override /* 외주공정/작업장 쿼리 */
+	public List viewSelectedOutOutware(String search) throws DataAccessException {
+		List<SystemmagVOMJ> outwareList = null;
+		outwareList = sqlSession.selectList("mappers.erp.selectOneOutOutware", search);
+		return outwareList;
+	}
+	
 	//물류관리내역등록
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
@@ -158,6 +179,5 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		popList = sqlSession.selectList("mappers.erp.selectPopLogisticsList",itemName);
 		return popList;
 	}
-	
 
 }

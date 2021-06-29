@@ -707,6 +707,39 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
+   <!-- 창고/공정/외주공정등록 -->
+   <definition name="outwarePopupLayout1"  template="/WEB-INF/views/basic_info_manage/out_ware/pop1.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/outwarePopup1" extends="outwarePopupLayout1">
+      <put-attribute name="title" value="창고등록_검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <!-- 창고두번째검색 -->
+   <definition name="outwarePopupLayout2"  template="/WEB-INF/views/basic_info_manage/out_ware/pop2.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/outwarePopup2" extends="outwarePopupLayout2">
+      <put-attribute name="title" value="창고등록_검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <!-- 창고세번째검색 -->
+   <definition name="outwarePopupLayout3"  template="/WEB-INF/views/basic_info_manage/out_ware/pop3.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/outwarePopup3" extends="outwarePopupLayout3">
+      <put-attribute name="title" value="창고등록_검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
    <!-- 물류관리내역등록팝업(코드검색부) -->
    <definition name="logisticsPopupLayout"  template="/WEB-INF/views/basic_info_manage/logistics_manage/pop.jsp">
        <put-attribute name="title" value="" />
@@ -714,7 +747,7 @@
       <put-attribute name="body" value="" />
    </definition>
    <definition name="/member/logisticsPopup" extends="logisticsPopupLayout">
-      <put-attribute name="title" value="일반거래처등록_검색부팝업" />
+      <put-attribute name="title" value="물류관리내역등록_검색부팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>

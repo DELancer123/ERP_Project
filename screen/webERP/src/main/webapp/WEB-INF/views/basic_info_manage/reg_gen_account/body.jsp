@@ -294,8 +294,20 @@ request.setCharacterEncoding("UTF-8");
         
         function searchData() {
         	var searchForm = $('#searchForm');
-        	searchForm.submit();
+        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});       	 
+        	if(is_empty) { //비어있는내용이 있는지 체크함
+        	    alert('검색내용이 비어있습니다');
+        	}
+        	else{	        	
+	    		searchForm.submit();
+        	} 
         }
+        
         
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("checkedContent").length;
