@@ -59,7 +59,7 @@ public class OrderClosingDAOImpl implements OrderClosingDAO{
 	public int updateClosing(OrderClosingVO vo) throws DataAccessException {
 		int result = 0; 
 
-		int idx = vo.getListVO().size()-1;
+		int idx = vo.getListVO().size();
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
