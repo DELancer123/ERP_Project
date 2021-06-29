@@ -144,7 +144,7 @@
 	</select>
 	
 	<select id="checkStockQuantity" resultMap="SmBimResult">
-		<![CDATA[select MIN(QUANTITY) from PM_SM_PRO_STOCK where item_Code in (select item_Code from CPM_BIM_BOM_REG where parent_Item_Code = #{itemCode})]]>
+		<![CDATA[select MIN(QUANTITY) AS QUANTITY from PM_SM_PRO_STOCK where item_Code in (select item_Code from CPM_BIM_BOM_REG where parent_Item_Code = #{itemCode})]]>
 	</select>
 	
 	<!-- 작업지시 CURD -->

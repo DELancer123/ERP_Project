@@ -56,11 +56,13 @@
                 <tr>
                    <td>일생산 가능 최대수량</td>
                    <td><input type="text" id="dailyProduction" value="${param.dailyProduction }" readonly></td>
+                   <td>남은 자재 최소수량</td>
+                   <td><input type="text" id="minValue" value="${minValue }" readonly></td>
                 </tr>
                 <tr>
                    	<td>생산 수량</td>
-                   	<td><input type="text"></td>
-                	<td><input type="button" id="submit" value="적용" /></td>
+                   	<td><input type="text" id="qunatity"></td>
+                	<td><input type="button" value="적용" onClick="submit();"/></td>
                 </tr>   
             </table>
         </div>
@@ -103,8 +105,11 @@
            });
     	}
     	
-    	var min = '<c:out value='${itemView}'/>';
-    	alert(min);
+    	function submit(){
+    		var dailyProduction = document.getElementById("dailyProduction").value;
+    		var minValue = document.getElementById("minValue").value;
+    		var quantity = document.getElementById("quantity").value;
+    	}
     </script>
     </form>
 </body>
