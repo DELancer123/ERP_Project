@@ -1786,6 +1786,9 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[delete from CSM_SM_Rel_Pro where releaseNum=#{relCode}]]>      
   </delete>
 
+	<select id="allSupForward" resultMap="forward">
+		<![CDATA[select *from CSM_SM_Rel_Pro]]>
+	</select>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
@@ -1829,7 +1832,11 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	
+	<select id="submitItemForward" parameterType="forwardVO">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code	
+		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
+	</select>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
