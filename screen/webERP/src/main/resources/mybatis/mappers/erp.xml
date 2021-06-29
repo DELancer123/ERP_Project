@@ -1759,7 +1759,7 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
 	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
-		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{custCode}]]>
+		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
 		<select id="selItemforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
@@ -1784,7 +1784,7 @@ ORDER BY out.workordernumber]]>
 	
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
-		<result property="custCode" column="General_Customer_Code" />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
 		        <collection property="corVO" javaType="CorVO">
         	<id property="relCode" column="code" />
         	<result property="item_code" column="item_code" />
