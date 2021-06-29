@@ -69,7 +69,8 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 	  @RequestMapping(value="/member/checkStock.do" ,method = RequestMethod.GET)
 		public ModelAndView checkStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = getViewName(request);
-			List itemView = productionService.checkStock();
+			String itemCode = (String) request.getParameter("parentItemCode");
+			List itemView = productionService.checkStock(itemCode);
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("itemView", itemView);
 			return mav;

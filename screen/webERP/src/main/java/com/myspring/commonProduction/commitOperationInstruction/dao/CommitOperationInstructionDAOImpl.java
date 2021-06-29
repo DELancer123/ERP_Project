@@ -77,9 +77,9 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 	}
 	
 	@Override
-	public List checkStock() throws DataAccessException {
+	public List checkStock(String itemCode) throws DataAccessException {
 		List<DepartmentViewVO> popList = null;
-		popList = sqlSession.selectList("mappers.erp.checkStockView");
+		popList = sqlSession.selectList("mappers.erp.checkStockView", itemCode);
 		return popList;
 	}
 }
