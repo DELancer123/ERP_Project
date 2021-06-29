@@ -73,22 +73,16 @@
                     <td>품명</td>
                     <td>규격</td>
                     <td>단위</td>
-                    <td>계획잔량</td>
-                    <td>작업예정일</td>
-                    <td>비고</td>
-                    <td>생산계획번호</td>
+                    <td>자재잔량</td>                    
                 </tr>
-     <c:forEach var="productionPlan" items="${productionPlanView}" >     
+     <c:forEach var="productionPlan" items="${itemView}" >     
 		<tr align="center" id="insertData">
 			<td><input type="checkbox" name="content" /></td>
       		<td>${productionPlan.itemCode }</td>
       		<td>${productionPlan.itemName}</td>
       		<td>${productionPlan.standard }</td>
       		<td>${productionPlan.inventoryUnit }</td>
-      		<td>${productionPlan.quantity }</td>
-      		<td>${productionPlan.schedule }</td>
-      		<td>${productionPlan.note }</td>
-      		<td>${productionPlan.productionPlanCode }</td>
+      		<td>${productionPlan.quantity }</td>      		
     	</tr> 
     </c:forEach> 
             </table>
@@ -97,37 +91,10 @@
     <script>
     	var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
-    	/* input date 값 설정 및 가져오기 함수 */
-    	var startDate;
-    	var endDate;
-    	
-    	
-    	$('#dateStart').change(function (){
-            var date = $('#dateStart').val();
-            startDate = date;
-        });
-    	$('#dateEnd').change(function (){
-            var date = $('#dateEnd').val();
-            endDate = date;
-        });
     	
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
-    	}
-    	
-    	function sendData() {
-    		if(startDate == null && endDate == null){
-    			alert("시작일과 종료일은 필수 입력 요소입니다!");
-    		} else if(startDate == null) {
-    			alert("시작일은 필수 입력 요소입니다!");
-    		} else if(endDate == null){
-    			alert("종료일은 필수 입력 요소입니다!");
-    		} else if(startDate > endDate){
-    			alert("종료일은 시작일보다 커야합니다!");
-    		} else {
-    			location.href='${contextPath }/member/productionPlanResponse.do?dateStart='+startDate+'&&dateEnd='+endDate;
-    		}
     	}
     	
     	function selectAll(selectAll){
