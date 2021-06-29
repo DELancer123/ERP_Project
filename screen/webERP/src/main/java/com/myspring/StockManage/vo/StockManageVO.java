@@ -9,38 +9,38 @@ import org.springframework.stereotype.Component;
 @Component("StockManageVO")
 public class StockManageVO {
 	
-	String 	moveNum;			//ÀÌµ¿¹øÈ£
-	Date 	moveDate;			//ÀÌµ¿ÀÏÀÚ
-	String 	outputWarehouse;	//Ãâ°íÃ¢°í
-	String 	outputPlace;		//Ãâ°íÀå¼Ò
-	String 	outputBusiness;		//Ãâ°íÀå¼Ò
-	String 	inputWarehouse;		//ÀÔ°íÃ¢°í
-	String 	inputPlace;			//ÀÔ°íÀå¼Ò
-	String 	inputBusiness;			//ÀÔ°íÀå¼Ò
-	String 	note;				//ºñ°í
-	String 	no;					//³Ñ¹ö
-	String 	itemCode;			//Ç°¹ø
-	String 	itemName;			//Ç°¸í
-	String 	standard;			//±Ô°Ý
-	String 	inventoryUnit;		//´ÜÀ§
-	int 	moveQuantity;		//ÀÌµ¿¼ö·®
-	int 	movePrice;			//ÀÌµ¿´Ü°¡
-	String 	modNum;				//Á¶Á¤¹øÈ£
-	Date 	modDate;			//Á¶Á¤ÀÏÀÚ
-	String 	houseCode;			//Ã¢°í
-	String 	locationCode;		//Àå¼Ò
-	String 	generalCustomerCode;//°Å·¡Ã³
-	String 	kind;				//Á¶Á¤Á¾·ù
-	int 	modQuantity;		//Á¶Á¤¼ö·®
-	String 	setCode;			//set¸ðÇ°¸ñÇ°¹ø
-	String 	inputQuantity;		//ÀÔ°íÁ¶Á¤¼ö·®
-	String 	outputQuantity;		//Ãâ°íÁ¶Á¤¼ö·®
-	String 	purchasePrice;		//±¸¸Å´Ü°¡
-	String 	salesPrice;			//ÆÇ¸Å´Ü°¡
-	String 	type;			//ÆÇ¸Å´Ü°¡
-	String 	typeCode;			//ÆÇ¸Å´Ü°¡
-	String 	typeName;			//ÆÇ¸Å´Ü°¡
-	int quantity;	//Àç°í¼ö·®
+	String 	moveNum;			//ï¿½Ìµï¿½ï¿½ï¿½È£
+	Date 	moveDate;			//ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	outputWarehouse;	//ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½
+	String 	outputPlace;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	outputBusiness;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	inputWarehouse;		//ï¿½Ô°ï¿½Ã¢ï¿½ï¿½
+	String 	inputPlace;			//ï¿½Ô°ï¿½ï¿½ï¿½ï¿½
+	String 	inputBusiness;			//ï¿½Ô°ï¿½ï¿½ï¿½ï¿½
+	String 	note;				//ï¿½ï¿½ï¿½
+	String 	no;					//ï¿½Ñ¹ï¿½
+	String 	itemCode;			//Ç°ï¿½ï¿½
+	String 	itemName;			//Ç°ï¿½ï¿½
+	String 	standard;			//ï¿½Ô°ï¿½
+	String 	inventoryUnit;		//ï¿½ï¿½ï¿½ï¿½
+	int 	moveQuantity;		//ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
+	int 	movePrice;			//ï¿½Ìµï¿½ï¿½Ü°ï¿½
+	String 	modNum;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	Date 	modDate;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	houseCode;			//Ã¢ï¿½ï¿½
+	String 	locationCode;		//ï¿½ï¿½ï¿½
+	String 	generalCustomerCode;//ï¿½Å·ï¿½Ã³
+	String 	kind;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int 	modQuantity;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	setCode;			//setï¿½ï¿½Ç°ï¿½ï¿½Ç°ï¿½ï¿½
+	String 	inputQuantity;		//ï¿½Ô°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	outputQuantity;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String 	purchasePrice;		//ï¿½ï¿½ï¿½Å´Ü°ï¿½
+	String 	salesPrice;			//ï¿½Ç¸Å´Ü°ï¿½
+	String 	type;			//ï¿½Ç¸Å´Ü°ï¿½
+	String 	typeCode;			//ï¿½Ç¸Å´Ü°ï¿½
+	String 	typeName;			//ï¿½Ç¸Å´Ü°ï¿½
+	int quantity;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	
 	
@@ -327,14 +327,20 @@ return valueStr;
 	}
 	
 	
-	// ¼öÁÖµî·Ï ÆÄÆ®
+	// ï¿½ï¿½ï¿½Öµï¿½ï¿½ ï¿½ï¿½Æ®
 	String ordersNum;
 	Date   ordersdate;
 	String customerCode;
 	String tax;
 	String Note;
+	private List<StockManageVO> sujuVO;
 
-
+	public List<StockManageVO> getSujuVO() {
+		return sujuVO;
+	}
+	public void setSujuVO(List<StockManageVO> sujuVO) {
+		this.sujuVO = sujuVO;
+	}
 	public String getOrdersNum() {
 		return ordersNum;
 	}
@@ -359,7 +365,7 @@ return valueStr;
 	public void setTax(String tax) {
 		this.tax = tax;
 	}
-	///////// ¸Þ´º°Ë»ö¹Ù
+	///////// ï¿½Þ´ï¿½ï¿½Ë»ï¿½ï¿½ï¿½
 	
 	String menu;
 	String url;
