@@ -13,5 +13,6 @@ public interface CommitOperationInstructionDAO {
 	public void delProductionPlan(String[] numberAry) throws DataAccessException;
 	public int addProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
 	public int updProductionPlan(CommitOperationInstructionVO COIVO) throws DataAccessException;
+	public List checkStock(String itemCode) throws DataAccessException;
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.invenBasicInfo.regItemUnitPrice.vo.iupVO;
 import com.myspring.salesmanage.salesplan.vo.spVO;
 
 public interface SpViewDAO {
@@ -16,4 +17,6 @@ public interface SpViewDAO {
 	public void delSp(String[] itemCodeary) throws DataAccessException;
 	public int updSp(spVO spVO) throws DataAccessException;
 	public List spChildView() throws DataAccessException;
+	public List<spVO> searchPopName(String itemName) throws DataAccessException;
+	public List<spVO> searchPopName2(String itemName) throws DataAccessException;
 }

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.invenBasicInfo.regItemUnitPrice.dao.*;
 import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
@@ -78,5 +79,16 @@ public class IupViewServiceImpl implements IupViewService{
 	public int inputNo() throws DataAccessException {
 		return iupDAO.selNo();
 	}
+
+	@Override
+	public List<iupVO> searchPopName(String itemName) throws DataAccessException {
+		return iupDAO.searchPopName(itemName);
+	}
+
+	@Override
+	public List<iupVO> searchPopName2(String itemName) throws DataAccessException {
+		return iupDAO.searchPopName2(itemName);
+	}
+	
 
 }
