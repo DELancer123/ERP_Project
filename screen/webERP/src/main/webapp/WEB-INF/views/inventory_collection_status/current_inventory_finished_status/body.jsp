@@ -139,27 +139,33 @@
                 </tbody>
             </table>
         </container2>
-            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-            <script>
-            function search1(){
-    	      	openWindowPop('http://localhost:8090/webERP/member/finishedsearchtype.do','type');
-        }
-        function openWindowPop(url, name){
-            var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
-            window.open(url, name, options);
-        }
-        function setChildValue(code, name) {
-        	$('input[name=type_code]').val(code);
-        	$('input[name=type_name]').val(name);
-        }
-            
-            view_button.onclick = function(){
-            	
-            	var searchForm = $('#searchForm');
-            	
-            	searchForm.submit();
-        	}
-            
-            </script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
+	<script>
+		var itemName = document.getElementById("itemName");
+
+		function search1() {
+			openWindowPop(
+					'http://localhost:8090/webERP/member/finishedsearchtype.do',
+					'type');
+		}
+		function openWindowPop(url, name) {
+			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+			window.open(url, name, options);
+		}
+		function setChildValue(code, name) {
+			$('input[name=type_code]').val(code);
+			$('input[name=type_name]').val(name);
+		}
+
+		view_button.onclick = function() {
+
+				var searchForm = $('#searchForm');
+
+				searchForm.submit();
+			
+		}
+	</script>
 </body>
 </html>
