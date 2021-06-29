@@ -139,6 +139,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function setChildValue(code,name,buyer,standard,inventory_unit,note){
@@ -157,6 +158,7 @@ function setChildValue(code,name,buyer,standard,inventory_unit,note){
   
 }
 
+
 function deleteRow() {
 	  var item = document.getElementsByName("content").length;
 	  const URLSearch = new URLSearchParams(location.search); 	
@@ -173,13 +175,17 @@ function deleteRow() {
 		  if(document.getElementsByName("content")[i].checked==true){
 			  sequence = document.getElementsByName("content")[i].value;
 			  ary.push(sequence);
+
 		  }
+	}
+		  if(ary.length === 0 || ary === null){
+			  alert('삭제할 칼럼의 체크박스를 선택해주세요!');
+		  }else
 			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary+"&submit=" + submit+"&item_Code="+item_Code+"&item_Name="+item_Name+
 			 "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note;
-	  }
 }
 
-function InsertRow(){	 
+function InsertRow(){
    		const URLSearch = new URLSearchParams(location.search);
    		
 	 	URLSearch.set('submit', '1');
@@ -193,8 +199,7 @@ function InsertRow(){
 		document.getElementById('MainPlan').action = "${contextPath}/member/addMPS.do";
 		document.getElementById('MainPlan').submit();
 
-	}
-
+}
 
 	function updateRow() {
 		  var MPSTable = document.getElementById('MPSTable');
@@ -214,26 +219,23 @@ function InsertRow(){
 		document.getElementById("dueDate").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
 		document.getElementById("buyer").disabled = true;
-		document.getElementById("note").disabled = true;
+		document.getElementById("note").disabled = true;	
 		var Input = document.createElement("input");
 		Input.setAttribute("type", "hidden");
 		Input.setAttribute("name", "path");
 		Input.setAttribute("value", link);
 		document.getElementById('MainPlan').appendChild(Input);
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
-		document.getElementById('MainPlan').submit();
-	}
+		document.getElementById('MainPlan').submit(); 
+
+}
 
 view_button.onclick = function(){
-	if(item_Code == null){
-		alert("품명,품번 검색 먼저하시오!")
-	}else{
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit', '1');
 		const newParam = URLSearch.toString();
 		
 		window.open(location.pathname + '?' + newParam, '_self');
-	}
 }
 
 
