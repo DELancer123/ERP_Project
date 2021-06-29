@@ -139,6 +139,14 @@
 		<![CDATA[delete from CPM_PM_PRO_PLA_REG where productionPlanCode = #{productionPlanCode}]]>
 	</delete>
 	
+	<select id="checkStockView" resultMap="SmBimResult">
+		<![CDATA[select * from PM_SM_PRO_STOCK where item_Code in (select item_Code from CPM_BIM_BOM_REG where parent_Item_Code = #{itemCode})]]>
+	</select>
+	
+	<select id="checkStockQuantity" resultMap="SmBimResult">
+		<![CDATA[select MIN(QUANTITY) from PM_SM_PRO_STOCK where item_Code in (select item_Code from CPM_BIM_BOM_REG where parent_Item_Code = #{itemCode})]]>
+	</select>
+	
 	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
 		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
@@ -235,6 +243,11 @@
 		<![CDATA[delete from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</delete>
 	
+	<update id="updateMaterialUse">
+		<![CDATA[update CPM_PM_OPE_PER_REG
+		set MATERIALFORWARDINGSTATUS = '출고완료'
+		where workOrderNumber = #{workOrderNumber}]]>
+	</update>
 	<!-- 작업실적등록 CRUD -->
 	
 <resultMap id="RegistOperationPerformanceResult" type="RegistOperationPerformanceVO">
@@ -1680,8 +1693,7 @@ ORDER BY out.workordernumber]]>
 	
      <select id="submititemview" resultMap="salesplan" parameterType="String">
 		<![CDATA[select * from SM_BIM_Sal_Pla_Reg where item_code = #{item_code} order by plan_code]]>   
-	</select> 
- 
+	</select>  
 			<!-- order&cor sta -->
 	<resultMap id="orderJoinList" type="orderVO">
 			<id property="ordCode" column="ordersNum" />
@@ -1741,11 +1753,7 @@ ORDER BY out.workordernumber]]>
 		<result property="general_Customer_Name" column="General_Customer_Name" />
 		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
-	
 
-	<select id="allSupForward" resultMap="forward">
-		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
-	</select>
 	<select id="submitSupForward" resultMap="forward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
@@ -1754,22 +1762,13 @@ ORDER BY out.workordernumber]]>
 		 where REL.General_Customer_Code = GEN.General_Customer_Code
 		  order by REL.General_Customer_Code]]>
 	</select>
-	
-	<select id="supForwardInsert" resultMap="forward">
-		<![CDATA[select * from CSM_SM_Rel_Pro order by releaseNum]]>
-	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
-		<select id="selItemforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Ite_Reg order by Item_Code]]>
-	</select><!-- popItem-->
 	<delete id="delSupforward" parameterType="String">
 		<![CDATA[delete from CSM_SM_Rel_Pro where releaseNum=#{relCode}]]>      
   </delete>
-	<select id="ChildView" resultMap="forward" parameterType="java.util.HashMap">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Item_Code = #{itemCode}]]>
-	</select>
+
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
@@ -1799,13 +1798,14 @@ ORDER BY out.workordernumber]]>
         	<result property="orderOX" column="orderOX" />
         </collection>
 </resultMap>  
-	<select id="submitForwardItem" resultMap="Corforward">
+	<select id="submitSubForward" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
 	</select>
-	<select id="allForwardItem" resultMap="Corforward">
-		<![CDATA[select * from CSM_SM_COR_Reg order by code]]>
+	<select id="allSubForward" resultMap="Corforward">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code order by code]]>
 	</select>
 	<update id="updateSubForward" parameterType="forwardVO">
 		<![CDATA[update CSM_SM_COR_Reg
@@ -1899,7 +1899,19 @@ ORDER BY out.workordernumber]]>
 		where Item_Code = #{itemCode}
 		]]>
 	</update>
-	
+	<!-- 품목단가등록 팝 검색기능 -->
+	<select id="selectPopspList"  parameterType="String" resultMap="spPopView">
+		<![CDATA[ select Item_Code, Item_Name,Standard
+		  from SM_BIM_Sal_Pla_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<select id="selectPopspList2"  parameterType="String" resultMap="spPopView">
+		<![CDATA[ select Item_Code, Item_Name
+		  from SM_BIM_Ite_Reg 
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	<!-- 품목단가등록(재원) 파트 -->
 
 	<resultMap id="iupView" type="iupVO">
@@ -1961,4 +1973,18 @@ ORDER BY out.workordernumber]]>
 		where No = #{no}
 		]]>
 	</update>
+	<!-- 품목단가등록 팝 검색기능 -->
+	<select id="selectPopiupList"  parameterType="String" resultMap="iupPopView">
+		<![CDATA[ select Item_Code, Item_Name,Standard
+		  from PM_SM_Ite_Pri
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<select id="selectPopiupList2"  parameterType="String" resultMap="iupPopView">
+		<![CDATA[ select Item_Code, Item_Name
+		  from SM_BIM_Ite_Reg 
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 </mapper>

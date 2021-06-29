@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"    
+    isELIgnored="false"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,28 +40,28 @@
                 <ul id="lnb">
                     <li><a href="#"  id="side1">생산관리</a>
                         <ul id="l_sub1">
-                            <li><a href="http://localhost:8090/webERP/member/proplanreg.do">생산계획등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regoperins.do">작업지시등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/comoperins.do">작업지시확정</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regoperperf.do">작업실적등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/operinsclo.do">작업지시마감처리</a></li>
-                            <!-- <li><a href="http://localhost:8090/webERP/member/prometfor.do">생산자재출고</a></li> -->
+                            <li><a href="${contextPath }/member/proplanreg.do">생산계획등록</a></li>
+                            <li><a href="${contextPath }/member/regoperins.do">작업지시등록</a></li>
+                            <li><a href="${contextPath }/member/comoperins.do">작업지시확정</a></li>
+                            <li><a href="${contextPath }/member/regoperperf.do">작업실적등록</a></li>
+                            <li><a href="${contextPath }/member/operinsclo.do">작업지시마감처리</a></li>
+                            <!-- <li><a href="${contextPath }member/prometfor.do">생산자재출고</a></li> -->
                         </ul></li>
                     <li><a href="#" id="side2">외주관리</a>
                         <ul id="l_sub2">
-                            <li><a href="http://localhost:8090/webERP/member/regoutsourcing.do">외주발주등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/comoutsourcing.do">외주발주확정</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/regoutper.do">외주실적등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/outclosing.do">외주마감</a></li>
-                            <!-- <li><a href="http://localhost:8090/webERP/member/outrelease.do">외주자재출고</a></li> -->
+                            <li><a href="${contextPath }/member/regoutsourcing.do">외주발주등록</a></li>
+                            <li><a href="${contextPath }/member/comoutsourcing.do">외주발주확정</a></li>
+                            <li><a href="${contextPath }/member/regoutper.do">외주실적등록</a></li>
+                            <li><a href="${contextPath }/member/outclosing.do">외주마감</a></li>
+                            <!-- <li><a href="${contextPath }member/outrelease.do">외주자재출고</a></li> -->
                         </ul></li>
                     <li><a href="#" id="side3">기초정보관리</a>
                         <ul id="l_sub3">
-                            <li><a href="http://localhost:8090/webERP/member/regbom.do">BOM등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/rightbom.do">BOM정전개</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/reservebom.do">BOM역전개</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/outprice.do">외주단가등록</a></li>
-                            <li><a href="http://localhost:8090/webERP/member/deftype.do">불량유형등록</a></li>
+                            <li><a href="${contextPath }/member/regbom.do">BOM등록</a></li>
+                            <li><a href="${contextPath }/member/rightbom.do">BOM정전개</a></li>
+                            <li><a href="${contextPath }/member/reservebom.do">BOM역전개</a></li>
+                            <li><a href="${contextPath }/member/outprice.do">외주단가등록</a></li>
+                            <li><a href="${contextPath }/member/deftype.do">불량유형등록</a></li>
                         </ul></li>
                 </ul>
             </div>

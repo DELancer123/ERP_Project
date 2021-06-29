@@ -68,7 +68,7 @@
         <div id="view">
             <table id="searchItem" style="width: 100%;">
                 <tr align="center">
-                    <td>우편번호</td>
+                    <td>우편<br>번호</td>
                     <td>도로명주소</td>
                     <td>로트주소</td>
                 </tr>

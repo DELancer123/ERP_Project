@@ -68,7 +68,7 @@ request.setCharacterEncoding("UTF-8");
 <container id = contents1>
             <table id="table1">            	
                 <tr>
-                    <td style="width:5%;"><input type="checkbox" id="chec" name="content" onclick="selectAll(this)"/></td>
+                	<td></td>
                     <td style="width:47.5%;">코드</td>
                     <td style="width:47.5%;">관리항목명</td>
                 </tr>
@@ -103,11 +103,11 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td align="center" style="width:25%; text-align:right;">코드</td>
 	                    <td style="width:25%;">
-	                        <input type="text" id="logisSearchBox">
+	                        <input type="text" id="logisSearchBox" name="logisSearchBox" value="${param.itemNumber }">
 	                    </td>    
 	                    <td style="width:2%;"><div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div></td>
 	                    <td style="width:25%;">
-	                        <input type="text" id="logisSearchBox2">
+	                        <input type="text" id="logisSearchBox2" value="${param.itemName }" disabled>
 	                    </td>
 	                </tr>
 	            </table>
@@ -158,21 +158,10 @@ request.setCharacterEncoding("UTF-8");
 	            window.location.href = "${contextPath}/member/logistics_manage.do?submit=1&&com_code=" + name; 
 	        }
 	        
-	        function searchData() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-	        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-	        	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-	        	    if(!$(this).val()) { //#searchForm는 form태그의 id값임
-	        	    	is_empty = true;      	    	
-	        	    }      	 
-	        	});       	 
-	        	if(is_empty) { //비어있는내용이 있는지 체크함
-	        	    alert('검색 내용이 비어있습니다');
-	        	}
-	        	else{
-		        	document.getElementById('searchForm').action = "${contextPath}/member/logistics_manage.do?"
-		    		document.getElementById('searchForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 
-	        	}      	
-	        } 
+	        function searchData() {
+	        	var searchForm = $('#searchForm');
+	        	searchForm.submit();
+	        }
 	        
 	        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
 	        	var item = document.getElementsByName("checkedContent").length;
