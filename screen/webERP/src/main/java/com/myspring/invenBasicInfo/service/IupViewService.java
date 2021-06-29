@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 public interface IupViewService {
@@ -17,5 +18,6 @@ public interface IupViewService {
 	public void delIup(String[] noary) throws DataAccessException;
 	public int updateIup(iupVO iupVO) throws DataAccessException;
 	public int inputNo() throws DataAccessException;
+	public List<iupVO> searchPopName(String itemName) throws DataAccessException;
 
 }

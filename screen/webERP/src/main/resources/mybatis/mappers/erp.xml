@@ -1961,4 +1961,12 @@ ORDER BY out.workordernumber]]>
 		where No = #{no}
 		]]>
 	</update>
+	<!-- 품목단가등록 팝 검색기능 -->
+	<select id="selectPopiupList"  parameterType="String" resultMap="iupPopView">
+		<![CDATA[ select Item_Code, Item_Name,Standard
+		  from PM_SM_Ite_Pri
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 </mapper>

@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.invenBasicInfo.service.IupViewService;
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.invenBasicInfo.regItemUnitPrice.vo.*;
 
 
@@ -121,6 +123,18 @@ public class IupViewControllerImpl implements IupViewController {
 		ModelAndView mav = new ModelAndView("redirect:/member/itemunitprice.do");
 		return mav; 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchIupName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<iupVO> popName = null;
+		popName = iupViewService.searchPopName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
 	 
 		
 	private String getViewName(HttpServletRequest request) {
