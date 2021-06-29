@@ -182,7 +182,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.indicated}" readonly/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].loss" /></td>    
+                        <td><input type="text" id="loss" name="DetailVO[${status.index }].loss" value="${detail.loss}"/></td>    
                         <td><input type="text" name="DetailVO[${status.index }].note" /></td>
                         <td><input type="hidden" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.indicated}" /></td>
                         <td><input type="hidden" name="DetailVO[${status.index }].workOrderNumber" value="${param.workOrderNumber }" /></td>
@@ -200,6 +200,19 @@
  /* 검색부 date onChange 함수 설정 */
  		var startDate = "";
     	var endDate = "";
+    	var loss = document.getElementById("loss").value;
+    	
+
+    	 function isEmpty(str){
+    	     
+    	     if(typeof str == "undefined" || str == null || str == "")
+    	         return true;
+    	     
+    	     else
+    	         return false ;
+    	     
+    	 	}
+    	
     	
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
@@ -255,9 +268,19 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-  		    document.getElementById('detailForm').appendChild(linkPath);
-            document.getElementById('detailForm').action = "${contextPath}/member/addReleaseData.do";
-  			document.getElementById('detailForm').submit();  
+  		    
+ 		   if (isEmpty(loss)){
+		      	console.log(loss);	
+ 			   alert("값이 비어져있습니다. 값을 추가해주세요!");
+		           
+	  		}else{
+	  		    
+  		    
+	  		    document.getElementById('detailForm').appendChild(linkPath);
+    	        document.getElementById('detailForm').action = "${contextPath}/member/addReleaseData.do";
+  				document.getElementById('detailForm').submit();  
+	  			alert("값이 저장되었습니다!");
+	  }
 		
       }
       
@@ -288,9 +311,17 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
-        }
+	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('삭제할 목록의 체크박스를 선택해주세요');
+				//window.history.back();
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+	    		  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+	    		alert('삭제되었습니다');
+	
+	    	}
+	     }
         
         function confirm() {
         	var item = document.getElementsByName("content").length;
