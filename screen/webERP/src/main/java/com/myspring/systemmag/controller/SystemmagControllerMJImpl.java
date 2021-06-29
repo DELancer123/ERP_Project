@@ -309,12 +309,15 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 				System.out.println("3번분기들어옴");
 				System.out.println("logisSearchBox:"+logisSearchBox);
 				List allLogisticsList = null;
-				List logisticsList = null;
+				List logisticsSelectedView = null;
 				allLogisticsList = systemmagService.viewSelectedLogistics(logisSearchBox);
-				logisticsList = systemmagService.viewSelectedLogistics(logisSearchBox);
+				logisticsSelectedView = systemmagService.viewSelectedLogistics(logisSearchBox);
+				
+				System.out.println("alllogis:"+allLogisticsList.size());
+				System.out.println("sellogis:"+logisticsSelectedView.size());
 				mav = new ModelAndView(viewName);
 				mav.addObject("logisticsView", allLogisticsList);	
-				mav.addObject("logisticsSeletedView", logisticsList);
+				mav.addObject("logisticsSelectedView", logisticsSelectedView);
 				return mav;
 			}
 			else {

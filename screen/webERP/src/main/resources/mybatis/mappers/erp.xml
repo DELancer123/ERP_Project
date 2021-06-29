@@ -1500,6 +1500,13 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	<select id="selectsujusub" resultMap="sujuView">
+		<![CDATA[ select *
+		  from CSM_SM_COR_Reg
+		  where code  = #{ordersNum}
+		]]>
+	</select>
+	
 	
 	
 	<!-- 메뉴검색바  -->

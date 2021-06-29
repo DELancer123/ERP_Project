@@ -111,6 +111,13 @@ public class StockManageDAOImpl implements StockManageDAO {
 		return urlList;
 	}
 
+	@Override
+	public List<StockManageVO> sujusub(String ordersNum) {
+		List<StockManageVO> nameList = null;
+		nameList = sqlSession.selectList("mappers.erp.selectsujusub",ordersNum);
+		return nameList;
+	}
+
 
 
 	
