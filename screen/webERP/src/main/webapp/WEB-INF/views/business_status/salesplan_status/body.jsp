@@ -46,23 +46,11 @@
 <body>
 <container1 id = contents1>
             <table class="con1_search">
-                <tr>    
-                    <td>계획기간</td>
-                    <td colspan="3" style="width: 70px; text-align: left;">
-                        <button id="minus"><<</button>
-                        <input type="text" value="2021" id="year" style="background-color: rgb(255, 255, 149); width: 30%;"/>
-                    <button id="plus">>></button></td>
-                </tr>
                 <tr>
                     <td>품  목</td>
                     <td style="width: 50px;"><input type="text" name="item" value='${param.item_code}' style="width: 100%;"/></td>
                     <td style="width: 120px;"><input type="text" name="item" value='${param.item_name}' style="width: 100%;"/></td>
                     <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search"></i></a></td>
-
-                    <td colspan="5">품목군</td>
-                    <td style="width: 80px;"><input type="text" style="width: 100%;"/></td>
-                    <td><input type="text" name="" disabled/></td>
-                    <td><i class="fas fa-search"></i></td>
                 </tr>
             </table>
         </container1>

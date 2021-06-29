@@ -87,7 +87,7 @@ public class CommitOperationInstructionDAOImpl implements CommitOperationInstruc
 	public int minValue(String itemCode) throws DataAccessException {
 		List<CommitOperationInstructionVO> popList = null;
 		popList = sqlSession.selectList("mappers.erp.checkStockQuantity", itemCode);
-		int minValue = popList.get(0).getDailyProduction();
+		int minValue = popList.get(0).getQuantity();
 		return minValue;
 	}
 }

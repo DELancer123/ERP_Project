@@ -61,8 +61,8 @@
                 </tr>
                 <tr>
                    	<td>생산 수량</td>
-                   	<td><input type="text"></td>
-                	<td><input type="button" id="submit" value="적용" /></td>
+                   	<td><input type="text" id="quantity"></td>
+                	<td><input type="button" value="적용" onClick="sendData();"/></td>
                 </tr>   
             </table>
         </div>
@@ -90,21 +90,33 @@
         </div>
     </div>
     <script>
-    	var text_code = document.getElementById("code");
-    	var text_name = document.getElementById("name");
-    	
-    	function popFunction(code,name){
-    			text_code.value = code;
-    			text_name.value = name;
+        	
+    	function sendData(){
+    		var dailyProduction = document.getElementById("dailyProduction").value;
+    		var minValue = document.getElementById("minValue").value;
+    		var quantity = document.getElementById("quantity").value;
+    		alert(dailyProduction +","+ minValue +","+ quantity);
+    		
+    		
+    		if(quantity > dailyProduction){    		
+    			const URLSearch = new URLSearchParams(location.search);    		 	
+    			
+    			if(URLSearch.get('quantity') == null){
+    				window.location.href = location.pathname +'&' + '&quantity=' + name;
+    			    } else{
+    			     URLSearch.set('quantity', quantity);
+    			     const newParam = URLSearch.toString();
+    			     window.location.href = location.pathname +'?'+newParam;
+    		    }
+    			window.close();
+    		} 
+    		/* else if(quantity > minValue){
+    			alert("자재가 모자랍니다!"); */
+    		/* } */ 
+    		else {
+    			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
+    		}
     	}
-    	
-    	function selectAll(selectAll){
-            const checkbox = document.getElementsByName('content');
-            checkbox.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-           });
-    	}
-    	
     </script>
     </form>
 </body>
