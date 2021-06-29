@@ -8,7 +8,7 @@
   request.setCharacterEncoding("UTF-8");
 %>    
 <% 
-	String custCode = request.getParameter("custCode");
+	String general_Customer_Code = request.getParameter("general_Customer_Code");
 %>
 <!DOCTYPE html>
 <html>

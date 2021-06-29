@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -15,7 +15,7 @@ String parent = request.getParameter("itemNumber");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수주 등록</title>
+<title>수주등록</title>
 <style>
 #contents1 {
 	position: absolute;
@@ -69,7 +69,7 @@ String parent = request.getParameter("itemNumber");
 		action="${pageContext.request.contextPath }/member/regorder.do">
 		<table class="con1_search">
 			<tr>
-				<td>�����</td>
+				<td>거래처</td>
 				<td><input type="text" id="reqInput" name="bus_code"
 					style="width: 100%;" value="${bus_code}" /></td>
 				<td><a href="javascript:search1()"><i class="fas fa-search"
@@ -85,11 +85,11 @@ String parent = request.getParameter("itemNumber");
 		<thead>
 			<td><input type="checkbox" id="check" name="content"
 				onclick="selectAll(this)" /></td>
-			<td>�ֹ���ȣ</td>
-			<td>�ֹ�����</td>
-			<td>��ǰó</td>
-			<td>�ΰ�������</td>
-			<td>���</td>
+			<td>주문번호</td>
+			<td>주문일자</td>
+			<td>고객</td>
+			<td>과세구분</td>
+			<td>비고</td>
 		</thead>
 		<tbody id="table1">
 			<c:forEach var="item" items="${customerList}" varStatus="sts">
@@ -109,7 +109,7 @@ String parent = request.getParameter("itemNumber");
 						value='${item.note }' /></td>
 				</tr>
 			</c:forEach> 
-			<tr id="insertWareStock">
+			<tr id="insertsuju">
 					<td><input type="checkbox" value="check1" id="check"
 						name="content" /></td>
 					<td><input type="text" id="moveNum"
@@ -131,15 +131,17 @@ String parent = request.getParameter("itemNumber");
 		<thead>
 			<td style="width: 5%;"><input type="checkbox" name="content1"
 				onclick="selectAll1(this)"></td>
-			<td>ǰ��</td>
-			<td>ǰ��</td>
-			<td>�԰�</td>
-			<td>����</td>
-			<td>������</td>
-			<td>�ֹ�����</td>
-			<td>�ܰ�</td>
-			<td>���Ͽ�����</td>
-			<td>�˻�</td>
+			<td>코드</td>
+			<td>품번</td>
+			<td>품명</td>
+			<td>규격</td>
+			<td>단위</td>
+			<td>납기일</td>
+			<td>주문수량</td>
+			<td>단가</td>
+			<td>부가세단가</td>
+			<td>출하예정일</td>
+			<td>검사</td>
 		</thead>
 		<tbody>
 			<td style="width: 5%;"><input type="checkbox" value="check1"
@@ -152,6 +154,8 @@ String parent = request.getParameter("itemNumber");
 			<td><input type="text" name="" id=""></td>
 			<td><input type="text" name="" id=""></td>
 			<td><input type="text" name="" id=""></td>
+			<td><input type="text" name="" id=""></td>
+			<td><input type="date" name="" id=""></td>
 			<td><input type="text" name="" id=""></td>
 		</tbody>
 	</table>
