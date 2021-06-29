@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  isELIgnored="false"
  %>
+ <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
  <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
@@ -66,7 +67,7 @@
         .logo{
             position: absolute;
             display: inline-block;
-            height: 100%;
+            height: 100px;
             width: 100px;
             left: 20px;
         }
@@ -221,7 +222,7 @@
 <body>
     <div id=wrap>
         <header id = header>
-            <img src="img/ani_spade.png" class="logo"/>
+            <img src="webERP/img/kingdomlogo.png" class="logo"/>
             <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
             <ul id="etc_menu">
                 <li><a href="#">로그아웃</a></li>
