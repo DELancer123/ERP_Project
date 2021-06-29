@@ -267,23 +267,23 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-<definition name="PopupLayoutForward3"  template="/WEB-INF/views/sales_manage/pop/regforwardItem.jsp">
+<definition name="PopupLayoutOrderSta"  template="/WEB-INF/views/business_status/pop/CustByOrderSta.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
    <definition name="/member/salesmanagepop" extends="PopupLayoutCust">
-      <put-attribute name="title" value="팝업" />
+      <put-attribute name="title" value="영업관리팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
    <definition name="/member/forwardcodehelper" extends="PopupLayoutForward">
-      <put-attribute name="title" value="팝업" />
+      <put-attribute name="title" value="출고팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
-  <definition name="/member/forwardcodehelper3" extends="PopupLayoutForward3">
-      <put-attribute name="title" value="팝업" />
+  <definition name="/member/ordercodehelper" extends="PopupLayoutOrderSta">
+      <put-attribute name="title" value="수주팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
