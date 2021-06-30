@@ -183,7 +183,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.precisionQuantity}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].loss" value="${detail.loss}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.comfirmQuantity}"/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].forwardingQuantity" value="${detail.comfirmQuantity}"/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
                         <td><input type="hidden" name="DetailVO[${status.index }].forwardingNumber"value="${detail.forwardingNumber }" /></td>
   					 </tr>
