@@ -2026,7 +2026,7 @@ ORDER BY out.workordernumber]]>
 		<result property="dep_Name" column="DEPARTMENT_NAME" />
 		<result property="emp_Code" column="EMPLOYEE_CODE" />
 		<result property="emp_Name" column="EMPLOYEE_NAME" />
-		<result property="password" column="Inventory_Unit" />
+		<result property="password" column="EMPLOYEE_PASSWORD" />
 	</resultMap>
 	<select id="selectDep"  resultMap="LoginView">
 		<![CDATA[select DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_dep_reg
@@ -2034,6 +2034,10 @@ ORDER BY out.workordernumber]]>
 	</select>
 	<select id="selectEmp"  resultMap="LoginView" parameterType="String">
 		<![CDATA[select EMPLOYEE_CODE, EMPLOYEE_NAME from sm_cri_emp_reg where DEPARTMENT_CODE = #{depCode}
+		]]>
+	</select>
+	<select id="LoginCheck"  resultMap="LoginView">
+		<![CDATA[select EMPLOYEE_CODE,EMPLOYEE_NAME,DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_emp_reg where EMPLOYEE_CODE = #{emp_Code} and DEPARTMENT_CODE=#{dep_Code} and EMPLOYEE_PASSWORD=#{password}
 		]]>
 	</select>
 </mapper>
