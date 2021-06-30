@@ -69,7 +69,7 @@
     width:100%;
     text-align: left;
     opacity: 0.9;
-    font-size: 80px;
+    font-size: 60px;
     }
 .login-form-right-side p{
     padding-top: 50px;
@@ -168,7 +168,7 @@
                 <div class="top-logo-wrap">
                     
                 </div>
-                <h1>aespa</h1>
+                <h1>KINGDOM</h1>
                 <p>to the Next Level</p>
             </div>
             <div class="login-form-left-side">
@@ -180,17 +180,17 @@
                 <div class="login-input-container">
                     <div class="login-input-wrap input-ccode" id="ccode">
                         <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
-                        <input placeholder="부서코드" id="depCode" name="dep_Code" value='${param.depCode }' type="text">
+                        <input placeholder="부서코드" id="depCode" name="dep_Code" value='${param.depCode }' type="text" readonly>
                     </div>
                     <div class="login-input-wrap input-cname">
-                        <input placeholder="부서명" name="dep_Name" value='${param.depName }' type="text">
+                        <input placeholder="부서명" name="dep_Name" value='${param.depName }' type="text" readonly>
                     </div>
                     <div class="login-input-wrap input-ecode" id="ecode">
                         <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a>
-                        <input placeholder="사원코드" name="emp_Code" value='${param.empCode }' type="text">
+                        <input placeholder="사원코드" name="emp_Code" value='${param.empCode }' type="text" readonly>
                     </div>
                     <div class="login-input-wrap input-ename">
-                        <input placeholder="사원명" name="emp_Name" value='${param.empName }' type="text">
+                        <input placeholder="사원명" name="emp_Name" value='${param.empName }' type="text" readonly>
                     </div>
                     <div class="login-input-wrap input-password">
                         <!-- <i class="fas fa-key"></i> -->

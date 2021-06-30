@@ -1628,6 +1628,14 @@ ORDER BY out.workordernumber]]>
 		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
 		<result property="outsourcing_Status" column="outsourcing_Status" />
 	</resultMap>
+	<!-- 명제씨 창고 팝업 검색기능 -->
+	<select id="searchPopOutwareName" resultMap="outwareInfoResult">
+		<![CDATA[ select House_Code , House_Name 
+		  from SM_BIM_Hou_Reg 
+		  where House_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<!-- 윗칸 데이터 -->
 	<select id="selectAllHouOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_HOU_REG]]>
@@ -2018,7 +2026,7 @@ ORDER BY out.workordernumber]]>
 		<result property="dep_Name" column="DEPARTMENT_NAME" />
 		<result property="emp_Code" column="EMPLOYEE_CODE" />
 		<result property="emp_Name" column="EMPLOYEE_NAME" />
-		<result property="password" column="Inventory_Unit" />
+		<result property="password" column="EMPLOYEE_PASSWORD" />
 	</resultMap>
 	<select id="selectDep"  resultMap="LoginView">
 		<![CDATA[select DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_dep_reg
@@ -2029,7 +2037,7 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	<select id="LoginCheck"  resultMap="LoginView">
-		<![CDATA[select EMPLOYEE_NAME, DEPARTMENT_NAME from sm_cri_emp_reg where EMPLOYEE_CODE = #{emp_Code} and DEPARTMENT_CODE=#{dep_Code}
+		<![CDATA[select EMPLOYEE_CODE,EMPLOYEE_NAME,DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_emp_reg where EMPLOYEE_CODE = #{emp_Code} and DEPARTMENT_CODE=#{dep_Code} and EMPLOYEE_PASSWORD=#{password}
 		]]>
 	</select>
 </mapper>

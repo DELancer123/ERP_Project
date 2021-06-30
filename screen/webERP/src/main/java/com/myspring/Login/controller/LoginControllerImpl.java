@@ -67,14 +67,23 @@ public class LoginControllerImpl implements LoginController{
 		if(loginVO == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
+			mav = new ModelAndView("redirect:/member/loginfailed.do");
 		}else {
-			session.setAttribute("member", loginVO.getDep_Name());
-			session.setAttribute("member2", loginVO.getEmp_Name());
+			session.setAttribute("dep_name", loginVO.getDep_Name());
+			session.setAttribute("emp_name", loginVO.getEmp_Name());
+			session.setAttribute("emp_code", loginVO.getEmp_Code());
+			session.setAttribute("dep_code", loginVO.getDep_Code());
 			mav = new ModelAndView("redirect:/main.do");
 		}
 		return mav;
 	}
-	
+	@Override
+	@RequestMapping(value="/member/logout.do" ,method = RequestMethod.GET)
+	public ModelAndView doLogout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -105,6 +114,8 @@ public class LoginControllerImpl implements LoginController{
 		}
 		return viewName;
 	}
+
+	
 
 	
 }
