@@ -280,21 +280,22 @@
         function newRow(){
           // dao에서 저장
     	 
-        	var row = workOrderTable.insertRow(); 
-          	const URLSearch = new URLSearchParams(location.search);
-		 	const newParam = URLSearch.toString();
-			var link = location.pathname +'?'+newParam;
-  			var linkPath = document.createElement("input");
-  		    linkPath.setAttribute("type","hidden");
-  		    linkPath.setAttribute("name","path");
-  		    linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
-  			document.getElementById('dataForm').submit();  
-		
+        	//var row = workOrderTable.insertRow(); 
+          	//const URLSearch = new URLSearchParams(location.search);
+		 	//const newParam = URLSearch.toString();
+			//var link = location.pathname +'?'+newParam;
+  			//var linkPath = document.createElement("input");
+  		    //linkPath.setAttribute("type","hidden");
+  		    //linkPath.setAttribute("name","path");
+  		    //linkPath.setAttribute("value", link);
+  		    //document.getElementById('dataForm').appendChild(linkPath);
+            //document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
+  			//document.getElementById('dataForm').submit();  
+        	alert("확정, 마감인 상태는 저장할 수 없습니다!");
       }
       
         function updateRow() {
+        	/*
         	var row = workOrderTable.insertRow(); 
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
@@ -309,10 +310,13 @@
   		    document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
     		document.getElementById('dataForm').submit();  
+    		*/
+        	alert("확정, 마감인 상태는 수정할 수 없습니다!");
         }
         
       
         function deleteData() {
+        	/*
       	  var item = document.getElementsByName("content").length;
       	  var no = "";
       	  var ary = [];
@@ -323,6 +327,8 @@
       		  }
       			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
+      	  */
+        	alert("확정, 마감인 상태는 삭제할 수 없습니다!");
         }
         
         function closing() {
@@ -334,8 +340,16 @@
         			  no = document.getElementsByName("content")[i].value;
         			  ary.push(no);
         		  }
-        			window.location.href = "${contextPath}/member/closingDetail.do?workOrderNumber="+ary;
         	  }
+        	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+      			alert('체크박스를 선택하지 않았습니다!');
+      			window.location.href = "${contextPath}/member/operinsclo.do";
+      		}
+          	else {//컨트롤러로 해당목록의 no값을 보낸다
+          		alert('마감처리 되었습니다!');
+        			window.location.href = "${contextPath}/member/closingDetail.do?workOrderNumber="+ary;
+
+          	}
         }
         
         function closingCancle() {
@@ -347,8 +361,17 @@
         			  no = document.getElementsByName("content")[i].value;
         			  ary.push(no);
         		  }
-        			window.location.href = "${contextPath}/member/closingCancleDetail.do?workOrderNumber="+ary;
         	  }
+        	  
+        	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+        			alert('체크박스를 선택하지 않았습니다!');
+        			window.location.href = "${contextPath}/member/operinsclo.do";
+        		}
+            	else {//컨트롤러로 해당목록의 no값을 보낸다
+            		alert('마감처리가 취소 되었습니다!');
+        			window.location.href = "${contextPath}/member/closingCancleDetail.do?workOrderNumber="+ary;
+          			
+            	}
         }
 
       </script>

@@ -1856,7 +1856,7 @@ ORDER BY out.workordernumber]]>
   </delete>
 
 	<select id="allSupForward" resultMap="forward">
-		<![CDATA[select *from CSM_SM_Rel_Pro]]>
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL]]>
 	</select>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
@@ -1901,10 +1901,10 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	<select id="submitItemForward" parameterType="forwardVO">
+	<select id="submitItemForward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
-		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
+		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
 	</select>
 	
 	<!-- 출고현황(재원) -->
