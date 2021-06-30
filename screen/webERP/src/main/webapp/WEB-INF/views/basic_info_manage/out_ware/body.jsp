@@ -115,7 +115,7 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td>창고코드</td>
 	                    <td>
-	                        <input type="text" style="width:100px;" id="outwareCode" name="outwareCode"/>
+	                        <input type="text" style="width:100px;" id="outwareCode" name="outwareCode" readonly/>
 	                    </td>
 	                    <td>
 	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
@@ -132,7 +132,7 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td>생산공정코드</td>
 	                    <td>
-	                        <input type="text" style="width:100px;" id="processCode" name="processCode">
+	                        <input type="text" style="width:100px;" id="processCode" name="processCode" readonly>
 	                    </td>
 	                    <td>
 	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode2()"><i class="fas fa-search" style="color :blue;"></i></a></div>
@@ -149,7 +149,7 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td>외주공정코드</td>
 	                    <td>
-	                        <input type="text" style="width:100px;" id="outsourcingCode" name="outsourcingCode">
+	                        <input type="text" style="width:100px;" id="outsourcingCode" name="outsourcingCode" readonly>
 	                    </td>
 	                    <td>
 	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode3()"><i class="fas fa-search" style="color :blue;"></i></a></div>
@@ -182,12 +182,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${houOutwareList}">
                 <tbody>                
-                    <td><input type="text" value="${out.house_Code }"/></td>
-                    <td><input type="text" value="${out.house_Name }"/></td>
-                    <td><input type="text" value="${out.house_Location_In }"/></td>
-                    <td><input type="text" value="${out.house_Location_Out }"/></td>
-                    <td><input type="text" value="${out.house_Explanation }"/></td>
-                    <td><input type="text" value="${out.house_Status }"/></td>
+                    <td><input type="text" value="${out.house_Code }" readonly/></td>
+                    <td><input type="text" value="${out.house_Name }" readonly/></td>
+                    <td><input type="text" value="${out.house_Location_In }" readonly/></td>
+                    <td><input type="text" value="${out.house_Location_Out }" readonly/></td>
+                    <td><input type="text" value="${out.house_Explanation }" readonly/></td>
+                    <td><input type="text" value="${out.house_Status }" readonly/></td>
                 </tbody>
                 </c:forEach>
                 
@@ -205,12 +205,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${proOutwareList}">
                 <tbody>
-                    <td><input type="text" value="${out.process_Code }"/></td>
-                    <td><input type="text" value="${out.process_Name }"/></td>
-                    <td><input type="text" value="${out.process_Location_In }"/></td>
-                    <td><input type="text" value="${out.process_Location_Out }"/></td>
-                    <td><input type="text" value="${out.process_Explanation }"/></td>
-                    <td><input type="text" value="${out.process_Status }"/></td>
+                    <td><input type="text" value="${out.process_Code }" readonly/></td>
+                    <td><input type="text" value="${out.process_Name }" readonly/></td>
+                    <td><input type="text" value="${out.process_Location_In }" readonly/></td>
+                    <td><input type="text" value="${out.process_Location_Out }" readonly/></td>
+                    <td><input type="text" value="${out.process_Explanation }" readonly/></td>
+                    <td><input type="text" value="${out.process_Status }" readonly/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -227,12 +227,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="out" items="${outOutwareList}">
                 <tbody>
-                    <td><input type="text" value="${out.outsourcing_Code }"/></td>
-                    <td><input type="text" value="${out.outsourcing_Name }"/></td>
-                    <td><input type="text" value="${out.outsourcing_Location_In }"/></td>
-                    <td><input type="text" value="${out.outsourcing_Location_Out }"/></td>
-                    <td><input type="text" value="${out.outsourcing_Explanation }"/></td>
-                    <td><input type="text" value="${out.outsourcing_Status }"/></td>
+                    <td><input type="text" value="${out.outsourcing_Code }" readonly/></td>
+                    <td><input type="text" value="${out.outsourcing_Name }" readonly/></td>
+                    <td><input type="text" value="${out.outsourcing_Location_In }" readonly/></td>
+                    <td><input type="text" value="${out.outsourcing_Location_Out }" readonly/></td>
+                    <td><input type="text" value="${out.outsourcing_Explanation }" readonly/></td>
+                    <td><input type="text" value="${out.outsourcing_Status }" readonly/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -253,14 +253,14 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="houWor" items="${houWorOutwareList}">
                 <tbody>
-                    <td><input type="text" value="${houWor.location_Code }"/></td>
-                    <td><input type="text" value="${houWor.location_Name }"/></td>
-                    <td><input type="text" value="${houWor.location_Explanation }"/></td>
-                    <td><input type="text" value="${houWor.release_Code }"/></td>
-                    <td><input type="text" value="${houWor.release_Customer }"/></td>
-                    <td><input type="text" value="${houWor.suitability }"/></td>
-                    <td><input type="text" value="${houWor.availability }"/></td>
-                    <td><input type="text" value="${houWor.status }"/></td>
+                    <td><input type="text" value="${houWor.location_Code }" readonly/></td>
+                    <td><input type="text" value="${houWor.location_Name }" readonly/></td>
+                    <td><input type="text" value="${houWor.location_Explanation }" readonly/></td>
+                    <td><input type="text" value="${houWor.release_Code }" readonly/></td>
+                    <td><input type="text" value="${houWor.release_Customer }" readonly/></td>
+                    <td><input type="text" value="${houWor.suitability }" readonly/></td>
+                    <td><input type="text" value="${houWor.availability }" readonly/></td>
+                    <td><input type="text" value="${houWor.status }" readonly/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -277,12 +277,12 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="proWor" items="${proWorOutwareList}">
                 <tbody>
-                    <td><input type="text" value="${proWor.workplace_Code }"/></td>
-                    <td><input type="text" value="${proWor.workplace_Name }"/></td>
-                    <td><input type="text" value="${proWor.workplace_Explanation }"/></td>
-                    <td><input type="text" value="${proWor.process_Explanation }"/></td>
-                    <td><input type="text" value="${proWor.release_Customer }"/></td>
-                    <td><input type="text" value="${proWor.status }"/></td>
+                    <td><input type="text" value="${proWor.workplace_Code }" readonly/></td>
+                    <td><input type="text" value="${proWor.workplace_Name }" readonly/></td>
+                    <td><input type="text" value="${proWor.workplace_Explanation }" readonly/></td>
+                    <td><input type="text" value="${proWor.process_Explanation }" readonly/></td>
+                    <td><input type="text" value="${proWor.release_Customer }" readonly/></td>
+                    <td><input type="text" value="${proWor.status }" readonly/></td>
                 </tbody>
                 </c:forEach>
             </table>
@@ -300,13 +300,13 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="outWor" items="${outWorOutwareList}">
                 <tbody>
-                    <td><input type="text" value="${outWor.workplace_Code }"/></td>
-                    <td><input type="text" value="${outWor.outcustomer }"/></td>
-                    <td><input type="text" value="${outWor.workplace_Name }"/></td>
-                    <td><input type="text" value="${outWor.outcustomer_Name }"/></td>
-                    <td><input type="text" value="${outWor.workplace_Explanation }"/></td>
-                    <td><input type="text" value="${outWor.suitability }"/></td>
-                    <td><input type="text" value="${outWor.status }"/></td>
+                    <td><input type="text" value="${outWor.workplace_Code }" readonly/></td>
+                    <td><input type="text" value="${outWor.outcustomer }" readonly/></td>
+                    <td><input type="text" value="${outWor.workplace_Name }" readonly/></td>
+                    <td><input type="text" value="${outWor.outcustomer_Name }" readonly/></td>
+                    <td><input type="text" value="${outWor.workplace_Explanation }" readonly/></td>
+                    <td><input type="text" value="${outWor.suitability }" readonly/></td>
+                    <td><input type="text" value="${outWor.status }" readonly/></td>
                 </tbody>
                 </c:forEach>
             </table>
