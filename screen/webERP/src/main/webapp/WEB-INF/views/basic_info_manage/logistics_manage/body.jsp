@@ -63,6 +63,13 @@ request.setCharacterEncoding("UTF-8");
         
        
 </style>
+<script>
+   window.onload = function(){
+	   l_sub2.style.display = "block";
+	   l_sub2.style.position = "relative";
+	   l_sub2.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container id = contents1>
@@ -142,25 +149,27 @@ request.setCharacterEncoding("UTF-8");
             </form>
         </container>
         <script>
-	        var deleteButton = document.getElementById('delete'); //삭제버튼에 이벤트를 부여하는 기능임
-	        deleteButton.addEventListener('click', function(){deleteData();}, false);
-	        
-	        var deleteButton = document.getElementById('view_button'); //조회버튼에 이벤트를 부여하는 기능임
-	        deleteButton.addEventListener('click', function(){searchData();}, false);
-	        
-	        var registButton = document.getElementById('save'); //저장버튼에 이벤트를 부여하는 기능임
-	        registButton.addEventListener('click', function(){newRow();}, false);
-	        
-	        var updateButton = document.getElementById('update'); //수정버튼에 이벤트를 부여하는 기능임
-	        updateButton.addEventListener('click', function(){updateRow();}, false); 
-	        
+        var logistics_In_Code = document.getElementById("logistics_In_Code");
+        var logistics_In_Name = document.getElementById("logistics_In_Name");
+        
 	        function searchView(name) { //조회를 담당하는 자바스크립트임
 	            window.location.href = "${contextPath}/member/logistics_manage.do?submit=1&&com_code=" + name; 
 	        }
 	        
 	        function searchData() {
 	        	var searchForm = $('#searchForm');
-	        	searchForm.submit();
+	        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+	        	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+	        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+	        	    	is_empty = true;      	    	
+	        	    }      	 
+	        	});       	 
+	        	if(is_empty) { //비어있는내용이 있는지 체크함
+	        	    alert('검색내용이 비어있습니다');
+	        	}
+	        	else{	        	
+		    		searchForm.submit();
+	        	} 
 	        }
 	        
 	        function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
@@ -183,8 +192,13 @@ request.setCharacterEncoding("UTF-8");
 	    			window.location.href = "${contextPath}/member/deleteLogistics_manage.do?no="+ary;
 	        	}
 	        }
-	        
-	        function newRow(){      	
+	        //등록
+	        function newRow(){
+	        	if(logistics_In_Code.value == "" || logistics_In_Name == "")
+	        		{
+	        			alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+	        		}
+	        	else {
 	    		const URLSearch = new URLSearchParams(location.search);
 	    		URLSearch.set('submit','1');
 	    		const newParam = URLSearch.toString();
@@ -196,18 +210,14 @@ request.setCharacterEncoding("UTF-8");
 	    		document.getElementById('logisticsUpdateForm').appendChild(articleNOInput);
 	    		document.getElementById('logisticsUpdateForm').action = "${contextPath}/member/addLogistics_manage.do";
 	    		document.getElementById('logisticsUpdateForm').submit();
-	    	}
-	        
+	    		}
+	        }
+	        //수정
 	        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-	        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-	        	$('#logisticsUpdateForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-	        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
-	        	    	is_empty = true;   
-	        	    }      	 
-	        	});       	 
-	        	if(is_empty) { //비어있는내용이 있는지 체크함
-	        	    alert('비어있는 내용이 있습니다. 다시입력하세요');
-	        	}
+	        	if(logistics_In_Code.value == "" || logistics_In_Name == "")
+        		{
+        			alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+        		}
 	        	else{
 		        	document.getElementById('logisticsUpdateForm').action = "${contextPath}/member/updateLogistics_manage.do";
 		    		document.getElementById('logisticsUpdateForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함

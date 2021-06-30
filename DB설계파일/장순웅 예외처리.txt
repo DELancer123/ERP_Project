@@ -1,0 +1,26 @@
+영업관리 - 판매계획등록
+
+저장 버튼누를시 500에러
+
+타입 예외 보고
+
+메시지 Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 5 errors
+
+설명 서버가, 해당 요청을 충족시키지 못하게 하는 예기치 않은 조건을 맞닥뜨렸습니다.
+
+예외
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 5 errors
+Field error in object 'sp' on field 'ListVO[4].newPlanItemQuantity': rejected value []; codes [typeMismatch.sp.ListVO[4].newPlanItemQuantity,typeMismatch.sp.ListVO.newPlanItemQuantity,typeMismatch.ListVO[4].newPlanItemQuantity,typeMismatch.ListVO.newPlanItemQuantity,typeMismatch.newPlanItemQuantity,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sp.ListVO[4].newPlanItemQuantity,ListVO[4].newPlanItemQuantity]; arguments []; default message [ListVO[4].newPlanItemQuantity]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[4].newPlanItemQuantity'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'sp' on field 'ListVO[4].newPlanUnitPrice': rejected value []; codes [typeMismatch.sp.ListVO[4].newPlanUnitPrice,typeMismatch.sp.ListVO.newPlanUnitPrice,typeMismatch.ListVO[4].newPlanUnitPrice,typeMismatch.ListVO.newPlanUnitPrice,typeMismatch.newPlanUnitPrice,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sp.ListVO[4].newPlanUnitPrice,ListVO[4].newPlanUnitPrice]; arguments []; default message [ListVO[4].newPlanUnitPrice]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[4].newPlanUnitPrice'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'sp' on field 'ListVO[4].planDate': rejected value []; codes [typeMismatch.sp.ListVO[4].planDate,typeMismatch.sp.ListVO.planDate,typeMismatch.ListVO[4].planDate,typeMismatch.ListVO.planDate,typeMismatch.planDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sp.ListVO[4].planDate,ListVO[4].planDate]; arguments []; default message [ListVO[4].planDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[4].planDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'sp' on field 'ListVO[4].planItemQuantity': rejected value []; codes [typeMismatch.sp.ListVO[4].planItemQuantity,typeMismatch.sp.ListVO.planItemQuantity,typeMismatch.ListVO[4].planItemQuantity,typeMismatch.ListVO.planItemQuantity,typeMismatch.planItemQuantity,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sp.ListVO[4].planItemQuantity,ListVO[4].planItemQuantity]; arguments []; default message [ListVO[4].planItemQuantity]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[4].planItemQuantity'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'sp' on field 'ListVO[4].planUnitPrice': rejected value []; codes [typeMismatch.sp.ListVO[4].planUnitPrice,typeMismatch.sp.ListVO.planUnitPrice,typeMismatch.ListVO[4].planUnitPrice,typeMismatch.ListVO.planUnitPrice,typeMismatch.planUnitPrice,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sp.ListVO[4].planUnitPrice,ListVO[4].planUnitPrice]; arguments []; default message [ListVO[4].planUnitPrice]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[4].planUnitPrice'; nested exception is java.lang.NumberFormatException: For input string: ""]
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:894)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+
+---
+필수 입력사항마다 빈 값이 있을경우 alert 메세지 출력 후 해당 빈칸으로 커서이동

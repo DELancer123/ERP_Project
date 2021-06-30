@@ -65,6 +65,13 @@
             top: 10px;
         }
 </style>
+<script>
+	window.onload = function(){
+		l_sub3.style.display = "block";
+        l_sub3.style.position = "relative";
+        l_sub3.style.marginLeft = "10px";
+	}
+</script>
 </head>
 <body>
 <container1 id = contents1>

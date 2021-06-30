@@ -132,7 +132,7 @@
                     <tbody>
                     <c:forEach var="info" items="${infoList}" varStatus="status"> 
                     <tr id="updateData" align="center">
-                        <td><input type="checkbox" value="${info.workOrderNumber }" name="content"/></td>
+                        <td><input type="checkbox" id="workOrderNumber" value="${info.workOrderNumber }" name="content"/></td>
                         <td><input type="text" name="ListVO[${status.index }].workOrderNubmer" value="${info.workOrderNumber}" readonly /></td>
                         <td><input type="text" name="ListVO[${status.index }].materialstatus" value="${info.materialstatus}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].workPlaceCode" value="${info.workPlaceCode}" readonly/></td>
@@ -183,35 +183,32 @@
                         <td><input type="text" name="DetailVO[${status.index }].inventoryUnit" value="${detail.inventoryUnit}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].precisionQuantity" value="${detail.precisionQuantity}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].loss" value="${detail.loss}"/></td>
-                        <td><input type="text" name="DetailVO[${status.index }].comfirmQuantity" value="${detail.comfirmQuantity}"/></td>                        
+                        <td><input type="text" name="DetailVO[${status.index }].forwardingQuantity" value="${detail.comfirmQuantity}"/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
                         <td><input type="hidden" name="DetailVO[${status.index }].forwardingNumber"value="${detail.forwardingNumber }" /></td>
   					 </tr>
                     </c:forEach>              
-                    <tr>
-                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text"/></td>                        
-                        <td><input type="text"/></td>
-                    </tr>
+                  
                     </tbody>
                 </table>
                 </form>
             </div>
         </container3>
-      
-</body>
-</html>
 <script>
  /* 검색부 date onChange 함수 설정 */
  		var startDate = "";
     	var endDate = "";
+    	var workOrderNumber = document.getElementById("workOrderNumber").value;
+    	
+    	function isEmpty(str){
+   	     
+   	     if(typeof str == "undefined" || str == null || str == "")
+   	         return true;
+   	     
+   	     else
+   	         return false ;
+   	     
+   	 	}
     	
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
@@ -269,10 +266,25 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
+  		    alert("저장 버튼은 사용하실 수 없습니다!");
+  		    /*
+	  		  var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+	      	$('#detailForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+	      	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+	      	    	is_empty = true;      	    	
+	      	    }      	 
+	      	});   
+	      	if(is_empty) { //비어있는내용이 있는지 체크함
+	      	    alert('비어있는 내용이 있습니다. 다시입력하세요!');
+	      	}
+	      	else{
+
   		    document.getElementById('detailForm').appendChild(linkPath);
             document.getElementById('detailForm').action = "${contextPath}/member/addOperationInstruction.do";
   			document.getElementById('detailForm').submit();  
-		
+  			alert('저장되었습니다'); 
+        	}   
+	      	*/
       }
       
         function updateRow() {
@@ -280,16 +292,27 @@
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
   		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
-    		document.getElementById('dataForm').submit();  
+    		var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#dataForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});   
+        	if(is_empty) { //비어있는내용이 있는지 체크함
+        	    alert('비어있는 내용이 있습니다. 다시입력하세요!');
+        	}
+        	else{
+  		    	document.getElementById('dataForm').appendChild(linkPath);
+            	document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+    			document.getElementById('dataForm').submit();  
+	    		alert('수정되었습니다'); 
+        	}      	
+    		
+    	 
         }
         
       
@@ -302,9 +325,17 @@
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
-  		    document.getElementById('detailForm').appendChild(linkPath);
-            document.getElementById('detailForm').action = "${contextPath}/member/deleteCommitOperation.do";
-    		document.getElementById('detailForm').submit();  
+    		
+        		if(URLSearch.has('searchNumber')===true){
+	  		    document.getElementById('detailForm').append(linkPath);
+	            document.getElementById('detailForm').action = "${contextPath}/member/deleteCommitOperation.do";
+	    		document.getElementById('detailForm').submit();  
+	    		alert('삭제되었습니다'); 
+        		}else{
+        			alert("null");
+        		window.history.back();
+        		}
+
         }
         
         function confirm() {
@@ -316,8 +347,17 @@
         			  no = document.getElementsByName("content")[i].value;
         			  ary.push(no);
         		  }
-        			window.location.href = "${contextPath}/member/confirmDetail.do?workOrderNumber="+ary;
         	  }
+  	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('확정할 목록의 체크박스를 선택해주세요');
+				//window.history.back();
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+        			window.location.href = "${contextPath}/member/confirmDetail.do?workOrderNumber="+ary;
+	    		alert('상태가 확정되었습니다');
+	
+	    	}
+	    		
         }
      
         function revert() {
@@ -329,8 +369,17 @@
       				no = document.getElementsByName("content")[i].value;
       			  	ary.push(no);
       		  	}
-      			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
       	  }
+      	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('취소할 목록의 체크박스를 선택해주세요');
+				//window.history.back();
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+      			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
+	    		alert('상태가 취소되었습니다');
+	
+	    	}
+
         }
         
         function release(){
@@ -347,3 +396,6 @@
       
         
       </script>
+      
+</body>
+</html>

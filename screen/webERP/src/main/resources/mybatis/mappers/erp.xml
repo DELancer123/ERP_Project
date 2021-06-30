@@ -144,7 +144,7 @@
 	</select>
 	
 	<select id="checkStockQuantity" resultMap="SmBimResult">
-		<![CDATA[select MIN(QUANTITY) from PM_SM_PRO_STOCK where item_Code in (select item_Code from CPM_BIM_BOM_REG where parent_Item_Code = #{itemCode})]]>
+		<![CDATA[select MIN(QUANTITY) AS QUANTITY from PM_SM_PRO_STOCK where item_Code in (select item_Code from CPM_BIM_BOM_REG where parent_Item_Code = #{itemCode})]]>
 	</select>
 	
 	<!-- 작업지시 CURD -->
@@ -225,10 +225,22 @@
 		<![CDATA[
 		 insert into CPM_PM_PRO_MAT_FOR_DET
 		 values(F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), SYSDATE, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{precisionQuantity}, #{loss}, 
-		 #{comfirmQuantity}, #{note}, #{workOrderNumber} )
+		 #{forwardingQuantity}, #{note}, #{workOrderNumber} )
 		]]>  
 	</insert>
 	
+	<!-- 입,출고시 자재 수량 변경 -->
+	<update id="updateStockQuantity">
+		<![CDATA[update PM_SM_PRO_STOCK 
+				set quantity =  quantity - #{forwardingQuantity}
+				where item_Code = #{itemCode}]]>
+	</update>
+	
+	<update id="deleteStockQuantity">
+		<![CDATA[update PM_SM_PRO_STOCK 
+				set quantity =  quantity + #{forwardingQuantity}
+				where item_Code = #{itemCode}]]>
+	</update>
 	<select id="selectWorkOrderNumber" resultType="string">
 		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</select>
@@ -327,6 +339,22 @@ where (status = '확정' or status = '마감')
 		<delete id="deleteRegistOperationPerformanceInfoDetail" parameterType="RegistOperationPerformanceDetailVO">
 		<![CDATA[delete from CPM_PM_Ope_Per_Reg_Det where opNumber = #{opNumber}]]>
 	</delete>
+	
+	<resultMap id="performanceQuantityResult" type="PerformanceQuantityVO">
+		<result property="performanceQuantity" column="performanceQuantity" />
+		<result property="itemCode" column="item_Code" />
+	</resultMap>
+	
+	<select id="selectperformanceQuantity" resultMap="performanceQuantityResult">
+		<![CDATA[select reg.performancequantity, cpm.item_Code from CPM_PM_OPE_PER_REG cpm, CPM_PM_OPE_PER_REG_DET reg
+					where cpm.workOrderNumber = reg.workordernumber and reg.opNumber = #{obj}]]>
+	</select>
+	
+	<update id="updAddStock">
+		<![CDATA[update PM_SM_PRO_STOCK 
+				set quantity =  quantity + #{performanceQuantity}
+				where item_Code = #{itemCode} ]]>
+	</update>
 	
 	<!-- 작업실적등록 팝업부  -->
 	
@@ -832,7 +860,6 @@ order by bom.parent_item_code]]>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
-
 	</select>
 	
 	<update id="updateOrderClosing">
@@ -857,6 +884,16 @@ order by bom.parent_item_code]]>
 			where order_no=#{order_no}]]>
 	</update>
 	
+	<select id="itemList" resultMap="regitemResult">
+		<![CDATA[select item_Code,item_Name from SM_BIM_Ite_Reg]]>	
+	</select>
+	
+	 <select id="NameSearch" resultMap="regitemResult">
+		<![CDATA[ select item_Code, item_Name
+		  	from SM_BIM_Ite_Reg
+		 	 where item_Name like '%'||#{item_Name}||'%']]>
+	</select>
+
 	
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />
@@ -1473,9 +1510,42 @@ ORDER BY out.workordernumber]]>
 	<resultMap id="sujuView" type="StockManageVO">
 		<result property="ordersNum" column="ordersNum" />
 		<result property="ordersdate" column="ordersdate" />
-		<result property="customerCode" column="customerCode" />
+		<result property="General_Customer_Code" column="General_Customer_Code " />
 		<result property="tax" column="tax" />
 		<result property="note" column="Note" />
+		<result property="moveNum" column="Move_Num" />
+		<result property="moveDate" column="Move_Date" />
+		<result property="outputBusiness" column="Output_Business" />
+		<result property="outputWarehouse" column="Output_Warehouse" />
+		<result property="outputPlace" column="Output_Place" />
+		<result property="inputBusiness" column="Input_Business" />
+		<result property="inputWarehouse" column="Input_Warehouse" />
+		<result property="inputPlace" column="Input_Place" />
+		<result property="no" column="NO" />	
+		<result property="itemCode" column="Item_Code" />	
+		<result property="itemName" column="Item_Name" />	
+		<result property="standard" column="Standard" />	
+		<result property="inventoryUnit" column="Inventory_Unit" />	
+		<result property="moveQuantity" column="Move_Quantity" />	
+		<result property="movePrice" column="Move_Price" />	
+		<result property="modNum" column="Mod_Num" />	
+		<result property="modDate" column="Mod_Date" />	
+		<result property="houseCode" column="House_Code" />	
+		<result property="locationCode" column="Location_Code" />	
+		<result property="generalCustomerCode" column="General_Customer_Code" />	
+		<result property="kind" column="Kind" />	
+		<result property="modQuantity" column="Mod_Quantity" />	
+		<result property="setCode" column="SET_Code" />	
+		<result property="inputQuantity" column="Input_Quantity" />	
+		<result property="outputQuantity" column="Output_Quantity" />	
+		<result property="purchasePrice" column="Purchase_Price" />	
+		<result property="salesPrice" column="Sales_Price" />	
+		<result property="quantity" column="Quantity" />	
+		<result property="type" column="Type" />	
+		<result property="typeCode" column="Type_Code" />	
+		<result property="typeName" column="Type_Name" />	
+		
+		<result property="busCode" column="Output_Business"/>
 	</resultMap>
 	
 	
@@ -1487,16 +1557,23 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopCusList" resultMap="sujuView">
-		<![CDATA[ select customerCode
+		<![CDATA[ select General_Customer_Code
 		  from CSM_SM_Ord_Reg
-		  where customerCode like '%'||#{itemName}||'%'
+		  where General_Customer_Code like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
 	<select id="selectsujuList" resultMap="sujuView">
 		<![CDATA[ select *
 		  from CSM_SM_Ord_Reg
-		  where customerCode = #{customerCode}
+		  where General_Customer_Code = #{customerCode}
+		]]>
+	</select>
+	
+	<select id="selectsujusub" resultMap="sujuView">
+		<![CDATA[ select *
+		  from CSM_SM_COR_Reg
+		  where code  = #{ordersNum}
 		]]>
 	</select>
 	
@@ -1621,6 +1698,14 @@ ORDER BY out.workordernumber]]>
 		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
 		<result property="outsourcing_Status" column="outsourcing_Status" />
 	</resultMap>
+	<!-- 명제씨 창고 팝업 검색기능 -->
+	<select id="searchPopOutwareName" resultMap="outwareInfoResult">
+		<![CDATA[ select House_Code , House_Name 
+		  from SM_BIM_Hou_Reg 
+		  where House_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<!-- 윗칸 데이터 -->
 	<select id="selectAllHouOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_HOU_REG]]>
@@ -1691,7 +1776,42 @@ ORDER BY out.workordernumber]]>
 		  where logistics_In_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	
 	<!-- 물류관리내역등록끝 -->
+	<!-- 기초정보관리_검사유형등록 -->
+	<resultMap id="inspectionTypeResult" type="SystemmagVOMJ">	
+		<result property="inspection_Code" column="inspection_Code" />
+		<result property="inspection_Name" column="inspection_Name" />
+		<result property="inspection_Question" column="inspection_Question" />
+		<result property="remarks" column="remarks" />
+	</resultMap>
+	<select id="selectAllInspection" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP]]>
+	</select>
+	<select id="selectOneInspection" parameterType="String" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP where inspection_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteInspection">
+		delete from SM_BIM_INS_TYP where inspection_Code = #{no}
+	</delete>
+	<update id="updateInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_INS_TYP
+			set	inspection_Name=#{inspection_Name},
+			inspection_Question=#{inspection_Question},
+			remarks=#{remarks}
+			where inspection_Code=#{inspection_Code}			
+		]]>
+	</update>
+	<insert id="insertNewInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_INS_TYP
+			values(#{inspection_Code},
+			#{inspection_Name}, 
+			#{inspection_Question}, 
+			#{remarks})]]>
+	</insert>
+	<!-- 검사유형등록등록끝 -->
 
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
@@ -1764,7 +1884,7 @@ ORDER BY out.workordernumber]]>
 		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
 
-	<select id="submitSupForward" resultMap="forward" parameterType="String">
+	<select id="submitSupForward" resultMap="forward" parameterType="forwardVO">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
 	<select id="selCustforward" resultMap="forward">
@@ -1779,6 +1899,9 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[delete from CSM_SM_Rel_Pro where releaseNum=#{relCode}]]>      
   </delete>
 
+	<select id="allSupForward" resultMap="forward">
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL]]>
+	</select>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
@@ -1822,7 +1945,11 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	
+	<select id="submitItemForward" parameterType="String">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code	
+		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
+	</select>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
@@ -1998,5 +2125,24 @@ ORDER BY out.workordernumber]]>
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
-	
+	<!-- 로그인 기능 -->
+	 <resultMap id="LoginView" type="LoginVO">
+		<result property="dep_Code" column="DEPARTMENT_CODE" />
+		<result property="dep_Name" column="DEPARTMENT_NAME" />
+		<result property="emp_Code" column="EMPLOYEE_CODE" />
+		<result property="emp_Name" column="EMPLOYEE_NAME" />
+		<result property="password" column="EMPLOYEE_PASSWORD" />
+	</resultMap>
+	<select id="selectDep"  resultMap="LoginView">
+		<![CDATA[select DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_dep_reg
+		]]>
+	</select>
+	<select id="selectEmp"  resultMap="LoginView" parameterType="String">
+		<![CDATA[select EMPLOYEE_CODE, EMPLOYEE_NAME from sm_cri_emp_reg where DEPARTMENT_CODE = #{depCode}
+		]]>
+	</select>
+	<select id="LoginCheck"  resultMap="LoginView">
+		<![CDATA[select EMPLOYEE_CODE,EMPLOYEE_NAME,DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_emp_reg where EMPLOYEE_CODE = #{emp_Code} and DEPARTMENT_CODE=#{dep_Code} and EMPLOYEE_PASSWORD=#{password}
+		]]>
+	</select>
 </mapper>

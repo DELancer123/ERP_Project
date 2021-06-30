@@ -26,6 +26,7 @@
 		<typeAlias type="com.myspring.commonProduction.registOperationPerformance.vo.ProcessCodeSearchVO" alias="ProcessCodeSearchVO" />
 		<typeAlias type="com.myspring.commonProduction.registOperationPerformance.vo.WorkplaceCodeSearchVO" alias="WorkplaceCodeSearchVO" />
 		<typeAlias type="com.myspring.commonProduction.operationRegist.vo.FacilitySearchVO" alias="FacilitySearchVO" />
+		<typeAlias type="com.myspring.commonProduction.registOperationPerformance.vo.PerformanceQuantityVO" alias="PerformanceQuantityVO" />
 		<!-- 물류 구매관리 파트 -->
 		<!-- 구매관리 파트 -->
 		<typeAlias type="com.myspring.MainPlan.vo.MainPlanVO" alias="MainPlanVO" />
@@ -38,6 +39,7 @@
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.bomVO" alias="bomVO" />
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO" alias="outpriVO" />
 		<typeAlias type="com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO" alias="defVO" />
+		<typeAlias type="com.myspring.Login.vo.LoginVO" alias="loginVO" />
 		<!-- 판매계획 파트 -->
 		<!-- <typeAlias type="com.myspring.salesmanage.pop.itemview.vo.ItemviewVO" alias="itemviewVO" /> -->
 		

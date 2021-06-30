@@ -66,6 +66,13 @@ String sequence = (String) request.getAttribute("sequence");
 }
 
 </style>
+<script>
+   window.onload = function(){
+	   l_sub1.style.display = "block";
+	   l_sub1.style.position = "relative";
+	   l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 	<container1 id=contents1>
@@ -90,7 +97,6 @@ String sequence = (String) request.getAttribute("sequence");
 					<td><input type="checkbox" name="content" /></td>
 					<td>발주번호</td>
 					<td>발주일자</td>
-					<td>코드</td>
 					<td>거래처명</td>
 					<td>No</td>
 					<td>품번</td>
@@ -112,7 +118,6 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="checkbox" name="content" value="${OrderClosing.sequence}" /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].code" value='${OrderClosing.code}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].buyer" value='${OrderClosing.buyer}' readonly /></td>
 			<td style="width: 13px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}' readonly /></td>
@@ -132,11 +137,10 @@ String sequence = (String) request.getAttribute("sequence");
 					<td></td>
 				<td><input type="text" id="order_no"  value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
-				<td><input type="text" id="code" name="ListVO[${fn:length(ClosingList) }].code" value='${code}' style="width: 100%" /></td>
-				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}'  /></td>
+				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${param.buyer}' style="background-color:#E6E6FA"/></td>
 				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
-				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' /></td>
-				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' /></td>
+				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${param.item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
 				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" /></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
@@ -157,6 +161,14 @@ String sequence = (String) request.getAttribute("sequence");
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+var order_date = document.getElementById("order_date");
+var code = document.getElementById("code");
+var buyer = document.getElementById("buyer");
+var item_Code = document.getElementById("item_Code");
+var item_Name = document.getElementById("item_Name");
+var order_quantity = document.getElementById("order_quantity");
+var deadline = document.getElementById("deadline");
+var price = document.getElementById("price");
 var startDate;
 var endDate;
    	
@@ -190,7 +202,29 @@ var endDate;
  		  }
    	}
 
-function InsertRow(){
+function newRow(){
+	    if(order_date.value == ""){
+	       alert("발주일자는 필수 입력사항입니다.");
+	       return order_date.focus();
+	    }else if(buyer.value == ""){
+	       alert("회사명은 필수 입력사항입니다.");
+	       return buyer.focus();
+	    }else if(item_Code.value ==""){
+	    	alert("품번은 필수 입력사항입니다.");
+	    	return item_Code.focus();
+	    }else if(item_Name.value ==""){
+	    	alert("품명은 필수 입력사항입니다.");
+	    	return item_Name.focus();
+	    }else if(order_quantity.value ==""){
+	    	alert("발주수량은 필수 입력사항입니다.");
+	    	return order_quantity.focus();
+	    }else if(deadline.value ==""){
+	    	alert("마감처리 및 진행 입력은 필수 입력사항입니다.");
+	    	return deadline.focus();
+	    }else if(price.value ==""){
+	    	alert("단가는 필수 입력사항입니다.");
+	    	return price.focus();
+	    }else{
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();
 	var link = location.pathname + '?' + newParam;
@@ -201,35 +235,49 @@ function InsertRow(){
 	document.getElementById('OrderClosing').appendChild(Input);
 	document.getElementById('OrderClosing').action = "${contextPath}/member/addClosing.do";
 	document.getElementById('OrderClosing').submit();
-
+	}
 }
 
 function updateRow() {
+	 var UpdConfirm = confirm('수정하실껀가요?');
+if(UpdConfirm){
+		alert('수정 완료되셨습니다!');
+	
+	var OrderClosingTable = document.getElementById('OrderClosingTable');
+    var row = OrderClosingTable.insertRow(); 
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();
 	var link = location.pathname + '?' + newParam;
-document.getElementById("order_no").disabled = true;		
-document.getElementById("order_date").disabled = true;
-document.getElementById("code").disabled = true;
-document.getElementById("buyer").disabled = true;
-document.getElementById("sequence").disabled = true;
-document.getElementById("item_Code").disabled = true;
-document.getElementById("item_Name").disabled = true;
-document.getElementById("standard").disabled = true;
-document.getElementById("inventory_unit").disabled = true;
-document.getElementById("order_quantity").disabled = true;
-document.getElementById("deadline").disabled = true;
-document.getElementById("price").disabled = true;
-document.getElementById("note").disabled = true;
-var Input = document.createElement("input");
-Input.setAttribute("type", "hidden");
-Input.setAttribute("name", "path");
-Input.setAttribute("value", link);
-document.getElementById('OrderClosing').appendChild(Input);
-document.getElementById('OrderClosing').action = "${contextPath}/member/updateClosing.do";
-document.getElementById('OrderClosing').submit();
+	document.getElementById("order_no").disabled = true;		
+	document.getElementById("order_date").disabled = true;
+	document.getElementById("buyer").disabled = true;
+	document.getElementById("sequence").disabled = true;
+	document.getElementById("item_Code").disabled = true;
+	document.getElementById("item_Name").disabled = true;
+	document.getElementById("standard").disabled = true;
+	document.getElementById("inventory_unit").disabled = true;
+	document.getElementById("order_quantity").disabled = true;
+	document.getElementById("deadline").disabled = true;
+	document.getElementById("price").disabled = true;
+	document.getElementById("note").disabled = true;
+	
+	var Input = document.createElement("input");
+	Input.setAttribute("type", "hidden");
+	Input.setAttribute("name", "path");
+	Input.setAttribute("value", link);
+	document.getElementById('OrderClosing').appendChild(Input);
+	document.getElementById('OrderClosing').action = "${contextPath}/member/updateClosing.do";
+	document.getElementById('OrderClosing').submit();
+}else{
+	alert('수정을 취소하셨습니다!');
+	location.reload(true);
+	location.href = location.href;
+
+	history.go(0);
+	}
 }
-function deleteRow() {
+
+function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";
 	  var ary = [];
@@ -238,8 +286,12 @@ function deleteRow() {
 			  sequence = document.getElementsByName("content")[i].value;
 			  ary.push(sequence);
 		  }
-		  
-			  window.location.href = "${contextPath}/member/delClosing.do?sequence="+ary;
+	  }
+	  if(ary.length === 0 || ary === null){
+		  alert('삭제할 칼럼의 체크박스를 선택해주세요!');
+	  }else{
+		  alert('삭제 되었습니다!');
+		  window.location.href = "${contextPath}/member/delClosing.do?sequence="+ary;	 
 	  }
 }
 function func_DeadLine(){
@@ -251,9 +303,23 @@ function func_DeadLine(){
 			  sequence = document.getElementsByName("content")[i].value;
 			  ary.push(sequence);
 		  }
-		  
-			  window.location.href = "${contextPath}/member/updateOrderClosing.do?sequence="+ary;
 	}
+	  if(ary.length === 0 || ary === null){
+		  alert('마감처리 시킬 칼럼의 체크박스를 선택해주세요!');
+	  }else{
+		  alert('마감처리 되었습니다!');
+		  window.location.href = "${contextPath}/member/updateOrderClosing.do?sequence="+ary; 
+	  }
+			  
 }
+function openWindowPop(url, name){
+    var options = 'top=0, left=0, width=600, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+    window.open(url, name, options);
+}
+
+
+function search1(){ 	  
+	      	openWindowPop('${contextPath}/member/itemPop.do','itemPop');
+}       
 </script>
 </html>

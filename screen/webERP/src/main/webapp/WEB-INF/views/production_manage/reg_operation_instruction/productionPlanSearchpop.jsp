@@ -77,6 +77,8 @@
                     <td>작업예정일</td>
                     <td>비고</td>
                     <td>생산계획번호</td>
+                    <td>지시일</td>
+                    <td>납기일</td>
                 </tr>
      <c:forEach var="productionPlan" items="${productionPlanView}" >     
 		<tr align="center" id="insertData">
@@ -89,6 +91,8 @@
       		<td>${productionPlan.schedule }</td>
       		<td>${productionPlan.note }</td>
       		<td>${productionPlan.productionPlanCode }</td>
+      		<td>${productionPlan.schedule }</td>
+      		<td>${productionPlan.schedule }</td>
     	</tr> 
     </c:forEach> 
             </table>
@@ -155,6 +159,8 @@
    			var workDate = td.eq(6).text();
    			var note = td.eq(7).text();
    			var productionPlanCode = td.eq(8).text();
+   			var dateStart = td.eq(9).text();
+   			var dateEnd = td.eq(10).text();
    			
    			tdArr.push(itemCode);
    			tdArr.push(itemName);
@@ -164,9 +170,11 @@
    			tdArr.push(workDate);
    			tdArr.push(note);
    			tdArr.push(productionPlanCode);
+   			tdArr.push(dateStart);
+   			tdArr.push(dateEnd);
    			
    			opener.parent.location='${contextPath }/member/regoperins.do?itemCode='+tdArr[0]+'&&itemName='+tdArr[1]+'&&standard='+tdArr[2]+'&&inventoryUnit='+tdArr[3]
-   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7];
+   									+'&&quantity='+tdArr[4]+'&&workDate='+tdArr[5]+'&&note='+tdArr[6]+'&&productionPlanCode='+tdArr[7]+'&&dateStart='+tdArr[8]+'&&dateEnd='+tdArr[9];
     		window.close();
 
    		})

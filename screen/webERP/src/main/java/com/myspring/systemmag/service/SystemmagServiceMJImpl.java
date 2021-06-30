@@ -17,7 +17,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Autowired
 	private SystemmagDAOMJ systemmagDAO;
 	
-	//ÀÏ¹İ°Å·¡Ã³µî·Ï
+	//å ì‹¹ë°˜ê±°ë¤„ì˜™ì²˜å ì™ì˜™å ï¿½
 	@Override
 	public int addCustomer (SystemmagVOMJ systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
@@ -70,7 +70,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	}
 
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï
+	//ì°½å ì™ì˜™/å ì™ì˜™å ì™ì˜™/å ì™ì˜™å ìŒê³¤ì˜™å ì™ì˜™å ì™ì˜™å ï¿½
 	@Override
 	public List viewAllHouOutware() throws DataAccessException {
 		List outwareList = null;
@@ -112,7 +112,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		outwareList = systemmagDAO.viewAllOutWorOutware();	
 		return outwareList;
 	}
-	//Ã¢°íµî·Ï Á¶È¸-------
+	//ì°½å ì™ì˜™å ì™ì˜™ å ì™ì˜™íšŒ-------
 	@Override
 	public List viewSelectedHouOutware(String search) throws DataAccessException {
 		List outwareList = null;
@@ -134,7 +134,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return outwareList;
 	}
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
 		List logisticsList = null;
@@ -169,5 +169,41 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopLogisticsName(String itemName) {
 		return systemmagDAO.viewsearchPopLogisticsName(itemName);
 	}
+
+	@Override
+	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException {
+		return systemmagDAO.searchPopOutwareName(itemName);
+	}
+	
+	//ê²€ì‚¬ìœ í˜•ë“±ë¡
+	@Override
+	public List viewAllInspection() throws DataAccessException {
+		List comList = null;
+		comList = systemmagDAO.viewAllInspection();
+		return comList;
+	}
+
+	@Override
+	public List viewInspection(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.viewInspection(com_code);
+		return comList;
+	}
+
+	@Override
+	public int addInspection(SystemmagVOMJ systemmagVO) throws Exception{
+		int result = systemmagDAO.insertNewInspection(systemmagVO);
+		return result;
+    }
+
+	@Override
+	public void delInspection(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteInspection(noary);
+	}
+
+	@Override
+	public void updInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {		
+		systemmagDAO.updateInspection(systemmagVO);
+	}
+	
 	
 }

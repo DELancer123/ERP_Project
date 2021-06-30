@@ -62,6 +62,13 @@
 		}
 
 </style>
+<script>
+	window.onload = function(){
+		l_sub1.style.display = "block";
+		l_sub1.style.position = "relative";
+		l_sub1.style.marginLeft = "10px";
+	}
+</script>
 </head>
 <body>
 <form id="regBOM" method="get" commandName = "ListVO">
@@ -123,6 +130,16 @@
         </container2>
         
       <script>
+      function isEmpty(str){
+ 	     
+ 	     if(typeof str == "undefined" || str == null || str == "")
+ 	         return true;
+ 	     
+ 	     else
+ 	         return false ;
+ 	     
+ 	 	}
+      
       var itemNumber = document.getElementById("itemCode");
 
       
@@ -204,9 +221,44 @@
   		     articleNOInput.setAttribute("type","hidden");
   		     articleNOInput.setAttribute("name","path");
   		     articleNOInput.setAttribute("value", link);
+  		     
+  		   var itemNumber = document.getElementById("itemNumber").value;
+  	      var precisionQuantity = document.getElementById("precisionQuantity").value;
+  	      var loss = document.getElementById("loss").value;
+  	     	  var actualQuantity = document.getElementById('actualQuantity').value;
+  		     
+  		   if (isEmpty(itemNumber)){
+	      		alert("품번값이 비어져있습니다. 값을 추가해주세요!");
+	      		document.getElementById("itemNumber").focus();
+
+	  		}
+  		   else 
+  			   if (isEmpty(precisionQuantity)){
+	      		alert("정미수량값이 비어져있습니다. 값을 추가해주세요!");
+	      		document.getElementById("precisionQuantity").focus();
+	      		return false;
+
+ 	  		}
+		   else if(isEmpty(loss)){
+	      		alert("loss값이 비어져있습니다. 값을 추가해주세요!");		            	
+	      		document.getElementById("loss").focus();
+	      		return false;
+		   }
+		   else if(isEmpty(actualQuantity)){
+	      		alert("필요수량값이 비어져있습니다. 값을 추가해주세요!");		            	
+	      		document.getElementById("actualQuantity").focus();
+	      		return false;
+		   }
+		   else{
+			   alert(isEmpty(precisionQuantity));
   		     document.getElementById('regBOM').appendChild(articleNOInput);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
+  
+	 		alert("값이 저장되었습니다!");          	
+		   }
+  		     
+  		     
 		
       }
 
@@ -220,8 +272,16 @@
     			  no = document.getElementsByName("content")[i].value;
     			  ary.push(no);
     		  }
-    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
     	  }
+	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('삭제할 목록의 체크박스를 선택해주세요');
+				//window.history.back();
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
+	    		alert('삭제되었습니다');
+	
+	    	}
       }
      view_button.onclick = function(){
 		  const URLSearch = new URLSearchParams(location.search);

@@ -85,6 +85,13 @@
             
         }
 </style>
+<script>
+   window.onload = function(){
+	   l_sub1.style.display = "block";
+	   l_sub1.style.position = "relative";
+	   l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container1 id = contents1>
@@ -139,15 +146,24 @@
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" style="background-color:rgb(255, 255, 149);" id="department_Name1" maxlength="50"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="workplace_Code1" value='${param.workplace_Code}' readonly maxlength="12"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" style="background-color:rgb(255, 255, 149);" id="workplace_Name1" value='${param.workplace_Name}' readonly/ maxlength="50"></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="sector_Code1" ondblclick="searchsector()" readonly value='${param.sector_Code}' maxlength="12"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="sector_Code1" onfocus="searchsector()" readonly value='${param.sector_Code}' maxlength="12"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" style="background-color:rgb(255, 255, 149);" id="sector_Name1" readonly value='${param.sector_Name}' maxlength="50"/></td>
     	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" style="background-color:rgb(255, 255, 149);" id="usedate1" /></td>
     </tr>
                  </tbody>
             </table>
         </container2>
-        	</form>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
+        var department_Code1 = document.getElementById("department_Code1");
+        var department_Name1 = document.getElementById("department_Name1");
+        var workplace_Code1 = document.getElementById("workplace_Code1");
+        var workplace_Name1 = document.getElementById("workplace_Name1");
+        var sector_Code1 = document.getElementById("sector_Code1");
+        var sector_Name1 = document.getElementById("sector_Name1");
+        var usedate1 = document.getElementById("usedate1");
       //체크박스함수
     	function selectAll1(selectAll1){
         	const checkbox = document.getElementsByName('checkedContent');
@@ -165,7 +181,7 @@
         		}
         	});
         	if(is_empty) {
-        		alert('필수입력항목이 비었습니다. 다시입력해주세요.');
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
         	}
         	else{
     		const URLSearch = new URLSearchParams(location.search);
@@ -183,29 +199,41 @@
         		}
     		}
         //수정함수
-        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-        	document.getElementById('department_Code1').disabled = true;
-        	document.getElementById('department_Name1').disabled = true;
-        	document.getElementById('workplace_Code1').disabled = true;
-        	document.getElementById('workplace_Name1').disabled = true;
-        	document.getElementById('sector_Code1').disabled = true;
-        	document.getElementById('sector_Name1').disabled = true;
-        	document.getElementById('usedate1').disabled = true;
-       	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-       	$('#regdepartment2').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-       	    if(!$(this).val()) { //#regdepartment2는 form태그의 id값임
-       	    	is_empty = true;      	    	
-       	    }      	 
-       	});       	 
-       	if(is_empty) { //비어있는내용이 있는지 체크함
-       	    alert('비어있는 내용이 있습니다. 다시입력하세요');
-       	}
-       	else{
-	        	document.getElementById('regdepartment2').action = "${contextPath}/member/upddepartment.do";
-	    		document.getElementById('regdepartment2').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
-	    		alert('수정되었습니다'); 
-       	 }      	
-       } 
+        function updateRow() {
+    var delConfirm = confirm('수정하실껀가요?');
+   if(delConfirm){
+      alert('수정 완료되셨습니다!');
+       console.log('123')
+        var table2 = document.getElementById('table2');
+          var row = table2.insertRow(); 
+          const URLSearch = new URLSearchParams(location.search);
+          URLSearch.set('submit', '1');
+         const newParam = URLSearch.toString();
+         var link = location.pathname + '?' + newParam;
+      document.getElementById("department_Code1").disabled = true;      
+      document.getElementById("department_Name1").disabled = true;
+      document.getElementById("workplace_Code1").disabled = true;
+      document.getElementById("workplace_Name1").disabled = true;
+      document.getElementById("sector_Code1").disabled = true;
+      document.getElementById("sector_Name1").disabled = true;
+      document.getElementById("usedate1").disabled = true;
+      var Input = document.createElement("input");
+      Input.setAttribute("type", "hidden");
+      Input.setAttribute("name", "path");
+      Input.setAttribute("value", link);
+      document.getElementById('regdepartment2').appendChild(Input);
+      document.getElementById('regdepartment2').action = "${contextPath}/member/upddepartment.do";
+      document.getElementById('regdepartment2').submit(); 
+      
+   }else{
+      alert('수정을 취소하셨습니다!');
+      location.reload(true);
+      location.href = location.href;
+
+      history.go(0);
+   }
+   
+}
       //삭제함수
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
           	var item = document.getElementsByName("checkedContent").length;
@@ -250,5 +278,6 @@
           
       }
         </script>
+       </form>
 </body>
 </html>

@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface SystemmagDAOMJ {
-	//ÀÏ¹İ°Å·¡Ã³µî·Ï
+	//ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
@@ -26,7 +26,7 @@ public interface SystemmagDAOMJ {
 	
 	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) throws DataAccessException;
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï
+	//Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½È²
 	public List viewAllHouOutware() throws DataAccessException;
 	
 	public List viewAllProOutware() throws DataAccessException;
@@ -45,7 +45,7 @@ public interface SystemmagDAOMJ {
 	
 	public List viewSelectedOutOutware(String search) throws DataAccessException;
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List viewAllLogistics() throws DataAccessException;
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
@@ -57,4 +57,18 @@ public interface SystemmagDAOMJ {
 	public void updateLogistics(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
 	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) throws DataAccessException;
+
+	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
+	
+	//ê²€ì‚¬ìœ í˜•ë“±ë¡
+	public List viewAllInspection() throws DataAccessException;
+	
+	public List viewInspection(String com_code) throws DataAccessException;
+	
+	public int insertNewInspection (SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public void deleteInspection(String[] noary) throws DataAccessException;
+	
+	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
 }

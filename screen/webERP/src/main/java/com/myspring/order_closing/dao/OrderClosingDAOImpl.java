@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.order_closing.vo.OrderClosingVO;
+import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.itemVO;
 
 @Repository("orderclosingDAO")
 public class OrderClosingDAOImpl implements OrderClosingDAO{
@@ -59,7 +61,7 @@ public class OrderClosingDAOImpl implements OrderClosingDAO{
 	public int updateClosing(OrderClosingVO vo) throws DataAccessException {
 		int result = 0; 
 
-		int idx = vo.getListVO().size()-1;
+		int idx = vo.getListVO().size();
 		for(int i = 0; i<idx;i++) {
 			System.out.println("i"+i);
 		System.out.println("idx : "+idx);
@@ -67,4 +69,19 @@ public class OrderClosingDAOImpl implements OrderClosingDAO{
 		}
 		return result;
 	}
+	
+	@Override
+	public List itemList() throws Exception{
+		List<itemVO>itemList = null;
+		itemList = sqlSession.selectList("mappers.erp.itemList");
+		return itemList;
+	}
+	
+	@Override
+	public List<itemVO>NameSearch(String itemName) {
+		List<itemVO> popList = null;
+		popList = sqlSession.selectList("mappers.erp.NameSearch",itemName);
+		return popList;
+	}
+
 }

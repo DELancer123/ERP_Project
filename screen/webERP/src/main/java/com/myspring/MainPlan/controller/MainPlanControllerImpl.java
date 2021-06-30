@@ -9,17 +9,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
+
 
 @Controller("mainplanController")
 public class MainPlanControllerImpl implements MainPlanController {
@@ -28,9 +32,10 @@ public class MainPlanControllerImpl implements MainPlanController {
 	private MainPlanService mainplanService;
 	@Autowired
 	private MainPlanVO mainplanVO;
+	
 
 	@Override
-	@RequestMapping(value="/member/mainplan.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/member/mainplan.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView viewMPS(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
@@ -127,7 +132,7 @@ public class MainPlanControllerImpl implements MainPlanController {
 
 		return mav;
 	} 
-	
+
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");

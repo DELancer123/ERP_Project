@@ -1,0 +1,93 @@
+--삭제버튼 클릭시 에러--
+문제 :체크박스에 체크된 값이 없으면 에러남
+※if-else 문을 사용하여 체크된 값이 없으면 체크하라는 메시지창을 띄움
+
+타입 예외 보고
+
+메시지 Request processing failed; nested exception is java.lang.NumberFormatException: For input string: ""
+
+설명 서버가, 해당 요청을 충족시키지 못하게 하는 예기치 않은 조건을 맞닥뜨렸습니다.
+
+예외
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NumberFormatException: For input string: ""
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:894)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+근본 원인 (root cause)
+
+java.lang.NumberFormatException: For input string: ""
+	java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:68)
+	java.base/java.lang.Integer.parseInt(Integer.java:662)
+	java.base/java.lang.Integer.parseInt(Integer.java:770)
+	com.myspring.MainPlan.dao.MainPlanDAOImpl.delMps(MainPlanDAOImpl.java:37)
+	com.myspring.MainPlan.service.MainPlanServiceImpl.delMps(MainPlanServiceImpl.java:36)
+	com.myspring.MainPlan.controller.MainPlanControllerImpl.delMps(MainPlanControllerImpl.java:87)
+	java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:213)
+	org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:126)
+	org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:96)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:617)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:578)
+	org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:923)
+	org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:852)
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:882)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+비고 근본 원인(root cause)의 풀 스택 트레이스를, 서버 로그들에서 확인할 수 있습니다.
+--------------------------------------------------------------------------------------
+
+--저장버튼 클릭시 에러--
+문제:저장하기 전 입력해야하는 칼럼값이 널값이면 에러남
+※필수 입력사항마다 빈 값이 있을경우 alert 메세지 출력 후  focus()함수를 사용하여 해당 빈칸 커서이동
+입 예외 보고
+
+메시지 Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 4 errors
+
+설명 서버가, 해당 요청을 충족시키지 못하게 하는 예기치 않은 조건을 맞닥뜨렸습니다.
+
+예외
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 4 errors
+Field error in object 'mainplan' on field 'ListVO[2].dueDate': rejected value []; codes [typeMismatch.mainplan.ListVO[2].dueDate,typeMismatch.mainplan.ListVO.dueDate,typeMismatch.ListVO[2].dueDate,typeMismatch.ListVO.dueDate,typeMismatch.dueDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].dueDate,ListVO[2].dueDate]; arguments []; default message [ListVO[2].dueDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[2].dueDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'mainplan' on field 'ListVO[2].expectedDate': rejected value []; codes [typeMismatch.mainplan.ListVO[2].expectedDate,typeMismatch.mainplan.ListVO.expectedDate,typeMismatch.ListVO[2].expectedDate,typeMismatch.ListVO.expectedDate,typeMismatch.expectedDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].expectedDate,ListVO[2].expectedDate]; arguments []; default message [ListVO[2].expectedDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[2].expectedDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'mainplan' on field 'ListVO[2].plan_quantity': rejected value []; codes [typeMismatch.mainplan.ListVO[2].plan_quantity,typeMismatch.mainplan.ListVO.plan_quantity,typeMismatch.ListVO[2].plan_quantity,typeMismatch.ListVO.plan_quantity,typeMismatch.plan_quantity,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].plan_quantity,ListVO[2].plan_quantity]; arguments []; default message [ListVO[2].plan_quantity]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[2].plan_quantity'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'mainplan' on field 'ListVO[2].plandate': rejected value []; codes [typeMismatch.mainplan.ListVO[2].plandate,typeMismatch.mainplan.ListVO.plandate,typeMismatch.ListVO[2].plandate,typeMismatch.ListVO.plandate,typeMismatch.plandate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].plandate,ListVO[2].plandate]; arguments []; default message [ListVO[2].plandate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[2].plandate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:894)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+근본 원인 (root cause)
+
+org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 4 errors
+Field error in object 'mainplan' on field 'ListVO[2].dueDate': rejected value []; codes [typeMismatch.mainplan.ListVO[2].dueDate,typeMismatch.mainplan.ListVO.dueDate,typeMismatch.ListVO[2].dueDate,typeMismatch.ListVO.dueDate,typeMismatch.dueDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].dueDate,ListVO[2].dueDate]; arguments []; default message [ListVO[2].dueDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[2].dueDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'mainplan' on field 'ListVO[2].expectedDate': rejected value []; codes [typeMismatch.mainplan.ListVO[2].expectedDate,typeMismatch.mainplan.ListVO.expectedDate,typeMismatch.ListVO[2].expectedDate,typeMismatch.ListVO.expectedDate,typeMismatch.expectedDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].expectedDate,ListVO[2].expectedDate]; arguments []; default message [ListVO[2].expectedDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[2].expectedDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'mainplan' on field 'ListVO[2].plan_quantity': rejected value []; codes [typeMismatch.mainplan.ListVO[2].plan_quantity,typeMismatch.mainplan.ListVO.plan_quantity,typeMismatch.ListVO[2].plan_quantity,typeMismatch.ListVO.plan_quantity,typeMismatch.plan_quantity,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].plan_quantity,ListVO[2].plan_quantity]; arguments []; default message [ListVO[2].plan_quantity]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[2].plan_quantity'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'mainplan' on field 'ListVO[2].plandate': rejected value []; codes [typeMismatch.mainplan.ListVO[2].plandate,typeMismatch.mainplan.ListVO.plandate,typeMismatch.ListVO[2].plandate,typeMismatch.ListVO.plandate,typeMismatch.plandate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [mainplan.ListVO[2].plandate,ListVO[2].plandate]; arguments []; default message [ListVO[2].plandate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[2].plandate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+	org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:111)
+	org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:75)
+	org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:156)
+	org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:117)
+	org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:96)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:617)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:578)
+	org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:923)
+	org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:852)
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:882)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+비고 근본 원인(root cause)의 풀 스택 트레이스를, 서버 로그들에서 확인할 수 있습니다.
+
+

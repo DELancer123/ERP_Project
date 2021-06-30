@@ -49,6 +49,18 @@ public class HomeController {
 	public String regcompany(Locale locale, Model model) {
 		return "/member/regcompany";
 	}
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
+		return "/member/login";
+	}
+	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
+	public String logout(Locale locale, Model model) {
+		return "/member/logout";
+	}
+	@RequestMapping(value = "/member/loginfailed", method = RequestMethod.GET)
+	public String loginfailed(Locale locale, Model model) {
+		return "/member/loginfailed";
+	}
 	@RequestMapping(value = "/member/regbusiness", method = RequestMethod.GET)
 	public String regbusiness(Locale locale, Model model) {
 		return "/member/regbusiness";
@@ -164,6 +176,10 @@ public class HomeController {
 	@RequestMapping(value = "/member/regbilling", method = RequestMethod.GET)
 	public String regbilling(Locale locale, Model model) {
 		return "/member/regbilling";
+	}
+	@RequestMapping(value = "/member/processinwork", method = RequestMethod.GET)
+	public String workInProcess(Locale locale, Model model) {
+		return "/member/processinwork";
 	}
 	@RequestMapping(value = "/member/regordering", method = RequestMethod.GET)
 	public String regordering(Locale locale, Model model) {

@@ -67,6 +67,14 @@
             overflow: scroll;
         }
 </style>
+<script>
+window.onload = function(){
+	l_sub1.style.position = "relative";
+    l_sub3.style.position = "relative";
+    l_sub4.style.display = "block";
+    l_sub4.style.marginLeft = "10px";
+}
+</script>
 </head>
 <body>
 	<container1 id = contents1>
@@ -163,6 +171,7 @@
 			  const newParam = URLSearch.toString();
 
 			  window.open(location.pathname + '?' + newParam, '_self');
+
     	}
 		
 		function selectAll(selectAll){
@@ -195,6 +204,9 @@
 		}
 		
 		function updateRow(){
+			 var UpdConfirm = confirm('수정하실껀가요?');
+				if(UpdConfirm){
+					alert('수정 완료되셨습니다!');
 			var iupTable = document.getElementById('iupTable');
 			var row = iupTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
@@ -213,9 +225,33 @@
 				document.getElementById('regIup').appendChild(articleNoInput);
 				document.getElementById('regIup').action = "${contextPath}/member/updateIup.do";
 				document.getElementById('regIup').submit();
+		}else{
+			alert('수정을 취소하셨습니다!');
+			location.reload(true);
+			location.href = location.href;
+
+			history.go(0);
 		}
 		
+	}
+		
 		function newRow(){
+			if(itemNumber.value == "" || itemName.value == "" || purchasePrice.value == "" 	|| salesPrice.value == "")
+			{
+			    if(itemNumber.value == ""){
+			       alert("품번은 필수 입력사항입니다.");
+			       return itemNumber.focus();
+			    }else if(itemName.value == ""){
+			       alert("품명은 필수 입력사항입니다.");
+			       return itemName.focus();
+			    }else if(purchasePrice.value == ""){
+			       alert("구매단가는 필수 입력사항입니다.");
+			       return purchasePrice.focus();
+			    }else if(salesPrice.value ==""){
+			    	alert("판매단가는 필수 입력사항입니다.");
+			    	return salesPrice.focus();
+			    }
+			}else{
 			var row = iupTable.insertRow();
 			const URLSearch = new URLSearchParams(location.search);
 			URLSearch.set('submit','1');
@@ -229,6 +265,7 @@
 			document.getElementById('regIup').action = "${contextPath}/member/addIup.do";
 			document.getElementById('regIup').submit();
 		}
+	}
 		
 		function deleteData(){
 			var item = document.getElementsByName("content").length;
@@ -239,8 +276,15 @@
 					no = document.getElementsByName("content")[i].value;
 					ary.push(no);
 				}
-				window.location.href = "${contextPath}/member/delIup.do?no="+ary;
 			}
+
+			  if(ary.length === 0 || ary === null){
+				  alert('삭제할 칼럼의 체크박스를 선택해주세요!');
+			  }else{
+				  alert('삭제 되었습니다!');
+				  window.location.href = "${contextPath}/member/delIup.do?no="+ary;
+			  }
+				
 		}
 	</script>
 	</form>

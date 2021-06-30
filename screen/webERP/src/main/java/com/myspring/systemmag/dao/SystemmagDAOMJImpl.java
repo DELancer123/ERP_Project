@@ -14,7 +14,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//ÀÏ¹İ°Å·¡Ã³µî·Ï
+	//ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½
 	@Override
 	public int insertNewCustomer (SystemmagVOMJ systemmagVO) throws DataAccessException{
 		int result = sqlSession.insert("mappers.erp.insertNewCustomer",systemmagVO);
@@ -76,71 +76,71 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return popList;
 	}
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï
-	@Override /* Ã¢°í/Àå¼Ò Äõ¸® */
+	//Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@Override /* Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public List viewAllHouOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllHouOutware");
 		return outwareList;
 	}
 	
-	@Override /* »ı»ê°øÁ¤/ÀÛ¾÷Àå Äõ¸® */
+	@Override /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public List viewAllProOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllProOutware");
 		return outwareList;
 	}
 	
-	@Override /* ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå Äõ¸® */
+	@Override /* ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public List viewAllOutOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllOutOutware");
 		return outwareList;
 	}
 	
-	@Override /* Ã¢°í/Àå¼Ò ÇÏÀ§Å×ÀÌºíÄõ¸® */
+	@Override /* Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public List viewAllHouWorOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllHouWorOutware");
 		return outwareList;
 	}
 	
-	@Override /* »ı»ê°øÁ¤/ÀÛ¾÷Àå ÇÏÀ§Å×ÀÌºíÄõ¸® */
+	@Override /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public List viewAllProWorOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllProWorOutware");
 		return outwareList;
 	}
 	
-	@Override /* ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå ÇÏÀ§Å×ÀÌºíÄõ¸® */
+	@Override /* ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public List viewAllOutWorOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllOutWorOutware");
 		return outwareList;
 	}
 	
-	@Override /* Ã¢°í/Àå¼Ò Äõ¸® */
+	@Override /* Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public List viewSelectedHouOutware(String search) throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectOneHouOutware", search);
 		return outwareList;
 	}
 	
-	@Override /* »ı»ê°øÁ¤/ÀÛ¾÷Àå Äõ¸® */
+	@Override /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public List viewSelectedProOutware(String search) throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectOneProOutware", search);
 		return outwareList;
 	}
 	
-	@Override /* ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå Äõ¸® */
+	@Override /* ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public List viewSelectedOutOutware(String search) throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectOneOutOutware", search);
 		return outwareList;
 	}
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
 		List<SystemmagVOMJ> logisticsList = null;
@@ -179,5 +179,46 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		popList = sqlSession.selectList("mappers.erp.selectPopLogisticsList",itemName);
 		return popList;
 	}
+
+	@Override
+	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.searchPopOutwareName",itemName);
+		return popList;
+	}
+	
+	//ê²€ì‚¬ìœ í˜•ë“±ë¡
+	@Override
+	public List viewAllInspection() throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectAllInspection");
+		return comList;
+	}
+
+	@Override
+	public List viewInspection(String com_code) throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectOneInspection",com_code);
+		return comList;
+	}
+
+	@Override
+	public int insertNewInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		int result = sqlSession.insert("mappers.erp.insertNewInspection",systemmagVO);
+		return result;
+	}
+
+	@Override
+	public void deleteInspection(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteInspection", obj);	
+		}	
+	}
+
+	@Override
+	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		sqlSession.update("mappers.erp.updateInspection", systemmagVO);
+	}
+	
 
 }

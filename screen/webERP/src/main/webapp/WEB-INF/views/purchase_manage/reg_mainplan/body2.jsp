@@ -78,6 +78,13 @@
     width: 100%;
 }
 </style>
+<script>
+   window.onload = function(){
+      l_sub1.style.display = "block";
+        l_sub1.style.position = "relative";
+        l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container2 id=contents2>
@@ -139,8 +146,15 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
+var plandate = document.getElementById("plandate");
+var expectedDate = document.getElementById("expectedDate");
+var dueDate = document.getElementById("dueDate");
+var plan_quantity = document.getElementById("plan_quantity");
+var buyer = document.getElementById("buyer");
+var note = document.getElementById("note");
+var item_Code = document.getElementById("item_Code");
+
 
 function setChildValue(code,name,buyer,standard,inventory_unit,note){
 	  const URLSearch = new URLSearchParams(location.search);
@@ -159,7 +173,7 @@ function setChildValue(code,name,buyer,standard,inventory_unit,note){
 }
 
 
-function deleteRow() {
+function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  const URLSearch = new URLSearchParams(location.search); 	
 	  var submit = URLSearch.get('submit');
@@ -180,12 +194,31 @@ function deleteRow() {
 	}
 		  if(ary.length === 0 || ary === null){
 			  alert('삭제할 칼럼의 체크박스를 선택해주세요!');
-		  }else
+		  }else{
+			  alert('삭제 되었습니다!');
 			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary+"&submit=" + submit+"&item_Code="+item_Code+"&item_Name="+item_Name+
 			 "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note;
-}
+		  }
+	}
 
-function InsertRow(){
+function newRow(){
+
+    if(plandate.value == ""){
+       alert("계획일은 필수 입력사항입니다.");
+       return planDate.focus();
+    }else if(expectedDate.value == ""){
+       alert("출하예정일 필수 입력사항입니다.");
+       return expectedDate.focus();
+    }else if(dueDate.value == ""){
+       alert("납기일은 필수 입력사항입니다.");
+       return dueDate.focus();
+    }else if(plan_quantity.value ==""){
+    	alert("계획수량은 필수 입력사항입니다.");
+    	return plan_quantity.focus();
+    }else if(buyer.value ==""){
+    	alert("회사명은 필수 입력사항입니다.");
+    	return buyer.focus();
+    }else{
    		const URLSearch = new URLSearchParams(location.search);
    		
 	 	URLSearch.set('submit', '1');
@@ -198,10 +231,14 @@ function InsertRow(){
 		document.getElementById('MainPlan').appendChild(Input);
 		document.getElementById('MainPlan').action = "${contextPath}/member/addMPS.do";
 		document.getElementById('MainPlan').submit();
-
+    }
 }
 
-	function updateRow() {
+function updateRow() {
+	 var UpdConfirm = confirm('수정하실껀가요?');
+	if(UpdConfirm){
+		alert('수정 완료되셨습니다!');
+		
 		  var MPSTable = document.getElementById('MPSTable');
           var row = MPSTable.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
@@ -219,7 +256,8 @@ function InsertRow(){
 		document.getElementById("dueDate").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
 		document.getElementById("buyer").disabled = true;
-		document.getElementById("note").disabled = true;	
+		document.getElementById("note").disabled = true;
+		
 		var Input = document.createElement("input");
 		Input.setAttribute("type", "hidden");
 		Input.setAttribute("name", "path");
@@ -227,17 +265,28 @@ function InsertRow(){
 		document.getElementById('MainPlan').appendChild(Input);
 		document.getElementById('MainPlan').action = "${contextPath}/member/updateMPS.do";
 		document.getElementById('MainPlan').submit(); 
+		
+	}else{
+		alert('수정을 취소하셨습니다!');
+		location.reload(true);
+		location.href = location.href;
 
+		history.go(0);
+	}
+	
 }
 
 view_button.onclick = function(){
+		  if(item_Code.value == ""){
+		       alert("품번 검색 후 조회가 가능합니다");
+		  }else{
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit', '1');
 		const newParam = URLSearch.toString();
 		
 		window.open(location.pathname + '?' + newParam, '_self');
+	}
 }
-
 
 </script>
 </form>

@@ -168,21 +168,21 @@
         
         <container3 id="contents3">
             <div id="workOrderInfo">
-            <form id="dataForm1" mehtod="get" commandName="DetailVO">
+            <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
                         <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
                         <td>작업실적번호</td>
                         <td>자재사용유무</td>
-                        <td>실적일</td>
                         <td>공정</td>
                         <td>작업장</td>
+                        <td>입고창고</td>
+                        <td>실적일</td>
                         <td>구분</td>
                         <td>실적수량</td>
                         <td>검사</td>
                         <td>비고</td>
                         <td>작업지시번호</td>
-                        <td>입고창고</td>
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
@@ -191,30 +191,30 @@
   					 	<td><input type="checkbox" value="${detail.opNumber }" name="content2"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.opNumber }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].materialUseStatus" value="${detail.materialUseStatus }" readonly /></td>
-                        <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode }" /></td>
+                        <td><input type="text" name="DetailVO[${status.index }].houseCode" value="${detail.houseCode}"/></td>
+                        <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].sortation" value="${detail.sortation}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].performanceQuantity" value="${detail.performanceQuantity}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}"/></td>                      
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].workOrderNumber" value="${param.searchNumber}" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].houseCode" value="${detail.houseCode}"/></td>
   					 </tr>
                     </c:forEach>
                     <tr>
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="text" id="opNumber" name="DetailVO[${fn:length(detailList)}].opNumber" value="${param.opNumber }" readonly /></td>
                         <td><input type="text" id="materialUseStatus" name="DetailVO[${fn:length(detailList)}].materialUseStatus" value="${param.materialUseStatus }" readonly /></td>
-                        <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
                         <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }" ondblclick="processCodeSearch()"/></td>
                         <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }" ondblclick="workplaceCodeSearch()"/></td>
+                        <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" ondblclick="houseCodeSearch()" value="${param.houseCode }" /></td>
+                        <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
                         <td><input type="text" id="sortation" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
                         <td><input type="text" id="performanceQuantity" name="DetailVO[${fn:length(detailList)}].performanceQuantity" value="${param.performanceQuantity }"/></td>
                         <td><input type="text" id="inspection" name="DetailVO[${fn:length(detailList)}].inspection" value="${param.inspection }"/></td>
                         <td><input type="text" id="note" name="DetailVO[${fn:length(detailList)}].note" value="${param.note }"/></td>
                         <td><input type="text" id="workOrderNumber" name="DetailVO[${fn:length(detailList)}].workOrderNumber" value="${param.searchNumber }"/></td>
-                        <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" ondblclick="houseCodeSearch()" value="${param.houseCode }" /></td>
                     </tr>
                     </tbody>
                 </table>
@@ -228,8 +228,22 @@
 </html>
 
 <script>
+var sortation = document.getElementById("sortation").value;
+var inspection = document.getElementById("inspection").value;
+var note = document.getElementById("note").value;
+var performanceDate = document.getElementById("performanceDate").value;
+
+
+function isEmpty(str){
+    
+    if(typeof str == "undefined" || str == null || str == "")
+        return true;
+    
+    else
+        return false ;
+    
+	}
 /* input date의 현재 날짜 기본값 설정*/
- /* input date의 현재 날짜 기본값 설정*/
  document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
  document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
  
@@ -281,7 +295,7 @@
       
       /* 저장 버튼 기능 구현 */
       
-        function newRow(){
+        function newRow(){//잠시 보류
           // dao에서 저장
     	 
         	var row = workOrderTable.insertRow(); 
@@ -292,31 +306,49 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm1').appendChild(linkPath);
-            document.getElementById('dataForm1').action = "${contextPath}/member/addRegistOperationPerformanceInfoDetail.do";
-  			document.getElementById('dataForm1').submit();  
-		
+  		  var performanceQuantity = document.getElementById("performanceQuantity").value;
+  		  $('#performanceDate').change(function (){
+              var date = $('#performanceDate').val();
+              performanceDate = date;
+          });
+   		   if (isEmpty(performanceDate)){
+		      		alert("날짜값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("performanceDate").focus();
+	
+	  	  }
+   		   else if(isEmpty(performanceQuantity)){
+		      		alert("수량값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("performanceQuantity").focus();
+		   }else{
+  		    document.getElementById('detailForm').appendChild(linkPath);
+            document.getElementById('detailForm').action = "${contextPath}/member/addRegistOperationPerformanceInfoDetail.do";
+  			document.getElementById('detailForm').submit();    
+	  		alert("값이 저장되었습니다!");          	
+		    }
+  		    
       }
       
         function updateRow() {
-        	var row = workOrderTable.insertRow(); 
-        	const URLSearch = new URLSearchParams(location.search);
-        	const newParam = URLSearch.toString();
-  		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
-    		var linkPath = document.createElement("input");
-    		linkPath.setAttribute("type","hidden");
-    		linkPath.setAttribute("name","path");
-    		linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
-    		document.getElementById('dataForm').submit();  
+        	//var row = workOrderTable.insertRow(); 
+        	//const URLSearch = new URLSearchParams(location.search);
+        	//const newParam = URLSearch.toString();
+  		 	//var link = location.pathname +'?'+newParam;
+  		 	//document.getElementById("dueDate").disabled = true;
+		    //document.getElementById("indicated").disabled = true;
+		    //document.getElementById("instructionDate").disabled = true;
+    		//var linkPath = document.createElement("input");
+    		//linkPath.setAttribute("type","hidden");
+    		//linkPath.setAttribute("name","path");
+    		//linkPath.setAttribute("value", link);
+  		    //document.getElementById('dataForm').appendChild(linkPath);
+            //document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+    		//document.getElementById('dataForm').submit();  
+    		alert("확정, 마감인 상태는 수정할 수 없습니다!");
         }
         
       
         function deleteData() {
+    		alert('자재출고가 되었을 경우는 삭제되지 않고 자재출고가 되지않았을 경우에만 삭제가 가능합니다!');
       	  var item = document.getElementsByName("content2").length;
       	  var no = "";
       	  var ary = [];
@@ -325,8 +357,17 @@
       			  no = document.getElementsByName("content2")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
       	  }
+      	  
+      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+			alert('체크박스를 선택하지 않았거나 삭제할 수 없는 값입니다!');
+			window.location.href = "${contextPath}/member/regoperperf.do";
+		}
+    	else {//컨트롤러로 해당목록의 no값을 보낸다
+    		alert('삭제 되었습니다!');
+		  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
+
+    	}
         }
         
         
@@ -341,8 +382,16 @@
         			  ary.push(no);
         		  	}
         		  }
-        	  
+        	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+      			alert('체크박스를 선택하지 않았습니다!');
+      			window.location.href = "${contextPath}/member/regoperperf.do";
+	      		}
+	          	else {//컨트롤러로 해당목록의 no값을 보낸다
+	          		alert('자재사용이 완료되었습니다!');
         		window.location.href = "${contextPath}/member/materialUse.do?opNumber="+ary;
+	
+	          	}
+
         
         }
 	/*  팝업 조회부*/

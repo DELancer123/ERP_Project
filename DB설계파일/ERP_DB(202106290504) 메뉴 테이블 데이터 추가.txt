@@ -1539,7 +1539,8 @@ expectedDate DATE not null,
 inspection Varchar2(10) not null,
 --출고구분(예외/주문)(출고처리)
 orderOX varchar2(20) not null,
-
+--고객
+General_Customer_Code varchar2(12) not null,
 
 --FK설정
 
@@ -1556,59 +1557,84 @@ REFERENCES SM_BIM_Ite_Reg(Item_Name) ON DELETE CASCADE
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,sysdate+1,'검사','주문출고');
+VALUES ('SO2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,sysdate+1,'검사','주문출고', '00001');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000002','CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,sysdate+2,'검사','주문출고');
+VALUES ('SO2106000002','CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,sysdate+2,'검사','주문출고', '00002');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,sysdate+3,'검사','주문출고');
+VALUES ('SO2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,sysdate+3,'검사','주문출고', '00003');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고');
+VALUES ('SO2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고');
+VALUES ('SO2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000006','SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고');
+VALUES ('SO2106000006','SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고');
+VALUES ('SO2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,'20211102','검사','주문출고');
+VALUES ('SO2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000002', 'CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,'20210102','검사','주문출고');
+VALUES ('SO2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,'20210706','검사','주문출고');
+VALUES ('SO2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고');
+VALUES ('IS2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,'20211102','검사','주문출고', '00001');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고');
+VALUES ('IS2106000002', 'CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,'20210102','검사','주문출고', '00002');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000006', 'SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고');
+VALUES ('IS2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,'20210706','검사','주문출고', '00003');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고');
+VALUES ('IS2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
+
+--데이터 등록
+INSERT INTO CSM_SM_COR_Reg
+VALUES ('IS2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
+
+--데이터 등록
+INSERT INTO CSM_SM_COR_Reg
+VALUES ('IS2106000006', 'SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
+
+--데이터 등록
+INSERT INTO CSM_SM_COR_Reg
+VALUES ('IS2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
+
+--데이터 등록
+INSERT INTO CSM_SM_COR_Reg
+VALUES ('IS2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
+
+--데이터 등록
+INSERT INTO CSM_SM_COR_Reg
+VALUES ('IS2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+
+--데이터 등록
+INSERT INTO CSM_SM_COR_Reg
+VALUES ('IS2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 ---------------------------------------------------------------------------------------------------------------------
 --주계획서작성(주문)

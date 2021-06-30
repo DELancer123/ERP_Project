@@ -98,6 +98,11 @@ public class StockManageServiceImpl implements StockManageService{
 		return list;
 	}
 
+	@Override
+	public List<StockManageVO> sujusub(String ordersNum) {
+		return stockManageDAO.sujusub(ordersNum);
+	}
+
 
 
 
