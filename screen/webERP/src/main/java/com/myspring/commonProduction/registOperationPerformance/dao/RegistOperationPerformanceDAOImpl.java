@@ -15,6 +15,7 @@ import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperati
 import com.myspring.commonProduction.operationRegist.vo.DepartmentViewVO;
 import com.myspring.commonProduction.operationRegist.vo.FactoryViewVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.HouseCodeSearchVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.PerformanceQuantityVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.ProcessCodeSearchVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
@@ -80,6 +81,7 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 	@Override
 	public List<String> MaterialUse(String[] numberAry) throws DataAccessException{
 		List<String> message = new ArrayList();
+		List<PerformanceQuantityVO> list = new ArrayList<PerformanceQuantityVO>();
 		
 		for(String obj: numberAry) {
 			
@@ -87,7 +89,8 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 			System.out.println("자재사용 : "+check);
 			if(check.equals("무")) {
 				sqlSession.update("mappers.erp.updMaterialUse", obj);
-				sqlSession.selectList("mappers.erp.selectperformanceQuantity", obj);
+				list = sqlSession.selectList("mappers.erp.selectperformanceQuantity", obj);
+				sqlSession.update("mappers.erp.updAddStock", list);
 				message.add("업데이트 완료!");
 				
 			} else {

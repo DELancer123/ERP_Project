@@ -340,6 +340,22 @@ where (status = '확정' or status = '마감')
 		<![CDATA[delete from CPM_PM_Ope_Per_Reg_Det where opNumber = #{opNumber}]]>
 	</delete>
 	
+	<resultMap id="performanceQuantityResult" type="PerformanceQuantityVO">
+		<result property="performanceQuantity" column="performanceQuantity" />
+		<result property="itemCode" column="item_Code" />
+	</resultMap>
+	
+	<select id="selectperformanceQuantity" resultMap="performanceQuantityResult">
+		<![CDATA[select reg.performancequantity, cpm.item_Code from CPM_PM_OPE_PER_REG cpm, CPM_PM_OPE_PER_REG_DET reg
+					where cpm.workOrderNumber = reg.workordernumber and reg.opNumber = #{obj}]]>
+	</select>
+	
+	<update id="updAddStock">
+		<![CDATA[update PM_SM_PRO_STOCK 
+				set quantity =  quantity + #{performanceQuantity}
+				where item_Code = #{itemCode} ]]>
+	</update>
+	
 	<!-- 작업실적등록 팝업부  -->
 	
 	<resultMap id="HouseCodeSearchResult" type="HouseCodeSearchVO">
