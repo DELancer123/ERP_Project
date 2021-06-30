@@ -231,7 +231,7 @@
 	
 	<update id="updateStockQuantity">
 		<![CDATA[update PM_SM_PRO_STOCK 
-				set quantity =  quantity - #{comfirmQuantity}
+				set quantity =  quantity - #{forwardingQuantity}
 				where item_Code = #{itemCode}]]>
 	</update>
 	
