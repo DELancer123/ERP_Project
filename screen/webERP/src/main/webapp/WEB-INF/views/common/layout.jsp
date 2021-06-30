@@ -4,8 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="true" %>
 <%
-	String id = (String)session.getAttribute("member");
-	String id2 = (String)session.getAttribute("member2");
+	String emp_code = (String)session.getAttribute("emp_code");
+	String emp_name = (String)session.getAttribute("emp_name");
+	String dep_code = (String)session.getAttribute("dep_code");
+	String dep_name = (String)session.getAttribute("dep_name");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -255,7 +257,7 @@ input {
 	<div id=wrap>
 		<header id=header>
 			<p><img src="${contextPath }/resources/img/kingdomlogo.png" class="logo"/></p>
-			<p id=info>부서정보:<%=id %> 사원:<%=id2 %></p>
+			<p id=info>부서정보: <%=dep_name %> (<%=dep_code %>) 사원: <%=emp_name %> (<%=emp_code %>)</p>
 			<ul id="etc_menu">
 				<li><a href="#">로그아웃</a></li>
 				<li><a href="#">기타메뉴1</a></li>
