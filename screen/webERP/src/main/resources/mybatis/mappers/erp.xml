@@ -1485,7 +1485,7 @@ ORDER BY out.workordernumber]]>
 	<resultMap id="sujuView" type="StockManageVO">
 		<result property="ordersNum" column="ordersNum" />
 		<result property="ordersdate" column="ordersdate" />
-		<result property="customerCode" column="customerCode" />
+		<result property="customerCode" column="General_Customer_Code " />
 		<result property="tax" column="tax" />
 		<result property="note" column="Note" />
 	</resultMap>
@@ -1499,16 +1499,16 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopCusList" resultMap="sujuView">
-		<![CDATA[ select customerCode
+		<![CDATA[ select General_Customer_Code
 		  from CSM_SM_Ord_Reg
-		  where customerCode like '%'||#{itemName}||'%'
+		  where General_Customer_Code like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
 	<select id="selectsujuList" resultMap="sujuView">
 		<![CDATA[ select *
 		  from CSM_SM_Ord_Reg
-		  where customerCode = #{customerCode}
+		  where General_Customer_Code = #{customerCode}
 		]]>
 	</select>
 	
