@@ -14,7 +14,7 @@ public interface ForwardRegService {
 	public List listCust() throws DataAccessException;
 	//list by forward regstration
 	public List submitCust(String custCode) throws DataAccessException;
-	
+	public List listSupForward() throws DataAccessException;
 	//list by forward regstration
 	public List submitCustByInsert(String custCode) throws DataAccessException;
 	//add by forward

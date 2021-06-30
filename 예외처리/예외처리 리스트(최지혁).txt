@@ -1,0 +1,45 @@
+--작업지시확정 - 저장 http500
+--문제 : 입력값에 널이 들어감
+타입 예외 보고
+
+메시지 Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 3 errors
+
+설명 서버가, 해당 요청을 충족시키지 못하게 하는 예기치 않은 조건을 맞닥뜨렸습니다.
+
+예외
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 3 errors
+Field error in object 'info' on field 'ListVO[14].dueDate': rejected value []; codes [typeMismatch.info.ListVO[14].dueDate,typeMismatch.info.ListVO.dueDate,typeMismatch.ListVO[14].dueDate,typeMismatch.ListVO.dueDate,typeMismatch.dueDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [info.ListVO[14].dueDate,ListVO[14].dueDate]; arguments []; default message [ListVO[14].dueDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[14].dueDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'info' on field 'ListVO[14].indicated': rejected value []; codes [typeMismatch.info.ListVO[14].indicated,typeMismatch.info.ListVO.indicated,typeMismatch.ListVO[14].indicated,typeMismatch.ListVO.indicated,typeMismatch.indicated,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [info.ListVO[14].indicated,ListVO[14].indicated]; arguments []; default message [ListVO[14].indicated]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[14].indicated'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'info' on field 'ListVO[14].instructionDate': rejected value []; codes [typeMismatch.info.ListVO[14].instructionDate,typeMismatch.info.ListVO.instructionDate,typeMismatch.ListVO[14].instructionDate,typeMismatch.ListVO.instructionDate,typeMismatch.instructionDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [info.ListVO[14].instructionDate,ListVO[14].instructionDate]; arguments []; default message [ListVO[14].instructionDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[14].instructionDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:894)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+근본 원인 (root cause)
+
+org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 3 errors
+Field error in object 'info' on field 'ListVO[14].dueDate': rejected value []; codes [typeMismatch.info.ListVO[14].dueDate,typeMismatch.info.ListVO.dueDate,typeMismatch.ListVO[14].dueDate,typeMismatch.ListVO.dueDate,typeMismatch.dueDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [info.ListVO[14].dueDate,ListVO[14].dueDate]; arguments []; default message [ListVO[14].dueDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[14].dueDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+Field error in object 'info' on field 'ListVO[14].indicated': rejected value []; codes [typeMismatch.info.ListVO[14].indicated,typeMismatch.info.ListVO.indicated,typeMismatch.ListVO[14].indicated,typeMismatch.ListVO.indicated,typeMismatch.indicated,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [info.ListVO[14].indicated,ListVO[14].indicated]; arguments []; default message [ListVO[14].indicated]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'ListVO[14].indicated'; nested exception is java.lang.NumberFormatException: For input string: ""]
+Field error in object 'info' on field 'ListVO[14].instructionDate': rejected value []; codes [typeMismatch.info.ListVO[14].instructionDate,typeMismatch.info.ListVO.instructionDate,typeMismatch.ListVO[14].instructionDate,typeMismatch.ListVO.instructionDate,typeMismatch.instructionDate,typeMismatch.java.sql.Date,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [info.ListVO[14].instructionDate,ListVO[14].instructionDate]; arguments []; default message [ListVO[14].instructionDate]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.sql.Date' for property 'ListVO[14].instructionDate'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type java.sql.Date for value ''; nested exception is java.lang.IllegalArgumentException]
+	org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:111)
+	org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:75)
+	org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:156)
+	org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:117)
+	org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:96)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:617)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:578)
+	org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:923)
+	org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:852)
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:882)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+비고 근본 원인(root cause)의 풀 스택 트레이스를, 서버 로그들에서 확인할 수 있습니다.
+--if-else 문을 이용하여 값이 널이면 메시지와 함께 전화면으로 돌아가고 널이 아니면 저장
+--작업지시확정 - 삭제
+--문제 : 입력값에 널이 들어감
+--if-else 문을 이용하여 값이 널이면 메시지와 함께 전화면으로 돌아가고 널이 아니면 저장

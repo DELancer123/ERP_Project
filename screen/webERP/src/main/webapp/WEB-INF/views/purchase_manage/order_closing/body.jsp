@@ -90,7 +90,6 @@ String sequence = (String) request.getAttribute("sequence");
 					<td><input type="checkbox" name="content" /></td>
 					<td>발주번호</td>
 					<td>발주일자</td>
-					<td>코드</td>
 					<td>거래처명</td>
 					<td>No</td>
 					<td>품번</td>
@@ -112,7 +111,6 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="checkbox" name="content" value="${OrderClosing.sequence}" /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].code" value='${OrderClosing.code}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].buyer" value='${OrderClosing.buyer}' readonly /></td>
 			<td style="width: 13px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}' readonly /></td>
@@ -132,7 +130,6 @@ String sequence = (String) request.getAttribute("sequence");
 					<td></td>
 				<td><input type="text" id="order_no"  value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
-				<td><input type="text" id="code" name="ListVO[${fn:length(ClosingList) }].code" value='${code}' style="width: 100%" /></td>
 				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}'  /></td>
 				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
 				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' /></td>
@@ -157,6 +154,14 @@ String sequence = (String) request.getAttribute("sequence");
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+var order_date = document.getElementById("order_date");
+var code = document.getElementById("code");
+var buyer = document.getElementById("buyer");
+var item_Code = document.getElementById("item_Code");
+var item_Name = document.getElementById("item_Name");
+var order_quantity = document.getElementById("order_quantity");
+var deadline = document.getElementById("deadline");
+var price = document.getElementById("price");
 var startDate;
 var endDate;
    	
@@ -191,6 +196,28 @@ var endDate;
    	}
 
 function InsertRow(){
+	    if(order_date.value == ""){
+	       alert("발주일자는 필수 입력사항입니다.");
+	       return order_date.focus();
+	    }else if(buyer.value == ""){
+	       alert("회사명은 필수 입력사항입니다.");
+	       return buyer.focus();
+	    }else if(item_Code.value ==""){
+	    	alert("품번은 필수 입력사항입니다.");
+	    	return item_Code.focus();
+	    }else if(item_Name.value ==""){
+	    	alert("품명은 필수 입력사항입니다.");
+	    	return item_Name.focus();
+	    }else if(order_quantity.value ==""){
+	    	alert("발주수량은 필수 입력사항입니다.");
+	    	return order_quantity.focus();
+	    }else if(deadline.value ==""){
+	    	alert("마감처리 및 진행 입력은 필수 입력사항입니다.");
+	    	return deadline.focus();
+	    }else if(price.value ==""){
+	    	alert("단가는 필수 입력사항입니다.");
+	    	return price.focus();
+	    }else{
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();
 	var link = location.pathname + '?' + newParam;
@@ -201,33 +228,46 @@ function InsertRow(){
 	document.getElementById('OrderClosing').appendChild(Input);
 	document.getElementById('OrderClosing').action = "${contextPath}/member/addClosing.do";
 	document.getElementById('OrderClosing').submit();
-
+	}
 }
 
 function updateRow() {
+	 var UpdConfirm = confirm('수정하실껀가요?');
+if(UpdConfirm){
+		alert('수정 완료되셨습니다!');
+	
+	var OrderClosingTable = document.getElementById('OrderClosingTable');
+    var row = OrderClosingTable.insertRow(); 
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();
 	var link = location.pathname + '?' + newParam;
-document.getElementById("order_no").disabled = true;		
-document.getElementById("order_date").disabled = true;
-document.getElementById("code").disabled = true;
-document.getElementById("buyer").disabled = true;
-document.getElementById("sequence").disabled = true;
-document.getElementById("item_Code").disabled = true;
-document.getElementById("item_Name").disabled = true;
-document.getElementById("standard").disabled = true;
-document.getElementById("inventory_unit").disabled = true;
-document.getElementById("order_quantity").disabled = true;
-document.getElementById("deadline").disabled = true;
-document.getElementById("price").disabled = true;
-document.getElementById("note").disabled = true;
-var Input = document.createElement("input");
-Input.setAttribute("type", "hidden");
-Input.setAttribute("name", "path");
-Input.setAttribute("value", link);
-document.getElementById('OrderClosing').appendChild(Input);
-document.getElementById('OrderClosing').action = "${contextPath}/member/updateClosing.do";
-document.getElementById('OrderClosing').submit();
+	document.getElementById("order_no").disabled = true;		
+	document.getElementById("order_date").disabled = true;
+	document.getElementById("buyer").disabled = true;
+	document.getElementById("sequence").disabled = true;
+	document.getElementById("item_Code").disabled = true;
+	document.getElementById("item_Name").disabled = true;
+	document.getElementById("standard").disabled = true;
+	document.getElementById("inventory_unit").disabled = true;
+	document.getElementById("order_quantity").disabled = true;
+	document.getElementById("deadline").disabled = true;
+	document.getElementById("price").disabled = true;
+	document.getElementById("note").disabled = true;
+	
+	var Input = document.createElement("input");
+	Input.setAttribute("type", "hidden");
+	Input.setAttribute("name", "path");
+	Input.setAttribute("value", link);
+	document.getElementById('OrderClosing').appendChild(Input);
+	document.getElementById('OrderClosing').action = "${contextPath}/member/updateClosing.do";
+	document.getElementById('OrderClosing').submit();
+}else{
+	alert('수정을 취소하셨습니다!');
+	location.reload(true);
+	location.href = location.href;
+
+	history.go(0);
+	}
 }
 
 function deleteRow() {

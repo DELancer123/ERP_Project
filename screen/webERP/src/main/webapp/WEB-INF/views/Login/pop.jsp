@@ -62,34 +62,22 @@
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
                 <button id="submit" onclick="submitClick(this.form)">적용</button>
-				<button id="delete_pop">삭제</button>                 
-                <button id="save_pop">저장</button>
             </div>
         </div>
         <div id="view">
 		<form id="popForm" method="get" commandName = "defList">
             <table style="width: 100%;">
                 <tr align="center">
-			    	<td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                    <td>불량군코드</td>
-                    <td>불량군이름</td>
+                    <td>부서코드</td>
+                    <td>부서이름</td>
                 </tr>
-                <c:forEach var="group" items='${defGroupList }' varStatus="status">
+                <c:forEach var="dep" items='${depView }' varStatus="status">
    <tr align="center">
-   <td><input type="checkbox" name="content" value='${group.defectiveItemGroupCode }'/></td>
-      <td><a href="javascript:popFunction('${group.defectiveItemGroupCode }','${group.defectiveItemGroup }')">${group.defectiveItemGroupCode }</a></td>
-      <td><a href="">${group.defectiveItemGroup }</a></td>
-      <input type="hidden" name="defList[${status.index }].defectiveItemGroupCode" value='${group.defectiveItemGroupCode }'/>
-      <input type="hidden" name="defList[${status.index }].defectiveItemGroup" value='${group.defectiveItemGroup }'/>
+      <td><a href="javascript:popFunction('${dep.dep_Code }','${dep.dep_Name }')">${dep.dep_Code }</a></td>
+      <td><a href="">${dep.dep_Name }</a></td>
     </tr>
     </c:forEach>
-    	<tr>
-    	<td></td>
-    		<td ><input type="text" name="defList[${fn:length(defGroupList) }].defectiveItemGroupCode"/></td>
-    		<td><input type="text" name="defList[${fn:length(defGroupList) }].defectiveItemGroup"/></td>
-    	</tr>
             </table>
             
     </form>
@@ -110,38 +98,10 @@
 		submit_button.onclick = function(){
 				var url = window.opener.document.location.href;
 				var url_arr = url.split('?');
-    			opener.parent.location=url_arr[0] + '?defGroupCode='+text_code.value+'&&defGroup='+text_name.value+'&&submit='+0;
+    			opener.parent.location=url_arr[0] + '?depCode='+text_code.value+'&&depName='+text_name.value;
     			window.close();
     		}
     		
-    	save_pop.onclick = function(){
-  		 		var link = location.pathname;
-    			var articleNOInput = document.createElement("input");
-    		     articleNOInput.setAttribute("type","hidden");
-    		     articleNOInput.setAttribute("name","path");
-    		     articleNOInput.setAttribute("value", link);
-    		     document.getElementById('popForm').appendChild(articleNOInput);
-                document.getElementById('popForm').action = "${contextPath}/member/adddefpop.do";
-    			document.getElementById('popForm').submit();  
-    	}
-    	function selectAll(selectAll){
-            const checkbox = document.getElementsByName('content');
-            checkbox.forEach((checkbox) => {
-                checkbox.checked = selectAll.checked;
-            })
-        }
-    	delete_pop.onclick = function(){
-			 var item = document.getElementsByName("content").length;
-	    	  var no = "";
-	    	  var ary = [];
-	    	  for(var i=0; i<item;i++){
-	    		  if(document.getElementsByName("content")[i].checked==true){
-	    			  no = document.getElementsByName("content")[i].value;
-	    			  ary.push(no);
-	    		  }
-	    			    window.location.href = "${contextPath}/member/deldefPop.do?no="+ary; 
-	    	  }
-		}
     </script>
 </body>
 </html>

@@ -245,7 +245,7 @@
         function newRow(){
         	if (workplace_Code.value == "" || workplace_Name.value == "" || worcompany_Registration_Number.value == "" || worrepresentatives_Name.value == "" || zipcode.value == "" || address1.value == "" || worupstate.value == "" || worindustry == "")
         	{
-        		alert("필수입력항목이 비어있습니다. 노란색 박스를 모두 채워주세요.")	
+        		alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.")	
         	}
         	else {
     		document.getElementsByName("workplace_Code").disabled = true;
@@ -267,7 +267,7 @@
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	if (workplace_Code.value == "" || workplace_Name.value == "" || worcompany_Registration_Number.value == "" || worrepresentatives_Name.value == "" || zipcode.value == "" || address1.value == "" || worupstate.value == "" || worindustry == "")
         	{
-        		alert("필수입력항목이 비어있습니다. 노란색 박스를 모두 채워주세요.")	
+        		alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.")	
         	}
            	else{
     	        	document.getElementById('regworkplace').action = "${contextPath}/member/updbusiness.do";

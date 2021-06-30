@@ -159,6 +159,22 @@
 </body>
 </html>
  <script>
+ var dueDate = document.getElementById("dueDate").value;
+ var indicated = document.getElementById("indicated").value;
+ var instructionDate = document.getElementById("instructionDate").value;
+
+
+ function isEmpty(str){
+     
+     if(typeof str == "undefined" || str == null || str == "")
+         return true;
+     
+     else
+         return false ;
+     
+ 	}
+  
+   	
  /* input date의 현재 날짜 기본값 설정*/
  document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
  document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
@@ -214,10 +230,16 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
-  			document.getElementById('dataForm').submit();  
-		
+
+  		   if (isEmpty(dueDate)||isEmpty(indicated)||isEmpty(instructionDate)){
+	  		      		alert("값이 비어져있습니다. 값을 추가해주세요!");
+	  		            document.getElementById('dataForm').action = "${contextPath}/member/regoperins.do";
+  		  }else{
+			  		    document.getElementById('dataForm').appendChild(linkPath);
+			            document.getElementById('dataForm').action = "${contextPath}/member/addOperationInstruction.do";
+			  			document.getElementById('dataForm').submit();  
+			  			alert("값이 저장되었습니다!");
+  		  }
       }
       
         function updateRow() {
@@ -247,8 +269,18 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+      			  //window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
       	  }
+      	  
+	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('삭제할 목록의 체크박스를 선택해주세요');
+				window.location.href = "${contextPath}/member/regoperins.do";
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+	    		alert('삭제되었습니다');
+	    		  window.location.href = "${contextPath}/member/delOperationInstruction.do?workOrderNumber="+ary;
+	
+	    	}
         }
         
         function facilitySearch(){

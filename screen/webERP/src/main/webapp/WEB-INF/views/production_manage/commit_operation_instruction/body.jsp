@@ -188,18 +188,7 @@
                         <td><input type="hidden" name="DetailVO[${status.index }].forwardingNumber"value="${detail.forwardingNumber }" /></td>
   					 </tr>
                     </c:forEach>              
-                    <tr>
-                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text" /></td>
-                        <td><input type="text"/></td>                        
-                        <td><input type="text"/></td>
-                    </tr>
+                  
                     </tbody>
                 </table>
                 </form>
@@ -269,10 +258,22 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
+	  		  var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+	      	$('#detailForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+	      	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+	      	    	is_empty = true;      	    	
+	      	    }      	 
+	      	});   
+	      	if(is_empty) { //비어있는내용이 있는지 체크함
+	      	    alert('비어있는 내용이 있습니다. 다시입력하세요!');
+	      	}
+	      	else{
+
   		    document.getElementById('detailForm').appendChild(linkPath);
             document.getElementById('detailForm').action = "${contextPath}/member/addOperationInstruction.do";
   			document.getElementById('detailForm').submit();  
-		
+  			alert('저장되었습니다'); 
+        	}   
       }
       
         function updateRow() {
@@ -280,20 +281,31 @@
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
   		 	var link = location.pathname +'?'+newParam;
-  		 	document.getElementById("dueDate").disabled = true;
-		    document.getElementById("indicated").disabled = true;
-		    document.getElementById("instructionDate").disabled = true;
     		var linkPath = document.createElement("input");
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
-  		    document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
-    		document.getElementById('dataForm').submit();  
+    		var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
+        	$('#dataForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
+        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
+        	    	is_empty = true;      	    	
+        	    }      	 
+        	});   
+        	if(is_empty) { //비어있는내용이 있는지 체크함
+        	    alert('비어있는 내용이 있습니다. 다시입력하세요!');
+        	}
+        	else{
+  		    	document.getElementById('dataForm').appendChild(linkPath);
+            	document.getElementById('dataForm').action = "${contextPath}/member/updateOperationInstruction.do";
+    			document.getElementById('dataForm').submit();  
+	    		alert('수정되었습니다'); 
+        	}      	
+    		
+    	 
         }
         
       
-        function deleteData() {
+        function deleteData() {//삭제 일단 보류
         	var row = workOrderTable.insertRow(); 
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
@@ -302,9 +314,21 @@
     		linkPath.setAttribute("type","hidden");
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
+    		
+      	  //	for(var i=0; i<document.getElementsByName("content2").length;i++){
+
+        	//if(document.getElementsByName("content2")[i].checked==true) { //비어있는내용이 있는지 체크함
+        	  //  alert('비어있는 내용이 있습니다. 다시입력하세요!');
+        	//break;
+        	//}
+        	//else{
+
   		    document.getElementById('detailForm').appendChild(linkPath);
             document.getElementById('detailForm').action = "${contextPath}/member/deleteCommitOperation.do";
     		document.getElementById('detailForm').submit();  
+    		alert('삭제되었습니다'); 
+        	//}     
+      	  	//}
         }
         
         function confirm() {

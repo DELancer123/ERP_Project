@@ -341,7 +341,7 @@
 	function newRow(){
 		if(company_Code.value == "" || company_Name.value == "" || fiscal_Year_Number.value == "" || fiscal_Year_Dates.value == "" || fiscal_Year_Datee.value == "" || company_Registration_Number.value == "" || representatives_Name.value == "" || zipcode.value == "" || address1.value == "" || upstate.value == "" || industry.value == "" || date_Of_Establishment.value == "" )
 		{
-			alert("필수입력항목이 비어있습니다. 노란색 박스를 모두 채워주세요.");
+			alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
 		}
 		else {
 		const URLSearch = new URLSearchParams(location.search);
@@ -362,7 +362,7 @@
 	   function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
 		   if(company_Code.value == "" || company_Name.value == "" || fiscal_Year_Number.value == "" || fiscal_Year_Dates.value == "" || fiscal_Year_Datee.value == "" || company_Registration_Number.value == "" || representatives_Name.value == "" || zipcode.value == "" || address1.value == "" || upstate.value == "" || industry.value == "" || date_Of_Establishment.value == "" )
 			{
-				alert("필수입력항목이 비어있습니다. 노란색 박스를 모두 채워주세요.");
+				alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
 			}
        	else{
 	        	document.getElementById('regcompany').action = "${contextPath}/member/updcompany.do";

@@ -1660,7 +1660,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<!-- 기초정보관리_물류관리내역등록 -->
-	<resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
+	 <resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
 		<result property="logistics_In_Code" column="logistics_In_Code" />
 		<result property="logistics_In_Name" column="logistics_In_Name" />
 		<result property="explanation" column="explanation" />
@@ -1786,6 +1786,9 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[delete from CSM_SM_Rel_Pro where releaseNum=#{relCode}]]>      
   </delete>
 
+	<select id="allSupForward" resultMap="forward">
+		<![CDATA[select *from CSM_SM_Rel_Pro]]>
+	</select>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
 		insert into CSM_SM_Rel_Pro
@@ -1829,7 +1832,11 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	
+	<select id="submitItemForward" parameterType="forwardVO">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code	
+		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
+	</select>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
@@ -2005,5 +2012,20 @@ ORDER BY out.workordernumber]]>
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
-	
+	<!-- 로그인 기능 -->
+	 <resultMap id="LoginView" type="LoginVO">
+		<result property="dep_Code" column="DEPARTMENT_CODE" />
+		<result property="dep_Name" column="DEPARTMENT_NAME" />
+		<result property="emp_Code" column="EMPLOYEE_CODE" />
+		<result property="emp_Name" column="EMPLOYEE_NAME" />
+		<result property="password" column="Inventory_Unit" />
+	</resultMap>
+	<select id="selectDep"  resultMap="LoginView">
+		<![CDATA[select DEPARTMENT_CODE, DEPARTMENT_NAME from sm_cri_dep_reg
+		]]>
+	</select>
+	<select id="selectEmp"  resultMap="LoginView" parameterType="String">
+		<![CDATA[select EMPLOYEE_CODE, EMPLOYEE_NAME from sm_cri_emp_reg where DEPARTMENT_CODE = #{depCode}
+		]]>
+	</select>
 </mapper>

@@ -146,6 +146,7 @@ var dueDate = document.getElementById("dueDate");
 var plan_quantity = document.getElementById("plan_quantity");
 var buyer = document.getElementById("buyer");
 var note = document.getElementById("note");
+var item_Code = document.getElementById("item_Code");
 
 
 function setChildValue(code,name,buyer,standard,inventory_unit,note){
@@ -195,12 +196,11 @@ function deleteRow() {
 
 function InsertRow(){
 
-if(plandate.value == "" || expectedDate.value == "" || dueDate.value == "" 	|| plan_quantity.value == ""|| buyer.value == ""){
     if(plandate.value == ""){
-       alert("날짜는 필수 입력사항입니다.");
+       alert("계획일은 필수 입력사항입니다.");
        return planDate.focus();
     }else if(expectedDate.value == ""){
-       alert("예정발주일은 필수 입력사항입니다.");
+       alert("출하예정일 필수 입력사항입니다.");
        return expectedDate.focus();
     }else if(dueDate.value == ""){
        alert("납기일은 필수 입력사항입니다.");
@@ -211,8 +211,7 @@ if(plandate.value == "" || expectedDate.value == "" || dueDate.value == "" 	|| p
     }else if(buyer.value ==""){
     	alert("회사명은 필수 입력사항입니다.");
     	return buyer.focus();
-    }
-}else{
+    }else{
    		const URLSearch = new URLSearchParams(location.search);
    		
 	 	URLSearch.set('submit', '1');
@@ -229,11 +228,10 @@ if(plandate.value == "" || expectedDate.value == "" || dueDate.value == "" 	|| p
 }
 
 function updateRow() {
-	 var delConfirm = confirm('수정하실껀가요?');
-	if(delConfirm){
+	 var UpdConfirm = confirm('수정하실껀가요?');
+	if(UpdConfirm){
 		alert('수정 완료되셨습니다!');
-	
-	
+		
 		  var MPSTable = document.getElementById('MPSTable');
           var row = MPSTable.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
@@ -251,7 +249,8 @@ function updateRow() {
 		document.getElementById("dueDate").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
 		document.getElementById("buyer").disabled = true;
-		document.getElementById("note").disabled = true;	
+		document.getElementById("note").disabled = true;
+		
 		var Input = document.createElement("input");
 		Input.setAttribute("type", "hidden");
 		Input.setAttribute("name", "path");
@@ -271,11 +270,15 @@ function updateRow() {
 }
 
 view_button.onclick = function(){
+		  if(item_Code.value == ""){
+		       alert("품번 검색 후 조회가 가능합니다");
+		  }else{
 		const URLSearch = new URLSearchParams(location.search);
 		URLSearch.set('submit', '1');
 		const newParam = URLSearch.toString();
 		
 		window.open(location.pathname + '?' + newParam, '_self');
+	}
 }
 
 </script>
