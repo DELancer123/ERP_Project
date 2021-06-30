@@ -17,7 +17,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Autowired
 	private SystemmagDAOMJ systemmagDAO;
 	
-	//ÀÏ¹Ý°Å·¡Ã³µî·Ï
+	//ï¿½Ï¹Ý°Å·ï¿½Ã³ï¿½ï¿½ï¿½
 	@Override
 	public int addCustomer (SystemmagVOMJ systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
@@ -70,7 +70,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	}
 
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï
+	//Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List viewAllHouOutware() throws DataAccessException {
 		List outwareList = null;
@@ -112,7 +112,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		outwareList = systemmagDAO.viewAllOutWorOutware();	
 		return outwareList;
 	}
-	//Ã¢°íµî·Ï Á¶È¸-------
+	//Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸-------
 	@Override
 	public List viewSelectedHouOutware(String search) throws DataAccessException {
 		List outwareList = null;
@@ -134,7 +134,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return outwareList;
 	}
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
 		List logisticsList = null;
@@ -169,5 +169,11 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopLogisticsName(String itemName) {
 		return systemmagDAO.viewsearchPopLogisticsName(itemName);
 	}
+
+	@Override
+	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException {
+		return systemmagDAO.searchPopOutwareName(itemName);
+	}
+	
 	
 }

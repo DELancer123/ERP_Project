@@ -31,7 +31,7 @@ import com.myspring.systemmag.dao.SystemmagDAOMJ;
 import com.myspring.systemmag.service.SystemmagServiceMJ;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
-//È¸»çµî·Ï
+//È¸ï¿½ï¿½ï¿½ï¿½
 @Controller("SystemmagControllerMJ")
 public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Autowired
@@ -41,7 +41,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Autowired
 	private SystemmagDAOMJ systemmagDAO;
 
-	// ÀÏ¹İ°Å·¡Ã³µî·Ï-µî·Ï
+	// ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½
 	@Override
 	@RequestMapping(value = "/member/addbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -57,14 +57,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// ÀÏ¹İ°Å·¡Ã³µî·Ï-Á¶È¸
+	// ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½-ï¿½ï¿½È¸
 	@Override
 	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // Ã¹Á¢¼ÓÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ , url·Î ³Ñ¾î¿È
-		String com_code = (String) request.getParameter("com_code"); // ¸î¹øÂ° ¸ñ·ÏÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ, url·Î ³Ñ¾î¿È
+		String submit = (String) request.getParameter("submit"); // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ , urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
+		String com_code = (String) request.getParameter("com_code"); // ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
 		String customerCode = (String) request.getParameter("customerCode");
 
 		System.out.println("viewName:" + viewName);
@@ -72,9 +72,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		System.out.println("comcode:"+com_code);
 		System.out.println("customercode:"+customerCode);
 
-		if (com_code == null && submit == null) { // Ã¹Á¢¼ÓÀÌ¶ó¸é?
+		if (com_code == null && submit == null) { // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½?
 			if(customerCode != null) {				
-				System.out.println("3¹øºĞ±âµé¾î¿È");
+				System.out.println("3ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
 				System.out.println("customerCode:"+customerCode);
 				List customerList = null;
 				List comcom = null;
@@ -86,18 +86,18 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 				return mav;
 			}
 			else {
-				System.out.println("1¹øºĞ±âµé¾î¿È");
-				List comView = systemmagService.viewAllCustomer(); // select all Äõ¸®¸¦ È£ÃâÇÑ´Ù
+				System.out.println("1ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
+				List comView = systemmagService.viewAllCustomer(); // select all ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½
 				mav = new ModelAndView(viewName);
 				mav.addObject("comView", comView);
 				return mav;
 			}
 		}
 
-		else if (submit.equals("1")) { // ¸ñ·ÏÀ» ¼±ÅÃÇßÀ»¶§, Áï Á¶È¸¸¦ ÇßÀ»¶§
-			System.out.println("2¹øºĞ±âµé¾î¿È");
-			List comView = systemmagService.viewAllCustomer(); // select¹®¿¡
-			List comcom = systemmagService.viewCustomer(com_code); // whereÀıÀ» Ãß°¡ÇÑ´Ù
+		else if (submit.equals("1")) { // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("2ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
+			List comView = systemmagService.viewAllCustomer(); // selectï¿½ï¿½ï¿½ï¿½
+			List comcom = systemmagService.viewCustomer(com_code); // whereï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½
 			System.out.println("comViewSize:"+comView.size());
 			System.out.println("comcomSize:"+comcom.size());
 			mav = new ModelAndView(viewName);
@@ -138,13 +138,13 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return viewName;
 	}
 
-	// ÀÏ¹İ°Å·¡Ã³µî·Ï-»èÁ¦
+	// ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½
 	@Override
 	@RequestMapping(value = "/member/deleteBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no"); // Ã¼Å©°¡µÈ Ã¼Å©¹Ú½ºÀÇ °ªµéÀ» °¡Á®¿À´Â º¯¼öÀÓ
+		String number = (String) request.getParameter("no"); // Ã¼Å©ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String viewName = getViewName(request);
-		String[] numberary = number.split(","); // ½°Ç¥¸¦ ±âÁØÀ¸·Î ³ª´©¾î ¹è¿­¿¡ ÀúÀåÇÑ´Ù
+		String[] numberary = number.split(","); // ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 
 		systemmagService.delCustomer(numberary);
 
@@ -154,19 +154,19 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 	}
 
-	// ÀÏ¹İ°Å·¡Ã³µî·Ï-¼öÁ¤
+	// ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½
 	@Override
 	@RequestMapping(value = "/member/updateBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView updateCustomer(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		systemmagService.updCustomer(systemmagVO);// ¼­ºñ½ºÆÄÆ®ÀÇ ¾÷µ¥ÀÌÆ®ÇÔ¼ö¿¡ ¸Å°³º¯¼ö·Î VO¸¦Àü´ŞÇÔ
+		systemmagService.updCustomer(systemmagVO);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ VOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getGeneral_Customer_Code());
 		return mav;
 	}
 
-	// ÀÏ¹İ°Å·¡Ã³µî·Ï-ÆË¾÷
+	// ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½-ï¿½Ë¾ï¿½
 	@Override
 	@RequestMapping(value = "/member/regbasicaccPopup.do", method = RequestMethod.GET)
 	public ModelAndView popupCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -174,14 +174,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List comView = systemmagService.viewAllCustomer(); // select * ¹®À»È£ÃâÇÑ´ÙÀ½
+		List comView = systemmagService.viewAllCustomer(); // select * ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 		mav = new ModelAndView(viewName);
-		mav.addObject("comView", comView); // ÆË¾÷À¸·Î Àü´ŞÇÔ
+		mav.addObject("comView", comView); // ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return mav;
 	}
 
-	// ÀÏ¹İ°Å·¡Ã³µî·Ï-¿ìÆí¹øÈ£ÆË¾÷
+	// ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½Ë¾ï¿½
 	@Override
 	@RequestMapping(value = "/member/regbasicaccZipPopup.do", method = RequestMethod.GET)
 	public ModelAndView popupZipCustomer(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -192,33 +192,33 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		String com_code = request.getParameter("com_code");
 		System.out.println("com_code=" + com_code);
 
-		List ZipView = systemmagService.zipViewCustomer(); // select * ¹®À»È£ÃâÇÑ´ÙÀ½
+		List ZipView = systemmagService.zipViewCustomer(); // select * ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 		mav = new ModelAndView(viewName);
-		mav.addObject("ZipView", ZipView); // ÆË¾÷À¸·Î Àü´ŞÇÔ
+		mav.addObject("ZipView", ZipView); // ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return mav;
 	}
 
-	// Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï-Á¶È¸
+	// Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½È¸
 	@Override
 	@RequestMapping(value = "/member/outware.do", method = RequestMethod.GET)
 	public ModelAndView viewOutware(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // Ã¹Á¢¼ÓÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ , url·Î ³Ñ¾î¿È
-		String code = (String) request.getParameter("com_code"); // ¸î¹øÂ° ¸ñ·ÏÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ, url·Î ³Ñ¾î¿È
+		String submit = (String) request.getParameter("submit"); // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ , urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
+		String code = (String) request.getParameter("com_code"); // ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
 		String outwareCode = (String) request.getParameter("outwareCode");
 		String processCode = (String) request.getParameter("processCode");
 		String outsourcingCode = (String) request.getParameter("outsourcingCode");
 		System.out.println("outwareCode:"+outwareCode);
 		System.out.println("processCode:"+processCode);
 		System.out.println("outsourcingCode:"+outsourcingCode);
-		if (code == null && submit == null) { // Ã¹Á¢¼ÓÀÌ¶ó¸é?
-			System.out.println("1¹øºĞ±âµé¾î¿È");
-			List houOutwareList = systemmagService.viewAllHouOutware(); // select all Äõ¸®¸¦ È£ÃâÇÑ´Ù
+		if (code == null && submit == null) { // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½?
+			System.out.println("1ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
+			List houOutwareList = systemmagService.viewAllHouOutware(); // select all ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½
 			List proOutwareList = systemmagService.viewAllProOutware();
 			List outOutwareList = systemmagService.viewAllOutOutware();
 
-			List houWorOutwareList = systemmagService.viewAllHouWorOutware(); // select all Äõ¸®¸¦ È£ÃâÇÑ´Ù
+			List houWorOutwareList = systemmagService.viewAllHouWorOutware(); // select all ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½
 			List proWorOutwareList = systemmagService.viewAllProWorOutware();
 			List outWorOutwareList = systemmagService.viewAllOutWorOutware();
 
@@ -249,7 +249,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
-	// Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤ÇöÈ²-ÆË¾÷
+	// Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½È²-ï¿½Ë¾ï¿½
 	@Override
 	@RequestMapping(value = "/member/outwarePopup1.do", method = RequestMethod.GET)
 	public ModelAndView popupOutware1(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -257,9 +257,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List outwareView = systemmagService.viewAllHouOutware(); // select * ¹®À»È£ÃâÇÑ´ÙÀ½
+		List outwareView = systemmagService.viewAllHouOutware(); // select * ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 		mav = new ModelAndView(viewName);
-		mav.addObject("outwareView", outwareView); // ÆË¾÷À¸·Î Àü´ŞÇÔ
+		mav.addObject("outwareView", outwareView); // ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return mav;
 	}
@@ -270,9 +270,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List outwareView = systemmagService.viewAllProOutware(); // select * ¹®À»È£ÃâÇÑ´ÙÀ½
+		List outwareView = systemmagService.viewAllProOutware(); // select * ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 		mav = new ModelAndView(viewName);
-		mav.addObject("outwareView", outwareView); // ÆË¾÷À¸·Î Àü´ŞÇÔ
+		mav.addObject("outwareView", outwareView); // ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return mav;
 	}
@@ -283,30 +283,30 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List outwareView = systemmagService.viewAllOutOutware(); // select * ¹®À»È£ÃâÇÑ´ÙÀ½
+		List outwareView = systemmagService.viewAllOutOutware(); // select * ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 		mav = new ModelAndView(viewName);
-		mav.addObject("outwareView", outwareView); // ÆË¾÷À¸·Î Àü´ŞÇÔ
+		mav.addObject("outwareView", outwareView); // ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return mav;
 	}
 
-	// ¹°·ù°ü¸®³»¿ªµî·Ï-Á¶È¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½È¸
 	@Override
 	@RequestMapping(value = "/member/logistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView viewLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // Ã¹Á¢¼ÓÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ , url·Î ³Ñ¾î¿È
-		String code = (String) request.getParameter("com_code"); // Ã¹Á¢¼ÓÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ , url·Î ³Ñ¾î¿È
-		String logisSearchBox = (String) request.getParameter("logisSearchBox"); // ¸î¹øÂ° ¸ñ·ÏÀÎÁö Ã¼Å©ÇÏ´Â º¯¼öÀÓ, url·Î ³Ñ¾î¿È
+		String submit = (String) request.getParameter("submit"); // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ , urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
+		String code = (String) request.getParameter("com_code"); // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ , urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
+		String logisSearchBox = (String) request.getParameter("logisSearchBox"); // ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, urlï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
 		System.out.println("logisSearchBox:"+logisSearchBox);
 
-		if (code == null && submit == null) { // Ã¹Á¢¼ÓÀÌ¶ó¸é?			
+		if (code == null && submit == null) { // Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½?			
 			if(logisSearchBox != null) {				
-				System.out.println("3¹øºĞ±âµé¾î¿È");
+				System.out.println("3ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
 				System.out.println("logisSearchBox:"+logisSearchBox);
 				List allLogisticsList = null;
 				List logisticsSelectedView = null;
@@ -321,18 +321,18 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 				return mav;
 			}
 			else {
-				System.out.println("1¹øºĞ±âµé¾î¿È");
-				List logisticsView = systemmagService.viewAllLogistics(); // select all Äõ¸®¸¦ È£ÃâÇÑ´Ù
+				System.out.println("1ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
+				List logisticsView = systemmagService.viewAllLogistics(); // select all ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½
 				mav = new ModelAndView(viewName);
 				mav.addObject("logisticsView", logisticsView);
 				return mav;
 			}
 		}
 
-		else if (submit.equals("1")) { // ¸ñ·ÏÀ» ¼±ÅÃÇßÀ»¶§, Áï Á¶È¸¸¦ ÇßÀ»¶§
-			System.out.println("2¹øºĞ±âµé¾î¿È");
-			List logisticsView = systemmagService.viewAllLogistics(); // select¹®¿¡
-			List logisticsSelectedView = systemmagService.viewSelectedLogistics(code); // whereÀıÀ» Ãß°¡ÇÑ´Ù
+		else if (submit.equals("1")) { // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("2ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½");
+			List logisticsView = systemmagService.viewAllLogistics(); // selectï¿½ï¿½ï¿½ï¿½
+			List logisticsSelectedView = systemmagService.viewSelectedLogistics(code); // whereï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½
 			mav = new ModelAndView(viewName);
 			mav.addObject("logisticsView", logisticsView);
 			mav.addObject("logisticsSelectedView", logisticsSelectedView);
@@ -341,7 +341,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// ¹°·ù°ü¸®³»¿ªµî·Ï-µî·Ï
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½
 	@Override
 	@RequestMapping(value = "/member/addLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView addLogistics(@ModelAttribute("logistics") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -357,15 +357,15 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// ¹°·ù°ü¸®³»¿ªµî·Ï-»èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½
 	@Override
 	@RequestMapping(value = "/member/deleteLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView deleteLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no"); // Ã¼Å©°¡µÈ Ã¼Å©¹Ú½ºÀÇ °ªµéÀ» °¡Á®¿À´Â º¯¼öÀÓ
-		System.out.println("»èÁ¦±¸ÇöÁß");
+		String number = (String) request.getParameter("no"); // Ã¼Å©ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		System.out.println("number:"+number);
 		String viewName = getViewName(request);
-		String[] numberary = number.split(","); // ½°Ç¥¸¦ ±âÁØÀ¸·Î ³ª´©¾î ¹è¿­¿¡ ÀúÀåÇÑ´Ù
+		String[] numberary = number.split(","); // ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 
 		systemmagService.deleteLogistics(numberary);
 
@@ -373,22 +373,22 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// ¹°·ù°ü¸®³»¿ªµî·Ï-¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½
 	@Override
 	@RequestMapping(value = "/member/updateLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView updateLogistics(SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("¾÷µ¥ÀÌÆ®±¸ÇöÁß");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		request.setCharacterEncoding("utf-8");
 		System.out.println("explanation:"+request.getParameter("explanation"));
-		systemmagService.updateLogistics(systemmagVO);// ¼­ºñ½ºÆÄÆ®ÀÇ ¾÷µ¥ÀÌÆ®ÇÔ¼ö¿¡ ¸Å°³º¯¼ö·Î VO¸¦Àü´ŞÇÔ
+		systemmagService.updateLogistics(systemmagVO);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ VOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/logistics_manage.do?submit=1&&com_code=" + systemmagVO.getLogistics_In_Code());
 		return mav;
 	}
 	
 
-	// ¹°·ù°ü¸®³»¿ªµî·Ï-ÆË¾÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½Ë¾ï¿½
 	@Override
 	@RequestMapping(value = "/member/logisticsPopup.do", method = RequestMethod.GET)
 	public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -396,14 +396,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List logisticsView = systemmagService.viewAllLogistics(); // select * ¹®À»È£ÃâÇÑ´ÙÀ½
+		List logisticsView = systemmagService.viewAllLogistics(); // select * ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 		mav = new ModelAndView(viewName);
-		mav.addObject("logisticsView", logisticsView); // ÆË¾÷À¸·Î Àü´ŞÇÔ
+		mav.addObject("logisticsView", logisticsView); // ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return mav;
 	}
 	//----------------------------------
-	@ResponseBody//ajax°ü·Ã ÄÁÆ®·Ñ·¯(°Å·¡Ã³ÄÚµå)
+	@ResponseBody//ajaxï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½(ï¿½Å·ï¿½Ã³ï¿½Úµï¿½)
 	@RequestMapping(value = "/member/searchPopCustomerName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopCustomerName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -415,7 +415,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax°ü·Ã ÄÁÆ®·Ñ·¯(¿ìÆí¹øÈ£)
+	@ResponseBody//ajaxï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½È£)
 	@RequestMapping(value = "/member/searchPopZipCodeName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopZipCodeName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -427,7 +427,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax°ü·Ã ÄÁÆ®·Ñ·¯(¹°·ù°ü¸®µî·Ï)
+	@ResponseBody//ajaxï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	@RequestMapping(value = "/member/searchPopLogisticsName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopLogisticsName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -438,5 +438,16 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
+	// ëª…ì œì”¨ íŒì—… ê²€ìƒ‰ê¸°ëŠ¥
+	@ResponseBody
+	@RequestMapping(value = "/member/searchPopOutwareName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopOutwareName(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = systemmagService.searchPopOutwareName(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
 
+		return mav;
+	}
 }

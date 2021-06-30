@@ -1628,6 +1628,14 @@ ORDER BY out.workordernumber]]>
 		<result property="outsourcing_Explanation" column="outsourcing_Explanation" />
 		<result property="outsourcing_Status" column="outsourcing_Status" />
 	</resultMap>
+	<!-- 명제씨 창고 팝업 검색기능 -->
+	<select id="searchPopOutwareName" resultMap="outwareInfoResult">
+		<![CDATA[ select House_Code , House_Name 
+		  from SM_BIM_Hou_Reg 
+		  where House_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
 	<!-- 윗칸 데이터 -->
 	<select id="selectAllHouOutware" resultMap="outwareInfoResult">
 		<![CDATA[select * from SM_BIM_HOU_REG]]>
