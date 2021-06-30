@@ -104,7 +104,7 @@
                 <tr>
                 <td><input type="checkbox" name="checkedContent" value='${com.company_Code}'/></td>
                     <td>
-                        <input type="text"  ondblclick="searchView(this.value)" value='${com.company_Code }'
+                        <input type="text"  onfocus="searchView(this.value)" value='${com.company_Code }'
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none;
                         text-align: center;" readonly />
