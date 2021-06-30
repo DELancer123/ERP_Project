@@ -385,6 +385,32 @@ public class SystemmagVOMJ {
 		this.remarks = remarks;
 	}
 	
+	//검사유형등록
+	//SM_BIM_INS_TYP
+	private String inspection_Code;
+	private String inspection_Name;
+	private String inspection_Question;
+
+	public String getInspection_Code() {
+		return inspection_Code;
+	}
+	public void setInspection_Code(String inspection_Code) {
+		this.inspection_Code = inspection_Code;
+	}
+	public String getInspection_Name() {
+		return inspection_Name;
+	}
+	public void setInspection_Name(String inspection_Name) {
+		this.inspection_Name = inspection_Name;
+	}
+	public String getInspection_Question() {
+		return inspection_Question;
+	}
+	public void setInspection_Question(String inspection_Question) {
+		this.inspection_Question = inspection_Question;
+	}
+	
+	
 }
 
 	

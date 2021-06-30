@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>검사유형등록</title>
 <style>
 #contents1{
             position: absolute;
@@ -19,7 +19,7 @@
         #contents2{
             position: absolute;
             right: 0;
-            top: 25%;
+            top: 15%;
             width: 85%;
             height: 35%;
             border: 1px solid black;
@@ -28,9 +28,9 @@
         #contents3{
             position: absolute;
             right: 0;
-            top:60%;
+            top:50%;
             width: 85%;
-            height: 35%;
+            height: 45%;
             border: 1px solid black;
             z-index: 1;
         }
@@ -39,82 +39,55 @@
             padding-top: 10px;
             left: 5%;
         }
+        #table1 input {
+        	width:90%;
+        }
+        .input2 {
+        	width:90%;
+        }
+        
 </style>
+<script>
+		window.onload = function(){
+		   l_sub2.style.display = "block";
+		   l_sub2.style.position = "relative";
+		   l_sub2.style.marginLeft = "10px";
+		}
+</script>
 </head>
 <body>
-<container1 id = contents1>
-            <table class="con1_search" id="con1_search">
-                <tr>
-                    <td align="center">검사구분</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="11">11.구매검사</option>
-                            <option value="21">21.외주검사</option>
-                            <option value="41">41.공정검사</option>
-                            <option value="51">51.출하검사</option>
-                        </select>
-                    </td>
-                    <td align="center">사용여부</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="0">0.미사용</option>
-                            <option value="1">1.사용</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </container1>
         <container2 id="contents2">
             <table id="view1">
                 <thead>
-                    <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
-                    <td align="center">no</td>
+                    <td></td>
                     <td align="center">코드</td>
                     <td align="center">검사유형명</td>
                     <td align="center">비고</td>
-                    <!-- <td align="center">사용여부</td> -->
                 </thead>
                 <tbody id="table1" align="center">
-                    <td align="center"><input type="checkbox" value = "check1" id="check" name="content"/></td>
+                    <td align="center" style="width:5%;"><input type="checkbox" value = "check1" id="check" name="content"/></td>
                     <td align="center"><input type="text"/></td>
                     <td align="center"><input type="text"/></td>
                     <td align="center"><input type="text"/></td>
-                    <td align="center"><input type="text"/></td>
-                    <!-- <td align="center"><input type="text"/></td> -->
                 </tbody>
             </table>
         </container2>
         <container3 id="contents3">
             <table id="view2">
                 <thead>
-                    <td><input type="checkbox" name="content1" onclick="selectAll1(this)"/></td>
                     <td align="center">no</td>
                     <td align="center">검사유형질문</td>
                     <td align="center">비고</td>
                 </thead>
-                <tbody id="table1" align="center">
-                    <td>
-                        <input type="checkbox" value = "check1" id="check" name="content1"/>
-                    </td>
-                    <td align="center"><input type="text"/></td>
-                    <td align="center"><input type="text"/></td>
-                    <td align="center"><input type="text"/></td>
+                <tbody id="table2" align="center">
+                    <td align="center"><input class="input2" type="text"/></td>
+                    <td align="center"><input class="input2" type="text"/></td>
+                    <td align="center"><input class="input2" type="text"/></td>
                 </tbody>
             </table>
         </container3>
         <script>
-        function selectAll(selectAll){
-            const checkbox = document.getElementsByName('content');
-            checkbox.forEach((checkbox) => {
-                checkbox.checked = selectAll.checked;
-            })
-        }
-        function selectAll1(selectAll1){
-            const checkbox = document.getElementsByName('content1');
-            checkbox.forEach((checkbox) => {
-                checkbox.checked = selectAll1.checked;
-            })
-        }
+
         </script>
 </body>
 </html>

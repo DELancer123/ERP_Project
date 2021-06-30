@@ -1729,7 +1729,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<!-- 기초정보관리_물류관리내역등록 -->
-	 <resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
+	<resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
 		<result property="logistics_In_Code" column="logistics_In_Code" />
 		<result property="logistics_In_Name" column="logistics_In_Name" />
 		<result property="explanation" column="explanation" />
@@ -1768,6 +1768,14 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	<!-- 물류관리내역등록끝 -->
+	<!-- 기초정보관리_검사유형등록 -->
+	<resultMap id="inspectionTypeResult" type="SystemmagVOMJ">	
+		<result property="inspection_Code" column="inspection_Code" />
+		<result property="inspection_Name" column="inspection_Name" />
+		<result property="inspection_Question" column="inspection_Question" />
+		<result property="remarks" column="remarks" />
+	</resultMap>
+	<!-- 검사유형등록등록끝 -->
 
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
