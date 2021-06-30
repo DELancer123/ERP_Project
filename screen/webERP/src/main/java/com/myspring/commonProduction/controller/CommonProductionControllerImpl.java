@@ -463,7 +463,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			String itemCode = (String) request.getParameter("itemNumber");					
 			
 			if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
-				List infoList = productionService.selectAllWorkInProcess(itemCode);
+				List infoList = productionService.selectAllWorkInProcess();
 				mav = new ModelAndView(viewName);
 				return mav;
 			}

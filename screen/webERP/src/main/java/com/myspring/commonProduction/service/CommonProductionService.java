@@ -54,5 +54,7 @@ import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperati
   public List facilitySearch() throws DataAccessException;
   public List checkStock(String itemCode) throws DataAccessException;
   public int minValue(String itemCode) throws DataAccessException;
+  public List selectAllWorkInProcess() throws DataAccessException, ParseException;
+  public List selectAllWorkInProcessCondition(String info) throws DataAccessException, ParseException;
   }
  

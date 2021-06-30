@@ -21,6 +21,7 @@ import com.myspring.commonProduction.operationRegist.vo.OperationRegistVO;
 import com.myspring.commonProduction.registOperationPerformance.dao.RegistOperationPerformanceDAO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceDetailVO;
 import com.myspring.commonProduction.registOperationPerformance.vo.RegistOperationPerformanceVO;
+import com.myspring.commonProduction.registOperationPerformance.vo.WorkplaceCodeSearchVO;
 import com.myspring.productionBaseInfo.BOM.vo.bomVO;
   
   
@@ -260,6 +261,20 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
       OCdao.closingCancleDetail(numberAry);
       return message;
    }
+   
+//   재공 현황 기능부
+   
+   @Override public List selectAllWorkInProcess() throws DataAccessException, ParseException {
+	     List<WorkplaceCodeSearchVO> infolist = null; 
+	     infolist = WIPdao.selectAllWorkInProcess();
+	     return infolist; 
+	  }
+   
+   @Override public List selectAllWorkInProcessCondition(String info) throws DataAccessException, ParseException {
+	     List<WorkplaceCodeSearchVO> infolist = null; 
+	     infolist = WIPdao.selectAllWorkInProcessCondition(info);
+	     return infolist; 
+	  }
 ////////////////////////////////////////////////////////////////////////////////
 @Override
 public List<CommitOperationInstructionVO> selectAllProductionPlanInfo() throws DataAccessException {
