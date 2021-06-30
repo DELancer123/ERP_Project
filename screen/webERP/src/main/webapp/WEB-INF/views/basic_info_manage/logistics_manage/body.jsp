@@ -142,6 +142,9 @@ request.setCharacterEncoding("UTF-8");
             </form>
         </container>
         <script>
+        var logistics_In_Code = document.getElementById("logistics_In_Code");
+        var logistics_In_Name = document.getElementById("logistics_In_Name");
+        
 	        function searchView(name) { //조회를 담당하는 자바스크립트임
 	            window.location.href = "${contextPath}/member/logistics_manage.do?submit=1&&com_code=" + name; 
 	        }
@@ -182,8 +185,13 @@ request.setCharacterEncoding("UTF-8");
 	    			window.location.href = "${contextPath}/member/deleteLogistics_manage.do?no="+ary;
 	        	}
 	        }
-	        
-	        function newRow(){      	
+	        //등록
+	        function newRow(){
+	        	if(logistics_In_Code.value == "" || logistics_In_Name == "")
+	        		{
+	        			alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+	        		}
+	        	else {
 	    		const URLSearch = new URLSearchParams(location.search);
 	    		URLSearch.set('submit','1');
 	    		const newParam = URLSearch.toString();
@@ -195,18 +203,14 @@ request.setCharacterEncoding("UTF-8");
 	    		document.getElementById('logisticsUpdateForm').appendChild(articleNOInput);
 	    		document.getElementById('logisticsUpdateForm').action = "${contextPath}/member/addLogistics_manage.do";
 	    		document.getElementById('logisticsUpdateForm').submit();
-	    	}
-	        
+	    		}
+	        }
+	        //수정
 	        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-	        	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-	        	$('#logisticsUpdateForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-	        	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
-	        	    	is_empty = true;   
-	        	    }      	 
-	        	});       	 
-	        	if(is_empty) { //비어있는내용이 있는지 체크함
-	        	    alert('비어있는 내용이 있습니다. 다시입력하세요');
-	        	}
+	        	if(logistics_In_Code.value == "" || logistics_In_Name == "")
+        		{
+        			alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+        		}
 	        	else{
 		        	document.getElementById('logisticsUpdateForm').action = "${contextPath}/member/updateLogistics_manage.do";
 		    		document.getElementById('logisticsUpdateForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
