@@ -342,6 +342,9 @@ return valueStr;
 	Date expectedDate;
 	String inspection;
 	
+	
+	
+	
 	public Date getDueDate() {
 		return dueDate;
 	}
@@ -422,7 +425,7 @@ return valueStr;
 	
 	String menu;
 	String url;
-
+	
 
 	public String getUrl() {
 		return url;
