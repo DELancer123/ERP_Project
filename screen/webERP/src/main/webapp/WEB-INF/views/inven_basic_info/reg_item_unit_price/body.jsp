@@ -67,6 +67,14 @@
             overflow: scroll;
         }
 </style>
+<script>
+window.onload = function(){
+	l_sub1.style.position = "relative";
+    l_sub3.style.position = "relative";
+    l_sub4.style.display = "block";
+    l_sub4.style.marginLeft = "10px";
+}
+</script>
 </head>
 <body>
 	<container1 id = contents1>
