@@ -7,9 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface SystemmagServiceMJ {
-	//ÀÏ¹İ°Å·¡Ã³µî·Ï
-	public List searchCustomer(String customerCode) throws DataAccessException;
-	
+	//ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
@@ -26,7 +24,7 @@ public interface SystemmagServiceMJ {
 	
 	public List<SystemmagVOMJ> searchPopZipCodeName(String itemName) throws DataAccessException;
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤ÇöÈ²
+	//Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½È²
 	public List viewAllHouOutware() throws DataAccessException;
 	
 	public List viewAllProOutware() throws DataAccessException;
@@ -46,7 +44,7 @@ public interface SystemmagServiceMJ {
 	public List viewSelectedOutOutware(String search) throws DataAccessException;
 	
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List viewAllLogistics() throws DataAccessException;
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
@@ -61,7 +59,7 @@ public interface SystemmagServiceMJ {
 
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
 	
-	//°Ë»çÀ¯Çüµî·Ï
+	//ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List viewAllInspection() throws DataAccessException;
 	
 	public List viewInspection(String com_code) throws DataAccessException;
@@ -72,5 +70,19 @@ public interface SystemmagServiceMJ {
 	
 	public void updInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
+	//SETêµ¬ì„±í’ˆë“±ë¡
+	public List viewAllSetComponents() throws DataAccessException;
+	
+	public List viewSetComponents(String com_code) throws DataAccessException;
+	
+	public int addSetComponents(SystemmagVOMJ systemmagVO) throws Exception;
+	
+	public void delSetComponents(String[] noary) throws DataAccessException;
+	
+	public void updSetComponents(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopSetName(String itemName) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopComponentsName(String itemName) throws DataAccessException;
 		
 }

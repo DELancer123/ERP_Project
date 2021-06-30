@@ -1813,16 +1813,16 @@ ORDER BY out.workordernumber]]>
 		<result property="set_Standard" column="set_Standard" />
 		<result property="set_Unit" column="set_Unit" />
 	</resultMap>
-	<select id="selectAllSetReg" resultMap="setRegResult">
+	<select id="selectAllSetComponents" resultMap="setRegResult">
 		<![CDATA[select * from SM_BIM_SET_REG]]>
 	</select>
-	<select id="selectOneSetReg" parameterType="String" resultMap="setRegResult">
+	<select id="selectOneSetComponents" parameterType="String" resultMap="setRegResult">
 		<![CDATA[select * from SM_BIM_SET_REG where set_Code = #{com_code}]]>
 	</select>
-	<delete id="deleteSetReg">
+	<delete id="deleteSetComponents">
 		delete from SM_BIM_SET_REG where set_Code = #{no}
 	</delete>
-	<update id="updateSetReg" parameterType="SystemmagVOMJ">
+	<update id="updateSetComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			update SM_BIM_SET_REG
 			set	set_Name=#{set_Name},
@@ -1831,7 +1831,7 @@ ORDER BY out.workordernumber]]>
 			where set_Code=#{set_Code}			
 		]]>
 	</update>
-	<insert id="insertNewSetReg" parameterType="SystemmagVOMJ">
+	<insert id="insertNewSetComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_SET_REG
 			values(#{set_Code},
@@ -1839,6 +1839,12 @@ ORDER BY out.workordernumber]]>
 			#{set_Standard}, 
 			#{set_Unit})]]>
 	</insert>
+	<select id="selectPopSetList" resultMap="setRegResult">
+		<![CDATA[ select set_Code, set_Name
+		  from SM_BIM_SET_REG
+		  where set_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 		<!-- 세트구성품 -->
 	<resultMap id="comRegResult" type="SystemmagVOMJ">	
 		<result property="set_Code" column="set_Code" />
@@ -1876,7 +1882,14 @@ ORDER BY out.workordernumber]]>
 			#{components_Unit},
 			#{components_Stock}]]>
 	</insert>
+	<select id="selectPopComponentsList" resultMap="comRegResult">
+		<![CDATA[ select components_Code, components_Name
+		  from SM_BIM_COM_REG
+		  where components_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	<!-- SET구성품등록끝 -->
+	
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
