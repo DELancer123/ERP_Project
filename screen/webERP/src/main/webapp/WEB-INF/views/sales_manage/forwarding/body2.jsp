@@ -208,21 +208,21 @@
        		/* 	var tbody4index = 0; */
        			for(var i =0; i<data.length; i++){
        				var html = '';
-           			html += '<tr>';  	
+       				html += '<tr>';  	
            			html += '<td><input type = "checkbox" name = ""  value = "'+data[i].code+'" "></td>';  		
-           			html += '<td><input type = "text" name = ""  value = "'+data[i].corVO.item_code +'" "></td>';  		
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.item_name +'"></td>';  			
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.stand+'"></td>';  			
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.orderQuant+'"></td>';  			
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.unit+'"></td>';  			
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.price+'"></td>'; 
-           			html += '<td><input type = "text" name = "" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
-           			html += '<td><input type = "text" name = "" value = "'+((data[i].corVO.price*data[i].corVO.orderQuant)*0.1)+'"></td>';
-           			html += '<td><input type = "text" name = "" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
-           			html += '<td><input type = "date" name = "" value = "'+data[i].corVO.dueDate+'"></td>';  			
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.expDate+'"></td>';  			
-           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.orderOX+'"></td>';  			
-           			html += '<td><input type = "date" name = "" value = "'+data[i].corVO.inspection+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_code"  value = "'+data[i].corVO.item_code +'" "></td>';  		
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_name" value = "'+data[i].corVO.item_name +'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.stand" value = "'+data[i].corVO.stand+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.orderQuant" value = "'+data[i].corVO.orderQuant+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.unit" value = "'+data[i].corVO.unit+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.price" value = "'+data[i].corVO.price+'"></td>'; 
+           			html += '<td><input type = "text" name = "공급가" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
+           			html += '<td><input type = "text" name = "부가세" value = "'+((data[i].corVO.price*data[i].corVO.orderQuant)*0.1)+'"></td>';
+           			html += '<td><input type = "text" name = "합계액" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
+           			html += '<td><input type = "date" name = "ListVO[${status.index}].corVO.dueDate" value = "'+data[i].corVO.dueDate+'"></td>';  			
+           			html += '<td><input type = "date" name = "ListVO[${status.index}].corVO.expDate" value = "'+data[i].corVO.expDate+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.orderOX" value = "'+data[i].corVO.orderOX+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.inspection" value = "'+data[i].corVO.inspection+'"></td>';  			
            			html += '</tr>';
            			//  id=itemPop 안에 넣기
            			$("#itemPop").append(html);

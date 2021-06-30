@@ -1873,8 +1873,9 @@ ORDER BY out.workordernumber]]>
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
-		        <collection property="corVO" javaType="CorVO">
-        	<id property="relCode" column="code" />
+		   <collection property="corVO" javaType="CorVO">
+        	<result property="relCode" column="code" />
+        	<id property="no" column="NO" />
         	<result property="item_code" column="item_code" />
         	<result property="item_name" column="item_name" />        
         	<result property="stand" column="standard" />
