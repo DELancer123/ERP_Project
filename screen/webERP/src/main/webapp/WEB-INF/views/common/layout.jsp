@@ -259,7 +259,7 @@ input {
 			<p><img src="${contextPath }/resources/img/kingdomlogo.png" class="logo"/></p>
 			<p id=info>부서정보: <%=dep_name %> (<%=dep_code %>) 사원: <%=emp_name %> (<%=emp_code %>)</p>
 			<ul id="etc_menu">
-				<li><a href="#">로그아웃</a></li>
+				<li><a href="${contextPath }/member/logout.do">로그아웃</a></li>
 				<li><a href="#">기타메뉴1</a></li>
 				<li><a href="#">기타메뉴2</a></li>
 				<li><a href="#">기타메뉴3</a></li>
@@ -376,7 +376,6 @@ input {
             var options = 'top=330, left=400, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
             window.open(url, name, options);
         }
-		
 		</script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -439,7 +438,7 @@ input {
 		  element.style.display = 'none'; 
 	   }
 	}
-
+	
         
     </script>
 </body>
