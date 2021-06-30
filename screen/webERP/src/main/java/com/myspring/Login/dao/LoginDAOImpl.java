@@ -27,4 +27,11 @@ public class LoginDAOImpl implements LoginDAO{
 		empList = sqlSession.selectList("mappers.erp.selectEmp",depCode);
 		return empList;
 	}
+
+	@Override
+	public LoginVO loginList(LoginVO vo) throws DataAccessException {
+		LoginVO loginVO = null;
+		loginVO = sqlSession.selectOne("mappers.erp.LoginCheck",vo);
+		return loginVO;
+	}
 }

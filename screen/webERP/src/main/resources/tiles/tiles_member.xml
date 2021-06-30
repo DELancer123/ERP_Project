@@ -13,12 +13,22 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="LogoutLayout"  template="/WEB-INF/views/Login/logout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="baseLayout2"  template="/WEB-INF/views/purchase_manage/reg_receive_inspection/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
    <definition name="baseLayout3"  template="/WEB-INF/views/common/layout2.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="LoginFailed"  template="/WEB-INF/views/Login/loginError.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -133,8 +143,8 @@
    </definition>
    <definition name="main" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
-      <put-attribute name="body" value="/WEB-INF/views/SystemAdmin/reg_company/body.jsp" />
-	  <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+	  <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
    <!-- bom역전개 팝업 -->
    <definition name="/member/reservePop" extends="reservePop">
@@ -148,6 +158,11 @@
       <put-attribute name="body" value="" />
 	  <put-attribute name="side" value="" />
    </definition>
+   <definition name="/member/logout" extends="LogoutLayout">
+      <put-attribute name="title" value="로그인" />
+      <put-attribute name="body" value="" />
+	  <put-attribute name="side" value="" />
+   </definition>
    <definition name="/member/depcodepop" extends="depcodepopLayout">
       <put-attribute name="title" value="로그인" />
       <put-attribute name="body" value="" />
@@ -155,6 +170,11 @@
    </definition>
    <definition name="/member/empcodepop" extends="empcodepopLayout">
       <put-attribute name="title" value="로그인" />
+      <put-attribute name="body" value="" />
+	  <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/loginfailed" extends="LoginFailed">
+      <put-attribute name="title" value="로그인실패" />
       <put-attribute name="body" value="" />
 	  <put-attribute name="side" value="" />
    </definition>
