@@ -90,7 +90,7 @@ public class RegistOperationPerformanceDAOImpl implements RegistOperationPerform
 			if(check.equals("무")) {
 				sqlSession.update("mappers.erp.updMaterialUse", obj);
 				list = sqlSession.selectList("mappers.erp.selectperformanceQuantity", obj);
-				sqlSession.update("mappers.erp.updAddStock", list);
+				sqlSession.update("mappers.erp.updAddStock", list.get(0));
 				message.add("업데이트 완료!");
 				
 			} else {
