@@ -13,6 +13,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="LogoutLayout"  template="/WEB-INF/views/Login/logout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <definition name="baseLayout2"  template="/WEB-INF/views/purchase_manage/reg_receive_inspection/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
@@ -139,7 +144,7 @@
    <definition name="main" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
       <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
-	  <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+	  <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
    <!-- bom역전개 팝업 -->
    <definition name="/member/reservePop" extends="reservePop">
@@ -149,6 +154,11 @@
    </definition>
    <!-- 로그인 -->
    <definition name="/member/login" extends="LoginLayout">
+      <put-attribute name="title" value="로그인" />
+      <put-attribute name="body" value="" />
+	  <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/logout" extends="LogoutLayout">
       <put-attribute name="title" value="로그인" />
       <put-attribute name="body" value="" />
 	  <put-attribute name="side" value="" />

@@ -77,7 +77,13 @@ public class LoginControllerImpl implements LoginController{
 		}
 		return mav;
 	}
-	
+	@Override
+	@RequestMapping(value="/member/logout.do" ,method = RequestMethod.GET)
+	public ModelAndView doLogout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
@@ -108,6 +114,8 @@ public class LoginControllerImpl implements LoginController{
 		}
 		return viewName;
 	}
+
+	
 
 	
 }
