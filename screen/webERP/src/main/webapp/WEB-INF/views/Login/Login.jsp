@@ -176,29 +176,31 @@
                     <span>Web ERP Program ver 1.0</span>
                     <button class="enviroment-setting-btn shadow-light">Environment setting</button>
                 </div>
+			<form id="loginForm">
                 <div class="login-input-container">
                     <div class="login-input-wrap input-ccode" id="ccode">
                         <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
-                        <input placeholder="부서코드" id="depCode" value='${param.depCode }' type="text">
+                        <input placeholder="부서코드" id="depCode" name="dep_Code" value='${param.depCode }' type="text">
                     </div>
                     <div class="login-input-wrap input-cname">
-                        <input placeholder="부서명" value='${param.depName }' type="text">
+                        <input placeholder="부서명" name="dep_Name" value='${param.depName }' type="text">
                     </div>
                     <div class="login-input-wrap input-ecode" id="ecode">
                         <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a>
-                        <input placeholder="사원코드" value='${param.empCode }' type="text">
+                        <input placeholder="사원코드" name="emp_Code" value='${param.empCode }' type="text">
                     </div>
                     <div class="login-input-wrap input-ename">
-                        <input placeholder="사원명" value='${param.empName }' type="text">
+                        <input placeholder="사원명" name="emp_Name" value='${param.empName }' type="text">
                     </div>
                     <div class="login-input-wrap input-password">
                         <!-- <i class="fas fa-key"></i> -->
-                        <input placeholder="사원암호"  type="password">
+                        <input placeholder="사원암호" name="password"  type="password">
                     </div>
                 </div>
                 <div class="login-btn-wrap">
-                    <button class="login-btn">Login</button>
+                    <button class="login-btn" onclick="login()">Login</button>
                 </div>
+             </form>
             </div>
         </div>
     </div>
@@ -225,6 +227,9 @@
           	const newParam = URLSearch.toString();
           	window.location.href = location.pathname+'?' +newParam;
           } 
+    	 }
+    	 function login(){
+    		 document.getElementById('loginForm').action = "${contextPath}/member/doLogin.do";
     	 }
     </script>
 </body>

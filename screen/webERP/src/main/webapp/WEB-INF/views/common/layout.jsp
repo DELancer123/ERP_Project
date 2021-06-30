@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
+<%
+	String id = (String)session.getAttribute("member");
+	String id2 = (String)session.getAttribute("member2");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -249,8 +254,8 @@ input {
 <body>
 	<div id=wrap>
 		<header id=header>
-			<p><img src="/resources/img/kingdomlogo.png" class="logo"/></p>
-			<p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
+			<p><img src="${contextPath }/resources/img/kingdomlogo.png" class="logo"/></p>
+			<p id=info>부서정보:<%=id %> 사원:<%=id2 %></p>
 			<ul id="etc_menu">
 				<li><a href="#">로그아웃</a></li>
 				<li><a href="#">기타메뉴1</a></li>
