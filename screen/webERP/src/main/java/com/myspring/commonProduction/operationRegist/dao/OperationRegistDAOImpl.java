@@ -148,12 +148,9 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
       String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
 
       int idx = ODVO.getDetailVO().size();
-      for(int i = 0; i<idx;i++) {
-         System.out.println("i"+i);
-      System.out.println("idx : "+idx);
-      System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
+      for(int i = 0; i<idx;i++) {     
       result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
-      System.out.println("DAOresult:"+result);
+      sqlSession.update("mappers.erp.deleteStockQuantity",ODVO.getDetailVO().get(i));
       }
       sqlSession.update("mappers.erp.materialSet", workOrderNumber);
       return result;
@@ -230,7 +227,11 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
       int idx = ORVO.getDetailVO().size();
       int result = 0;
       for(int i = 0; i<idx; i++) {         
+      int forwarding = ORVO.getDetailVO().get(i).getPrecisionQuantity()+(ORVO.getDetailVO().get(i).getPrecisionQuantity() / 100 * ORVO.getDetailVO().get(i).getLoss());
+      ORVO.getDetailVO().get(i).setForwardingQuantity(forwarding);
       result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
+      int result2 = sqlSession.update("mappers.erp.updateStockQuantity",ORVO.getDetailVO().get(i));
+      System.out.println("업데이트 확인"+result2);
       }
       if(result != 0) { 
     	  sqlSession.update("mappers.erp.updateMaterialUse",ORVO.getDetailVO().get(0));

@@ -19,6 +19,26 @@
             padding: 0;
             box-sizing: border-box;
         }
+        .btn1 {
+	position: absolute;
+	width: 50px;
+	height: 35px;
+	top: 40px;
+	right: 4%;
+}
+        #suggest{
+display:inline-block; 
+position: absolute; 
+font-size: 24px;
+width: 80%;
+top: 75px;
+left: 160px;
+margin-bottom: 10px;
+border: 0.1px  solid #87cb42;
+ z-index:3;
+ font-weight: bold;
+ background-color:#ffffff; 	
+	}
         a{
             text-decoration: none;
             color: black;
@@ -229,8 +249,16 @@
                 <li><a href="#">기타메뉴2</a></li>
                 <li><a href="#">기타메뉴3</a></li>
             </ul>
-            <input type="text" value=" 메뉴 검색" id="search"/>
-            <input type="button" value="검색" class="search_button"/>
+            <div id="search1">
+				<form name="frmSearch" action="${contextPath}/member/searchmenu.do">
+					<input name="searchWord" class="main_input" id="search" type="text"
+						style="text-align: left" value = ' 메뉴 검색'> <input type="submit"
+						name="search" class="btn1" value="검 색">
+				</form>
+			</div>
+			<div id="suggest">
+				<div id="suggestList"></div>
+			</div>
         </header>
         <nav id = nav1>
             <ul id="gnb">
@@ -332,6 +360,70 @@
         }
         
 
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	var loopSearch=true;
+		$('#search').keyup(function(){
+			if(loopSearch==false)
+				return;
+		var value=$('#search').val();
+		$.ajax({
+			type : 'GET',
+			async : true, //false인 경우 동기식으로 처리한다.
+			url : '/webERP/member/keywordSearch.do',
+			data : { "keyword" : value },
+			success : function(data, textStatus) {
+				
+				var jsonInfo = data.keywordList;
+			    //var jsonInfo = JSON.parse(data);
+				//displayResult(jsonInfo);
+				$("#suggestList").empty();
+				for(var i = 0 ; i<jsonInfo.length ; i++){
+					var str = '';
+						str += 	'<tr align="center" id = "yahoo">';
+						str +=  '<td><a href = "#">'+ jsonInfo[i].menu + '</a></td>';  
+						str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+jsonInfo[i].menu+'"></td>';  
+						str +=	'</tr>';
+						//반복문을 사용하여 searchItem table에 추가
+					$("#suggestList").append(str);
+					}
+				show('suggest');
+				
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+				
+			}
+		}); //end ajax	
+	});
+	
+	$(document).on("click", "#yahoo", function (e){
+		var initCode = 	$(this).find('input[id=iCode]').val();	
+		$('input[name=searchWord]').val(initCode);
+		 hide('suggest');
+	});
+		
+	function show(elementId) {
+		 var element = document.getElementById(elementId);
+		 if(element) {
+		  element.style.display = 'block';
+		 }
+		}
+	
+	function hide(elementId){
+	   var element = document.getElementById(elementId);
+	   if(element){
+		  element.style.display = 'none'; 
+	   }
+	}
+
+        
     </script>
 </body>
 </html>
