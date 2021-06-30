@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +35,7 @@ text-decoration:none
 </style>
 </head>
 <body>
-	<h1 class="error_h1">죄송합니다. 유효하지 않은 주소입니다./h1>
+	<h1 class="error_h1">죄송합니다. 잘못된 요청. 잘못된 구문으로 인해 서버에서 요청을 할 수 없습니다.</h1>
 	<div class="area_btn">
 		<a href="javascript:history.back(-1)" class="link">이전 화면으로</a>
 </div>
