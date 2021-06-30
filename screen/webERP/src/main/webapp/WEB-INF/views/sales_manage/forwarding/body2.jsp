@@ -66,7 +66,7 @@
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
                     <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
-                    	<input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="itemview()" readonly/></a></td>
+                    	<input type="text" class = "relCode" name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="itemview()" readonly/></a></td>
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
                     <input type="hidden" value="${param.general_Customer_Name}"></td>
@@ -88,7 +88,7 @@
            </form>
            </div>
         </container2>
-        
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript">
         var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
@@ -173,7 +173,7 @@
             document.getElementById('dataForm').action = "${contextPath}/member/addforward.do";
            document.getElementById('dataForm').submit();  
      }
-    	function itemview(){
+    	/* function itemview(){
             var row = forwardingTable.insertRow(); 
             const URLSearch = new URLSearchParams(location.search);
          const newParam = URLSearch.toString();
@@ -187,7 +187,54 @@
            document.getElementById('dataForm').action = "${contextPath}/member/itemtableview.do";
           document.getElementById('dataForm').submit();  
 
-    	}
+    	} */
+    	
+    	   $('.relCode').dblclick(function(e) {
+    	    	
+//   	        var checkMoveNum = document.getElementById('moveNum').value;
+      //     deleteTbody3();
+           
+           var code = $(this).val();
+       	$.ajax({ type: "GET",
+       		url: "/webERP/member/itemtableview.do",
+       		data : {	"relCode" : code},
+       		//dataType : 'text',
+       		success: function(responseData){
+       			var data = responseData.subForward;
+       			
+       			// id=itemPop 안의 모든 요소 지우기
+        			$("#itemPop").empty();
+       			
+       		/* 	var tbody4index = 0; */
+       			for(var i =0; i<data.length; i++){
+       				var html = '';
+           			html += '<tr>';  	
+           			html += '<td><input type = "checkbox" name = ""  value = "'+data[i].code+'" "></td>';  		
+           			html += '<td><input type = "text" name = ""  value = "'+data[i].corVO.item_code +'" "></td>';  		
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.item_name +'"></td>';  			
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.stand+'"></td>';  			
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.orderQuant+'"></td>';  			
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.unit+'"></td>';  			
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.price+'"></td>'; 
+           			html += '<td><input type = "text" name = "" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
+           			html += '<td><input type = "text" name = "" value = "'+((data[i].corVO.price*data[i].corVO.orderQuant)*0.1)+'"></td>';
+           			html += '<td><input type = "text" name = "" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
+           			html += '<td><input type = "date" name = "" value = "'+data[i].corVO.dueDate+'"></td>';  			
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.expDate+'"></td>';  			
+           			html += '<td><input type = "text" name = "" value = "'+data[i].corVO.orderOX+'"></td>';  			
+           			html += '<td><input type = "date" name = "" value = "'+data[i].corVO.inspection+'"></td>';  			
+           			html += '</tr>';
+           			//  id=itemPop 안에 넣기
+           			$("#itemPop").append(html);
+       			} 
+       			 
+       			/* addTbody3(); */
+       		},
+       		error: function(request,status,error){
+       	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       	       }
+       	});
+       });
     	
 		/*수정버튼*/
         function updateRow() {

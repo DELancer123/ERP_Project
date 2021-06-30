@@ -57,11 +57,11 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	public void removeForward(String[] noary) throws DataAccessException {
 		forwardDAO.delSupForward(noary);	
 	}
-	
+	  
 	@Override
-	public void submitItemInfo(String[] noary) throws DataAccessException {
+	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException {
 		
-		forwardDAO.submitSubReg(noary);	
+		return forwardDAO.submitSubReg(relCode);	
 	}//submitSubReg
 
 

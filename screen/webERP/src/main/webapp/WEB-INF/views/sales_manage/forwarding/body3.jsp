@@ -60,18 +60,21 @@
             <table id="view">
                 <thead>
                     <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
-                    <td>품번</td>
+                   <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
-                    <td>주문단위수량</td>
+                    <td>주문수량</td>
                     <td>단위</td>
                     <td>단가</td>
                     <td>공급가</td>
-                    <td>부가세</td>
-                    <td>합계액</td>
+					<td>부가세</td>
+					<td>합계액</td>
+                    <td>납기일</td>
+                    <td>출하 예정일</td>
                     <td>주문 유무</td>
-                    <td>합계액</td>
-                </thead>
+                    <td>검사</td>
+
+                </thead><%-- 
                  <c:forEach var="subForward" items="${submitItemList}" varStatus="status">
                 <tbody id="updsubForward" align="center">
                     <td><input type="checkbox" value = "${subForward.relCode}" name="content"/></td>
@@ -79,16 +82,19 @@
                     <td><input type="text"  name="ListVO[${status.index}].corVO.item_name" value="${subForward.corVO.item_name}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].corVO.stand" value="${subForward.corVO.stand}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].corVO.unit" value="${subForward.corVO.unit}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].corVO.unit" value="${subForward.corVO.deadLine}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].corVO.deadLine" value="${subForward.corVO.deadLine}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].corVO.deadLine" value="${subForward.corVO.deadLine}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].corVO.deadLine" value="${subForward.corVO.deadLine}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].corVO.deadLine" value="${subForward.corVO.deadLine}" readonly /></td>
-                    
+                    <td><input type="date" name="ListVO[${status.index}].corVO.dueDate" value="${subForward.corVO.dueDate}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].corVO.orderQuant" value="${subForward.corVO.orderQuant}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].corVO.price" value="${subForward.corVO.price}" readonly /></td>
+                    <td><input type="date" name="ListVO[${status.index}].corVO.expDate" value="${subForward.corVO.expDate}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].corVO.inspection" value="${subForward.corVO.inspection}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].corVO.orderOX" value="${subForward.corVO.orderOX}" readonly /></td>                                        
                     <td><input type="text" name="ListVO[${status.index}].note" value="${subForward.note}" readonly /></td>
                 </tbody>
-                </c:forEach>
-                    <tbody id="insertsubForward" align="center">
+                </c:forEach> --%>
+                
+                
+                
+           <%--          <tbody id="insertsubForward" align="center">
                     <td><input type="checkbox"/></td>
                     <td><input type="text" id=item_code name="ListVO[${fn:length(forward)}].corVO.item_code" value="${item_code}" readonly/></td>
                     <td><input type="date" id="item_name" name="ListVO[${fn:length(forward)}].corVO.item_name" value="${item_name}" readonly /></td>
@@ -99,8 +105,9 @@
                     <td><input type="date" id="dueDate" name="ListVO[${fn:length(forward)}].corVO.dueDate" value="${dueDate}" readonly /></td>
                     <td><input type="text" id="expDate" name="ListVO[${fn:length(forward)}].corVO.expDate" value="${expDate}" readonly /></td>
                     <td><input type="text" id="inspection" name="ListVO[${fn:length(forward)}].corVO.inspection" value="${inspection}" readonly /></td>
-                </tbody>
+                </tbody> --%>
             </table>
+            <table id = "itemPop"></table>
         </container3>
 </body>
 </html>

@@ -1901,7 +1901,7 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	<select id="submitItemForward" parameterType="String">
+	<select id="submitItemForward" parameterType="String" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>

@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.salesmanage.forward.reg.service.ForwardRegService;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
 
@@ -110,27 +113,19 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		return mav;
 	}
 	
-
+	
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/member/itemtableview.do",method = RequestMethod.GET)
-	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String code = (String)request.getParameter("no");
-		String viewName = getViewName(request);
-		String[] codeary = code.split(",");
-		System.out.println(codeary+"codeary");
-		System.out.println(code+"code");
-		forwardRegService.removeForward(codeary);
-		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
-		
+	public ModelAndView itemTableView(@RequestParam("relCode")String relCode) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		List<ForwardVO> subForward = null;
+		subForward = forwardRegService.submitItemInfo(relCode);
+		mav.addObject("subForward", subForward);
+		mav.setViewName("jsonView");
+
 		return mav;
-		
-//		request.setCharacterEncoding("utf-8");
-//		StringBuffer url = request.getRequestURL();
-//		int result = 0;
-//		result = forwardRegService.addForward(forwardVO);
-//		String resulturl = url.toString();
-//		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
-//		return mav;
+
 	}
 	
 	@Override
