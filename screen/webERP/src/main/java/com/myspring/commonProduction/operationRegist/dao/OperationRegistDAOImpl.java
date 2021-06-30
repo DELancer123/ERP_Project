@@ -231,6 +231,8 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
       int result = 0;
       for(int i = 0; i<idx; i++) {         
       result = sqlSession.insert("mappers.erp.insertReleaseData",ORVO.getDetailVO().get(i));
+      int result2 = sqlSession.update("mappers.erp.updateStockQuantity",ORVO.getDetailVO().get(i));
+      System.out.println("업데이트 확인"+result2);
       }
       if(result != 0) { 
     	  sqlSession.update("mappers.erp.updateMaterialUse",ORVO.getDetailVO().get(0));
