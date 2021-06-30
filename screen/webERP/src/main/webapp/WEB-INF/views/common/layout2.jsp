@@ -103,6 +103,13 @@ border: 0.1px  solid #87cb42;
  font-weight: bold;
  background-color:#ffffff; 	
 	}
+	.btn1 {
+	position: absolute;
+	width: 50px;
+	height: 35px;
+	top: 40px;
+	right: 4%;
+}
         .search_button{
             position: absolute;
             width: 50px;

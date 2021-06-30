@@ -23,6 +23,13 @@
             text-decoration: none;
             color: black;
         }
+        .btn1 {
+	position: absolute;
+	width: 50px;
+	height: 35px;
+	top: 40px;
+	right: 4%;
+}
         #wrap{
             margin: 0 auto;
             border: 1px solid black;
