@@ -1501,9 +1501,42 @@ ORDER BY out.workordernumber]]>
 	<resultMap id="sujuView" type="StockManageVO">
 		<result property="ordersNum" column="ordersNum" />
 		<result property="ordersdate" column="ordersdate" />
-		<result property="customerCode" column="General_Customer_Code " />
+		<result property="General_Customer_Code" column="General_Customer_Code " />
 		<result property="tax" column="tax" />
 		<result property="note" column="Note" />
+		<result property="moveNum" column="Move_Num" />
+		<result property="moveDate" column="Move_Date" />
+		<result property="outputBusiness" column="Output_Business" />
+		<result property="outputWarehouse" column="Output_Warehouse" />
+		<result property="outputPlace" column="Output_Place" />
+		<result property="inputBusiness" column="Input_Business" />
+		<result property="inputWarehouse" column="Input_Warehouse" />
+		<result property="inputPlace" column="Input_Place" />
+		<result property="no" column="NO" />	
+		<result property="itemCode" column="Item_Code" />	
+		<result property="itemName" column="Item_Name" />	
+		<result property="standard" column="Standard" />	
+		<result property="inventoryUnit" column="Inventory_Unit" />	
+		<result property="moveQuantity" column="Move_Quantity" />	
+		<result property="movePrice" column="Move_Price" />	
+		<result property="modNum" column="Mod_Num" />	
+		<result property="modDate" column="Mod_Date" />	
+		<result property="houseCode" column="House_Code" />	
+		<result property="locationCode" column="Location_Code" />	
+		<result property="generalCustomerCode" column="General_Customer_Code" />	
+		<result property="kind" column="Kind" />	
+		<result property="modQuantity" column="Mod_Quantity" />	
+		<result property="setCode" column="SET_Code" />	
+		<result property="inputQuantity" column="Input_Quantity" />	
+		<result property="outputQuantity" column="Output_Quantity" />	
+		<result property="purchasePrice" column="Purchase_Price" />	
+		<result property="salesPrice" column="Sales_Price" />	
+		<result property="quantity" column="Quantity" />	
+		<result property="type" column="Type" />	
+		<result property="typeCode" column="Type_Code" />	
+		<result property="typeName" column="Type_Name" />	
+		
+		<result property="busCode" column="Output_Business"/>
 	</resultMap>
 	
 	
@@ -1823,7 +1856,7 @@ ORDER BY out.workordernumber]]>
   </delete>
 
 	<select id="allSupForward" resultMap="forward">
-		<![CDATA[select *from CSM_SM_Rel_Pro]]>
+		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL]]>
 	</select>
 	<insert id="insertSupForward" parameterType="forwardVO">
 		<![CDATA[
@@ -1868,10 +1901,10 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	<select id="submitItemForward" parameterType="forwardVO">
+	<select id="submitItemForward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
-		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
+		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
 	</select>
 	
 	<!-- 출고현황(재원) -->

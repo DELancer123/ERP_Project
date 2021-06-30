@@ -62,8 +62,7 @@
             </table>
             <div id="button">
                 <button id="search">조회</button>
-                <button id="submit"  onclick="submitClick(this.form)">적용</button>
-                <input type="hidden" name="inputNo"/>
+                <button id="submit">적용</button>
                 <input type="reset" id="reset" value="초기화"/>
             </div>
         </div>
@@ -85,29 +84,28 @@
 				</table>
 			</div>
 		</div>
+	</form>
 	<script>
-    var submit_button = document.getElementById("submit");
-    		var text_code = document.getElementById("code");
-    		var text_name = document.getElementById("name");
+    	var submit_button = document.getElementById("submit");
+    	var text_code = document.getElementById("code");
+    	var text_name = document.getElementById("name");
     		
     	function popFunction(code,name){
     			text_code.value = code;
     			text_name.value = name;
-    			
     	}
-    	function submitClick(form){
-    		opener.setChildValue(text_name.value);
-			window.close();
-    	}
+    	
     	submit_button.onclick = function(){
-    		var url = window.opener.document.location.href;
-			var url_arr = url.split('?');
-			opener.parent.location=url_arr[0] + '?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value+'&&submit='+0;
+			opener.parent.location='http://localhost:8090/webERP/member/forwarding.do?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value+'&&submit='+0;
     		window.close();
     	}
+    	
+    	/* submit_button.onclick = function(){
+    		opener.setChildValue(text_name.value);
+			window.close();
+    	} */
     </script>
 
 
-	</form>
 </body>
 </html>
