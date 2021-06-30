@@ -11,6 +11,7 @@ import com.myspring.salesmanage.forward.vo.ForwardVO;
 @Component("corVO")
 public class CorVO {
 	
+	private String no;
 	private String relCode;
 	private String ordCode;
 	private String item_code;
@@ -159,6 +160,16 @@ public class CorVO {
 
 	public void setVatprice(int vatprice) {
 		this.vatprice = vatprice;
+	}
+
+
+	public String getNo() {
+		return no;
+	}
+
+
+	public void setNo(String no) {
+		this.no = no;
 	}
 	
 }

@@ -21,6 +21,8 @@ public interface ForwardRegService {
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	//delete by forward
 	public void removeForward(String[] noary) throws DataAccessException;
+	//update by forward ins
+	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 	
 	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException;
 	

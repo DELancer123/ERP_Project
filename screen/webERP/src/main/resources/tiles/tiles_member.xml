@@ -355,7 +355,7 @@
       <put-attribute name="side" value="" />
    </definition>
      <definition name="/member/salsplanhelper" extends="PopupLayoutSalesplanSta">
-      <put-attribute name="title" value="판매계획현황팝업" />
+      <put-attribute name="title" value="아이템팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>

@@ -70,9 +70,9 @@
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
                     <input type="hidden" value="${param.general_Customer_Name}"></td>
-                    <td><input type="text" name="ListVO[${status.index}].releaseOX" value="${supForward.releaseOX}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].releaseOX" value="${supForward.releaseOX}"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}"  /></td>
+                    <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" /></td>
                 </tbody>
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
@@ -172,28 +172,8 @@
             document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/addforward.do";
            document.getElementById('dataForm').submit();  
-     }
-    	/* function itemview(){
-            var row = forwardingTable.insertRow(); 
-            const URLSearch = new URLSearchParams(location.search);
-         const newParam = URLSearch.toString();
-        var link = location.pathname +'?'+newParam;
-          var linkPath = document.createElement("input");
-           linkPath.setAttribute("type","hidden");
-           linkPath.setAttribute("name","path");
-           linkPath.setAttribute("value", link);
-           
-           document.getElementById('dataForm').appendChild(linkPath);
-           document.getElementById('dataForm').action = "${contextPath}/member/itemtableview.do";
-          document.getElementById('dataForm').submit();  
-
-    	} */
-    	
-    	   $('.relCode').dblclick(function(e) {
-    	    	
-//   	        var checkMoveNum = document.getElementById('moveNum').value;
-      //     deleteTbody3();
-           
+     }    	
+    	   $('.relCode').dblclick(function(e) {           
            var code = $(this).val();
        	$.ajax({ type: "GET",
        		url: "/webERP/member/itemtableview.do",
@@ -208,8 +188,8 @@
        		/* 	var tbody4index = 0; */
        			for(var i =0; i<data.length; i++){
        				var html = '';
-       				html += '<tr>';  	
-           			html += '<td><input type = "checkbox" name = ""  value = "'+data[i].code+'" "></td>';  		
+       				html += '<tr>';  
+           			html += '<td><input type = "checkbox" name = "ListVO[${status.index}].corVO.no"  value = "'+data[i].no+'" "></td>';  		
            			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_code"  value = "'+data[i].corVO.item_code +'" "></td>';  		
            			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_name" value = "'+data[i].corVO.item_name +'"></td>';  			
            			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.stand" value = "'+data[i].corVO.stand+'"></td>';  			
@@ -238,7 +218,7 @@
     	
 		/*수정버튼*/
         function updateRow() {
-           var row = workOrderTable.insertRow(); 
+           var row = updsupForward.insertRow(); 
            const URLSearch = new URLSearchParams(location.search);
            const newParam = URLSearch.toString();
             var link = location.pathname +'?'+newParam;
@@ -247,7 +227,7 @@
           linkPath.setAttribute("name","path");
           linkPath.setAttribute("value", link);
             document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updforward.do";
+            document.getElementById('dataForm').action = "${contextPath}/member/updForward.do";
           document.getElementById('dataForm').submit();  
         }
     	

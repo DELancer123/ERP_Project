@@ -54,6 +54,11 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 
 	@Override
+	public int updForward(ForwardVO forwardVO) throws DataAccessException {
+		return forwardDAO.updForward(forwardVO);
+	}
+	
+	@Override
 	public void removeForward(String[] noary) throws DataAccessException {
 		forwardDAO.delSupForward(noary);	
 	}
@@ -63,6 +68,8 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		
 		return forwardDAO.submitSubReg(relCode);	
 	}//submitSubReg
+
+
 
 
 }

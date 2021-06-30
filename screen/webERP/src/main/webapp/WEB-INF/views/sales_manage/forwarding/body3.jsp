@@ -89,7 +89,7 @@
                     <td><input type="text" id="publicSumPrice" value="${corVO.price*corVO.orderQuant}" readonly /></td>
                     <td><input type="date" id="dueDate" name="ListVO[${fn:length(forward)}].corVO.dueDate" value="${corVO.dueDate}" readonly /></td>
                     <td><input type="date" id="expDate" name="ListVO[${fn:length(forward)}].corVO.expDate" value="${corVO.expDate}" readonly /></td>
-                    <td><input type="text" id="expDate" name="ListVO[${fn:length(forward)}].corVO.expDate" value="${corVO.orderOX}" readonly /></td>
+                    <td><input type="text" id="orderOX" name="ListVO[${fn:length(forward)}].corVO.orderOX" value="${corVO.orderOX}" readonly /></td>
                     <td><input type="text" id="inspection" name="ListVO[${fn:length(forward)}].corVO.inspection" value="${corVO.inspection}" readonly /></td>
                 </table>
          

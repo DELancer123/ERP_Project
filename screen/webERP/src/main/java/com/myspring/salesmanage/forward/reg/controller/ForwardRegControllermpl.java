@@ -9,13 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.StockManage.vo.StockManageVO;
 import com.myspring.salesmanage.forward.reg.service.ForwardRegService;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
 
@@ -127,7 +127,16 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		return mav;
 
 	}
-	
+	@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = forwardRegService.updForward(forwardVO);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
 	@Override
 	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub  addforward  updforward

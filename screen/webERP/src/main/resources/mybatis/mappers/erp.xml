@@ -1832,16 +1832,16 @@ ORDER BY out.workordernumber]]>
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
-		<result property="deadLine" column="deadLine" />
-		<result property="releaseOX" column="releaseOX" />
-		<result property="note" column="note" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
+		<result property="releaseOX" column="releaseOX" />
+		<result property="deadLine" column="deadLine" />
+		<result property="note" column="note" />
 		<result property="general_Customer_Name" column="General_Customer_Name" />
 		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
 
 	<select id="submitSupForward" resultMap="forward" parameterType="String">
-		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
+		<![CDATA[select releaseNum,releaseDate,general_Customer_Code,releaseOX,deadLine,note  from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
 	<select id="selCustforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL
@@ -1874,8 +1874,8 @@ ORDER BY out.workordernumber]]>
 		<result property="relCode" column="releaseNum" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
 		   <collection property="corVO" javaType="CorVO">
+        	<result property="no" column="NO" />
         	<result property="relCode" column="code" />
-        	<id property="no" column="NO" />
         	<result property="item_code" column="item_code" />
         	<result property="item_name" column="item_name" />        
         	<result property="stand" column="standard" />
