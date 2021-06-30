@@ -122,6 +122,13 @@ request.setCharacterEncoding("UTF-8");
             text-align: center;
         }
 </style>
+<script>
+   window.onload = function(){
+	   l_sub2.style.display = "block";
+	   l_sub2.style.position = "relative";
+	   l_sub2.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 		<container1 id = contents1>
