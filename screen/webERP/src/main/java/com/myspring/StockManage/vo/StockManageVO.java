@@ -11,7 +11,6 @@ public class StockManageVO {
 	
 	String 	moveNum;			//�̵���ȣ
 	Date 	moveDate;			//�̵�����
-	String 	outputWarehouse;	//���â��
 	String 	outputPlace;		//������
 	String 	outputBusiness;		//������
 	String 	inputWarehouse;		//�԰�â��
@@ -131,12 +130,6 @@ public class StockManageVO {
 	}
 	public void setMoveDate(Date moveDate) {
 		this.moveDate = moveDate;
-	}
-	public String getOutputWarehouse() {
-		return outputWarehouse;
-	}
-	public void setOutputWarehouse(String outputWarehouse) {
-		this.outputWarehouse = outputWarehouse;
 	}
 	public String getOutputPlace() {
 		return outputPlace;
@@ -295,7 +288,7 @@ public class StockManageVO {
 		
 		String valueStr = "moveNum : " + moveNum
 				        + ", moveDate : " + moveDate
-				        + ", outPutWare : " + outputWarehouse
+//				        + ", outPutWare : " + outputWarehouse
 				        + ", outPutPlace : " + outputPlace
 				        + ", inputWare : " + inputWarehouse
 				        + ", inputPlace : " + inputPlace
@@ -330,7 +323,15 @@ return valueStr;
 	// ���ֵ�� ��Ʈ
 	String ordersNum;
 	Date   ordersdate;
-	String customerCode;
+	String General_Customer_Code;
+	public String getGeneral_Customer_Code() {
+		return General_Customer_Code;
+	}
+	public void setGeneral_Customer_Code(String general_Customer_Code) {
+		General_Customer_Code = general_Customer_Code;
+	}
+
+
 	String tax;
 	String Note;
 	String code;
@@ -406,10 +407,10 @@ return valueStr;
 		this.ordersdate = ordersdate;
 	}
 	public String getCustomerCode() {
-		return customerCode;
+		return General_Customer_Code;
 	}
 	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
+		this.General_Customer_Code = customerCode;
 	}
 	public String getTax() {
 		return tax;

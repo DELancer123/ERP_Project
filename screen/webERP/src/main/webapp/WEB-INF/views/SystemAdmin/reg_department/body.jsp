@@ -139,7 +139,7 @@
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" style="background-color:rgb(255, 255, 149);" id="department_Name1" maxlength="50"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="workplace_Code1" value='${param.workplace_Code}' readonly maxlength="12"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" style="background-color:rgb(255, 255, 149);" id="workplace_Name1" value='${param.workplace_Name}' readonly/ maxlength="50"></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="sector_Code1" ondblclick="searchsector()" readonly value='${param.sector_Code}' maxlength="12"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="sector_Code1" onfocus="searchsector()" readonly value='${param.sector_Code}' maxlength="12"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" style="background-color:rgb(255, 255, 149);" id="sector_Name1" readonly value='${param.sector_Name}' maxlength="50"/></td>
     	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" style="background-color:rgb(255, 255, 149);" id="usedate1" /></td>
     </tr>
@@ -150,6 +150,13 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
+        var department_Code1 = document.getElementById("department_Code1");
+        var department_Name1 = document.getElementById("department_Name1");
+        var workplace_Code1 = document.getElementById("workplace_Code1");
+        var workplace_Name1 = document.getElementById("workplace_Name1");
+        var sector_Code1 = document.getElementById("sector_Code1");
+        var sector_Name1 = document.getElementById("sector_Name1");
+        var usedate1 = document.getElementById("usedate1");
       //체크박스함수
     	function selectAll1(selectAll1){
         	const checkbox = document.getElementsByName('checkedContent');
@@ -189,20 +196,20 @@
     var delConfirm = confirm('수정하실껀가요?');
    if(delConfirm){
       alert('수정 완료되셨습니다!');
+       console.log('123')
         var table2 = document.getElementById('table2');
           var row = table2.insertRow(); 
           const URLSearch = new URLSearchParams(location.search);
           URLSearch.set('submit', '1');
          const newParam = URLSearch.toString();
          var link = location.pathname + '?' + newParam;
-      document.getElementById("workplace_Code").disabled = true;      
-      document.getElementById("workplace_Name").disabled = true;
-      document.getElementById("worcompany_Registration_Number").disabled = true;
-      document.getElementById("worrepresentatives_Name").disabled = true;
-      document.getElementById("zipcode").disabled = true;
-      document.getElementById("address1").disabled = true;
-      document.getElementById("worupstate").disabled = true;
-      document.getElementById("worindustry").disabled = true;
+      document.getElementById("department_Code1").disabled = true;      
+      document.getElementById("department_Name1").disabled = true;
+      document.getElementById("workplace_Code1").disabled = true;
+      document.getElementById("workplace_Name1").disabled = true;
+      document.getElementById("sector_Code1").disabled = true;
+      document.getElementById("sector_Name1").disabled = true;
+      document.getElementById("usedate1").disabled = true;
       var Input = document.createElement("input");
       Input.setAttribute("type", "hidden");
       Input.setAttribute("name", "path");

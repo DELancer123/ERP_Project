@@ -157,7 +157,7 @@
                 <tbody>
                     <td><input type="checkbox" value='${item.item_Code }' id="chec-k" name="checkedContent"/></td>
                     <td>
-                        <input type="text" value='${item.item_Code }' ondblclick="searchView(this.value)">
+                        <input type="text" value='${item.item_Code }' onfocus="searchView(this.value)">
                     </td>
                     <td>
                         <input type="text" value='${item.item_Name }'>

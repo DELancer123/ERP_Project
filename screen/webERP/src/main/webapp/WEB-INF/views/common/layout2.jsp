@@ -246,9 +246,9 @@ border: 0.1px  solid #87cb42;
             <p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
             <ul id="etc_menu">
                 <li><a href="#">로그아웃</a></li>
-                <li><a href="#">기타메뉴1</a></li>
+               <!--  <li><a href="#">기타메뉴1</a></li>
                 <li><a href="#">기타메뉴2</a></li>
-                <li><a href="#">기타메뉴3</a></li>
+                <li><a href="#">기타메뉴3</a></li> -->
             </ul>
             <div id="search1">
 				<form name="frmSearch" action="${contextPath}/member/searchmenu.do">
