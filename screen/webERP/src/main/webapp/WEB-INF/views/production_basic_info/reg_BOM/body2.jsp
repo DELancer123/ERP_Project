@@ -222,26 +222,35 @@
   		     articleNOInput.setAttribute("name","path");
   		     articleNOInput.setAttribute("value", link);
   		     
-  		  // if (isEmpty(itemNumber)){
-	      	//	alert("품번값이 비어져있습니다. 값을 추가해주세요!");
-	      		//document.getElementById("itemNumber").focus();
+  		   var itemNumber = document.getElementById("itemNumber").value;
+  	      var precisionQuantity = document.getElementById("precisionQuantity").value;
+  	      var loss = document.getElementById("loss").value;
+  	     	  var actualQuantity = document.getElementById('actualQuantity').value;
+  		     
+  		   if (isEmpty(itemNumber)){
+	      		alert("품번값이 비어져있습니다. 값을 추가해주세요!");
+	      		document.getElementById("itemNumber").focus();
 
-	  		//}
-  		   //else 
+	  		}
+  		   else 
   			   if (isEmpty(precisionQuantity)){
 	      		alert("정미수량값이 비어져있습니다. 값을 추가해주세요!");
 	      		document.getElementById("precisionQuantity").focus();
+	      		return false;
 
  	  		}
 		   else if(isEmpty(loss)){
 	      		alert("loss값이 비어져있습니다. 값을 추가해주세요!");		            	
 	      		document.getElementById("loss").focus();
+	      		return false;
 		   }
 		   else if(isEmpty(actualQuantity)){
 	      		alert("필요수량값이 비어져있습니다. 값을 추가해주세요!");		            	
 	      		document.getElementById("actualQuantity").focus();
+	      		return false;
 		   }
 		   else{
+			   alert(isEmpty(precisionQuantity));
   		     document.getElementById('regBOM').appendChild(articleNOInput);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
