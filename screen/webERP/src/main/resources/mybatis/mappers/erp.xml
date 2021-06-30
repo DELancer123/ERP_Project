@@ -496,7 +496,20 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	<select id="selectProductionPlanList" parameterType="CommitOperationInstructionVO" resultMap="selectProductionPlanViewResult">
 		<![CDATA[select * from CPM_PM_Pro_Pla_Reg where scheduleddateofoperation between #{startDate} and #{endDate}]]>
 	</select>
-	 
+	 	 
+	<!-- 재공현황 파트 -->
+	
+	<resultMap id="selectWorkInProcessResult" type="WorkInProcessVO">
+		<result property="itemCdoe" column="item_Code" />
+		<result property="itemName" column="item_Name" />
+		<result property="standard" column="standard" />
+		<result property="inventoryUnit" column="inventory_Unit" />
+		<result property="quantity" column="ForwardingQuantity" />
+	</resultMap>
+	
+	<select id="selectAllWorkInProcess" resultMap="selectWorkInProcessResult">
+		<![CDATA[select * from CPM_PM_PRO_MAT_FOR_DET ]]
+	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />

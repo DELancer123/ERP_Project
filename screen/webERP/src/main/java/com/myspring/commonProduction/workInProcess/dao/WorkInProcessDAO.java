@@ -9,4 +9,8 @@ import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperati
 
 public interface WorkInProcessDAO {
 
+	public List WorkInProcess() throws DataAccessException;
+	public List WorkInProcessCondition(String itemCode) throws DataAccessException;
+
+
 }
