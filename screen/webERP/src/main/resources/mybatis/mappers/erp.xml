@@ -860,7 +860,6 @@ order by bom.parent_item_code]]>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
-
 	</select>
 	
 	<update id="updateOrderClosing">
@@ -885,6 +884,16 @@ order by bom.parent_item_code]]>
 			where order_no=#{order_no}]]>
 	</update>
 	
+	<select id="itemList" resultMap="regitemResult">
+		<![CDATA[select item_Code,item_Name from SM_BIM_Ite_Reg]]>	
+	</select>
+	
+	 <select id="NameSearch" resultMap="regitemResult">
+		<![CDATA[ select item_Code, item_Name
+		  	from SM_BIM_Ite_Reg
+		 	 where item_Name like '%'||#{item_Name}||'%']]>
+	</select>
+
 	
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />

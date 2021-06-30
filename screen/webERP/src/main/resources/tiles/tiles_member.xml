@@ -54,6 +54,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="OrderClosingbaseLayout"  template="/WEB-INF/views/purchase_manage/order_closing/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <!-- bom 역전개 팝업 레이아웃 -->
    <definition name="reservePop"  template="/WEB-INF/views/production_basic_info/reserve_BOM/pop.jsp">
       <put-attribute name="title" value="" />
@@ -237,7 +242,17 @@
       <put-attribute name="side" value="" />
    </definition>
    
-
+	<definition name="OrderClosinPopupLayout"  template="/WEB-INF/views/purchase_manage/order_closing/itemPop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/itemPop" extends="OrderClosinPopupLayout">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   
    
    
    <!-- 생산파트 popup layout -->
@@ -596,7 +611,7 @@
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/receive_process/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
-	<definition name="/member/orderclosing" extends="baseLayout">
+	<definition name="/member/orderclosing" extends="OrderClosingbaseLayout">
       <put-attribute name="title" value="발주마감처리" />
       <put-attribute name="body" value="/WEB-INF/views/purchase_manage/order_closing/body.jsp" />
 	  <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
