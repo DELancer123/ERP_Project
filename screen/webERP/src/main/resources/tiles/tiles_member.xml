@@ -23,6 +23,11 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
+   <definition name="LoginFailed"  template="/WEB-INF/views/Login/loginError.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
    <!-- 생산파트 레이아웃 -->
    <definition name="baseLayout4"  template="/WEB-INF/views/common/commonProductionLayout.jsp">
 	  <put-attribute name="title" value="" />
@@ -155,6 +160,11 @@
    </definition>
    <definition name="/member/empcodepop" extends="empcodepopLayout">
       <put-attribute name="title" value="로그인" />
+      <put-attribute name="body" value="" />
+	  <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/loginfailed" extends="LoginFailed">
+      <put-attribute name="title" value="로그인실패" />
       <put-attribute name="body" value="" />
 	  <put-attribute name="side" value="" />
    </definition>
