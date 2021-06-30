@@ -14,12 +14,16 @@ public interface ForwardRegService {
 	public List listCust() throws DataAccessException;
 	//list by forward regstration
 	public List submitCust(String custCode) throws DataAccessException;
-	
+	public List listSupForward() throws DataAccessException;
 	//list by forward regstration
 	public List submitCustByInsert(String custCode) throws DataAccessException;
 	//add by forward
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	//delete by forward
 	public void removeForward(String[] noary) throws DataAccessException;
+	//update by forward ins
+	public int updForward(ForwardVO forwardVO) throws DataAccessException;
+	
+	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException;
 	
 }

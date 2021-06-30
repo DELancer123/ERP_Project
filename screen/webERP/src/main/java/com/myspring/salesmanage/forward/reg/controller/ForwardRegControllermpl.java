@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.salesmanage.forward.reg.service.ForwardRegService;
@@ -33,8 +36,10 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	public ModelAndView submitCust(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		List custList = forwardRegService.listCusts();
+		List supForwardList  = forwardRegService.listSupForward();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("custList", custList);
+		mav.addObject("supForwardList", supForwardList);
 
 		return mav;
 	}
@@ -107,20 +112,31 @@ public class ForwardRegControllermpl implements ForwardRegController{
 
 		return mav;
 	}
-
+	
+	
 	@Override
+	@ResponseBody
 	@RequestMapping(value="/member/itemtableview.do",method = RequestMethod.GET)
-	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		// TODO Auto-generated method stub  submitForwardCustReg
+	public ModelAndView itemTableView(@RequestParam("relCode")String relCode) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		List<ForwardVO> subForward = null;
+		subForward = forwardRegService.submitItemInfo(relCode);
+		mav.addObject("subForward", subForward);
+		mav.setViewName("jsonView");
+
+		return mav;
+
+	}
+	@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		StringBuffer url = request.getRequestURL();
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
 		int result = 0;
-		result = forwardRegService.addForward(forwardVO);
-		String resulturl = url.toString();
-		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		result = forwardRegService.updForward(forwardVO);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
-	
 	@Override
 	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub  addforward  updforward
