@@ -148,12 +148,9 @@ public class OperationRegistDAOImpl implements OperationRegistDAO{
       String workOrderNumber = sqlSession.selectOne("mappers.erp.selectWorkOrderNumber", ODVO.getDetailVO().get(0));
 
       int idx = ODVO.getDetailVO().size();
-      for(int i = 0; i<idx;i++) {
-         System.out.println("i"+i);
-      System.out.println("idx : "+idx);
-      System.out.println("다오 출력 확인"+ODVO.getDetailVO().get(i).getForwardingNumber());
+      for(int i = 0; i<idx;i++) {     
       result = sqlSession.update("mappers.erp.deleteCommitOperation",ODVO.getDetailVO().get(i));
-      System.out.println("DAOresult:"+result);
+      sqlSession.update("mappers.erp.deleteStockQuantity",ODVO.getDetailVO().get(i));
       }
       sqlSession.update("mappers.erp.materialSet", workOrderNumber);
       return result;

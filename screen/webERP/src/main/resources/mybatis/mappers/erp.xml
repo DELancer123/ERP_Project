@@ -229,12 +229,18 @@
 		]]>  
 	</insert>
 	
+	<!-- 입,출고시 자재 수량 변경 -->
 	<update id="updateStockQuantity">
 		<![CDATA[update PM_SM_PRO_STOCK 
 				set quantity =  quantity - #{forwardingQuantity}
 				where item_Code = #{itemCode}]]>
 	</update>
 	
+	<update id="deleteStockQuantity">
+		<![CDATA[update PM_SM_PRO_STOCK 
+				set quantity =  quantity + #{forwardingQuantity}
+				where item_Code = #{itemCode}]]>
+	</update>
 	<select id="selectWorkOrderNumber" resultType="string">
 		<![CDATA[select workOrderNumber from CPM_PM_PRO_MAT_FOR_DET where FORWARDINGNUMBER = #{forwardingNumber}]]>
 	</select>
@@ -1479,7 +1485,7 @@ ORDER BY out.workordernumber]]>
 	<resultMap id="sujuView" type="StockManageVO">
 		<result property="ordersNum" column="ordersNum" />
 		<result property="ordersdate" column="ordersdate" />
-		<result property="customerCode" column="customerCode" />
+		<result property="customerCode" column="General_Customer_Code " />
 		<result property="tax" column="tax" />
 		<result property="note" column="Note" />
 	</resultMap>
@@ -1493,16 +1499,16 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopCusList" resultMap="sujuView">
-		<![CDATA[ select customerCode
+		<![CDATA[ select General_Customer_Code
 		  from CSM_SM_Ord_Reg
-		  where customerCode like '%'||#{itemName}||'%'
+		  where General_Customer_Code like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
 	<select id="selectsujuList" resultMap="sujuView">
 		<![CDATA[ select *
 		  from CSM_SM_Ord_Reg
-		  where customerCode = #{customerCode}
+		  where General_Customer_Code = #{customerCode}
 		]]>
 	</select>
 	

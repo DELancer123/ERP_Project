@@ -49,7 +49,7 @@
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
 	<!-- jsonview 설정 -->
-	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
     <beans:property name="contentType" value="application/json;charset=UTF-8"> </beans:property>
 	</beans:bean>
 	<beans:bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"  />

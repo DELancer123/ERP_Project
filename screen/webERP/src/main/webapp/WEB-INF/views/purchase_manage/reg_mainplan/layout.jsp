@@ -19,6 +19,13 @@
             padding: 0;
             box-sizing: border-box;
         }
+        .btn1 {
+	position: absolute;
+	width: 50px;
+	height: 35px;
+	top: 40px;
+	right: 4%;
+}
         #suggest{
 display:inline-block; 
 position: absolute; 
