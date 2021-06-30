@@ -93,14 +93,12 @@
     		var dailyProduction = document.getElementById("dailyProduction").value;
     		var minValue = document.getElementById("minValue").value;
     		var quantity = document.getElementById("quantity").value;
-    		alert(dailyProduction +","+ minValue +","+ quantity);
     		
-    		
-    		if(quantity > dailyProduction){    		
+    		if(dailyProduction*1 < quantity*1){    		
     			alert("생산 수량은 일 생산가능 최대수량을 초과할 수 없습니다!");
-    		} else if(quantity > minValue){
+    		} else if(quantity*1 > minValue*1){
     			alert("자재가 모자랍니다!");
-    		} else {
+    		} else {    			
     			var url = window.opener.document.location.href;    			
     			const URLSearch = new URLSearchParams(window.opener.document.location.href);    		 	
     			

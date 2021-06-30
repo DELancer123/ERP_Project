@@ -53,6 +53,10 @@ public class HomeController {
 	public String login(Locale locale, Model model) {
 		return "/member/login";
 	}
+	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
+	public String logout(Locale locale, Model model) {
+		return "/member/logout";
+	}
 	@RequestMapping(value = "/member/loginfailed", method = RequestMethod.GET)
 	public String loginfailed(Locale locale, Model model) {
 		return "/member/loginfailed";
