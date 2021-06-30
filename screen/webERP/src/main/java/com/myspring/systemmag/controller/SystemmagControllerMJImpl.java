@@ -456,11 +456,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	public ModelAndView addInspection(@ModelAttribute("Ins") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String path = request.getParameter("path");
-		path = path.replace("/webERP", "");
 		int result = 0;
 		result = systemmagService.addInspection(systemmagVO);
-		ModelAndView mav = new ModelAndView("redirect:" + path);
+		ModelAndView mav = new ModelAndView("redirect:/member/reginspection.do?submit=1&&com_code=" + systemmagVO.getInspection_Code());
 		return mav;
 	}
 

@@ -82,7 +82,7 @@
                 <c:forEach var="ins" items="${insView}" >
 	                
 	                <tr class="repeatedRow">
-	                    <td>
+	                    <td style="width:3%;">
 	                    	<input type="checkbox" name="checkedContent" value="${ins.inspection_Code}"/>
 	                    </td>                   
 	                    <td>
@@ -111,14 +111,16 @@
         <form method="get" id="reg_inspection_type">
             <table id="view2">
                 <thead>
-                    <td align="center">no</td>
+                    <td align="center">코드</td>
+                    <td align="center">검사유형명</td>
                     <td align="center">검사유형질문</td>
                     <td align="center">비고</td>
                 </thead>
                 <tbody id="table2" align="center">
-                    <td align="center"><input type="text" name="inspection_Code" id="inspection_Code" value="${inspection_Code }"/></td>
-                    <td align="center"><input type="text" name="inspection_Question" id="inspection_Question" value="${inspection_Question }"/></td>
-                    <td align="center"><input type="text" name="remarks" id="remarks" value="${remarks }"/></td>
+                    <td align="center"><input type="text" name="inspection_Code" id="inspection_Code" value="${inspection_Code }" style="background-color: rgb(255, 255, 149);"/></td>
+                    <td align="center"><input type="text" name="inspection_Name" id="inspection_Name" value="${inspection_Name }" style="background-color: rgb(255, 255, 149);"/></td>
+                    <td align="center"><input type="text" name="inspection_Question" id="inspection_Question" value="${inspection_Question }" style="background-color: rgb(235,235,235); border-style: none;"/></td>
+                    <td align="center"><input type="text" name="remarks" id="remarks" value="${remarks }" style="background-color: rgb(235,235,235); border-style: none;"/></td>
                 </tbody>
             </table>
         </form>
@@ -154,10 +156,9 @@
 	        }
 	        
 	        function newRow(){
-	        	if(inspection_Code == "" || inspection_Name == "")
-	        		{
-	        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
-	        		} else {
+	        	if(inspection_Code == "" || inspection_Name == ""){
+	        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
+	        	} else {
 	        			
 				alert('등록되었습니다');        	
 	    		const URLSearch = new URLSearchParams(location.search);
@@ -175,9 +176,8 @@
 	        }
 	        
 	        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-	        	if(inspection_Code == "" || inspection_Name == "")
-	    		{
-	    		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
+	        	if(inspection_Code == "" || inspection_Name == ""){
+		    		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
 	    		}
 	        	else{
 		        	document.getElementById('reg_inspection_type').action = "${contextPath}/member/updateInspection.do";

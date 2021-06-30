@@ -1794,6 +1794,14 @@ ORDER BY out.workordernumber]]>
 			where inspection_Code=#{inspection_Code}			
 		]]>
 	</update>
+	<insert id="insertNewInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_INS_TYP
+			values(#{inspection_Code},
+			#{inspection_Name}, 
+			#{inspection_Question}, 
+			#{remarks})]]>
+	</insert>
 	<!-- 검사유형등록등록끝 -->
 
 	<!-- popCust--> 
