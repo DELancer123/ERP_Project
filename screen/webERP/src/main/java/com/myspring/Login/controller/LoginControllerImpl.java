@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.Login.service.LoginService;
 import com.myspring.Login.vo.LoginVO;
@@ -56,6 +58,25 @@ public class LoginControllerImpl implements LoginController{
 		mav.addObject("empView", empView);
 		return mav;
 	}
+	@Override
+	@RequestMapping(value="/member/doLogin.do" ,method = RequestMethod.GET)
+	public ModelAndView doLogin(LoginVO vo, HttpServletRequest request, HttpServletResponse response,RedirectAttributes rttr) throws Exception {
+		HttpSession session = request.getSession();
+		ModelAndView mav = null;
+		loginVO = loginService.login(vo);
+		if(loginVO == null) {
+			session.setAttribute("member", null);
+			rttr.addFlashAttribute("msg", false);
+			mav = new ModelAndView("redirect:/member/loginfailed.do");
+		}else {
+			session.setAttribute("dep_name", loginVO.getDep_Name());
+			session.setAttribute("emp_name", loginVO.getEmp_Name());
+			session.setAttribute("emp_code", loginVO.getEmp_Code());
+			session.setAttribute("dep_code", loginVO.getDep_Code());
+			mav = new ModelAndView("redirect:/main.do");
+		}
+		return mav;
+	}
 	
 	private String getViewName(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
@@ -87,4 +108,6 @@ public class LoginControllerImpl implements LoginController{
 		}
 		return viewName;
 	}
+
+	
 }

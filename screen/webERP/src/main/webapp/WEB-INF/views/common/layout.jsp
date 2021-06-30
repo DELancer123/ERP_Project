@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
+<%
+	String emp_code = (String)session.getAttribute("emp_code");
+	String emp_name = (String)session.getAttribute("emp_name");
+	String dep_code = (String)session.getAttribute("dep_code");
+	String dep_name = (String)session.getAttribute("dep_name");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +107,6 @@ width: 80%;
 top: 75px;
 left: 160px;
 margin-bottom: 10px;
-/* left: 830px; top:80px;  */
 border: 0.1px  solid #87cb42;
  z-index:3;
  font-weight: bold;
@@ -249,8 +255,8 @@ input {
 <body>
 	<div id=wrap>
 		<header id=header>
-			<p><img src="/resources/img/kingdomlogo.png" class="logo"/></p>
-			<p id=info>회사정보:데이터 받아오기 사원:데이터 받아오기</p>
+			<p><img src="${contextPath }/resources/img/kingdomlogo.png" class="logo"/></p>
+			<p id=info>부서정보: <%=dep_name %> (<%=dep_code %>) 사원: <%=emp_name %> (<%=emp_code %>)</p>
 			<ul id="etc_menu">
 				<li><a href="#">로그아웃</a></li>
 				<li><a href="#">기타메뉴1</a></li>
