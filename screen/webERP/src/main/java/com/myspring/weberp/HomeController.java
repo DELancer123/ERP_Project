@@ -177,6 +177,10 @@ public class HomeController {
 	public String regbilling(Locale locale, Model model) {
 		return "/member/regbilling";
 	}
+	@RequestMapping(value = "/member/processinwork", method = RequestMethod.GET)
+	public String workInProcess(Locale locale, Model model) {
+		return "/member/processinwork";
+	}
 	@RequestMapping(value = "/member/regordering", method = RequestMethod.GET)
 	public String regordering(Locale locale, Model model) {
 		return "/member/regordering";

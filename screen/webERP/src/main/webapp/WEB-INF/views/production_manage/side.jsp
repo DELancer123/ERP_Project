@@ -32,6 +32,10 @@
             display: none;
             
         }
+        a{
+        	display: inline-black;
+        	width:100%;
+        }
 </style>
 </head>
 <body>
@@ -55,9 +59,13 @@
                             <li><a href="${contextPath }/member/outclosing.do">외주마감</a></li>
                             <!-- <li><a href="${contextPath }member/outrelease.do">외주자재출고</a></li> -->
                         </ul></li>
+                        <li><a href="#"  id="side4">생산현황</a>
+                        <ul id="l_sub4">
+                            <li><a href="${contextPath }/member/processinwork.do">현재공현황</a></li>
+                        </ul></li>
                     <li><a href="#" id="side3">기초정보관리</a>
                         <ul id="l_sub3">
-                            <li><a href="${contextPath }/member/regbom.do">BOM등록</a></li>
+                            <li ><a href="${contextPath }/member/regbom.do">BOM등록</a></li>
                             <li><a href="${contextPath }/member/rightbom.do">BOM정전개</a></li>
                             <li><a href="${contextPath }/member/reservebom.do">BOM역전개</a></li>
                             <li><a href="${contextPath }/member/outprice.do">외주단가등록</a></li>
@@ -70,6 +78,7 @@
         var side_button1 = document.getElementById('side1');
         var side_button2 = document.getElementById('side2');
         var side_button3 = document.getElementById('side3');
+        var side_button4 = document.getElementById('side4');
         side_button1.onclick = function(){
             var l_sub1 = document.getElementById('l_sub1');
             if(l_sub1.style.display == 'none' || l_sub1.style.display==''){
@@ -101,6 +110,17 @@
             }
             else{
                 l_sub3.style.display = "none";
+            }
+        }
+        side_button4.onclick = function(){
+            var l_sub4 = document.getElementById('l_sub4');
+            if(l_sub4.style.display == 'none' || l_sub4.style.display==''){
+            l_sub4.style.display = "block";
+            l_sub4.style.position = "relative";
+            l_sub4.style.marginLeft = "10px";
+            }
+            else{
+                l_sub4.style.display = "none";
             }
         }
         </script>
