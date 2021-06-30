@@ -43,5 +43,14 @@ public interface SystemmagControllerMJ {
 	public ModelAndView updateLogistics(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//검사유형등록
+	public ModelAndView addInspection (@ModelAttribute("ins") SystemmagVOMJ company,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView viewInspection(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView deleteInspection(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView updateInspection(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 			
 }

@@ -187,5 +187,38 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return popList;
 	}
 	
+	//검사유형등록
+	@Override
+	public List viewAllInspection() throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectAllInspection");
+		return comList;
+	}
+
+	@Override
+	public List viewInspection(String com_code) throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectOneInspection",com_code);
+		return comList;
+	}
+
+	@Override
+	public int insertNewInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		int result = sqlSession.insert("mappers.erp.insertNewInspection",systemmagVO);
+		return result;
+	}
+
+	@Override
+	public void deleteInspection(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteInspection", obj);	
+		}	
+	}
+
+	@Override
+	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		sqlSession.update("mappers.erp.updateInspection", systemmagVO);
+	}
+	
 
 }

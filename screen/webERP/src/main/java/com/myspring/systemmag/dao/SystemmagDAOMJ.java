@@ -26,7 +26,7 @@ public interface SystemmagDAOMJ {
 	
 	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) throws DataAccessException;
 	
-	//â��/����/���ְ������
+	//â��/����/���ְ�����Ȳ
 	public List viewAllHouOutware() throws DataAccessException;
 	
 	public List viewAllProOutware() throws DataAccessException;
@@ -59,5 +59,16 @@ public interface SystemmagDAOMJ {
 	public List<SystemmagVOMJ> viewsearchPopLogisticsName(String itemName) throws DataAccessException;
 
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
-
+	
+	//검사유형등록
+	public List viewAllInspection() throws DataAccessException;
+	
+	public List viewInspection(String com_code) throws DataAccessException;
+	
+	public int insertNewInspection (SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public void deleteInspection(String[] noary) throws DataAccessException;
+	
+	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
 }
