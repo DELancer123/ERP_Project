@@ -66,6 +66,13 @@ String sequence = (String) request.getAttribute("sequence");
 }
 
 </style>
+<script>
+   window.onload = function(){
+	   l_sub1.style.display = "block";
+	   l_sub1.style.position = "relative";
+	   l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 	<container1 id=contents1>
@@ -195,7 +202,7 @@ var endDate;
  		  }
    	}
 
-function InsertRow(){
+function newRow(){
 	    if(order_date.value == ""){
 	       alert("발주일자는 필수 입력사항입니다.");
 	       return order_date.focus();
@@ -270,7 +277,7 @@ if(UpdConfirm){
 	}
 }
 
-function deleteRow() {
+function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  var no = "";
 	  var ary = [];
