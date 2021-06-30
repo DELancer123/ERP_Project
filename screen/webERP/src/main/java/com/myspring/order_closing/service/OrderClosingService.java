@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.myspring.order_closing.vo.OrderClosingVO;
+import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.itemVO;
 
 public interface OrderClosingService {
 
@@ -17,5 +19,9 @@ public interface OrderClosingService {
 	void updateOrderClosing(String[] noary) throws DataAccessException;
 
 	int updateClosing(OrderClosingVO vo) throws DataAccessException;
+
+	List<itemVO> itemList() throws Exception;
+
+	List<itemVO> NameSearch(String itemName);
 
 }

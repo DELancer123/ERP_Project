@@ -137,10 +137,10 @@ String sequence = (String) request.getAttribute("sequence");
 					<td></td>
 				<td><input type="text" id="order_no"  value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
-				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${buyer}'  /></td>
+				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${param.buyer}' style="background-color:#E6E6FA"/></td>
 				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
-				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' /></td>
-				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' /></td>
+				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${param.item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
 				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" /></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
@@ -312,6 +312,14 @@ function func_DeadLine(){
 	  }
 			  
 }
+function openWindowPop(url, name){
+    var options = 'top=0, left=0, width=600, height=420, status=no, menubar=no, toolbar=no, resizable=no';
+    window.open(url, name, options);
+}
 
+
+function search1(){ 	  
+	      	openWindowPop('${contextPath}/member/itemPop.do','itemPop');
+}       
 </script>
 </html>
