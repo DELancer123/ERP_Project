@@ -59,10 +59,9 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 	
 	@Override
-	public List submitItemInfo(String relCode) throws DataAccessException {
-		List submitItemList = null;
-		submitItemList = forwardDAO.submitSubReg(relCode);
-		return submitItemList;
+	public void submitItemInfo(String[] noary) throws DataAccessException {
+		
+		forwardDAO.submitSubReg(noary);	
 	}//submitSubReg
 
 

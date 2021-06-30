@@ -114,12 +114,14 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	@Override
 	@RequestMapping(value="/member/itemtableview.do",method = RequestMethod.GET)
 	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String relCode = (String)request.getParameter("relCode");
+		String code = (String)request.getParameter("no");
 		String viewName = getViewName(request);
-		List submitItemList = forwardRegService.submitItemInfo(relCode);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("submitItemList", submitItemList);
-
+		String[] codeary = code.split(",");
+		System.out.println(codeary+"codeary");
+		System.out.println(code+"code");
+		forwardRegService.removeForward(codeary);
+		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		
 		return mav;
 		
 //		request.setCharacterEncoding("utf-8");

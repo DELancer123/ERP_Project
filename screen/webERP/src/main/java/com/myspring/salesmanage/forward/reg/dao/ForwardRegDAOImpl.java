@@ -83,11 +83,10 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		return 0;
 	}
 	@Override
-	public List submitSubReg(String relCode) throws DataAccessException {
-		List<ForwardVO> submitItemList = null;
-		submitItemList = sqlSession.selectList("mappers.erp.submitItemForward",relCode);
-		return submitItemList;
+	public void submitSubReg(String[] forwardCodeary) throws DataAccessException {
+			for(String relCode: forwardCodeary) {
+				sqlSession.delete("mappers.erp.submitItemForward",relCode);
+			}
 	}
-
-
 }
+
