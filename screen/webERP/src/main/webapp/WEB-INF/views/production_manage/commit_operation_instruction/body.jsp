@@ -132,7 +132,7 @@
                     <tbody>
                     <c:forEach var="info" items="${infoList}" varStatus="status"> 
                     <tr id="updateData" align="center">
-                        <td><input type="checkbox" value="${info.workOrderNumber }" name="content"/></td>
+                        <td><input type="checkbox" id="workOrderNumber" value="${info.workOrderNumber }" name="content"/></td>
                         <td><input type="text" name="ListVO[${status.index }].workOrderNubmer" value="${info.workOrderNumber}" readonly /></td>
                         <td><input type="text" name="ListVO[${status.index }].materialstatus" value="${info.materialstatus}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].workPlaceCode" value="${info.workPlaceCode}" readonly/></td>
@@ -194,13 +194,21 @@
                 </form>
             </div>
         </container3>
-      
-</body>
-</html>
 <script>
  /* 검색부 date onChange 함수 설정 */
  		var startDate = "";
     	var endDate = "";
+    	var workOrderNumber = document.getElementById("workOrderNumber").value;
+    	
+    	function isEmpty(str){
+   	     
+   	     if(typeof str == "undefined" || str == null || str == "")
+   	         return true;
+   	     
+   	     else
+   	         return false ;
+   	     
+   	 	}
     	
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
@@ -308,7 +316,7 @@
         }
         
       
-        function deleteData() {//삭제 일단 보류
+        function deleteData() {
         	var row = workOrderTable.insertRow(); 
         	const URLSearch = new URLSearchParams(location.search);
         	const newParam = URLSearch.toString();
@@ -318,20 +326,16 @@
     		linkPath.setAttribute("name","path");
     		linkPath.setAttribute("value", link);
     		
-      	  //	for(var i=0; i<document.getElementsByName("content2").length;i++){
+        		if(URLSearch.has('searchNumber')===true){
+	  		    document.getElementById('detailForm').append(linkPath);
+	            document.getElementById('detailForm').action = "${contextPath}/member/deleteCommitOperation.do";
+	    		document.getElementById('detailForm').submit();  
+	    		alert('삭제되었습니다'); 
+        		}else{
+        			alert("null");
+        		window.history.back();
+        		}
 
-        	//if(document.getElementsByName("content2")[i].checked==true) { //비어있는내용이 있는지 체크함
-        	  //  alert('비어있는 내용이 있습니다. 다시입력하세요!');
-        	//break;
-        	//}
-        	//else{
-
-  		    document.getElementById('detailForm').appendChild(linkPath);
-            document.getElementById('detailForm').action = "${contextPath}/member/deleteCommitOperation.do";
-    		document.getElementById('detailForm').submit();  
-    		alert('삭제되었습니다'); 
-        	//}     
-      	  	//}
         }
         
         function confirm() {
@@ -392,3 +396,6 @@
       
         
       </script>
+      
+</body>
+</html>
