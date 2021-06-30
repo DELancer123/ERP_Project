@@ -17,7 +17,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Autowired
 	private SystemmagDAOMJ systemmagDAO;
 	
-	//�Ϲݰŷ�ó���
+	//占싹반거뤄옙처占쏙옙占�
 	@Override
 	public int addCustomer (SystemmagVOMJ systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
@@ -70,7 +70,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	}
 
 	
-	//â��/����/���ְ������
+	//창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙占�
 	@Override
 	public List viewAllHouOutware() throws DataAccessException {
 		List outwareList = null;
@@ -112,7 +112,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		outwareList = systemmagDAO.viewAllOutWorOutware();	
 		return outwareList;
 	}
-	//â���� ��ȸ-------
+	//창占쏙옙占쏙옙 占쏙옙회-------
 	@Override
 	public List viewSelectedHouOutware(String search) throws DataAccessException {
 		List outwareList = null;
@@ -134,7 +134,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return outwareList;
 	}
 	
-	//���������������
+	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
 		List logisticsList = null;
@@ -173,6 +173,36 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Override
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException {
 		return systemmagDAO.searchPopOutwareName(itemName);
+	}
+	
+	//검사유형등록
+	@Override
+	public List viewAllInspection() throws DataAccessException {
+		List comList = null;
+		comList = systemmagDAO.viewAllInspection();
+		return comList;
+	}
+
+	@Override
+	public List viewInspection(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.viewInspection(com_code);
+		return comList;
+	}
+
+	@Override
+	public int addInspection(SystemmagVOMJ systemmagVO) throws Exception{
+		int result = systemmagDAO.insertNewInspection(systemmagVO);
+		return result;
+    }
+
+	@Override
+	public void delInspection(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteInspection(noary);
+	}
+
+	@Override
+	public void updInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {		
+		systemmagDAO.updateInspection(systemmagVO);
 	}
 	
 	

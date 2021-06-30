@@ -62,11 +62,13 @@ public interface SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
 	
 	//검사유형등록
+	public List viewAllInspection() throws DataAccessException;
+	
 	public List viewInspection(String com_code) throws DataAccessException;
 	
 	public int addInspection(SystemmagVOMJ systemmagVO) throws Exception;
 	
-	public void delInspectionr(String[] noary) throws DataAccessException;
+	public void delInspection(String[] noary) throws DataAccessException;
 	
 	public void updInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	

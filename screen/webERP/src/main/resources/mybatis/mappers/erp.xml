@@ -1767,6 +1767,7 @@ ORDER BY out.workordernumber]]>
 		  where logistics_In_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	
 	<!-- 물류관리내역등록끝 -->
 	<!-- 기초정보관리_검사유형등록 -->
 	<resultMap id="inspectionTypeResult" type="SystemmagVOMJ">	
@@ -1775,6 +1776,24 @@ ORDER BY out.workordernumber]]>
 		<result property="inspection_Question" column="inspection_Question" />
 		<result property="remarks" column="remarks" />
 	</resultMap>
+	<select id="selectAllInspection" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP]]>
+	</select>
+	<select id="selectOneInspection" parameterType="String" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP where inspection_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteInspection">
+		delete from SM_BIM_INS_TYP where inspection_Code = #{no}
+	</delete>
+	<update id="updateInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_INS_TYP
+			set	inspection_Name=#{inspection_Name},
+			inspection_Question=#{inspection_Question},
+			remarks=#{remarks}
+			where inspection_Code=#{inspection_Code}			
+		]]>
+	</update>
 	<!-- 검사유형등록등록끝 -->
 
 	<!-- popCust--> 

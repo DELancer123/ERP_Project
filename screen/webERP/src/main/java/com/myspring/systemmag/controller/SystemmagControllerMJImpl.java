@@ -452,28 +452,67 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	}
 
 	@Override
-	public ModelAndView addInspection(SystemmagVOMJ company, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ModelAndView viewInspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ModelAndView deleteInspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ModelAndView updateInspection(SystemmagVOMJ systemmagVO, HttpServletRequest request,
+	@RequestMapping(value = "/member/addInspection.do", method = RequestMethod.GET)
+	public ModelAndView addInspection(@ModelAttribute("Ins") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = systemmagService.addInspection(systemmagVO);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/reginspection.do", method = RequestMethod.GET)
+	public ModelAndView viewInspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+		String submit = (String) request.getParameter("submit"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
+		String com_code = (String) request.getParameter("com_code"); // 占쏙옙占승� 占쏙옙占쏙옙占쏙옙占� 체크占싹댐옙 占쏙옙占쏙옙占쏙옙, url占쏙옙 占싼억옙占�
+
+		System.out.println("viewName:" + viewName);
+		System.out.println("submit:" + submit);
+		System.out.println("comcode:"+com_code);
+
+		if (com_code == null && submit == null) { // 첫占쏙옙占쏙옙占싱띰옙占�?
+			List insView = systemmagService.viewAllInspection(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+			mav = new ModelAndView(viewName);
+			mav.addObject("insView", insView);
+			return mav;
+		}
+
+		else if (submit.equals("1")) { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙 占쏙옙회占쏙옙 占쏙옙占쏙옙占쏙옙
+			List insView = systemmagService.viewAllInspection(); // select占쏙옙占쏙옙
+			List insins = systemmagService.viewInspection(com_code); // where占쏙옙占쏙옙 占쌩곤옙占싼댐옙
+			mav = new ModelAndView(viewName);
+			mav.addObject("insView", insView);
+			mav.addObject("insins", insins);
+		}
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/deleteInspection.do", method = RequestMethod.GET)
+	public ModelAndView deleteInspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("no"); // 체크占쏙옙占쏙옙 체크占쌘쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		String viewName = getViewName(request);
+		String[] numberary = number.split(","); // 占쏙옙표占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占썼열占쏙옙 占쏙옙占쏙옙占싼댐옙
+
+		systemmagService.delInspection(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/reginspection.do");
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/member/updateInspection.do", method = RequestMethod.GET)
+	public ModelAndView updateInspection(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		systemmagService.updInspection(systemmagVO);// 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙트占쌉쇽옙占쏙옙 占신곤옙占쏙옙占쏙옙占쏙옙 VO占쏙옙占쏙옙占쏙옙占쏙옙
+		ModelAndView mav = new ModelAndView(
+				"redirect:/member/reginspection.do?submit=1&&com_code=" + systemmagVO.getInspection_Code());
+		return mav;
 	}
 }

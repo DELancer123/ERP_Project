@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("SystemmagVOMJ")
 public class SystemmagVOMJ {
-	//ÀÏ¹İ°Å·¡Ã³µî·Ï
+	//ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½
 	//SM_BIM_GEN_CUS_REG
 	private String general_Customer_Code;
 	private String general_Customer_Name;
@@ -117,8 +117,8 @@ public class SystemmagVOMJ {
 		this.lot_Address = lot_Address;
 	}
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï--
-	//SM_BIM_HOU_REG => Ã¢°í/Àå¼Ò ÅÇ¿¡¼­ »ç¿ëÇÔ
+	//Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--
+	//SM_BIM_HOU_REG => Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String house_Code;
 	private String house_Name;
 	private String house_Location_In;
@@ -163,7 +163,7 @@ public class SystemmagVOMJ {
 		this.house_Status = house_Status;
 	}
 
-	//SM_BIM_PRO_REG => »ı»ê°øÁ¤/ÀÛ¾÷Àå ÅÇ¿¡¼­ »ç¿ëÇÔ
+	//SM_BIM_PRO_REG => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String process_Code;
 	private String process_Name;
 	private String process_Location_In;
@@ -208,7 +208,7 @@ public class SystemmagVOMJ {
 		this.process_Status = process_Status;
 	}
 
-	//SM_BIM_OUT_REG => ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå ÅÇ¿¡¼­ »ç¿ëÇÔ
+	//SM_BIM_OUT_REG => ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String outsourcing_Code; 
 	private String outsourcing_Name;
 	private String outsourcing_Location_In;
@@ -253,7 +253,7 @@ public class SystemmagVOMJ {
 		this.outsourcing_Status = outsourcing_Status;
 	}
 	
-	//SM_BIM_WOR_REG => Ã¢°í/Àå¼Ò ÇÏÀ§Å×ÀÌºí
+	//SM_BIM_WOR_REG => Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
 	private String location_Code;
 	private String location_Name;
 	private String location_Explanation;
@@ -312,7 +312,7 @@ public class SystemmagVOMJ {
 		this.status = status;
 	}
 	
-	//SM_BIM_PRO_WOR_REG => »ı»ê°øÁ¤/ÀÛ¾÷Àå ÇÏÀ§Å×ÀÌºí
+	//SM_BIM_PRO_WOR_REG => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
 	private String workplace_Code;
 	private String workplace_Name; 
 	private String workplace_Explanation;
@@ -336,7 +336,7 @@ public class SystemmagVOMJ {
 		this.workplace_Explanation = workplace_Explanation;
 	}
 
-	//SM_BIM_OUT_WOR_REG => ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå ÇÏÀ§Å×ÀÌºí
+	//SM_BIM_OUT_WOR_REG => ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
 	private String outcustomer;
 	private String outcustomer_Name;
 
@@ -353,7 +353,7 @@ public class SystemmagVOMJ {
 		this.outcustomer_Name = outcustomer_Name;
 	}
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//SM_BIM_LOG_MAN
 	private String logistics_In_Code;
 	private String logistics_In_Name;
@@ -385,7 +385,7 @@ public class SystemmagVOMJ {
 		this.remarks = remarks;
 	}
 	
-	//°Ë»çÀ¯Çüµî·Ï
+	//ê²€ì‚¬ìœ í˜•ë“±ë¡
 	//SM_BIM_INS_TYP
 	private String inspection_Code;
 	private String inspection_Name;
