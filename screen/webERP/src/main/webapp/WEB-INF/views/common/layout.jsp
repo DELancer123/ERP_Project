@@ -107,7 +107,6 @@ width: 80%;
 top: 75px;
 left: 160px;
 margin-bottom: 10px;
-/* left: 830px; top:80px;  */
 border: 0.1px  solid #87cb42;
  z-index:3;
  font-weight: bold;
