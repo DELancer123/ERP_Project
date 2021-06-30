@@ -232,7 +232,7 @@ var sortation = document.getElementById("sortation").value;
 var inspection = document.getElementById("inspection").value;
 var note = document.getElementById("note").value;
 var performanceDate = document.getElementById("performanceDate").value;
-var performanceQuantity = document.getElementById("performanceQuantity").value;
+
 
 function isEmpty(str){
     
@@ -306,20 +306,26 @@ function isEmpty(str){
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-  		    
-   		  // if (isEmpty(performanceDate)||isEmpty(performanceQuantity)){
-		    //  		alert("값이 비어져있습니다. 값을 추가해주세요!");
-		      //      document.getElementById('detailForm').action = "${contextPath}/member/regoperperf.do";
-	  	  //}else{
+  		  var performanceQuantity = document.getElementById("performanceQuantity").value;
+  		  $('#performanceDate').change(function (){
+              var date = $('#performanceDate').val();
+              performanceDate = date;
+          });
+   		   if (isEmpty(performanceDate)){
+		      		alert("날짜값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("performanceDate").focus();
+	
+	  	  }
+   		   else if(isEmpty(performanceQuantity)){
+		      		alert("수량값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("performanceQuantity").focus();
+		   }else{
   		    document.getElementById('detailForm').appendChild(linkPath);
             document.getElementById('detailForm').action = "${contextPath}/member/addRegistOperationPerformanceInfoDetail.do";
-  			document.getElementById('detailForm').submit();  
-	  		   
-	  			alert("값이 저장되었습니다!");
-	 	 //}
+  			document.getElementById('detailForm').submit();    
+	  		alert("값이 저장되었습니다!");          	
+		    }
   		    
-  		    
-		
       }
       
         function updateRow() {

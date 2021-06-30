@@ -35,7 +35,7 @@ text-decoration:none
 </style>
 </head>
 <body>
-	<h1 class="error_h1">죄송합니다. 유효하지 않은 주소입니다./h1>
+	<h1 class="error_h1">죄송합니다. 유효하지 않은 주소입니다.</h1>
 	<div class="area_btn">
 		<a href="javascript:history.back(-1)" class="link">이전 화면으로</a>
 </div>

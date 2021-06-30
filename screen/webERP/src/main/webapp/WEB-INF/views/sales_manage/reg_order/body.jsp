@@ -96,7 +96,7 @@ String parent = request.getParameter("itemNumber");
 				<tr class="moveNum2">
 					<td><input type="checkbox" value="${item.ordersNum }"
 						name="content" /></td>
-					<td><input type="text" class="ordersNum" id ="ordersNum"
+					<td><input type="text" class="ordersNum" 
 						name="StoVO[${sts.index}].moveNum" value="${item.ordersNum }" /></td>
 					<td><input type="date" name="StoVO[${sts.index}].moveDate"
 						value="${item.ordersdate }" /></td>
@@ -117,7 +117,7 @@ String parent = request.getParameter("itemNumber");
 					<td><input type="date" id="ordersdate"
 						name="sujuVO[${fn:length(stockList)}].ordersdate" value="" /></td>
 					<td><input type="text" id="customerCode"
-						name="sujuVO[${fn:length(stockList)}].customerCode" value="" /></td>
+						name="sujuVO[${fn:length(stockList)}].General_Customer_Code" value="" /></td>
 					<td><input type="text" id="tax"
 						name="sujuVO[${fn:length(stockList)}].tax" value="" /></td>
 					<td><input type="text" id="Note"
@@ -179,12 +179,13 @@ String parent = request.getParameter("itemNumber");
 //	        var checkMoveNum = document.getElementById('moveNum').value;
    //     deleteTbody3();
         
-        var code = $(this).find('input[class=ordersNum]').val();
+        var code = $(this).val();
     	$.ajax({ type: "GET",
     		url: "/webERP/member/searchsujusub.do",
     		data : {	"ordersNum" : code},
+    		//dataType : 'text',
     		success: function(responseData){
-    			var data = responseData.wareStockSub;
+    			var data = responseData.sujusub;
     			
     			// id=table3 안의 모든 요소 지우기
     			$("#table3").empty();

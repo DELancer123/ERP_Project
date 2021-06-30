@@ -20,7 +20,7 @@ public interface ForwardRegDAO {
 	//super reg by cust insert
 	public List submitForwardReg(String custCode) throws DataAccessException;
 	//subReg
-	public List submitSubReg(String relCode) throws DataAccessException;
+	public void submitSubReg(String[] forwardCodeary) throws DataAccessException;
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException;
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;

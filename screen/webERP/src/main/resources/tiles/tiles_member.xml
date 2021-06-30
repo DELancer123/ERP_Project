@@ -207,6 +207,11 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
+   <definition name="/member/processinwork" extends="baseLayout">
+      <put-attribute name="title" value="현재공현황" />
+      <put-attribute name="body" value="/WEB-INF/views/production_manage/workInProcess/body.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
+   </definition>
    <definition name="/member/codehelper" extends="PopupLayout">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />

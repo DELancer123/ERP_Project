@@ -13,7 +13,7 @@
 	String relCode = request.getParameter("relCode");	
 %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:forEach var="forwarditem" items="${forwardItemInsert}">
+<c:forEach var="forwarditem" items="${submitItemList}">
 	<c:set var="relCode" value="${forwarditem.relCode}"/>
 	<c:set var="item_code" value="${forwarditem.item_code}"/>
 	<c:set var="item_name" value="${forwarditem.item_name}"/>
@@ -72,7 +72,7 @@
                     <td>주문 유무</td>
                     <td>합계액</td>
                 </thead>
-                 <c:forEach var="subForward" items="${forwardItemList}" varStatus="status">
+                 <c:forEach var="subForward" items="${submitItemList}" varStatus="status">
                 <tbody id="updsubForward" align="center">
                     <td><input type="checkbox" value = "${subForward.relCode}" name="content"/></td>
                     <td><input type="text"  name="ListVO[${status.index}].corVO.item_code" value="${subForward.corVO.item_code}" ondbclick="submit2()" readonly/></td>

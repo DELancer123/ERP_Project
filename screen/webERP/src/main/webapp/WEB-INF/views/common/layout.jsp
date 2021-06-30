@@ -259,9 +259,9 @@ input {
 			<p id=info>부서정보: <%=dep_name %> (<%=dep_code %>) 사원: <%=emp_name %> (<%=emp_code %>)</p>
 			<ul id="etc_menu">
 				<li><a href="${contextPath }/member/logout.do">로그아웃</a></li>
-				<li><a href="#">기타메뉴1</a></li>
+				<!-- <li><a href="#">기타메뉴1</a></li>
 				<li><a href="#">기타메뉴2</a></li>
-				<li><a href="#">기타메뉴3</a></li>
+				<li><a href="#">기타메뉴3</a></li> -->
 			</ul>
 			<div id="search1">
 				<form name="frmSearch" action="${contextPath}/member/searchmenu.do">

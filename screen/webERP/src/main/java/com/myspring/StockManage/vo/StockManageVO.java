@@ -11,7 +11,6 @@ public class StockManageVO {
 	
 	String 	moveNum;			//�̵���ȣ
 	Date 	moveDate;			//�̵�����
-	String 	outputWarehouse;	//���â��
 	String 	outputPlace;		//������
 	String 	outputBusiness;		//������
 	String 	inputWarehouse;		//�԰�â��
@@ -131,12 +130,6 @@ public class StockManageVO {
 	}
 	public void setMoveDate(Date moveDate) {
 		this.moveDate = moveDate;
-	}
-	public String getOutputWarehouse() {
-		return outputWarehouse;
-	}
-	public void setOutputWarehouse(String outputWarehouse) {
-		this.outputWarehouse = outputWarehouse;
 	}
 	public String getOutputPlace() {
 		return outputPlace;
@@ -295,7 +288,7 @@ public class StockManageVO {
 		
 		String valueStr = "moveNum : " + moveNum
 				        + ", moveDate : " + moveDate
-				        + ", outPutWare : " + outputWarehouse
+//				        + ", outPutWare : " + outputWarehouse
 				        + ", outPutPlace : " + outputPlace
 				        + ", inputWare : " + inputWarehouse
 				        + ", inputPlace : " + inputPlace

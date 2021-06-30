@@ -125,6 +125,8 @@ DROP SEQUENCE seq_PM_SM_Pro_FProduct_no;
 --DROP TRIGGER trg_operation_nodml;
 --drop trigger trg_outsourcing_nodml;
 drop trigger trg_ope_out_nodml;
+----------------------------------------------
+drop trigger Quantity_Upd_TRG;
 
 
 DROP PROCEDURE P_RESET_SEQ;
@@ -175,6 +177,16 @@ CREATE SEQUENCE seq_CPM_OM_Out_Fin_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 
 CREATE SEQUENCE seq_CPM_OM_Out_FinNo_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
 CREATE SEQUENCE seq_CPM_BIM_BOM_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
 
+CREATE OR REPLACE TRIGGER Quantity_Upd_TRG
+AFTER UPDATE of deadline,Order_quantity 
+ON PMM_PM_ORDER
+FOR EACH ROW
+BEGIN
+UPDATE PM_SM_Pro_Stock
+SET Quantity = Quantity +:new.Order_quantity
+WHERE item_Code = :new.item_Code;
+END;
+/
 
     CREATE OR REPLACE FUNCTION  F_GET_NEXT_SEQ (p_flag varchar2) 
     return varchar2
@@ -754,7 +766,6 @@ Employee_Code varchar2(12) PRIMARY KEY, --사원코드
 Employee_Name varchar2(50) NOT NULL, --사원명 
 Department_Code varchar2(12) NOT NULL, --부서코드 
 Department_Name varchar2(50) NOT NULL, --부서명 
-Employee_Password varchar2(10),
 JoinDate date NOT NULL, --입사일
 ResignationDate date, --퇴사일
 Emergency_Contact_Network varchar2(13) NOT NULL UNIQUE, --비상연락망
@@ -768,11 +779,10 @@ Employee_Code ,
 Employee_Name,
 Department_Code,
 Department_Name,
-Employee_Password,
 JoinDate ,
 ResignationDate,
 Emergency_Contact_Network
-) values ( '20130302' , '유원규', '1200','관리부','0000', '2013-03-01', NULL , '010-1546-8761');
+) values ( '20130302' , '유원규', '1200','관리부', '2013-03-01', NULL , '010-1546-8761');
 
 ------------------------------------------------------------------
 --시스템 환경설정
@@ -1517,6 +1527,8 @@ SELECT * FROM CSM_SM_Rel_Pro;
 
 --테이블 생성
 create table CSM_SM_COR_Reg(
+
+No varchar2(12) primary key,
 --코드(수주, 출고)
 code varchar2(12) not null,
 --품번(공통)(FK)
@@ -1559,84 +1571,84 @@ REFERENCES SM_BIM_Ite_Reg(Item_Name) ON DELETE CASCADE
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,sysdate+1,'검사','주문출고', '00001');
+VALUES ('1','SO2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,sysdate+1,'검사','주문출고', '00001');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000002','CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,sysdate+2,'검사','주문출고', '00002');
+VALUES ('2','SO2106000002','CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,sysdate+2,'검사','주문출고', '00002');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,sysdate+3,'검사','주문출고', '00003');
+VALUES ('3','SO2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,sysdate+3,'검사','주문출고', '00003');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
+VALUES ('3','SO2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
+VALUES ('4','SO2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000006','SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
+VALUES ('5','SO2106000006','SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
+VALUES ('6','SO2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
+VALUES ('7','SO2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('8','SO2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('SO2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('9','SO2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,'20211102','검사','주문출고', '00001');
+VALUES ('10','IS2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,'20211102','검사','주문출고', '00001');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000002', 'CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,'20210102','검사','주문출고', '00002');
+VALUES ('11','IS2106000002', 'CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,'20210102','검사','주문출고', '00002');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,'20210706','검사','주문출고', '00003');
+VALUES ('12','IS2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,'20210706','검사','주문출고', '00003');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
+VALUES ('13','IS2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
+VALUES ('14','IS2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000006', 'SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
+VALUES ('15','IS2106000006', 'SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
+VALUES ('16','IS2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
+VALUES ('17','IS2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('18','IS2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('IS2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('19','IS2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 ---------------------------------------------------------------------------------------------------------------------
 --주계획서작성(주문)
@@ -1648,11 +1660,11 @@ Item_Name varchar2(50) not null,--품명
 standard varchar2(20),--규격
 Inventory_Unit varchar2(5) not null,--단위
 sequence number(5),--순서
-expected_Date date,--출하예정일
-Due_date date,--납기일
+expectedDate date,--출하예정일
+dueDate date,--납기일
 plan_Quantity number(5),--계획수량
 buyer varchar2(20) not null, --회사명
-note varchar2(1000) not null, --비고
+note varchar2(1000) , --비고
 constraint fk_PMMPMMPS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade,
 constraint fk_PMMPMMPS_buyer foreign key (buyer) references SM_BIM_Gen_Cus_Reg(General_Customer_Name)on delete cascade
 );
@@ -1675,15 +1687,15 @@ SELECT * FROM PMM_PM_MPS;
 create table PMM_PM_MPS_OS(
 orderno varchar2(12) primary key,--주문번호
 sequence number(5),--순서
-orderdate date,--주문일자
+ordersdate date,--주문일자
 buyer varchar2(50) not null,--회사명
 Item_Code varchar2(12) not null,--품번
 Item_Name varchar2(50) not null,--품명
 standard varchar2(20),--규격
 Inventory_Unit varchar2(5) not null,--단위
-Order_quantity number(5),--주문수량
-expected_Date date,--출하예정일
-note varchar2(1000) not null,--비고
+ordersQuantity number(5),--주문수량
+expectedDate date,--출하예정일
+note varchar2(1000) ,--비고
 constraint fk_PMMPMMPSOS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade,
 constraint fk_PMMPMMPSOS_buyer foreign key (buyer) references SM_BIM_Gen_Cus_Reg(General_Customer_Name) on delete cascade
 );
@@ -1741,11 +1753,11 @@ sequence number(5),--순서
 Item_Code varchar2(12) not null,--품번   
 Item_Name varchar2(50) not null,   --품명
 Standard varchar2(20),   --규격
-Inventory_Unit varchar2(5)not null,      --단위
+Inventory_Unit varchar2(5) DEFAULT 'EA',      --단위
 Order_quantity number(5),--발주수량
 Price number(15), --단가
 deadline varchar2(10) not null,--마감
-note varchar2(1000) not null, --비고
+note varchar2(1000), --비고
 constraint fk_PMMPMORDER_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade,
 constraint fk_PMMPMORDER_buyer foreign key (buyer) references SM_BIM_Gen_Cus_Reg(General_Customer_Name) on delete cascade
 );
@@ -1754,11 +1766,11 @@ SELECT SEQ_seq.NEXTVAL FROM DUAL ;
 SELECT seq_PMM_PM_ORDER_no.NEXTVAL FROM DUAL ;
 
 INSERT INTO PMM_PM_ORDER
-VALUES(F_GET_CURR_SEQ('PMM_PM_ORDER'),sysdate,002,'(주)디비컴퓨터',F_GET_CURR_SEQ('SEQ'),'CPU05','AMD 라이젠3 Pro',NULL,'EA',10,500000,'진행','이상없음');
+VALUES(F_GET_CURR_SEQ('PMM_PM_ORDER'),sysdate,002,'(주)디비컴퓨터',F_GET_CURR_SEQ('SEQ'),'GPU01','지포스 RTX 3060',NULL,'EA',10,500000,'진행','이상없음');
 INSERT INTO PMM_PM_ORDER
 VALUES(F_GET_NEXT_SEQ('PMM_PM_ORDER'),sysdate+1,003,'더지글로직스',F_GET_NEXT_SEQ('SEQ'),'RAM03','삼성 DDR4-3200',NULL,'EA',30,100000,'진행','이상없음');
 INSERT INTO PMM_PM_ORDER
-VALUES(F_GET_NEXT_SEQ('PMM_PM_ORDER'),sysdate+2,004,'(주)삼도전자',F_GET_NEXT_SEQ('SEQ'),'POWER01','시소닉 A12 STD',NULL,'EA',50,400000,'진행','이상없음');
+VALUES(F_GET_NEXT_SEQ('PMM_PM_ORDER'),sysdate+2,004,'(주)삼도전자',F_GET_NEXT_SEQ('SEQ'),'SMPS03','IDF600CV-S24V2',NULL,'EA',50,400000,'진행','이상없음');
 INSERT INTO PMM_PM_ORDER
 VALUES(F_GET_NEXT_SEQ('PMM_PM_ORDER'),sysdate+3,005,'(주)삼도전자',F_GET_NEXT_SEQ('SEQ'),'SSD01','삼성전자 980 PRO',NULL,'EA',80,200000,'진행','이상없음');
 
@@ -1769,9 +1781,9 @@ create table PMM_PM_MRP(
 Item_Code varchar2(12) not null,--품번
 Item_Name varchar2(50) not null,--품명
 standard varchar2(20),--규격
-need_date date,--소요일자
+dueDate date,--소요일자
 sequence number(5),--순서
-Expected_order date,--예정발주일
+expectedDate date,--예정발주일
 Expected_Quantity number(5),--예정수량
 Inventory_Unit varchar2(5)not null, --단위
 constraint fk_PMMPMMRP_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade
@@ -1942,6 +1954,10 @@ SELECT * FROM PMM_PM_MRP;
 ----VALUES(F_GET_NEXT_SEQ('PMM_PM_RRR'),'20200202','(주)삼도전자','제품창고','이상없음',F_GET_NEXT_SEQ('PMM_PM_RRR_CHECK')),'20200202','부품창고');
 --
 --SELECT * FROM PMM_PM_RRR;
+
+
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --생산관리 테이블
