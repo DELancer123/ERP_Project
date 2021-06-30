@@ -410,6 +410,76 @@ public class SystemmagVOMJ {
 		this.inspection_Question = inspection_Question;
 	}
 	
+	//SET구성품등록
+	//SM_BIM_SET_REG
+	private String set_Code;
+	private String set_Name;
+	private String set_Standard;
+	private String set_Unit;
+	
+	public String getSet_Code() {
+		return set_Code;
+	}
+	public void setSet_Code(String set_Code) {
+		this.set_Code = set_Code;
+	}
+	public String getSet_Name() {
+		return set_Name;
+	}
+	public void setSet_Name(String set_Name) {
+		this.set_Name = set_Name;
+	}
+	public String getSet_Standard() {
+		return set_Standard;
+	}
+	public void setSet_Standard(String set_Standard) {
+		this.set_Standard = set_Standard;
+	}
+	public String getSet_Unit() {
+		return set_Unit;
+	}
+	public void setSet_Unit(String set_Unit) {
+		this.set_Unit = set_Unit;
+	}
+
+	//SM_BIM_COM_REG
+	private String components_Code;
+	private String components_Name;
+	private String components_Standard;
+	private String components_Unit;
+	private String components_Stock;
+
+	public String getComponents_Code() {
+		return components_Code;
+	}
+	public void setComponents_Code(String components_Code) {
+		this.components_Code = components_Code;
+	}
+	public String getComponents_Name() {
+		return components_Name;
+	}
+	public void setComponents_Name(String components_Name) {
+		this.components_Name = components_Name;
+	}
+	public String getComponents_Standard() {
+		return components_Standard;
+	}
+	public void setComponents_Standard(String components_Standard) {
+		this.components_Standard = components_Standard;
+	}
+	public String getComponents_Unit() {
+		return components_Unit;
+	}
+	public void setComponents_Unit(String components_Unit) {
+		this.components_Unit = components_Unit;
+	}
+	public String getComponents_Stock() {
+		return components_Stock;
+	}
+	public void setComponents_Stock(String components_Stock) {
+		this.components_Stock = components_Stock;
+	}
+	
 	
 }
 

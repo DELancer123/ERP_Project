@@ -219,6 +219,55 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updateInspection", systemmagVO);
 	}
+
+	//SET구성품등록
+	@Override
+	public List viewAllSetComponents() throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectAllSetComponents");
+		return comList;
+	}
+
+	@Override
+	public List viewSetComponents(String com_code) throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectOneSetComponents",com_code);
+		return comList;
+	}
+
+	@Override
+	public int insertNewSetComponents(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		int result = sqlSession.insert("mappers.erp.insertNewSetComponents",systemmagVO);
+		return result;
+	}
+
+	@Override
+	public void deleteSetComponents(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteSetComponents", obj);	
+		}
+	}
+
+	@Override
+	public void updateSetComponents(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		sqlSession.update("mappers.erp.updateSetComponents", systemmagVO);
+	}
+
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopSetName(String itemName) throws DataAccessException {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopSetList",itemName);
+		return popList;
+	}
+
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopComponentsName(String itemName) throws DataAccessException {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopComponentsList",itemName);
+		return popList;
+	}
+	
+
 	
 
 }

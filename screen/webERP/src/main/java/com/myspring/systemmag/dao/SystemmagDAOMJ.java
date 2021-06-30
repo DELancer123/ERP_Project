@@ -71,4 +71,19 @@ public interface SystemmagDAOMJ {
 	
 	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
+	//SET구성품등록
+	public List viewAllSetComponents() throws DataAccessException;
+	
+	public List viewSetComponents(String com_code) throws DataAccessException;
+	
+	public int insertNewSetComponents (SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public void deleteSetComponents(String[] noary) throws DataAccessException;
+	
+	public void updateSetComponents(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> viewsearchPopSetName(String itemName) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> viewsearchPopComponentsName(String itemName) throws DataAccessException;
+	
 }

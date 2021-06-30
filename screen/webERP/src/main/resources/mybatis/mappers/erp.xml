@@ -1778,6 +1778,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<!-- 물류관리내역등록끝 -->
+	
 	<!-- 기초정보관리_검사유형등록 -->
 	<resultMap id="inspectionTypeResult" type="SystemmagVOMJ">	
 		<result property="inspection_Code" column="inspection_Code" />
@@ -1812,7 +1813,92 @@ ORDER BY out.workordernumber]]>
 			#{remarks})]]>
 	</insert>
 	<!-- 검사유형등록등록끝 -->
-
+	
+	<!-- SET구성품등록 -->
+		<!-- 세트품 -->
+	<resultMap id="setRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="set_Name" column="set_Name" />
+		<result property="set_Standard" column="set_Standard" />
+		<result property="set_Unit" column="set_Unit" />
+	</resultMap>
+	<select id="selectAllSetComponents" resultMap="setRegResult">
+		<![CDATA[select * from SM_BIM_SET_REG]]>
+	</select>
+	<select id="selectOneSetComponents" parameterType="String" resultMap="setRegResult">
+		<![CDATA[select * from SM_BIM_SET_REG where set_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteSetComponents">
+		delete from SM_BIM_SET_REG where set_Code = #{no}
+	</delete>
+	<update id="updateSetComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_SET_REG
+			set	set_Name=#{set_Name},
+			set_Standard=#{set_Standard},
+			set_Unit=#{set_Unit}
+			where set_Code=#{set_Code}			
+		]]>
+	</update>
+	<insert id="insertNewSetComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_SET_REG
+			values(#{set_Code},
+			#{set_Name}, 
+			#{set_Standard}, 
+			#{set_Unit})]]>
+	</insert>
+	<select id="selectPopSetList" resultMap="setRegResult">
+		<![CDATA[ select set_Code, set_Name
+		  from SM_BIM_SET_REG
+		  where set_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+		<!-- 세트구성품 -->
+	<resultMap id="comRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="components_Code" column="components_Code" />
+		<result property="components_Name" column="components_Name" />
+		<result property="components_Standard" column="components_Standard" />
+		<result property="components_Unit" column="components_Unit" />
+		<result property="components_Stock" column="components_Stock" />
+	</resultMap>
+	<select id="selectAllComReg" resultMap="comRegResult">
+		<![CDATA[select * from SM_BIM_COM_REG]]>
+	</select>
+	<select id="selectOneComReg" parameterType="String" resultMap="comRegResult">
+		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteComReg">
+		delete from SM_BIM_COM_REG where components_Code = #{no}
+	</delete>
+	<update id="updateComReg" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_COM_REG
+			set	components_Name=#{components_Name},
+			components_Standard=#{components_Standard},
+			components_Unit=#{components_Unit},
+			components_Stock=#{components_Stock}
+			where components_Code=#{components_Code}			
+		]]>
+	</update>
+	<insert id="insertNewComReg" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_COM_REG
+			values(#{components_Code},
+			#{components_Name}, 
+			#{components_Standard}, 
+			#{components_Unit},
+			#{components_Stock}]]>
+	</insert>
+	<select id="selectPopComponentsList" resultMap="comRegResult">
+		<![CDATA[ select components_Code, components_Name
+		  from SM_BIM_COM_REG
+		  where components_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<!-- SET구성품등록끝 -->
+	
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
