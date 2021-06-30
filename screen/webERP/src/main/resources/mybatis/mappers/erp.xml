@@ -508,7 +508,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	</resultMap>
 	
 	<select id="selectAllWorkInProcess" resultMap="selectWorkInProcessResult">
-		<![CDATA[select * from CPM_PM_PRO_MAT_FOR_DET ]]
+		<![CDATA[select * from CPM_PM_PRO_MAT_FOR_DET ]]>
 	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
