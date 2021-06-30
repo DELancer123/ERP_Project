@@ -85,6 +85,7 @@
 				</table>
 			</div>
 		</div>
+	</form>
 	<script>
     var submit_button = document.getElementById("submit");
     		var text_code = document.getElementById("code");
@@ -95,19 +96,20 @@
     			text_name.value = name;
     			
     	}
+    	
     	function submitClick(form){
-    		opener.setChildValue(text_name.value);
-			window.close();
-    	}
-    	submit_button.onclick = function(){
     		var url = window.opener.document.location.href;
 			var url_arr = url.split('?');
 			opener.parent.location=url_arr[0] + '?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value+'&&submit='+0;
     		window.close();
     	}
+    	
+    	/* submit_button.onclick = function(){
+    		opener.setChildValue(text_name.value);
+			window.close();
+    	} */
     </script>
 
 
-	</form>
 </body>
 </html>

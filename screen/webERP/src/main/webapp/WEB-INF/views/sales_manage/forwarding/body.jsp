@@ -28,8 +28,8 @@
             <table class="con1_search">
                 <tr>
                     <td>거래처 명</td>
-                    <td><input type="text" name="cust" value='${param.general_Customer_Code}'disabled /></td>
-                    <td><input type="text" name="cust" value='${param.general_Customer_Name}'disabled /></td>
+                    <td><input type="text" name="code" value='${param.general_Customer_Code}'disabled /></td>
+                    <td><input type="text" name="name" value='${param.general_Customer_Name}'disabled /></td>
                     <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                     <td>출고기간</td>
                     <td><input type="date" id="reqInput"></td>
@@ -63,6 +63,7 @@ view_button.onclick = function(){
 
 	  window.open(location.pathname + '?' + newParam, '_self');
 }
+
 </script>
 </body>
 </html>
