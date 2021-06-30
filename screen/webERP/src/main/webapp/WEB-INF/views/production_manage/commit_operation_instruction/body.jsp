@@ -258,6 +258,8 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
+  		    alert("저장 버튼은 사용하실 수 없습니다!");
+  		    /*
 	  		  var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
 	      	$('#detailForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
 	      	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
@@ -274,6 +276,7 @@
   			document.getElementById('detailForm').submit();  
   			alert('저장되었습니다'); 
         	}   
+	      	*/
       }
       
         function updateRow() {
@@ -340,8 +343,17 @@
         			  no = document.getElementsByName("content")[i].value;
         			  ary.push(no);
         		  }
-        			window.location.href = "${contextPath}/member/confirmDetail.do?workOrderNumber="+ary;
         	  }
+  	      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('확정할 목록의 체크박스를 선택해주세요');
+				//window.history.back();
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+        			window.location.href = "${contextPath}/member/confirmDetail.do?workOrderNumber="+ary;
+	    		alert('상태가 확정되었습니다');
+	
+	    	}
+	    		
         }
      
         function revert() {
@@ -353,8 +365,17 @@
       				no = document.getElementsByName("content")[i].value;
       			  	ary.push(no);
       		  	}
-      			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
       	  }
+      	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+				alert('취소할 목록의 체크박스를 선택해주세요');
+				//window.history.back();
+			}
+	    	else {//컨트롤러로 해당목록의 no값을 보낸다
+      			window.location.href = "${contextPath}/member/revertDetail.do?workOrderNumber="+ary;
+	    		alert('상태가 취소되었습니다');
+	
+	    	}
+
         }
         
         function release(){
