@@ -453,6 +453,28 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
  		return mav;
  		}
   	 
+// 	재공 파트 기능부
+ 	 @Override
+	  @RequestMapping(value="/member/processinwork.do" ,method = RequestMethod.GET)
+ 		public ModelAndView processInWork(HttpServletRequest request, HttpServletResponse response) throws Exception { 
+		  ModelAndView mav = null;
+			String viewName = getViewName(request);
+			String submit = (String) request.getParameter("submit");
+			String itemCode = (String) request.getParameter("itemNumber");					
+			
+			if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
+				List infoList = productionService.selectAllWorkInProcess(itemCode);
+				mav = new ModelAndView(viewName);
+				return mav;
+			}
+			else if(submit.equals("1")){
+				List infoList = productionService.selectAllWorkInProcessCondition(itemCode);
+				mav = new ModelAndView(viewName);				
+				mav.addObject("infoList", infoList);
+			}				
+			return mav;
+	  	}
+ 	 
   private String getViewName(HttpServletRequest request) throws Exception {
 	  String contextPath = request.getContextPath(); 
 	  String uri = (String) request.getAttribute("javax.servlet.include.request_uri"); 
