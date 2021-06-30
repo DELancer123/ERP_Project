@@ -16,6 +16,7 @@ public class OperationDetailVO {
 	private int precisionQuantity;
 	private int loss;	
 	private int comfirmQuantity;
+	private int forwardingQuantity;
 	private String note;
 	private List<OperationDetailVO> DetailVO;
 	
@@ -27,6 +28,14 @@ public class OperationDetailVO {
 		return Arrays.toString(DetailVO.toArray());
 	}
 
+
+	public int getForwardingQuantity() {
+		return forwardingQuantity;
+	}
+
+	public void setForwardingQuantity(int forwardingQuantity) {
+		this.forwardingQuantity = forwardingQuantity;
+	}
 
 	public String getForwardingNumber() {
 		return forwardingNumber;
