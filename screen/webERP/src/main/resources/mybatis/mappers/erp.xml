@@ -860,7 +860,6 @@ order by bom.parent_item_code]]>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
-
 	</select>
 	
 	<update id="updateOrderClosing">
@@ -885,6 +884,16 @@ order by bom.parent_item_code]]>
 			where order_no=#{order_no}]]>
 	</update>
 	
+	<select id="itemList" resultMap="regitemResult">
+		<![CDATA[select item_Code,item_Name from SM_BIM_Ite_Reg]]>	
+	</select>
+	
+	 <select id="NameSearch" resultMap="regitemResult">
+		<![CDATA[ select item_Code, item_Name
+		  	from SM_BIM_Ite_Reg
+		 	 where item_Name like '%'||#{item_Name}||'%']]>
+	</select>
+
 	
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />
@@ -1729,7 +1738,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<!-- 기초정보관리_물류관리내역등록 -->
-	 <resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
+	<resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
 		<result property="logistics_In_Code" column="logistics_In_Code" />
 		<result property="logistics_In_Name" column="logistics_In_Name" />
 		<result property="explanation" column="explanation" />
@@ -1767,8 +1776,129 @@ ORDER BY out.workordernumber]]>
 		  where logistics_In_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	
 	<!-- 물류관리내역등록끝 -->
-
+	
+	<!-- 기초정보관리_검사유형등록 -->
+	<resultMap id="inspectionTypeResult" type="SystemmagVOMJ">	
+		<result property="inspection_Code" column="inspection_Code" />
+		<result property="inspection_Name" column="inspection_Name" />
+		<result property="inspection_Question" column="inspection_Question" />
+		<result property="remarks" column="remarks" />
+	</resultMap>
+	<select id="selectAllInspection" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP]]>
+	</select>
+	<select id="selectOneInspection" parameterType="String" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP where inspection_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteInspection">
+		delete from SM_BIM_INS_TYP where inspection_Code = #{no}
+	</delete>
+	<update id="updateInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_INS_TYP
+			set	inspection_Name=#{inspection_Name},
+			inspection_Question=#{inspection_Question},
+			remarks=#{remarks}
+			where inspection_Code=#{inspection_Code}			
+		]]>
+	</update>
+	<insert id="insertNewInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_INS_TYP
+			values(#{inspection_Code},
+			#{inspection_Name}, 
+			#{inspection_Question}, 
+			#{remarks})]]>
+	</insert>
+	<!-- 검사유형등록등록끝 -->
+	
+	<!-- SET구성품등록 -->
+		<!-- 세트품 -->
+	<resultMap id="setRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="set_Name" column="set_Name" />
+		<result property="set_Standard" column="set_Standard" />
+		<result property="set_Unit" column="set_Unit" />
+	</resultMap>
+	<select id="selectAllSetComponents" resultMap="setRegResult">
+		<![CDATA[select * from SM_BIM_SET_REG]]>
+	</select>
+	<select id="selectOneSetComponents" parameterType="String" resultMap="setRegResult">
+		<![CDATA[select * from SM_BIM_SET_REG where set_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteSetComponents">
+		delete from SM_BIM_SET_REG where set_Code = #{no}
+	</delete>
+	<update id="updateSetComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_SET_REG
+			set	set_Name=#{set_Name},
+			set_Standard=#{set_Standard},
+			set_Unit=#{set_Unit}
+			where set_Code=#{set_Code}			
+		]]>
+	</update>
+	<insert id="insertNewSetComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_SET_REG
+			values(#{set_Code},
+			#{set_Name}, 
+			#{set_Standard}, 
+			#{set_Unit})]]>
+	</insert>
+	<select id="selectPopSetList" resultMap="setRegResult">
+		<![CDATA[ select set_Code, set_Name
+		  from SM_BIM_SET_REG
+		  where set_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+		<!-- 세트구성품 -->
+	<resultMap id="comRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="components_Code" column="components_Code" />
+		<result property="components_Name" column="components_Name" />
+		<result property="components_Standard" column="components_Standard" />
+		<result property="components_Unit" column="components_Unit" />
+		<result property="components_Stock" column="components_Stock" />
+	</resultMap>
+	<select id="selectAllComReg" resultMap="comRegResult">
+		<![CDATA[select * from SM_BIM_COM_REG]]>
+	</select>
+	<select id="selectOneComReg" parameterType="String" resultMap="comRegResult">
+		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteComReg">
+		delete from SM_BIM_COM_REG where components_Code = #{no}
+	</delete>
+	<update id="updateComReg" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_COM_REG
+			set	components_Name=#{components_Name},
+			components_Standard=#{components_Standard},
+			components_Unit=#{components_Unit},
+			components_Stock=#{components_Stock}
+			where components_Code=#{components_Code}			
+		]]>
+	</update>
+	<insert id="insertNewComReg" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_COM_REG
+			values(#{components_Code},
+			#{components_Name}, 
+			#{components_Standard}, 
+			#{components_Unit},
+			#{components_Stock}]]>
+	</insert>
+	<select id="selectPopComponentsList" resultMap="comRegResult">
+		<![CDATA[ select components_Code, components_Name
+		  from SM_BIM_COM_REG
+		  where components_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<!-- SET구성품등록끝 -->
+	
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
@@ -1832,16 +1962,16 @@ ORDER BY out.workordernumber]]>
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="relDate" column="releaseDate" />
-		<result property="general_Customer_Code" column="General_Customer_Code" />
-		<result property="releaseOX" column="releaseOX" />
 		<result property="deadLine" column="deadLine" />
+		<result property="releaseOX" column="releaseOX" />
 		<result property="note" column="note" />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
 		<result property="general_Customer_Name" column="General_Customer_Name" />
 		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
 
-	<select id="submitSupForward" resultMap="forward" parameterType="String">
-		<![CDATA[select releaseNum,releaseDate,general_Customer_Code,releaseOX,deadLine,note  from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
+	<select id="submitSupForward" resultMap="forward" parameterType="forwardVO">
+		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
 	<select id="selCustforward" resultMap="forward">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL
@@ -1873,9 +2003,8 @@ ORDER BY out.workordernumber]]>
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
-		   <collection property="corVO" javaType="CorVO">
-        	<result property="no" column="NO" />
-        	<result property="relCode" column="code" />
+		        <collection property="corVO" javaType="CorVO">
+        	<id property="relCode" column="code" />
         	<result property="item_code" column="item_code" />
         	<result property="item_name" column="item_name" />        
         	<result property="stand" column="standard" />
@@ -1902,7 +2031,7 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	<select id="submitItemForward" parameterType="String" resultMap="Corforward">
+	<select id="submitItemForward" parameterType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>

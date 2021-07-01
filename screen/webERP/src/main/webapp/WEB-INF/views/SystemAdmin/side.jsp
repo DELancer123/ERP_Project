@@ -53,9 +53,9 @@
                             <li><a href="${contextPath }/member/outware.do">창고/공정/외주공정현황</a></li>
                             <li><a href="${contextPath }/member/logistics_manage.do">물류관리내역등록</a></li>
                             <%-- <li><a href="${contextPath }/member/logperbusi.do">물류실적담당자등록(거래차)</a></li>
-                            <li><a href="${contextPath }/member/logperitem.do">물류실적담당자등록(품목)</a></li>
+                            <li><a href="${contextPath }/member/logperitem.do">물류실적담당자등록(품목)</a></li> --%>
                             <li><a href="${contextPath }/member/reginspection.do">검사유형등록</a></li>
-                            <li><a href="${contextPath }/member/regsetcom.do">SET구성품등록</a></li> --%>
+                            <li><a href="${contextPath }/member/regsetcom.do">SET구성품등록</a></li>
                         </ul></li>
                 </ul>
             </div>
