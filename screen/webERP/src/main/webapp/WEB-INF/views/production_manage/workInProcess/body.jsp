@@ -103,7 +103,9 @@
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
-                        <td>단위</td>                        
+                        <td>단위</td>
+                        <td>입고수량</td>
+                        <td>출고수량</td>                        
                         <td>재공수량</td>                        
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
@@ -113,6 +115,8 @@
                         <td>${wip.itemName}</td>
                         <td>${wip.standard}</td>                        
                         <td>${wip.inventoryUnit }</td>
+                        <td>${wip.quantity }</td>
+                        <td>${wip.quantity }</td>
                         <td>${wip.quantity }</td>                        
                     </tbody>
                   </c:forEach>                   
