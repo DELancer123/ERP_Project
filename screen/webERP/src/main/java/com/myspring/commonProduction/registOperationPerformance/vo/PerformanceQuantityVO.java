@@ -3,6 +3,7 @@ package com.myspring.commonProduction.registOperationPerformance.vo;
 public class PerformanceQuantityVO {
 	private int performanceQuantity;
 	private String itemCode;
+	private String division;
 	
 	public int getPerformanceQuantity() {
 		return performanceQuantity;
@@ -22,6 +23,15 @@ public class PerformanceQuantityVO {
 	
 	public PerformanceQuantityVO() {	
 	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
+	}
+	
 	
 	
 }

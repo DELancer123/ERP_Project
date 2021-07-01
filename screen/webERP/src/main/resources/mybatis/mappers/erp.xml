@@ -342,11 +342,12 @@ where (status = '확정' or status = '마감')
 	<resultMap id="performanceQuantityResult" type="PerformanceQuantityVO">
 		<result property="performanceQuantity" column="performanceQuantity" />
 		<result property="itemCode" column="item_Code" />
+		<result property="division" column="division" />
 	</resultMap>
 	
 	<select id="selectperformanceQuantity" resultMap="performanceQuantityResult">
-		<![CDATA[select reg.performancequantity, cpm.item_Code from CPM_PM_OPE_PER_REG cpm, CPM_PM_OPE_PER_REG_DET reg
-					where cpm.workOrderNumber = reg.workordernumber and reg.opNumber = #{obj}]]>
+		<![CDATA[select reg.performancequantity, cpm.item_Code,bom.division from CPM_PM_OPE_PER_REG cpm, CPM_PM_OPE_PER_REG_DET reg, SM_BIM_ITE_REG bom
+					where cpm.workOrderNumber = reg.workordernumber and cpm.item_Code = bom.item_code and reg.opNumber = #{obj}]]>
 	</select>
 	
 	<update id="updAddStock">
