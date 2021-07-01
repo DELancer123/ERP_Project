@@ -95,14 +95,14 @@ var text_name = document.getElementById("name");
 
 			
 	}
-submit_button.onclick = function(){
+ submit_button.onclick = function(){
 		
 	text_code.setAttribute("general_Customer_Code",text_code.value);
 	text_name.setAttribute("general_Customer_Name",text_name.value);
 
 	var url = window.opener.document.location.href;
 	var url_arr = url.split('?');
-	opener.parent.location=url_arr[0] + '?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value+'&&submit='+0;
+	opener.parent.location=url_arr[0] + '?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value;
 	
 	window.close();
 	}	

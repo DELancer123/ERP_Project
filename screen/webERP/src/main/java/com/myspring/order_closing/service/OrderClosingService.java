@@ -28,5 +28,4 @@ public interface OrderClosingService {
 	List<SystemmagVOMJ> buyerList() throws Exception;
 
 	List<SystemmagVOMJ> buyerSearch(String buyer);
-
 }
