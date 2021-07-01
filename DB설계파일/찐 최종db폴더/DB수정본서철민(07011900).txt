@@ -600,7 +600,7 @@ Company_Registration_Number varchar2(13) NOT NULL UNIQUE,--사업자등록번호
 Corporate_Registration_Number varchar2(15) UNIQUE,--법인등록번호
 Representatives_Name varchar2(50) NOT NULL ,--대표자성명
 Resident_Registration_Number varchar2(15) UNIQUE,--주민등록번호
-Main_Store_Postal_Code varchar2(5) NOT NULL,--본점우편번호
+Main_Store_Postal_Code varchar2(12) NOT NULL,--본점우편번호
 Main_Store_Address varchar2(60) NOT NULL,--본점주소
 Main_Branch_Number varchar2(60),--본점번지
 Main_Store_Tel varchar2(13),--본점전화번호
@@ -646,7 +646,7 @@ Workplace_Name varchar2(50) NOT NULL UNIQUE,--사업장명
 Company_Registration_Number varchar2(13) NOT NULL UNIQUE,--사업자등록번호 
 Corporate_Registration_Number varchar2(15) UNIQUE ,--법인등록번호
 Representatives_Name varchar2(50) NOT NULL,--대표자성명 
-Workplace_Zipcode varchar2(5),--사업장우편번호 
+Workplace_Zipcode varchar2(12),--사업장우편번호 
 Workplace_Address varchar2(60) NOT NULL,--사업장주소
 Workplace_Number varchar2(60),--사업장번지
 Workplace_Tel varchar2(13), --사업장전화번호
@@ -826,7 +826,7 @@ values ( F_GET_NEXT_SEQ('SM_BIM_Gen_Cus_Reg'), '(주)포스코전자', '일반' 
 create table SM_BIM_Ite_gro_Reg (
 Item_Group_Code varchar2(12) PRIMARY KEY, --품목군코드
 Item_Group_Name varchar2(50) NOT NULL, --품목군명
-Use_Status varchar2(10) DEFAULT '사용', -- 사용여부
+Use_Status varchar2(10), -- 사용여부
 Explanation varchar2(200) -- 품목군설명
 );
 
@@ -867,7 +867,7 @@ Width varchar2(100), --폭
 Length varchar2(100), --길이
 Height varchar2(100), --높이
 Cost number(15) DEFAULT 0, --원가
-Item_Group_Code varchar2(12), -- 품목군등록
+Item_Group_Code varchar2(12), -- 품목군
 dailyProduction number(5) NOT NULL,--일 생산량
 Division varchar2(20) not null, --완제품/반제품/부품 구분
 Notes varchar2(200),
@@ -1006,35 +1006,35 @@ House_Name varchar2(50) UNIQUE NOT NULL, --창고명
 House_Location_IN varchar2(50), --입고기본위치 
 House_Location_OUT varchar2(50), --출고기본위치 
 House_Explanation varchar2(200), --창고 설명
-House_Status varchar2(10) DEFAULT '1.부'  --창고 사용여부
+House_Status varchar2(10)  --창고 사용여부
 );
 
-insert into SM_BIM_Hou_Reg values ( 'M100' , '제품창고' , '제품양품장소' , '제품양품장소' , null , '사용' );
-insert into SM_BIM_Hou_Reg values ( 'M200' , '부품창고' , null , null , null , '사용' );
+insert into SM_BIM_Hou_Reg values ( 'M100' , '제품창고' , '제품양품장소' , '제품양품장소' , null , '1' );
+insert into SM_BIM_Hou_Reg values ( 'M200' , '부품창고' , null , null , null , '1' );
 
 
 create table SM_BIM_Pro_Reg (
 Process_Code varchar2(12) PRIMARY KEY , --공정(생산)코드
-Process_Name varchar2(50) NOT NULL, --공정(생산)명
+Process_Name varchar2(50) NOT NULL UNIQUE, --공정(생산)명
 Process_Location_IN varchar2(50), --입고기본위치
 Process_Location_OUT varchar2(50), --출고기본위치
 Process_Explanation varchar2(200), --공정설명
-Process_Status varchar2(10) DEFAULT '1.부'
+Process_Status varchar2(10)
 );
 
-insert into SM_BIM_Pro_Reg values ( 'L100' , '작업공정' , null , null , null , '사용' );
-insert into SM_BIM_Pro_Reg values ( 'L200' , '작업공정(조립)' , null , null , null , '사용' );
+insert into SM_BIM_Pro_Reg values ( 'L100' , '작업공정' , null , null , null , '1' );
+insert into SM_BIM_Pro_Reg values ( 'L200' , '작업공정(조립)' , null , null , null , '1' );
 
 create table SM_BIM_Out_Reg (
 Outsourcing_Code varchar2(12) PRIMARY KEY, --외주공정코드 
-Outsourcing_Name varchar2(50) NOT NULL, --외주공정명
+Outsourcing_Name varchar2(50) NOT NULL UNIQUE, --외주공정명
 Outsourcing_Location_IN varchar2(50), --입고기본위치
 Outsourcing_Location_OUT varchar2(50), --출고기본위치
 Outsourcing_Explanation varchar2(200), --공정설명
-Outsourcing_Status varchar2(10) DEFAULT '1.부'
+Outsourcing_Status varchar2(10)
 );
 
-insert into SM_BIM_Out_Reg values ('P100' , '외주공정' , null , null , null , '사용');
+insert into SM_BIM_Out_Reg values ('P100' , '외주공정' , null , null , null , '1');
 
 -------------------------------------------------------------------
 --물류관리내역등록
@@ -1174,13 +1174,13 @@ Release_Code varchar2(12), --가출고 코드
 Release_Customer varchar2(50), --가출고 거래처명
 Suitability varchar2(10), --적합여부
 Availability varchar2(10), --가용재고여부
-Status varchar2(10) default '1.부'--사용여부
+Status varchar2(10) --사용여부
 );
 
-insert into SM_BIM_Wor_Reg values ('M101', '제품양품장소', NULL , NULL , NULL, '적합' , '1.여' , '사용' );
-insert into SM_BIM_Wor_Reg values ('M102', '제품불양품장소', NULL , NULL , NULL, '적합' , '2.부' , '사용' );
-insert into SM_BIM_Wor_Reg values ('M201', '부품양품장소', NULL , NULL , NULL, '적합' , '1.여' , '사용' );
-insert into SM_BIM_Wor_Reg values ('M202', '부품불양품장소', NULL , NULL , NULL, '적합' , '2.부' , '사용' );
+insert into SM_BIM_Wor_Reg values ('M101', '제품양품장소', NULL , NULL , NULL, '1' , '0' , '1' );
+insert into SM_BIM_Wor_Reg values ('M102', '제품불양품장소', NULL , NULL , NULL, '1' , '1' , '1' );
+insert into SM_BIM_Wor_Reg values ('M201', '부품양품장소', NULL , NULL , NULL, '1' , '0' , '1' );
+insert into SM_BIM_Wor_Reg values ('M202', '부품불양품장소', NULL , NULL , NULL, '1' , '1' , '1' );
 
 
 ---------------------------------------------------------------------
@@ -1191,34 +1191,34 @@ Workplace_Name varchar2(50) not null,--작업장명
 Workplace_Explanation varchar2(200),--작업장설명
 Suitability varchar2(10),--적합여부
 Process_Explanation varchar2(200),
-Status varchar2(10) default '1.부'--사용여부
+Status varchar2(10) --사용여부
 );
 
-insert into SM_BIM_Pro_Wor_Reg values ('L101', '제품작업장' , NULL, '적합',null , '사용');
-insert into SM_BIM_Pro_Wor_Reg values ('L102', '반제품작업장' , NULL, '적합',null , '사용');
-insert into SM_BIM_Pro_Wor_Reg values ('L201', '제품작업장(조립)' , NULL, '적합',null , '사용');
+insert into SM_BIM_Pro_Wor_Reg values ('L101', '제품작업장' , NULL, '1',null , '1');
+insert into SM_BIM_Pro_Wor_Reg values ('L102', '반제품작업장' , NULL, '1',null , '1');
+insert into SM_BIM_Pro_Wor_Reg values ('L201', '제품작업장(조립)' , NULL, '1',null , '1');
 
 --------------------------------------------------------------------------------
 --외주작업장 등록
 create table SM_BIM_Out_Wor_Reg(
-Outsourcing_Code varchar(12),
 Workplace_Code varchar2(12) primary key, --작업장 코드
+Outsourcing_Code varchar(12),
 Outcustomer varchar2(12) not null,--외주거래처 코드
 Workplace_Name varchar2(50), --작업장명
 Outcustomer_Name varchar2(50), --외주거래처명
 Workplace_Explanation varchar2(200), --작업장설명
 Suitability varchar2(10), --적합여부
-Status varchar2(10) default '1.부', --사용여부
+Status varchar2(10), --사용여부
 CONSTRAINT FK_Outsourcing_Code FOREIGN KEY(Outsourcing_Code)
 REFERENCES SM_BIM_Out_Reg(Outsourcing_Code)
 );
 
 EXECUTE P_RESET_SEQ('seq_SM_BIM_Gen_Cus_Reg_no');
-insert into SM_BIM_Out_Wor_Reg values ('P100','P101',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)삼도전자' , '(주)삼도전자' , NULL , '적합' , '사용' );
-insert into SM_BIM_Out_Wor_Reg values ('P100','P102',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)오라클전자' , '(주)오라클전자',  NULL , '적합' , '사용' );
-insert into SM_BIM_Out_Wor_Reg values ('P100','P103',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)디비컴퓨터', '(주)디비컴퓨터',  NULL , '적합' , '사용' );
-insert into SM_BIM_Out_Wor_Reg values ('P100','P104',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '더지글로직스',  '더지글로직스',  NULL , '적합' , '사용' );
-insert into SM_BIM_Out_Wor_Reg values ('P100','P105',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)서울컴텍', '(주)서울컴텍',  NULL , '적합' , '사용' );
+insert into SM_BIM_Out_Wor_Reg values ('P100','P101',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)삼도전자' , '(주)삼도전자' , NULL , '1' , '1' );
+insert into SM_BIM_Out_Wor_Reg values ('P100','P102',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)오라클전자' , '(주)오라클전자',  NULL , '1' , '1' );
+insert into SM_BIM_Out_Wor_Reg values ('P100','P103',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)디비컴퓨터', '(주)디비컴퓨터',  NULL , '1' , '1' );
+insert into SM_BIM_Out_Wor_Reg values ('P100','P104',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '더지글로직스',  '더지글로직스',  NULL , '1' , '1' );
+insert into SM_BIM_Out_Wor_Reg values ('P100','P105',F_GET_NEXT_SEQ('SM_BIM_Sal_Pla_Reg'), '(주)서울컴텍', '(주)서울컴텍',  NULL , '1' , '1' );
 
 -------------------------------------------------------------------------------------------------
 --생산 라인 등록
@@ -3607,9 +3607,7 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5), --재고 수량
-CONSTRAINT FK_prostock_Item_Code FOREIGN KEY (Item_Code) 
-REFERENCES SM_BIM_Ite_Reg(Item_Code) ON DELETE CASCADE
+Quantity number(5) --재고 수량
 );
 
 EXECUTE P_RESET_SEQ('SEQ_PM_SM_Pro_Stock_NO');
@@ -3734,9 +3732,7 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5), --재고 수량
-CONSTRAINT FK_product_Item_Code FOREIGN KEY (Item_Code) 
-REFERENCES SM_BIM_Ite_Reg(Item_Code) ON DELETE CASCADE
+Quantity number(5) --재고 수량
 );
 
 
