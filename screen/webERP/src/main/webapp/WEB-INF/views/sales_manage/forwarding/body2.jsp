@@ -189,7 +189,8 @@
        			for(var i =0; i<data.length; i++){
        				var html = '';
        				html += '<tr>';  
-           			html += '<td><input type = "checkbox" name = "ListVO[${status.index}].corVO.no"  value = "'+data[i].no+'" "></td>';  		
+           			html += '<td><input type = "checkbox" name = "ListVO[${status.index}].corVO.no"  value = "'+data[i].no+'" "></td>';  	
+        			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.relCode"  value = "'+data[i].relCode+'" "></td>';  	
            			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_code"  value = "'+data[i].corVO.item_code +'" "></td>';  		
            			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_name" value = "'+data[i].corVO.item_name +'"></td>';  			
            			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.stand" value = "'+data[i].corVO.stand+'"></td>';  			

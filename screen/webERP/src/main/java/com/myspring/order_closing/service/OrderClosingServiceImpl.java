@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.order_closing.dao.OrderClosingDAO;
 import com.myspring.order_closing.vo.OrderClosingVO;
-import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 import com.myspring.systemmag.vo.itemVO;
 
 @Service("orderclosingService")
@@ -52,6 +52,15 @@ public class OrderClosingServiceImpl implements OrderClosingService{
 	@Override
 	public List<itemVO> NameSearch(String itemName) {
 		return orderclosingDAO.NameSearch(itemName);
+	}
+	@Override
+	public List<SystemmagVOMJ>buyerList()throws Exception{
+		List<SystemmagVOMJ>buyerList = orderclosingDAO.buyerList();
+		return buyerList;
+	}
+	@Override
+	public List<SystemmagVOMJ> buyerSearch(String buyer) {
+		return orderclosingDAO.buyerSearch(buyer);
 	}
 
 }

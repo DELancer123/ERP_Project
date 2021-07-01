@@ -36,9 +36,9 @@
 //	}
 //	
 //	@Override
-//	public List submitCust(ForwardVO forwardVO) throws DataAccessException {
+//	public List submitCust(String general_Customer_Code) throws DataAccessException {
 //		List submitCustList = null;
-//		submitCustList = forwardDAO.submitForwardCustSupReg(forwardVO);
+//		submitCustList = forwardDAO.submitForwardCustSupReg(general_Customer_Code);
 //		return submitCustList;
 //	}
 //	@Override
@@ -69,5 +69,18 @@
 //		return forwardDAO.submitSubReg(relCode);	
 //	}//submitSubReg
 //
+////	@Override
+////	public int addSubItem(ForwardVO forwardVO) throws DataAccessException {
+////		return forwardDAO.addItemForward(forwardVO);
+////	}
 //
-//}
+////	@Override
+////	public void removeSubItem(String[] noary) throws DataAccessException {
+////		forwardDAO.delItemForward(noary);	
+////	}
+//
+////	@Override
+////	public int updSubItem(ForwardVO forwardVO) throws DataAccessException {
+////		return forwardDAO.updItemForward(forwardVO);
+////	}
+//} 
