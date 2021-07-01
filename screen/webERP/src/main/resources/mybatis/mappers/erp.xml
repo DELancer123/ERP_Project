@@ -297,8 +297,7 @@
 </resultMap>	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
-		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW
-]]>
+		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW]]>
 	</select>
 	
 	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
