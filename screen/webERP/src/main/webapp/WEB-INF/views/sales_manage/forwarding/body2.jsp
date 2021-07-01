@@ -75,15 +75,25 @@
                     <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" /></td>
                 </tbody>
                 </c:forEach>
-                    <tbody id="insertsupForward" align="center">
+                
+                <tbody id="insertsupForward" align="center">
                     <td><input type="checkbox"/></td>
-                    <td><input type="text" id="relCode" name="ListVO[${fn:length(supForwardList)}].relCode"/></td>
-                    <td><input type="date" id="relDate" name="ListVO[${fn:length(supForwardList)}].relDate" /></td>
-                    <td><input type="text" id="custCode" name="ListVO[${fn:length(supForwardList)}].general_Customer_Code" value="${param.custCode}" ondblclick="search2()" readonly/></td>
-                    <td><input type="text" id="releaseOX" name="ListVO[${fn:length(supForwardList)}].releaseOX"/></td>
-                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(supForwardList)}].deadLine"/></td>
-                    <td><input type="text" id="note" name="ListVO[${fn:length(supForwardList)}].note"/></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(submitCustList)}].relCode"/></td>
+                    <td><input type="date" id="relDate" name="ListVO[${fn:length(submitCustList)}].relDate" /></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(submitCustList)}].general_Customer_Code" value="${param.general_Customer_Code}"readonly/></td>
+                    <td><input type="text" id="releaseOX" name="ListVO[${fn:length(submitCustList)}].releaseOX"/></td>
+                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(submitCustList)}].deadLine"/></td>
+                    <td><input type="text" id="note" name="ListVO[${fn:length(submitCustList)}].note"/></td>
                 </tbody>
+<%--                     <tbody id="insertsupForward" align="center">
+                    <td><input type="checkbox"/></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(submitCustList)}].relCode"/></td>
+                    <td><input type="date" id="relDate" name="ListVO[${fn:length(submitCustList)}].relDate" /></td>
+                    <td><input type="text" id="custCode" name="ListVO[${fn:length(submitCustList)}].general_Customer_Code" value="${param.general_Customer_Code}" ondblclick="search2()" readonly/></td>
+                    <td><input type="text" id="releaseOX" name="ListVO[${fn:length(submitCustList)}].releaseOX"/></td>
+                    <td><input type="text" id="deadLine" name="ListVO[${fn:length(submitCustList)}].deadLine"/></td>
+                    <td><input type="text" id="note" name="ListVO[${fn:length(submitCustList)}].note"/></td>
+                </tbody> --%>
            </table>
            </form>
            </div>
@@ -123,11 +133,6 @@
             checkbox.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
             });
-        }
-		        
-       	function search2(){
-      	  
-        openWindowPop('http://localhost:8090/webERP/member/forwardcodehelper.do','cust');  
         }
        	view_button.onclick = function(){
       	  const URLSearch = new URLSearchParams(location.search);

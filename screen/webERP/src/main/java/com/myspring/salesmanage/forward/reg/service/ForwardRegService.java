@@ -12,8 +12,6 @@ public interface ForwardRegService {
 	//pop1 cust
 	public List listCusts() throws DataAccessException;
 	//pop2
-	public List listCust() throws DataAccessException;
-	//pop3
 	public List listItems() throws DataAccessException;
 	//list by forward regstration
 	public List submitCust(String general_Customer_Code) throws DataAccessException;

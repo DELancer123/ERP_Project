@@ -2013,11 +2013,6 @@ ORDER BY out.workordernumber]]>
 	<select id="submitSupForward" resultMap="forward" parameterType="forwardVO">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
-	<select id="selCustforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL
-		 where REL.General_Customer_Code = GEN.General_Customer_Code
-		  order by REL.General_Customer_Code]]>
-	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
