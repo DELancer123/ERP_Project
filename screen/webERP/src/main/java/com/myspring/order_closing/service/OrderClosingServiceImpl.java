@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.order_closing.dao.OrderClosingDAO;
 import com.myspring.order_closing.vo.OrderClosingVO;
+import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.itemVO;
 
 @Service("orderclosingService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -42,4 +43,15 @@ public class OrderClosingServiceImpl implements OrderClosingService{
 	public int updateClosing(OrderClosingVO vo) throws DataAccessException {
 		return orderclosingDAO.updateClosing(vo);
 	}
+	
+	@Override
+	public List<itemVO>itemList()throws Exception{
+		List<itemVO>itemList = orderclosingDAO.itemList();
+		return itemList;
+	}
+	@Override
+	public List<itemVO> NameSearch(String itemName) {
+		return orderclosingDAO.NameSearch(itemName);
+	}
+
 }

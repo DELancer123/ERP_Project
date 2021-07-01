@@ -327,7 +327,7 @@ input {
         var num_box = document.getElementById('num');
         var save_button = document.getElementById('save');
         var delete_button = document.getElementById('delete');
-        /* var update_button = document.getElementById('update'); */
+        var update_button = document.getElementById('update');
         var view_button = document.getElementById('view_button');
         var itemcode = document.getElementById('itemcode');
         side_button1.onclick = function(){

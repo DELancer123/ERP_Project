@@ -66,13 +66,13 @@
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content"/></td>
                     <td><a href="javascript:popFunction('${supForward.relCode}','${supForward.relDate}')">
-                    	<input type="text"  name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="itemview()" readonly/></a></td>
+                    	<input type="text" class = "relCode" name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="itemview()" readonly/></a></td>
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
                     <input type="hidden" value="${param.general_Customer_Name}"></td>
-                    <td><input type="text" name="ListVO[${status.index}].releaseOX" value="${supForward.releaseOX}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" readonly /></td>
+                    <td><input type="text" name="ListVO[${status.index}].releaseOX" value="${supForward.releaseOX}"/></td>
+                    <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}"  /></td>
+                    <td><input type="text" name="ListVO[${status.index}].note" value="${supForward.note}" /></td>
                 </tbody>
                 </c:forEach>
                     <tbody id="insertsupForward" align="center">
@@ -88,7 +88,7 @@
            </form>
            </div>
         </container2>
-        
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript">
         var text_code = document.getElementById("code");
     	var text_name = document.getElementById("name");
@@ -172,26 +172,53 @@
             document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/addforward.do";
            document.getElementById('dataForm').submit();  
-     }
-    	function itemview(){
-            var row = forwardingTable.insertRow(); 
-            const URLSearch = new URLSearchParams(location.search);
-         const newParam = URLSearch.toString();
-        var link = location.pathname +'?'+newParam;
-          var linkPath = document.createElement("input");
-           linkPath.setAttribute("type","hidden");
-           linkPath.setAttribute("name","path");
-           linkPath.setAttribute("value", link);
-           
-           document.getElementById('dataForm').appendChild(linkPath);
-           document.getElementById('dataForm').action = "${contextPath}/member/itemtableview.do";
-          document.getElementById('dataForm').submit();  
-
-    	}
+     }    	
+    	   $('.relCode').dblclick(function(e) {           
+           var code = $(this).val();
+       	$.ajax({ type: "GET",
+       		url: "/webERP/member/itemtableview.do",
+       		data : {	"relCode" : code},
+       		//dataType : 'text',
+       		success: function(responseData){
+       			var data = responseData.subForward;
+       			
+       			// id=itemPop 안의 모든 요소 지우기
+        			$("#itemPop").empty();
+       			
+       		/* 	var tbody4index = 0; */
+       			for(var i =0; i<data.length; i++){
+       				var html = '';
+       				html += '<tr>';  
+           			html += '<td><input type = "checkbox" name = "ListVO[${status.index}].corVO.no"  value = "'+data[i].no+'" "></td>';  		
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_code"  value = "'+data[i].corVO.item_code +'" "></td>';  		
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_name" value = "'+data[i].corVO.item_name +'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.stand" value = "'+data[i].corVO.stand+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.orderQuant" value = "'+data[i].corVO.orderQuant+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.unit" value = "'+data[i].corVO.unit+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.price" value = "'+data[i].corVO.price+'"></td>'; 
+           			html += '<td><input type = "text" name = "공급가" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
+           			html += '<td><input type = "text" name = "부가세" value = "'+((data[i].corVO.price*data[i].corVO.orderQuant)*0.1)+'"></td>';
+           			html += '<td><input type = "text" name = "합계액" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
+           			html += '<td><input type = "date" name = "ListVO[${status.index}].corVO.dueDate" value = "'+data[i].corVO.dueDate+'"></td>';  			
+           			html += '<td><input type = "date" name = "ListVO[${status.index}].corVO.expDate" value = "'+data[i].corVO.expDate+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.orderOX" value = "'+data[i].corVO.orderOX+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.inspection" value = "'+data[i].corVO.inspection+'"></td>';  			
+           			html += '</tr>';
+           			//  id=itemPop 안에 넣기
+           			$("#itemPop").append(html);
+       			} 
+       			 
+       			/* addTbody3(); */
+       		},
+       		error: function(request,status,error){
+       	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       	       }
+       	});
+       });
     	
 		/*수정버튼*/
         function updateRow() {
-           var row = workOrderTable.insertRow(); 
+           var row = updsupForward.insertRow(); 
            const URLSearch = new URLSearchParams(location.search);
            const newParam = URLSearch.toString();
             var link = location.pathname +'?'+newParam;
@@ -200,7 +227,7 @@
           linkPath.setAttribute("name","path");
           linkPath.setAttribute("value", link);
             document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updforward.do";
+            document.getElementById('dataForm').action = "${contextPath}/member/updForward.do";
           document.getElementById('dataForm').submit();  
         }
     	

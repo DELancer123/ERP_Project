@@ -64,9 +64,9 @@
 </style>
 <script>
 	window.onload = function(){
-		l_sub3.style.display = "block";
-        l_sub3.style.position = "relative";
-        l_sub3.style.marginLeft = "10px";
+		l_sub1.style.display = "block";
+		l_sub1.style.position = "relative";
+		l_sub1.style.marginLeft = "10px";
 	}
 </script>
 </head>
@@ -230,6 +230,7 @@
   		   if (isEmpty(itemNumber)){
 	      		alert("품번값이 비어져있습니다. 값을 추가해주세요!");
 	      		document.getElementById("itemNumber").focus();
+	      		return false;
 
 	  		}
   		   else 
