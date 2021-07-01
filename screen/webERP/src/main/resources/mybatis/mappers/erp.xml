@@ -297,8 +297,7 @@
 </resultMap>	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
-		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW
-]]>
+		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW]]>
 	</select>
 	
 	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
@@ -465,7 +464,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		<result property="dailyProduction" column="dailyProduction" />
 	</resultMap>
 	<select id="selectItemCodeView" resultMap="ItemCodeResult">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품', '반제품')]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품')]]>
 	</select>
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />
@@ -504,12 +503,22 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		<result property="itemName" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="inventoryUnit" column="inventory_Unit" />
-		<result property="quantity" column="ForwardingQuantity" />
+		<result property="indicatedQuantity" column="INDICATEDQUANTITY" />
+		<result property="sumPerformanceQuantity" column="SUMPERFORMANCEQUANTITY" />
+		<result property="remainingPerformance" column="REMAININGPERFORMANCE" />
 	</resultMap>
 	
 	<select id="selectAllWorkInProcess" resultMap="selectWorkInProcessResult">
-		<![CDATA[select * from CPM_PM_PRO_MAT_FOR_DET ]]>
+		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
+				group by item_code, item_name, standard, inventory_unit order by item_Code ]]>
 	</select>
+	
+	<select id="selectAllWorkInProcessCondition" resultMap="selectWorkInProcessResult">
+		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
+				where item_Code = #{itemCode}
+				group by item_code, item_name, standard, inventory_unit order by item_Code]]>
+	</select>
+	
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
@@ -1277,6 +1286,16 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	 #{inspection_Status}, #{use_Status}, #{lOT_Quantity}, #{drawing_Number}, #{hs_Code}, #{width}, #{length}
 	 , #{height}, #{cost}, #{item_Group_Code}, #{daily_production}, #{division}, #{notes} )]]>
 	</insert>
+	<insert id="insertPartItem" parameterType="itemVO">
+	<![CDATA[
+	INSERT INTO PM_SM_Pro_Stock
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	</insert>
+	<insert id="insertProductItem" parameterType="itemVO">
+	<![CDATA[
+	INSERT INTO PM_SM_Pro_FinishedProduct
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	</insert>
 	<!-- 수정 -->
 	<update id="updateItem" parameterType="itemVO">
 		<![CDATA[
@@ -1306,6 +1325,7 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	<delete id="deleteItem">
 		delete from SM_BIM_Ite_Reg where Item_Code = #{no}
 	</delete>
+
 	<!-- 품목군등록 -->	
 		<resultMap id="itemgResult" type="ItemgVO">
 		<result property="item_Group_Code" column="Item_Group_Code"	/>
@@ -2014,11 +2034,6 @@ ORDER BY out.workordernumber]]>
 	<select id="submitSupForward" resultMap="forward" parameterType="forwardVO">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
-	<select id="selCustforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL
-		 where REL.General_Customer_Code = GEN.General_Customer_Code
-		  order by REL.General_Customer_Code]]>
-	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
@@ -2056,6 +2071,7 @@ ORDER BY out.workordernumber]]>
         	<result property="expDate" column="expectedDate" />
         	<result property="inspection" column="inspection" />
         	<result property="orderOX" column="orderOX" />
+        	<result property="no" column="no" />
         </collection>
 </resultMap>  
 	<select id="submitSubForward" resultMap="Corforward">

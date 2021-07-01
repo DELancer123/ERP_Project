@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface SystemmagDAOMJ {
-	//�Ϲݰŷ�ó���
+	//占싹반거뤄옙처占쏙옙占�
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
@@ -26,7 +26,7 @@ public interface SystemmagDAOMJ {
 	
 	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) throws DataAccessException;
 	
-	//â��/����/���ְ�����Ȳ
+	//창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙황
 	public List viewAllHouOutware() throws DataAccessException;
 	
 	public List viewAllProOutware() throws DataAccessException;
@@ -45,7 +45,7 @@ public interface SystemmagDAOMJ {
 	
 	public List viewSelectedOutOutware(String search) throws DataAccessException;
 	
-	//���������������
+	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�
 	public List viewAllLogistics() throws DataAccessException;
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
@@ -60,7 +60,7 @@ public interface SystemmagDAOMJ {
 
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
 	
-	//검사유형등록
+	//寃��궗�쑀�삎�벑濡�
 	public List viewAllInspection() throws DataAccessException;
 	
 	public List viewInspection(String com_code) throws DataAccessException;
@@ -71,7 +71,7 @@ public interface SystemmagDAOMJ {
 	
 	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
-	//SET구성품등록
+	//SET援ъ꽦�뭹�벑濡�
 	public List viewAllSetComponents() throws DataAccessException;
 	
 	public List viewSetComponents(String com_code) throws DataAccessException;
@@ -85,5 +85,13 @@ public interface SystemmagDAOMJ {
 	public List<SystemmagVOMJ> viewsearchPopSetName(String itemName) throws DataAccessException;
 	
 	public List<SystemmagVOMJ> viewsearchPopComponentsName(String itemName) throws DataAccessException;
+	//---
+	public List viewSpecComponents(String com_code) throws DataAccessException;
+	
+	public int insertNewSpecComponents (SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public void deleteSpecComponents(String[] noary) throws DataAccessException;
+	
+	public void updateSpecComponents(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
 }
