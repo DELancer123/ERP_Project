@@ -30,6 +30,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 <!-- Error Page -->
+
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error/404error.jsp</location>
@@ -39,8 +40,22 @@
 		<location>/WEB-INF/views/error/400error.jsp</location>
 	</error-page>
 
- 	   <error-page>
+<!--  	     <error-page>
              <exception-type>javax.servlet.ServletException</exception-type>
              <location>/WEB-INF/views/error/NestedServletException.jsp</location>
-       </error-page>
+       </error-page> -->
+	<error-page>
+		<exception-type>org.springframework.dao.DuplicateKeyException</exception-type>
+		<location>/WEB-INF/views/error/ORA-00001.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>org.mybatis.spring.MyBatisSystemException</exception-type>
+		<location>/WEB-INF/views/error/jdbcMapper.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>org.springframework.jdbc.UncategorizedSQLException</exception-type>
+		<location>/WEB-INF/views/error/ORA-12899.jsp</location>
+	</error-page>
+       
+      
 </web-app>

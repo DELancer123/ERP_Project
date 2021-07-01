@@ -56,7 +56,7 @@
             <table id="search">
                 <tr>
                     <td>우편번호</td>
-                    <td><input type="text" id="code" name="code"/></td>
+                    <td><input type="text" id="code" name="code" readonly/></td>
                 </tr>
                 <tr>
                     <td>주소</td>

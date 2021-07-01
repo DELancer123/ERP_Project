@@ -176,7 +176,7 @@
 	        }
 	        
 	        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
-	        	if(inspection_Code == "" || inspection_Name == ""){
+	        	if(inspection_Code.value == "" || inspection_Name.value == ""){
 		    		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
 	    		}
 	        	else{

@@ -44,5 +44,6 @@ public interface CommonProductionController {
 	public ModelAndView deleteRegistOperationPerformanceInfoDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView facilitySearch(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView checkStock(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView processInWork(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

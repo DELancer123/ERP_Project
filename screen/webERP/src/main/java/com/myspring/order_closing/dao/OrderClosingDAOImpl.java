@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.order_closing.vo.OrderClosingVO;
-import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 import com.myspring.systemmag.vo.itemVO;
 
 @Repository("orderclosingDAO")
@@ -81,6 +82,20 @@ public class OrderClosingDAOImpl implements OrderClosingDAO{
 	public List<itemVO>NameSearch(String itemName) {
 		List<itemVO> popList = null;
 		popList = sqlSession.selectList("mappers.erp.NameSearch",itemName);
+		return popList;
+	}
+	
+	@Override
+	public List buyerList() throws Exception{
+		List<SystemmagVOMJ>buyerList = null;
+		buyerList = sqlSession.selectList("mappers.erp.buyerList");
+		return buyerList;
+	}
+
+	@Override
+	public List<SystemmagVOMJ>buyerSearch(String buyer) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.buyerSearch",buyer);
 		return popList;
 	}
 

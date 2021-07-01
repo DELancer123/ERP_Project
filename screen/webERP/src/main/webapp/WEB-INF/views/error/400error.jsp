@@ -35,7 +35,8 @@ text-decoration:none
 </style>
 </head>
 <body>
-	<h1 class="error_h1">죄송합니다. 잘못된 요청. 잘못된 구문으로 인해 서버에서 요청을 할 수 없습니다.</h1>
+	<h1 class="error_h1">죄송합니다. 잘못된 요청. 잘못된 구문으로 인해 서버에서 요청을 할 수 없습니다.<br>
+			400에러!!</h1>
 	<div class="area_btn">
 		<a href="javascript:history.back(-1)" class="link">이전 화면으로</a>
 </div>

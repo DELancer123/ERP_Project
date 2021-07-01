@@ -81,7 +81,7 @@
                         <td colspan="2"><input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/></td>
     
                         <td colspan="4" style="width: 80px;">외주작업장</td>
-                        <td style="width: 80px;"><input type="text" value='${param.placeCode }' style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" id="placeCode" value='${param.placeCode }' style="width: 100%; background-color: yellow;"/></td>
                         <td> <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
                         
@@ -156,6 +156,15 @@
             </form>
         </container2>
         <script>
+        function isEmpty(str){
+    	     
+    	     if(typeof str == "undefined" || str == null || str == "")
+    	         return true;
+    	     
+    	     else
+    	         return false ;
+    	     
+    	 	}
         var save_button = document.getElementById('save');
         var update_button = document.getElementById('update');
         var delete_button = document.getElementById('delete');
@@ -163,6 +172,13 @@
           var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
           window.open(url, name, options);
       }
+      view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+  	}
       
       function search1(){
     	      	openWindowPop('${contextPath}/member/outsourcingPop.do?div=1','codehelper');
@@ -190,6 +206,12 @@
         
     }
 		save_button.onclick = function(){
+			var outcode = document.getElementById('outcode').value;
+			var placeCode = document.getElementById("placeCode").value;
+			var itemName = document.getElementById("itemName").value;
+			var outprice = document.getElementById("outprice").value;
+			var start = document.getElementById("start").value;
+			var end = document.getElementById("end").value;
 			const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();
@@ -198,9 +220,50 @@
 	  		     articleNOInput.setAttribute("type","hidden");
 	  		     articleNOInput.setAttribute("name","path");
 	  		     articleNOInput.setAttribute("value", link);
+	  		     
+	  		   if(isEmpty(outcode)){
+		      		alert("외주처 항목값이 비어져있습니다. 외주처 옆 돋보기를 눌러 값을 추가해주세요!");
+		      		document.getElementById("outcode").focus();
+		      		return false;
+
+		  		}
+	  		   else if(isEmpty(placeCode)){
+		      		alert("외주작업장 항목값이 비어져있습니다. 외주작업장 옆 돋보기를 눌러 값을 추가해주세요!");
+		      		document.getElementById("placeCode").focus();
+		      		return false;
+
+		  		}
+	  		     else if(isEmpty(itemName)){
+			      		alert("품목 항목값이 비어져있습니다. 품명 입력칸을 눌러 값을 추가해주세요!");
+			      		document.getElementById("itemName").focus();
+			      		return false;
+
+			  		}
+	  		     
+	  		     else if (isEmpty(outprice)){
+		      		alert("외주단가 항목값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("outprice").focus();
+		      		return false;
+
+		  		}
+	  		   else if (isEmpty(start)){
+		      		alert("시작일 항목값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("start").focus();
+		      		return false;
+	 	  		}
+	  			 else if(isEmpty(end)){
+		      		alert("종료일 항목값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("end").focus();
+		      		return false;
+			   }
+			   else{
 	  		     document.getElementById('searchForm').appendChild(articleNOInput);
 	            document.getElementById('searchForm').action = "${contextPath}/member/addoutprice.do";
-	  			document.getElementById('searchForm').submit();  
+	  			document.getElementById('searchForm').submit();  	  
+		 		alert("값이 저장되었습니다!");          	
+			   }
+	  		     
+	  		     
 		}
 		update_button.onclick = function(){
 			document.getElementById("outsoucing").disabled = true;
@@ -240,8 +303,16 @@
 	    			  ary.push(no);
 	    		  }
 	    		  
-	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
 	    	  }
+	    	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+					alert('삭제할 목록의 체크박스를 선택해주세요');
+					//window.history.back();
+				}
+		    	else {//컨트롤러로 해당목록의 no값을 보낸다
+	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
+		    		alert('삭제되었습니다');
+		
+		    	}
 		}
       </script>
       

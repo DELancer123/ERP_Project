@@ -21,7 +21,7 @@ public class MainPlanVO {
 	private Date expectedDate;
 	private Date dueDate;
 	private int plan_quantity;
-	private String buyer;
+	private String general_Customer_Name;
 	private String note;
 	private Date startDate;
 	private Date endDate;	
@@ -96,9 +96,15 @@ public class MainPlanVO {
 	public int getPlan_quantity() {return plan_quantity;}
 	public void setPlan_quantity(int plan_quantity) {this.plan_quantity=plan_quantity;}
 	
-	public String getBuyer() {return buyer;}
-	public void setBuyer(String buyer) {this.buyer=buyer;}
 	
+	public String getGeneral_Customer_Name() {
+		return general_Customer_Name;
+	}
+
+	public void setGeneral_Customer_Name(String general_Customer_Name) {
+		this.general_Customer_Name = general_Customer_Name;
+	}
+
 	public String getNote() {return note;}
 	public void setNote(String note) {this.note=note;}
 	

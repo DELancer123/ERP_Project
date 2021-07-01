@@ -118,10 +118,10 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="checkbox" name="content" value="${OrderClosing.sequence}" /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].buyer" value='${OrderClosing.buyer}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value='${OrderClosing.general_Customer_Name}' readonly /></td>
 			<td style="width: 13px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
-				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}' readonly /></td>
-				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}'  readonly  /></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly  /></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' /></td>
@@ -137,7 +137,7 @@ String sequence = (String) request.getAttribute("sequence");
 					<td></td>
 				<td><input type="text" id="order_no"  value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
-				<td><input type="text" id="buyer" name="ListVO[${fn:length(ClosingList) }].buyer" value='${param.buyer}' style="background-color:#E6E6FA"/></td>
+		<td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(ClosingList) }].general_Customer_Name" value='${param.general_Customer_Name}' ondblclick="search2()" readonly style="background-color:#E6E6FA"/></td>
 				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
 				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${param.item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
@@ -163,7 +163,7 @@ String sequence = (String) request.getAttribute("sequence");
 <script type="text/javascript">
 var order_date = document.getElementById("order_date");
 var code = document.getElementById("code");
-var buyer = document.getElementById("buyer");
+var general_Customer_Name = document.getElementById("general_Customer_Name");
 var item_Code = document.getElementById("item_Code");
 var item_Name = document.getElementById("item_Name");
 var order_quantity = document.getElementById("order_quantity");
@@ -206,9 +206,9 @@ function newRow(){
 	    if(order_date.value == ""){
 	       alert("발주일자는 필수 입력사항입니다.");
 	       return order_date.focus();
-	    }else if(buyer.value == ""){
+	    }else if(general_Customer_Name.value == ""){
 	       alert("회사명은 필수 입력사항입니다.");
-	       return buyer.focus();
+	       return general_Customer_Name.focus();
 	    }else if(item_Code.value ==""){
 	    	alert("품번은 필수 입력사항입니다.");
 	    	return item_Code.focus();
@@ -250,7 +250,7 @@ if(UpdConfirm){
 	var link = location.pathname + '?' + newParam;
 	document.getElementById("order_no").disabled = true;		
 	document.getElementById("order_date").disabled = true;
-	document.getElementById("buyer").disabled = true;
+	document.getElementById("general_Customer_Name").disabled = true;
 	document.getElementById("sequence").disabled = true;
 	document.getElementById("item_Code").disabled = true;
 	document.getElementById("item_Name").disabled = true;
@@ -321,5 +321,9 @@ function openWindowPop(url, name){
 function search1(){ 	  
 	      	openWindowPop('${contextPath}/member/itemPop.do','itemPop');
 }       
+function search2(){ 	  
+	      	openWindowPop('${contextPath}/member/buyerPop.do','buyerPop');
+}      
+
 </script>
 </html>

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.service.MainPlanService;
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 
 @Controller("mainplanController")
@@ -41,7 +42,7 @@ public class MainPlanControllerImpl implements MainPlanController {
 		String viewName = getViewName(request);
 		String number = (String) request.getParameter("item_Code");
 		String submit = (String) request.getParameter("submit");
-		String itemNumber = (String) request.getParameter("item_Code");
+		String itemNumber = (String) request.getParameter("general_Customer_Code");
 		int sum = 0;
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			
@@ -108,6 +109,27 @@ public class MainPlanControllerImpl implements MainPlanController {
 		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
+	
+	@RequestMapping(value = "member/Popbuyer.do", method = RequestMethod.GET)
+	public ModelAndView Listbuyer(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		List Listbuyer = mainplanService.Listbuyer();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("Listbuyer", Listbuyer);
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/Searchbuyer.do", method = RequestMethod.GET)
+	public ModelAndView buyerSearch(@RequestParam("buyer") String buyer) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = mainplanService.Searchbuyer(buyer);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	} 
 
 	@Override
 	@RequestMapping(value="/member/updateMPS.do" ,method = RequestMethod.GET)
