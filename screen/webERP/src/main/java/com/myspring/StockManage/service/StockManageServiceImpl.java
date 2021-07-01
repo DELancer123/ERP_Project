@@ -115,6 +115,12 @@ public class StockManageServiceImpl implements StockManageService{
 		stockManageDAO.delsujuSub(numberary);
 	}
 
+	@Override
+	public void insertNewRow(StockManageVO stVO) {
+		// TODO Auto-generated method stub
+		stockManageDAO.insertNewRow(stVO);
+	}
+
 
 
 

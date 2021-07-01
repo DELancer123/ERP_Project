@@ -133,6 +133,23 @@ public class StockManageDAOImpl implements StockManageDAO {
 		}
 	}
 
+	@Override
+	public void insertNewRow(StockManageVO stVO) {
+		// TODO Auto-generated method stub
+		int idx= stVO.getSujuVO().size()-1;
+		if(StringUtils.hasText(stVO.getSujuVO().get(idx).getGeneral_Customer_Code())){
+			sqlSession.insert("mappers.erp.insertSujuRow",stVO.getSujuVO().get(idx));
+		}
+		if(stVO.getSubSujuList() != null) {
+			for(int i = 0 ; i<stVO.getSubSujuList().size(); i++) {
+				stVO.getSubSujuList().get(i).setBusCode(stVO.getBusCode());
+				stVO.getSubSujuList().get(i).setCode(stVO.getInsertNo());
+				sqlSession.insert("mappers.erp.insertSujuRowSub",stVO.getSubSujuList().get(i));
+			}
+		}
+		
+	}
+
 
 
 	
