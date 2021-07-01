@@ -1573,7 +1573,8 @@ ORDER BY out.workordernumber]]>
 	<resultMap id="sujuView" type="StockManageVO">
 		<result property="ordersNum" column="ordersNum" />
 		<result property="ordersdate" column="ordersdate" />
-		<result property="General_Customer_Code" column="General_Customer_Code " />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
+		<result property="general_Customer_Name" column="General_Customer_Name" />
 		<result property="tax" column="tax" />
 		<result property="note" column="Note" />
 		<result property="moveNum" column="Move_Num" />
@@ -1595,7 +1596,6 @@ ORDER BY out.workordernumber]]>
 		<result property="modDate" column="Mod_Date" />	
 		<result property="houseCode" column="House_Code" />	
 		<result property="locationCode" column="Location_Code" />	
-		<result property="generalCustomerCode" column="General_Customer_Code" />	
 		<result property="kind" column="Kind" />	
 		<result property="modQuantity" column="Mod_Quantity" />	
 		<result property="setCode" column="SET_Code" />	
@@ -1610,26 +1610,32 @@ ORDER BY out.workordernumber]]>
 		
 		<result property="busCode" column="Output_Business"/>
 	</resultMap>
-	
+	<resultMap id="sujuView1" type="StockManageVO">
+		<result property="ordersNum" column="ordersNum"/>
+		<result property="ordersdate" column="ordersdate"/>
+		<result property="general_Customer_Code" column="General_Customer_Code"/>
+		<result property="tax" column="tax"/>
+		<result property="note" column="Note"/>
+	</resultMap>
 	
 
 	<select id="selectcusList" resultMap="sujuView">
-		<![CDATA[ select *
-		  from CSM_SM_Ord_Reg
+		<![CDATA[ select General_Customer_Code ,General_Customer_Name 
+		  from SM_BIM_Gen_Cus_Reg 
 		]]>
 	</select>
 	
 	<select id="selectPopCusList" resultMap="sujuView">
-		<![CDATA[ select General_Customer_Code
-		  from CSM_SM_Ord_Reg
-		  where General_Customer_Code like '%'||#{itemName}||'%'
+		<![CDATA[ select General_Customer_Code, General_Customer_Name
+		  from SM_BIM_Gen_Cus_Reg
+		  where General_Customer_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
-	<select id="selectsujuList" resultMap="sujuView">
+	<select id="selectsujuList" resultMap="sujuView1">
 		<![CDATA[ select *
 		  from CSM_SM_Ord_Reg
-		  where General_Customer_Code = #{customerCode}
+		  where General_Customer_Code = #{general_Customer_Code}
 		]]>
 	</select>
 	
@@ -1640,7 +1646,15 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	<delete id="delsuju">
+		<![CDATA[  delete from CSM_SM_Ord_Reg where ordersNum = #{obj}
+		]]>
+	</delete>
 	
+	<delete id="delsujuSub">
+		<![CDATA[  delete from CSM_SM_COR_Reg where No = #{obj}
+		]]>
+	</delete>
 	
 	<!-- 메뉴검색바  -->
 	<resultMap id="menuView" type="StockManageVO">
