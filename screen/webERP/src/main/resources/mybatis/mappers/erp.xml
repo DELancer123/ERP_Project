@@ -464,7 +464,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		<result property="dailyProduction" column="dailyProduction" />
 	</resultMap>
 	<select id="selectItemCodeView" resultMap="ItemCodeResult">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품')]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품','반제품')]]>
 	</select>
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />
