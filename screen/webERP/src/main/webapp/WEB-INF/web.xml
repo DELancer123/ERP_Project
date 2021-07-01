@@ -40,9 +40,14 @@
 		<location>/WEB-INF/views/error/400error.jsp</location>
 	</error-page>
 
- 	   <error-page>
+ 	   <!-- <error-page>
              <exception-type>javax.servlet.ServletException</exception-type>
              <location>/WEB-INF/views/error/NestedServletException.jsp</location>
-       </error-page>
+       </error-page> -->
+        	   <error-page>
+             <exception-type>org.springframework.dao.DuplicateKeyException</exception-type>
+             <location>/WEB-INF/views/error/ORA-00001.jsp</location>
+       		</error-page>
+       
       
 </web-app>
