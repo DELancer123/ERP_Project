@@ -716,7 +716,7 @@ order by bom.parent_item_code]]>
 		<result property="expectedDate" column="expectedDate" />
 		<result property="dueDate" column="dueDate" />
 		<result property="plan_quantity" column="plan_quantity" />
-		<result property="buyer" column="buyer" />
+		<result property="general_Customer_Name" column="general_Customer_Name" />
 		<result property="note" column="note" />
  		<result property="startDate" column="startDate" />
 		<result property="endDate" column="endDate" />
@@ -725,7 +725,7 @@ order by bom.parent_item_code]]>
 		<result column="orderno" property="orderno" />
 		<result column="sequence" property="sequence" />
 		<result column="ordersdate" property="ordersdate" />
-		<result column="buyer" property="buyer" />
+		<result column="general_Customer_Name" property="general_Customer_Name" />
 		<result column="item_Code" property="item_Code" />
 		<result column="item_Name" property="item_Name" />
 		<result column="standard" property="standard" />
@@ -738,7 +738,7 @@ order by bom.parent_item_code]]>
 	<select id="selectAllMainPlanList" resultMap="MPSResult">
 		<![CDATA[ select cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
    				cc.dueDate, cc.expectedDate,
-  				mp.plandate, mp.plan_Quantity, mp.buyer, mp.note
+  				mp.plandate, mp.plan_Quantity, mp.general_Customer_Name, mp.note
    				from CSM_SM_COR_Reg cc, PMM_PM_MPS mp
    				where cc.Item_Code = mp.Item_Code]]>
 	</select>
@@ -760,9 +760,9 @@ order by bom.parent_item_code]]>
 	</update>
 	<insert id="insertMPS" parameterType="MainPlanVO">
 		<![CDATA[insert into pmm_pm_mps(planNO,plandate,item_Code,item_Name,standard,inventory_unit,sequence,
-				expectedDate,dueDate,plan_quantity,buyer,note)
+				expectedDate,dueDate,plan_quantity,general_Customer_Name,note)
 			values(F_GET_NEXT_SEQ('PMM_PM_MPS'),#{plandate},#{item_Code},#{item_Name},#{standard},#{inventory_unit},
-			F_GET_NEXT_SEQ('SEQ'),#{expectedDate}, #{dueDate}, #{plan_quantity}, #{buyer}, #{note})
+			F_GET_NEXT_SEQ('SEQ'),#{expectedDate}, #{dueDate}, #{plan_quantity}, #{general_Customer_Name}, #{note})
 		]]>
 	</insert>
 		
@@ -777,7 +777,7 @@ order by bom.parent_item_code]]>
 	</select>
 	
 	<select id="selectMRP" resultMap="MpsOSResult" parameterType="String">
-		<![CDATA[select buyer,item_code,item_name,standard,inventory_unit,note from pmm_pm_mps_os where item_code=#{item_code}]]>
+		<![CDATA[select general_Customer_Name,item_code,item_name,standard,inventory_unit,note from pmm_pm_mps_os where item_code=#{item_code}]]>
 	</select>
 	
 	<select id="selectSeq" resultType="int">
@@ -786,6 +786,16 @@ order by bom.parent_item_code]]>
 	
 	<select id="inputMRP" resultMap="MPSResult" parameterType="String">
 		<![CDATA[select * from pmm_pm_mps where item_code=#{item_code}]]>
+	</select>
+	
+		<select id="Listbuyer" resultMap="basicInfoResult">
+		<![CDATA[select general_Customer_Code,general_Customer_Name from SM_BIM_Gen_Cus_Reg ]]>	
+	</select>
+	
+	 <select id="Searchbuyer" resultMap="basicInfoResult">
+		<![CDATA[ select general_Customer_Code, general_Customer_Name
+		  	from SM_BIM_Gen_Cus_Reg
+		 	 where general_Customer_Name like '%'||#{general_Customer_Name}||'%']]>
 	</select>
 	<!-- billing 청구등록 -->
 	<resultMap id="billingResult" type="billingVO">
@@ -851,7 +861,7 @@ order by bom.parent_item_code]]>
 		<result property="order_no" column="order_no" />
 		<result property="order_date" column="order_date" />
 		<result property="code" column="code" />
-		<result property="buyer" column="buyer" />
+		<result property="general_Customer_Name" column="general_Customer_Name" />
 		<result property="sequence" column="sequence" />
 		<result property="item_Code" column="item_Code" />
 		<result property="item_Name" column="item_Name" />
@@ -864,7 +874,7 @@ order by bom.parent_item_code]]>
 	</resultMap>
 	
 	<select id="selectAllClosingList" resultMap="orderclosingResult">
-		<![CDATA[select sequence,order_no,order_date,code,buyer,item_Code,item_Name,standard,
+		<![CDATA[select sequence,order_no,order_date,code,general_Customer_Name,item_Code,item_Name,standard,
 		inventory_unit,order_quantity,price, order_quantity*price as applyPrice, 
 		(order_quantity*price*0.1) as vat, order_quantity*price+(order_quantity*price*0.1) 
 		sumPrice,deadline,note
@@ -873,7 +883,6 @@ order by bom.parent_item_code]]>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
-
 	</select>
 	
 	<update id="updateOrderClosing">
@@ -886,18 +895,38 @@ order by bom.parent_item_code]]>
 	</delete>
 	<insert id="insertClosing" parameterType="orderclosingVO">
 		<![CDATA[insert into PMM_PM_ORDER
-		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{buyer},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},#{standard},
+		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{general_Customer_Name},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},#{standard},
 		#{inventory_unit},#{order_quantity},#{price},#{deadline},#{note})
 		]]>
 	</insert> 
 	<update id="updateClosing" parameterType="orderclosingVO">
 		<![CDATA[update PMM_PM_ORDER
-			SET order_no=#{order_no},order_date=#{order_date},code=#{code},buyer=#{buyer},sequence=#{sequence},item_Code=#{item_Code},
+			SET order_no=#{order_no},order_date=#{order_date},code=#{code},general_Customer_Name=#{general_Customer_Name},sequence=#{sequence},item_Code=#{item_Code},
 			item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit},order_quantity=#{order_quantity},price=#{price},
 			deadline=#{deadline},note=#{note}
 			where order_no=#{order_no}]]>
 	</update>
 	
+	<select id="itemList" resultMap="regitemResult">
+		<![CDATA[select item_Code,item_Name from SM_BIM_Ite_Reg]]>	
+	</select>
+	
+	 <select id="NameSearch" resultMap="regitemResult">
+		<![CDATA[ select item_Code, item_Name
+		  	from SM_BIM_Ite_Reg
+		 	 where item_Name like '%'||#{item_Name}||'%']]>
+	</select>
+	
+	<select id="buyerList" resultMap="basicInfoResult">
+		<![CDATA[select general_Customer_Code,general_Customer_Name from SM_BIM_Gen_Cus_Reg ]]>	
+	</select>
+	
+	 <select id="buyerSearch" resultMap="basicInfoResult">
+		<![CDATA[ select general_Customer_Code, general_Customer_Name
+		  	from SM_BIM_Gen_Cus_Reg
+		 	 where general_Customer_Name like '%'||#{general_Customer_Name}||'%']]>
+	</select>
+
 	
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />
@@ -1742,7 +1771,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<!-- 기초정보관리_물류관리내역등록 -->
-	 <resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
+	<resultMap id="logisticsManagementResult" type="SystemmagVOMJ">	
 		<result property="logistics_In_Code" column="logistics_In_Code" />
 		<result property="logistics_In_Name" column="logistics_In_Name" />
 		<result property="explanation" column="explanation" />
@@ -1780,8 +1809,129 @@ ORDER BY out.workordernumber]]>
 		  where logistics_In_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	
 	<!-- 물류관리내역등록끝 -->
-
+	
+	<!-- 기초정보관리_검사유형등록 -->
+	<resultMap id="inspectionTypeResult" type="SystemmagVOMJ">	
+		<result property="inspection_Code" column="inspection_Code" />
+		<result property="inspection_Name" column="inspection_Name" />
+		<result property="inspection_Question" column="inspection_Question" />
+		<result property="remarks" column="remarks" />
+	</resultMap>
+	<select id="selectAllInspection" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP]]>
+	</select>
+	<select id="selectOneInspection" parameterType="String" resultMap="inspectionTypeResult">
+		<![CDATA[select * from SM_BIM_INS_TYP where inspection_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteInspection">
+		delete from SM_BIM_INS_TYP where inspection_Code = #{no}
+	</delete>
+	<update id="updateInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_INS_TYP
+			set	inspection_Name=#{inspection_Name},
+			inspection_Question=#{inspection_Question},
+			remarks=#{remarks}
+			where inspection_Code=#{inspection_Code}			
+		]]>
+	</update>
+	<insert id="insertNewInspection" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_INS_TYP
+			values(#{inspection_Code},
+			#{inspection_Name}, 
+			#{inspection_Question}, 
+			#{remarks})]]>
+	</insert>
+	<!-- 검사유형등록등록끝 -->
+	
+	<!-- SET구성품등록 -->
+		<!-- 세트품 -->
+	<resultMap id="setRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="set_Name" column="set_Name" />
+		<result property="set_Standard" column="set_Standard" />
+		<result property="set_Unit" column="set_Unit" />
+	</resultMap>
+	<select id="selectAllSetComponents" resultMap="setRegResult">
+		<![CDATA[select * from SM_BIM_SET_REG]]>
+	</select>
+	<select id="selectOneSetComponents" parameterType="String" resultMap="setRegResult">
+		<![CDATA[select * from SM_BIM_SET_REG where set_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteSetComponents">
+		delete from SM_BIM_SET_REG where set_Code = #{no}
+	</delete>
+	<update id="updateSetComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_SET_REG
+			set	set_Name=#{set_Name},
+			set_Standard=#{set_Standard},
+			set_Unit=#{set_Unit}
+			where set_Code=#{set_Code}			
+		]]>
+	</update>
+	<insert id="insertNewSetComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_SET_REG
+			values(#{set_Code},
+			#{set_Name}, 
+			#{set_Standard}, 
+			#{set_Unit})]]>
+	</insert>
+	<select id="selectPopSetList" resultMap="setRegResult">
+		<![CDATA[ select set_Code, set_Name
+		  from SM_BIM_SET_REG
+		  where set_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+		<!-- 세트구성품 -->
+	<resultMap id="comRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="components_Code" column="components_Code" />
+		<result property="components_Name" column="components_Name" />
+		<result property="components_Standard" column="components_Standard" />
+		<result property="components_Unit" column="components_Unit" />
+		<result property="components_Stock" column="components_Stock" />
+	</resultMap>
+	<select id="selectAllComReg" resultMap="comRegResult">
+		<![CDATA[select * from SM_BIM_COM_REG]]>
+	</select>
+	<select id="selectOneComReg" parameterType="String" resultMap="comRegResult">
+		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
+	</select>
+	<delete id="deleteComReg">
+		delete from SM_BIM_COM_REG where components_Code = #{no}
+	</delete>
+	<update id="updateComReg" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			update SM_BIM_COM_REG
+			set	components_Name=#{components_Name},
+			components_Standard=#{components_Standard},
+			components_Unit=#{components_Unit},
+			components_Stock=#{components_Stock}
+			where components_Code=#{components_Code}			
+		]]>
+	</update>
+	<insert id="insertNewComReg" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_COM_REG
+			values(#{components_Code},
+			#{components_Name}, 
+			#{components_Standard}, 
+			#{components_Unit},
+			#{components_Stock}]]>
+	</insert>
+	<select id="selectPopComponentsList" resultMap="comRegResult">
+		<![CDATA[ select components_Code, components_Name
+		  from SM_BIM_COM_REG
+		  where components_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	<!-- SET구성품등록끝 -->
+	
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
@@ -1840,7 +1990,6 @@ ORDER BY out.workordernumber]]>
         ]]>
 	</select>	
 	
-
 <!-- forwarding registration -->
   	<resultMap id="forward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
@@ -1853,7 +2002,7 @@ ORDER BY out.workordernumber]]>
 		<result property="company_Registration_Number" column="company_Registration_Number" />
 	</resultMap> 
 
-	<select id="submitSupForward" resultMap="forward" parameterType="String">
+	<select id="submitSupForward" resultMap="forward" parameterType="forwardVO">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
 	<select id="selCustforward" resultMap="forward">
@@ -1914,11 +2063,12 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	<select id="submitItemForward" parameterType="String">
+	<select id="submitItemForward" parameterType="Corforward" resultType="String">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
 	</select>
+	
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">

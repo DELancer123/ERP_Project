@@ -74,7 +74,7 @@
                             불량군
                         </td>
                         <td>
-                            <input type="text" name="department" value='${param.defGroupCode }' style="width: 130px;">
+                            <input type="text" id="defGroupCode" name="department" value='${param.defGroupCode }' style="width: 130px;">
                         </td>
                         <td>
                              <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
@@ -124,10 +124,24 @@
         </form>
         </container2>
       <script>
+      function isEmpty(str){
+ 	     
+ 	     if(typeof str == "undefined" || str == null || str == "")
+ 	         return true;
+ 	     
+ 	     else
+ 	         return false ;
+ 	     
+ 	 	}
+      
       	var save_button = document.getElementById("save");
       	var upd_button = document.getElementById("update");
       	var delete_button = document.getElementById("delete");
       	save_button.onclick = function(){
+      		var defGroupCode = document.getElementById('defGroupCode').value; 
+      		var defCode = document.getElementById('defCode').value;
+      		var defName = document.getElementById('defName').value;
+      		var usage = document.getElementById('usage').value;
 			const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();
@@ -136,9 +150,37 @@
 	  		     articleNOInput.setAttribute("type","hidden");
 	  		     articleNOInput.setAttribute("name","path");
 	  		     articleNOInput.setAttribute("value", link);
-	  		     document.getElementById('searchForm').appendChild(articleNOInput);
-	            document.getElementById('searchForm').action = "${contextPath}/member/adddefType.do";
-	  			document.getElementById('searchForm').submit();  
+
+
+	  		   if(isEmpty(defGroupCode)){
+		      		alert("불량군 항목값이 비어져있습니다. 불량군 옆 돋보기를 눌러 값을 추가해주세요!");
+		      		document.getElementById("defGroupCode").focus();
+		      		return false;
+
+		  		}
+	  		   else if(isEmpty(defCode)){
+		      		alert("불량코드 값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("defCode").focus();
+		      		return false;
+			   }
+	  		   else if(isEmpty(defName)){
+		      		alert("불량유형명 값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("defName").focus();
+		      		return false;
+			   }
+	  			else if(isEmpty(usage)){
+		      		alert("사용여부 값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("usage").focus();
+		      		return false;
+		   		}
+	  		   
+			   else{
+					document.getElementById('searchForm').appendChild(articleNOInput);
+		            document.getElementById('searchForm').action = "${contextPath}/member/adddefType.do";
+		  			document.getElementById('searchForm').submit();  
+			 		alert("값이 저장되었습니다!");          	
+			   }
+	  		     
 		}
       	upd_button.onclick = function(){
 			document.getElementById("defCode").disabled = true;
@@ -171,9 +213,24 @@
       			  no = document.getElementsByName("content")[i].value;
       			  ary.push(no);
       		  }
-      			  window.location.href = "${contextPath}/member/deldefType.do?no="+ary;
       	  }
+      	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+			alert('삭제할 목록의 체크박스를 선택해주세요');
+			//window.history.back();
+		}
+    	else {//컨트롤러로 해당목록의 no값을 보낸다
+      		window.location.href = "${contextPath}/member/deldefType.do?no="+ary;
+    		alert('삭제되었습니다');
+
+    	}
       	}
+      	view_button.onclick = function(){
+			  const URLSearch = new URLSearchParams(location.search);
+			  URLSearch.set('submit', '1');
+			  const newParam = URLSearch.toString();
+
+			  window.open(location.pathname + '?' + newParam, '_self');
+    	}
       </script>
 </body>
 </html>

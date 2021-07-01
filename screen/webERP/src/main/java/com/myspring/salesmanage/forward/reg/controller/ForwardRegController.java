@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.salesmanage.forward.vo.ForwardVO;
@@ -16,9 +17,9 @@ public interface ForwardRegController {
 			HttpServletResponse response) throws Exception;
 	public ModelAndView delForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	
-	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView itemTableView(@RequestParam("relCode")String relCode) throws Exception;
 
-	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception;
-//	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
+//	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception;
+////	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception;
+//	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 }

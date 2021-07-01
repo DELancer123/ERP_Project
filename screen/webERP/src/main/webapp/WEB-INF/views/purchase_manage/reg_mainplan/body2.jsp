@@ -20,7 +20,7 @@
  	<c:set var="expectedDate" value="${mainplan.expectedDate }"/>
  	<c:set var="dueDate" value="${mainplan.dueDate }"/>
  	<c:set var="plan_quantity" value="${mainplan.plan_quantity }"/>
- 	<c:set var="buyer" value="${mainplan.buyer }"/>
+ 	<c:set var="general_Customer_Name" value="${mainplan.general_Customer_Name }"/>
  	<c:set var="note" value="${mainplan.note }"/>
  </c:forEach>
 <!DOCTYPE html>
@@ -78,6 +78,13 @@
     width: 100%;
 }
 </style>
+<script>
+   window.onload = function(){
+      l_sub1.style.display = "block";
+        l_sub1.style.position = "relative";
+        l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container2 id=contents2>
@@ -113,7 +120,7 @@
  				<td><input type="date" name="ListVO[${status.index}].expectedDate" value = '${mainplan.expectedDate}' /></td>				
  				<td><input type="date" name="ListVO[${status.index}].dueDate" value = '${mainplan.dueDate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].buyer" value = '${mainplan.buyer}' /></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value = '${mainplan.general_Customer_Name}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
 		</c:forEach>		
@@ -129,7 +136,7 @@
     	<td><input type="date" id="expectedDate" name="ListVO[${fn:length(MPSView) }].expectedDate" value='${expectedDate}'/></td>
     	<td><input type="date" id="dueDate" name="ListVO[${fn:length(MPSView) }].dueDate" value='${dueDate}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(MPSView) }].plan_quantity" value='${plan_quantity}' /></td>
-    	<td><input type="text" id="buyer" name="ListVO[${fn:length(MPSView) }].buyer" value='${param.buyer}'/></td>
+   <td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(MPSView) }].general_Customer_Name" value='${param.general_Customer_Name}' ondblclick="search()" readonly style="background-color:#E6E6FA"/></td>
     	<td><input type="text" id="note" name="ListVO[${fn:length(MPSView) }].note"value='${param.note}'/></td>
     </tr>
 	</tbody>
@@ -144,21 +151,21 @@ var plandate = document.getElementById("plandate");
 var expectedDate = document.getElementById("expectedDate");
 var dueDate = document.getElementById("dueDate");
 var plan_quantity = document.getElementById("plan_quantity");
-var buyer = document.getElementById("buyer");
+var general_Customer_Name = document.getElementById("general_Customer_Name");
 var note = document.getElementById("note");
 var item_Code = document.getElementById("item_Code");
 
 
-function setChildValue(code,name,buyer,standard,inventory_unit,note){
+function setChildValue(code,name,general_Customer_Name,standard,inventory_unit,note){
 	  const URLSearch = new URLSearchParams(location.search);
 	  URLSearch.set('submit', '2');
 	  const newParam = URLSearch.toString();
   if(URLSearch.get('item_Code') == null){
-		window.location.href = location.pathname +'?'+newParam +'&item_Code='+code+'&item_Name='+name+'&buyer='+buyer+'&standard='+standard
+		window.location.href = location.pathname +'?'+newParam +'&item_Code='+code+'&item_Name='+name+'&general_Customer_Name='+general_Customer_Name+'&standard='+standard
 		+'&inventory_unit='+inventory_unit+'&note='+note;
   }
   else{
-  	URLSearch.set('item_Code',name,buyer,standard,inventory_unit,note);
+  	URLSearch.set('item_Code',name,general_Customer_Name,standard,inventory_unit,note);
   	const newParam = URLSearch.toString();
   	window.location.href = location.pathname +'?'+newParam;
   }
@@ -166,13 +173,13 @@ function setChildValue(code,name,buyer,standard,inventory_unit,note){
 }
 
 
-function deleteRow() {
+function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  const URLSearch = new URLSearchParams(location.search); 	
 	  var submit = URLSearch.get('submit');
 	  var item_Code = URLSearch.get('item_Code');
 	  var item_Name = URLSearch.get('item_Name');
-	  var buyer = URLSearch.get('buyer');
+	  var general_Customer_Name = URLSearch.get('general_Customer_Name');
 	  var standard = URLSearch.get('standard');
 	  var inventory_unit = URLSearch.get('inventory_unit');
 	  var note = URLSearch.get('note');
@@ -190,11 +197,11 @@ function deleteRow() {
 		  }else{
 			  alert('삭제 되었습니다!');
 			  window.location.href = "${contextPath}/member/delMps.do?sequence="+ary+"&submit=" + submit+"&item_Code="+item_Code+"&item_Name="+item_Name+
-			 "&buyer="+buyer+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note;
+			 "&general_Customer_Name="+general_Customer_Name+"&standard="+standard+"&inventory_unit="+inventory_unit+"&note="+note;
 		  }
 	}
 
-function InsertRow(){
+function newRow(){
 
     if(plandate.value == ""){
        alert("계획일은 필수 입력사항입니다.");
@@ -208,9 +215,9 @@ function InsertRow(){
     }else if(plan_quantity.value ==""){
     	alert("계획수량은 필수 입력사항입니다.");
     	return plan_quantity.focus();
-    }else if(buyer.value ==""){
+    }else if(general_Customer_Name.value ==""){
     	alert("회사명은 필수 입력사항입니다.");
-    	return buyer.focus();
+    	return general_Customer_Name.focus();
     }else{
    		const URLSearch = new URLSearchParams(location.search);
    		
@@ -248,7 +255,7 @@ function updateRow() {
 		document.getElementById("expectedDate").disabled = true;
 		document.getElementById("dueDate").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
-		document.getElementById("buyer").disabled = true;
+		document.getElementById("general_Customer_Name").disabled = true;
 		document.getElementById("note").disabled = true;
 		
 		var Input = document.createElement("input");
@@ -280,6 +287,10 @@ view_button.onclick = function(){
 		window.open(location.pathname + '?' + newParam, '_self');
 	}
 }
+
+function search(){ 	  
+  	openWindowPop('${contextPath}/member/buyerPop.do','buyerPop');
+}   
 
 </script>
 </form>

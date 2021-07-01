@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.dao.MainPlanDAO;
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 @Service("mainplanService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -75,6 +76,16 @@ public class MainPlanServiceImpl implements MainPlanService{
 		List searchList = null;
 		searchList = mainplanDAO.inputText(itemCode);
 		return searchList;
+	}
+	
+	@Override
+	public List<SystemmagVOMJ>Listbuyer()throws Exception{
+		List<SystemmagVOMJ>Listbuyer = mainplanDAO.Listbuyer();
+		return Listbuyer;
+	}
+	@Override
+	public List<SystemmagVOMJ> Searchbuyer(String buyer) {
+		return mainplanDAO.Searchbuyer(buyer);
 	}
 
 }

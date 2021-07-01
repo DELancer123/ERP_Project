@@ -13,7 +13,7 @@ public interface ForwardRegService {
 	//pop2
 	public List listCust() throws DataAccessException;
 	//list by forward regstration
-	public List submitCust(String custCode) throws DataAccessException;
+	public List submitCust(String general_Customer_Code) throws DataAccessException;
 	public List listSupForward() throws DataAccessException;
 	//list by forward regstration
 	public List submitCustByInsert(String custCode) throws DataAccessException;
@@ -21,7 +21,11 @@ public interface ForwardRegService {
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	//delete by forward
 	public void removeForward(String[] noary) throws DataAccessException;
+	//update by forward ins
+	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 	
-	public void submitItemInfo(String[] noary) throws DataAccessException;
-	
+	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException;
+//	public int addSubItem(ForwardVO forwardVO) throws DataAccessException;
+//	public void removeSubItem(String[] noary) throws DataAccessException;
+//	public int updSubItem(ForwardVO forwardVO) throws DataAccessException;
 }
