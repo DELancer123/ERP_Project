@@ -510,8 +510,15 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	
 	<select id="selectAllWorkInProcess" resultMap="selectWorkInProcessResult">
 		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
-group by item_code, item_name, standard, inventory_unit order by item_Code ]]>
+				group by item_code, item_name, standard, inventory_unit order by item_Code ]]>
 	</select>
+	
+	<select id="selectAllWorkInProcessCondition" resultMap="selectWorkInProcessResult">
+		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
+				where item_Code = #{itemCode}
+				group by item_code, item_name, standard, inventory_unit order by item_Code]]>
+	</select>
+	
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
