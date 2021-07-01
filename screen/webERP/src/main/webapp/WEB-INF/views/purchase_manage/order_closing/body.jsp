@@ -120,8 +120,8 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
 				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value='${OrderClosing.general_Customer_Name}' readonly /></td>
 			<td style="width: 13px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
-				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}' readonly /></td>
-				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}'  readonly  /></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly  /></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' /></td>
@@ -323,6 +323,7 @@ function search1(){
 }       
 function search2(){ 	  
 	      	openWindowPop('${contextPath}/member/buyerPop.do','buyerPop');
-}       
+}      
+
 </script>
 </html>

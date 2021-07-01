@@ -5,8 +5,36 @@ public class WorkInProcessVO {
 	private String itemName;
 	private String standard;
 	private String inventoryUnit;
-	private int quantity;
+	private int indicatedQuantity;
+	private int sumPerformanceQuantity;
+	private int remainingPerformance;
 	
+	
+	
+	public int getIndicatedQuantity() {
+		return indicatedQuantity;
+	}
+
+	public void setIndicatedQuantity(int indicatedQuantity) {
+		this.indicatedQuantity = indicatedQuantity;
+	}
+
+	public int getSumPerformanceQuantity() {
+		return sumPerformanceQuantity;
+	}
+
+	public void setSumPerformanceQuantity(int sumPerformanceQuantity) {
+		this.sumPerformanceQuantity = sumPerformanceQuantity;
+	}
+
+	public int getRemainingPerformance() {
+		return remainingPerformance;
+	}
+
+	public void setRemainingPerformance(int remainingPerformance) {
+		this.remainingPerformance = remainingPerformance;
+	}
+
 	public WorkInProcessVO() {	
 	}
 
@@ -41,14 +69,5 @@ public class WorkInProcessVO {
 	public void setInventoryUnit(String inventoryUnit) {
 		this.inventoryUnit = inventoryUnit;
 	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
 	
 }

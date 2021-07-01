@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>   
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>  
+<%@ page isErrorPage="true" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +36,8 @@ text-decoration:none
 </style>
 </head>
 <body>
-	<h1 class="error_h1">죄송합니다. 잘못된 요청. 잘못된 구문으로 인해 서버에서 요청을 할 수 없습니다.<br>
-			400에러!!</h1>
+	<h1 class="error_h1">데이터를 처리 하는 과정에서 문제가 발생하였습니다.<br>
+			에러 타입 :칼럼의 길이의값이 너무큼!!<br> <%= exception.getClass().getName() %></h1>
 	<div class="area_btn">
 		<a href="javascript:history.back(-1)" class="link">이전 화면으로</a>
 </div>

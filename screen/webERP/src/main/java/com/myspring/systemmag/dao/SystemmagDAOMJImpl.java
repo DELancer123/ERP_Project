@@ -14,7 +14,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//�Ϲݰŷ�ó���
+	//占싹반거뤄옙처占쏙옙占�
 	@Override
 	public int insertNewCustomer (SystemmagVOMJ systemmagVO) throws DataAccessException{
 		int result = sqlSession.insert("mappers.erp.insertNewCustomer",systemmagVO);
@@ -76,71 +76,71 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return popList;
 	}
 	
-	//â��/����/���ְ������
-	@Override /* â��/��� ���� */
+	//창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙占�
+	@Override /* 창占쏙옙/占쏙옙占� 占쏙옙占쏙옙 */
 	public List viewAllHouOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllHouOutware");
 		return outwareList;
 	}
 	
-	@Override /* �������/�۾��� ���� */
+	@Override /* 占쏙옙占쏙옙占쏙옙占�/占쌜억옙占쏙옙 占쏙옙占쏙옙 */
 	public List viewAllProOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllProOutware");
 		return outwareList;
 	}
 	
-	@Override /* ���ְ���/�۾��� ���� */
+	@Override /* 占쏙옙占쌍곤옙占쏙옙/占쌜억옙占쏙옙 占쏙옙占쏙옙 */
 	public List viewAllOutOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllOutOutware");
 		return outwareList;
 	}
 	
-	@Override /* â��/��� �������̺����� */
+	@Override /* 창占쏙옙/占쏙옙占� 占쏙옙占쏙옙占쏙옙占싱븝옙占쏙옙占쏙옙 */
 	public List viewAllHouWorOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllHouWorOutware");
 		return outwareList;
 	}
 	
-	@Override /* �������/�۾��� �������̺����� */
+	@Override /* 占쏙옙占쏙옙占쏙옙占�/占쌜억옙占쏙옙 占쏙옙占쏙옙占쏙옙占싱븝옙占쏙옙占쏙옙 */
 	public List viewAllProWorOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllProWorOutware");
 		return outwareList;
 	}
 	
-	@Override /* ���ְ���/�۾��� �������̺����� */
+	@Override /* 占쏙옙占쌍곤옙占쏙옙/占쌜억옙占쏙옙 占쏙옙占쏙옙占쏙옙占싱븝옙占쏙옙占쏙옙 */
 	public List viewAllOutWorOutware() throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectAllOutWorOutware");
 		return outwareList;
 	}
 	
-	@Override /* â��/��� ���� */
+	@Override /* 창占쏙옙/占쏙옙占� 占쏙옙占쏙옙 */
 	public List viewSelectedHouOutware(String search) throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectOneHouOutware", search);
 		return outwareList;
 	}
 	
-	@Override /* �������/�۾��� ���� */
+	@Override /* 占쏙옙占쏙옙占쏙옙占�/占쌜억옙占쏙옙 占쏙옙占쏙옙 */
 	public List viewSelectedProOutware(String search) throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectOneProOutware", search);
 		return outwareList;
 	}
 	
-	@Override /* ���ְ���/�۾��� ���� */
+	@Override /* 占쏙옙占쌍곤옙占쏙옙/占쌜억옙占쏙옙 占쏙옙占쏙옙 */
 	public List viewSelectedOutOutware(String search) throws DataAccessException {
 		List<SystemmagVOMJ> outwareList = null;
 		outwareList = sqlSession.selectList("mappers.erp.selectOneOutOutware", search);
 		return outwareList;
 	}
 	
-	//���������������
+	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
 		List<SystemmagVOMJ> logisticsList = null;
@@ -187,7 +187,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		return popList;
 	}
 	
-	//검사유형등록
+	//寃��궗�쑀�삎�벑濡�
 	@Override
 	public List viewAllInspection() throws DataAccessException {
 		List<SystemmagVOMJ> comList = null;
@@ -220,7 +220,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		sqlSession.update("mappers.erp.updateInspection", systemmagVO);
 	}
 
-	//SET구성품등록
+	//SET援ъ꽦�뭹�벑濡�
 	@Override
 	public List viewAllSetComponents() throws DataAccessException {
 		List<SystemmagVOMJ> comList = null;
@@ -265,6 +265,32 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		List<SystemmagVOMJ> popList = null;
 		popList = sqlSession.selectList("mappers.erp.selectPopComponentsList",itemName);
 		return popList;
+	}
+	//----------
+	@Override
+	public List viewSpecComponents(String com_code) throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectOneSpecComponents",com_code);
+		return comList;
+	}
+
+	@Override
+	public int insertNewSpecComponents(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		int result = sqlSession.insert("mappers.erp.insertNewSpecComponents",systemmagVO);
+		return result;
+	}
+
+	@Override
+	public void deleteSpecComponents(String[] noary) throws DataAccessException {
+		for(String obj: noary) {
+			sqlSession.delete("mappers.erp.deleteSpecComponents", obj);	
+		}
+	}
+
+	@Override
+	public void updateSpecComponents(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		sqlSession.update("mappers.erp.updateSpecComponents", systemmagVO);
+		
 	}
 	
 
