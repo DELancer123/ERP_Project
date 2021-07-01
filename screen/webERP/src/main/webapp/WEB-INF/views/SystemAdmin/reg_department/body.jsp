@@ -85,6 +85,13 @@
             
         }
 </style>
+<script>
+   window.onload = function(){
+	   l_sub1.style.display = "block";
+	   l_sub1.style.position = "relative";
+	   l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container1 id = contents1>
@@ -139,7 +146,7 @@
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].department_Name" style="background-color:rgb(255, 255, 149);" id="department_Name1" maxlength="50"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="workplace_Code1" value='${param.workplace_Code}' readonly maxlength="12"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].workplace_Name" style="background-color:rgb(255, 255, 149);" id="workplace_Name1" value='${param.workplace_Name}' readonly/ maxlength="50"></td>
-    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="sector_Code1" onfocus="searchsector()" readonly value='${param.sector_Code}' maxlength="12"/></td>
+    	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Code" style="width: 100px; background-color:rgb(255, 255, 149);" id="sector_Code1" onclick="searchsector()" readonly value='${param.sector_Code}' maxlength="12"/></td>
     	<td><input type="text" name="ListVO[${fn:length(departmentView) }].sector_Name" style="background-color:rgb(255, 255, 149);" id="sector_Name1" readonly value='${param.sector_Name}' maxlength="50"/></td>
     	<td><input type="date" name="ListVO[${fn:length(departmentView) }].usedate" style="background-color:rgb(255, 255, 149);" id="usedate1" /></td>
     </tr>

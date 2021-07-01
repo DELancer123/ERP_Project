@@ -1,0 +1,4 @@
+sts3
+apache-maven-3.8.1
+oracle enterprise edition 11g
+test

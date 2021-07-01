@@ -36,9 +36,9 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 	
 	@Override
-	public List submitCust(String custCode) throws DataAccessException {
+	public List submitCust(String general_Customer_Code) throws DataAccessException {
 		List submitCustList = null;
-		submitCustList = forwardDAO.submitForwardCustSupReg(custCode);
+		submitCustList = forwardDAO.submitForwardCustSupReg(general_Customer_Code);
 		return submitCustList;
 	}
 	@Override
@@ -54,15 +54,33 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 
 	@Override
-	public void removeForward(String[] noary) throws DataAccessException {
-		forwardDAO.delSupForward(noary);	
+	public int updForward(ForwardVO forwardVO) throws DataAccessException {
+		return forwardDAO.updForward(forwardVO);
 	}
 	
 	@Override
-	public void submitItemInfo(String[] noary) throws DataAccessException {
+	public void removeForward(String[] noary) throws DataAccessException {
+		forwardDAO.delSupForward(noary);	
+	}
+	  
+	@Override
+	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException {
 		
-		forwardDAO.submitSubReg(noary);	
+		return forwardDAO.submitSubReg(relCode);	
 	}//submitSubReg
 
+//	@Override
+//	public int addSubItem(ForwardVO forwardVO) throws DataAccessException {
+//		return forwardDAO.addItemForward(forwardVO);
+//	}
 
-}
+//	@Override
+//	public void removeSubItem(String[] noary) throws DataAccessException {
+//		forwardDAO.delItemForward(noary);	
+//	}
+
+//	@Override
+//	public int updSubItem(ForwardVO forwardVO) throws DataAccessException {
+//		return forwardDAO.updItemForward(forwardVO);
+//	}
+} 

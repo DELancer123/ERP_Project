@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("SystemmagVOMJ")
 public class SystemmagVOMJ {
-	//ÀÏ¹İ°Å·¡Ã³µî·Ï
+	//ï¿½Ï¹İ°Å·ï¿½Ã³ï¿½ï¿½ï¿½
 	//SM_BIM_GEN_CUS_REG
 	private String general_Customer_Code;
 	private String general_Customer_Name;
@@ -117,8 +117,8 @@ public class SystemmagVOMJ {
 		this.lot_Address = lot_Address;
 	}
 	
-	//Ã¢°í/°øÁ¤/¿ÜÁÖ°øÁ¤µî·Ï--
-	//SM_BIM_HOU_REG => Ã¢°í/Àå¼Ò ÅÇ¿¡¼­ »ç¿ëÇÔ
+	//Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--
+	//SM_BIM_HOU_REG => Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String house_Code;
 	private String house_Name;
 	private String house_Location_In;
@@ -163,7 +163,7 @@ public class SystemmagVOMJ {
 		this.house_Status = house_Status;
 	}
 
-	//SM_BIM_PRO_REG => »ı»ê°øÁ¤/ÀÛ¾÷Àå ÅÇ¿¡¼­ »ç¿ëÇÔ
+	//SM_BIM_PRO_REG => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String process_Code;
 	private String process_Name;
 	private String process_Location_In;
@@ -208,7 +208,7 @@ public class SystemmagVOMJ {
 		this.process_Status = process_Status;
 	}
 
-	//SM_BIM_OUT_REG => ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå ÅÇ¿¡¼­ »ç¿ëÇÔ
+	//SM_BIM_OUT_REG => ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String outsourcing_Code; 
 	private String outsourcing_Name;
 	private String outsourcing_Location_In;
@@ -253,7 +253,7 @@ public class SystemmagVOMJ {
 		this.outsourcing_Status = outsourcing_Status;
 	}
 	
-	//SM_BIM_WOR_REG => Ã¢°í/Àå¼Ò ÇÏÀ§Å×ÀÌºí
+	//SM_BIM_WOR_REG => Ã¢ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
 	private String location_Code;
 	private String location_Name;
 	private String location_Explanation;
@@ -312,7 +312,7 @@ public class SystemmagVOMJ {
 		this.status = status;
 	}
 	
-	//SM_BIM_PRO_WOR_REG => »ı»ê°øÁ¤/ÀÛ¾÷Àå ÇÏÀ§Å×ÀÌºí
+	//SM_BIM_PRO_WOR_REG => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
 	private String workplace_Code;
 	private String workplace_Name; 
 	private String workplace_Explanation;
@@ -336,7 +336,7 @@ public class SystemmagVOMJ {
 		this.workplace_Explanation = workplace_Explanation;
 	}
 
-	//SM_BIM_OUT_WOR_REG => ¿ÜÁÖ°øÁ¤/ÀÛ¾÷Àå ÇÏÀ§Å×ÀÌºí
+	//SM_BIM_OUT_WOR_REG => ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½/ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½
 	private String outcustomer;
 	private String outcustomer_Name;
 
@@ -353,7 +353,7 @@ public class SystemmagVOMJ {
 		this.outcustomer_Name = outcustomer_Name;
 	}
 	
-	//¹°·ù°ü¸®³»¿ªµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//SM_BIM_LOG_MAN
 	private String logistics_In_Code;
 	private String logistics_In_Name;
@@ -384,6 +384,102 @@ public class SystemmagVOMJ {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	
+	//ê²€ì‚¬ìœ í˜•ë“±ë¡
+	//SM_BIM_INS_TYP
+	private String inspection_Code;
+	private String inspection_Name;
+	private String inspection_Question;
+
+	public String getInspection_Code() {
+		return inspection_Code;
+	}
+	public void setInspection_Code(String inspection_Code) {
+		this.inspection_Code = inspection_Code;
+	}
+	public String getInspection_Name() {
+		return inspection_Name;
+	}
+	public void setInspection_Name(String inspection_Name) {
+		this.inspection_Name = inspection_Name;
+	}
+	public String getInspection_Question() {
+		return inspection_Question;
+	}
+	public void setInspection_Question(String inspection_Question) {
+		this.inspection_Question = inspection_Question;
+	}
+	
+	//SETêµ¬ì„±í’ˆë“±ë¡
+	//SM_BIM_SET_REG
+	private String set_Code;
+	private String set_Name;
+	private String set_Standard;
+	private String set_Unit;
+	
+	public String getSet_Code() {
+		return set_Code;
+	}
+	public void setSet_Code(String set_Code) {
+		this.set_Code = set_Code;
+	}
+	public String getSet_Name() {
+		return set_Name;
+	}
+	public void setSet_Name(String set_Name) {
+		this.set_Name = set_Name;
+	}
+	public String getSet_Standard() {
+		return set_Standard;
+	}
+	public void setSet_Standard(String set_Standard) {
+		this.set_Standard = set_Standard;
+	}
+	public String getSet_Unit() {
+		return set_Unit;
+	}
+	public void setSet_Unit(String set_Unit) {
+		this.set_Unit = set_Unit;
+	}
+
+	//SM_BIM_COM_REG
+	private String components_Code;
+	private String components_Name;
+	private String components_Standard;
+	private String components_Unit;
+	private String components_Stock;
+
+	public String getComponents_Code() {
+		return components_Code;
+	}
+	public void setComponents_Code(String components_Code) {
+		this.components_Code = components_Code;
+	}
+	public String getComponents_Name() {
+		return components_Name;
+	}
+	public void setComponents_Name(String components_Name) {
+		this.components_Name = components_Name;
+	}
+	public String getComponents_Standard() {
+		return components_Standard;
+	}
+	public void setComponents_Standard(String components_Standard) {
+		this.components_Standard = components_Standard;
+	}
+	public String getComponents_Unit() {
+		return components_Unit;
+	}
+	public void setComponents_Unit(String components_Unit) {
+		this.components_Unit = components_Unit;
+	}
+	public String getComponents_Stock() {
+		return components_Stock;
+	}
+	public void setComponents_Stock(String components_Stock) {
+		this.components_Stock = components_Stock;
+	}
+	
 	
 }
 

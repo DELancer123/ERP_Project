@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface MainPlanService {
 
@@ -29,5 +30,9 @@ public interface MainPlanService {
 	List<MpsOSVO> selectAllMpsosList() throws Exception;
 
 	List viewMPS() throws Exception;
+
+	List<SystemmagVOMJ> Listbuyer() throws Exception;
+
+	List<SystemmagVOMJ> Searchbuyer(String buyer);
 
 }

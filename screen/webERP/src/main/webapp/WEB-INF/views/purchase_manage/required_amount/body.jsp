@@ -84,6 +84,13 @@ String sequence = (String) request.getAttribute("sequence");
 	text-align: right;
 }
 </style>
+<script>
+   window.onload = function(){
+	   l_sub1.style.display = "block";
+	   l_sub1.style.position = "relative";
+	   l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 	<container1 id=contents1>

@@ -12,12 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.MainPlan.controller.MainPlanControllerImpl;
-import com.myspring.MainPlan.vo.MainPlanVO;
 import com.myspring.order_closing.service.OrderClosingService;
 import com.myspring.order_closing.vo.OrderClosingVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
+import com.myspring.systemmag.vo.itemVO;
 
 @Controller("orderclosingController")
 public class OrderClosingControllerImpl implements OrderClosingController{
@@ -86,13 +89,56 @@ public class OrderClosingControllerImpl implements OrderClosingController{
 		return mav;
 	}
 	
+	@RequestMapping(value = "member/itemPop.do", method = RequestMethod.GET)
+	public ModelAndView itemList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		List itemList = orderclosingService.itemList();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("itemList", itemList);
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/NameSearch.do", method = RequestMethod.GET)
+	public ModelAndView NameSearch(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<itemVO> popName = null;
+		popName = orderclosingService.NameSearch(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	} 
+	
+	@RequestMapping(value = "member/buyerPop.do", method = RequestMethod.GET)
+	public ModelAndView buyerList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		List buyerList = orderclosingService.buyerList();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("buyerList", buyerList);
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/buyerSearch.do", method = RequestMethod.GET)
+	public ModelAndView buyerSearch(@RequestParam("buyer") String buyer) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = orderclosingService.buyerSearch(buyer);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	} 
+
+	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 		if (uri == null || uri.trim().equals("")) {
 			uri = request.getRequestURI();
 		}
-
+		
 		int begin = 0;
 		if (!((contextPath == null) || ("".equals(contextPath)))) {
 			begin = contextPath.length();

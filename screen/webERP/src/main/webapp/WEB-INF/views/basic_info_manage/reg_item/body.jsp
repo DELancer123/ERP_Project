@@ -126,6 +126,13 @@
             text-align: center;
         }
 </style>
+<script>
+   window.onload = function(){
+	   l_sub2.style.display = "block";
+	   l_sub2.style.position = "relative";
+	   l_sub2.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <form  method="get" id="regitem">
@@ -291,7 +298,7 @@
                 <tr>
                     <td align="center">Ç°¸ñ±º</td>
                     <td>
-                        <input type="text" name="item_Group_Code" id="item_Group_Code" style="background-color: rgb(235,235,235); border-style: none;" value='${item_Group_Code}' maxlength="12">
+                        <input type="text" name="item_Group_Code" id="item_Group_Code" style="background-color: rgb(235,235,235); border-style: none;" value="${param.itemgNumber}" onclick="searchitemg()" maxlength="12" readonly>
                     </td>
                 </tr>
                 <tr>

@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.salesmanage.forward.reg.service.ForwardRegService;
@@ -99,7 +102,7 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		return mav;
 	}
 
-	@Override
+
 	@RequestMapping(value="/member/forwardcodehelper.do",method = RequestMethod.GET)
 	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
@@ -109,21 +112,50 @@ public class ForwardRegControllermpl implements ForwardRegController{
 
 		return mav;
 	}
-	
-
-	@Override
-	@RequestMapping(value="/member/itemtableview.do",method = RequestMethod.GET)
-	public ModelAndView itemTableView(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String code = (String)request.getParameter("no");
-		String viewName = getViewName(request);
-		String[] codeary = code.split(",");
-		System.out.println(codeary+"codeary");
-		System.out.println(code+"code");
-		forwardRegService.removeForward(codeary);
-		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
-		
+		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String path = request.getParameter("path");
+		path = path.replace("/webERP", "");
+		int result = 0;
+		result = forwardRegService.updForward(forwardVO);
+		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
-		
+	}
+	
+		@Override
+		@ResponseBody
+		@RequestMapping(value="/member/itemtableview.do",method = RequestMethod.GET)
+		public ModelAndView itemTableView(@RequestParam("relCode")String relCode) throws Exception{
+			ModelAndView mav = new ModelAndView();
+			List<ForwardVO> subForward = null;
+			subForward = forwardRegService.submitItemInfo(relCode);
+			mav.addObject("subForward", subForward);
+			mav.setViewName("jsonView");
+
+			return mav;
+
+		}
+	
+//	@Override
+//	@RequestMapping(value="/member/delforwarditem.do", method = RequestMethod.GET)
+//	public ModelAndView delForwardItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String code = (String)request.getParameter("no");
+//		String viewName = getViewName(request);
+//		String[] codeary = code.split(",");
+//		System.out.println(codeary+"codeary");
+//		System.out.println(code+"code");
+//		forwardRegService.removeForward(codeary);
+//		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+//		
+//		return mav;
+//	}
+//
+//	@Override
+//	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
+//	public ModelAndView addForwardItem(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response)
+//			throws Exception {
+//
 //		request.setCharacterEncoding("utf-8");
 //		StringBuffer url = request.getRequestURL();
 //		int result = 0;
@@ -131,21 +163,23 @@ public class ForwardRegControllermpl implements ForwardRegController{
 //		String resulturl = url.toString();
 //		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 //		return mav;
-	}
-	
-	@Override
-	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub  addforward  updforward
-		return null;
-	}
-	
-
+//	}
+//		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+//	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		request.setCharacterEncoding("utf-8");
+//		String path = request.getParameter("path");
+//		path = path.replace("/webERP", "");
+//		int result = 0;
+//		result = forwardRegService.updForward(forwardVO);
+//		ModelAndView mav = new ModelAndView("redirect:" + path);
+//		return mav;
+//	}
 	private String getViewName(HttpServletRequest request)  throws Exception{
 		String contextPath = request.getContextPath();
 	String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 	if (uri == null || uri.trim().equals("")) {
 		uri = request.getRequestURI();
-	}
+	}//수정해야ㅏㅁ
 
 	int begin = 0;
 	if (!((contextPath == null) || ("".equals(contextPath)))) {
