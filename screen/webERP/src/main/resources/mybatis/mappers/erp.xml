@@ -1312,10 +1312,19 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 		<result property="item_Group_Name" column="Item_Group_Name"	/>
 		<result property="use_Status" column="Use_Status"	/>
 		<result property="explanation" column="Explanation"	/>
+		<result property="div1" column="div"	/>
 		</resultMap>
 	<!-- 조회 -->
 	<select id="selectAllitemgList" resultMap="itemgResult">
-		<![CDATA[select * from SM_BIM_Ite_gro_Reg]]>	
+		<![CDATA[select DISTINCT gro.item_group_code,gro.item_group_name,1 as div
+from sm_bim_ite_gro_reg gro, sm_bim_ite_reg ite
+where gro.item_group_code = ite.item_group_code(+) and ite.item_name is null
+
+union
+
+select DISTINCT gro.item_group_code,gro.item_group_name,0
+from sm_bim_ite_gro_reg gro, sm_bim_ite_reg ite
+where gro.item_group_code = ite.item_group_code]]>	
 	</select>
 	<!-- 등록 -->
 	<insert id="insertItemg" parameterType="ItemgVO">

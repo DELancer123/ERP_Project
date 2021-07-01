@@ -117,7 +117,7 @@
                 </tr>
                 <c:forEach var="itemg" items="${itemgView}" varStatus="status" >  
                 <tr id = "updateTest" align="center">
-                <td><input type="checkbox" name="checkedContent" value='${itemg.item_Group_Code}'/></td>
+                <td><input type="checkbox" id="checkedContent" name="checkedContent" value = '${itemg.item_Group_Code}' <c:if test="${itemg.div1 == 0}">disabled</c:if>/></td>
                     <td><input type="text" name="ListVO[${status.index }].item_Group_Code" value = '${itemg.item_Group_Code}'/></td>
                     <td><input type="text" name="ListVO[${status.index }].item_Group_Name" value = '${itemg.item_Group_Name}'/></td>
                     <td><select name="ListVO[${status.index }].use_Status">
@@ -229,6 +229,11 @@
         	else //컨트롤러로 해당목록의 no값을 보낸다
     			window.location.href = "${contextPath}/member/deleteItemg.do?no="+ary;       	
         }
+      //체크박스 품목군을 참조하고 있는 품목이 있으면 disabled
+      function check_form(){
+    	  var checkedContent = document.getElementById('checkedContent');
+    	  checkedContent.disabled = false;
+      }
         </script>
 </body>
 </html>
