@@ -230,6 +230,7 @@
   		   if (isEmpty(itemNumber)){
 	      		alert("품번값이 비어져있습니다. 값을 추가해주세요!");
 	      		document.getElementById("itemNumber").focus();
+	      		return false;
 
 	  		}
   		   else 

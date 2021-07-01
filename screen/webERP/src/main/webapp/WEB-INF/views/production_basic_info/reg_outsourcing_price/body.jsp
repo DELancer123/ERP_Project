@@ -156,6 +156,15 @@
             </form>
         </container2>
         <script>
+        function isEmpty(str){
+    	     
+    	     if(typeof str == "undefined" || str == null || str == "")
+    	         return true;
+    	     
+    	     else
+    	         return false ;
+    	     
+    	 	}
         var save_button = document.getElementById('save');
         var update_button = document.getElementById('update');
         var delete_button = document.getElementById('delete');
@@ -163,6 +172,13 @@
           var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
           window.open(url, name, options);
       }
+      view_button.onclick = function(){
+		  const URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set('submit', '1');
+		  const newParam = URLSearch.toString();
+
+		  window.open(location.pathname + '?' + newParam, '_self');
+  	}
       
       function search1(){
     	      	openWindowPop('${contextPath}/member/outsourcingPop.do?div=1','codehelper');
@@ -190,6 +206,9 @@
         
     }
 		save_button.onclick = function(){
+			var outprice = document.getElementById("outprice").value;
+			var start = document.getElementById("start").value;
+			var end = document.getElementById("end").value;
 			const URLSearch = new URLSearchParams(location.search);
 			  URLSearch.set('submit', '1');
 			  const newParam = URLSearch.toString();
@@ -198,9 +217,31 @@
 	  		     articleNOInput.setAttribute("type","hidden");
 	  		     articleNOInput.setAttribute("name","path");
 	  		     articleNOInput.setAttribute("value", link);
+	  		     
+	  		   if (isEmpty(outprice)){
+		      		alert("외주단가 항목값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("outprice").focus();
+		      		return false;
+
+		  		}
+	  		   else if (isEmpty(start)){
+		      		alert("시작일 항목값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("start").focus();
+		      		return false;
+	 	  		}
+	  			 else if(isEmpty(end)){
+		      		alert("종료일 항목값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("end").focus();
+		      		return false;
+			   }
+			   else{
 	  		     document.getElementById('searchForm').appendChild(articleNOInput);
 	            document.getElementById('searchForm').action = "${contextPath}/member/addoutprice.do";
-	  			document.getElementById('searchForm').submit();  
+	  			document.getElementById('searchForm').submit();  	  
+		 		alert("값이 저장되었습니다!");          	
+			   }
+	  		     
+	  		     
 		}
 		update_button.onclick = function(){
 			document.getElementById("outsoucing").disabled = true;
