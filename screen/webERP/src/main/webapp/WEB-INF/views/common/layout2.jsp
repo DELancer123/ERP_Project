@@ -183,8 +183,6 @@ border: 0.1px  solid #87cb42;
         #nav1 #gnb>li:hover #sub{
             display: block;
         }
-        
-        
 
         #nav2{
             background-color: #f5f5f5;
@@ -194,14 +192,15 @@ border: 0.1px  solid #87cb42;
             background-color: #f5f5f5;
             width: 24%;
             height: 50px;
-
             margin-left: 1px;
             padding: 0;
             border: 1px solid #ccc;
         }
+        
         #nav2 button:hover{
             background-color: gray;
         }
+        
         #etc_menu{
             position: absolute;
             right: 10px;
