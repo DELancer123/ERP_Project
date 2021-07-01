@@ -248,14 +248,16 @@ border: 0.1px  solid #87cb42;
 input {
 	text-align: center;
 }
-
+img {
+	margin-left:10px;
+}
 
 </style>
 </head>
 <body>
 	<div id=wrap>
 		<header id=header>
-			<a href="${contextPath }/main.do"><p><img src="${contextPath }/resources/img/kingdomlogo.png" class="logo"/></p></a>
+			<a href="${contextPath }/main.do"><p><img src="${contextPath }/resources/img/kingdomlogo(3).png" class="logo"/></p></a>
 			<p id=info>부서정보: <%=dep_name %> (<%=dep_code %>) 사원: <%=emp_name %> (<%=emp_code %>)</p>
 			<ul id="etc_menu">
 				<li><a href="${contextPath }/member/logout.do">로그아웃</a></li>
