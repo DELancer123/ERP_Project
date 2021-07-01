@@ -1946,7 +1946,7 @@ ORDER BY out.workordernumber]]>
       select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
        where ORD.ordersNum = COR.code
        and ORD.General_Customer_Code = #{custCode}
-       order by COR.item_code
+       order by COR.General_Customer_Code
         ]]>
 	</select>
 	
@@ -2030,7 +2030,7 @@ ORDER BY out.workordernumber]]>
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where code = #{relCode}]]>
 	</update>
-	<select id="submitItemForward" parameterType="Corforward" resultType="String">
+	<select id="submitItemForward" parameterType="String" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
