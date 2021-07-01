@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"    
-    isELIgnored="false"%>
+    pageEncoding="EUC-KR" isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
@@ -28,7 +27,7 @@
             left: 15%;
             top: 25%;
             width: 85%;
-            height: 70%;
+            height: 80%;
             border: 1px solid black;
             z-index: 1;
         }
@@ -46,7 +45,7 @@
         /* 컨테이너 스타일부 */
         #workOrderInfo {
             overflow: scroll;
-            height: 97%;
+            height: 100%;
             width: 100%;
         }
         #workOrderTable{
@@ -100,55 +99,25 @@
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
-                    <thead align="center" style="font-weight:bold; background-color:gray;">
-                        <td>순번</td>
+                    <thead align="center">                        
                         <td>품번코드</td>
                         <td>품명</td>
                         <td>규격</td>
-                        <td>단위</td>
-                        <td>계정</td>
-                        <td>정미수량</td>
-                        <td>LOSS(%)</td>
-                        <td>필요수량</td>
+                        <td>단위</td>                        
+                        <td>재공수량</td>                        
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                    <c:forEach var="bom" items="${bomView}">  
-                    <tbody align="center" style="background-color:yellow">
-                        <td>${bom.no }</td>
-                        <td>${bom.itemNumber}</td>
-                        <td><a href="#" name="item"  onclick="childSearch(this)">${bom.itemName}</a></td>
-                        <td>${bom.standard}</td>
-                        <td>${bom.unit }</td>
-                        <td>${bom.division }</td>
-                        <td>${bom.precisionQuantity }</td>
-                        <td>${bom.loss }</td>
-                        <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
+                    <c:forEach var="wip" items="${infoList}">  
+                    <tbody align="center">                        
+                        <td>${wip.itemCode}</td>
+                        <td>${wip.itemName}</td>
+                        <td>${wip.standard}</td>                        
+                        <td>${wip.inventoryUnit }</td>
+                        <td>${wip.quantity }</td>                        
                     </tbody>
-                    	
-                    <c:forEach var="child" items="${childView}">  
-                    <tbody align="center">
-                        <td>${child.no }</td>
-                        
-                        <td>${child.itemNumber}</td>
-                        <td>${child.itemName}</td>
-                        <td>${child.standard}</td>
-                        <td>${child.unit }</td>
-                        <td>${child.division }</td>
-                        <td>${child.precisionQuantity }</td>
-                        <td>${child.loss }</td>
-                        <td>${child.precisionQuantity+(child.precisionQuantity * (child.loss * 0.01)) }</td>
-                    </tbody>
-                    	
-                    </c:forEach>
-                    </c:forEach>
-                    
+                  </c:forEach>                   
                 </table>
             </div>
-            <!-- 합계 출력부 -->
-            <div id="resultWindow">
-                합 계 <span style="margin-left: 100px;">정미수량 <input type="text"></span><span style="margin-left: 100px;">필요수량 <input type="text"></span>
-            </div>
-            <!-- 합계 출력부 종료 -->
         </container2>
       <script>
       function openWindowPop(url, name){
@@ -159,6 +128,7 @@
       function search1(){
     	      	openWindowPop('${contextPath}/member/codehelper.do','codehelper');
       }
+      
       view_button.onclick = function(){
 		  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '1');
@@ -166,6 +136,7 @@
 
 		  window.open(location.pathname + '?' + newParam, '_self');
  	}
+      
       function childSearch(name){
     	  const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '2');

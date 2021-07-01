@@ -60,13 +60,15 @@
 		input {
 			text-align : center;
 		}
-
+img {
+	margin-left:10px;
+}
 </style>
 <script>
 	window.onload = function(){
-		l_sub1.style.display = "block";
-		l_sub1.style.position = "relative";
-		l_sub1.style.marginLeft = "10px";
+		l_sub3.style.display = "block";
+		l_sub3.style.position = "relative";
+		l_sub3.style.marginLeft = "10px";
 	}
 </script>
 </head>

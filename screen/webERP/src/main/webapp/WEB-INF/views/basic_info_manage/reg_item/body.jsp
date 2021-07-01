@@ -7,6 +7,7 @@
   request.setCharacterEncoding("UTF-8");
 %>
 <c:forEach var="item1" items="${comitem}" >     
+ 	<c:set var="item_Group_Code" value="${item1.item_Group_Code}"/>
  	<c:set var="item_Code" value="${item1.item_Code  }"/>
  	<c:set var="item_Name" value="${item1.item_Name }"/>
  	<c:set var="standard" value="${item1.standard }"/>
@@ -22,7 +23,6 @@
  	<c:set var="length" value="${item1.length }"/>
  	<c:set var="height" value="${item1.height }"/>
  	<c:set var="cost" value="${item1.cost }"/>
- 	<c:set var="item_Group_Code" value="${item1.item_Group_Code}"/>
  	<c:set var="division" value="${item1.division }"/> 	
  	<c:set var="notes" value="${item1.notes }"/>
  	<c:set var="daily_production" value="${item1.daily_production }"/>
@@ -194,6 +194,12 @@
         <container3 id="contents3">
             <table id="table3">
                 <tr>
+                    <td align="center">前格焙</td>
+                    <td>
+                        <input type="text" name="item_Group_Code" id="item_Group_Code" style="background-color: rgb(235,235,235); border-style: none;" value="${item_Group_Code}" onclick="searchitemg()" maxlength="12" readonly>
+                    </td>
+                </tr>
+                <tr>
                     <td align="center">前锅</td>
                     <td>
                         <input type="text" name="item_Code" id=item_Code class="reqInput" value='${item_Code }' maxlength="12">
@@ -293,12 +299,6 @@
                     <td align="center">盔啊</td>
                     <td>
                         <input type="text" name="cost" id="cost" style="background-color: rgb(235,235,235); border-style: none;" value='${cost }' maxlength="15">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">前格焙</td>
-                    <td>
-                        <input type="text" name="item_Group_Code" id="item_Group_Code" style="background-color: rgb(235,235,235); border-style: none;" value="${param.itemgNumber}" onclick="searchitemg()" maxlength="12" readonly>
                     </td>
                 </tr>
                 <tr>
