@@ -253,12 +253,10 @@ img {
 	      		return false;
 		   }
 		   else{
-			   alert(isEmpty(precisionQuantity));
   		     document.getElementById('regBOM').appendChild(articleNOInput);
             document.getElementById('regBOM').action = "${contextPath}/member/addBOM.do";
   			document.getElementById('regBOM').submit();  
   
-	 		alert("값이 저장되었습니다!");          	
 		   }
   		     
   		     

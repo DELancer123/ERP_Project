@@ -357,7 +357,7 @@ where (status = '확정' or status = '마감')
 	</update>
 	
 	<update id="updAddFinalStock">
-		<![CDATA[update PM_SM_PRO_FINISHEDPRODUCT 
+		<![CDATA[update PM_SM_PRO_FINISHEDPRODUCT
 				set quantity =  quantity + #{performanceQuantity}
 				where item_Code = #{itemCode} ]]>
 	</update>
@@ -883,15 +883,15 @@ order by bom.parent_item_code]]>
 		<result property="standard" column="standard" />
 		<result property="inventory_unit" column="inventory_unit" />
 		<result property="order_quantity" column="order_quantity" />
-		<result property="price" column="price" />
+		<result property="cost" column="cost" />
 		<result property="deadline" column="deadline" />
 		<result property="note" column="note" />
 	</resultMap>
 	
 	<select id="selectAllClosingList" resultMap="orderclosingResult">
 		<![CDATA[select sequence,order_no,order_date,code,general_Customer_Name,item_Code,item_Name,standard,
-		inventory_unit,order_quantity,price, order_quantity*price as applyPrice, 
-		(order_quantity*price*0.1) as vat, order_quantity*price+(order_quantity*price*0.1) 
+		inventory_unit,order_quantity,cost, order_quantity*cost as applyPrice, 
+		(order_quantity*cost*0.1) as vat, order_quantity*cost+(order_quantity*cost*0.1) 
 		sumPrice,deadline,note
 		from PMM_PM_ORDER]]>
 	<where>
@@ -909,25 +909,25 @@ order by bom.parent_item_code]]>
 		delete from PMM_PM_ORDER where sequence = #{sequence}
 	</delete>
 	<insert id="insertClosing" parameterType="orderclosingVO">
-		<![CDATA[insert into PMM_PM_ORDER
-		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{general_Customer_Name},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},#{standard},
-		#{inventory_unit},#{order_quantity},#{price},#{deadline},#{note})
+		<![CDATA[insert into PMM_PM_ORDER(order_no,order_date,general_Customer_Name,sequence,item_Code,item_Name,standard,
+		inventory_unit,order_quantity,cost,note)	
+		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{general_Customer_Name},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},
+		#{standard},#{inventory_unit},#{order_quantity},#{cost},#{note})
 		]]>
 	</insert> 
 	<update id="updateClosing" parameterType="orderclosingVO">
 		<![CDATA[update PMM_PM_ORDER
-			SET order_no=#{order_no},order_date=#{order_date},code=#{code},general_Customer_Name=#{general_Customer_Name},sequence=#{sequence},item_Code=#{item_Code},
-			item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit},order_quantity=#{order_quantity},price=#{price},
-			deadline=#{deadline},note=#{note}
+			SET order_no=#{order_no},order_date=#{order_date},general_Customer_Name=#{general_Customer_Name},sequence=#{sequence},
+			order_quantity=#{order_quantity},note=#{note}
 			where order_no=#{order_no}]]>
 	</update>
-	
+
 	<select id="itemList" resultMap="regitemResult">
-		<![CDATA[select item_Code,item_Name from SM_BIM_Ite_Reg]]>	
+		<![CDATA[select item_Code,item_Name,Cost,Standard,Inventory_Unit from SM_BIM_Ite_Reg]]>	
 	</select>
 	
 	 <select id="NameSearch" resultMap="regitemResult">
-		<![CDATA[ select item_Code, item_Name
+		<![CDATA[ select item_Code, item_Name,Cost,Standard,Inventory_Unit
 		  	from SM_BIM_Ite_Reg
 		 	 where item_Name like '%'||#{item_Name}||'%']]>
 	</select>
@@ -1294,13 +1294,13 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	</insert>
 	<insert id="insertPartItem" parameterType="itemVO">
 	<![CDATA[
-	INSERT INTO PM_SM_Pro_Stock
-VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	INSERT INTO PM_SM_Pro_Stock(no,Item_Code,Item_Name,Standard,Inventory_Unit)
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit})]]>
 	</insert>
 	<insert id="insertProductItem" parameterType="itemVO">
 	<![CDATA[
-	INSERT INTO PM_SM_Pro_FinishedProduct
-VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	INSERT INTO PM_SM_Pro_FinishedProduct(no,Item_Code,Item_Name,Standard,Inventory_Unit)
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit})]]>
 	</insert>
 	<!-- 수정 -->
 	<update id="updateItem" parameterType="itemVO">
@@ -1962,16 +1962,16 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
-	<select id="selectAllComReg" resultMap="comRegResult">
+	<select id="selectAllSpecComponents" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
-	<select id="selectOneComReg" parameterType="String" resultMap="comRegResult">
+	<select id="selectOneSpecComponents" parameterType="String" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
 	</select>
-	<delete id="deleteComReg">
+	<delete id="deleteSpecComponents">
 		delete from SM_BIM_COM_REG where components_Code = #{no}
 	</delete>
-	<update id="updateComReg" parameterType="SystemmagVOMJ">
+	<update id="updateSpecComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			update SM_BIM_COM_REG
 			set	components_Name=#{components_Name},
@@ -1981,7 +1981,7 @@ ORDER BY out.workordernumber]]>
 			where components_Code=#{components_Code}			
 		]]>
 	</update>
-	<insert id="insertNewComReg" parameterType="SystemmagVOMJ">
+	<insert id="insertNewSpecComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_COM_REG
 			values(#{components_Code},
