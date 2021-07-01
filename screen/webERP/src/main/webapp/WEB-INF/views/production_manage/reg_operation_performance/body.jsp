@@ -355,7 +355,7 @@ function isEmpty(str){
         
       
         function deleteData() {
-    		alert('자재출고가 되었을 경우는 삭제되지 않고 자재출고가 되지않았을 경우에만 삭제가 가능합니다!');
+    		alert('자재사용유무의 값이 "무"일때만 삭제가 가능합니다!');
       	  var item = document.getElementsByName("content2").length;
       	  var no = "";
       	  var ary = [];
@@ -371,7 +371,7 @@ function isEmpty(str){
 			window.location.href = "${contextPath}/member/regoperperf.do";
 		}
     	else {//컨트롤러로 해당목록의 no값을 보낸다
-    		alert('삭제 되었습니다!');
+    		//alert('삭제 되었습니다!');
 		  window.location.href = "${contextPath}/member/deleteRegistOperationPerformanceInfoDetail.do?opNumber="+ary;
 
     	}
