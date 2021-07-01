@@ -126,10 +126,10 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' /></td>
 				<td><input type="text" name="ListVO[${status.index}].deadline" value='${OrderClosing.deadline}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].price" value='${OrderClosing.price}' /></td>
-				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price}' readonly/></td>
-				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price*0.1}' readonly/></td>
-				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.price+(OrderClosing.order_quantity*OrderClosing.price*0.1)}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].cost" value='${OrderClosing.cost}' /></td>
+				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.cost}' readonly/></td>
+				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.cost*0.1}' readonly/></td>
+				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.cost+(OrderClosing.order_quantity*OrderClosing.cost*0.1)}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].note" value='${OrderClosing.note}' /></td>
 						</tr>
 					</c:forEach>
@@ -141,14 +141,14 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
 				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${param.item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
-				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
-				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' style="width: 100%" /></td>
+				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${param.standard}' style="width: 100%" /></td>
+				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${param.inventory_Unit}' style="width: 100%" ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
 				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' /></td>
-				<td><input type="text" id="price" name="ListVO[${fn:length(ClosingList) }].price" value='${price}' /></td>
- 				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price}' readonly/></td>
-				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price*0.1}' readonly/></td>
-				<td><input type="text" id="price" value = '${OrderClosing.order_quantity*OrderClosing.price+(OrderClosing.order_quantity*OrderClosing.price*0.1)}' readonly/></td> 
+				<td><input type="text" id="cost" name="ListVO[${fn:length(ClosingList) }].cost" value='${param.cost}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+ 				<td><input type="text" id="cost" value = '${OrderClosing.order_quantity*OrderClosing.cost}' readonly/></td>
+				<td><input type="text" id="cost" value = '${OrderClosing.order_quantity*OrderClosing.cost*0.1}' readonly/></td>
+				<td><input type="text" id="cost" value = '${OrderClosing.order_quantity*OrderClosing.cost+(OrderClosing.order_quantity*OrderClosing.cost*0.1)}' readonly/></td> 
 				<td><input type="text" id="note" name="ListVO[${fn:length(ClosingList) }].note" value='${note}' /></td>
 				</tr>
 				</tbody>
@@ -168,7 +168,7 @@ var item_Code = document.getElementById("item_Code");
 var item_Name = document.getElementById("item_Name");
 var order_quantity = document.getElementById("order_quantity");
 var deadline = document.getElementById("deadline");
-var price = document.getElementById("price");
+var cost = document.getElementById("cost");
 var startDate;
 var endDate;
    	
@@ -218,12 +218,6 @@ function newRow(){
 	    }else if(order_quantity.value ==""){
 	    	alert("발주수량은 필수 입력사항입니다.");
 	    	return order_quantity.focus();
-	    }else if(deadline.value ==""){
-	    	alert("마감처리 및 진행 입력은 필수 입력사항입니다.");
-	    	return deadline.focus();
-	    }else if(price.value ==""){
-	    	alert("단가는 필수 입력사항입니다.");
-	    	return price.focus();
 	    }else{
 	const URLSearch = new URLSearchParams(location.search);
 	const newParam = URLSearch.toString();
@@ -258,7 +252,7 @@ if(UpdConfirm){
 	document.getElementById("inventory_unit").disabled = true;
 	document.getElementById("order_quantity").disabled = true;
 	document.getElementById("deadline").disabled = true;
-	document.getElementById("price").disabled = true;
+	document.getElementById("cost").disabled = true;
 	document.getElementById("note").disabled = true;
 	
 	var Input = document.createElement("input");

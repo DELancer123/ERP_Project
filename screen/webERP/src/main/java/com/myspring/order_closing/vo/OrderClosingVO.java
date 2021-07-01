@@ -21,7 +21,7 @@ public class OrderClosingVO {
 	private String standard;
 	private String inventory_unit;
 	private int order_quantity;
-	private int price; 
+	private int cost; 
 	private String deadline;
 	private String note;
 	private List<OrderClosingVO> ListVO;
@@ -125,12 +125,13 @@ public class OrderClosingVO {
 	}
 
 	
-	public int getPrice() {
-		return price;
+
+	public int getCost() {
+		return cost;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 
 	public String getDeadline() {

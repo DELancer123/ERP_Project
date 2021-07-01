@@ -57,6 +57,15 @@ a {
 						<td>품명</td>
 						<td><input type="text" id="name" name="name" class="name" /></td>
 					</tr>
+					<tr>
+						<td><input type="hidden" id="cost" name="cost"  /></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="standard" name="standard" /></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="inventory_Unit" name="inventory_Unit"  /></td>
+					</tr>
 			</table>
 			<div id="button">	
 				<button id="submit" onclick="submitClick(this.form)">적용</button>
@@ -71,8 +80,11 @@ a {
 				</thead>	
 				<c:forEach var="item" items="${itemList}">
 					<tr align="center" id="searchItem">
-					 <td><a href="javascript:popFunction('${item.item_Code }','${item.item_Name }')">${item.item_Code}</a></td>
+					 <td><a href="javascript:popFunction('${item.item_Code }','${item.item_Name }','${item.cost }','${item.standard }','${item.inventory_Unit }')">${item.item_Code}</a></td>
       					  <td><a href="#">${item.item_Name}</a></td>      		
+      					  <td><intput type="hidden" value="${item.cost}"/></td>      		
+      					  <td><intput type="hidden" value="${item.standard}"/></td>      		
+      					  <td><intput type="hidden" value="${item.inventory_Unit}"/></td>      		
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -87,12 +99,18 @@ a {
 var submit_button = document.getElementById("submit");
 var text_code = document.getElementById("code");
 var text_name = document.getElementById("name");
+var text_cost = document.getElementById("cost");
+var text_standard = document.getElementById("standard");
+var text_inventory_Unit = document.getElementById("inventory_Unit");
 
 
 		
-	function popFunction(code,name){
+	function popFunction(code,name,cost,standard,inventory_Unit){
 			text_code.value = code;
 			text_name.value = name;
+			text_cost.value = cost;
+			text_standard.value = standard;
+			text_inventory_Unit.value = inventory_Unit;
 
 			
 	}
@@ -100,6 +118,9 @@ var text_name = document.getElementById("name");
 	submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
 		$(opener.document).find("#item_Code").val($("#code").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
 		$(opener.document).find("#item_Name").val($("#name").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+		$(opener.document).find("#cost").val($("#cost").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+		$(opener.document).find("#standard").val($("#standard").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+		$(opener.document).find("#inventory_unit").val($("#inventory_Unit").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
 
 		window.close();
 	}	
@@ -125,9 +146,18 @@ $.ajax({
 				str += 	'<td>품번: </td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Code + '</a></td>';  
 				str += 	'<td>품명 :</td>';
-				str +=  '<td><a href = "#">'+ data[i].item_Name + '</a></td>';  
+				str +=  '<td><a href = "#">'+ data[i].item_Name + '</a></td>'; 
+				str += 	'<td>원가 :</td>';
+				str +=  '<td><a href = "#">'+ data[i].cost + '</a></td>';  
+				str += 	'<td>규격 :</td>';
+				str +=  '<td><a href = "#">'+ data[i].standard + '</a></td>';  
+				str += 	'<td>단위 :</td>';
+				str +=  '<td><a href = "#">'+ data[i].inventory_Unit + '</a></td>';  
 				str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].item_Code+'"></td>';  
 				str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].item_Name+'" ></td>';  
+				str +=  '<td><input type = "hidden" id="iCost" value = "'+data[i].cost+'" ></td>';  
+				str +=  '<td><input type = "hidden" id="iStd" value = "'+data[i].standard+'" ></td>';  
+				str +=  '<td><input type = "hidden" id="iUnit" value = "'+data[i].inventory_Unit+'" ></td>';  
 				str +=	'</tr>';
 				//반복문을 사용하여 searchItem table에 추가
 				$("#searchItem").append(str);
@@ -144,10 +174,16 @@ $(document).on("click", "#yahoo", function (e){
 
 var initCode = 	$(this).find('input[id=iCode]').val();	
 var initName = 	$(this).find('input[id=iName]').val();
+var initCost = 	$(this).find('input[id=iCost]').val();
+var initStd = 	$(this).find('input[id=iStd]').val();
+var initUnit = 	$(this).find('input[id=iUnit]').val();
 
 
 $('input[name=code]').val(initCode);
 $('input[name=name]').val(initName);
+$('input[name=cost]').val(initCost);
+$('input[name=Standard]').val(initStd);
+$('input[name=Inventory_Unit]').val(initUnit);
 
 
 });
