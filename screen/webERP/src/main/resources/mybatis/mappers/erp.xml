@@ -500,7 +500,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	<!-- 재공현황 파트 -->
 	
 	<resultMap id="selectWorkInProcessResult" type="WorkInProcessVO">
-		<result property="itemCdoe" column="item_Code" />
+		<result property="itemCode" column="item_Code" />
 		<result property="itemName" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="inventoryUnit" column="inventory_Unit" />

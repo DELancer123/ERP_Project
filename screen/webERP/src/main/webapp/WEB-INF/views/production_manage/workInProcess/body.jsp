@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"    
-    isELIgnored="false"%>
+    pageEncoding="EUC-KR" isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
@@ -28,7 +27,7 @@
             left: 15%;
             top: 25%;
             width: 85%;
-            height: 70%;
+            height: 80%;
             border: 1px solid black;
             z-index: 1;
         }
@@ -46,7 +45,7 @@
         /* 컨테이너 스타일부 */
         #workOrderInfo {
             overflow: scroll;
-            height: 97%;
+            height: 100%;
             width: 100%;
         }
         #workOrderTable{
@@ -108,14 +107,13 @@
                         <td>재공수량</td>                        
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
-                    <c:forEach var="bom" items="${bomView}">  
-                    <tbody align="center" style="background-color:yellow">                        
-                        <td>${bom.itemNumber}</td>
-                        <td>${bom.itemName}</td>
-                        <td>${bom.standard}</td>
-                        <td>${bom.unit }</td>
-                        <td>${bom.division }</td>
-                        <td>${bom.precisionQuantity }</td>                        
+                    <c:forEach var="wip" items="${infoList}">  
+                    <tbody align="center">                        
+                        <td>${wip.itemCode}</td>
+                        <td>${wip.itemName}</td>
+                        <td>${wip.standard}</td>                        
+                        <td>${wip.inventoryUnit }</td>
+                        <td>${wip.quantity }</td>                        
                     </tbody>
                   </c:forEach>                   
                 </table>
