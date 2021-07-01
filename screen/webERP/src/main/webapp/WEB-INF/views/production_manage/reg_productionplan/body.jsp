@@ -121,7 +121,7 @@
                         <td><input type="text" id="dailyProduction" name="ListVO[${fn:length(infoList)}].dailyProduction" value="${param.dailyProduction }" readonly /></td>
                         <td><input type="text" disabled /></td>
                         <td><input type="date" id="scheduled" name="ListVO[${fn:length(infoList)}].scheduled" /></td>
-                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" value="${param.quantity }" readonly/></td>
+                        <td><input type="text" id="quantity" name="ListVO[${fn:length(infoList)}].quantity" value="${param.quantity }"/></td>
                         <td><input type="text" id="note" name="ListVO[${fn:length(infoList)}].note" /></td>
                      </tr>
                     </tbody>
@@ -133,6 +133,15 @@
 </body>
 </html>
  <script>
+ function isEmpty(str){
+     
+     if(typeof str == "undefined" || str == null || str == "")
+         return true;
+     
+     else
+         return false ;
+     
+ 	}
  /* input date의 현재 날짜 기본값 설정*/
  document.getElementById('searchStartDate').value = new Date().toISOString().substring(0,10);;
  document.getElementById('searchEndDate').value = new Date().toISOString().substring(0,10);;
@@ -183,10 +192,24 @@
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
+  		    
+  		  var scheduled = document.getElementById("scheduled").value;
+  		  var quantity = document.getElementById("quantity").value;
+   		   if (isEmpty(scheduled)){
+		      		alert("날짜값이 비어져있습니다. 값을 추가해주세요!");
+		      		document.getElementById("scheduled").focus();
+	
+	  	  }
+   		   else if(isEmpty(quantity)){
+		      		alert("수량값이 비어져있습니다. 값을 추가해주세요!");		            	
+		      		document.getElementById("quantity").focus();
+		   }else{
+  		       
   		    document.getElementById('dataForm').appendChild(linkPath);
             document.getElementById('dataForm').action = "${contextPath}/member/addProductionPlan.do";
-  			document.getElementById('dataForm').submit();  
-		
+  			document.getElementById('dataForm').submit();  		
+	  		alert("값이 저장되었습니다!");          	
+		   }   
       }
       
         function updateRow() {
