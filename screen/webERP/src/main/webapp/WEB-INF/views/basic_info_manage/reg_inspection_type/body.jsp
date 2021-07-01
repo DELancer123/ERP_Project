@@ -117,10 +117,10 @@
                     <td align="center">ºñ°í</td>
                 </thead>
                 <tbody id="table2" align="center">
-                    <td align="center"><input type="text" name="inspection_Code" id="inspection_Code" value="${inspection_Code }" style="background-color: rgb(255, 255, 149);"/></td>
-                    <td align="center"><input type="text" name="inspection_Name" id="inspection_Name" value="${inspection_Name }" style="background-color: rgb(255, 255, 149);"/></td>
-                    <td align="center"><input type="text" name="inspection_Question" id="inspection_Question" value="${inspection_Question }" style="background-color: rgb(235,235,235); border-style: none;"/></td>
-                    <td align="center"><input type="text" name="remarks" id="remarks" value="${remarks }" style="background-color: rgb(235,235,235); border-style: none;"/></td>
+                    <td align="center"><input type="text" name="inspection_Code" id="inspection_Code" value="${inspection_Code }" style="background-color: rgb(255, 255, 149);" maxlength="12"/></td>
+                    <td align="center"><input type="text" name="inspection_Name" id="inspection_Name" value="${inspection_Name }" style="background-color: rgb(255, 255, 149);" maxlength="30"/></td>
+                    <td align="center"><input type="text" name="inspection_Question" id="inspection_Question" value="${inspection_Question }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="200"/></td>
+                    <td align="center"><input type="text" name="remarks" id="remarks" value="${remarks }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="200"/></td>
                 </tbody>
             </table>
         </form>
