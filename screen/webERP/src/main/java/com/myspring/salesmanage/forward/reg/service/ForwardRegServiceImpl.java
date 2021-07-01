@@ -21,13 +21,6 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		custList = forwardDAO.selectAllCustList();
 		return custList;
 	}
-
-	@Override
-	public List listCust() throws DataAccessException {
-		List custList = null;
-		custList = forwardDAO.selectCustsList();
-		return custList;
-	}
 	
 	@Override
 	public List listItems() throws DataAccessException {

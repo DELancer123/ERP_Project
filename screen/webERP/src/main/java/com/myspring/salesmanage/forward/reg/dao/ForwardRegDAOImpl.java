@@ -25,20 +25,13 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		custList = sqlSession.selectList("mappers.erp.allCustList");
 		return custList;
 	}//popRegForwardCust1 
-	
-	@Override
-	public List selectCustsList() throws DataAccessException {
-		List<ForwardVO> custForwardList = null;
-		custForwardList = sqlSession.selectList("mappers.erp.selCustforward");
-		return custForwardList;
-	}//pop2 (cust for insert)
 	@Override
 	public List selectAllItemList() throws DataAccessException {
 		List<ItemViewVO> allItemList = null;
 		allItemList = sqlSession.selectList("mappers.erp.selectAllItemList");
 		System.out.println("확인2");
 		return allItemList;
-	}//pop3
+	}//pop2
 	@Override
 	public List selectSupForwardList() throws DataAccessException {
 		List<ForwardVO> supForwardList = null;

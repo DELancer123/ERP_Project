@@ -43,17 +43,7 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		mav.addObject("supForwardList", supForwardList);
 
 		return mav;
-	}
-	@RequestMapping(value="/member/forwardcodehelper.do",method = RequestMethod.GET)
-	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		List custList = forwardRegService.listCust();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("custList", custList);
-
-		return mav;
-	}
-	
+	}	
 
 	@Override
 	@RequestMapping(value="/member/forwarding.do" ,method = RequestMethod.GET)
@@ -92,6 +82,7 @@ public class ForwardRegControllermpl implements ForwardRegController{
 
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
+		System.out.println("확인" + forwardVO.getListVO().size());
 		int result = 0;
 		result = forwardRegService.addForward(forwardVO);
 		String resulturl = url.toString();
@@ -109,7 +100,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		System.out.println(code+"code");
 		forwardRegService.removeForward(codeary);
 		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
-		
 		return mav;
 	}
 
