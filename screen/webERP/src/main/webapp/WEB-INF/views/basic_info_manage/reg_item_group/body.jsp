@@ -102,9 +102,9 @@
 <body>
 <form method="get" id="regItemg">
 <container1 id = contents1>
-            <table id="table1" align="center" style="color:red">
+            <table id="table1" align="center" style="color:blown">
             <tr>
-            <td><strong>*품목군에 속해있는 품목이 있을경우 삭제를 할수 없습니다. 먼저 속한 품목을 모두 삭제후 품목군을 삭제 해주세요.*</strong></td>
+            <td><strong>*품목군에 속해있는 품목이 있을경우 삭제를 할수 없습니다.<br>먼저 속한 품목을 모두 삭제후 품목군을 삭제 해주세요.*</strong></td>
             </tr>
             </table>
         </container1>
