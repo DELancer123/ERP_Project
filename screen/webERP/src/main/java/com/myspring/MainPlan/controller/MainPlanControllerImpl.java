@@ -42,7 +42,7 @@ public class MainPlanControllerImpl implements MainPlanController {
 		String viewName = getViewName(request);
 		String number = (String) request.getParameter("item_Code");
 		String submit = (String) request.getParameter("submit");
-		String itemNumber = (String) request.getParameter("item_Code");
+		String itemNumber = (String) request.getParameter("general_Customer_Code");
 		int sum = 0;
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			

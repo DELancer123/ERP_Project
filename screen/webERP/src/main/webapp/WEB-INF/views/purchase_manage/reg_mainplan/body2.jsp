@@ -10,8 +10,8 @@
 	String inputSeq = (String)request.getAttribute("inputSeq");
 %>
  <c:forEach var="mainplan" items="${MPSInsert}" >     
- 	<c:set var="planNO" value="${mainplan.planNO }"/>
- 	<c:set var="plandate" value="${mainplan.plandate }"/>
+  	<c:set var="planNO" value="${mainplan.planNO }"/>
+ 	<c:set var="plandate" value="${mainplan.plandate }"/> 
  	<c:set var="item_Code" value="${mainplan.item_Code }"/>
  	<c:set var="item_Name" value="${mainplan.item_Name }"/>
  	<c:set var="standard" value="${mainplan.standard }"/>
@@ -21,7 +21,7 @@
  	<c:set var="dueDate" value="${mainplan.dueDate }"/>
  	<c:set var="plan_quantity" value="${mainplan.plan_quantity }"/>
  	<c:set var="general_Customer_Name" value="${mainplan.general_Customer_Name }"/>
- 	<c:set var="note" value="${mainplan.note }"/>
+  	<c:set var="note" value="${mainplan.note }"/>
  </c:forEach>
 <!DOCTYPE html>
 <html>
@@ -100,10 +100,10 @@
 			<td>규격</td>
 			<td>단위</td>
 			<td>순서</td>
+			<td>고객</td>
 			<td>출하예정일</td>
 			<td>납기일</td>
 			<td>계획수량</td>
-			<td>고객</td>
 			<td>비고</td>
 		</thead>
 		<tbody>
@@ -112,15 +112,15 @@
 			<td><input type="checkbox" name="content" value="${mainplan.sequence}"/></td>
  				<td><input type="text" name="ListVO[${status.index}].planNO" value = '${mainplan.planNO}' readonly /></td>				
  				<td><input type="date" name="ListVO[${status.index}].plandate" value = '${mainplan.plandate}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'readonly/></td>					
- 				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}' readonly/></td>				
+ 				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'readonly  /></td>					
+ 				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}'  readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
  				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
   		 	<td style="width:13px;"><input type="text"  value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
+ 				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value = '${mainplan.general_Customer_Name}'  readonly/></td>				
  				<td><input type="date" name="ListVO[${status.index}].expectedDate" value = '${mainplan.expectedDate}' /></td>				
  				<td><input type="date" name="ListVO[${status.index}].dueDate" value = '${mainplan.dueDate}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].plan_quantity" value = '${mainplan.plan_quantity}' /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value = '${mainplan.general_Customer_Name}' /></td>				
  				<td><input type="text" name="ListVO[${status.index}].note" value = '${mainplan.note}' /></td>				
 			</tr>
 		</c:forEach>		
@@ -128,15 +128,15 @@
 		<td></td>    	
     	<td><input type="text" id="planNO"  value='${planNO}' readonly/></td>
     	<td><input type="date" id="plandate" name="ListVO[${fn:length(MPSView) }].plandate" value = '${plandate}'/></td>
-    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(MPSView) }].item_Code" value='${param.item_Code}'readonly/></td>
-    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(MPSView) }].item_Name" value='${param.item_Name}' readonly/></td>
+    	<td><input type="text" id="item_Code" name="ListVO[${fn:length(MPSView) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+    	<td><input type="text" id="item_Name" name="ListVO[${fn:length(MPSView) }].item_Name" value='${param.item_Name}'  ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(MPSView) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
     	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(MPSView) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
     	<td><input type="text" id="sequence" value='${inputSeq}' readonly style="width:100%"/></td>
+   <td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(MPSView) }].general_Customer_Name" value='${param.general_Customer_Name}' ondblclick="search()" readonly style="background-color:#E6E6FA"/></td>
     	<td><input type="date" id="expectedDate" name="ListVO[${fn:length(MPSView) }].expectedDate" value='${expectedDate}'/></td>
     	<td><input type="date" id="dueDate" name="ListVO[${fn:length(MPSView) }].dueDate" value='${dueDate}'/></td>
     	<td><input type="text" id="plan_quantity" name="ListVO[${fn:length(MPSView) }].plan_quantity" value='${plan_quantity}' /></td>
-   <td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(MPSView) }].general_Customer_Name" value='${param.general_Customer_Name}' ondblclick="search()" readonly style="background-color:#E6E6FA"/></td>
     	<td><input type="text" id="note" name="ListVO[${fn:length(MPSView) }].note"value='${param.note}'/></td>
     </tr>
 	</tbody>
@@ -156,16 +156,15 @@ var note = document.getElementById("note");
 var item_Code = document.getElementById("item_Code");
 
 
-function setChildValue(code,name,general_Customer_Name,standard,inventory_unit,note){
+function setChildValue(general_Customer_Name){
 	  const URLSearch = new URLSearchParams(location.search);
 	  URLSearch.set('submit', '2');
 	  const newParam = URLSearch.toString();
-  if(URLSearch.get('item_Code') == null){
-		window.location.href = location.pathname +'?'+newParam +'&item_Code='+code+'&item_Name='+name+'&general_Customer_Name='+general_Customer_Name+'&standard='+standard
-		+'&inventory_unit='+inventory_unit+'&note='+note;
+  if(URLSearch.get('general_Customer_Name') == null){
+		window.location.href = location.pathname +'?'+'&general_Customer_Name='+general_Customer_Name;
   }
   else{
-  	URLSearch.set('item_Code',name,general_Customer_Name,standard,inventory_unit,note);
+  	URLSearch.set('general_Customer_Name',general_Customer_Name);
   	const newParam = URLSearch.toString();
   	window.location.href = location.pathname +'?'+newParam;
   }
@@ -206,6 +205,9 @@ function newRow(){
     if(plandate.value == ""){
        alert("계획일은 필수 입력사항입니다.");
        return planDate.focus();
+    }else if(general_Customer_Name.value ==""){
+    	alert("회사명은 필수 입력사항입니다.");
+    	return general_Customer_Name.focus();
     }else if(expectedDate.value == ""){
        alert("출하예정일 필수 입력사항입니다.");
        return expectedDate.focus();
@@ -215,9 +217,6 @@ function newRow(){
     }else if(plan_quantity.value ==""){
     	alert("계획수량은 필수 입력사항입니다.");
     	return plan_quantity.focus();
-    }else if(general_Customer_Name.value ==""){
-    	alert("회사명은 필수 입력사항입니다.");
-    	return general_Customer_Name.focus();
     }else{
    		const URLSearch = new URLSearchParams(location.search);
    		
@@ -252,10 +251,10 @@ function updateRow() {
 		document.getElementById("standard").disabled = true;
 		document.getElementById("inventory_unit").disabled = true;
 		document.getElementById("sequence").disabled = true;
+		document.getElementById("general_Customer_Name").disabled = true;
 		document.getElementById("expectedDate").disabled = true;
 		document.getElementById("dueDate").disabled = true;
 		document.getElementById("plan_quantity").disabled = true;
-		document.getElementById("general_Customer_Name").disabled = true;
 		document.getElementById("note").disabled = true;
 		
 		var Input = document.createElement("input");
@@ -289,7 +288,7 @@ view_button.onclick = function(){
 }
 
 function search(){ 	  
-  	openWindowPop('${contextPath}/member/buyerPop.do','buyerPop');
+  	openWindowPop('${contextPath}/member/Popbuyer.do','buyerPop');
 }   
 
 </script>

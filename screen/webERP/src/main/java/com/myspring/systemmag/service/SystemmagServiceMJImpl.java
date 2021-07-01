@@ -17,7 +17,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Autowired
 	private SystemmagDAOMJ systemmagDAO;
 	
-	//占싹반거뤄옙처占쏙옙占�
+	//�뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�
 	@Override
 	public int addCustomer (SystemmagVOMJ systemmagVO) throws Exception{
 		int result = systemmagDAO.insertNewCustomer(systemmagVO);
@@ -63,7 +63,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	}
 
 	
-	//창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙占�
+	//李썲뜝�룞�삕/�뜝�룞�삕�뜝�룞�삕/�뜝�룞�삕�뜝�뙇怨ㅼ삕�뜝�룞�삕�뜝�룞�삕�뜝占�
 	@Override
 	public List viewAllHouOutware() throws DataAccessException {
 		List outwareList = null;
@@ -105,7 +105,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		outwareList = systemmagDAO.viewAllOutWorOutware();	
 		return outwareList;
 	}
-	//창占쏙옙占쏙옙 占쏙옙회-------
+	//李썲뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�쉶-------
 	@Override
 	public List viewSelectedHouOutware(String search) throws DataAccessException {
 		List outwareList = null;
@@ -127,7 +127,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return outwareList;
 	}
 	
-	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�
+	//�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�
 	@Override
 	public List viewAllLogistics() throws DataAccessException {
 		List logisticsList = null;
@@ -168,7 +168,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return systemmagDAO.searchPopOutwareName(itemName);
 	}
 	
-	//검사유형등록
+	//寃��궗�쑀�삎�벑濡�
 	@Override
 	public List viewAllInspection() throws DataAccessException {
 		List comList = null;
@@ -198,7 +198,7 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		systemmagDAO.updateInspection(systemmagVO);
 	}
 
-	//SET구성품등록
+	//SET援ъ꽦�뭹�벑濡�
 	@Override
 	public List viewAllSetComponents() throws DataAccessException {
 		List comList = null;
@@ -238,6 +238,30 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	@Override
 	public List<SystemmagVOMJ> searchPopComponentsName(String itemName) throws DataAccessException {
 		return systemmagDAO.viewsearchPopComponentsName(itemName);
+	}
+
+	@Override
+	public List viewSpecComponents(String com_code) throws DataAccessException {
+		List comList = systemmagDAO.viewSpecComponents(com_code);
+		return comList;
+	}
+
+	@Override
+	public int addSpecComponents(SystemmagVOMJ systemmagVO) throws Exception {
+		int result = systemmagDAO.insertNewSpecComponents(systemmagVO);
+		return result;
+	}
+
+	@Override
+	public void delSpecComponents(String[] noary) throws DataAccessException {
+		systemmagDAO.deleteSpecComponents(noary);
+		
+	}
+
+	@Override
+	public void updSpecComponents(SystemmagVOMJ systemmagVO) throws DataAccessException {
+		systemmagDAO.updateSpecComponents(systemmagVO);
+		
 	}
 
 	

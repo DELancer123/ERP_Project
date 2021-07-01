@@ -12,6 +12,7 @@ public class ItemgVO {
 	private String item_Group_Name;
 	private String use_Status;
 	private String explanation;
+	private String div1;
 	private List<ItemgVO> ListVO;
 	
 	
@@ -44,6 +45,12 @@ public class ItemgVO {
 	}
 	public void setListVO(List<ItemgVO> listVO) {
 		ListVO = listVO;
+	}
+	public String getDiv1() {
+		return div1;
+	}
+	public void setDiv1(String div1) {
+		this.div1 = div1;
 	}
 	
 	

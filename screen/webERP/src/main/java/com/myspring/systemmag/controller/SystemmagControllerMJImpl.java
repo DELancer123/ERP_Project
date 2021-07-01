@@ -31,7 +31,7 @@ import com.myspring.systemmag.dao.SystemmagDAOMJ;
 import com.myspring.systemmag.service.SystemmagServiceMJ;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
-//회占쏙옙占쏙옙
+//�쉶�뜝�룞�삕�뜝�룞�삕
 @Controller("SystemmagControllerMJ")
 public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Autowired
@@ -41,7 +41,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Autowired
 	private SystemmagDAOMJ systemmagDAO;
 
-	// 占싹반거뤄옙처占쏙옙占�-占쏙옙占�
+	// �뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝占�
 	@Override
 	@RequestMapping(value = "/member/addbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView addCustomer(@ModelAttribute("company") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -57,14 +57,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// 占싹반거뤄옙처占쏙옙占�-占쏙옙회
+	// �뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�-�뜝�룞�삕�쉶
 	@Override
 	@RequestMapping(value = "/member/regbasicacc.do", method = RequestMethod.GET)
 	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
-		String com_code = (String) request.getParameter("com_code"); // 占쏙옙占승� 占쏙옙占쏙옙占쏙옙占� 체크占싹댐옙 占쏙옙占쏙옙占쏙옙, url占쏙옙 占싼억옙占�
+		String submit = (String) request.getParameter("submit"); // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 , url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
+		String com_code = (String) request.getParameter("com_code"); // �뜝�룞�삕�뜝�듅占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
 		String customerCode = (String) request.getParameter("customerCode");
 
 		System.out.println("viewName:" + viewName);
@@ -72,9 +72,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		System.out.println("comcode:"+com_code);
 		System.out.println("customercode:"+customerCode);
 
-		if (com_code == null && submit == null) { // 첫占쏙옙占쏙옙占싱띰옙占�?
+		if (com_code == null && submit == null) { // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�떛�씛�삕�뜝占�?
 			if(customerCode != null) {				
-				System.out.println("3占쏙옙占싻깍옙占쏙옙占�");
+				System.out.println("3�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
 				System.out.println("customerCode:"+customerCode);
 				List customerList = null;
 				List comcom = null;
@@ -86,18 +86,18 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 				return mav;
 			}
 			else {
-				System.out.println("1占쏙옙占싻깍옙占쏙옙占�");
-				List comView = systemmagService.viewAllCustomer(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+				System.out.println("1�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
+				List comView = systemmagService.viewAllCustomer(); // select all �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뜝�떬�뙋�삕
 				mav = new ModelAndView(viewName);
 				mav.addObject("comView", comView);
 				return mav;
 			}
 		}
 
-		else if (submit.equals("1")) { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙 占쏙옙회占쏙옙 占쏙옙占쏙옙占쏙옙
-			System.out.println("2占쏙옙占싻깍옙占쏙옙占�");
-			List comView = systemmagService.viewAllCustomer(); // select占쏙옙占쏙옙
-			List comcom = systemmagService.viewCustomer(com_code); // where占쏙옙占쏙옙 占쌩곤옙占싼댐옙
+		else if (submit.equals("1")) { // �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, �뜝�룞�삕 �뜝�룞�삕�쉶�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+			System.out.println("2�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
+			List comView = systemmagService.viewAllCustomer(); // select�뜝�룞�삕�뜝�룞�삕
+			List comcom = systemmagService.viewCustomer(com_code); // where�뜝�룞�삕�뜝�룞�삕 �뜝�뙥怨ㅼ삕�뜝�떬�뙋�삕
 			System.out.println("comViewSize:"+comView.size());
 			System.out.println("comcomSize:"+comcom.size());
 			mav = new ModelAndView(viewName);
@@ -138,13 +138,13 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return viewName;
 	}
 
-	// 占싹반거뤄옙처占쏙옙占�-占쏙옙占쏙옙
+	// �뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝�룞�삕
 	@Override
 	@RequestMapping(value = "/member/deleteBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no"); // 체크占쏙옙占쏙옙 체크占쌘쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		String number = (String) request.getParameter("no"); // 泥댄겕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�뙓�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		String viewName = getViewName(request);
-		String[] numberary = number.split(","); // 占쏙옙표占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占썼열占쏙옙 占쏙옙占쏙옙占싼댐옙
+		String[] numberary = number.split(","); // �뜝�룞�삕�몴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�띁�뿴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떬�뙋�삕
 
 		systemmagService.delCustomer(numberary);
 
@@ -154,19 +154,19 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 	}
 
-	// 占싹반거뤄옙처占쏙옙占�-占쏙옙占쏙옙
+	// �뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝�룞�삕
 	@Override
 	@RequestMapping(value = "/member/updateBasicacc.do", method = RequestMethod.GET)
 	public ModelAndView updateCustomer(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		systemmagService.updCustomer(systemmagVO);// 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙트占쌉쇽옙占쏙옙 占신곤옙占쏙옙占쏙옙占쏙옙 VO占쏙옙占쏙옙占쏙옙占쏙옙
+		systemmagService.updCustomer(systemmagVO);// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�뙃�눦�삕�뜝�룞�삕 �뜝�떊怨ㅼ삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 VO�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/regbasicacc.do?submit=1&&com_code=" + systemmagVO.getGeneral_Customer_Code());
 		return mav;
 	}
 
-	// 占싹반거뤄옙처占쏙옙占�-占싯억옙
+	// �뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�-�뜝�떙�뼲�삕
 	@Override
 	@RequestMapping(value = "/member/regbasicaccPopup.do", method = RequestMethod.GET)
 	public ModelAndView popupCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -174,14 +174,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List comView = systemmagService.viewAllCustomer(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List comView = systemmagService.viewAllCustomer(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("comView", comView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("comView", comView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 
 		return mav;
 	}
 
-	// 占싹반거뤄옙처占쏙옙占�-占쏙옙占쏙옙占싫ｏ옙鱇占�
+	// �뜝�떦諛섍굅琉꾩삕泥섇뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝�룞�삕�뜝�떕節륁삕浴뉐뜝占�
 	@Override
 	@RequestMapping(value = "/member/regbasicaccZipPopup.do", method = RequestMethod.GET)
 	public ModelAndView popupZipCustomer(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -192,33 +192,33 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		String com_code = request.getParameter("com_code");
 		System.out.println("com_code=" + com_code);
 
-		List ZipView = systemmagService.zipViewCustomer(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List ZipView = systemmagService.zipViewCustomer(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("ZipView", ZipView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("ZipView", ZipView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		return mav;
 	}
 
-	// 창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙占�-占쏙옙회
+	// 李썲뜝�룞�삕/�뜝�룞�삕�뜝�룞�삕/�뜝�룞�삕�뜝�뙇怨ㅼ삕�뜝�룞�삕�뜝�룞�삕�뜝占�-�뜝�룞�삕�쉶
 	@Override
 	@RequestMapping(value = "/member/outware.do", method = RequestMethod.GET)
 	public ModelAndView viewOutware(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
-		String code = (String) request.getParameter("com_code"); // 占쏙옙占승� 占쏙옙占쏙옙占쏙옙占� 체크占싹댐옙 占쏙옙占쏙옙占쏙옙, url占쏙옙 占싼억옙占�
+		String submit = (String) request.getParameter("submit"); // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 , url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
+		String code = (String) request.getParameter("com_code"); // �뜝�룞�삕�뜝�듅占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
 		String outwareCode = (String) request.getParameter("outwareCode");
 		String processCode = (String) request.getParameter("processCode");
 		String outsourcingCode = (String) request.getParameter("outsourcingCode");
 		System.out.println("outwareCode:"+outwareCode);
 		System.out.println("processCode:"+processCode);
 		System.out.println("outsourcingCode:"+outsourcingCode);
-		if (code == null && submit == null) { // 첫占쏙옙占쏙옙占싱띰옙占�?
-			System.out.println("1占쏙옙占싻깍옙占쏙옙占�");
-			List houOutwareList = systemmagService.viewAllHouOutware(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+		if (code == null && submit == null) { // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�떛�씛�삕�뜝占�?
+			System.out.println("1�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
+			List houOutwareList = systemmagService.viewAllHouOutware(); // select all �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뜝�떬�뙋�삕
 			List proOutwareList = systemmagService.viewAllProOutware();
 			List outOutwareList = systemmagService.viewAllOutOutware();
 
-			List houWorOutwareList = systemmagService.viewAllHouWorOutware(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+			List houWorOutwareList = systemmagService.viewAllHouWorOutware(); // select all �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뜝�떬�뙋�삕
 			List proWorOutwareList = systemmagService.viewAllProWorOutware();
 			List outWorOutwareList = systemmagService.viewAllOutWorOutware();
 
@@ -249,7 +249,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
-	// 창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙황-占싯억옙
+	// 李썲뜝�룞�삕/�뜝�룞�삕�뜝�룞�삕/�뜝�룞�삕�뜝�뙇怨ㅼ삕�뜝�룞�삕�뜝�룞�삕�솴-�뜝�떙�뼲�삕
 	@Override
 	@RequestMapping(value = "/member/outwarePopup1.do", method = RequestMethod.GET)
 	public ModelAndView popupOutware1(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -257,9 +257,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List outwareView = systemmagService.viewAllHouOutware(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List outwareView = systemmagService.viewAllHouOutware(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("outwareView", outwareView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("outwareView", outwareView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 
 		return mav;
 	}
@@ -270,9 +270,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List outwareView = systemmagService.viewAllProOutware(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List outwareView = systemmagService.viewAllProOutware(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("outwareView", outwareView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("outwareView", outwareView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 
 		return mav;
 	}
@@ -283,30 +283,30 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List outwareView = systemmagService.viewAllOutOutware(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List outwareView = systemmagService.viewAllOutOutware(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("outwareView", outwareView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("outwareView", outwareView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 
 		return mav;
 	}
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�-占쏙옙회
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�-�뜝�룞�삕�쉶
 	@Override
 	@RequestMapping(value = "/member/logistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView viewLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
-		String code = (String) request.getParameter("com_code"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
-		String logisSearchBox = (String) request.getParameter("logisSearchBox"); // 占쏙옙占승� 占쏙옙占쏙옙占쏙옙占� 체크占싹댐옙 占쏙옙占쏙옙占쏙옙, url占쏙옙 占싼억옙占�
+		String submit = (String) request.getParameter("submit"); // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 , url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
+		String code = (String) request.getParameter("com_code"); // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 , url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
+		String logisSearchBox = (String) request.getParameter("logisSearchBox"); // �뜝�룞�삕�뜝�듅占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
 		System.out.println("logisSearchBox:"+logisSearchBox);
 
-		if (code == null && submit == null) { // 첫占쏙옙占쏙옙占싱띰옙占�?			
+		if (code == null && submit == null) { // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�떛�씛�삕�뜝占�?			
 			if(logisSearchBox != null) {				
-				System.out.println("3占쏙옙占싻깍옙占쏙옙占�");
+				System.out.println("3�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
 				System.out.println("logisSearchBox:"+logisSearchBox);
 				List allLogisticsList = null;
 				List logisticsSelectedView = null;
@@ -321,18 +321,18 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 				return mav;
 			}
 			else {
-				System.out.println("1占쏙옙占싻깍옙占쏙옙占�");
-				List logisticsView = systemmagService.viewAllLogistics(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+				System.out.println("1�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
+				List logisticsView = systemmagService.viewAllLogistics(); // select all �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뜝�떬�뙋�삕
 				mav = new ModelAndView(viewName);
 				mav.addObject("logisticsView", logisticsView);
 				return mav;
 			}
 		}
 
-		else if (submit.equals("1")) { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙 占쏙옙회占쏙옙 占쏙옙占쏙옙占쏙옙
-			System.out.println("2占쏙옙占싻깍옙占쏙옙占�");
-			List logisticsView = systemmagService.viewAllLogistics(); // select占쏙옙占쏙옙
-			List logisticsSelectedView = systemmagService.viewSelectedLogistics(code); // where占쏙옙占쏙옙 占쌩곤옙占싼댐옙
+		else if (submit.equals("1")) { // �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, �뜝�룞�삕 �뜝�룞�삕�쉶�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+			System.out.println("2�뜝�룞�삕�뜝�떩源띿삕�뜝�룞�삕�뜝占�");
+			List logisticsView = systemmagService.viewAllLogistics(); // select�뜝�룞�삕�뜝�룞�삕
+			List logisticsSelectedView = systemmagService.viewSelectedLogistics(code); // where�뜝�룞�삕�뜝�룞�삕 �뜝�뙥怨ㅼ삕�뜝�떬�뙋�삕
 			mav = new ModelAndView(viewName);
 			mav.addObject("logisticsView", logisticsView);
 			mav.addObject("logisticsSelectedView", logisticsSelectedView);
@@ -341,7 +341,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�-占쏙옙占�
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝占�
 	@Override
 	@RequestMapping(value = "/member/addLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView addLogistics(@ModelAttribute("logistics") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -357,15 +357,15 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�-占쏙옙占쏙옙
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝�룞�삕
 	@Override
 	@RequestMapping(value = "/member/deleteLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView deleteLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no"); // 체크占쏙옙占쏙옙 체크占쌘쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
-		System.out.println("占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙");
+		String number = (String) request.getParameter("no"); // 泥댄겕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�뙓�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+		System.out.println("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕");
 		System.out.println("number:"+number);
 		String viewName = getViewName(request);
-		String[] numberary = number.split(","); // 占쏙옙표占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占썼열占쏙옙 占쏙옙占쏙옙占싼댐옙
+		String[] numberary = number.split(","); // �뜝�룞�삕�몴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�띁�뿴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떬�뙋�삕
 
 		systemmagService.deleteLogistics(numberary);
 
@@ -373,22 +373,22 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�-占쏙옙占쏙옙
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�-�뜝�룞�삕�뜝�룞�삕
 	@Override
 	@RequestMapping(value = "/member/updateLogistics_manage.do", method = RequestMethod.GET)
 	public ModelAndView updateLogistics(SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("占쏙옙占쏙옙占쏙옙트占쏙옙占쏙옙占쏙옙");
+		System.out.println("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕");
 		request.setCharacterEncoding("utf-8");
 		System.out.println("explanation:"+request.getParameter("explanation"));
-		systemmagService.updateLogistics(systemmagVO);// 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙트占쌉쇽옙占쏙옙 占신곤옙占쏙옙占쏙옙占쏙옙 VO占쏙옙占쏙옙占쏙옙占쏙옙
+		systemmagService.updateLogistics(systemmagVO);// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�뙃�눦�삕�뜝�룞�삕 �뜝�떊怨ㅼ삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 VO�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/logistics_manage.do?submit=1&&com_code=" + systemmagVO.getLogistics_In_Code());
 		return mav;
 	}
 	
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�-占싯억옙
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�-�뜝�떙�뼲�삕
 	@Override
 	@RequestMapping(value = "/member/logisticsPopup.do", method = RequestMethod.GET)
 	public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -396,14 +396,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List logisticsView = systemmagService.viewAllLogistics(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List logisticsView = systemmagService.viewAllLogistics(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("logisticsView", logisticsView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("logisticsView", logisticsView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 
 		return mav;
 	}
 	
-	//물류관리내역등록-----------------------------------
+	//臾쇰쪟愿�由щ궡�뿭�벑濡�-----------------------------------
 	@Override
 	@RequestMapping(value = "/member/addInspection.do", method = RequestMethod.GET)
 	public ModelAndView addInspection(@ModelAttribute("Ins") SystemmagVOMJ systemmagVO, HttpServletRequest request,
@@ -420,23 +420,23 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	public ModelAndView viewInspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
-		String com_code = (String) request.getParameter("com_code"); // 占쏙옙占승� 占쏙옙占쏙옙占쏙옙占� 체크占싹댐옙 占쏙옙占쏙옙占쏙옙, url占쏙옙 占싼억옙占�
+		String submit = (String) request.getParameter("submit"); // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 , url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
+		String com_code = (String) request.getParameter("com_code"); // �뜝�룞�삕�뜝�듅占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
 		System.out.println("comcode:"+com_code);
 
-		if (com_code == null && submit == null) { // 첫占쏙옙占쏙옙占싱띰옙占�?
-			List insView = systemmagService.viewAllInspection(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+		if (com_code == null && submit == null) { // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�떛�씛�삕�뜝占�?
+			List insView = systemmagService.viewAllInspection(); // select all �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뜝�떬�뙋�삕
 			mav = new ModelAndView(viewName);
 			mav.addObject("insView", insView);
 			return mav;
 		}
 
-		else if (submit.equals("1")) { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙 占쏙옙회占쏙옙 占쏙옙占쏙옙占쏙옙
-			List insView = systemmagService.viewAllInspection(); // select占쏙옙占쏙옙
-			List insins = systemmagService.viewInspection(com_code); // where占쏙옙占쏙옙 占쌩곤옙占싼댐옙
+		else if (submit.equals("1")) { // �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, �뜝�룞�삕 �뜝�룞�삕�쉶�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+			List insView = systemmagService.viewAllInspection(); // select�뜝�룞�삕�뜝�룞�삕
+			List insins = systemmagService.viewInspection(com_code); // where�뜝�룞�삕�뜝�룞�삕 �뜝�뙥怨ㅼ삕�뜝�떬�뙋�삕
 			mav = new ModelAndView(viewName);
 			mav.addObject("insView", insView);
 			mav.addObject("insins", insins);
@@ -447,9 +447,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Override
 	@RequestMapping(value = "/member/deleteInspection.do", method = RequestMethod.GET)
 	public ModelAndView deleteInspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no"); // 체크占쏙옙占쏙옙 체크占쌘쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		String number = (String) request.getParameter("no"); // 泥댄겕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�뙓�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		String viewName = getViewName(request);
-		String[] numberary = number.split(","); // 占쏙옙표占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占썼열占쏙옙 占쏙옙占쏙옙占싼댐옙
+		String[] numberary = number.split(","); // �뜝�룞�삕�몴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�띁�뿴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떬�뙋�삕
 
 		systemmagService.delInspection(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/reginspection.do");
@@ -461,12 +461,12 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	public ModelAndView updateInspection(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		systemmagService.updInspection(systemmagVO);// 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙트占쌉쇽옙占쏙옙 占신곤옙占쏙옙占쏙옙占쏙옙 VO占쏙옙占쏙옙占쏙옙占쏙옙
+		systemmagService.updInspection(systemmagVO);// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�듃�뜝�뙃�눦�삕�뜝�룞�삕 �뜝�떊怨ㅼ삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 VO�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		ModelAndView mav = new ModelAndView(
 				"redirect:/member/reginspection.do?submit=1&&com_code=" + systemmagVO.getInspection_Code());
 		return mav;
 	}
-	//SET구성품등록--------------------------------------------
+	//SET援ъ꽦�뭹�벑濡�--------------------------------------------
 	@Override
 	@RequestMapping(value = "/member/addSetComponents.do", method = RequestMethod.GET)
 	public ModelAndView addSetComponents(SystemmagVOMJ company, HttpServletRequest request,
@@ -483,26 +483,26 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	public ModelAndView viewSetComponents(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String submit = (String) request.getParameter("submit"); // 첫占쏙옙占쏙옙占쏙옙占쏙옙 체크占싹댐옙 占쏙옙占쏙옙占쏙옙 , url占쏙옙 占싼억옙占�
-		String com_code = (String) request.getParameter("com_code"); // 占쏙옙占승� 占쏙옙占쏙옙占쏙옙占� 체크占싹댐옙 占쏙옙占쏙옙占쏙옙, url占쏙옙 占싼억옙占�
+		String submit = (String) request.getParameter("submit"); // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 , url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
+		String com_code = (String) request.getParameter("com_code"); // �뜝�룞�삕�뜝�듅占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占� 泥댄겕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, url�뜝�룞�삕 �뜝�떬�뼲�삕�뜝占�
 
 		System.out.println("viewName:" + viewName);
 		System.out.println("submit:" + submit);
 		System.out.println("comcode:"+com_code);
 
-		if (com_code == null && submit == null) { // 첫占쏙옙占쏙옙占싱띰옙占�?
-			List setView = systemmagService.viewAllSetComponents(); // select all 占쏙옙占쏙옙占쏙옙 호占쏙옙占싼댐옙
+		if (com_code == null && submit == null) { // 泥ュ뜝�룞�삕�뜝�룞�삕�뜝�떛�씛�삕�뜝占�?
+			List setView = systemmagService.viewAllSetComponents(); // select all �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �샇�뜝�룞�삕�뜝�떬�뙋�삕
 			mav = new ModelAndView(viewName);
 			mav.addObject("setView", setView);
 			return mav;
 		}
 
-		else if (submit.equals("1")) { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙 占쏙옙회占쏙옙 占쏙옙占쏙옙占쏙옙
-			List setView = systemmagService.viewAllSetComponents(); // select占쏙옙占쏙옙
-			List setset = systemmagService.viewSetComponents(com_code); // where占쏙옙占쏙옙 占쌩곤옙占싼댐옙
+		else if (submit.equals("1")) { // �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕, �뜝�룞�삕 �뜝�룞�삕�쉶�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
+			List setView = systemmagService.viewAllSetComponents(); // select�뜝�룞�삕�뜝�룞�삕
+			List compoView = systemmagService.viewSpecComponents(com_code); // where�뜝�룞�삕�뜝�룞�삕 �뜝�뙥怨ㅼ삕�뜝�떬�뙋�삕
 			mav = new ModelAndView(viewName);
 			mav.addObject("setView", setView);
-			mav.addObject("setset", setset);
+			mav.addObject("compoView", compoView);
 		}
 		return mav;
 	}
@@ -510,9 +510,9 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	@Override
 	@RequestMapping(value = "/member/deleteSetComponents.do", method = RequestMethod.GET)
 	public ModelAndView deleteSetComponents(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no"); // 체크占쏙옙占쏙옙 체크占쌘쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		String number = (String) request.getParameter("no"); // 泥댄겕�뜝�룞�삕�뜝�룞�삕 泥댄겕�뜝�뙓�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 		String viewName = getViewName(request);
-		String[] numberary = number.split(","); // 占쏙옙표占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占썼열占쏙옙 占쏙옙占쏙옙占싼댐옙
+		String[] numberary = number.split(","); // �뜝�룞�삕�몴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�띁�뿴�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떬�뙋�삕
 
 		systemmagService.delSetComponents(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do");
@@ -537,15 +537,15 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = null;
 		String viewName = getViewName(request);
 
-		List setView = systemmagService.viewAllSetComponents(); // select * 占쏙옙占쏙옙호占쏙옙占싼댐옙占쏙옙
+		List setView = systemmagService.viewAllSetComponents(); // select * �뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�떬�뙋�삕�뜝�룞�삕
 		mav = new ModelAndView(viewName);
-		mav.addObject("setView", setView); // 占싯억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+		mav.addObject("setView", setView); // �뜝�떙�뼲�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 
 		return mav;
 	}
 	
 	//AJAX CONTROLLER----------------------------------
-	@ResponseBody//ajax占쏙옙占쏙옙 占쏙옙트占싼뤄옙(占신뤄옙처占쌘듸옙)
+	@ResponseBody//ajax�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�듃�뜝�떬琉꾩삕(�뜝�떊琉꾩삕泥섇뜝�뙓�벝�삕)
 	@RequestMapping(value = "/member/searchPopCustomerName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopCustomerName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -557,7 +557,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax占쏙옙占쏙옙 占쏙옙트占싼뤄옙(占쏙옙占쏙옙占싫�)
+	@ResponseBody//ajax�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�듃�뜝�떬琉꾩삕(�뜝�룞�삕�뜝�룞�삕�뜝�떕占�)
 	@RequestMapping(value = "/member/searchPopZipCodeName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopZipCodeName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -569,7 +569,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax占쏙옙占쏙옙 占쏙옙트占싼뤄옙(占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�)
+	@ResponseBody//ajax�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�듃�뜝�떬琉꾩삕(�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�)
 	@RequestMapping(value = "/member/searchPopLogisticsName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopLogisticsName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -580,7 +580,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
-	// 紐낆젣�뵪 �뙘�뾽 寃��깋湲곕뒫
+	// 筌뤿굞�젫占쎈뎁 占쎈솚占쎈씜 野껓옙占쎄퉳疫꿸퀡�뮟
 	@ResponseBody
 	@RequestMapping(value = "/member/searchPopOutwareName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopOutwareName(@RequestParam("itemName") String itemName) throws Exception {
@@ -593,7 +593,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax占쏙옙占쏙옙 占쏙옙트占싼뤄옙(占신뤄옙처占쌘듸옙)
+	@ResponseBody//ajax�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�듃�뜝�떬琉꾩삕(�뜝�떊琉꾩삕泥섇뜝�뙓�벝�삕)
 	@RequestMapping(value = "/member/searchPopSetName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopSetName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -605,7 +605,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody//ajax占쏙옙占쏙옙 占쏙옙트占싼뤄옙(占신뤄옙처占쌘듸옙)
+	@ResponseBody//ajax�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�듃�뜝�떬琉꾩삕(�뜝�떊琉꾩삕泥섇뜝�뙓�벝�삕)
 	@RequestMapping(value = "/member/searchPopComponentsName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopComponentsName(@RequestParam("itemName") String itemName) throws Exception {
 		ModelAndView mav = new ModelAndView();

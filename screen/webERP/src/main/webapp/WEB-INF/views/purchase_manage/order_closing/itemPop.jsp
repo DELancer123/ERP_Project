@@ -82,6 +82,7 @@ a {
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 var submit_button = document.getElementById("submit");
 var text_code = document.getElementById("code");
@@ -95,17 +96,14 @@ var text_name = document.getElementById("name");
 
 			
 	}
-submit_button.onclick = function(){
-		
-	text_code.setAttribute("item_Code",text_code.value);
-	text_name.setAttribute("item_Name",text_name.value);
 
-	var url = window.opener.document.location.href;
-	var url_arr = url.split('?');
-	opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value+'&&submit='+0;
-	
-	window.close();
+	submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
+		$(opener.document).find("#item_Code").val($("#code").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+		$(opener.document).find("#item_Name").val($("#name").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+
+		window.close();
 	}	
+
 //ajax 구문
 $('.name').keyup(function(){
 //변수 words에 id가 name인것의 값을 저장한다
