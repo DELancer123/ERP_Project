@@ -103,9 +103,9 @@
                         <td>${wip.itemName}</td>
                         <td>${wip.standard}</td>                        
                         <td>${wip.inventoryUnit }</td>
-                        <td>${wip.quantity }</td>
-                        <td>${wip.quantity }</td>
-                        <td>${wip.quantity }</td>                        
+                        <td>${wip.indicatedQuantity }</td>
+                        <td>${wip.sumPerformanceQuantity }</td>
+                        <td>${wip.remainingPerformance }</td>                        
                     </tbody>
                   </c:forEach>                   
                 </table>

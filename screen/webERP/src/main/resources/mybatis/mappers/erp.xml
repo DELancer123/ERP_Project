@@ -503,11 +503,14 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		<result property="itemName" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="inventoryUnit" column="inventory_Unit" />
-		<result property="quantity" column="ForwardingQuantity" />
+		<result property="indicatedQuantity" column="INDICATEDQUANTITY" />
+		<result property="sumPerformanceQuantity" column="SUMPERFORMANCEQUANTITY" />
+		<result property="remainingPerformance" column="REMAININGPERFORMANCE" />
 	</resultMap>
 	
 	<select id="selectAllWorkInProcess" resultMap="selectWorkInProcessResult">
-		<![CDATA[select * from CPM_PM_PRO_MAT_FOR_DET ]]>
+		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
+group by item_code, item_name, standard, inventory_unit order by item_Code ]]>
 	</select>
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
