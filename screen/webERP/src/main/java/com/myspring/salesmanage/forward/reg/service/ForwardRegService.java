@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
 
 public interface ForwardRegService {
@@ -11,7 +12,7 @@ public interface ForwardRegService {
 	//pop1 cust
 	public List listCusts() throws DataAccessException;
 	//pop2
-	public List listCust() throws DataAccessException;
+	public List listItems() throws DataAccessException;
 	//list by forward regstration
 	public List submitCust(String general_Customer_Code) throws DataAccessException;
 	public List listSupForward() throws DataAccessException;
@@ -25,7 +26,7 @@ public interface ForwardRegService {
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 	
 	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException;
-//	public int addSubItem(ForwardVO forwardVO) throws DataAccessException;
+	public int addSubItem(CorVO corVO) throws DataAccessException;
 //	public void removeSubItem(String[] noary) throws DataAccessException;
 //	public int updSubItem(ForwardVO forwardVO) throws DataAccessException;
 }

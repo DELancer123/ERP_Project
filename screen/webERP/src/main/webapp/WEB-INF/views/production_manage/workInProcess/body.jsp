@@ -27,7 +27,7 @@
             left: 15%;
             top: 25%;
             width: 85%;
-            height: 80%;
+            height: 70%;
             border: 1px solid black;
             z-index: 1;
         }
@@ -50,18 +50,6 @@
         }
         #workOrderTable{
             width: 100%;
-
-        }
-        /* 합계 출력부 */
-        #resultWindow{
-            height: 3%;
-            background-color: gray;
-            line-height: 5%;
-        }
-        #button{
-            position: absolute;
-            right: 10px;
-            top: 10px;
         }
 </style>
 <script>
@@ -115,9 +103,9 @@
                         <td>${wip.itemName}</td>
                         <td>${wip.standard}</td>                        
                         <td>${wip.inventoryUnit }</td>
-                        <td>${wip.quantity }</td>
-                        <td>${wip.quantity }</td>
-                        <td>${wip.quantity }</td>                        
+                        <td>${wip.indicatedQuantity }</td>
+                        <td>${wip.sumPerformanceQuantity }</td>
+                        <td>${wip.remainingPerformance }</td>                        
                     </tbody>
                   </c:forEach>                   
                 </table>

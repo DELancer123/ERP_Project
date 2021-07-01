@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
+import com.myspring.salesmanage.itemview.vo.ItemViewVO;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 @Repository("forwardRegDAO")
@@ -24,14 +25,13 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		custList = sqlSession.selectList("mappers.erp.allCustList");
 		return custList;
 	}//popRegForwardCust1 
-	
 	@Override
-	public List selectCustsList() throws DataAccessException {
-		List<ForwardVO> custForwardList = null;
-		custForwardList = sqlSession.selectList("mappers.erp.selCustforward");
-		return custForwardList;
-	}//pop2 (cust for insert)
-	
+	public List selectAllItemList() throws DataAccessException {
+		List<ItemViewVO> allItemList = null;
+		allItemList = sqlSession.selectList("mappers.erp.selectAllItemList");
+		System.out.println("확인2");
+		return allItemList;
+	}//pop2
 	@Override
 	public List selectSupForwardList() throws DataAccessException {
 		List<ForwardVO> supForwardList = null;
@@ -95,21 +95,21 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 //			sqlSession.delete("mappers.erp.delItemforward",item_code);
 //			}
 //}
-//	@Override
-//	public int addItemForward(ForwardVO forwardVO) throws DataAccessException {
-//		int idx = forwardVO.getListVO().size()-1;
-//		int result = sqlSession.insert("mappers.erp.insertSupForward",corVO.getListVO().get(idx));
-//		return 0;
-//	}//corVO
+	@Override
+	public int addItemForward(CorVO corVO) throws DataAccessException {
+		int idx = corVO.getListVO().size()-1;
+		int result = sqlSession.insert("mappers.erp.insertSupForward",corVO.getListVO().get(idx));
+		return 0;
+	}
 //	
 //	@Override
-//	public int updItemForward(ForwardVO forwardVO) throws DataAccessException {
+//	public int updItemForward(CorVO corVO) throws DataAccessException {
 //		int result = 0; 
 //
-//		int idx = forwardVO.getListVO().size();
+//		int idx = corVO.getListVO().size();
 //		for(int i = 0; i<idx; i++) {
 //			System.out.println("i" + i);
-//		result = sqlSession.update("mappers.erp.updateForward", corVO.getListVO().get(i));		
+//		result = sqlSession.update("mappers.erp.updateForward", getListVO().get(i));		
 //		}
 //		return result;
 //	}

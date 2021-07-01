@@ -92,9 +92,9 @@ public class StockManageDAOImpl implements StockManageDAO {
 	}
 
 	@Override
-	public List<StockManageVO> Searchsuju(String customerCode) {
+	public List<StockManageVO> Searchsuju(String general_Customer_Code) {
 		List<StockManageVO> nameList = null;
-		nameList = sqlSession.selectList("mappers.erp.selectsujuList",customerCode);
+		nameList = sqlSession.selectList("mappers.erp.selectsujuList",general_Customer_Code);
 		return nameList;
 	}
 
@@ -116,6 +116,21 @@ public class StockManageDAOImpl implements StockManageDAO {
 		List<StockManageVO> nameList = null;
 		nameList = sqlSession.selectList("mappers.erp.selectsujusub",ordersNum);
 		return nameList;
+	}
+
+	@Override
+	public void delsuju(String[] numberary) {
+		// TODO Auto-generated method stub
+		for(String obj: numberary) {
+			sqlSession.delete("mappers.erp.delsuju",obj);
+		}
+	}
+
+	@Override
+	public void delsujuSub(String[] numberary) {
+		for(String obj: numberary) {
+			sqlSession.delete("mappers.erp.delsujuSub",obj);
+		}
 	}
 
 
