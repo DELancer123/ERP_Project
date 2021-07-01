@@ -195,7 +195,6 @@
     		document.getElementById('regdepartment2').appendChild(articleNOInput);
     		document.getElementById('regdepartment2').action = "${contextPath}/member/adddepartment.do";
     		document.getElementById('regdepartment2').submit();
-    		alert('등록되었습니다');
         		}
     		}
         //수정함수

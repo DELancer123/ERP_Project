@@ -362,7 +362,6 @@
 		document.getElementById('regcompany').appendChild(articleNOInput);
 		document.getElementById('regcompany').action = "${contextPath}/member/addcompany.do";
 		document.getElementById('regcompany').submit();
-		alert('등록되었습니다');
 		}
 	}
 	//수정함수

@@ -26,11 +26,12 @@ public class CorVO {
 	private String orderOX;
 	private String general_Customer_Code;
 	private int vatprice;
-	private List<CorVO> ListCor;
+	private List<CorVO> ListVO;
+
 	
 	@Override
 	public String toString() {
-		return Arrays.toString(ListCor.toArray());
+		return Arrays.toString(ListVO.toArray());
 	}	
 
 	
@@ -102,12 +103,12 @@ public class CorVO {
 		this.dueDate = dueDate;
 	}
 
-	public List<CorVO> getListCor() {
-		return ListCor;
+	public List<CorVO> getListVO() {
+		return ListVO;
 	}
 
-	public void setListCor(List<CorVO> listCor) {
-		ListCor = listCor;
+	public void setListCor(List<CorVO> listVO) {
+		ListVO = listVO;
 	}
 
 	public Date getExpDate() {
@@ -149,7 +150,7 @@ public class CorVO {
 
 
 	public void setGeneral_Customer_Code(String general_Customer_Code) {
-		general_Customer_Code = general_Customer_Code;
+		this.general_Customer_Code = general_Customer_Code;
 	}
 
 

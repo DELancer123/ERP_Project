@@ -297,8 +297,7 @@
 </resultMap>	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
-		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW
-]]>
+		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW]]>
 	</select>
 	
 	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
@@ -343,11 +342,12 @@ where (status = '확정' or status = '마감')
 	<resultMap id="performanceQuantityResult" type="PerformanceQuantityVO">
 		<result property="performanceQuantity" column="performanceQuantity" />
 		<result property="itemCode" column="item_Code" />
+		<result property="division" column="division" />
 	</resultMap>
 	
 	<select id="selectperformanceQuantity" resultMap="performanceQuantityResult">
-		<![CDATA[select reg.performancequantity, cpm.item_Code from CPM_PM_OPE_PER_REG cpm, CPM_PM_OPE_PER_REG_DET reg
-					where cpm.workOrderNumber = reg.workordernumber and reg.opNumber = #{obj}]]>
+		<![CDATA[select reg.performancequantity, cpm.item_Code,bom.division from CPM_PM_OPE_PER_REG cpm, CPM_PM_OPE_PER_REG_DET reg, SM_BIM_ITE_REG bom
+					where cpm.workOrderNumber = reg.workordernumber and cpm.item_Code = bom.item_code and reg.opNumber = #{obj}]]>
 	</select>
 	
 	<update id="updAddStock">
@@ -356,6 +356,11 @@ where (status = '확정' or status = '마감')
 				where item_Code = #{itemCode} ]]>
 	</update>
 	
+	<update id="updAddFinalStock">
+		<![CDATA[update PM_SM_PRO_FINISHEDPRODUCT 
+				set quantity =  quantity + #{performanceQuantity}
+				where item_Code = #{itemCode} ]]>
+	</update>
 	<!-- 작업실적등록 팝업부  -->
 	
 	<resultMap id="HouseCodeSearchResult" type="HouseCodeSearchVO">
@@ -465,7 +470,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		<result property="dailyProduction" column="dailyProduction" />
 	</resultMap>
 	<select id="selectItemCodeView" resultMap="ItemCodeResult">
-		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품', '반제품')]]>
+		<![CDATA[select * from SM_BIM_Ite_Reg where Division in ('완제품','반제품')]]>
 	</select>
 	<resultMap id="FactoryViewResult" type="FactoryViewVO">
 		<result property="workplaceCode" column="workplace_Code" />
@@ -499,17 +504,27 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	 	 
 	<!-- 재공현황 파트 -->
 	
- 	<resultMap id="selectWorkInProcessResult" type="WorkInProcessVO">
+	<resultMap id="selectWorkInProcessResult" type="WorkInProcessVO">
 		<result property="itemCode" column="item_Code" />
 		<result property="itemName" column="item_Name" />
 		<result property="standard" column="standard" />
 		<result property="inventoryUnit" column="inventory_Unit" />
-		<result property="quantity" column="ForwardingQuantity" />
+		<result property="indicatedQuantity" column="INDICATEDQUANTITY" />
+		<result property="sumPerformanceQuantity" column="SUMPERFORMANCEQUANTITY" />
+		<result property="remainingPerformance" column="REMAININGPERFORMANCE" />
 	</resultMap>
 	
 	<select id="selectAllWorkInProcess" resultMap="selectWorkInProcessResult">
-		<![CDATA[select * from CPM_PM_PRO_MAT_FOR_DET ]]>
+		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
+				group by item_code, item_name, standard, inventory_unit order by item_Code ]]>
 	</select>
+	
+	<select id="selectAllWorkInProcessCondition" resultMap="selectWorkInProcessResult">
+		<![CDATA[select item_code, item_name, standard, inventory_unit, sum(indicatedquantity) as indicatedquantity, sum(sumperformancequantity) as sumperformancequantity, sum(remainingperformance) as remainingperformance from REGISTOPERATIONPERFORMANCEVIEW
+				where item_Code = #{itemCode}
+				group by item_code, item_name, standard, inventory_unit order by item_Code]]>
+	</select>
+	
 	<!-- BOM 파트 -->
 	<resultMap id="bomView" type="bomVO">
 		<result property="no" column="no" />
@@ -868,18 +883,18 @@ order by bom.parent_item_code]]>
 		<result property="standard" column="standard" />
 		<result property="inventory_unit" column="inventory_unit" />
 		<result property="order_quantity" column="order_quantity" />
-		<result property="price" column="price" />
+		<result property="cost" column="cost" />
 		<result property="deadline" column="deadline" />
 		<result property="note" column="note" />
 	</resultMap>
 	
 	<select id="selectAllClosingList" resultMap="orderclosingResult">
 		<![CDATA[select sequence,order_no,order_date,code,general_Customer_Name,item_Code,item_Name,standard,
-		inventory_unit,order_quantity,price, order_quantity*price as applyPrice, 
-		(order_quantity*price*0.1) as vat, order_quantity*price+(order_quantity*price*0.1) 
+		inventory_unit,order_quantity,cost, order_quantity*cost as applyPrice, 
+		(order_quantity*cost*0.1) as vat, order_quantity*cost+(order_quantity*cost*0.1) 
 		sumPrice,deadline,note
 		from PMM_PM_ORDER]]>
- 	<where>
+	<where>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
@@ -894,25 +909,25 @@ order by bom.parent_item_code]]>
 		delete from PMM_PM_ORDER where sequence = #{sequence}
 	</delete>
 	<insert id="insertClosing" parameterType="orderclosingVO">
-		<![CDATA[insert into PMM_PM_ORDER
-		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{code},#{general_Customer_Name},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},#{standard},
-		#{inventory_unit},#{order_quantity},#{price},#{deadline},#{note})
+		<![CDATA[insert into PMM_PM_ORDER(order_no,order_date,general_Customer_Name,sequence,item_Code,item_Name,standard,
+		inventory_unit,order_quantity,cost,note)	
+		values(F_GET_NEXT_SEQ('PMM_PM_ORDER'),#{order_date},#{general_Customer_Name},F_GET_NEXT_SEQ('SEQ'),#{item_Code},#{item_Name},
+		#{standard},#{inventory_unit},#{order_quantity},#{cost},#{note})
 		]]>
 	</insert> 
 	<update id="updateClosing" parameterType="orderclosingVO">
 		<![CDATA[update PMM_PM_ORDER
-			SET order_no=#{order_no},order_date=#{order_date},code=#{code},general_Customer_Name=#{general_Customer_Name},sequence=#{sequence},item_Code=#{item_Code},
-			item_Name=#{item_Name},standard=#{standard},inventory_unit=#{inventory_unit},order_quantity=#{order_quantity},price=#{price},
-			deadline=#{deadline},note=#{note}
+			SET order_no=#{order_no},order_date=#{order_date},general_Customer_Name=#{general_Customer_Name},sequence=#{sequence},
+			order_quantity=#{order_quantity},note=#{note}
 			where order_no=#{order_no}]]>
 	</update>
-	
+
 	<select id="itemList" resultMap="regitemResult">
-		<![CDATA[select item_Code,item_Name from SM_BIM_Ite_Reg]]>	
+		<![CDATA[select item_Code,item_Name,Cost,Standard,Inventory_Unit from SM_BIM_Ite_Reg]]>	
 	</select>
 	
 	 <select id="NameSearch" resultMap="regitemResult">
-		<![CDATA[ select item_Code, item_Name
+		<![CDATA[ select item_Code, item_Name,Cost,Standard,Inventory_Unit
 		  	from SM_BIM_Ite_Reg
 		 	 where item_Name like '%'||#{item_Name}||'%']]>
 	</select>
@@ -926,6 +941,7 @@ order by bom.parent_item_code]]>
 		  	from SM_BIM_Gen_Cus_Reg
 		 	 where general_Customer_Name like '%'||#{general_Customer_Name}||'%']]>
 	</select>
+
 	
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />
@@ -1276,6 +1292,16 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	 #{inspection_Status}, #{use_Status}, #{lOT_Quantity}, #{drawing_Number}, #{hs_Code}, #{width}, #{length}
 	 , #{height}, #{cost}, #{item_Group_Code}, #{daily_production}, #{division}, #{notes} )]]>
 	</insert>
+	<insert id="insertPartItem" parameterType="itemVO">
+	<![CDATA[
+	INSERT INTO PM_SM_Pro_Stock
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	</insert>
+	<insert id="insertProductItem" parameterType="itemVO">
+	<![CDATA[
+	INSERT INTO PM_SM_Pro_FinishedProduct
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	</insert>
 	<!-- 수정 -->
 	<update id="updateItem" parameterType="itemVO">
 		<![CDATA[
@@ -1305,6 +1331,7 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	<delete id="deleteItem">
 		delete from SM_BIM_Ite_Reg where Item_Code = #{no}
 	</delete>
+
 	<!-- 품목군등록 -->	
 		<resultMap id="itemgResult" type="ItemgVO">
 		<result property="item_Group_Code" column="Item_Group_Code"	/>
@@ -1551,7 +1578,8 @@ ORDER BY out.workordernumber]]>
 	<resultMap id="sujuView" type="StockManageVO">
 		<result property="ordersNum" column="ordersNum" />
 		<result property="ordersdate" column="ordersdate" />
-		<result property="General_Customer_Code" column="General_Customer_Code " />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
+		<result property="general_Customer_Name" column="General_Customer_Name" />
 		<result property="tax" column="tax" />
 		<result property="note" column="Note" />
 		<result property="moveNum" column="Move_Num" />
@@ -1573,7 +1601,6 @@ ORDER BY out.workordernumber]]>
 		<result property="modDate" column="Mod_Date" />	
 		<result property="houseCode" column="House_Code" />	
 		<result property="locationCode" column="Location_Code" />	
-		<result property="generalCustomerCode" column="General_Customer_Code" />	
 		<result property="kind" column="Kind" />	
 		<result property="modQuantity" column="Mod_Quantity" />	
 		<result property="setCode" column="SET_Code" />	
@@ -1588,26 +1615,32 @@ ORDER BY out.workordernumber]]>
 		
 		<result property="busCode" column="Output_Business"/>
 	</resultMap>
-	
+	<resultMap id="sujuView1" type="StockManageVO">
+		<result property="ordersNum" column="ordersNum"/>
+		<result property="ordersdate" column="ordersdate"/>
+		<result property="general_Customer_Code" column="General_Customer_Code"/>
+		<result property="tax" column="tax"/>
+		<result property="note" column="Note"/>
+	</resultMap>
 	
 
 	<select id="selectcusList" resultMap="sujuView">
-		<![CDATA[ select *
-		  from CSM_SM_Ord_Reg
+		<![CDATA[ select General_Customer_Code ,General_Customer_Name 
+		  from SM_BIM_Gen_Cus_Reg 
 		]]>
 	</select>
 	
 	<select id="selectPopCusList" resultMap="sujuView">
-		<![CDATA[ select General_Customer_Code
-		  from CSM_SM_Ord_Reg
-		  where General_Customer_Code like '%'||#{itemName}||'%'
+		<![CDATA[ select General_Customer_Code, General_Customer_Name
+		  from SM_BIM_Gen_Cus_Reg
+		  where General_Customer_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
-	<select id="selectsujuList" resultMap="sujuView">
+	<select id="selectsujuList" resultMap="sujuView1">
 		<![CDATA[ select *
 		  from CSM_SM_Ord_Reg
-		  where General_Customer_Code = #{customerCode}
+		  where General_Customer_Code = #{general_Customer_Code}
 		]]>
 	</select>
 	
@@ -1618,7 +1651,15 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	<delete id="delsuju">
+		<![CDATA[  delete from CSM_SM_Ord_Reg where ordersNum = #{obj}
+		]]>
+	</delete>
 	
+	<delete id="delsujuSub">
+		<![CDATA[  delete from CSM_SM_COR_Reg where No = #{obj}
+		]]>
+	</delete>
 	
 	<!-- 메뉴검색바  -->
 	<resultMap id="menuView" type="StockManageVO">
@@ -1904,16 +1945,16 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
-	<select id="selectAllSpecComponents" resultMap="comRegResult">
+	<select id="selectAllComReg" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
-	<select id="selectOneSpecComponents" parameterType="String" resultMap="comRegResult">
+	<select id="selectOneComReg" parameterType="String" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
 	</select>
-	<delete id="deleteSpecComponents">
+	<delete id="deleteComReg">
 		delete from SM_BIM_COM_REG where components_Code = #{no}
 	</delete>
-	<update id="updateSpecComponents" parameterType="SystemmagVOMJ">
+	<update id="updateComReg" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			update SM_BIM_COM_REG
 			set	components_Name=#{components_Name},
@@ -1923,7 +1964,7 @@ ORDER BY out.workordernumber]]>
 			where components_Code=#{components_Code}			
 		]]>
 	</update>
-	<insert id="insertNewSpecComponents" parameterType="SystemmagVOMJ">
+	<insert id="insertNewComReg" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_COM_REG
 			values(#{components_Code},
@@ -2013,11 +2054,6 @@ ORDER BY out.workordernumber]]>
 	<select id="submitSupForward" resultMap="forward" parameterType="forwardVO">
 		<![CDATA[select * from CSM_SM_Rel_Pro where General_Customer_Code=#{General_Customer_Code}]]>
 	</select>	
-	<select id="selCustforward" resultMap="forward">
-		<![CDATA[select * from SM_BIM_Gen_Cus_Reg GEN, CSM_SM_Rel_Pro REL
-		 where REL.General_Customer_Code = GEN.General_Customer_Code
-		  order by REL.General_Customer_Code]]>
-	</select>
 	<select id="submitCustForward" resultMap="forward" parameterType="String">
 		<![CDATA[select General_Customer_Code from SM_BIM_Gen_Cus_Reg where General_Customer_Code=#{general_Customer_Code}]]>
 	</select>
@@ -2040,7 +2076,7 @@ ORDER BY out.workordernumber]]>
 		where releaseNum = #{relCode}]]>
 	</update>
 	
- <resultMap id="Corforward" type="forwardVO">
+	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
 		        <collection property="corVO" javaType="CorVO">
@@ -2055,9 +2091,10 @@ ORDER BY out.workordernumber]]>
         	<result property="expDate" column="expectedDate" />
         	<result property="inspection" column="inspection" />
         	<result property="orderOX" column="orderOX" />
+        	<result property="no" column="no" />
         </collection>
 </resultMap>  
- 	<select id="submitSubForward" resultMap="Corforward">
+	<select id="submitSubForward" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>

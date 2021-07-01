@@ -32,13 +32,17 @@ public interface StockManageService {
 
 	List<StockManageVO> searchPopCus(String itemName);
 
-	List<StockManageVO> Searchsuju(String customerCode);
+	List<StockManageVO> Searchsuju(String general_Customer_Code);
 
 	List<String> keywordSearch(String keyword);
 
 	String searchMenu(String searchWord);
 
 	List<StockManageVO> sujusub(String ordersNum);
+
+	void delsuju(String[] numberary);
+
+	void delsujuSub(String[] numberary);
 
 
 

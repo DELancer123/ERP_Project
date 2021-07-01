@@ -154,10 +154,10 @@ request.setCharacterEncoding("UTF-8");
                 <c:forEach var="set" items="${setView}" >
 	                <tbody>
 	                    <td style="width: 5%;"><input type="checkbox" value = "${set.set_Code }" name="checkedContent"/></td>
-	                    <td><input type="text" id="set_Code" name="set_Code" value = "${set.set_Code }" onfocus = "searchView(this.value)"></td>
-	                    <td><input type="text" id="set_Name" name="set_Name" value = "${set.set_Name }"></td>
-	                    <td><input type="text" id="set_Standard" name="set_Standard" value = "${set.set_Standard }"></td>
-	                    <td><input type="text" id="set_Unit" name="set_Unit" value = "${set.set_Unit }"></td>
+	                    <td><input type="text" id="set_Code" name="set_Code" value = "${set.set_Code }" onfocus = "searchView(this.value)" style="background-color: rgb(255, 255, 149);"></td>
+	                    <td><input type="text" id="set_Name" name="set_Name" value = "${set.set_Name }" style="background-color: rgb(255, 255, 149);"></td>
+	                    <td><input type="text" id="set_Standard" name="set_Standard" value = "${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
+	                    <td><input type="text" id="set_Unit" name="set_Unit" value = "${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
 	                </tbody>
                 </c:forEach>
                 <tr>
@@ -187,16 +187,24 @@ request.setCharacterEncoding("UTF-8");
                     <td>규격</td>
                 </thead>
                 <c:forEach var="compo" items="${compoView}" >
-                <tbody>
+                <tbody id="instantRow">
                     <td style="width: 5%;"><input type="checkbox" value = "${compo.set_Code }" id="check" name="content1"/></td>
-                    <td><input type="text" name="set_Code" id="set_Code" value = "${compo.set_Code }"></td>
-                    <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }"></td>
-                    <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }"></td>
-                    <td><input type="text" name="components_Standard" id="components_Standard" value = "${compo.components_Standard }"></td>
-                    <td><input type="text" name="components_Unit" id="components_Unit" value = "${compo.components_Unit }"></td>
-                    <td><input type="text" name="components_Stock" id="components_Stock"value = "${compo.components_Stock }"></td>
+                    <td><input type="text" name="set_Code" id="set_Code" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);"></td>
+                    <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149);"></td>
+                    <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149);"></td>
+                    <td><input type="text" name="components_Standard" id="components_Standard" value = "${compo.components_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
+                    <td><input type="text" name="components_Unit" id="components_Unit" value = "${compo.components_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
+                    <td><input type="text" name="components_Stock" id="components_Stock" value = "${compo.components_Stock }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                 </tbody>
                 </c:forEach>
+                <tr>
+                    <td colspan="8">
+                        <button onclick="newInstantRow()"  id="addRow"
+                        style="background-color: rgb(235, 235, 235); 
+                        border-style: none;  display: none;
+                        text-align: center; width:99%">신규등록</button>
+                    </td>
+                </tr>
             </table>
         </form>
         </container3>
@@ -210,9 +218,13 @@ request.setCharacterEncoding("UTF-8");
         var components_Standard = document.getElementById("components_Standard");
         var components_Unit = document.getElementById("components_Unit");
         var components_Stock = document.getElementById("components_Stock");
+        var addRow = document.getElementById("addRow");
+ 
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
-            window.location.href = "${contextPath}/member/regsetcom.do?submit=1&&com_code=" + name; 
+            location.href = "${contextPath}/member/regsetcom.do?&submit=1&&com_code=" + name;
+        	addRow.style.display = "block";
+            
         }
         
         function searchData() {
@@ -244,7 +256,7 @@ request.setCharacterEncoding("UTF-8");
         	}
         	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
     			alert('삭제할 목록의 체크박스를 선택해주세요');
-    			window.location.href = "${contextPath}/member/regsetcom.do";
+    			location.reload();
     		}
         	else {//컨트롤러로 해당목록의 no값을 보낸다
         		alert('삭제 되었습니다');
