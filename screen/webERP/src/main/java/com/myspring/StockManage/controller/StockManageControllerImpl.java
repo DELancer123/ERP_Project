@@ -145,6 +145,7 @@ public class StockManageControllerImpl implements StockManageController {
 			customerList = stockManageservice.Searchsuju(general_Customer_Code);
 
 			mav.addObject("customerList", customerList);
+			mav.addObject("bus_code", general_Customer_Code);
 		}
 
 
@@ -239,6 +240,33 @@ public class StockManageControllerImpl implements StockManageController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/member/insertNewRow.do")
+	public ModelAndView insertNewRow(StockManageVO stVO) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		stockManageservice.insertNewRow(stVO);
+		
+//		stVO.getSujuVO(); stVO.getSubSujuList(); 이 두개 각자 꺼내서 저장
+		
+		
+		
+		
+		mav.setViewName("redirect:/member/regorder.do?bus_code=" + stVO.getBusCode());
+
+		return mav;
+	}
+	
+	@RequestMapping(value="/member/updateSuju.do")
+	public ModelAndView updateSuju(StockManageVO stVO) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+//		stVO.getStoVO(); stVO.getSubListStoVO(); 이 두개 각자 꺼내서 저장
+		
+		
+		mav.setViewName("redirect:/member/regorder.do?bus_code=" + stVO.getBusCode());
+
+		return mav;
+	}
 	
 	
 	private String getViewName(HttpServletRequest request) {
