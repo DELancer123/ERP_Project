@@ -81,7 +81,7 @@
                         <td colspan="2"><input type="text" name="" value='${param.itemName }' disabled style="width: 100%;"/></td>
     
                         <td colspan="4" style="width: 80px;">외주작업장</td>
-                        <td style="width: 80px;"><input type="text" value='${param.placeCode }' style="width: 100%; background-color: yellow;"/></td>
+                        <td style="width: 80px;"><input type="text" id="placeCode" value='${param.placeCode }' style="width: 100%; background-color: yellow;"/></td>
                         <td> <a href="javascript:search2()"><i class="fas fa-search" style="color: blue;"></i></a></td>
                         <td><input type="text" name="" disabled/></td>
                         
@@ -199,6 +199,9 @@
         
     }
 		save_button.onclick = function(){
+			var outcode = document.getElementById('outcode').value;
+			var placeCode = document.getElementById("placeCode").value;
+			var itemName = document.getElementById("itemName").value;
 			var outprice = document.getElementById("outprice").value;
 			var start = document.getElementById("start").value;
 			var end = document.getElementById("end").value;
@@ -211,7 +214,26 @@
 	  		     articleNOInput.setAttribute("name","path");
 	  		     articleNOInput.setAttribute("value", link);
 	  		     
-	  		   if (isEmpty(outprice)){
+	  		   if(isEmpty(parent)){
+		      		alert("외주처 항목값이 비어져있습니다. 외주처 옆 돋보기를 눌러 값을 추가해주세요!");
+		      		document.getElementById("parent").focus();
+		      		return false;
+
+		  		}
+	  		   else if(isEmpty(placeCode)){
+		      		alert("외주작업장 항목값이 비어져있습니다. 외주작업장 옆 돋보기를 눌러 값을 추가해주세요!");
+		      		document.getElementById("placeCode").focus();
+		      		return false;
+
+		  		}
+	  		     else if(isEmpty(itemName)){
+			      		alert("품목 항목값이 비어져있습니다. 품명 입력칸을 눌러 값을 추가해주세요!");
+			      		document.getElementById("itemName").focus();
+			      		return false;
+
+			  		}
+	  		     
+	  		     else if (isEmpty(outprice)){
 		      		alert("외주단가 항목값이 비어져있습니다. 값을 추가해주세요!");
 		      		document.getElementById("outprice").focus();
 		      		return false;
