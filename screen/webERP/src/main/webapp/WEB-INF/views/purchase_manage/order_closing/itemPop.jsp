@@ -109,7 +109,7 @@ var text_inventory_Unit = document.getElementById("inventory_Unit");
 			text_code.value = code;
 			text_name.value = name;
 			text_cost.value = cost;
-			text_standard.value = Standard;
+			text_standard.value = standard;
 			text_inventory_Unit.value = inventory_Unit;
 
 			
@@ -120,7 +120,7 @@ var text_inventory_Unit = document.getElementById("inventory_Unit");
 		$(opener.document).find("#item_Name").val($("#name").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
 		$(opener.document).find("#cost").val($("#cost").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
 		$(opener.document).find("#standard").val($("#standard").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
-		$(opener.document).find("#inventory_Unit").val($("#inventory_Unit").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+		$(opener.document).find("#inventory_unit").val($("#inventory_Unit").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
 
 		window.close();
 	}	
