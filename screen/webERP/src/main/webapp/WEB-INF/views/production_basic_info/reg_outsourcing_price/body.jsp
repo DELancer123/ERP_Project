@@ -221,9 +221,9 @@
 	  		     articleNOInput.setAttribute("name","path");
 	  		     articleNOInput.setAttribute("value", link);
 	  		     
-	  		   if(isEmpty(parent)){
+	  		   if(isEmpty(outcode)){
 		      		alert("외주처 항목값이 비어져있습니다. 외주처 옆 돋보기를 눌러 값을 추가해주세요!");
-		      		document.getElementById("parent").focus();
+		      		document.getElementById("outcode").focus();
 		      		return false;
 
 		  		}
@@ -303,8 +303,16 @@
 	    			  ary.push(no);
 	    		  }
 	    		  
-	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
 	    	  }
+	    	  if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+					alert('삭제할 목록의 체크박스를 선택해주세요');
+					//window.history.back();
+				}
+		    	else {//컨트롤러로 해당목록의 no값을 보낸다
+	    			    window.location.href = "${contextPath}/member/deleteoutprice.do?no="+ary+"&&out="+code+"&&place="+place; 
+		    		alert('삭제되었습니다');
+		
+		    	}
 		}
       </script>
       
