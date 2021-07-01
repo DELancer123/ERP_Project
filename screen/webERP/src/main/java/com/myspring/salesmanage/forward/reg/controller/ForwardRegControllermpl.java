@@ -60,12 +60,12 @@
 //			return mav;
 //		}
 //		else if(submit.equals("1")) {
-//			List submitCustList = forwardRegService.submitCust(forwardVO);
+//			List submitCustList = forwardRegService.submitCust(code);
 //			mav = new ModelAndView(viewName);
 //			mav.addObject("submitCustList", submitCustList);
 //			
 //		}else if(submit.equals("2")) {
-//			List submitCustList = forwardRegService.submitCust(forwardVO);
+//			List submitCustList = forwardRegService.submitCust(code);
 //			List submitList = forwardRegService.submitCustByInsert(custCode);
 //			mav = new ModelAndView(viewName);
 //			mav.addObject("submitCustList", submitCustList);
@@ -102,7 +102,7 @@
 //		return mav;
 //	}
 //
-//	@Override
+//
 //	@RequestMapping(value="/member/forwardcodehelper.do",method = RequestMethod.GET)
 //	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		String viewName = getViewName(request);
@@ -112,7 +112,16 @@
 //
 //		return mav;
 //	}
-//	
+//		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+//	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		request.setCharacterEncoding("utf-8");
+//		String path = request.getParameter("path");
+//		path = path.replace("/webERP", "");
+//		int result = 0;
+//		result = forwardRegService.updForward(forwardVO);
+//		ModelAndView mav = new ModelAndView("redirect:" + path);
+//		return mav;
+//	}
 //	
 //	@Override
 //	@ResponseBody
@@ -127,29 +136,50 @@
 //		return mav;
 //
 //	}
-//	@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
-//	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		request.setCharacterEncoding("utf-8");
-//		String path = request.getParameter("path");
-//		path = path.replace("/webERP", "");
-//		int result = 0;
-//		result = forwardRegService.updForward(forwardVO);
-//		ModelAndView mav = new ModelAndView("redirect:" + path);
-//		return mav;
-//	}
-//	@Override
-//	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		// TODO Auto-generated method stub  addforward  updforward
-//		return null;
-//	}
 //	
-//
+////	@Override
+////	@RequestMapping(value="/member/delforwarditem.do", method = RequestMethod.GET)
+////	public ModelAndView delForwardItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+////		String code = (String)request.getParameter("no");
+////		String viewName = getViewName(request);
+////		String[] codeary = code.split(",");
+////		System.out.println(codeary+"codeary");
+////		System.out.println(code+"code");
+////		forwardRegService.removeForward(codeary);
+////		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+////		
+////		return mav;
+////	}
+////
+////	@Override
+////	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
+////	public ModelAndView addForwardItem(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response)
+////			throws Exception {
+////
+////		request.setCharacterEncoding("utf-8");
+////		StringBuffer url = request.getRequestURL();
+////		int result = 0;
+////		result = forwardRegService.addForward(forwardVO);
+////		String resulturl = url.toString();
+////		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+////		return mav;
+////	}
+////		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+////	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+////		request.setCharacterEncoding("utf-8");
+////		String path = request.getParameter("path");
+////		path = path.replace("/webERP", "");
+////		int result = 0;
+////		result = forwardRegService.updForward(forwardVO);
+////		ModelAndView mav = new ModelAndView("redirect:" + path);
+////		return mav;
+////	}
 //	private String getViewName(HttpServletRequest request)  throws Exception{
 //		String contextPath = request.getContextPath();
 //	String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 //	if (uri == null || uri.trim().equals("")) {
 //		uri = request.getRequestURI();
-//	}
+//	}//수정해야ㅏㅁ
 //
 //	int begin = 0;
 //	if (!((contextPath == null) || ("".equals(contextPath)))) {
