@@ -41,16 +41,39 @@
             height: 35%;
             border: 1px solid black;
             z-index: 1;
+            overflow-x: scroll;
         }
          #view{
-            width: 100%;
-            text-align: center;
+         	width:220%;
+         	text-align: center;
             border: 1px solid black;
         }
         #view td:not(#no){
-            width: 8%;
+              width: 5%
         }
         #view td input{
+            width: 100%;
+        }
+        #itemPop{
+         	width:220%;
+         	text-align: center;
+            border: 1px solid black;
+        }
+        #itemPop td:not(#no){
+              width: 5%
+        }
+        #itemPop td input{
+            width: 100%;
+        }
+       #insertsubForward{
+         	width:220%;
+         	text-align: center;
+            border: 1px solid black;
+        }
+        #insertsubForward td:not(#no){
+              width: 5%
+        }
+        #insertsubForward td input{
             width: 100%;
         }
 </style>
@@ -60,6 +83,8 @@
             <table id="view">
                 <thead>
                     <td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
+                   <td>번호</td>
+                   <td>주문 번호</td>
                    <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
@@ -77,22 +102,33 @@
  				</table>
  				<table id = "itemPop"></table>
                  <table id="insertsubForward" align="center">
-                    <td><input type="checkbox" value="${relCode}"/></td>
-                    <td><input type="text" id=item_code name="ListVO[${fn:length(forward)}].corVO.item_code" value="${corVO.item_code}" readonly/></td>
-                    <td><input type="date" id="item_name" name="ListVO[${fn:length(forward)}].corVO.item_name" value="${corVO.item_name}" readonly /></td>
-                    <td><input type="text" id="stand" name="ListVO[${fn:length(forward)}].corVO.stand" value="${corVO.stand}" readonly /></td>
-                    <td><input type="text" id="unit" name="ListVO[${fn:length(forward)}].corVO.unit" value="${corVO.unit}" readonly /></td>
-                    <td><input type="text" id="orderQuant" name="ListVO[${fn:length(forward)}].corVO.orderQuant" value="${corVO.unit}" readonly /></td>
-                    <td><input type="text" id="price" name="ListVO[${fn:length(forward)}].corVO.price" value="${corVO.price}" readonly /></td>
+                    <td><input type="checkbox" value="${corVO.no}"/></td>
+                    <td><input type="text" id="no" name="ListVO[${fn:length(forward)}].corVO.no" value="${corVO.no}" /></td>
+                    <td><input type="text" id="relCode" name="ListVO[${fn:length(forward)}].corVO.relCode" value="${corVO.relCode}" /></td>
+                    <td><a href="javascript:search5()"><input type="text" id=item_code name="ListVO[${fn:length(forward)}].corVO.item_code" value="${param.item_code}" readonly/></td>
+                    <td><a href="javascript:search5()"><input type="text" id="item_name" name="ListVO[${fn:length(forward)}].corVO.item_name" value="${param.item_name}" readonly /></td>
+                    <td><input type="text" id="stand" name="ListVO[${fn:length(forward)}].corVO.stand" value="${corVO.stand}" /></td>
+                    <td><input type="text" id="unit" name="ListVO[${fn:length(forward)}].corVO.unit" value="${corVO.unit}" /></td>
+                    <td><input type="text" id="orderQuant" name="ListVO[${fn:length(forward)}].corVO.orderQuant" value="${corVO.unit}" /></td>
+                    <td><input type="text" id="price" name="ListVO[${fn:length(forward)}].corVO.price" value="${corVO.price}" /></td>
                     <td><input type="text" id="publicSumPrice" value="${corVO.price*corVO.orderQuant}" readonly /></td>
-                    <td><input type="text" id="publicSumPrice" value="${(corVO.price*corVO.orderQuant)*0.1}" readonly /></td>
-                    <td><input type="text" id="publicSumPrice" value="${corVO.price*corVO.orderQuant}" readonly /></td>
-                    <td><input type="date" id="dueDate" name="ListVO[${fn:length(forward)}].corVO.dueDate" value="${corVO.dueDate}" readonly /></td>
-                    <td><input type="date" id="expDate" name="ListVO[${fn:length(forward)}].corVO.expDate" value="${corVO.expDate}" readonly /></td>
-                    <td><input type="text" id="orderOX" name="ListVO[${fn:length(forward)}].corVO.orderOX" value="${corVO.orderOX}" readonly /></td>
-                    <td><input type="text" id="inspection" name="ListVO[${fn:length(forward)}].corVO.inspection" value="${corVO.inspection}" readonly /></td>
+                    <td><input type="text" id="vatPrice" value="${(corVO.price*corVO.orderQuant)*0.1}" readonly /></td>
+                    <td><input type="text" id="sumPrice" value="${corVO.price*corVO.orderQuant}" readonly /></td>
+                    <td><input type="date" id="dueDate" name="ListVO[${fn:length(forward)}].corVO.dueDate" value="${corVO.dueDate}" /></td>
+                    <td><input type="date" id="expDate" name="ListVO[${fn:length(forward)}].corVO.expDate" value="${corVO.expDate}" /></td>
+                    <td><input type="text" id="orderOX" name="ListVO[${fn:length(forward)}].corVO.orderOX" value="${corVO.orderOX}" /></td>
+                    <td><input type="text" id="inspection" name="ListVO[${fn:length(forward)}].corVO.inspection" value="${corVO.inspection}" /></td>
                 </table>
          
           </container3>
+          <script type="text/javascript">
+          
+                function search5(){
+    	  
+        	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
+    			}
+                
+            	
+                </script>
 </body>
 </html>

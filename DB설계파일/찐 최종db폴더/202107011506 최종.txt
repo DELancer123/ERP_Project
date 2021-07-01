@@ -1626,10 +1626,9 @@ sequence number(5),--순서
 expectedDate date,--출하예정일
 dueDate date,--납기일
 plan_Quantity number(5),--계획수량
-buyer varchar2(20) not null, --회사명
+general_Customer_Name varchar2(20) not null, --회사명
 note varchar2(1000) , --비고
-constraint fk_PMMPMMPS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade,
-constraint fk_PMMPMMPS_buyer foreign key (buyer) references SM_BIM_Gen_Cus_Reg(General_Customer_Name)on delete cascade
+constraint fk_PMMPMMPS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade
 );
 EXECUTE P_RESET_SEQ('SEQ_seq');
 SELECT SEQ_seq.NEXTVAL FROM DUAL ;
@@ -1651,7 +1650,7 @@ create table PMM_PM_MPS_OS(
 orderno varchar2(12) primary key,--주문번호
 sequence number(5),--순서
 ordersdate date,--주문일자
-buyer varchar2(50) not null,--회사명
+general_Customer_Name varchar2(50) not null,--회사명
 Item_Code varchar2(12) not null,--품번
 Item_Name varchar2(50) not null,--품명
 standard varchar2(20),--규격
@@ -1659,8 +1658,7 @@ Inventory_Unit varchar2(5) not null,--단위
 ordersQuantity number(5),--주문수량
 expectedDate date,--출하예정일
 note varchar2(1000) ,--비고
-constraint fk_PMMPMMPSOS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade,
-constraint fk_PMMPMMPSOS_buyer foreign key (buyer) references SM_BIM_Gen_Cus_Reg(General_Customer_Name) on delete cascade
+constraint fk_PMMPMMPSOS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade
 );
 
 EXECUTE P_RESET_SEQ('SEQ_seq');
@@ -1711,7 +1709,7 @@ create table PMM_PM_ORDER(
 order_no varchar2(12)primary key,--발주번호
 order_date date,--발주일자
 code number(5),  --코드
-buyer varchar2(50) not null,--회사명
+general_Customer_Name varchar2(50) not null,--회사명
 sequence number(5),--순서
 Item_Code varchar2(12) not null,--품번   
 Item_Name varchar2(50) not null,   --품명
@@ -1721,8 +1719,7 @@ Order_quantity number(5),--발주수량
 Price number(15), --단가
 deadline varchar2(10) not null,--마감
 note varchar2(1000), --비고
-constraint fk_PMMPMORDER_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade,
-constraint fk_PMMPMORDER_buyer foreign key (buyer) references SM_BIM_Gen_Cus_Reg(General_Customer_Name) on delete cascade
+constraint fk_PMMPMORDER_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade
 );
 EXECUTE P_RESET_SEQ('SEQ_seq');
 SELECT SEQ_seq.NEXTVAL FROM DUAL ;
@@ -3610,7 +3607,9 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5) --재고 수량
+Quantity number(5), --재고 수량
+CONSTRAINT FK_prostock_Item_Code FOREIGN KEY (Item_Code) 
+REFERENCES SM_BIM_Ite_Reg(Item_Code) ON DELETE CASCADE
 );
 
 EXECUTE P_RESET_SEQ('SEQ_PM_SM_Pro_Stock_NO');
@@ -3735,7 +3734,9 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5) --재고 수량
+Quantity number(5), --재고 수량
+CONSTRAINT FK_product_Item_Code FOREIGN KEY (Item_Code) 
+REFERENCES SM_BIM_Ite_Reg(Item_Code) ON DELETE CASCADE
 );
 
 
@@ -4265,8 +4266,9 @@ CREATE OR REPLACE VIEW RegistOperationPerformanceVIEW AS
 select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code) as workplaceCode,opr.instructiondate ,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
 (opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
-from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
-where opr.workordernumber= oprd.workordernumber and (status = '확정' or status = '마감')
+from CPM_PM_Ope_Per_Reg opr left join CPM_PM_Ope_Per_Reg_det oprd 
+on opr.workordernumber = oprd.workordernumber
+where (status = '확정' or status = '마감')
 group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
 order by opr.workordernumber;
@@ -4308,7 +4310,7 @@ where outsourcing_code = 'P100';
 CREATE OR REPLACE VIEW MainPlanListView AS
  select cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
    cc.dueDate, cc.expectedDate,
-   mp.plandate, mp.plan_Quantity, mp.buyer
+   mp.plandate, mp.plan_Quantity, mp.general_Customer_Name
    from CSM_SM_COR_Reg cc, PMM_PM_MPS mp
    where cc.dueDate = mp.plandate;
    

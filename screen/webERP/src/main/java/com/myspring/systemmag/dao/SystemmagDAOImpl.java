@@ -23,14 +23,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	private SqlSession sqlSession;
 	
 	
-	//È¸»çµî·Ï
+	//È¸ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int addCom(SystemmagVO systemmagVO) throws DataAccessException{
 		int result = sqlSession.insert("mappers.erp.insertCom",systemmagVO);
 		return 0;
 	}
 	
-	//È¸»çµî·Ï Á¶È¸
+	//È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	@Override
 	public List viewCom() throws DataAccessException {
 		List<SystemmagVO> comList = null;
@@ -45,12 +45,12 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("comList12: "+com_code);
 		return comList;
 	}
-	//È¸»çµî·Ï(¼öÁ¤)
+	//È¸ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 	@Override
 	public void updateCom(SystemmagVO systemmagVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updatecompany", systemmagVO);
 	}
-	//È¸»çµî·Ï(»èÁ¦)
+	//È¸ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 	@Override
 	public void deleteCom(String[] noary) throws DataAccessException {
 		for(int i = 0;i<noary.length;i++) {
@@ -58,7 +58,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		}
 		
 	}
-	//È¸»çµî·Ï(ÆË¾÷)
+	//È¸ï¿½ï¿½ï¿½ï¿½(ï¿½Ë¾ï¿½)
 		@Override
 		public List viewZip() throws DataAccessException {
 			List<SystemmagVO> zipList = null;
@@ -71,13 +71,13 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			textList = sqlSession.selectList("mappers.erp.selectzip",zipNumber);
 			return textList;
 		}
-	//»ç¾÷Àåµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		@Override
 		public int addWor(WorkplaceVO workplaceVO) throws DataAccessException{
 			int result = sqlSession.insert("mappers.erp.insertWor",workplaceVO);
 			return 0;
 		}
-	//»ç¾÷Àåµî·Ï Á¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	@Override
 	public List viewWor() throws DataAccessException {
 		List<WorkplaceVO> worList = null;
@@ -92,7 +92,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("worList12: "+wor_code);
 		return worList;
 	}
-	//»ç¾÷Àåµî·Ï (¼öÁ¤)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
 	@Override
 	public void updateWor(WorkplaceVO workplaceVO) throws DataAccessException {
 		sqlSession.update("mappers.erp.updateworkplace", workplaceVO);
@@ -104,7 +104,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		}
 		
 	}
-	//Ç°¸ñµî·Ï(Á¶È¸)
+	//Ç°ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½È¸)
 	@Override
 	public List viewItem() throws DataAccessException {
 		List<itemVO> itemList = null;
@@ -119,7 +119,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: "+item_code);
 		return itemList;
 	}
-	//Ç°¸ñ±º(Á¶°ÇÁ¶È¸)
+	//Ç°ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸)
 	@Override
 	public List SearchItemg(String itemNumber) throws DataAccessException{
 		System.out.println(itemNumber);
@@ -127,25 +127,31 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		searchList = sqlSession.selectList("mappers.erp.searchitemg",itemNumber);
 		return searchList;
 	}
-	//Ç°¸ñµî·Ï(ÆË¾÷)
+	//Ç°ï¿½ï¿½ï¿½ï¿½(ï¿½Ë¾ï¿½)
 	@Override
 	public List viewItg() throws DataAccessException {
 		List<ItemgVO> itgList = null;
 		itgList = sqlSession.selectList("mappers.erp.selectAllitemgList");
 		return itgList;
 	}
-	//Ç°¸ñµî·Ï
+	//Ç°ï¿½ï¿½ï¿½ï¿½
 		@Override
 		public int addItem(itemVO itemVO) throws DataAccessException{
 			int result = sqlSession.insert("mappers.erp.insertItem",itemVO);
+			if(itemVO.getDivision().equals("ë¶€í’ˆ") ||itemVO.getDivision().equals("ë°˜ì œí’ˆ") ) {
+				int result1 = sqlSession.insert("mappers.erp.insertPartItem",itemVO);
+			}
+			else if(itemVO.getDivision().equals("ì™„ì œí’ˆ")) {
+				int result1 = sqlSession.insert("mappers.erp.insertProductItem",itemVO);
+			}
 			return 0;
 		}
-	//Ç°¸ñµî·Ï(¼öÁ¤)
+	//Ç°ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 		@Override
 		public void updateItem(itemVO itemVO) throws DataAccessException {
 			sqlSession.update("mappers.erp.updateItem", itemVO);
 		}
-	//Ç°¸ñµî·Ï(»èÁ¦)
+	//Ç°ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 		@Override
 		public void deleteItem(String[] noary) throws DataAccessException {
 			for(int i = 0;i<noary.length;i++) {
@@ -153,7 +159,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			}
 			
 		}
-	//Ç°¸ñ±ºµî·Ï(Á¶È¸)
+	//Ç°ï¿½ñ±ºµï¿½ï¿½(ï¿½ï¿½È¸)
 	@Override
 	public List allviewItemg() throws DataAccessException {
 		List<ItemgVO> itemgList = null;
@@ -161,14 +167,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("itemList123: ");
 		return itemgList;
 	}
-	//Ç°¸ñ±ºµî·Ï
+	//Ç°ï¿½ñ±ºµï¿½ï¿½
 			@Override
 			public int addItemg(ItemgVO itemgVO) throws DataAccessException{
 				int idx = itemgVO.getListVO().size()-1;
 				int result = sqlSession.insert("mappers.erp.insertItemg",itemgVO.getListVO().get(idx));
 				return 0;
 			}
-	//Ç°¸ñ±ºµî·Ï(¼öÁ¤)
+	//Ç°ï¿½ñ±ºµï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 			@Override
 			public void updateItemg(ItemgVO itemgVO) throws DataAccessException {
 				int result = 0;
@@ -176,7 +182,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 				result = sqlSession.update("mappers.erp.updateitemg", itemgVO.getListVO().get(i));
 				}
 			}
-	//Ç°¸ñ±ºµî·Ï(»èÁ¦)
+	//Ç°ï¿½ñ±ºµï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 			@Override
 			public void deleteItemg(String[] noary) throws DataAccessException {
 				for(int i = 0;i<noary.length;i++) {
@@ -184,7 +190,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 				}
 				
 			}
-	//»ç¿øÁ¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@Override
 	public List allviewemployee() throws DataAccessException {
 		List<EmployeeVO> employeeList = null;
@@ -192,7 +198,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 		System.out.println("employeeList123: ");
 		return employeeList;
 	}
-	//ºÎ¼­µî·Ï (Á¶È¸)
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½È¸)
 		@Override
 		public List allviewdepartment() throws DataAccessException {
 			List<DepartmentVO> departmentList = null;
@@ -200,14 +206,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			System.out.println("departmentList123: ");
 			return departmentList;
 		}
-	//ºÎ¼­µî·Ï
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½
 		@Override
 		public int addDep(DepartmentVO departmentVO) throws DataAccessException{
 			int idx = departmentVO.getListVO().size()-1;
 			int result = sqlSession.insert("mappers.erp.insertDep",departmentVO.getListVO().get(idx));
 			return 0;
 		}
-	//ºÎ¼­µî·Ï(¼öÁ¤)
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 		@Override
 		public void updateDep(DepartmentVO departmentVO) throws DataAccessException {
 			int result = 0;
@@ -215,7 +221,7 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			result = sqlSession.update("mappers.erp.updatedepartment", departmentVO.getListVO().get(i));
 			}
 		}
-	//ºÎ¼­µî·Ï(»èÁ¦)
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 		@Override
 		public void deleteDep(String[] noary) throws DataAccessException {
 			for(int i = 0;i<noary.length;i++) {
@@ -223,14 +229,14 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 			}
 			
 		}
-	//ºÎ¼­µî·Ï(ÆË¾÷)
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½(ï¿½Ë¾ï¿½)
 		@Override
 		public List viewDep() throws DataAccessException {
 			List<DepartmentVO> depList = null;
 			depList = sqlSession.selectList("mappers.erp.selectworList");
 			return depList;
 		}
-	//ºÎ¼­µî·Ï(ÆË¾÷)
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½(ï¿½Ë¾ï¿½)
 		@Override
 		public List viewSec() throws DataAccessException {
 			List<SectorVO> secList = null;

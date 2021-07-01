@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.forward.reg.dao.ForwardRegDAO;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
 
@@ -20,12 +21,12 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		custList = forwardDAO.selectAllCustList();
 		return custList;
 	}
-
+	
 	@Override
-	public List listCust() throws DataAccessException {
-		List custList = null;
-		custList = forwardDAO.selectCustsList();
-		return custList;
+	public List listItems() throws DataAccessException {
+		List allItemList = null;
+		allItemList = forwardDAO.selectAllItemList();
+		return allItemList;
 	}
 	
 	@Override
@@ -69,10 +70,10 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		return forwardDAO.submitSubReg(relCode);	
 	}//submitSubReg
 
-//	@Override
-//	public int addSubItem(ForwardVO forwardVO) throws DataAccessException {
-//		return forwardDAO.addItemForward(forwardVO);
-//	}
+	@Override
+	public int addSubItem(CorVO corVO) throws DataAccessException {
+		return forwardDAO.addItemForward(corVO);
+	}
 
 //	@Override
 //	public void removeSubItem(String[] noary) throws DataAccessException {
@@ -80,7 +81,7 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 //	}
 
 //	@Override
-//	public int updSubItem(ForwardVO forwardVO) throws DataAccessException {
-//		return forwardDAO.updItemForward(forwardVO);
+//	public int updSubItem(CorVO corVO) throws DataAccessException {
+//		return forwardDAO.updItemForward(corVO);
 //	}
 } 
