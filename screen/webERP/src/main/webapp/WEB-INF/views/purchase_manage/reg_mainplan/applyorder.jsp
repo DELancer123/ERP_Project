@@ -64,7 +64,7 @@ a {
 						<td><input type="hidden" id="expectedDate" name="ExpDate" /></td>
 					</tr>
 					<tr>
-						<td><input type="hidden" id="buyer" name="buyer"/></td>
+						<td><input type="hidden" id="general_Customer_Name" name="general_Customer_Name"/></td>
 					</tr>
 					<tr>
 						<td><input type="hidden" id="standard" name="standard"/></td>
@@ -91,12 +91,12 @@ a {
 				</thead>	
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
-					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.buyer }'
+					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.general_Customer_Name }'
 					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
       					  <td><a href="#">${MpsOS.ordersQuantity}</a></td>
       					  <td><a href="#">${MpsOS.expectedDate}</a></td>
-      					  <td><intput type="hidden" value="${MpsOS.buyer}"></td>
+      					  <td><intput type="hidden" value="${MpsOS.general_Customer_Name}"></td>
       					  <td><intput type="hidden" value="${MpsOS.standard}"></td>
       					  <td><intput type="hidden" value="${MpsOS.inventory_unit}"></td>
       					  <td><intput type="hidden" value="${MpsOS.note}"></td>
@@ -115,16 +115,16 @@ var text_code = document.getElementById("code");
 var text_name = document.getElementById("name");
 var text_OdQty = document.getElementById("OdQty");
 var text_ExpDate = document.getElementById("ExpDate");
-var text_buyer = document.getElementById("buyer");
+var text_general_Customer_Name = document.getElementById("general_Customer_Name");
 var text_standard = document.getElementById("standard");
 var text_inventory_unit = document.getElementById("inventory_unit");
 var text_note = document.getElementById("note");
 
 		
-	function popFunction(code,name,buyer,standard,inventory_unit,note){
+	function popFunction(code,name,general_Customer_Name,standard,inventory_unit,note){
 			text_code.value = code;
 			text_name.value = name;
-			text_buyer.value = buyer;
+			text_general_Customer_Name.value = general_Customer_Name;
 			text_standard.value = standard;
 			text_inventory_unit.value = inventory_unit;
 			text_note.value = note;
@@ -135,7 +135,7 @@ submit_button.onclick = function(){
 		
 	text_code.setAttribute("item_Code",text_code.value);
 	text_name.setAttribute("item_Name",text_name.value);
-	text_buyer.setAttribute("buyer",text_buyer.value);
+	text_general_Customer_Name.setAttribute("general_Customer_Name",text_general_Customer_Name.value);
 	text_standard.setAttribute("standard",text_standard.value);
 	text_inventory_unit.setAttribute("inventory_unit",text_inventory_unit.value);
 	text_note.setAttribute("note",text_note.value);
@@ -143,7 +143,7 @@ submit_button.onclick = function(){
 	var url = window.opener.document.location.href;
 	var url_arr = url.split('?');
 	opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value+
-	'&&buyer='+text_buyer.value+'&&standard='+text_standard.value+'&&inventory_unit='+text_inventory_unit.value+
+	'&&general_Customer_Name='+text_general_Customer_Name.value+'&&standard='+text_standard.value+'&&inventory_unit='+text_inventory_unit.value+
 	'&&note='+text_note.value+'&&submit='+0;
 	
 	window.close();

@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.myspring.order_closing.vo.OrderClosingVO;
 import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 import com.myspring.systemmag.vo.itemVO;
 
 public interface OrderClosingDAO {
@@ -23,4 +24,8 @@ public interface OrderClosingDAO {
 	List itemList() throws Exception;
 
 	List<itemVO> NameSearch(String itemName);
+
+	List buyerList() throws Exception;
+
+	List<SystemmagVOMJ> buyerSearch(String buyer);
 }
