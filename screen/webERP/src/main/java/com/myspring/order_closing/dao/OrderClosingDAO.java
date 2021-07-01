@@ -28,4 +28,5 @@ public interface OrderClosingDAO {
 	List buyerList() throws Exception;
 
 	List<SystemmagVOMJ> buyerSearch(String buyer);
+
 }
