@@ -59,7 +59,7 @@ a {
 					</tr>
 			</table>
 			<div id="button">	
-				<button id="submit" onclick="submitClick(this.form)">적용</button>
+				<button id="submit">적용</button>
                 <input type="hidden" name="inputSeq" value=""/>
 			</div>
 		</div>
@@ -69,7 +69,7 @@ a {
 					<td>거래처 코드</td>
 					<td>거래처명</td>
 				</thead>	
-				<c:forEach var="com" items="${buyerList}">
+				<c:forEach var="com" items="${Listbuyer}">
 					<tr align="center" id="searchItem">
 					 <td><a href="javascript:popFunction('${com.general_Customer_Code }','${com.general_Customer_Name }')">${com.general_Customer_Code}</a></td>
       					  <td><a href="#">${com.general_Customer_Name}</a></td>      		
@@ -95,17 +95,11 @@ var text_name = document.getElementById("name");
 
 			
 	}
-submit_button.onclick = function(){
-		
-	text_code.setAttribute("general_Customer_Code",text_code.value);
-	text_name.setAttribute("general_Customer_Name",text_name.value);
+ submit_button.onclick = function(){
 
-	var url = window.opener.document.location.href;
-	var url_arr = url.split('?');
-	opener.parent.location=url_arr[0] + '?general_Customer_Code='+text_code.value+'&&general_Customer_Name='+text_name.value+'&&submit='+0;
-	
+	 opener.setChildValue(text_name.value);
 	window.close();
-	}	
+	}	 
 //ajax 구문
 $('.name').keyup(function(){
 //변수 words에 id가 name인것의 값을 저장한다

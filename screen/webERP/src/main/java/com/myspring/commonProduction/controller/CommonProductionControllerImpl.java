@@ -465,6 +465,7 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 			if(itemCode == null || itemCode.length() == 0 || submit.equals("0")) {
 				List infoList = productionService.selectAllWorkInProcess();
 				mav = new ModelAndView(viewName);
+				mav.addObject("infoList", infoList);
 				return mav;
 			}
 			else if(submit.equals("1")){
