@@ -83,8 +83,8 @@ a {
 					<c:forEach var="type" items="${nameView}">
 						<tr align="center">
 							<td><a
-								href="javascript:popFunction('${type.customerCode }','${type.customerCode }')">${type.customerCode}</a></td>
-							<td><a href="#">${type.customerCode}</a></td>
+								href="javascript:popFunction('${type.general_Customer_Code }','${type.general_Customer_Name }')">${type.general_Customer_Code}</a></td>
+							<td><a href="#">${type.general_Customer_Name}</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -137,13 +137,13 @@ a {
 												var str = '';
 												str += '<tr align="center" id = "yahoo">';
 												str += '<td><a href = "#">'
-														+ data[i].customerCode
+														+ data[i].general_Customer_Code
 														+ '</a></td>';
 												str += '<td><a href = "#">'
-														+ data[i].customerCode
+														+ data[i].general_Customer_Name
 														+ '</a></td>';
-												str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].customerCode+'"></td>';
-												str += '<td><input type = "hidden" id="iName" value = "'+data[i].customerCode+'" ></td>';
+												str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].general_Customer_Code+'"></td>';
+												str += '<td><input type = "hidden" id="iName" value = "'+data[i].general_Customer_Name+'" ></td>';
 												str += '</tr>';
 												//반복문을 사용하여 searchItem table에 추가
 												$("#searchItem").append(str);

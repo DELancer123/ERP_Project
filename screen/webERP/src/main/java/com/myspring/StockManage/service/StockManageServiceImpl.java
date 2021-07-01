@@ -82,8 +82,8 @@ public class StockManageServiceImpl implements StockManageService{
 	}
 
 	@Override
-	public List<StockManageVO> Searchsuju(String customerCode) {
-		return stockManageDAO.Searchsuju(customerCode);
+	public List<StockManageVO> Searchsuju(String general_Customer_Code) {
+		return stockManageDAO.Searchsuju(general_Customer_Code);
 	}
 
 	@Override
@@ -101,6 +101,18 @@ public class StockManageServiceImpl implements StockManageService{
 	@Override
 	public List<StockManageVO> sujusub(String ordersNum) {
 		return stockManageDAO.sujusub(ordersNum);
+	}
+
+	@Override
+	public void delsuju(String[] numberary) {
+		// TODO Auto-generated method stub
+		stockManageDAO.delsuju(numberary);
+	}
+
+	@Override
+	public void delsujuSub(String[] numberary) {
+		// TODO Auto-generated method stub
+		stockManageDAO.delsujuSub(numberary);
 	}
 
 

@@ -30,7 +30,7 @@ public interface StockManageDAO {
 
 	List<StockManageVO> viewserachPopCus(String itemName);
 
-	List<StockManageVO> Searchsuju(String customerCode);
+	List<StockManageVO> Searchsuju(String general_Customer_Code);
 
 	List<String> selectKeywordSearch(String keyword);
 
@@ -38,6 +38,9 @@ public interface StockManageDAO {
 
 	List<StockManageVO> sujusub(String ordersNum);
 
+	void delsuju(String[] numberary);
+
+	void delsujuSub(String[] numberary);
 //	List viewType();
 //
 //	List<StockManageVO> SearchStock(String type) throws DataAccessException;
