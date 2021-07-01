@@ -88,7 +88,7 @@ request.setCharacterEncoding("UTF-8");
 	                        <input type="text" onfocus = "searchView(this.value)" value="${logis.logistics_In_Code}"/>
 	                    </td>     
 	                    <td>
-	                        <input type="text" value="${logis.logistics_In_Name}"/>
+	                        <input type="text" value="${logis.logistics_In_Name}"  maxlength="50"/>
 	                    </td>                    	                    
 	                </tr>
 	               
@@ -110,11 +110,11 @@ request.setCharacterEncoding("UTF-8");
 	                <tr>
 	                    <td align="center" style="width:25%; text-align:right;">ÄÚµå</td>
 	                    <td style="width:25%;">
-	                        <input type="text" id="logisSearchBox" name="logisSearchBox" value="${param.itemNumber }">
+	                        <input type="text" id="logisSearchBox" name="logisSearchBox" value="${param.itemNumber }"  readonly>
 	                    </td>    
 	                    <td style="width:2%;"><div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode()"><i class="fas fa-search" style="color :blue;"></i></a></div></td>
 	                    <td style="width:25%;">
-	                        <input type="text" id="logisSearchBox2" value="${param.itemName }" disabled>
+	                        <input type="text" id="logisSearchBox2" value="${param.itemName }" disabled >
 	                    </td>
 	                </tr>
 	            </table>
