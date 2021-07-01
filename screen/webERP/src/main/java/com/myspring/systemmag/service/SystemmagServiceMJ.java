@@ -8,8 +8,6 @@ import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface SystemmagServiceMJ {
 	//�Ϲݰŷ�ó���
-	public List searchCustomer(String customerCode) throws DataAccessException;
-	
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
@@ -26,7 +24,7 @@ public interface SystemmagServiceMJ {
 	
 	public List<SystemmagVOMJ> searchPopZipCodeName(String itemName) throws DataAccessException;
 	
-	//â��/����/���ְ������
+	//â��/����/���ְ�����Ȳ
 	public List viewAllHouOutware() throws DataAccessException;
 	
 	public List viewAllProOutware() throws DataAccessException;
@@ -38,7 +36,7 @@ public interface SystemmagServiceMJ {
 	public List viewAllProWorOutware() throws DataAccessException;
 	
 	public List viewAllOutWorOutware() throws DataAccessException;
-			//��ȸ---
+	
 	public List viewSelectedHouOutware(String search) throws DataAccessException;
 	
 	public List viewSelectedProOutware(String search) throws DataAccessException;
@@ -46,7 +44,7 @@ public interface SystemmagServiceMJ {
 	public List viewSelectedOutOutware(String search) throws DataAccessException;
 	
 	
-	//�����������
+	//���������������
 	public List viewAllLogistics() throws DataAccessException;
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
@@ -60,5 +58,31 @@ public interface SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopLogisticsName(String itemName) throws DataAccessException;
 
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
+	
+	//�˻��������
+	public List viewAllInspection() throws DataAccessException;
+	
+	public List viewInspection(String com_code) throws DataAccessException;
+	
+	public int addInspection(SystemmagVOMJ systemmagVO) throws Exception;
+	
+	public void delInspection(String[] noary) throws DataAccessException;
+	
+	public void updInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	//SET구성품등록
+	public List viewAllSetComponents() throws DataAccessException;
+	
+	public List viewSetComponents(String com_code) throws DataAccessException;
+	
+	public int addSetComponents(SystemmagVOMJ systemmagVO) throws Exception;
+	
+	public void delSetComponents(String[] noary) throws DataAccessException;
+	
+	public void updSetComponents(SystemmagVOMJ systemmagVO) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopSetName(String itemName) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopComponentsName(String itemName) throws DataAccessException;
 		
 }

@@ -78,6 +78,13 @@
     width: 100%;
 }
 </style>
+<script>
+   window.onload = function(){
+      l_sub1.style.display = "block";
+        l_sub1.style.position = "relative";
+        l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container2 id=contents2>
@@ -166,7 +173,7 @@ function setChildValue(code,name,buyer,standard,inventory_unit,note){
 }
 
 
-function deleteRow() {
+function deleteData() {
 	  var item = document.getElementsByName("content").length;
 	  const URLSearch = new URLSearchParams(location.search); 	
 	  var submit = URLSearch.get('submit');
@@ -194,7 +201,7 @@ function deleteRow() {
 		  }
 	}
 
-function InsertRow(){
+function newRow(){
 
     if(plandate.value == ""){
        alert("계획일은 필수 입력사항입니다.");
