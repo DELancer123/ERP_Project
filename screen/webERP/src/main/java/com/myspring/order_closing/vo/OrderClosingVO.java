@@ -7,14 +7,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 @Component("orderclosingVO")
 public class OrderClosingVO {
 	private String order_no;
 	private Date order_date;
 	private int code;
-	private String buyer;
+	private String general_Customer_Name;
 	private int sequence;
 	private String item_Code;
 	private String item_Name;
@@ -25,11 +25,17 @@ public class OrderClosingVO {
 	private String deadline;
 	private String note;
 	private List<OrderClosingVO> ListVO;
+
 	
-	
-	
-	
-	
+
+	public String getGeneral_Customer_Name() {
+		return general_Customer_Name;
+	}
+
+	public void setGeneral_Customer_Name(String general_Customer_Name) {
+		this.general_Customer_Name = general_Customer_Name;
+	}
+
 	public String getNote() {
 		return note;
 	}
@@ -68,14 +74,6 @@ public class OrderClosingVO {
 
 	public void setCode(int code) {
 		this.code = code;
-	}
-
-	public String getBuyer() {
-		return buyer;
-	}
-
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
 	}
 
 	public int getSequence() {

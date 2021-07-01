@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 import com.myspring.MainPlan.vo.MainPlanVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 @Repository("mainplanDAO")
 public class MainPlanDAOImpl implements MainPlanDAO{
@@ -88,6 +89,20 @@ public class MainPlanDAOImpl implements MainPlanDAO{
 		List<MpsOSVO> textList = null;
 		textList = sqlSession.selectList("mappers.erp.selectMRP",itemCode);
 		return textList;
+	}
+	
+	@Override
+	public List Listbuyer() throws Exception{
+		List<SystemmagVOMJ>Listbuyer = null;
+		Listbuyer = sqlSession.selectList("mappers.erp.Listbuyer");
+		return Listbuyer;
+	}
+
+	@Override
+	public List<SystemmagVOMJ>Searchbuyer(String buyer) {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.Searchbuyer",buyer);
+		return popList;
 	}
 	
 

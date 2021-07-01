@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.MainPlan.controller.MainPlanControllerImpl;
 import com.myspring.order_closing.service.OrderClosingService;
 import com.myspring.order_closing.vo.OrderClosingVO;
-import com.myspring.systemmag.vo.SystemmagVO;
+import com.myspring.systemmag.vo.SystemmagVOMJ;
 import com.myspring.systemmag.vo.itemVO;
 
 @Controller("orderclosingController")
@@ -107,6 +107,27 @@ public class OrderClosingControllerImpl implements OrderClosingController{
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 
+		return mav;
+	} 
+	
+	@RequestMapping(value = "member/buyerPop.do", method = RequestMethod.GET)
+	public ModelAndView buyerList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		List buyerList = orderclosingService.buyerList();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("buyerList", buyerList);
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/buyerSearch.do", method = RequestMethod.GET)
+	public ModelAndView buyerSearch(@RequestParam("buyer") String buyer) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = orderclosingService.buyerSearch(buyer);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+		
 		return mav;
 	} 
 

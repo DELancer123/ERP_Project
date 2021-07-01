@@ -12,7 +12,7 @@ public class MpsOSVO {
 	private String orderno;
 	private int sequence;
 	private Date ordersdate;
-	private String buyer;
+	private String general_Customer_Name;
 	private String item_Code;
 	private String item_Name;
 	private String standard;
@@ -34,8 +34,16 @@ public void setSequence(int sequence) {this.sequence=sequence;}
 public Date getOrdersdate() {return ordersdate;}
 public void setOrdersdate(Date ordersdate) {this.ordersdate=ordersdate;}
 
-public String getBuyer() {return buyer;}
-public void setBuyer(String buyer) {this.buyer=buyer;}
+
+public String getGeneral_Customer_Name() {
+	return general_Customer_Name;
+}
+
+
+public void setGeneral_Customer_Name(String general_Customer_Name) {
+	this.general_Customer_Name = general_Customer_Name;
+}
+
 
 public String getItem_Code() {return item_Code;}
 public void setItem_Code(String item_Code) {this.item_Code=item_Code;}
