@@ -95,17 +95,18 @@ var text_name = document.getElementById("name");
 
 			
 	}
-submit_button.onclick = function(){
+ submit_button.onclick = function(){
 		
 	text_code.setAttribute("item_Code",text_code.value);
 	text_name.setAttribute("item_Name",text_name.value);
+	
 
 	var url = window.opener.document.location.href;
 	var url_arr = url.split('?');
-	opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value+'&&submit='+0;
+	opener.parent.location=url_arr[0] + '?item_Code='+text_code.value+'&&item_Name='+text_name.value;
 	
 	window.close();
-	}	
+	}
 //ajax 구문
 $('.name').keyup(function(){
 //변수 words에 id가 name인것의 값을 저장한다

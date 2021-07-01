@@ -161,6 +161,11 @@ a {
 				$('input[name=code]').val(initCode);
 				$('input[name=name]').val(initName);
 			});
+			
+			submit_button.onclick = function() { //적용버튼에 온클릭이벤트 부여함 (팝업창)
+	    		$(opener.document).find("#item_Group_Code").val($("#code").val()); //#zipCode는 body.jsp의 텍스트박스임, #code는 팝업.jsp의 텍스트박스임
+	    		window.close();
+	    	}
 	</script>
 
 </body>
