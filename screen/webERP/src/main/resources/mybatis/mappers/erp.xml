@@ -297,8 +297,7 @@
 </resultMap>	
 
 		<select id="selectAllRegistOperationPerformanceInfoCondition" resultMap="RegistOperationPerformanceResult">
-		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW
-]]>
+		<![CDATA[SELECT * FROM RegistOperationPerformanceVIEW]]>
 	</select>
 	
 	<select id="selectAllRegistOperationPerformanceInfo" resultMap="RegistOperationPerformanceResult">
@@ -499,7 +498,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 	 	 
 	<!-- 재공현황 파트 -->
 	
- 	<resultMap id="selectWorkInProcessResult" type="WorkInProcessVO">
+	<resultMap id="selectWorkInProcessResult" type="WorkInProcessVO">
 		<result property="itemCode" column="item_Code" />
 		<result property="itemName" column="item_Name" />
 		<result property="standard" column="standard" />
@@ -879,7 +878,7 @@ order by bom.parent_item_code]]>
 		(order_quantity*price*0.1) as vat, order_quantity*price+(order_quantity*price*0.1) 
 		sumPrice,deadline,note
 		from PMM_PM_ORDER]]>
- 	<where>
+	<where>
 		<if test="startDate != '' and startDate != null">order_date between #{startDate} and #{endDate} </if>
 		<if test="endDate != '' and endDate != null">and order_date between #{startDate} and #{endDate} </if>
 	</where>
@@ -926,6 +925,7 @@ order by bom.parent_item_code]]>
 		  	from SM_BIM_Gen_Cus_Reg
 		 	 where general_Customer_Name like '%'||#{general_Customer_Name}||'%']]>
 	</select>
+
 	
 	<resultMap id="salesplan" type="itemviewVO">
 		<result property="plancode" column="plan_code" />
@@ -2040,7 +2040,7 @@ ORDER BY out.workordernumber]]>
 		where releaseNum = #{relCode}]]>
 	</update>
 	
- <resultMap id="Corforward" type="forwardVO">
+	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
 		        <collection property="corVO" javaType="CorVO">
@@ -2055,9 +2055,10 @@ ORDER BY out.workordernumber]]>
         	<result property="expDate" column="expectedDate" />
         	<result property="inspection" column="inspection" />
         	<result property="orderOX" column="orderOX" />
+        	<result property="no" column="no" />
         </collection>
 </resultMap>  
- 	<select id="submitSubForward" resultMap="Corforward">
+	<select id="submitSubForward" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
