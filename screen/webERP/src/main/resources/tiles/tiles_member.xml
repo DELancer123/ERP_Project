@@ -230,6 +230,16 @@
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
    </definition>
+   <definition name="MPSPopupLayout2"  template="/WEB-INF/views/purchase_manage/reg_mainplan/Popbuyer.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/Popbuyer" extends="MPSPopupLayout2">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
    
    <definition name="MRPPopupLayout"  template="/WEB-INF/views/purchase_manage/reg_billing/mrpamount.jsp">
       <put-attribute name="title" value="" />
@@ -248,6 +258,16 @@
       <put-attribute name="body" value="" />
    </definition>
    <definition name="/member/itemPop" extends="OrderClosinPopupLayout">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+	<definition name="OrderClosinPopupLayout2"  template="/WEB-INF/views/purchase_manage/order_closing/buyerPop.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/buyerPop" extends="OrderClosinPopupLayout2">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
       <put-attribute name="side" value="" />
