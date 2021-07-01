@@ -356,7 +356,7 @@ where (status = '확정' or status = '마감')
 				where item_Code = #{itemCode} ]]>
 	</update>
 	
-	<update id="updAddStock">
+	<update id="updAddFinalStock">
 		<![CDATA[update PM_SM_PRO_FINISHEDPRODUCT 
 				set quantity =  quantity + #{performanceQuantity}
 				where item_Code = #{itemCode} ]]>
