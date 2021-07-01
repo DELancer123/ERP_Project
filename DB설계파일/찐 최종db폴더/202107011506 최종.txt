@@ -3607,7 +3607,9 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5) --재고 수량
+Quantity number(5), --재고 수량
+CONSTRAINT FK_prostock_Item_Code FOREIGN KEY (Item_Code) 
+REFERENCES SM_BIM_Ite_Reg(Item_Code) ON DELETE CASCADE
 );
 
 EXECUTE P_RESET_SEQ('SEQ_PM_SM_Pro_Stock_NO');
@@ -3732,7 +3734,9 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5) --재고 수량
+Quantity number(5), --재고 수량
+CONSTRAINT FK_product_Item_Code FOREIGN KEY (Item_Code) 
+REFERENCES SM_BIM_Ite_Reg(Item_Code) ON DELETE CASCADE
 );
 
 

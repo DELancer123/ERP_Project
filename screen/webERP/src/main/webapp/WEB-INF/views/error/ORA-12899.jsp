@@ -37,7 +37,7 @@ text-decoration:none
 </head>
 <body>
 	<h1 class="error_h1">데이터를 처리 하는 과정에서 문제가 발생하였습니다.<br>
-			에러 타입 :칼럼의 길이의값이 너무큼!!<br> <%= exception.getClass().getName() %></h1>
+			에러 타입 :칼럼의 길이의값을 초과!!<br> <%= exception.getClass().getName() %></h1>
 	<div class="area_btn">
 		<a href="javascript:history.back(-1)" class="link">이전 화면으로</a>
 </div>
