@@ -13,84 +13,56 @@ grant DBA, resource, connect to erp_admin WITH ADMIN OPTION;
 conn erp_admin/erp_admin;
 
 SET SERVEROUTPUT ON;
-drop table Menu;
-drop table CPM_BIM_DEF_GROUP;
-drop table CPM_BIM_OUT_PRI;
-drop table PM_SM_ITE_PRI;
-DROP TABLE PM_SM_Pro_FinishedProduct;
-drop table PM_SM_Pro_Stock;
---drop table PM_SM_Set_Man_Sub;
---drop table PM_SM_Set_Man_Main;
---drop table PM_SM_Sto_Adj_Sub;
---drop table PM_SM_Sto_Adj_Main;
---drop table PM_SM_Sto_Mov_Sub;
---drop table PM_SM_Sto_Mov_Main;
-drop table CPM_PM_Pro_Mat_For;
-drop table CPM_PM_Pro_Mat_For_Det;
-drop table CPM_PM_Ope_Per_Reg_Det;
-drop table CPM_PM_Ope_Per_Reg;
-drop table CPM_OM_Out_Fin_Det;
-drop table CPM_OM_Out_Fin;
-drop table CPM_OM_Out_Mat_For_Det;
-drop table CPM_OM_Out_Mat_For;
-drop table CPM_OM_Out_Per_Reg_Det;
-drop table CPM_OM_Out_Per_Reg;
-drop table CPM_BIM_BOM_Reg;
-drop table CPM_BIM_Def_Typ_Reg;
-drop table CPM_PM_Pro_Pla_Reg;
-----입고의뢰등록(입고검사등록 같이사용)/입고검사 입고의뢰적용시에도 사용/입고처리 입고,검사의뢰시사용
---DROP TABLE PMM_PM_RRR;
-----입고처리(국내발주)리스트창(매입마감,발주등록 에도 사용)
---DROP TABLE PMM_PM_RP_LIST;
-----입고처리(국내발주)/ 반품,반품정보매입마감,매입마감에도 사용
---DROP TABLE PMM_PM_RP;
-----청구등록(리스트)/입고의뢰등록시 칼럼사용,발주등록(청구적용조회시)
---DROP TABLE PMM_PM_CM_LIST;
-----청구등록(발주등록 청구적용조회시 칼럼사용)
---DROP TABLE PMM_PM_CM;
---소요량전개(주문,판매,생산)/청구등록 소요량전개 사용시 칼럼사용
-DROP TABLE PMM_PM_MRP;
---발주마감처리/발주등록(입고의뢰등록 발주적용조회시 사용)
-DROP TABLE PMM_PM_ORDER;
-----입고검사등록리스트
---DROP TABLE PMM_PM_RIP_LIST;
---주계획서작성(판매,주문계획)
-DROP TABLE PMM_PM_MPS_OS;
- --주계획서작성(판매,주문)
-DROP TABLE PMM_PM_MPS;
-
-drop table CSM_SM_COR_Reg;
-drop table CSM_SM_Rel_Pro;
---drop table CSM_SM_Req_Reg;
-drop table CSM_SM_Ord_Reg;
---drop table CSM_SM_Est_Reg;
---drop table PM_SM_Ite_Pri;
-
-DROP TABLE SM_CRI_Emp_Reg;
-DROP TABLE SM_CRI_Com_Reg;
-drop table SM_CRI_Dep_Reg;
-drop table SM_BIM_Pro_Line_Reg;
-drop table SM_BIM_Gen_Cus_Reg;
-drop table SM_BIM_Ins_Typ;
-drop table SM_BIM_Log_Man;
-drop table SM_BIM_Out_Item_Cus_IN;
-drop table SM_BIM_Out_Item_Cus;
-DROP TABLE SM_BIM_Com_Reg;
-drop table SM_BIM_SET_Reg;
-drop table SM_BIM_Ite_Reg;
-drop table SM_BIM_Ite_gro_Reg;
-drop table SM_BIM_Sal_Pla_Reg;
-drop table SM_CRI_Sec_Reg;
-drop table SM_CRI_Sys_Env_set;
-DROP TABLE SM_CRI_Wor_Reg;
-drop table SM_CRI_Zip;
-
-drop table SM_BIM_Hou_Reg;
-drop table SM_BIM_Pro_Reg;
-drop table SM_BIM_Out_Wor_Reg;
-drop table SM_BIM_Out_Reg;
-drop table SM_BIM_Wor_Reg;
-drop table SM_BIM_Pro_Wor_Reg;
+DROP TABLE "SM_CRI_ZIP" CASCADE CONSTRAINTS;
+DROP TABLE "SM_CRI_COM_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_CRI_WOR_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_CRI_SEC_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_CRI_DEP_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_CRI_EMP_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_CRI_SYS_ENV_SET" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_GEN_CUS_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_ITE_GRO_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_ITE_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_HOU_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_PRO_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_OUT_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_LOG_MAN" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_INS_TYP" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_SET_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_COM_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_OUT_ITEM_CUS" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_OUT_ITEM_CUS_IN" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_SAL_PLA_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_WOR_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_PRO_WOR_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_OUT_WOR_REG" CASCADE CONSTRAINTS;
+DROP TABLE "SM_BIM_PRO_LINE_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CSM_SM_ORD_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CSM_SM_REL_PRO" CASCADE CONSTRAINTS;
+DROP TABLE "CSM_SM_COR_REG" CASCADE CONSTRAINTS;
+DROP TABLE "PMM_PM_MPS" CASCADE CONSTRAINTS;
+DROP TABLE "PMM_PM_MPS_OS" CASCADE CONSTRAINTS;
+DROP TABLE "PMM_PM_ORDER" CASCADE CONSTRAINTS;
+DROP TABLE "PMM_PM_MRP" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_BIM_BOM_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_BIM_OUT_PRI" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_BIM_DEF_TYP_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_BIM_DEF_GROUP" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_PM_PRO_PLA_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_PM_OPE_PER_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_PM_PRO_MAT_FOR_DET" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_PM_PRO_MAT_FOR" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_PM_OPE_PER_REG_DET" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_OM_OUT_PER_REG" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_OM_OUT_MAT_FOR_DET" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_OM_OUT_MAT_FOR" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_OM_OUT_PER_REG_DET" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_OM_OUT_FIN" CASCADE CONSTRAINTS;
+DROP TABLE "CPM_OM_OUT_FIN_DET" CASCADE CONSTRAINTS;
+DROP TABLE "PM_SM_PRO_STOCK" CASCADE CONSTRAINTS;
+DROP TABLE "PM_SM_PRO_FINISHEDPRODUCT" CASCADE CONSTRAINTS;
+DROP TABLE "PM_SM_ITE_PRI" CASCADE CONSTRAINTS;
+DROP TABLE "MENU" CASCADE CONSTRAINTS;
 
 
 DROP SEQUENCE NO_seq;
@@ -176,17 +148,6 @@ CREATE SEQUENCE seq_CPM_PM_Ope_Per_Reg_Det_no START WITH 1 INCREMENT BY 1 MAXVAL
 CREATE SEQUENCE seq_CPM_OM_Out_Fin_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
 CREATE SEQUENCE seq_CPM_OM_Out_FinNo_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
 CREATE SEQUENCE seq_CPM_BIM_BOM_Reg_no START WITH 1 INCREMENT BY 1 MAXVALUE 9999 MINVALUE 1 CYCLE NOCACHE;
-
-CREATE OR REPLACE TRIGGER Quantity_Upd_TRG
-AFTER UPDATE of deadline,Order_quantity 
-ON PMM_PM_ORDER
-FOR EACH ROW
-BEGIN
-UPDATE PM_SM_Pro_Stock
-SET Quantity = Quantity +:new.Order_quantity
-WHERE item_Code = :new.item_Code;
-END;
-/
 
     CREATE OR REPLACE FUNCTION  F_GET_NEXT_SEQ (p_flag varchar2) 
     return varchar2
@@ -766,6 +727,7 @@ Employee_Code varchar2(12) PRIMARY KEY, --사원코드
 Employee_Name varchar2(50) NOT NULL, --사원명 
 Department_Code varchar2(12) NOT NULL, --부서코드 
 Department_Name varchar2(50) NOT NULL, --부서명 
+Employee_Password varchar2(10),
 JoinDate date NOT NULL, --입사일
 ResignationDate date, --퇴사일
 Emergency_Contact_Network varchar2(13) NOT NULL UNIQUE, --비상연락망
@@ -779,10 +741,11 @@ Employee_Code ,
 Employee_Name,
 Department_Code,
 Department_Name,
+Employee_Password,
 JoinDate ,
 ResignationDate,
 Emergency_Contact_Network
-) values ( '20130302' , '유원규', '1200','관리부', '2013-03-01', NULL , '010-1546-8761');
+)values ( '20130302' , '유원규', '1200','관리부','0000', '2013-03-01', NULL , '010-1546-8761');
 
 ------------------------------------------------------------------
 --시스템 환경설정
@@ -1571,84 +1534,84 @@ REFERENCES SM_BIM_Ite_Reg(Item_Name) ON DELETE CASCADE
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('1','SO2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,sysdate+1,'검사','주문출고', '00001');
+VALUES ('1','SO2107000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,sysdate+1,'검사','주문출고', '00001');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('2','SO2106000002','CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,sysdate+2,'검사','주문출고', '00002');
+VALUES ('2','SO2107000002','CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,sysdate+2,'검사','주문출고', '00002');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('3','SO2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,sysdate+3,'검사','주문출고', '00003');
+VALUES ('3','SO2107000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,sysdate+3,'검사','주문출고', '00003');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('3','SO2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
+VALUES ('3','SO2107000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('4','SO2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
+VALUES ('4','SO2107000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('5','SO2106000006','SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
+VALUES ('5','SO2107000006','SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('6','SO2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
+VALUES ('6','SO2107000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('7','SO2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
+VALUES ('7','SO2107000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('8','SO2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('8','SO2107000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('9','SO2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('9','SO2107000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('10','IS2106000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,'20211102','검사','주문출고', '00001');
+VALUES ('10','IS2107000001','CPU05' , 'AMD 라이젠3 Pro' ,null,'EA',sysdate+1,100,1000000,100000,'20211102','검사','주문출고', '00001');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('11','IS2106000002', 'CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,'20210102','검사','주문출고', '00002');
+VALUES ('11','IS2107000002', 'CPU05' , 'AMD 라이젠3 Pro',null,'EA',sysdate+2,10,10000,1000,'20210102','검사','주문출고', '00002');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('12','IS2106000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,'20210706','검사','주문출고', '00003');
+VALUES ('12','IS2107000003','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+3,40,800000,80000,'20210706','검사','주문출고', '00003');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('13','IS2106000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
+VALUES ('13','IS2107000004','RAM03' , '삼성 DDR4-3200',null,'EA',sysdate+4,30,200000,20000,sysdate+4,'검사','주문출고', '00004');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('14','IS2106000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
+VALUES ('14','IS2107000005','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+5,50,300000,30000,sysdate+5,'검사','주문출고', '00005');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('15','IS2106000006', 'SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
+VALUES ('15','IS2107000006', 'SSD01' , '삼성전자 980 PRO',null,'EA',sysdate+6,80,400000,40000,sysdate+6,'검사','주문출고', '00006');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('16','IS2106000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
+VALUES ('16','IS2107000007','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+7,80,700000,70000,sysdate+7,'검사','주문출고', '00007');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('17','IS2106000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
+VALUES ('17','IS2107000008','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+8,80,700000,70000,sysdate+7,'검사','주문출고', '00008');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('18','IS2106000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('18','IS2107000009','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 --데이터 등록
 INSERT INTO CSM_SM_COR_Reg
-VALUES ('19','IS2106000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
+VALUES ('19','IS2107000010','POWER01' , '시소닉 A12 STD',null,'EA',sysdate+9,80,700000,70000,sysdate+7,'검사','주문출고', '00009');
 
 ---------------------------------------------------------------------------------------------------------------------
 --주계획서작성(주문)
@@ -2815,33 +2778,33 @@ SELECT seq_CPM_PM_Ope_Per_Reg_no.NEXTVAL FROM DUAL ;
 
 --작업실적등록 데이터
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L101',SYSDATE,SYSDATE+90,'DT01','피카소VEGA8',NULL,'EA',300,'계획','작업지시','검사',null,'PP2106000001','본체라인1호', '생산1반');
+VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L101',SYSDATE,SYSDATE+90,'DT01','피카소VEGA8',NULL,'EA',300,'계획','작업지시','검사',null,'PP2107000001','본체라인1호', '생산1반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L101',SYSDATE,SYSDATE+90,'DT01','피카소VEGA8',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2106000002','본체라인1호', '생산1반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L101',SYSDATE,SYSDATE+90,'DT01','피카소VEGA8',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2107000002','본체라인1호', '생산1반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L101',SYSDATE,SYSDATE+90,'DT01','피카소VEGA8',NULL,'EA',100,'계획','작업지시','검사',null,'PP2106000003','본체라인1호', '생산1반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L101',SYSDATE,SYSDATE+90,'DT01','피카소VEGA8',NULL,'EA',100,'계획','작업지시','검사',null,'PP2107000003','본체라인1호', '생산1반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L101',SYSDATE,SYSDATE+90,'DT02','프리플로우ELITE',NULL,'EA',1100,'계획','작업지시','검사',null,'PP2106000004','본체라인2호', '생산2반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L101',SYSDATE,SYSDATE+90,'DT02','프리플로우ELITE',NULL,'EA',1100,'계획','작업지시','검사',null,'PP2107000004','본체라인2호', '생산2반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT02','프리플로우ELITE',NULL,'EA',700,'계획','작업지시','검사',null,'PP2106000005','본체라인2호', '생산2반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT02','프리플로우ELITE',NULL,'EA',700,'계획','작업지시','검사',null,'PP2107000005','본체라인2호', '생산2반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT02','프리플로우ELITE',NULL,'EA',200,'계획','작업지시','검사',null,'PP2106000006','본체라인2호', '생산2반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT02','프리플로우ELITE',NULL,'EA',200,'계획','작업지시','검사',null,'PP2107000006','본체라인2호', '생산2반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',400,'계획','작업지시','검사',null,'PP2106000007','본체라인3호', '생산3반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',400,'계획','작업지시','검사',null,'PP2107000007','본체라인3호', '생산3반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',800,'계획','작업지시','검사',null,'PP2106000008','본체라인3호', '생산3반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고대기','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',800,'계획','작업지시','검사',null,'PP2107000008','본체라인3호', '생산3반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',900,'계획','작업지시','검사',null,'PP2106000009','본체라인3호', '생산3반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',900,'계획','작업지시','검사',null,'PP2107000009','본체라인3호', '생산3반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2106000010','본체라인3호', '생산3반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT03','게이밍본체PC',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2107000010','본체라인3호', '생산3반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2106000011','본체라인4호', '생산4반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2107000011','본체라인4호', '생산4반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2106000012','본체라인4호', '생산4반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA',NULL,'EA',1000,'계획','작업지시','검사',null,'PP2107000012','본체라인4호', '생산4반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA' ,NULL,'EA',1000,'계획','작업지시','검사',null,'PP2106000013','본체라인4호', '생산4반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA' ,NULL,'EA',1000,'계획','작업지시','검사',null,'PP2107000013','본체라인4호', '생산4반');
 INSERT INTO CPM_PM_Ope_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA' ,NULL,'EA',1000,'계획','작업지시','검사',null,'PP2106000014','본체라인4호', '생산4반');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','L201',SYSDATE,SYSDATE+90,'DT04','EXKOREA' ,NULL,'EA',1000,'계획','작업지시','검사',null,'PP2107000014','본체라인4호', '생산4반');
 
 SELECT * FROM CPM_PM_Ope_Per_Reg;
 
@@ -2884,63 +2847,63 @@ SELECT seq_PM_SM_Sto_Mov_Main_no.NEXTVAL FROM DUAL ;
 
 --생산자재출고 세부사항 데이터
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_CURR_SEQ('PM_SM_Sto_Mov_Main'),sysdate,'CASE01','슬림형본체',NULL,'EA',300,0,300,null,'W02106000001');
+VALUES (F_GET_CURR_SEQ('PM_SM_Sto_Mov_Main'),sysdate,'CASE01','슬림형본체',NULL,'EA',300,0,300,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'CASE03' , 'ABKO NCORE' ,NULL,'EA',1000,0,1000,null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'CASE03' , 'ABKO NCORE' ,NULL,'EA',1000,0,1000,null,'W02107000007');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate, 'HDD01' , 'WD BLUE 7200',NULL,'EA',100,20,120,null, 'W02106000007');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate, 'HDD01' , 'WD BLUE 7200',NULL,'EA',100,20,120,null, 'W02107000007');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'HDD02' , 'Seagate BarraCuda 7200' ,NULL,'EA',1100,10,1210,null,'W02106000011');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'HDD02' , 'Seagate BarraCuda 7200' ,NULL,'EA',1100,10,1210,null,'W02107000011');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'SSD01' , '삼성전자 980 PRO' ,NULL,'EA',700,0,700,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'SSD01' , '삼성전자 980 PRO' ,NULL,'EA',700,0,700,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null,'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2,  'SSD02' , '삼성전자 970 EVO' ,NULL,'EA',200,0,200,null,'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'SSD03' , '삼성전자 870 EVO' ,NULL,'EA',400,20,480,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'SSD03' , '삼성전자 870 EVO' ,NULL,'EA',400,20,480,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'GPU01' , '지포스 RTX 3060' ,NULL,'EA',800,0,800,null, 'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'GPU01' , '지포스 RTX 3060' ,NULL,'EA',800,0,800,null, 'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'GPU02' , '지포스 RTX 3070' ,NULL,'EA',900,0,900,null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'GPU02' , '지포스 RTX 3070' ,NULL,'EA',900,0,900,null,'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'GPU03' , '지포스 RTX 2060' ,NULL,'EA',900,0,900,null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'GPU03' , '지포스 RTX 2060' ,NULL,'EA',900,0,900,null,'W02107000007');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null,'W02106000011');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null,'W02107000011');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null,'W02106000011');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,  'GPU04' , '지포스 GTX1050 Ti' ,NULL,'EA',800,0,800,null,'W02107000011');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,'GPU05' , '갤럭시 GT1030' ,NULL,'EA',900,0,900,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,'GPU05' , '갤럭시 GT1030' ,NULL,'EA',900,0,900,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'CPU01' , 'AMD 라이젠5' ,NULL,'EA',900,0,900,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'CPU01' , 'AMD 라이젠5' ,NULL,'EA',900,0,900,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'CPU02' , 'core I5-10세대' ,NULL,'EA',800,0,800,null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'CPU02' , 'core I5-10세대' ,NULL,'EA',800,0,800,null,'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'CPU03' , 'core I5-11세대' ,NULL,'EA',900,0,900,null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'CPU03' , 'core I5-11세대' ,NULL,'EA',900,0,900,null,'W02107000007');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null,'W02106000011');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null,'W02107000011');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null,'W02106000011');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate, 'CPU04' , 'core I7-11세대' ,NULL,'EA',900,0,900,null,'W02107000011');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'CPU05' , 'AMD 라이젠3 Pro' ,NULL,'EA',800,0,800,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'CPU05' , 'AMD 라이젠3 Pro' ,NULL,'EA',800,0,800,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'RAM01' , 'ADATA XPG DDR4-3200' ,NULL,'EA',900,0,900,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1, 'RAM01' , 'ADATA XPG DDR4-3200' ,NULL,'EA',900,0,900,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'RAM02' , 'KLEVV DDR4-3200' ,NULL,'EA',900,0,900,null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2, 'RAM02' , 'KLEVV DDR4-3200' ,NULL,'EA',900,0,900,null,'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate, 'RAM03' , '삼성 DDR4-3200',NULL,'EA',800,0,800,null,'W02106000011');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate, 'RAM03' , '삼성 DDR4-3200',NULL,'EA',800,0,800,null,'W02107000011');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,'BOARD01' , '박격포 MAG B560M',NULL,'EA',900,0,900,null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,'BOARD01' , '박격포 MAG B560M',NULL,'EA',900,0,900,null,'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2,'BOARD02' , 'ASRock B550M',NULL,'EA',900,0,900,null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2,'BOARD02' , 'ASRock B550M',NULL,'EA',900,0,900,null,'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'BOARD03' , 'GIGABYTE A320M',NULL,'EA',800,0,800,null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,  'BOARD03' , 'GIGABYTE A320M',NULL,'EA',800,0,800,null,'W02107000007');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,'POWER01' , '시소닉 A12 STD',NULL,'EA',900,0,900,null, 'W02106000001');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+1,'POWER01' , '시소닉 A12 STD',NULL,'EA',900,0,900,null, 'W02107000001');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2,'POWER02' , 'ASUS POG Thor 850P',NULL,'EA',900,0,900,null, 'W02106000004');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate+2,'POWER02' , 'ASUS POG Thor 850P',NULL,'EA',900,0,900,null, 'W02107000004');
 INSERT INTO CPM_PM_Pro_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,'POWER03' , '마이크로닉 Classic 2',NULL,'EA',800,0,800,null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),sysdate,'POWER03' , '마이크로닉 Classic 2',NULL,'EA',800,0,800,null,'W02107000007');
 
 SELECT * FROM CPM_PM_Pro_Mat_For_Det;
 
@@ -3094,47 +3057,47 @@ SELECT seq_CPM_PM_Ope_Per_Reg_Det_no.NEXTVAL FROM DUAL ;
 
 --작업실적등록 세부사항 데이터
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE,'L100','L101','입고', 150,'검사','M100',null,'W02106000001');
+VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE,'L100','L101','입고', 150,'검사','M100',null,'W02107000001');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE,'L100','L101','입고', 150,'검사','M100',null,'W02106000001');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE,'L100','L101','입고', 150,'검사','M100',null,'W02107000001');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE,'L100','L101','입고', 10,'검사','M100',null,'W02106000002');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE,'L100','L101','입고', 10,'검사','M100',null,'W02107000002');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+1,'L100','L101','입고', 300,'검사','M100',null,'W02106000002');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+1,'L100','L101','입고', 300,'검사','M100',null,'W02107000002');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+1,'L100','L101','입고', 250,'검사','M100',null,'W02106000003');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+1,'L100','L101','입고', 250,'검사','M100',null,'W02107000003');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+4,'L100','L101','입고', 800,'검사','M100',null,'W02106000003');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+4,'L100','L101','입고', 800,'검사','M100',null,'W02107000003');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+4,'L100','L101','입고', 200,'검사','M100',null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+4,'L100','L101','입고', 200,'검사','M100',null,'W02107000004');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+6,'L100','L101','입고', 60,'검사','M100',null,'W02106000004');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+6,'L100','L101','입고', 60,'검사','M100',null,'W02107000004');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+6,'L100','L101','입고', 60,'검사','M100',null,'W02106000005');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+6,'L100','L101','입고', 60,'검사','M100',null,'W02107000005');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+9,'L200','L201','입고', 500,'검사','M200',null,'W02106000005');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+9,'L200','L201','입고', 500,'검사','M200',null,'W02107000005');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+9,'L200','L201','입고', 710,'검사','M200',null,'W02106000006');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+9,'L200','L201','입고', 710,'검사','M200',null,'W02107000006');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+10,'L100','L101','입고', 300,'검사','M200',null,'W02106000006');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+10,'L100','L101','입고', 300,'검사','M200',null,'W02107000006');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+10,'L100','L101','입고', 400,'검사','M200',null,'W02106000006');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+10,'L100','L101','입고', 400,'검사','M200',null,'W02107000006');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+11,'L100','L101','입고', 100,'검사','M200',null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+11,'L100','L101','입고', 100,'검사','M200',null,'W02107000007');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+11,'L100','L101','입고', 100,'검사','M200',null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+11,'L100','L101','입고', 100,'검사','M200',null,'W02107000007');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+14,'L100','L101','입고', 80,'검사','M200',null,'W02106000007');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+14,'L100','L101','입고', 80,'검사','M200',null,'W02107000007');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+14,'L100','L101','입고', 400,'검사','M200',null,'W02106000008');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+14,'L100','L101','입고', 400,'검사','M200',null,'W02107000008');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+16,'L100','L101','입고', 100,'검사','M200',null,'W02106000008');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+16,'L100','L101','입고', 100,'검사','M200',null,'W02107000008');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+16,'L100','L101','입고', 700,'검사','M200',null,'W02106000009');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+16,'L100','L101','입고', 700,'검사','M200',null,'W02107000009');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'L200','L201','입고', 500,'검사','M200',null,'W02106000009');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'L200','L201','입고', 500,'검사','M200',null,'W02107000009');
 INSERT INTO CPM_PM_Ope_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'L200','L201','입고', 400,'검사','M200',null,'W02106000010');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'L200','L201','입고', 400,'검사','M200',null,'W02107000010');
 
 select * from CPM_PM_Ope_Per_Reg_Det;
 
@@ -3209,35 +3172,35 @@ select seq_CPM_PM_Ope_Per_Reg_no.NEXTVAL from dual;
 
 --외주실적등록 데이터
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P101',SYSDATE+17,SYSDATE+17,'MT01','27inch모니터',  NULL , 'EA',500,23000,'계획','외주발주','검사',null,'PP2106000015');
+VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P101',SYSDATE+17,SYSDATE+17,'MT01','27inch모니터',  NULL , 'EA',500,23000,'계획','외주발주','검사',null,'PP2107000015');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P101',SYSDATE+18,SYSDATE+18,'MT01','27inch모니터', NULL , 'EA',1000,15000,'확정','외주발주','검사',null,'PP2106000016');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P101',SYSDATE+18,SYSDATE+18,'MT01','27inch모니터', NULL , 'EA',1000,15000,'확정','외주발주','검사',null,'PP2107000016');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P102',SYSDATE+19,SYSDATE+19,'MT01','27inch모니터', NULL , 'EA',500,19000,'마감','외주발주','검사',null,'PP2106000017');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P102',SYSDATE+19,SYSDATE+19,'MT01','27inch모니터', NULL , 'EA',500,19000,'마감','외주발주','검사',null,'PP2107000017');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P102',SYSDATE+21,SYSDATE+21,'MT01','27inch모니터', NULL , 'EA',1000,6500,'계획','외주발주','검사',null,'PP2106000018');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P102',SYSDATE+21,SYSDATE+21,'MT01','27inch모니터', NULL , 'EA',1000,6500,'계획','외주발주','검사',null,'PP2107000018');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P103',SYSDATE+22,SYSDATE+22,'MT01','27inch모니터', NULL , 'EA',500,7000,'확정','외주발주','검사',null,'PP2106000019');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P103',SYSDATE+22,SYSDATE+22,'MT01','27inch모니터', NULL , 'EA',500,7000,'확정','외주발주','검사',null,'PP2107000019');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P103',SYSDATE+23,SYSDATE+23,'MT02','32inch모니터', NULL , 'EA',1000,8500,'마감','외주발주','검사',null,'PP2106000020');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P103',SYSDATE+23,SYSDATE+23,'MT02','32inch모니터', NULL , 'EA',1000,8500,'마감','외주발주','검사',null,'PP2107000020');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P104',SYSDATE+25,SYSDATE+25, 'MT02','32inch모니터', NULL , 'EA',500,7000,'계획','외주발주','검사',null,'PP2106000021');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P104',SYSDATE+25,SYSDATE+25, 'MT02','32inch모니터', NULL , 'EA',500,7000,'계획','외주발주','검사',null,'PP2107000021');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P104',SYSDATE+26,SYSDATE+26, 'MT02','32inch모니터' , NULL , 'EA',1000,10000,'확정','외주발주','검사',null,'PP2106000022');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고완료','P104',SYSDATE+26,SYSDATE+26, 'MT02','32inch모니터' , NULL , 'EA',1000,10000,'확정','외주발주','검사',null,'PP2107000022');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+27,SYSDATE+27,'MT02','32inch모니터' , NULL , 'EA',500,15000,'마감','외주발주','검사',null,'PP2106000023');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+27,SYSDATE+27,'MT02','32inch모니터' , NULL , 'EA',500,15000,'마감','외주발주','검사',null,'PP2107000023');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'MT02','32inch모니터' , NULL , 'EA',1000,10000,'계획','외주발주','검사',null,'PP2106000024');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'MT02','32inch모니터' , NULL , 'EA',1000,10000,'계획','외주발주','검사',null,'PP2107000024');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'MT03','43inch모니터', NULL , 'EA',500,17000,'확정','외주발주','검사',null,'PP2106000025');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'MT03','43inch모니터', NULL , 'EA',500,17000,'확정','외주발주','검사',null,'PP2107000025');
 INSERT INTO CPM_OM_Out_Per_Reg
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'MT03','43inch모니터', NULL , 'EA',1000,12000,'마감','외주발주','검사',null,'PP2106000026');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'MT03','43inch모니터', NULL , 'EA',1000,12000,'마감','외주발주','검사',null,'PP2107000026');
 --INSERT INTO CPM_OM_Out_Per_Reg
---VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'BL01' , '32MB25VQ' , NULL , 'EA',500,24000,'마감','외주발주','검사',null,'PP2106000027');
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'BL01' , '32MB25VQ' , NULL , 'EA',500,24000,'마감','외주발주','검사',null,'PP2107000027');
 --INSERT INTO CPM_OM_Out_Per_Reg
---VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'BL02' , '32LF550B' , NULL , 'EA',1000,22000,'마감','외주발주','검사',null,'PP2106000028');
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'BL02' , '32LF550B' , NULL , 'EA',1000,22000,'마감','외주발주','검사',null,'PP2107000028');
 --INSERT INTO CPM_OM_Out_Per_Reg
---VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'BL03' , 'L32LX530H' , NULL , 'EA',500,23000,'마감','외주발주','검사',null,'PP2106000029');
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'),'출고중','P105',SYSDATE+29,SYSDATE+29,'BL03' , 'L32LX530H' , NULL , 'EA',500,23000,'마감','외주발주','검사',null,'PP2107000029');
 
 CREATE OR REPLACE PROCEDURE P_RESET_SEQ2(SEQ_NAME IN VARCHAR2)
 IS
@@ -3304,35 +3267,35 @@ SELECT * FROM CPM_PM_PRO_Mat_For_Det;
 
 --외주자재출고 세부사항 데이터
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_CURR_SEQ('PM_SM_Sto_Mov_Main'), sysdate, 'ADBOARD01' , '정면소켓형 AD 보드' , 'NULL' , 'EA',100,10,110,null,'W02106000015');
+VALUES (F_GET_CURR_SEQ('PM_SM_Sto_Mov_Main'), sysdate, 'ADBOARD01' , '정면소켓형 AD 보드' , 'NULL' , 'EA',100,10,110,null,'W02107000015');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate+1,'ADBOARD02' , '초소형 AD 보드' , 'NULL' , 'EA' ,200,20,240,null,'W02106000020');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate+1,'ADBOARD02' , '초소형 AD 보드' , 'NULL' , 'EA' ,200,20,240,null,'W02107000020');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate+2,'ADBOARD03' , '2232GW AD 보드' , 'NULL' , 'EA' ,300,0,300,null,'W02106000025');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate+2,'ADBOARD03' , '2232GW AD 보드' , 'NULL' , 'EA' ,300,0,300,null,'W02107000025');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate,'INVERTER01' , 'FIF1742-01A' , 'NULL' , 'EA',800,10,880,null,'W02106000015');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate,'INVERTER01' , 'FIF1742-01A' , 'NULL' , 'EA',800,10,880,null,'W02107000015');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+1,'INVERTER02' , 'TWT-122K' , 'NULL' , 'EA' ,700,0,700,null,'W02106000020');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+1,'INVERTER02' , 'TWT-122K' , 'NULL' , 'EA' ,700,0,700,null,'W02107000020');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'INVERTER03' , 'DS-1307WK' , 'NULL' , 'EA' ,600,20,720,null,'W02106000025');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'INVERTER03' , 'DS-1307WK' , 'NULL' , 'EA' ,600,20,720,null,'W02107000025');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate,'SMPS01' , 'IDF060CV-S24V1' , 'NULL' , 'EA',500,0,500,null,'W02106000015');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate,'SMPS01' , 'IDF060CV-S24V1' , 'NULL' , 'EA',500,0,500,null,'W02107000015');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+1,'SMPS02' , 'IDF100CV-S24V1' , 'NULL' , 'EA' ,400,0,400,null,'W02106000020');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+1,'SMPS02' , 'IDF100CV-S24V1' , 'NULL' , 'EA' ,400,0,400,null,'W02107000020');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'SMPS03' , 'IDF600CV-S24V2' , 'NULL' , 'EA' ,900,0,900,null,'W02106000025');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'SMPS03' , 'IDF600CV-S24V2' , 'NULL' , 'EA' ,900,0,900,null,'W02107000025');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate,'LIPSBOARD01' , 'LI01' , 'NULL' , 'EA' ,1000,0,1000,null,'W02106000015');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate,'LIPSBOARD01' , 'LI01' , 'NULL' , 'EA' ,1000,0,1000,null,'W02107000015');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+1,'LIPSBOARD02' , 'LI10' , 'NULL' , 'EA' ,1000,0,1000,null,'W02106000020');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+1,'LIPSBOARD02' , 'LI10' , 'NULL' , 'EA' ,1000,0,1000,null,'W02107000020');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'LIPSBOARD03' , 'LL01' , 'NULL' , 'EA'  ,1000,0,1000,null,'W02106000025');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'LIPSBOARD03' , 'LL01' , 'NULL' , 'EA'  ,1000,0,1000,null,'W02107000025');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate,'BL01' , '32MB25VQ', 'NULL' , 'EA' ,1000,0,1000,null,'W02106000015');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate,'BL01' , '32MB25VQ', 'NULL' , 'EA' ,1000,0,1000,null,'W02107000015');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate+1,'BL02' , '32LF550B' , 'NULL' , 'EA' ,1000,0,1000,null,'W02106000020');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'),  sysdate+1,'BL02' , '32LF550B' , 'NULL' , 'EA' ,1000,0,1000,null,'W02107000020');
 INSERT INTO CPM_OM_Out_Mat_For_Det
-VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'BL03' , 'L32LX530H', 'NULL' , 'EA' ,1000,0,1000,null,'W02106000025');
+VALUES (F_GET_NEXT_SEQ('PM_SM_Sto_Mov_Main'), sysdate+2,'BL03' , 'L32LX530H', 'NULL' , 'EA' ,1000,0,1000,null,'W02107000025');
 
 SELECT * FROM CPM_OM_Out_Mat_For_Det;
 
@@ -3460,45 +3423,45 @@ select seq_CPM_PM_Ope_Per_Reg_Det_no.NEXTVAL from dual;
 
 --외주실적등록 세부사항 데이터
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+17,'P100','P101','입고', 250,'검사',null,'M100','W02106000015');
+VALUES (F_GET_CURR_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+17,'P100','P101','입고', 250,'검사',null,'M100','W02107000015');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+17,'P100','P101','입고', 250,'검사',null,'M100','W02106000015');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+17,'P100','P101','입고', 250,'검사',null,'M100','W02107000015');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+18,'P100','P101','입고', 500,'검사',null,'M100','W02106000016');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+18,'P100','P101','입고', 500,'검사',null,'M100','W02107000016');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+18,'P100','P101','입고', 500,'검사',null,'M100','W02106000016');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+18,'P100','P101','입고', 500,'검사',null,'M100','W02107000016');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'P100','P102','입고', 200,'검사',null,'M100','W02106000017');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'P100','P102','입고', 200,'검사',null,'M100','W02107000017');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'P100','P102','입고', 200,'검사',null,'M100','W02106000017');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+19,'P100','P102','입고', 200,'검사',null,'M100','W02107000017');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+21,'P100','P102','입고', 500,'검사',null,'M100','W02106000018');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+21,'P100','P102','입고', 500,'검사',null,'M100','W02107000018');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+21,'P100','P102','입고', 300,'검사',null,'M100','W02106000018');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+21,'P100','P102','입고', 300,'검사',null,'M100','W02107000018');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+22,'P100','P103','입고', 300,'검사',null,'M100','W02106000019');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+22,'P100','P103','입고', 300,'검사',null,'M100','W02107000019');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+22,'P100','P103','입고', 400,'검사',null,'M100','W02106000019');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+22,'P100','P103','입고', 400,'검사',null,'M100','W02107000019');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+23,'P100','P103','입고', 300,'검사',null,'M100','W02106000020');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+23,'P100','P103','입고', 300,'검사',null,'M100','W02107000020');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+23,'P100','P103','입고', 300,'검사',null,'M100','W02106000020');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+23,'P100','P103','입고', 300,'검사',null,'M100','W02107000020');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+25,'P100','P104','입고', 100,'검사',null,'M100','W02106000021');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+25,'P100','P104','입고', 100,'검사',null,'M100','W02107000021');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+25,'P100','P104','입고', 400,'검사',null,'M100','W02106000021');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+25,'P100','P104','입고', 400,'검사',null,'M100','W02107000021');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+26,'P100','P104','입고', 200,'검사',null,'M100','W02106000022');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+26,'P100','P104','입고', 200,'검사',null,'M100','W02107000022');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+26,'P100','P104','입고', 200,'검사',null,'M100','W02106000022');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+26,'P100','P104','입고', 200,'검사',null,'M100','W02107000022');
 INSERT INTO CPM_OM_Out_Per_Reg_Det
-VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+27,'P100','P105','입고', 400,'검사',null,'M100','W02106000023');
+VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+27,'P100','P105','입고', 400,'검사',null,'M100','W02107000023');
 --INSERT INTO CPM_OM_Out_Per_Reg_Det
---VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+27,'P100','P105','입고', 500,'검사',null,'M100','W02106000023');
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+27,'P100','P105','입고', 500,'검사',null,'M100','W02107000023');
 --INSERT INTO CPM_OM_Out_Per_Reg_Det
---VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+29,'P100','P105','입고', 600,'검사',null,'M100','W02106000024');
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+29,'P100','P105','입고', 600,'검사',null,'M100','W02107000024');
 --INSERT INTO CPM_OM_Out_Per_Reg_Det
---VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+29,'P100','P105','입고', 400,'검사',null,'M100','W02106000024');
+--VALUES (F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무',SYSDATE+29,'P100','P105','입고', 400,'검사',null,'M100','W02107000024');
 SELECT * FROM CPM_OM_Out_Per_Reg_Det;
 SELECT * FROM CPM_PM_OPE_PER_REG_Det;
 
@@ -4316,7 +4279,7 @@ SELECT opNumber, materialUseStatus, performanceDate, func_pro_reg(process_code) 
 		FROM CPM_PM_Ope_Per_Reg_Det;
 
 SELECT * FROM RegOpePerformanceDetailVIEW 
-where workordernumber = 'W02106000001';
+where workordernumber = 'W02107000001';
 
 --작업지시마감처리 세부사항
 CREATE OR REPLACE VIEW OperationInsClosingDetailVIEW AS
@@ -4328,7 +4291,7 @@ group by  oprd.OPNumber,opr.instructiondate,opr.duedate,oprd.process_code,oprd.w
 order by oprd.OPNumber;
 
 SELECT * FROM OperationInsClosingDetailVIEW
-WHERE workordernumber = 'W02106000001';
+WHERE workordernumber = 'W02107000001';
 
 
 --BOM - 외주단가등록 
@@ -4353,7 +4316,7 @@ select * from MainPlanListView;
 
 --주계획서작성(주문계획)
 CREATE OR REPLACE VIEW MpsosListView AS
- select co.ordersNum, co.ordersdate, co.customerCode, co.Note,
+ select co.ordersNum, co.ordersdate, co.General_Customer_Code, co.Note,
    cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
    cc.expectedDate,cc.ordersQuantity
    from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc
@@ -4364,7 +4327,7 @@ SELECT *FROM MpsosListView;
 --소요량전개
 CREATE OR REPLACE VIEW MrpListView AS
 select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
-         pm.due_date, pm.sequence , mr.expected_order
+         pm.dueDate, pm.sequence , mr.expectedDate
           from CPM_BIM_BOM_REG bom, pmm_pm_mps pm, pmm_pm_mrp mr
             where pm.item_code = bom.item_code 
             and  bom.item_code = mr.item_code;
@@ -4373,9 +4336,11 @@ SELECT * FROM MrpListView;
 
 --수주등록
 CREATE OR REPLACE VIEW orderCorListView AS
-select * from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR
+select ord.ordersNum,ord.ordersDate,ord.general_customer_code,cor.item_code,cor.item_name,cor.standard,cor.inventory_unit,cor.ordersquantity,cor.productprice,(cor.ordersquantity*cor.productprice) as supplyPrice,
+(cor.ordersquantity*cor.productprice)*0.1 as vatPrice, (cor.ordersquantity*cor.productprice)+(cor.ordersquantity*cor.productprice)*0.1 as sumPrice,cor.duedate,cor.expecteddate from CSM_SM_Ord_Reg ORD, CSM_SM_COR_Reg COR;
        where ORD.ordersNum = COR.code;
-    
+SELECT * FROM CSM_SM_Ord_Reg;
+SELECT * FROM CSM_SM_COR_Reg;
 SELECT * FROM orderCorListView;
 
 create table Menu(
