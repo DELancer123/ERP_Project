@@ -22,6 +22,13 @@
             z-index: 1;
         }
 </style>
+<script>
+   window.onload = function(){
+	   l_sub1.style.display = "block";
+	   l_sub1.style.position = "relative";
+	   l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 <container1 id = contents1>
@@ -36,17 +43,6 @@
                     <td>~</td>
                     <td><input type="date" id="reqInput"></td>
                 </tr>
-               <!--  <tr>
-                    <td>고객</td>
-                    <td><input type="text"></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>
-                    <td><input type="text" disabled></td>
-                    <td>출고창고</td>
-                    <td><input type="text" id="reqInput"></td>
-                    <td><i class="fas fa-search" style="color: blue;"></i></td>
-                    <td><input type="text" disabled></td>
-                </tr>
-                 -->
             </table>
         </container1>
 <script src="http://code.jquery.com/jquery-latest.js"></script>

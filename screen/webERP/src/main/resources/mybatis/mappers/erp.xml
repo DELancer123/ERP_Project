@@ -2058,6 +2058,7 @@ ORDER BY out.workordernumber]]>
         	<result property="expDate" column="expectedDate" />
         	<result property="inspection" column="inspection" />
         	<result property="orderOX" column="orderOX" />
+        	<result property="no" column="no" />
         </collection>
 </resultMap>  
 	<select id="submitSubForward" resultMap="Corforward">
