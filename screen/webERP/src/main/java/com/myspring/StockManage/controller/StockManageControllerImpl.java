@@ -133,16 +133,16 @@ public class StockManageControllerImpl implements StockManageController {
 		String viewName = getViewName(request);
 		mav = new ModelAndView(viewName);
 
-		String customerCode = request.getParameter("bus_code");
+		String general_Customer_Code = request.getParameter("bus_code");
 
 
 		StockManageVO searchVO = new StockManageVO();
 
-		if (StringUtils.hasText(customerCode)) {
-			searchVO.setCustomerCode(customerCode);
+		if (StringUtils.hasText(general_Customer_Code)) {
+			searchVO.setGeneral_Customer_Code(general_Customer_Code);
 
 			List<StockManageVO> customerList = null;
-			customerList = stockManageservice.Searchsuju(customerCode);
+			customerList = stockManageservice.Searchsuju(general_Customer_Code);
 
 			mav.addObject("customerList", customerList);
 		}
@@ -187,6 +187,26 @@ public class StockManageControllerImpl implements StockManageController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/member/delsuju.do", method = RequestMethod.GET)
+	public ModelAndView delsuju(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = request.getParameter("no");
+		String[] numberary = number.split(",");
+		stockManageservice.delsuju(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regorder.do");
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/member/delsujuSub.do", method = RequestMethod.GET)
+	public ModelAndView delsujuSub(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = request.getParameter("no");
+		String[] numberary = number.split(",");
+		stockManageservice.delsujuSub(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regorder.do");
+
+		return mav;
+	}
+	
 	
 	
 	
@@ -218,6 +238,7 @@ public class StockManageControllerImpl implements StockManageController {
 
 		return mav;
 	}
+	
 	
 	
 	private String getViewName(HttpServletRequest request) {

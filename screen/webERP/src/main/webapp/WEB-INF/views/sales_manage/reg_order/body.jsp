@@ -97,31 +97,31 @@ String parent = request.getParameter("itemNumber");
 					<td><input type="checkbox" value="${item.ordersNum }"
 						name="content" /></td>
 					<td><input type="text" class="ordersNum" 
-						name="StoVO[${sts.index}].moveNum" value="${item.ordersNum }" /></td>
-					<td><input type="date" name="StoVO[${sts.index}].moveDate"
+						name="StoVO[${sts.index}].ordersNum" value="${item.ordersNum }" /></td>
+					<td><input type="date" name="StoVO[${sts.index}].ordersdate"
 						value="${item.ordersdate }" /></td>
 					<td><input type="text"
-						name="StoVO[${sts.index}].outputWarehouse"
-						value="${item.customerCode }" /></td>
-					<td><input type="text" name="StoVO[${sts.index}].outputPlace"
+						name="StoVO[${sts.index}].general_Customer_Code"
+						value="${item.general_Customer_Code }" /></td>
+					<td><input type="text" name="StoVO[${sts.index}].tax"
 						value='${item.tax }' /></td>
-					<td><input type="text" name="StoVO[${sts.index}].inputWarehouse"
+					<td><input type="text" name="StoVO[${sts.index}].note"
 						value='${item.note }' /></td>
 				</tr>
 			</c:forEach> 
-			<tr id="insertsuju">
+				<tr id="insertsuju">
 					<td><input type="checkbox" value="check1" id="check"
 						name="content" /></td>
 					<td><input type="text" id="ordersNum"
-						name="sujuVO[${fn:length(stockList)}].ordersNum" value="" /></td>
+						name="sujuVO[${fn:length(customerList)}].ordersNum" value="" /></td>
 					<td><input type="date" id="ordersdate"
-						name="sujuVO[${fn:length(stockList)}].ordersdate" value="" /></td>
+						name="sujuVO[${fn:length(customerList)}].ordersdate" value="" /></td>
 					<td><input type="text" id="customerCode"
-						name="sujuVO[${fn:length(stockList)}].General_Customer_Code" value="" /></td>
+						name="sujuVO[${fn:length(customerList)}].General_Customer_Code" value="" /></td>
 					<td><input type="text" id="tax"
-						name="sujuVO[${fn:length(stockList)}].tax" value="" /></td>
-					<td><input type="text" id="Note"
-						name="sujuVO[${fn:length(stockList)}].Note" value="" /></td>
+						name="sujuVO[${fn:length(customerList)}].tax" value="" /></td>
+					<td><input type="text" id="note"
+						name="sujuVO[${fn:length(customerList)}].note" value="" /></td>
 				</tr>
 		</tbody>
 	</table>
@@ -218,8 +218,6 @@ String parent = request.getParameter("itemNumber");
     	       }
     	});
     });
-    
-    /* 
     $('#delete').click(function () {
     	deleteData();
     });
@@ -229,44 +227,49 @@ String parent = request.getParameter("itemNumber");
     });
     
     function deleteData() {
-  	  var no = "";
-  	  var secno = "";
-  	  var ary = [];
-  	  var secarr = [];
-  	  var item = document.getElementsByName("content").length;
-  	  var item2 = document.getElementsByName("content2").length;
-
-  	  for(var i=0 ; i<item ; i++){
-  		  if(document.getElementsByName("content")[i].checked==true){
-  			no = document.getElementsByName("content")[i].value;
-  			ary.push(no);
-  		  }
-  	  }
-  	  
-  	  for(var i=0 ; i<item2 ; i++){
-  		  if(document.getElementsByName("content2")[i].checked==true){
-  			secno = document.getElementsByName("content2")[i].value;
-  			secarr.push(secno);
-  			
-
-  		  }
-  	  }
-  	  
-  	  
-  	  
-  	if (Array.isArray(ary) && ary.length){
-  		if(Array.isArray(secarr) && secarr.length){
-		  alert("부모데이터와 자식데이터를 함께 삭제할 수 없습니다 한쪽만 체크하십시오.");
-  		}
-  		else{
-  			 window.location.href = "${contextPath}/member/delWareStock.do?moveNum="+ary;
-  		}
-	 }
-  	else{
-  		
-		 window.location.href = "${contextPath}/member/delWareStockSub.do?no="+secarr;
-	 }
-    }
+    	  var no = "";
+    	  var secno = "";
+    	  var ary = [];
+    	  var secarr = [];
+    	  var item = document.getElementsByName("content").length;
+    	  var item2 = document.getElementsByName("content2").length;
+  
+    	  for(var i=0 ; i<item ; i++){
+    		  if(document.getElementsByName("content")[i].checked==true){
+    			no = document.getElementsByName("content")[i].value;
+    			ary.push(no);
+    		  }
+    	  }
+    	  
+    	  for(var i=0 ; i<item2 ; i++){
+    		  if(document.getElementsByName("content2")[i].checked==true){
+    			secno = document.getElementsByName("content2")[i].value;
+    			secarr.push(secno);
+    			
+  
+    		  }
+    	  }
+    	  
+    	  
+    	  
+    	if (Array.isArray(ary) && ary.length){
+    		if(Array.isArray(secarr) && secarr.length){
+  		  alert("부모데이터와 자식데이터를 함께 삭제할 수 없습니다 한쪽만 체크하십시오.");
+    		}
+    		else{
+    			 window.location.href = "${contextPath}/member/delsuju.do?no="+ary;
+    		}
+  	 }
+    	else{
+    		
+  		 window.location.href = "${contextPath}/member/delsujuSub.do?no="+secarr;
+  	 }
+      }
+    
+    $('#addInsertSubStoBlock').click(function(){
+    	addTbody3();
+    })
+    
     
     
     var tbody3Index = 0;
@@ -275,90 +278,22 @@ String parent = request.getParameter("itemNumber");
     	
         var tbody2html = '<tr>'
             + '<td><input type="checkbox" name="content2" /></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].no" value=""/></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].moveNum" value=""/></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].itemCode" value=""/></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].itemName" value=""/></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].standard" value=""/></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].inventoryUnit" value=""/></td>'
-            + '<td><input type="text" name="subListStoVO[' + tbody3Index + '].moveQuantity" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="date" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><input type="date" name="" value=""/></td>'
+            + '<td><input type="text" name="" value=""/></td>'
             + '</tr>';
     	$('#table3').append(tbody2html);
     	
     	tbody3Index++;
     }
-    
-    function deleteTbody3() {
-    	$('#table3').empty();
-    	tbody3Index = 0;
-    }
-    function deleteTbody4() {
-    	$('#table3').empty();
-    }
-    
-    $('#insertWareStock').dblclick(function() {
-    	deleteTbody3();
-    	addTbody3();
-    });
-    
-    $('#addInsertSubStoBlock').click(function(){
-    	addTbody3();
-    })
-    
-    
-    function newRow(){
-    	// 추가하는 메인 값이 있는지 체크
-    	var addDate = $('#moveDate').val();
-    	
-    	var datetime_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/; 
-
-    	if(!datetime_pattern.test(addDate)){
-    		$('#insertWareStock').remove();
-    	}
-    	
-        // dao에서 저장
-        var row = view1.insertRow(); 
-        const URLSearch = new URLSearchParams(location.search);
-		  	URLSearch.set('submit', '1');
-		  	const newParam = URLSearch.toString();
-		 	var link = location.pathname +'?'+newParam;
-		var articleNOInput = document.createElement("input");
-		    articleNOInput.setAttribute("type","hidden");
-		    articleNOInput.setAttribute("name","path");
-		    articleNOInput.setAttribute("value", link);
-		    var regForm = document.getElementById('regWareStock');
-		    regForm.appendChild(articleNOInput);
-		    regForm.action = "${contextPath}/member/addWareStock.do";
-		    regForm.submit();  
-    }
-    $('#update').click(function(){
-    	updateRow();
-    })
-    function updateRow(){
-    	
-    	deleteTbody4();
-		var addDate = $('#moveDate').val();
-    	
-    	var datetime_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/; 
-
-    	if(!datetime_pattern.test(addDate)){
-    		$('#insertWareStock').remove();
-    	}
-    	
-        const URLSearch = new URLSearchParams(location.search);
-        	URLSearch.set('submit', '1');
-		  	const newParam = URLSearch.toString();
-		 	var link = location.pathname +'?'+newParam;
-		   	var articleNOInput = document.createElement("input");
-		     	articleNOInput.setAttribute("type","hidden");
-		     	articleNOInput.setAttribute("name","path");
-		     	articleNOInput.setAttribute("value", link);
-		     	var regForm = document.getElementById('regWareStock');
-		     	regForm.appendChild(articleNOInput);
-		     	regForm.action = "${contextPath}/member/updateWareStock.do";
-		     	regForm.submit();  
-    }
-	  */
 	 
 	</script>
 </body>

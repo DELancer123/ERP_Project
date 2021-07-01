@@ -28,7 +28,6 @@ public class StockManageVO {
 	Date 	modDate;			//��������
 	String 	houseCode;			//â��
 	String 	locationCode;		//���
-	String 	generalCustomerCode;//�ŷ�ó
 	String 	kind;				//��������
 	int 	modQuantity;		//��������
 	String 	setCode;			//set��ǰ��ǰ��
@@ -221,12 +220,6 @@ public class StockManageVO {
 	public void setLocationCode(String locationCode) {
 		this.locationCode = locationCode;
 	}
-	public String getGeneralCustomerCode() {
-		return generalCustomerCode;
-	}
-	public void setGeneralCustomerCode(String generalCustomerCode) {
-		this.generalCustomerCode = generalCustomerCode;
-	}
 	public String getKind() {
 		return kind;
 	}
@@ -282,58 +275,31 @@ public class StockManageVO {
 	public void setEndDate(java.util.Date endDate) {
 		this.endDate = endDate;
 	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		
-		String valueStr = "moveNum : " + moveNum
-				        + ", moveDate : " + moveDate
-//				        + ", outPutWare : " + outputWarehouse
-				        + ", outPutPlace : " + outputPlace
-				        + ", inputWare : " + inputWarehouse
-				        + ", inputPlace : " + inputPlace
-				        + ", note : " + note
-				        + ", outputBusiness : " + outputBusiness
-				        + ", inputBusiness : " + inputBusiness
-				        + ", moveNum : " + moveNum
-				        + ", itemCode : " + itemCode
-				        + ", itemName : " + itemName
-				        + ", standard : " + standard
-				        + ", inventoryUnit : " + inventoryUnit
-				        + ", moveQuantity : " + moveQuantity
-				        ;
-		return valueStr;
-	}
-	public String toString1() {
-		// TODO Auto-generated method stub
-		
-		String valueStr = "moveNum : " + moveNum
-		        + ", moveDate : " + moveDate
-		        + ", itemCode : " + itemCode
-		        + ", itemName : " + itemName
-		        + ", standard : " + standard
-		        + ", inventoryUnit : " + inventoryUnit
-		        + ", moveQuantity : " + moveQuantity
-		        
-		        ;
-return valueStr;
-	}
 	
 	
 	// ���ֵ�� ��Ʈ
 	String ordersNum;
 	Date   ordersdate;
-	String General_Customer_Code;
+	String general_Customer_Code;
+	String general_Customer_Name;
+	
+
+
 	public String getGeneral_Customer_Code() {
-		return General_Customer_Code;
+		return general_Customer_Code;
 	}
 	public void setGeneral_Customer_Code(String general_Customer_Code) {
-		General_Customer_Code = general_Customer_Code;
+		this.general_Customer_Code = general_Customer_Code;
+	}
+	public String getGeneral_Customer_Name() {
+		return general_Customer_Name;
+	}
+	public void setGeneral_Customer_Name(String general_Customer_Name) {
+		this.general_Customer_Name = general_Customer_Name;
 	}
 
 
 	String tax;
-	String Note;
 	String code;
 	Date	dueDate;
 	String ordersQuantity;
@@ -408,12 +374,6 @@ return valueStr;
 	}
 	public void setOrdersdate(Date ordersdate) {
 		this.ordersdate = ordersdate;
-	}
-	public String getCustomerCode() {
-		return General_Customer_Code;
-	}
-	public void setCustomerCode(String customerCode) {
-		this.General_Customer_Code = customerCode;
 	}
 	public String getTax() {
 		return tax;

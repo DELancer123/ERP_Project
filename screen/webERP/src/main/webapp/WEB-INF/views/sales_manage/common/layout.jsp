@@ -295,8 +295,8 @@ border: 0.1px  solid #87cb42;
             </ul>
         </nav>
         <nav id="nav2">
-            <button id="delete" onclick="">삭제</button>
-            <button id="view_button" >조회ㅈ</button>
+            <button id="delete" onclick="deleteData()">삭제</button>
+            <button id="view_button" >조회</button>
             <button id="save">저장</button>
             <button id="update">수정</button>
         </nav>
