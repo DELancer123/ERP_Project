@@ -4265,8 +4265,9 @@ CREATE OR REPLACE VIEW RegistOperationPerformanceVIEW AS
 select opr.workordernumber,opr.materialforwardingstatus,func_pro_wor_reg(opr.workplace_code) as workplaceCode,opr.instructiondate ,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity, sum(oprd.performancequantity) as sumPerformancequantity,
 (opr.indicatedquantity-sum(oprd.performancequantity)) as remainingPerformance,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
-from CPM_PM_Ope_Per_Reg opr,CPM_PM_Ope_Per_Reg_det oprd 
-where opr.workordernumber= oprd.workordernumber and (status = '확정' or status = '마감')
+from CPM_PM_Ope_Per_Reg opr left join CPM_PM_Ope_Per_Reg_det oprd 
+on opr.workordernumber = oprd.workordernumber
+where (status = '확정' or status = '마감')
 group by  opr.workordernumber,opr.materialforwardingstatus,opr.workplace_code,opr.instructiondate,opr.duedate,
 opr.item_code,opr.item_name,opr.standard,opr.inventory_unit,opr.indicatedquantity,opr.status,opr.worksortation,opr.inspection,opr.productionfacility,opr.taskteam,opr.note
 order by opr.workordernumber;
