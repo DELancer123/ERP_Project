@@ -1945,16 +1945,16 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
-	<select id="selectAllComReg" resultMap="comRegResult">
+	<select id="selectAllSpecComponents" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
-	<select id="selectOneComReg" parameterType="String" resultMap="comRegResult">
+	<select id="selectOneSpecComponents" parameterType="String" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
 	</select>
-	<delete id="deleteComReg">
+	<delete id="deleteSpecComponents">
 		delete from SM_BIM_COM_REG where components_Code = #{no}
 	</delete>
-	<update id="updateComReg" parameterType="SystemmagVOMJ">
+	<update id="updateSpecComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			update SM_BIM_COM_REG
 			set	components_Name=#{components_Name},
@@ -1964,7 +1964,7 @@ ORDER BY out.workordernumber]]>
 			where components_Code=#{components_Code}			
 		]]>
 	</update>
-	<insert id="insertNewComReg" parameterType="SystemmagVOMJ">
+	<insert id="insertNewSpecComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_COM_REG
 			values(#{components_Code},
