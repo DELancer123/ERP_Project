@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.salesmanage.cor.vo.CorVO;
 import com.myspring.salesmanage.forward.reg.service.ForwardRegService;
 import com.myspring.salesmanage.forward.vo.ForwardVO;
 
@@ -43,6 +44,16 @@ public class ForwardRegControllermpl implements ForwardRegController{
 
 		return mav;
 	}
+	@RequestMapping(value="/member/forwardcodehelper.do",method = RequestMethod.GET)
+	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List custList = forwardRegService.listCust();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("custList", custList);
+
+		return mav;
+	}
+	
 
 	@Override
 	@RequestMapping(value="/member/forwarding.do" ,method = RequestMethod.GET)
@@ -102,16 +113,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		return mav;
 	}
 
-
-	@RequestMapping(value="/member/forwardcodehelper.do",method = RequestMethod.GET)
-	public ModelAndView addCustcode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		List custList = forwardRegService.listCust();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("custList", custList);
-
-		return mav;
-	}
 		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
 	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
@@ -151,19 +152,19 @@ public class ForwardRegControllermpl implements ForwardRegController{
 //		return mav;
 //	}
 //
-//	@Override
-//	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
-//	public ModelAndView addForwardItem(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response)
-//			throws Exception {
-//
-//		request.setCharacterEncoding("utf-8");
-//		StringBuffer url = request.getRequestURL();
-//		int result = 0;
-//		result = forwardRegService.addForward(forwardVO);
-//		String resulturl = url.toString();
-//		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
-//		return mav;
-//	}
+	@Override
+	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
+	public ModelAndView addForwardItem(@ModelAttribute("cor") CorVO corVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		request.setCharacterEncoding("utf-8");
+		StringBuffer url = request.getRequestURL();
+		int result = 0;
+		result = forwardRegService.addForward(forwardVO);
+		String resulturl = url.toString();
+		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+		return mav;
+	}
 //		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
 //	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 //		request.setCharacterEncoding("utf-8");

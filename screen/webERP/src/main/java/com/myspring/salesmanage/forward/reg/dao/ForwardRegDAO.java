@@ -13,6 +13,7 @@ public interface ForwardRegDAO {
 	//pop
 	public List selectAllCustList() throws DataAccessException;
 	public List selectCustsList() throws DataAccessException;
+	public List selectAllItemList() throws DataAccessException;
 	//super reg
 	public List selectSupForwardList() throws DataAccessException;
 	public List submitForwardCustSupReg(String custCode) throws DataAccessException;
@@ -26,7 +27,7 @@ public interface ForwardRegDAO {
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 //	public void delItemForward(String[] ItemCodeary) throws DataAccessException;
-//	public int addItemForward(ForwardVO forwardVO) throws DataAccessException;
-//	public int updItemForward(ForwardVO forwardVO) throws DataAccessException;
+	public int addItemForward(CorVO corVO) throws DataAccessException;
+//	public int updItemForward(CorVO corVO) throws DataAccessException;
 
 }
