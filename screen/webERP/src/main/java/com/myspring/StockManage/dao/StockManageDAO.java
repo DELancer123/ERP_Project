@@ -51,5 +51,9 @@ public interface StockManageDAO {
 
 	void updateSuju(StockManageVO stVO);
 
+	List searchitemList1();
+
+	List<StockManageVO> searchPopItem(String itemName);
+
 
 }

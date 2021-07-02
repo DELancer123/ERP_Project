@@ -127,6 +127,18 @@ public class StockManageServiceImpl implements StockManageService{
 		stockManageDAO.updateSuju(stVO);
 	}
 
+	@Override
+	public List searchitemList1() {
+		List popList = null;
+		popList = stockManageDAO.searchitemList1();
+		return popList;
+	}
+
+	@Override
+	public List<StockManageVO> searchPopItem(String itemName) {
+		return stockManageDAO.searchPopItem(itemName);
+	}
+
 
 
 

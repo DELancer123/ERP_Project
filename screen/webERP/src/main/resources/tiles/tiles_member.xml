@@ -946,6 +946,16 @@
    </definition>
    
    <!-- 수주등록 거래처등록팝 -->
+   <definition name="/member/searchitemList1" template="/WEB-INF/views/sales_manage/reg_order/searchItemList1.jsp">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/searchitemList2" template="/WEB-INF/views/sales_manage/reg_order/searchItemList2.jsp">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
    <definition name="/member/searchcus" template="/WEB-INF/views/sales_manage/reg_order/searchcustomer.jsp">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />
