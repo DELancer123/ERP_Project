@@ -124,14 +124,14 @@ String sequence = (String) request.getAttribute("sequence");
 		<c:forEach var="mrp" items="${mrpList}" varStatus="status">
 			<tr align="center">
 			<td><input type="checkbox" name="content" value="${mrp.sequence}" /></td>
-			<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${mrp.bomVO.itemNumber}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].itemName" value='${mrp.bomVO.itemName}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly/></td>
-				<td><input type="date" name="ListVO[${status.index}].dueDate" value='${mrp.mainplanVO.dueDate}' readonly /></td>
-	 	<td style="width:33px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly  style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].expectedDate" value='${mrp.mainplanVO.expectedDate}' readonly/></td>
- 				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity+mrp.mainplanVO.plan_quantity}'/></td>
-				<td><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly/></td>
+			<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.item_Code}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.item_Name}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.standard}' readonly/></td>
+				<td><input type="date" name="ListVO[${status.index}].dueDate" value='${mrp.dueDate}' readonly /></td>
+	 	<td style="width:33px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.sequence}' readonly  style="width:100%"/></td>
+				<td><input type="date" name="ListVO[${status.index}].expectedDate" value='${mrp.expectedDate}' readonly/></td>
+ 				<td><input type="text" name="ListVO[${status.index}].expected_quantity" value='${mrp.expected_quantity}'/></td>
+				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.inventory_unit}' readonly/></td>
 			</tr>	
 		</c:forEach>
 		</tbody>

@@ -865,12 +865,13 @@ order by bom.parent_item_code]]>
 		<collection property="mainplanVO" resultMap="MPSResult"/>
 	</resultMap>
 
-	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
-		<![CDATA[select bom.item_code, bom.item_name, bom.standard, bom.precisionQuantity, bom.inventory_unit,
-        	 pm.dueDate, pm.sequence,pm.expectedDate,pm.plan_quantity
-          	from CPM_BIM_BOM_REG bom, pmm_pm_mps pm
-            where pm.item_code = bom.item_code and expectedDate between #{startDate} and #{endDate}]]>
+ 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
+		<![CDATA[select distinct bom.Parent_Item_Code, bom.item_Code, bom.item_Name,
+    		pm.standard, pm.inventory_unit, pm.expectedDate, pm.dueDate, (pm.plan_quantity) as expected_quantity
+   			from CPM_BIM_BOM_Reg bom, pmm_pm_mps pm
+   			where bom.item_Code = pm.item_Code]]>
 	</select>
+
 		<!-- orderclosing 발주마감 -->
 	<resultMap id="orderclosingResult" type="orderclosingVO">
 		<result property="order_no" column="order_no" />
