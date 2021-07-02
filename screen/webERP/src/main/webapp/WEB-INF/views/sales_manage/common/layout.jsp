@@ -10,6 +10,7 @@
 	String dep_code = (String)session.getAttribute("dep_code");
 	String dep_name = (String)session.getAttribute("dep_name");
 %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -243,6 +244,9 @@ border: 0.1px  solid #87cb42;
 		input{
 			text-align: center;
 		}
+		img {
+	margin-left:10px;
+}
     </style>    
 </head>
 <body>
