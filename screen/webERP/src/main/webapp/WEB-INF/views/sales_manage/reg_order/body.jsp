@@ -16,6 +16,7 @@ String parent = request.getParameter("itemNumber");
 <head>
 <meta charset="UTF-8">
 <title>수주등록</title>
+
 <style>
 #contents1 {
 	position: absolute;
@@ -62,6 +63,13 @@ String parent = request.getParameter("itemNumber");
 	width: 100%;
 }
 </style>
+<script>
+   window.onload = function(){
+      l_sub1.style.display = "block";
+        l_sub1.style.position = "relative";
+        l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 	<container1 id=contents1>
