@@ -49,5 +49,7 @@ public interface StockManageDAO {
 
 	void insertNewRow(StockManageVO stVO);
 
+	void updateSuju(StockManageVO stVO);
+
 
 }

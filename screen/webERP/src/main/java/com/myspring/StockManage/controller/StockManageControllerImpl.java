@@ -260,8 +260,9 @@ public class StockManageControllerImpl implements StockManageController {
 	public ModelAndView updateSuju(StockManageVO stVO) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
+		stockManageservice.updateSuju(stVO);
 //		stVO.getStoVO(); stVO.getSubListStoVO(); 이 두개 각자 꺼내서 저장
-		
+		 
 		
 		mav.setViewName("redirect:/member/regorder.do?bus_code=" + stVO.getBusCode());
 
