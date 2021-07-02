@@ -92,7 +92,7 @@ a {
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
 					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.general_Customer_Name }'
-					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
+					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.ordersQuantity }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
       					  <td><a href="#">${MpsOS.ordersQuantity}</a></td>
       					  <td><a href="#">${MpsOS.expectedDate}</a></td>

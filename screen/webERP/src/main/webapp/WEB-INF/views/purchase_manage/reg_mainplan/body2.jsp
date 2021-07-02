@@ -204,7 +204,7 @@ function newRow(){
 
     if(plandate.value == ""){
        alert("계획일은 필수 입력사항입니다.");
-       return planDate.focus();
+       return plandate.focus();
     }else if(general_Customer_Name.value ==""){
     	alert("회사명은 필수 입력사항입니다.");
     	return general_Customer_Name.focus();

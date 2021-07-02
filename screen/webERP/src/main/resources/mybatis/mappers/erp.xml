@@ -762,9 +762,9 @@ order by bom.parent_item_code]]>
 		delete from pmm_pm_mps where sequence = #{sequence}
 	</delete>
   	<select id="selectAllMpsosList" resultMap="MpsOSResult" parameterType="java.util.HashMap">
-		<![CDATA[select distinct co.ordersdate,co.Note,
+		<![CDATA[select distinct co.Note,
             cc.Item_Code, cc.Item_Name, cc.standard, cc.Inventory_Unit,
-           cc.expectedDate,cc.ordersQuantity
+            cc.expectedDate,cc.ordersQuantity
             from CSM_SM_Ord_Reg co, CSM_SM_COR_Reg cc
           where cc.general_customer_code=co.general_customer_code]]>
 	</select>
@@ -865,8 +865,8 @@ order by bom.parent_item_code]]>
 		<collection property="mainplanVO" resultMap="MPSResult"/>
 	</resultMap>
 
- 	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
-		<![CDATA[select distinct bom.Parent_Item_Code, bom.item_Code, bom.item_Name,
+  	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
+		<![CDATA[select distinct bom.Parent_Item_Code, bom.item_Code, bom.item_Name,bom.division,
     		pm.standard, pm.inventory_unit, pm.expectedDate, pm.dueDate, (pm.plan_quantity) as expected_quantity
    			from CPM_BIM_BOM_Reg bom, pmm_pm_mps pm
    			where bom.item_Code = pm.item_Code]]>
