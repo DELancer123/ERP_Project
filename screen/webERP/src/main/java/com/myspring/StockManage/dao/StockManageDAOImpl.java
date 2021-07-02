@@ -137,7 +137,7 @@ public class StockManageDAOImpl implements StockManageDAO {
 	public void insertNewRow(StockManageVO stVO) {
 		// TODO Auto-generated method stub
 		int idx= stVO.getSujuVO().size()-1;
-		if(StringUtils.hasText(stVO.getSujuVO().get(idx).getGeneral_Customer_Code())){
+		if(StringUtils.hasText(stVO.getSujuVO().get(idx).getTax())){
 			sqlSession.insert("mappers.erp.insertSujuRow",stVO.getSujuVO().get(idx));
 		}
 		if(stVO.getSubSujuList() != null) {
@@ -146,8 +146,25 @@ public class StockManageDAOImpl implements StockManageDAO {
 				stVO.getSubSujuList().get(i).setCode(stVO.getInsertNo());
 				sqlSession.insert("mappers.erp.insertSujuRowSub",stVO.getSubSujuList().get(i));
 			}
-		}
+		}    
 		
+	}
+
+	@Override
+	public void updateSuju(StockManageVO stVO) {
+		// TODO Auto-generated method stub
+//		int idx= stVO.getStoVO().size()-1;
+//		if(StringUtils.hasText(stVO.getStoVO().get(idx).getGeneral_Customer_Code())){
+		if(stVO.getStoVO() != null) {
+			for(int i = 0 ; i<stVO.getStoVO().size(); i++) {
+			sqlSession.update("mappers.erp.updateSujuRow",stVO.getStoVO().get(i));
+			}
+		}
+		if(stVO.getSubListStoVO() != null) {
+			for(int i = 0 ; i<stVO.getSubListStoVO().size(); i++) {
+				sqlSession.update("mappers.erp.updateSujuRowSub",stVO.getSubListStoVO().get(i));
+			}
+		}   
 	}
 
 

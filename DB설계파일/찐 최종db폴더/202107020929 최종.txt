@@ -1352,6 +1352,8 @@ VALUES(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'),sysdate+8,F_GET_NEXT_SEQ('SM_BIM_Gen_Cus
 --데이터 등록10
 INSERT INTO CSM_SM_Ord_Reg
 VALUES(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'),'20210525',F_GET_CURR_SEQ('SM_BIM_Gen_Cus_Reg'),'부가세포함',null);
+INSERT INTO CSM_SM_Ord_Reg
+VALUES(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'),sysdate,'00007','부가세포함',null);
 SELECT * FROM CSM_SM_ORD_REG;
 -----------------------------------------------------------------------------------출고의뢰등록
 --테이블 생성
@@ -1661,10 +1663,10 @@ note varchar2(1000) ,--비고
 constraint fk_PMMPMMPSOS_Item_Code foreign key (Item_Code) references SM_BIM_Ite_Reg(Item_Code) on delete cascade
 );
 
-EXECUTE P_RESET_SEQ('SEQ_seq');
-EXECUTE P_RESET_SEQ('seq_CSM_SM_Ord_Reg_no');
-SELECT SEQ_seq.NEXTVAL FROM DUAL ;
-SELECT seq_CSM_SM_Ord_Reg_no.NEXTVAL FROM DUAL ;
+--EXECUTE P_RESET_SEQ('SEQ_seq');
+--EXECUTE P_RESET_SEQ('seq_CSM_SM_Ord_Reg_no');
+--SELECT SEQ_seq.NEXTVAL FROM DUAL ;
+--SELECT seq_CSM_SM_Ord_Reg_no.NEXTVAL FROM DUAL ;
 
 INSERT INTO PMM_PM_MPS_OS
 VALUES(F_GET_NEXT_SEQ('PMM_PM_MPS_OS'),F_GET_NEXT_SEQ('SEQ'),sysdate,'(주)삼도전자','POWER01','시소닉 A12 STD',NULL,'EA',50.00,sysdate+1,'이상없음');
@@ -3607,7 +3609,10 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5) default 0 --재고 수량
+Quantity number(5) default 0, --재고 수량
+
+constraint fk_code_pro_Sto FOREIGN KEY(Item_Code)
+REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade
 );
 
 EXECUTE P_RESET_SEQ('SEQ_PM_SM_Pro_Stock_NO');
@@ -3732,7 +3737,10 @@ Item_Code varchar2(12) UNIQUE NOT NULL, --품목코드
 Item_Name varchar2(50) UNIQUE NOT NULL, --품목명
 Standard varchar2(20), --규격
 Inventory_Unit varchar2(5) DEFAULT 'EA', --재고단위
-Quantity number(5) default 0--재고 수량
+Quantity number(5) default 0,--재고 수량
+
+constraint fk_code_pro_Fin_pro FOREIGN KEY(Item_Code)
+REFERENCES SM_BIM_Ite_Reg(Item_Code)on delete cascade
 );
 
 
@@ -4342,8 +4350,8 @@ SELECT * FROM CSM_SM_COR_Reg;
 SELECT * FROM orderCorListView;
 
 create table Menu(
-menu varchar2(50),
-url varchar2(50)
+menu varchar2(50)  not null,
+url varchar2(50)  not null
 );
 
 
