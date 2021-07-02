@@ -143,15 +143,15 @@ $.ajax({
 		for(var i = 0 ; i<data.length ; i++){
 			var str = '';
 				str += 	'<tr align="center" id = "yahoo">';
-				str += 	'<td>품번: </td>';
+				str += 	'<td>품번</td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Code + '</a></td>';  
-				str += 	'<td>품명 :</td>';
+				str += 	'<td>품명</td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Name + '</a></td>'; 
-				str += 	'<td>원가 :</td>';
+				str += 	'<td>원가</td>';
 				str +=  '<td><a href = "#">'+ data[i].cost + '</a></td>';  
-				str += 	'<td>규격 :</td>';
+				str += 	'<td>규격</td>';
 				str +=  '<td><a href = "#">'+ data[i].standard + '</a></td>';  
-				str += 	'<td>단위 :</td>';
+				str += 	'<td>단위</td>';
 				str +=  '<td><a href = "#">'+ data[i].inventory_Unit + '</a></td>';  
 				str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].item_Code+'"></td>';  
 				str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].item_Name+'" ></td>';  
