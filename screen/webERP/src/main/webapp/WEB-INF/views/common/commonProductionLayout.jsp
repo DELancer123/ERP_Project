@@ -95,7 +95,7 @@
             height: 35px;
             margin-bottom: 10px;
         }
-        .btn1{
+        .search_button{
             position: absolute;
             width: 50px;
             height: 35px;
@@ -235,11 +235,10 @@
                 <li><a href="#">기타메뉴2</a></li>
                 <li><a href="#">기타메뉴3</a></li> -->
             </ul>
-            <div id="search1" >
+            <div id="search" >
            <form action="${contextPath}/goods/searchGoods.do">
-            <input name="searchWord" class="main_input" id="search" type="text"  onKeyUp="keywordSearch()">
-            <input type="submit"
-						name="search" class="btn1" value="검 색">
+            <input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()">
+            <input type="submit" name="search" class="btn1"  value="검 색1" >
             </form>
             </div>
             <div id="suggest">

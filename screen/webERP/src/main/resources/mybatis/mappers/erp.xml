@@ -1294,13 +1294,13 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	</insert>
 	<insert id="insertPartItem" parameterType="itemVO">
 	<![CDATA[
-	INSERT INTO PM_SM_Pro_Stock(no,Item_Code,Item_Name,Standard,Inventory_Unit)
-VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit})]]>
+	INSERT INTO PM_SM_Pro_Stock
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
 	</insert>
 	<insert id="insertProductItem" parameterType="itemVO">
 	<![CDATA[
-	INSERT INTO PM_SM_Pro_FinishedProduct(no,Item_Code,Item_Name,Standard,Inventory_Unit)
-VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit})]]>
+	INSERT INTO PM_SM_Pro_FinishedProduct
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
 	</insert>
 	<!-- 수정 -->
 	<update id="updateItem" parameterType="itemVO">
@@ -1631,7 +1631,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code ,Item_Name  , Standard ,Inventory_Unit 
+		<![CDATA[ select Item_Code ,Item_Name  
 		  from SM_BIM_Ite_Reg  
 		]]>
 	</select>
@@ -1644,7 +1644,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code, Item_Name , Standard ,Inventory_Unit 
+		<![CDATA[ select Item_Code, Item_Name
 		  from SM_BIM_Ite_Reg
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>

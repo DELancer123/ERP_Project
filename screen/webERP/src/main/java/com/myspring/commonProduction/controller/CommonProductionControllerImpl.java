@@ -434,7 +434,7 @@ import com.myspring.commonProduction.commitOperationInstruction.vo.CommitOperati
   		List<String> message = new ArrayList();
   		 List<String> cancleMessage = new ArrayList();
   		message = productionService.closingDetail(numberary);
-  		 cancleMessage = productionService.closingCancleDetail(numberary);
+  		 //cancleMessage = productionService.closingCancleDetail(numberary);
   		ModelAndView mav = new ModelAndView("redirect:/member/operinsclo.do");
   		mav.addObject("message",message);
   		return mav;

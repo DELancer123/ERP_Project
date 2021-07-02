@@ -97,7 +97,6 @@ public class operationInsClosingDAOImpl implements operationInsClosingDAO {
 			} else if(check.equals("확정")) {
 				message.add("확정된 작업은 수정할 수 없습니다!");
 			} else {
-				
 				sqlSession.update("mappers.erp.updCancleClosingDetail", obj);
 					message.add("업데이트 완료!");
 				
