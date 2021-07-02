@@ -183,24 +183,24 @@
    
    <definition name="/member/systemmain" extends="baseLayout">
       <put-attribute name="title" value="시스템관리메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
    
    <definition name="/member/businessmain" extends="baseLayout">
       <put-attribute name="title" value="영엽관리메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    
    <definition name="/member/purchasemain" extends="baseLayout">
       <put-attribute name="title" value="구매/자재관리메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
    <definition name="/member/productionmain" extends="baseLayout">
       <put-attribute name="title" value="생산메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
    <definition name="/member/processinwork" extends="baseLayout">
