@@ -48,6 +48,10 @@ public interface StockManageService {
 
 	void updateSuju(StockManageVO stVO);
 
+	List searchitemList1();
+
+	List<StockManageVO> searchPopItem(String itemName);
+
 
 
 

@@ -1630,10 +1630,23 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</select>
 	
+	<select id="selectItemList" resultMap="sujuView">
+		<![CDATA[ select Item_Code ,Item_Name  
+		  from SM_BIM_Ite_Reg  
+		]]>
+	</select>
+	
 	<select id="selectPopCusList" resultMap="sujuView">
 		<![CDATA[ select General_Customer_Code, General_Customer_Name
 		  from SM_BIM_Gen_Cus_Reg
 		  where General_Customer_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
+	
+	<select id="selectPopItemList" resultMap="sujuView">
+		<![CDATA[ select Item_Code, Item_Name
+		  from SM_BIM_Ite_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
