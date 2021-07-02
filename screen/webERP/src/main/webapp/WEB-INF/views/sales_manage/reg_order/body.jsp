@@ -183,14 +183,18 @@ String parent = request.getParameter("itemNumber");
     	$('input[name=bus_code]').val(code);
     	$('input[name=bus_name]').val(name);
     }
-	function setChildView(code, name) {
+	function setChildView(code, name , stand, unit) {
     	$('input[id=itemCode]').val(code);
     	$('input[id=itemName]').val(name);
+    	$('input[id=standard]').val(stand);
+    	$('input[id=inventoryUnit]').val(unit);
     }
 	
-	function setChildView2(code, name) {
+	function setChildView2(code, name , stand, unit) {
     	$('input[id=itemCode1]').val(code);
-    	$('input[id=itemName2]').val(name);
+    	$('input[id=itemName1]').val(name);
+    	$('input[id=standard1]').val(stand);
+    	$('input[id=inventoryUnit1]').val(unit);
     }
 	
 	view_button.onclick = function(){
@@ -230,8 +234,8 @@ String parent = request.getParameter("itemNumber");
         			html += '<td><input type = "checkbox" name="subListStoVO['+i+'].no" class="content2" value = "'+data[i].no+'"></td>';  	
         			html += '<td><a href="javascript:searchItem()"><input type = "text" id = "itemCode" name = "subListStoVO['+i+'].itemCode" readonly value = "'+data[i].itemCode +'"></a></td>';  		
         			html += '<td><a href="javascript:searchItem()"><input type = "text" id = "itemName" name = "subListStoVO['+i+'].itemName" readonly value = "'+data[i].itemName +'"></a></td>';  			
-        			html += '<td><input type = "text" name = "subListStoVO['+i+'].standard" value = "'+data[i].standard+'"></td>';  			
-        			html += '<td><input type = "text" name = "subListStoVO['+i+'].inventoryUnit" value = "'+data[i].inventoryUnit+'"></td>';  			
+        			html += '<td><input type = "text"  id = "standard" name = "subListStoVO['+i+'].standard" value = "'+data[i].standard+'"></td>';  			
+        			html += '<td><input type = "text" id = "inventoryUnit" name = "subListStoVO['+i+'].inventoryUnit" value = "'+data[i].inventoryUnit+'"></td>';  			
         			html += '<td><input type = "date" name = "subListStoVO['+i+'].dueDate" value = "'+data[i].dueDate+'"></td>';  			
         			html += '<td><input type = "text" name = "subListStoVO['+i+'].ordersQuantity" value = "'+data[i].ordersQuantity+'"></td>';  			
         			html += '<td><input type = "text" name = "subListStoVO['+i+'].productPrice" value = "'+data[i].productPrice+'"></td>';  			
@@ -340,9 +344,9 @@ String parent = request.getParameter("itemNumber");
         var tbody2html = '<tr class="newSubSujuRow">'
             + '<td><input type="checkbox" name="content2" /></td>'
             + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemCode1" name="subSujuList['+ tbody3Index +'].itemCode" readonly value=""/></a></td>'
-            + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemName2" name="subSujuList['+ tbody3Index +'].itemName" readonly value=""/></a></td>'
-            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].standard" value=""/></td>'
-            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].inventoryUnit" value=""/></td>'
+            + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemName1" name="subSujuList['+ tbody3Index +'].itemName" readonly value=""/></a></td>'
+            + '<td><input type="text" id = "standard1" name="subSujuList['+ tbody3Index +'].standard" value=""/></td>'
+            + '<td><input type="text" id = "inventoryUnit1" name="subSujuList['+ tbody3Index +'].inventoryUnit" value=""/></td>'
             + '<td><input type="date" name="subSujuList['+ tbody3Index +'].dueDate" value=""/></td>'
             + '<td><input type="text" name="subSujuList['+ tbody3Index +'].ordersQuantity" value=""/></td>'
             + '<td><input type="text" name="subSujuList['+ tbody3Index +'].productPrice" value=""/></td>'

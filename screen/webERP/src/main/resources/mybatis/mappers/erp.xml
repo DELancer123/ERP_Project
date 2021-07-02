@@ -1631,7 +1631,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code ,Item_Name  
+		<![CDATA[ select Item_Code ,Item_Name  , Standard ,Inventory_Unit 
 		  from SM_BIM_Ite_Reg  
 		]]>
 	</select>
@@ -1644,7 +1644,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name , Standard ,Inventory_Unit 
 		  from SM_BIM_Ite_Reg
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>

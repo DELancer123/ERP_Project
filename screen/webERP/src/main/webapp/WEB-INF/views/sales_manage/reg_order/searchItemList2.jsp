@@ -64,7 +64,10 @@ a {
 					</tr>
 					<tr>
 						<td>품목명</td>
-						<td><input type="text" id="name" name="name" class="name" /></td>
+						<td><input type="text" id="name" name="name" class="name" />
+						<input type="hidden" id="stand" name="stand" class="stand" />
+						<input type="hidden" id="unit" name="unit" class="unit" />
+						</td>
 					</tr>
 				</table>
 				<div id="button">
@@ -83,7 +86,7 @@ a {
 					<c:forEach var="type" items="${nameView}">
 						<tr align="center">
 							<td><a
-								href="javascript:popFunction('${type.itemCode }','${type.itemName }')">${type.itemCode}</a></td>
+								href="javascript:popFunction('${type.itemCode }','${type.itemName }','${type.standard }','${type.inventoryUnit }')">${type.itemCode}</a></td>
 							<td><a href="#">${type.itemName}</a></td>
 						</tr>
 					</c:forEach>
@@ -96,14 +99,18 @@ a {
 			var submit_button = document.getElementById("submit");
 			var text_code = document.getElementById("code");
 			var text_name = document.getElementById("name");
+			var text_stand = document.getElementById("stand");
+			var text_unit = document.getElementById("unit");
 
-			function popFunction(code, name) {
+			function popFunction(code, name , stand, unit) {
 				text_code.value = code;
 				text_name.value = name;
+				text_stand.value = stand;
+				text_unit.value = unit;
 			}
 
 			function submitClick(form) {
-				opener.setChildView2(text_code.value, text_name.value);
+				opener.setChildView2(text_code.value, text_name.value ,text_stand.value,text_unit.value );
 				window.close();
 			}
 		</script>
@@ -144,6 +151,8 @@ a {
 														+ '</a></td>';
 												str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].itemCode+'"></td>';
 												str += '<td><input type = "hidden" id="iName" value = "'+data[i].itemName+'" ></td>';
+												str += '<input type = "hidden" id="iStand" value = "'+data[i].standard+'" >';
+												str += '<input type = "hidden" id="iUnit" value = "'+data[i].inventoryUnit+'" >';
 												str += '</tr>';
 												//반복문을 사용하여 searchItem table에 추가
 												$("#searchItem").append(str);
@@ -164,9 +173,13 @@ a {
 
 			var initCode = $(this).find('input[id=iCode]').val();
 			var initName = $(this).find('input[id=iName]').val();
+			var initStand = $(this).find('input[id=iStand]').val();
+			var initUnit = $(this).find('input[id=iUnit]').val();
 			//var inputCode = document.getElementById('iCode').value;	
 			$('input[name=code]').val(initCode);
 			$('input[name=name]').val(initName);
+			$('input[name=stand]').val(initStand);
+			$('input[name=unit]').val(initUnit);
 		});
 	</script>
 
