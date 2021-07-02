@@ -46,6 +46,8 @@ public interface StockManageService {
 
 	void insertNewRow(StockManageVO stVO);
 
+	void updateSuju(StockManageVO stVO);
+
 
 
 

@@ -121,6 +121,12 @@ public class StockManageServiceImpl implements StockManageService{
 		stockManageDAO.insertNewRow(stVO);
 	}
 
+	@Override
+	public void updateSuju(StockManageVO stVO) {
+		// TODO Auto-generated method stub
+		stockManageDAO.updateSuju(stVO);
+	}
+
 
 
 
