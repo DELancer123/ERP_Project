@@ -258,10 +258,6 @@ function isEmpty(str){
  		var startDate = new Date().toISOString().substring(0,10);;
     	var endDate = new Date().toISOString().substring(0,10);;
     	
-  		  var performanceQuantity = document.getElementById("performanceQuantity").value;
-  		  $('#performanceDate').change(function (){
-              var date = $('#performanceDate').val();
-              performanceDate = date;
     	$('#searchStartDate').change(function (){
             var date = $('#searchStartDate').val();
             startDate = date;
@@ -304,6 +300,10 @@ function isEmpty(str){
 		  }
   	}
       
+  		  $('#performanceDate').change(function (){
+              var date = $('#performanceDate').val();
+              performanceDate = date;
+          });
       /* 저장 버튼 기능 구현 */
       
         function newRow(){//잠시 보류
@@ -317,7 +317,7 @@ function isEmpty(str){
   		    linkPath.setAttribute("type","hidden");
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
-          });
+  		  var performanceQuantity = document.getElementById("performanceQuantity").value;
    		   if (isEmpty(performanceDate)){
 		      		alert("날짜값이 비어져있습니다. 값을 추가해주세요!");
 		      		document.getElementById("performanceDate").focus();
