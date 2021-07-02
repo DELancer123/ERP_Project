@@ -307,10 +307,16 @@ public class StockManageVO {
 	int vatPrice;
 	Date expectedDate;
 	String inspection;
+	String insertNo;
 	
 	
 	
-	
+	public String getInsertNo() {
+		return insertNo;
+	}
+	public void setInsertNo(String insertNo) {
+		this.insertNo = insertNo;
+	}
 	public Date getDueDate() {
 		return dueDate;
 	}
@@ -356,7 +362,14 @@ public class StockManageVO {
 
 
 	private List<StockManageVO> sujuVO;
+	private List<StockManageVO> subSujuList;
 
+	public List<StockManageVO> getSubSujuList() {
+		return subSujuList;
+	}
+	public void setSubSujuList(List<StockManageVO> subSujuList) {
+		this.subSujuList = subSujuList;
+	}
 	public List<StockManageVO> getSujuVO() {
 		return sujuVO;
 	}

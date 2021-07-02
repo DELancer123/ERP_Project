@@ -44,6 +44,8 @@ public interface StockManageService {
 
 	void delsujuSub(String[] numberary);
 
+	void insertNewRow(StockManageVO stVO);
+
 
 
 

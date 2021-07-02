@@ -47,5 +47,7 @@ public interface StockManageDAO {
 //
 //	List<StockManageVO> SearchStockAll();
 
+	void insertNewRow(StockManageVO stVO);
+
 
 }

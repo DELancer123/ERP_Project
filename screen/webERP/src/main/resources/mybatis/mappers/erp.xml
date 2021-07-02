@@ -1661,6 +1661,23 @@ ORDER BY out.workordernumber]]>
 		]]>
 	</delete>
 	
+	<insert id="insertSujuRow" parameterType="StockManageVO">
+		<![CDATA[
+		 insert into CSM_SM_Ord_Reg
+		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'),#{ordersdate}, #{general_Customer_Code}, #{tax}, #{note})
+		]]>  
+	</insert>
+	
+	<insert id="insertSujuRowSub" parameterType="StockManageVO">
+		<![CDATA[
+		 insert into CSM_SM_COR_Reg
+		 values('300',#{code}, #{itemCode}, #{itemName}, #{standard},#{inventoryUnit},#{dueDate},#{ordersQuantity},#{productPrice},#{vatPrice},#{expectedDate},#{inspection},'예외',#{busCode} )
+		]]>  
+	</insert>
+	
+	
+	
+	
 	<!-- 메뉴검색바  -->
 	<resultMap id="menuView" type="StockManageVO">
 		<result property="menu" column="menu" />
