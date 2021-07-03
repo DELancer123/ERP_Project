@@ -90,10 +90,8 @@
     			text_name.value = name;
     	}
     	submit_button.onclick = function(){
-    		var url = window.opener.document.location.href;
-			var url_arr = url.split('?');
-    		opener.parent.location=url+'&processCode='+text_code.value;
-    		window.close();
+    		opener.setChildProcessCodeValue(text_code.value, text_name.value);
+			window.close();
     	}
     </script>
     </form>

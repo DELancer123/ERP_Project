@@ -401,6 +401,51 @@ function isEmpty(str){
 
         
         }
+        
+        function setChildProcessCodeValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);  		  
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('processCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&processCode=' + name;
+          }
+          else{
+          	URLSearch.set('processCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
+        
+        function setChildWorkplaceCodeValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);  		  
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('workplaceCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&workplaceCode=' + name;
+          }
+          else{
+          	URLSearch.set('workplaceCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
+        
+        function setChildHouseCodeValue(name){
+        	  
+        	  const URLSearch = new URLSearchParams(location.search);  		  
+    		  const newParam = URLSearch.toString();
+            if(URLSearch.get('houseCode') == null){
+    		window.location.href = location.pathname +'?'+newParam + '&houseCode=' + name;
+            }
+            else{
+            	URLSearch.set('houseCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+            
+        }
 	/*  ÆË¾÷ Á¶È¸ºÎ*/
   
  	function houseCodeSearch(){
