@@ -127,7 +127,10 @@
     	  
         	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
     			}
-                
+                function setChildView(code, name) {
+                	$('input[id=item_code]').val(code);
+                	$('input[id=item_name]').val(name);
+                }
             	
                 </script>
 </body>

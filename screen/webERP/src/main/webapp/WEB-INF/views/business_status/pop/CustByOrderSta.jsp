@@ -82,6 +82,7 @@
 				</table>
 			</div>
 		</div>
+		<script src="<c:url value="/js/egovframework/mbl/cmm/jquery-1.11.2.min.js" />"></script>
 	 <script>
 	    var submit_button = document.getElementById("submit");
 		var text_code = document.getElementById("code");
@@ -97,7 +98,7 @@
 		window.close();
 	}
 	submit_button.onclick = function(){
-		var url = window.opener.document.location.href;
+		var url = window.opener.do cument.location.href;
 		var url_arr = url.split('?');
 		opener.parent.location=url_arr[0] + '?custCode='+text_code.value+'&&custName='+text_name.value;
 		window.close();

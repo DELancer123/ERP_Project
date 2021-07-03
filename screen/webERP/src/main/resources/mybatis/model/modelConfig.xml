@@ -40,10 +40,7 @@
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.bomVO" alias="bomVO" />
 		<typeAlias type="com.myspring.productionBaseInfo.BOM.vo.RegOutSourcingPriceVO" alias="outpriVO" />
 		<typeAlias type="com.myspring.productionBaseInfo.regDefectiveType.vo.DefectiveTypeVO" alias="defVO" />
-		<typeAlias type="com.myspring.Login.vo.LoginVO" alias="loginVO" />
-		<!-- 판매계획 파트 -->
-		<!-- <typeAlias type="com.myspring.salesmanage.pop.itemview.vo.ItemviewVO" alias="itemviewVO" /> -->
-		
+		<typeAlias type="com.myspring.Login.vo.LoginVO" alias="loginVO" />		
 		<!-- salesplan -->
 			<typeAlias type="com.myspring.salesmanage.itemview.vo.ItemViewVO" alias="itemviewVO" />
 			<typeAlias type="com.myspring.salesmanage.cor.vo.CorVO"  alias="corVO" />

@@ -192,7 +192,7 @@
             </div>
            </container3>
     <script src="http://code.jquery.com/jquery-latest.js"></script> <!--제이쿼리최신버젼가져옴-->
-    <script>
+   <script type="text/javascript">
         $(document).ready(function(){
         
         $('ul.tabs li').click(function(){
@@ -205,7 +205,7 @@
             $("#"+tab_id).addClass('current');
         })
     
-    })
+    });
     </script>
 </body>
 </html>

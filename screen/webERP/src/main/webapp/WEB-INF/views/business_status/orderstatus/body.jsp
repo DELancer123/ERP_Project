@@ -93,10 +93,6 @@
     	  
         	  openWindowPop('http://localhost:8090/webERP/member/ordercodehelper.do','CustOrderSta');  
     }
-          function search2(){
-        	  
-        	  openWindowPop('http://localhost:8090/webERP/business_status/pop/ItemByOrderSta.do','ItemOrderSta');  
-    }
     
     </script>
 </body>

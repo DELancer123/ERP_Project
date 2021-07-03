@@ -66,7 +66,7 @@
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content" onclick='getCheckboxValue(event)'/></td>
                     <td><a href="javascript:popFunction1('${supForward.relCode}','${supForward.relDate}')">
-                    	<input type="text" class = "relCode" name="ListVO[${status.index}].relCode" value="${supForward.relCode}" ondblclick="itemview()" readonly/></a></td>
+                    	<input type="text" class = "relCode" name="ListVO[${status.index}].relCode" value="${supForward.relCode}" readonly/></a></td>
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
                     <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
                     <input type="hidden" value="${param.general_Customer_Name}"></td>
@@ -124,7 +124,7 @@
 			text_name.value = name;
 			
 	}
-    	function openWindowPop(url, name){
+           	function openWindowPop(url, name){
 			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
 			window.open(url, name, options);
 		}
