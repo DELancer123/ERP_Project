@@ -178,7 +178,7 @@
             <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
+                        <td> </td>
                         <td>작업실적번호</td>
                         <td>자재사용유무</td>
                         <td>공정</td>

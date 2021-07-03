@@ -169,8 +169,7 @@
             <div id="workOrderInfo">
             <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
-                    <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>                        
+                    <thead>                                                
                         <td>품번</td>
                         <td>품명</td>
                         <td>규격</td>
@@ -182,8 +181,7 @@
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <tbody>
   					<c:forEach var="detail" items="${detailList}" varStatus="status">
-  					 <tr>
-  					 	<td><input type="checkbox" name="content2"/></td>                        
+  					 <tr>  					 	                 
                         <td><input type="text" name="DetailVO[${status.index }].itemCode" value="${detail.itemCode }" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].itemName" value="${detail.itemName}" readonly/></td>
                         <td><input type="text" name="DetailVO[${status.index }].standard" value="${detail.standard}" readonly/></td>

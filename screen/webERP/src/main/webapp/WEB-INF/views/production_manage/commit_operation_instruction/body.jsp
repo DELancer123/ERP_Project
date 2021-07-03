@@ -166,8 +166,8 @@
             <div id="workOrderInfo">
             <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
-                    <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
+                    <thead>        
+                    	<td> </td>               
                         <td>没备老</td>
                         <td>前锅</td>
                         <td>前疙</td>
