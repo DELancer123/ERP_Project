@@ -119,13 +119,13 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" name="ListVO[${status.index}].order_no" value='${OrderClosing.order_no}' readonly /></td>
 				<td><input type="date" name="ListVO[${status.index}].order_date" value='${OrderClosing.order_date}' /></td>
 				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value='${OrderClosing.general_Customer_Name}' readonly /></td>
-			<td style="width: 13px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
+				<td style="width: 33px;"><input type="text" value='${OrderClosing.sequence}' readonly style="width: 100%" /></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${OrderClosing.item_Code}'  readonly  /></td>
 				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${OrderClosing.item_Name}' readonly  /></td>
 				<td><input type="text" name="ListVO[${status.index}].standard" value='${OrderClosing.standard}' style="width: 100%" readonly /></td>
-				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' style="width: 100%" readonly /></td>
+				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${OrderClosing.inventory_unit}' readonly /></td>
 				<td><input type="text" name="ListVO[${status.index}].order_quantity" value='${OrderClosing.order_quantity}' /></td>
-				<td><input type="text" name="ListVO[${status.index}].deadline" value='${OrderClosing.deadline}' /></td>
+				<td><input type="text" name="ListVO[${status.index}].deadline" value='${OrderClosing.deadline}' readonly/></td>
 				<td><input type="text" name="ListVO[${status.index}].cost" value='${OrderClosing.cost}' /></td>
 				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.cost}' readonly/></td>
 				<td><input type="text" value = '${OrderClosing.order_quantity*OrderClosing.cost*0.1}' readonly/></td>
@@ -137,15 +137,15 @@ String sequence = (String) request.getAttribute("sequence");
 					<td></td>
 				<td><input type="text" id="order_no"  value='${order_no}' readonly/></td>
 				<td><input type="date" id="order_date" name="ListVO[${fn:length(ClosingList) }].order_date" value='${order_date}' /></td>
-		<td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(ClosingList) }].general_Customer_Name" value='${param.general_Customer_Name}' ondblclick="search2()" readonly style="background-color:#E6E6FA"/></td>
+		<td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(ClosingList) }].general_Customer_Name" value='${general_Customer_Name}' ondblclick="search2()" readonly style="background-color:#E6E6FA"/></td>
 				<td><input type="text" id="sequence"  value='${sequence}' style="width: 100%" readonly/></td>
-				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
-				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${param.item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
-				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${param.standard}' style="width: 100%" /></td>
-				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${param.inventory_Unit}' style="width: 100%" ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
+				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
-				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' /></td>
-				<td><input type="text" id="cost" name="ListVO[${fn:length(ClosingList) }].cost" value='${param.cost}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' readonly/></td>
+				<td><input type="text" id="cost" name="ListVO[${fn:length(ClosingList) }].cost" value='${cost}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
  				<td><input type="text" id="cost" value = '${OrderClosing.order_quantity*OrderClosing.cost}' readonly/></td>
 				<td><input type="text" id="cost" value = '${OrderClosing.order_quantity*OrderClosing.cost*0.1}' readonly/></td>
 				<td><input type="text" id="cost" value = '${OrderClosing.order_quantity*OrderClosing.cost+(OrderClosing.order_quantity*OrderClosing.cost*0.1)}' readonly/></td> 

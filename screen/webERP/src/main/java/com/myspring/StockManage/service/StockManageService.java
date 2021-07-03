@@ -44,6 +44,14 @@ public interface StockManageService {
 
 	void delsujuSub(String[] numberary);
 
+	void insertNewRow(StockManageVO stVO);
+
+	void updateSuju(StockManageVO stVO);
+
+	List searchitemList1();
+
+	List<StockManageVO> searchPopItem(String itemName);
+
 
 
 

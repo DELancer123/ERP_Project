@@ -178,7 +178,7 @@
             <form id="detailForm" mehtod="get" commandName="DetailVO">
                 <table id="workOrderTable">
                     <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
+                        <td> </td>
                         <td>작업실적번호</td>
                         <td>자재사용유무</td>
                         <td>공정</td>
@@ -300,6 +300,10 @@ function isEmpty(str){
 		  }
   	}
       
+  		  $('#performanceDate').change(function (){
+              var date = $('#performanceDate').val();
+              performanceDate = date;
+          });
       /* 저장 버튼 기능 구현 */
       
         function newRow(){//잠시 보류
@@ -314,10 +318,6 @@ function isEmpty(str){
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
   		  var performanceQuantity = document.getElementById("performanceQuantity").value;
-  		  $('#performanceDate').change(function (){
-              var date = $('#performanceDate').val();
-              performanceDate = date;
-          });
    		   if (isEmpty(performanceDate)){
 		      		alert("날짜값이 비어져있습니다. 값을 추가해주세요!");
 		      		document.getElementById("performanceDate").focus();
@@ -400,6 +400,51 @@ function isEmpty(str){
 	          	}
 
         
+        }
+        
+        function setChildProcessCodeValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);  		  
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('processCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&processCode=' + name;
+          }
+          else{
+          	URLSearch.set('processCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
+        
+        function setChildWorkplaceCodeValue(name){
+      	  
+      	  const URLSearch = new URLSearchParams(location.search);  		  
+  		  const newParam = URLSearch.toString();
+          if(URLSearch.get('workplaceCode') == null){
+  		window.location.href = location.pathname +'?'+newParam + '&workplaceCode=' + name;
+          }
+          else{
+          	URLSearch.set('workplaceCode', name);
+          	const newParam = URLSearch.toString();
+          	window.location.href = location.pathname +'?'+newParam;
+          }
+          
+      }
+        
+        function setChildHouseCodeValue(name){
+        	  
+        	  const URLSearch = new URLSearchParams(location.search);  		  
+    		  const newParam = URLSearch.toString();
+            if(URLSearch.get('houseCode') == null){
+    		window.location.href = location.pathname +'?'+newParam + '&houseCode=' + name;
+            }
+            else{
+            	URLSearch.set('houseCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+            
         }
 	/*  팝업 조회부*/
   

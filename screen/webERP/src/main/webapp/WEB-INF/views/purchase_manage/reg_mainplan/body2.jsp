@@ -115,8 +115,8 @@
  				<td><input type="text" name="ListVO[${status.index}].item_Code" value = '${mainplan.item_Code}'readonly  /></td>					
  				<td><input type="text" name="ListVO[${status.index}].item_Name" value = '${mainplan.item_Name}'  readonly/></td>				
  				<td><input type="text" name="ListVO[${status.index}].standard" value = '${mainplan.standard}' style="width:100%" /></td>				
- 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' style="width:100%" readonly/></td>				
-  		 	<td style="width:13px;"><input type="text"  value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
+ 				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value = '${mainplan.inventory_unit}' readonly/></td>				
+  		 	<td style="width:33px;"><input type="text"  value = '${mainplan.sequence}'readonly style="width:100%"/></td> 		 				
  				<td><input type="text" name="ListVO[${status.index}].general_Customer_Name" value = '${mainplan.general_Customer_Name}'  readonly/></td>				
  				<td><input type="date" name="ListVO[${status.index}].expectedDate" value = '${mainplan.expectedDate}' /></td>				
  				<td><input type="date" name="ListVO[${status.index}].dueDate" value = '${mainplan.dueDate}' /></td>				
@@ -131,8 +131,8 @@
     	<td><input type="text" id="item_Code" name="ListVO[${fn:length(MPSView) }].item_Code" value='${param.item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
     	<td><input type="text" id="item_Name" name="ListVO[${fn:length(MPSView) }].item_Name" value='${param.item_Name}'  ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(MPSView) }].standard" value='${param.standard}'readonly style="width:100%"/></td>
-    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(MPSView) }].inventory_unit" value='${param.inventory_unit}' style="width:100%" /></td>
-    	<td><input type="text" id="sequence" value='${inputSeq}' readonly style="width:100%"/></td>
+    	<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(MPSView) }].inventory_unit" value='${param.inventory_unit}'/></td>
+    	<td style="width:33px;"><input type="text" id="sequence" value='${inputSeq}' readonly style="width:100%"/></td>
    <td><input type="text" id="general_Customer_Name" name="ListVO[${fn:length(MPSView) }].general_Customer_Name" value='${param.general_Customer_Name}' ondblclick="search()" readonly style="background-color:#E6E6FA"/></td>
     	<td><input type="date" id="expectedDate" name="ListVO[${fn:length(MPSView) }].expectedDate" value='${expectedDate}'/></td>
     	<td><input type="date" id="dueDate" name="ListVO[${fn:length(MPSView) }].dueDate" value='${dueDate}'/></td>
@@ -204,7 +204,7 @@ function newRow(){
 
     if(plandate.value == ""){
        alert("계획일은 필수 입력사항입니다.");
-       return planDate.focus();
+       return plandate.focus();
     }else if(general_Customer_Name.value ==""){
     	alert("회사명은 필수 입력사항입니다.");
     	return general_Customer_Name.focus();

@@ -115,6 +115,30 @@ public class StockManageServiceImpl implements StockManageService{
 		stockManageDAO.delsujuSub(numberary);
 	}
 
+	@Override
+	public void insertNewRow(StockManageVO stVO) {
+		// TODO Auto-generated method stub
+		stockManageDAO.insertNewRow(stVO);
+	}
+
+	@Override
+	public void updateSuju(StockManageVO stVO) {
+		// TODO Auto-generated method stub
+		stockManageDAO.updateSuju(stVO);
+	}
+
+	@Override
+	public List searchitemList1() {
+		List popList = null;
+		popList = stockManageDAO.searchitemList1();
+		return popList;
+	}
+
+	@Override
+	public List<StockManageVO> searchPopItem(String itemName) {
+		return stockManageDAO.searchPopItem(itemName);
+	}
+
 
 
 

@@ -110,12 +110,12 @@ String sequence = (String) request.getAttribute("sequence");
 <form id="MRP" mehtod="get" commandName="ListVO">
 	<table id="MRPTable">
 		<thead align="center" style="background-color: gray">
-		<td><input type="checkbox" name="content" /></td>
+			<td>구분</td>
+			<td>모품목</td>
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
 			<td>납기일</td>
-			<td>순서</td>
 			<td>예정발주일</td>
 			<td>예정수량</td>
 			<td>단위</td>
@@ -123,15 +123,15 @@ String sequence = (String) request.getAttribute("sequence");
 		<tbody>
 		<c:forEach var="mrp" items="${mrpList}" varStatus="status">
 			<tr align="center">
-			<td><input type="checkbox" name="content" value="${mrp.sequence}" /></td>
-			<td><input type="text" name="ListVO[${status.index}].itemNumber" value='${mrp.bomVO.itemNumber}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].itemName" value='${mrp.bomVO.itemName}' readonly/></td>
-				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.bomVO.standard}' readonly/></td>
-				<td><input type="date" name="ListVO[${status.index}].dueDate" value='${mrp.mainplanVO.dueDate}' readonly /></td>
-	 	<td style="width:13px;"><input type="text" name="ListVO[${status.index}].sequence" value='${mrp.mainplanVO.sequence}' readonly  style="width:100%"/></td>
-				<td><input type="date" name="ListVO[${status.index}].expectedDate" value='${mrp.mainplanVO.expectedDate}' readonly/></td>
- 				<td><input type="text" name="ListVO[${status.index}].precisionQuantity" value='${mrp.bomVO.precisionQuantity+mrp.mainplanVO.plan_quantity}'/></td>
-				<td><input type="text" name="ListVO[${status.index}].unit" value='${mrp.bomVO.unit}' readonly  style="width:100%"/></td>
+				<td><input type="text" name="ListVO[${status.index}].division" value='${mrp.bomVO.division}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].parent" value='${mrp.bomVO.parent}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Code" value='${mrp.item_Code}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].item_Name" value='${mrp.item_Name}' readonly/></td>
+				<td><input type="text" name="ListVO[${status.index}].standard" value='${mrp.standard}' readonly/></td>
+				<td><input type="date" name="ListVO[${status.index}].dueDate" value='${mrp.dueDate}' readonly /></td>
+				<td><input type="date" name="ListVO[${status.index}].expectedDate" value='${mrp.expectedDate}' readonly/></td>
+ 				<td><input type="text" name="ListVO[${status.index}].expected_quantity" value='${mrp.expected_quantity}'/></td>
+				<td><input type="text" name="ListVO[${status.index}].inventory_unit" value='${mrp.inventory_unit}' readonly/></td>
 			</tr>	
 		</c:forEach>
 		</tbody>

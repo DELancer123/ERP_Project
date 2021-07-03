@@ -11,6 +11,13 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script>
+window.onload = function(){
+    l_sub3.style.display = "block";
+      l_sub3.style.position = "relative";
+      l_sub3.style.marginLeft = "10px";
+ }
+</script>
 <style>
 #contents1{
             position: absolute;

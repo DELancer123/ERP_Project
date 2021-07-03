@@ -183,24 +183,24 @@
    
    <definition name="/member/systemmain" extends="baseLayout">
       <put-attribute name="title" value="시스템관리메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/SystemAdmin/side.jsp" />
    </definition>
    
    <definition name="/member/businessmain" extends="baseLayout">
       <put-attribute name="title" value="영엽관리메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/sales_manage/side.jsp" />
    </definition>
    
    <definition name="/member/purchasemain" extends="baseLayout">
       <put-attribute name="title" value="구매/자재관리메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/purchase_manage/side.jsp" />
    </definition>
    <definition name="/member/productionmain" extends="baseLayout">
       <put-attribute name="title" value="생산메인" />
-      <put-attribute name="body" value="" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/production_manage/side.jsp" />
    </definition>
    <definition name="/member/processinwork" extends="baseLayout">
@@ -946,6 +946,16 @@
    </definition>
    
    <!-- 수주등록 거래처등록팝 -->
+   <definition name="/member/searchitemList1" template="/WEB-INF/views/sales_manage/reg_order/searchItemList1.jsp">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <definition name="/member/searchitemList2" template="/WEB-INF/views/sales_manage/reg_order/searchItemList2.jsp">
+      <put-attribute name="title" value="팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
    <definition name="/member/searchcus" template="/WEB-INF/views/sales_manage/reg_order/searchcustomer.jsp">
       <put-attribute name="title" value="팝업" />
       <put-attribute name="body" value="" />

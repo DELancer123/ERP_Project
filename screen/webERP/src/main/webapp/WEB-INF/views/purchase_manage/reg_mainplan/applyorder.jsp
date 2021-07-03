@@ -92,7 +92,7 @@ a {
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
 					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.general_Customer_Name }'
-					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
+					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.ordersQuantity }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
       					  <td><a href="#">${MpsOS.ordersQuantity}</a></td>
       					  <td><a href="#">${MpsOS.expectedDate}</a></td>
@@ -166,13 +166,13 @@ $.ajax({
 		for(var i = 0 ; i<data.length ; i++){
 			var str = '';
 				str += 	'<tr align="center" id = "yahoo">';
-				str += 	'<td>품번: </td>';
+				str += 	'<td>품번</td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Code + '</a></td>';  
-				str += 	'<td>품명 :</td>';
+				str += 	'<td>품명</td>';
 				str +=  '<td><a href = "#">'+ data[i].item_Name + '</a></td>';  
-				str += 	'<td>주문수량 :</td>';
+				str += 	'<td>주문수량</td>';
 				str +=  '<td><a href = "#">'+ data[i].ordersQuantity + '</a></td>';  
-				str += 	'<td>예정발주일 :</td>';
+				str += 	'<td>예정발주일</td>';
 				str +=  '<td><a href = "#">'+ data[i].expectedDate + '</a></td>';  
 				str +=  '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].item_Code+'"></td>';  
 				str +=  '<td><input type = "hidden" id="iName" value = "'+data[i].item_Name+'" ></td>';  

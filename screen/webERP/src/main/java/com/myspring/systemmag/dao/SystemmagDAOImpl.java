@@ -116,7 +116,6 @@ public class SystemmagDAOImpl implements SystemmagDAO {
 	public List allviewItem(String item_code) throws DataAccessException {
 		List<itemVO> itemList = null;
 		itemList = sqlSession.selectList("mappers.erp.selectAllRegitemList",item_code);
-		System.out.println("itemList123: "+item_code);
 		return itemList;
 	}
 	//ǰ��(������ȸ)

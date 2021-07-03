@@ -16,6 +16,7 @@ String parent = request.getParameter("itemNumber");
 <head>
 <meta charset="UTF-8">
 <title>수주등록</title>
+
 <style>
 #contents1 {
 	position: absolute;
@@ -62,6 +63,13 @@ String parent = request.getParameter("itemNumber");
 	width: 100%;
 }
 </style>
+<script>
+   window.onload = function(){
+      l_sub1.style.display = "block";
+        l_sub1.style.position = "relative";
+        l_sub1.style.marginLeft = "10px";
+   }
+</script>
 </head>
 <body>
 	<container1 id=contents1>
@@ -74,12 +82,14 @@ String parent = request.getParameter("itemNumber");
 					style="width: 100%;" value="${bus_code}" /></td>
 				<td><a href="javascript:search1()"><i class="fas fa-search"
 						style="color: blue;"></i></a></td>
-				<td><input type="text" disabled value="${bus_name}"}></td>
+				<td><input type="text" readonly name = "bus_name" value="${bus_name}"></td>
+				
 			</tr>
 
 		</table>
 	</form>
 	</container1>
+<form:form commandName="stVO" id="insertForm" action="${pageContext.request.contextPath }/member/insertNewRow.do" method="get" acceptCharset="UTF-8">
 	<container2 id="contents2">
 	<table id="view">
 		<thead>
@@ -97,12 +107,12 @@ String parent = request.getParameter("itemNumber");
 					<td><input type="checkbox" value="${item.ordersNum }"
 						name="content" /></td>
 					<td><input type="text" class="ordersNum" 
-						name="StoVO[${sts.index}].ordersNum" value="${item.ordersNum }" /></td>
+						name="StoVO[${sts.index}].ordersNum" value="${item.ordersNum }" readonly /></td>
 					<td><input type="date" name="StoVO[${sts.index}].ordersdate"
-						value="${item.ordersdate }" /></td>
+						value="${item.ordersdate }"  /></td>
 					<td><input type="text"
 						name="StoVO[${sts.index}].general_Customer_Code"
-						value="${item.general_Customer_Code }" /></td>
+						value="${item.general_Customer_Code }"  readonly /></td>
 					<td><input type="text" name="StoVO[${sts.index}].tax"
 						value='${item.tax }' /></td>
 					<td><input type="text" name="StoVO[${sts.index}].note"
@@ -112,16 +122,16 @@ String parent = request.getParameter("itemNumber");
 				<tr id="insertsuju">
 					<td><input type="checkbox" value="check1" id="check"
 						name="content" /></td>
-					<td><input type="text" id="ordersNum"
-						name="sujuVO[${fn:length(customerList)}].ordersNum" value="" /></td>
+					<td><input type="text" id="ordersNum" class="ordersNum"
+						name="sujuVO[0].ordersNum" readonly value="" /></td>
 					<td><input type="date" id="ordersdate"
-						name="sujuVO[${fn:length(customerList)}].ordersdate" value="" /></td>
+						name="sujuVO[0].ordersdate" value="" /></td>
 					<td><input type="text" id="customerCode"
-						name="sujuVO[${fn:length(customerList)}].General_Customer_Code" value="" /></td>
+						name="sujuVO[0].General_Customer_Code" readonly value="${param.bus_code}" /></td>
 					<td><input type="text" id="tax"
-						name="sujuVO[${fn:length(customerList)}].tax" value="" /></td>
+						name="sujuVO[0].tax" value="" /></td>
 					<td><input type="text" id="note"
-						name="sujuVO[${fn:length(customerList)}].note" value="" /></td>
+						name="sujuVO[0].note" value="" /></td>
 				</tr>
 		</tbody>
 	</table>
@@ -131,7 +141,6 @@ String parent = request.getParameter("itemNumber");
 			<tr>
 			<td style="width: 5%;"><input type="checkbox" name="content1"
 				onclick="selectAll1(this)"></td>
-			<td>코드</td>
 			<td>품번</td>
 			<td>품명</td>
 			<td>규격</td>
@@ -152,11 +161,20 @@ String parent = request.getParameter("itemNumber");
 		</tbody>
 	</table>
 	</container3>
+</form:form>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script>
+	 var tbody3Index = 0;
+	 
 	function search1(){
       	openWindowPop('http://localhost:8090/webERP/member/searchcus.do','searchcus');
 }
+	function searchItem(){
+		openWindowPop('http://localhost:8090/webERP/member/searchitemList1.do','popupItem');
+	}
+	function searchItem2(){
+		openWindowPop('http://localhost:8090/webERP/member/searchitemList2.do','popupItem');
+	}
 	function openWindowPop(url, name){
         var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
         window.open(url, name, options);
@@ -165,6 +183,16 @@ String parent = request.getParameter("itemNumber");
     	$('input[name=bus_code]').val(code);
     	$('input[name=bus_name]').val(name);
     }
+	function setChildView(code, name) {
+    	$('input[id=itemCode]').val(code);
+    	$('input[id=itemName]').val(name);
+    }
+	
+	function setChildView2(code, name) {
+    	$('input[id=itemCode1]').val(code);
+    	$('input[id=itemName2]').val(name);
+    }
+	
 	view_button.onclick = function(){
     	
     	var searchForm = $('#searchForm');
@@ -173,12 +201,16 @@ String parent = request.getParameter("itemNumber");
 	}
 	
 	 var table3 = document.getElementById('table3');
-    
+    var insertNo = '';
+	 
     $('.ordersNum').dblclick(function(e) {
     	
 //	        var checkMoveNum = document.getElementById('moveNum').value;
    //     deleteTbody3();
-        
+   		insertNo = '';
+        if($(this).parent().parent()[0].id != 'insertsuju') {
+        	insertNo = $(this).parent().parent().find('input[class=ordersNum]')[0].value;
+        }
         var code = $(this).val();
     	$.ajax({ type: "GET",
     		url: "/webERP/member/searchsujusub.do",
@@ -189,23 +221,25 @@ String parent = request.getParameter("itemNumber");
     			
     			// id=table3 안의 모든 요소 지우기
     			$("#table3").empty();
+    			tbody3Index = 0;
     			
     		/* 	var tbody4index = 0; */
     			for(var i =0; i<data.length; i++){
     				var html = '';
         			html += '<tr>';
-        			html += '<td><input type = "checkbox" name = "content2" value = "'+data[i].no+'" "></td>';  	
-        			html += '<td><input type = "text" name = ""  value = "'+data[i].code+'" "></td>';  		
-        			html += '<td><input type = "text" name = ""  value = "'+data[i].itemCode +'" "></td>';  		
-        			html += '<td><input type = "text" name = "" value = "'+data[i].itemName +'"></td>';  			
-        			html += '<td><input type = "text" name = "" value = "'+data[i].standard+'"></td>';  			
-        			html += '<td><input type = "text" name = "" value = "'+data[i].inventoryUnit+'"></td>';  			
-        			html += '<td><input type = "date" name = "" value = "'+data[i].dueDate+'"></td>';  			
-        			html += '<td><input type = "text" name = "" value = "'+data[i].ordersQuantity+'"></td>';  			
-        			html += '<td><input type = "text" name = "" value = "'+data[i].productPrice+'"></td>';  			
-        			html += '<td><input type = "text" name = "" value = "'+data[i].vatPrice+'"></td>';  			
-        			html += '<td><input type = "date" name = "" value = "'+data[i].expectedDate+'"></td>';  			
-        			html += '<td><input type = "text" name = "" value = "'+data[i].inspection+'"></td>';  			
+        			html += '<td><input type = "checkbox" name="subListStoVO['+i+'].no" class="content2" value = "'+data[i].no+'"></td>';  	
+        			html += '<td><a href="javascript:searchItem()"><input type = "text" id = "itemCode" name = "subListStoVO['+i+'].itemCode" readonly value = "'+data[i].itemCode +'"></a></td>';  		
+        			html += '<td><a href="javascript:searchItem()"><input type = "text" id = "itemName" name = "subListStoVO['+i+'].itemName" readonly value = "'+data[i].itemName +'"></a></td>';  			
+        			html += '<td><input type = "text" name = "subListStoVO['+i+'].standard" value = "'+data[i].standard+'"></td>';  			
+        			html += '<td><input type = "text" name = "subListStoVO['+i+'].inventoryUnit" value = "'+data[i].inventoryUnit+'"></td>';  			
+        			html += '<td><input type = "date" name = "subListStoVO['+i+'].dueDate" value = "'+data[i].dueDate+'"></td>';  			
+        			html += '<td><input type = "text" name = "subListStoVO['+i+'].ordersQuantity" value = "'+data[i].ordersQuantity+'"></td>';  			
+        			html += '<td><input type = "text" name = "subListStoVO['+i+'].productPrice" value = "'+data[i].productPrice+'"></td>';  			
+        			html += '<td><input type = "text" name = "subListStoVO['+i+'].vatPrice" value = "'+data[i].vatPrice+'"></td>';  			
+        			html += '<td><input type = "date" name = "subListStoVO['+i+'].expectedDate" value = "'+data[i].expectedDate+'"></td>';  			
+        			html += '<td><input type = "text" name = "subListStoVO['+i+'].inspection" value = "'+data[i].inspection+'"></td>';  			
+        			html += '<input type = "hidden" name = "subListStoVO['+i+'].no" value = "'+data[i].no+'">';  			
+        			html += '<input type = "hidden" name = "subListStoVO['+i+'].code"  value = "'+data[i].code+'" ">';  		
         			html += '</tr>';
         			//  id=table3 안에 넣기
         			$("#table3").append(html);
@@ -225,6 +259,33 @@ String parent = request.getParameter("itemNumber");
     $('#save').click(function () {
     	newRow();
     });
+    
+    function newRow() {
+    	var addDate = $('#ordersdate').val();
+    	
+    	var datetime_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/; 
+
+    	if(!datetime_pattern.test(addDate)){
+    		$('#ordersdate').val('2021-12-31');
+    	}
+    	
+    	var busCode = $('#reqInput').val();
+    	
+    	var newForm = $('#insertForm');
+    	$('<input>').attr({
+    		type: 'hidden',
+    		name: 'busCode',
+    		value: busCode
+    	}).appendTo(newForm);
+    	
+    	$('<input>').attr({
+    		type: 'hidden',
+    		name: 'insertNo',
+    		value: insertNo
+    	}).appendTo(newForm);
+    	
+    	newForm.submit();
+    }
     
     function deleteData() {
     	  var no = "";
@@ -272,29 +333,60 @@ String parent = request.getParameter("itemNumber");
     
     
     
-    var tbody3Index = 0;
+   
     
     function addTbody3() {
     	
-        var tbody2html = '<tr>'
+        var tbody2html = '<tr class="newSubSujuRow">'
             + '<td><input type="checkbox" name="content2" /></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="date" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
-            + '<td><input type="date" name="" value=""/></td>'
-            + '<td><input type="text" name="" value=""/></td>'
+            + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemCode1" name="subSujuList['+ tbody3Index +'].itemCode" readonly value=""/></a></td>'
+            + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemName2" name="subSujuList['+ tbody3Index +'].itemName" readonly value=""/></a></td>'
+            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].standard" value=""/></td>'
+            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].inventoryUnit" value=""/></td>'
+            + '<td><input type="date" name="subSujuList['+ tbody3Index +'].dueDate" value=""/></td>'
+            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].ordersQuantity" value=""/></td>'
+            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].productPrice" value=""/></td>'
+            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].vatPrice" value=""/></td>'
+            + '<td><input type="date" name="subSujuList['+ tbody3Index +'].expectedDate" value=""/></td>'
+            + '<td><input type="text" name="subSujuList['+ tbody3Index +'].inspection" value=""/></td>'
+            + '<td><input type="hidden" name="subSujuList['+ tbody3Index +'].code" value=""/></td>'
             + '</tr>';
     	$('#table3').append(tbody2html);
     	
     	tbody3Index++;
     }
-	 
+	
+    
+    $('#update').click(function(){
+    	updateRow();
+    });
+    
+    function updateRow(){
+		var busCode = $('#reqInput').val();
+		
+		$('#insertsuju').empty();
+		$('.newSubSujuRow').remove();
+    	
+    	var newForm = $('#insertForm');
+    	$('<input>').attr({
+    		type: 'hidden',
+    		name: 'busCode',
+    		value: busCode
+    	}).appendTo(newForm);
+    	
+    	$('<input>').attr({
+    		type: 'hidden',
+    		name: 'insertNo',
+    		value: insertNo
+    	}).appendTo(newForm);
+    	
+    	
+    	newForm.attr("action", "${contextPath}/member/updateSuju.do");
+    	newForm.submit();
+    	 
+    	
+    }
+    
 	</script>
 </body>
 </html>
