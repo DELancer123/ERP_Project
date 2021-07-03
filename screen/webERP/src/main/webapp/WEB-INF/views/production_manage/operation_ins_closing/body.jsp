@@ -151,22 +151,7 @@
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly /></td>
                      </tr>
-                     </c:forEach>
-                     <!-- 
-                     <tr>
-                        <td><input type="checkbox" value = "check1" name="content"/></td>
-                        <td><input type="text" id="workOrderNumber" name="ListVO[${fn:length(infoList)}].workOrderNumber" readonly /></td>
-                        <td><input type="date" id="instructionDate" name="ListVO[${fn:length(infoList)}].instructionDate" value="${param.workDate }"/></td>
-                        <td><input type="date" id="dueDate" name="ListVO[${fn:length(infoList)}].dueDate" value="${param.workDate }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].itemCode" value="${param.itemCode }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].itemName" value="${param.itemName }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].standard" value="${param.standard }"/></td>
-                        <td><input type="text" name="ListVO[${fn:length(infoList)}].inventoryUnit" value="${param.inventoryUnit }"/></td>
-                        <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicatedQuantity" value="${param.indicatedQuantity }"/></td>
-                        <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
-                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].workplaceCode" readonly/></td>
-                     </tr>
-                     -->
+                     </c:forEach>                   
                 </tbody>
             </table>
             </form>
@@ -177,7 +162,7 @@
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead>
-                        <td><input type="checkbox" name="content2" onclick="selectAll2(this)"/></td>
+                        <td> </td>
                         <td>NO</td>
                         <td>지시일</td>
                         <td>완료일</td>
@@ -210,24 +195,7 @@
                         <td><input type="text" name="DetailVO[${status.index }].inspection" value="${detail.inspection}" readonly/></td>                        
                         <td><input type="text" name="DetailVO[${status.index }].note" value="${detail.note}" readonly/></td>
                         </tr>
-                        </c:forEach>
-                        <!-- 
-                        <tr>
-                        <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="date"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>                        
-                        <td><input type="text"/></td>
-                        <td><input type="text"/></td>
-                    </tr>
-                    -->
+                        </c:forEach>                  
                     </tbody>
                 </table>
             </div>
