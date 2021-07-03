@@ -1295,13 +1295,13 @@ WHERE MAT.FORWARDINGNUMBER = maf.forwardingnumber]]>
 	</insert>
 	<insert id="insertPartItem" parameterType="itemVO">
 	<![CDATA[
-	INSERT INTO PM_SM_Pro_Stock
-VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	INSERT INTO PM_SM_Pro_Stock(no,Item_Code,Item_Name,Standard,Inventory_Unit)
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_Stock'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit})]]>
 	</insert>
 	<insert id="insertProductItem" parameterType="itemVO">
 	<![CDATA[
-	INSERT INTO PM_SM_Pro_FinishedProduct
-VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit} ,null)]]>
+	INSERT INTO PM_SM_Pro_FinishedProduct(no,Item_Code,Item_Name,Standard,Inventory_Unit)
+VALUES (F_GET_NEXT_SEQ('PM_SM_Pro_FProduct'),#{item_Code},#{item_Name}, #{standard},#{inventory_Unit})]]>
 	</insert>
 	<!-- 수정 -->
 	<update id="updateItem" parameterType="itemVO">
