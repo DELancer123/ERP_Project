@@ -2151,26 +2151,49 @@ ORDER BY out.workordernumber]]>
         	<result property="no" column="no" />
         </collection>
 </resultMap>  
+ 
 	<select id="submitSubForward" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
 	</select>
-	<select id="allSubForward" resultMap="Corforward">
-		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
-		 where REL.releaseNum = COR.code order by code]]>
-	</select>
-	<update id="updateSubForward" parameterType="forwardVO">
-		<![CDATA[update CSM_SM_COR_Reg
-		set inspection = #{inspection}, orderOX=#{orderOX}
-		where code = #{relCode}]]>
-	</update>
-	<select id="submitItemForward" parameterType="String" resultMap="Corforward">
+			<select id="submitItemForward" parameterType="String" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
 	</select>
-	
+<resultMap id="Corfor" type="corVO">
+		<id property="no" column="no" />	
+		<result property="relCode" column="code" />
+		<result property="general_Customer_Code" column="General_Customer_Code" />
+        <result property="item_code" column="item_code" />
+        <result property="item_name" column="item_name" />        
+        <result property="stand" column="standard" />
+        <result property="unit" column="inventory_unit" />
+        <result property="dueDate" column="dueDate" />
+        <result property="orderQuant" column="ordersQuantity" />
+        <result property="price" column="productPrice" />
+        <result property="expDate" column="expectedDate" />
+        <result property="inspection" column="inspection" />
+        <result property="orderOX" column="orderOX" />
+        	
+</resultMap> 
+	<select id="allItemForward" resultMap="Corfor">
+		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
+		 where REL.releaseNum = COR.code order by code]]>
+	</select>	
+
+	<insert id="insertForwardItem" parameterType="corVO">
+		<![CDATA[
+		insert into CSM_SM_COR_Reg
+		values #{no},#{relCode},#{item_code},#{item_name}, #{stand}, #{unit},#{dueDate},#{orderQuant},#{price},#{expDate},#{inspection},#{orderOX},#{general_Customer_Code})
+		]]>  
+	</insert>
+	<update id="updateSubForward" parameterType="forwardVO">
+		<![CDATA[update CSM_SM_COR_Reg
+		set inspection = #{inspection}, orderOX=#{orderOX}
+		where no = #{no}]]>
+	</update>
 	
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">

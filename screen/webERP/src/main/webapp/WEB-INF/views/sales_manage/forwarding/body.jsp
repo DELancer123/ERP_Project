@@ -38,10 +38,12 @@
                     <td><input type="text" name="code" value='${param.general_Customer_Code}'disabled /></td>
                     <td><input type="text" name="name" value='${param.general_Customer_Name}'disabled /></td>
                     <td style="width: 50px;"><a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a></td>
-                    <td>출고기간</td>
-                    <td><input type="date" id="reqInput"></td>
-                    <td>~</td>
-                    <td><input type="date" id="reqInput"></td>
+                </tr>
+               	<tr> 
+                    <td><button id="delete" onclick="deleteData2()">품목 삭제</button></td>
+                    <td><button id="view_quant">재고 수량 확인</button></td>
+                    <td><button id="save" onclick="newRow2()">저장</button></td>
+					<td><button id="update" onclick="updateRow2()">수정</button>
                 </tr>
             </table>
         </container1>
