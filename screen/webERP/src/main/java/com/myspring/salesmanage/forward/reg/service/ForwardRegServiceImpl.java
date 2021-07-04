@@ -71,7 +71,7 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}//submitSubReg
 
 	@Override
-	public int addSubItem(CorVO corVO) throws DataAccessException {
+	public int addForwardItem(CorVO corVO)throws DataAccessException {
 		return forwardDAO.addItemForward(corVO);
 	}
 

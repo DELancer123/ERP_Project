@@ -89,6 +89,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		subForward = sqlSession.selectList("mappers.erp.submitItemForward",relCode);
 			return subForward;
 	}
+
 //	@Override
 //	public void delItemForward(String[] ItemCodeary) throws DataAccessException {
 //		for(String item_code: forwardCodeary) {
@@ -98,7 +99,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	@Override
 	public int addItemForward(CorVO corVO) throws DataAccessException {
 		int idx = corVO.getListVO().size()-1;
-		int result = sqlSession.insert("mappers.erp.insertSupForward",corVO.getListVO().get(idx));
+		int result = sqlSession.insert("mappers.erp.insertForwardItem",corVO.getListVO().get(idx));
 		return 0;
 	}
 //	

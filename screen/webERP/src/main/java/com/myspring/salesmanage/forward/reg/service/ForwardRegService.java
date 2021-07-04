@@ -20,13 +20,13 @@ public interface ForwardRegService {
 	public List submitCustByInsert(String custCode) throws DataAccessException;
 	//add by forward
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
-	//delete by forward
+	//delete by forward 
 	public void removeForward(String[] noary) throws DataAccessException;
 	//update by forward ins
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 	
 	public List<ForwardVO> submitItemInfo(String relCode) throws DataAccessException;
-	public int addSubItem(CorVO corVO) throws DataAccessException;
+	public int addForwardItem(CorVO corVO)throws DataAccessException;
 //	public void removeSubItem(String[] noary) throws DataAccessException;
 //	public int updSubItem(ForwardVO forwardVO) throws DataAccessException;
 }
