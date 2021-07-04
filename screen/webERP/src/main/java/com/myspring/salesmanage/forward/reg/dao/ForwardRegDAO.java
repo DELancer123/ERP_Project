@@ -21,12 +21,13 @@ public interface ForwardRegDAO {
 	public List submitForwardReg(String custCode) throws DataAccessException;
 	
 	//subReg-body3
+	
 	public List<ForwardVO> submitSubReg(String relCode) throws DataAccessException;
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException;
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 //	public void delItemForward(String[] ItemCodeary) throws DataAccessException;
 	public int addItemForward(CorVO corVO) throws DataAccessException;
-//	public int updItemForward(CorVO corVO) throws DataAccessException;
+//	public int updItemForward(ForwardVO forwardVO)throws DataAccessException;
 
 }

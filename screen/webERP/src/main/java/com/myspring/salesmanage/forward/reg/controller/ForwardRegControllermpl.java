@@ -28,6 +28,8 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	
 	@Autowired
 	private ForwardVO forwardVO;
+	@Autowired
+	private CorVO corVO;
 	
 	@Autowired
 	private ForwardRegService forwardRegService;
@@ -144,13 +146,12 @@ public class ForwardRegControllermpl implements ForwardRegController{
 //
 	@Override
 	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
-	public ModelAndView addForwardItem(@ModelAttribute("cor") CorVO corVO, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	public ModelAndView addForwardItem(@ModelAttribute("cor")CorVO corVO, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
+		System.out.println("확인" + corVO.getListVO().size());
 		int result = 0;
-		result = forwardRegService.addForward(forwardVO);
+		result = forwardRegService.addForwardItem(corVO);
 		String resulturl = url.toString();
 		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 		return mav;
