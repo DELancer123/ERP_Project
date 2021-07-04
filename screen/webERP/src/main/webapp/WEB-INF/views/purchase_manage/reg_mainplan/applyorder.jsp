@@ -58,9 +58,6 @@ a {
 						<td><input type="text" id="name" name="name" class="name" /></td>
 					</tr>
 					<tr>
-						<td><input type="hidden" id="OdQty" name="OdQty" /></td>
-					</tr>
-					<tr>
 						<td><input type="hidden" id="expectedDate" name="ExpDate" /></td>
 					</tr>
 					<tr>
@@ -71,6 +68,9 @@ a {
 					</tr>
 					<tr>
 						<td><input type="hidden" id="inventory_unit" name="inventory_unit"/></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" id="ordersQuantity" name="ordersQuantity" /></td>
 					</tr>
 					<tr>
 						<td><input type="hidden" id="note" name="note"/></td>
@@ -92,7 +92,7 @@ a {
 				<c:forEach var="MpsOS" items="${mpsosList}">
 					<tr align="center" id="searchItem">
 					 <td><a href="javascript:popFunction('${MpsOS.item_Code }','${MpsOS.item_Name }','${MpsOS.general_Customer_Name }'
-					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.ordersQuantity }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
+					 ,'${MpsOS.standard }','${MpsOS.inventory_unit }','${MpsOS.note }')">${MpsOS.item_Code}</a></td>
       					  <td><a href="#">${MpsOS.item_Name}</a></td>
       					  <td><a href="#">${MpsOS.ordersQuantity}</a></td>
       					  <td><a href="#">${MpsOS.expectedDate}</a></td>
@@ -113,7 +113,6 @@ a {
 var submit_button = document.getElementById("submit");
 var text_code = document.getElementById("code");
 var text_name = document.getElementById("name");
-var text_OdQty = document.getElementById("OdQty");
 var text_ExpDate = document.getElementById("ExpDate");
 var text_general_Customer_Name = document.getElementById("general_Customer_Name");
 var text_standard = document.getElementById("standard");
@@ -199,7 +198,7 @@ var initExpDate = 	$(this).find('input[id=iExpDate]').val();
 
 $('input[name=code]').val(initCode);
 $('input[name=name]').val(initName);
-$('input[name=OdQty]').val(initOdQty);
+$('input[name=ordersQuantity]').val(initOdQty);
 $('input[name=ExpDate]').val(initExpDate);
 
 });
