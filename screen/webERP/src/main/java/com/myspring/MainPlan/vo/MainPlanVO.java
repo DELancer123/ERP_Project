@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.myspring.productionBaseInfo.BOM.vo.bomVO;
+import com.myspring.MainPlan.MpsOS.vo.MpsOSVO;
 
 @Component("mainplanVO")
 public class MainPlanVO {
@@ -26,7 +26,7 @@ public class MainPlanVO {
 	private Date startDate;
 	private Date endDate;	
 	private List<MainPlanVO> ListVO;
-
+	
 
 	public Date getStartDate() {
 		return startDate;
