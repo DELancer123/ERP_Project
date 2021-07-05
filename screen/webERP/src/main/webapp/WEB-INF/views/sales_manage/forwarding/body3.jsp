@@ -102,8 +102,6 @@
                     	<td>검사</td>
                 		</thead>
  					</table>
- 			<%-- 		<c:forEach var="supForward" items="${subForward}" varStatus="status">
- 					</c:forEach> --%>
  					<table id = "itemPop"></table>
                  	<table id="insertsubForward" align="center">
                  	<td></td>

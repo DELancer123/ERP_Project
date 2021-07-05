@@ -122,7 +122,6 @@
 //			ModelAndView mav = new ModelAndView();
 //			List<CorVO> subForward = null;
 //			subForward = forwardRegService.submitItemInfo(relCode);
-//			System.out.println("사이즈" + subForward.size());
 //			mav.addObject("subForward", subForward);
 //			mav.setViewName("jsonView");
 //
@@ -158,11 +157,12 @@
 //	@RequestMapping(value="/member/liststock.do" ,method = RequestMethod.GET)
 //	public ModelAndView listStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		String viewName = getViewName(request);
-//		String item_code = (String)request.getParameter("item_code");
-//		List stockQuant = forwardRegService.submitStock(item_code);
-//		String str = stockQuant.toString();
-//		System.out.println("str"+str);
-//		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
+//		String code = (String)request.getParameter("item_code");
+//		List stockQuant = forwardRegService.submitStock(code);
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("stockQuant",stockQuant);
+////		int a = 
+////		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 //		return mav;
 //	}
 ////		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
@@ -180,7 +180,7 @@
 //	String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 //	if (uri == null || uri.trim().equals("")) {
 //		uri = request.getRequestURI();
-//	}//수정해야ㅏㅁ
+//	}
 //
 //	int begin = 0;
 //	if (!((contextPath == null) || ("".equals(contextPath)))) {
