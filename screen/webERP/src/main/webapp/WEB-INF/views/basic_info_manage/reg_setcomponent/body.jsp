@@ -29,6 +29,7 @@ request.setCharacterEncoding("UTF-8");
             height: 10%;
             border: 1px solid black;
             z-index: 1;
+            border-bottom:none;
         }
         #contents2{
             position: absolute;
@@ -47,18 +48,17 @@ request.setCharacterEncoding("UTF-8");
             width: 85%;
             height: 35%;
             border: 1px solid black;
+            border-top: 1px solid white;
             z-index: 1;
             overflow:auto;
         }
         #view{
             width: 100%;
             text-align: center;
-            border: 1px solid black;
         }
         #view2{
             width: 100%;
             text-align: center;
-            border: 1px solid black;
         }
 
         #view td input:not(#check){
@@ -67,6 +67,7 @@ request.setCharacterEncoding("UTF-8");
         #view2 td input:not(#check){
             width: 100%;
         }
+        
         .con1_search{
             padding:0;
             text-align: center;
@@ -79,6 +80,14 @@ request.setCharacterEncoding("UTF-8");
         }
         .cck2{
         	width:2%;
+        }
+        
+		#subView1{
+            width: 100%;
+            text-align: center;
+        }
+        #subView1 td input:not(#check){
+            width: 100%;
         }
 </style>
 <script>
@@ -153,6 +162,7 @@ request.setCharacterEncoding("UTF-8");
                 </tr>
             </table>
         </form>
+        
         </container1>
         <container2 id="contents2">
         <form  method="get" id="reg_setcom1">
@@ -170,23 +180,30 @@ request.setCharacterEncoding("UTF-8");
                 <c:forEach var="set" items="${setView}" >
 	                <tbody>
 	                    <td class="cck"><input type="checkbox" value = "${set.set_Code }"/></td>
-	                    <td><input type="text" id="set_Code" name="set_Code" value = "${set.set_Code }" onfocus = "searchView(this.value)" style="background-color: rgb(255, 255, 149);"></td>
-	                    <td><input type="text" id="set_Name" name="set_Name" value = "${set.set_Name }" style="background-color: rgb(255, 255, 149);"></td>
-	                    <td><input type="text" id="set_Standard" name="set_Standard" value = "${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
-	                    <td><input type="text" id="set_Unit" name="set_Unit" value = "${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
+	                    <td><input type="text" id="set_Code" name="set_Code" value="${set.set_Code }" onfocus="searchView(this.value)" style="background-color: rgb(255, 255, 149); cursor:pointer;"></td>
+	                    <td><input type="text" id="set_Name" name="set_Name" value="${set.set_Name }" style="background-color: rgb(255, 255, 149);"></td>
+	                    <td><input type="text" id="set_Standard" name="set_Standard" value="${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
+	                    <td><input type="text" id="set_Unit" name="set_Unit" value="${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
 	                </tbody>
                 </c:forEach>
            </table>
-           <input type='button' onclick="addNewData1()" id="addRow1" value="신규등록"
-           style="background-color: rgb(235, 235, 235); 
-           border-style: none; 
-           text-align: center; width:100%;"/>
-           
-           <input type='button' onclick="addAction()" id="addAction" value="등록하기"
-           style="background-color: rgb(235, 235, 235); 
-           border-style: none; 
-           text-align: center; width:100%; display:none;"/>
-        </form>
+         </form>
+         
+         <form method="get" id="reg_setcom1_1">	
+           <table id="subView1">
+           </table>
+         </form>
+         
+         <input type='button' onclick="addNewData1()" id="addRow1" value="신규등록"
+         style="background-color: rgb(235, 235, 235); 
+         border-style: none; 
+         text-align: center; width:100%; cursor:pointer;"/>
+         
+         <input type='button' onclick="doAdd1()" id="addAction1" value="등록하기"
+         style="background-color: rgb(235, 235, 235); 
+         border-style: none; 
+         text-align: center; width:100%; display:none; cursor:pointer;"/>
+        
         </container2>
         <container3 id="contents3">
         <form  method="get" id="reg_setcom2">
@@ -217,14 +234,16 @@ request.setCharacterEncoding("UTF-8");
                 
             </table>
             
-            
-            
             <input type='button' onClick="addNewData2()"  id="addRow2" value="신규등록"
             style="background-color: rgb(235, 235, 235); 
             border-style: none;  display: none;
-            text-align: center; width:100%"/>
+            text-align: center; width:100%; cursor:pointer;"/>
             
-                
+            <input type='button' onclick="doAdd2()" id="addAction2" value="등록하기"
+            style="background-color: rgb(235, 235, 235); 
+            border-style: none; 
+            text-align: center; width:100%; display:none; cursor:pointer;"/>
+            
         </form>
         </container3>
         <script>
@@ -239,11 +258,12 @@ request.setCharacterEncoding("UTF-8");
         var components_Stock = document.getElementById("components_Stock");        
         var addRow1 = document.getElementById("addRow1");
         var addRow2 = document.getElementById("addRow2");
-        var addAction = document.getElementById("addAction");
+        var addAction1 = document.getElementById("addAction1");
+        var addAction2 = document.getElementById("addAction2");
         var curl = window.location.href;
  		
         function addNewData1() {
-        	const table = document.getElementById('view');
+        	const table = document.getElementById('subView1');
         	const newRow = table.insertRow();
         	const newCell1 = newRow.insertCell(0);
         	const newCell2 = newRow.insertCell(1);
@@ -251,14 +271,14 @@ request.setCharacterEncoding("UTF-8");
         	const newCell4 = newRow.insertCell(3);
         	const newCell5 = newRow.insertCell(4);
         	
-        	newCell1.innerHTML = '<form method="get" id="firstTableAddForm"><td class="cck"><input type="checkbox"/></td>';
-        	newCell2.innerHTML = '<td><input type="text" id="set_Code" name="set_Code" onfocus = "searchView(this.value)" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell3.innerHTML = '<td><input type="text" id="set_Name" name="set_Name" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell4.innerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell5.innerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td></form>';
+        	newCell1.outerHTML = '<td style="width:5%"></td>';
+        	newCell2.outerHTML = '<td><input type="text" id="set_Code" name="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell3.outerHTML = '<td><input type="text" id="set_Name" name="set_Name" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell4.outerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell5.outerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	
         	addRow1.style.display = "none";
-        	addAction.style.display = "block";
+        	addAction1.style.display = "block";
         	
         }
         
@@ -273,21 +293,27 @@ request.setCharacterEncoding("UTF-8");
         	const newCell6 = newRow.insertCell(5);
         	const newCell7 = newRow.insertCell(6);
         	
-        	newCell1.innerHTML = '<td style="width:2%;"><input type="checkbox" id="check" name="checkedContent"/></td>';
-        	newCell2.innerHTML = '<td><input type="text" name="set_Code" id="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell3.innerHTML = '<td><input type="text" name="components_Code" id="components_Code" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell4.innerHTML = '<td><input type="text" name="components_Name" id="components_Name" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell5.innerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell6.innerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell7.innerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell1.outerHTML = '<td style="width:2%;"></td>';
+        	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="components_Code" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="components_Name" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell5.outerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell6.outerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell7.outerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	
         	addRow2.style.display = "none";
+        	addAction2.style.display = "block";
         }
         
-        function addAction() {
+        function doAdd1() {
         	alert('애드액션구현중');
-        	document.getElementById('firstTableAddForm').action = "${contextPath}/member/addSetComponents.do";
-    		document.getElementById('firstTableAddForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
+    		document.getElementById('reg_setcom1_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
+        }
+        function doAdd2() {
+        	alert('애드액션구현중');
+        	document.getElementById('secondTableAddForm').action = "${contextPath}/member/addSetComponents.do";
+    		document.getElementById('secondTableAddForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
         }
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
