@@ -313,8 +313,8 @@ request.setCharacterEncoding("UTF-8");
         	var temp = URLSearch.get('com_code');
         	newCell1.outerHTML = '<td style="width:2%"></td>';
         	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149);" onclick="searchCode()"></td>';
-        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly ></td>';
+        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" readonly></td>';
         	newCell5.outerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell6.outerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell7.outerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
@@ -402,27 +402,6 @@ request.setCharacterEncoding("UTF-8");
         	}
         }
         
-        function newRow(){
-        	if(general_Customer_Code == "" || general_Customer_Name == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
-        		{
-        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
-        		} else {
-        			
-			alert('등록되었습니다');        	
-    		const URLSearch = new URLSearchParams(location.search);
-    		URLSearch.set('submit','1');
-    		const newParam = URLSearch.toString();
-    		var link = location.pathname +'?'+newParam;
-    		var articleNOInput = document.createElement("input");
-    		articleNOInput.setAttribute("type","hidden");
-    		articleNOInput.setAttribute("name","path");
-    		articleNOInput.setAttribute("value", link);
-    		document.getElementById('reg_gen_account').appendChild(articleNOInput);
-    		document.getElementById('reg_gen_account').action = "${contextPath}/member/addSetComponents.do";
-    		document.getElementById('reg_gen_account').submit();
-    	}
-        }
-        
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
     		{
@@ -435,8 +414,8 @@ request.setCharacterEncoding("UTF-8");
         	}      	
         } 
          
-        function searchCode() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
-        	openWindowPop("${contextPath}/member/searchPopComponentsName.do", "setComPopup");
+        function searchCompoItem() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
+        	openWindowPop("${contextPath}/member/searchPopCompoItemName.do", "setComPopup");
         }
         
         </script>

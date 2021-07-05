@@ -866,6 +866,18 @@
    <put-attribute name="side" value="" />
    <put-attribute name="body" value="" />   
    </definition>
+   <!-- SET구성품등록 -->
+   <definition name="searchPopCompoItemNameLayout"  template="/WEB-INF/views/basic_info_manage/reg_setcomponent/pop.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/searchPopCompoItemName" extends="searchPopCompoItemNameLayout">
+      <put-attribute name="title" value="SET구성품등록팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <!-- SET구성품등록끝 -->
    <!-- 품목팝업 -->
    <definition name="Itemgpopup"  template="/WEB-INF/views/basic_info_manage/reg_item/Itempopup.jsp">
       <put-attribute name="title" value="" />

@@ -266,6 +266,13 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		popList = sqlSession.selectList("mappers.erp.selectPopComponentsList",itemName);
 		return popList;
 	}
+	
+	@Override
+	public List<SystemmagVOMJ> viewsearchPopCompoItemName() throws DataAccessException {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectitemList");
+		return popList;
+	}
 	//----------
 	@Override
 	public List viewSpecComponents(String com_code) throws DataAccessException {

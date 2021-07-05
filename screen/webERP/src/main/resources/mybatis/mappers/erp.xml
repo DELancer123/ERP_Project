@@ -1692,7 +1692,7 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertSujuRowSub" parameterType="StockManageVO">
 		<![CDATA[
 		 insert into CSM_SM_COR_Reg
-		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'),#{code}, #{itemCode}, #{itemName}, #{standard},#{inventoryUnit},#{dueDate},#{ordersQuantity},#{productPrice},#{vatPrice},#{expectedDate},#{inspection},'예외',#{busCode} )
+		 values('300',#{code}, #{itemCode}, #{itemName}, #{standard},#{inventoryUnit},#{dueDate},#{ordersQuantity},#{productPrice},#{vatPrice},#{expectedDate},#{inspection},'예외',#{busCode} )
 		]]>  
 	</insert>
 	
@@ -2036,7 +2036,7 @@ ORDER BY out.workordernumber]]>
 			#{components_Name}, 
 			#{components_Standard}, 
 			#{components_Unit},
-			#{components_Stock}]]>
+			#{components_Stock})]]>
 	</insert>
 	<select id="selectPopComponentsList" resultMap="comRegResult">
 		<![CDATA[ select components_Code, components_Name
@@ -2144,23 +2144,32 @@ ORDER BY out.workordernumber]]>
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
 		<result property="general_Customer_Code" column="General_Customer_Code" />
-		<collection property="corVO" resultMap="Corfor">
- 
+		        <collection property="corVO" javaType="CorVO">
+        	<id property="relCode" column="code" />
+        	<result property="item_code" column="item_code" />
+        	<result property="item_name" column="item_name" />        
+        	<result property="stand" column="standard" />
+        	<result property="unit" column="inventory_unit" />
+        	<result property="dueDate" column="dueDate" />
+        	<result property="orderQuant" column="ordersQuantity" />
+        	<result property="price" column="productPrice" />
+        	<result property="expDate" column="expectedDate" />
+        	<result property="inspection" column="inspection" />
+        	<result property="orderOX" column="orderOX" />
+        	<result property="no" column="no" />
         </collection>
 </resultMap>  
  
 	<select id="submitSubForward" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
 		 where REL.releaseNum = COR.code	
-		 and REL.releaseNum =#{relCode}]]>
+		 and REL.releaseNum =#{relCode} order by REL.releaseNum]]>
 	</select>
-	<select id="submitItemForward" parameterType="String" resultMap="Corforward">
+			<select id="submitItemForward" parameterType="String" resultMap="Corforward">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
-		 where REL.releaseNum = COR.code and COR.code =#{ordCode}
-		 ]]>
+		 where REL.releaseNum = COR.code	
+		 and REL.releaseNum=#{relCode} order by REL.releaseNum]]>
 	</select>
-
-
 <resultMap id="Corfor" type="corVO">
 		<id property="no" column="no" />	
 		<result property="relCode" column="code" />
@@ -2175,7 +2184,6 @@ ORDER BY out.workordernumber]]>
         <result property="expDate" column="expectedDate" />
         <result property="inspection" column="inspection" />
         <result property="orderOX" column="orderOX" />
-        <result property="quantity" column="quantity" />
         	
 </resultMap> 
 	<select id="allItemForward" resultMap="Corfor">
@@ -2186,22 +2194,13 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertForwardItem" parameterType="corVO">
 		<![CDATA[
 		insert into CSM_SM_COR_Reg
-		values (#{no},#{relCode},#{item_code},#{item_name}, #{stand}, #{unit},#{dueDate},#{orderQuant},#{price},#{vatprice},#{expDate},#{inspection},#{orderOX},#{general_Customer_Code})
+		values #{no},#{relCode},#{item_code},#{item_name}, #{stand}, #{unit},#{dueDate},#{orderQuant},#{price},#{expDate},#{inspection},#{orderOX},#{general_Customer_Code})
 		]]>  
 	</insert>
 	<update id="updateSubForward" parameterType="forwardVO">
 		<![CDATA[update CSM_SM_COR_Reg
 		set inspection = #{inspection}, orderOX=#{orderOX}
 		where no = #{no}]]>
-	</update>
-	
-	<select id="stockQuantity" resultMap="Corfor" parameterType="String">
-		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code} order by item_code]]>
-	</select>	
-		<update id="updForwardQuantity" parameterType="corVO">
-		<![CDATA[update PM_SM_Pro_Stock
-		 		 set quantity = #{quantity}
-		 		 where item_code = #{item_code}]]>
 	</update>
 	
 	<!-- 출고현황(재원) -->

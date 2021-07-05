@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("SystemmagVOMJ")
 public class SystemmagVOMJ {
-	//�Ϲݰŷ�ó���
+	//占싹반거뤄옙처占쏙옙占�
 	//SM_BIM_GEN_CUS_REG
 	private String general_Customer_Code;
 	private String general_Customer_Name;
@@ -23,6 +23,9 @@ public class SystemmagVOMJ {
 	
 	private String road_Address;
 	private String lot_Address;
+	
+	private String item_Code;
+	private String item_Name;
 	
 	private List<SystemmagVOMJ> ListVO;
 	
@@ -117,8 +120,8 @@ public class SystemmagVOMJ {
 		this.lot_Address = lot_Address;
 	}
 	
-	//â��/����/���ְ������--
-	//SM_BIM_HOU_REG => â��/��� �ǿ��� �����
+	//창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙占�--
+	//SM_BIM_HOU_REG => 창占쏙옙/占쏙옙占� 占실울옙占쏙옙 占쏙옙占쏙옙占�
 	private String house_Code;
 	private String house_Name;
 	private String house_Location_In;
@@ -163,7 +166,7 @@ public class SystemmagVOMJ {
 		this.house_Status = house_Status;
 	}
 
-	//SM_BIM_PRO_REG => �������/�۾��� �ǿ��� �����
+	//SM_BIM_PRO_REG => 占쏙옙占쏙옙占쏙옙占�/占쌜억옙占쏙옙 占실울옙占쏙옙 占쏙옙占쏙옙占�
 	private String process_Code;
 	private String process_Name;
 	private String process_Location_In;
@@ -208,7 +211,7 @@ public class SystemmagVOMJ {
 		this.process_Status = process_Status;
 	}
 
-	//SM_BIM_OUT_REG => ���ְ���/�۾��� �ǿ��� �����
+	//SM_BIM_OUT_REG => 占쏙옙占쌍곤옙占쏙옙/占쌜억옙占쏙옙 占실울옙占쏙옙 占쏙옙占쏙옙占�
 	private String outsourcing_Code; 
 	private String outsourcing_Name;
 	private String outsourcing_Location_In;
@@ -253,7 +256,7 @@ public class SystemmagVOMJ {
 		this.outsourcing_Status = outsourcing_Status;
 	}
 	
-	//SM_BIM_WOR_REG => â��/��� �������̺�
+	//SM_BIM_WOR_REG => 창占쏙옙/占쏙옙占� 占쏙옙占쏙옙占쏙옙占싱븝옙
 	private String location_Code;
 	private String location_Name;
 	private String location_Explanation;
@@ -312,7 +315,7 @@ public class SystemmagVOMJ {
 		this.status = status;
 	}
 	
-	//SM_BIM_PRO_WOR_REG => �������/�۾��� �������̺�
+	//SM_BIM_PRO_WOR_REG => 占쏙옙占쏙옙占쏙옙占�/占쌜억옙占쏙옙 占쏙옙占쏙옙占쏙옙占싱븝옙
 	private String workplace_Code;
 	private String workplace_Name; 
 	private String workplace_Explanation;
@@ -336,7 +339,7 @@ public class SystemmagVOMJ {
 		this.workplace_Explanation = workplace_Explanation;
 	}
 
-	//SM_BIM_OUT_WOR_REG => ���ְ���/�۾��� �������̺�
+	//SM_BIM_OUT_WOR_REG => 占쏙옙占쌍곤옙占쏙옙/占쌜억옙占쏙옙 占쏙옙占쏙옙占쏙옙占싱븝옙
 	private String outcustomer;
 	private String outcustomer_Name;
 
@@ -353,7 +356,7 @@ public class SystemmagVOMJ {
 		this.outcustomer_Name = outcustomer_Name;
 	}
 	
-	//���������������
+	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�
 	//SM_BIM_LOG_MAN
 	private String logistics_In_Code;
 	private String logistics_In_Name;
@@ -385,7 +388,7 @@ public class SystemmagVOMJ {
 		this.remarks = remarks;
 	}
 	
-	//검사유형등록
+	//寃��궗�쑀�삎�벑濡�
 	//SM_BIM_INS_TYP
 	private String inspection_Code;
 	private String inspection_Name;
@@ -410,7 +413,7 @@ public class SystemmagVOMJ {
 		this.inspection_Question = inspection_Question;
 	}
 	
-	//SET구성품등록
+	//SET援ъ꽦�뭹�벑濡�
 	//SM_BIM_SET_REG
 	private String set_Code;
 	private String set_Name;
@@ -478,6 +481,18 @@ public class SystemmagVOMJ {
 	}
 	public void setComponents_Stock(String components_Stock) {
 		this.components_Stock = components_Stock;
+	}
+	public String getItem_Code() {
+		return item_Code;
+	}
+	public void setItem_Code(String item_Code) {
+		this.item_Code = item_Code;
+	}
+	public String getItem_Name() {
+		return item_Name;
+	}
+	public void setItem_Name(String item_Name) {
+		this.item_Name = item_Name;
 	}
 	
 	

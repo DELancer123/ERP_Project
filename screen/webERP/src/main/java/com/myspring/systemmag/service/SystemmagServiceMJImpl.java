@@ -241,6 +241,11 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 	}
 
 	@Override
+	public List<SystemmagVOMJ> searchPopCompoItemName() throws DataAccessException {
+		return systemmagDAO.viewsearchPopCompoItemName();
+	}
+	
+	@Override
 	public List viewSpecComponents(String com_code) throws DataAccessException {
 		List comList = systemmagDAO.viewSpecComponents(com_code);
 		return comList;
@@ -263,6 +268,6 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		systemmagDAO.updateSpecComponents(systemmagVO);
 		
 	}
-
+	
 	
 }

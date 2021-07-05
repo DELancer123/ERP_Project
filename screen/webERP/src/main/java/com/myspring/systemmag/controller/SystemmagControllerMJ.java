@@ -70,6 +70,7 @@ public interface SystemmagControllerMJ {
 	public ModelAndView addSpecComponents (@ModelAttribute("Set") SystemmagVOMJ company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	public ModelAndView searchPopCompoItemName(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 			

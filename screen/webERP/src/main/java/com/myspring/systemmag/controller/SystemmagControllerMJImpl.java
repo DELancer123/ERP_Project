@@ -499,6 +499,20 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
+	@Override
+	@RequestMapping(value = "/member/searchPopCompoItemName.do", method = RequestMethod.GET)
+	public ModelAndView searchPopCompoItemName(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+
+		List compoView = systemmagService.searchPopCompoItemName();
+		mav = new ModelAndView(viewName);
+		mav.addObject("compoView", compoView); 
+
+		return mav;
+	}
+	
 	
 	//AJAX CONTROLLER----------------------------------
 	@ResponseBody
@@ -561,15 +575,6 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/member/searchPopComponentsName.do", method = RequestMethod.GET)
-	public ModelAndView searchPopComponentsName(@RequestParam("itemName") String itemName) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		List<SystemmagVOMJ> popName = null;
-		popName = systemmagService.searchPopComponentsName(itemName);
-		mav.addObject("popName", popName);
-		mav.setViewName("jsonView");
 
-		return mav;
-	}
+
 }
