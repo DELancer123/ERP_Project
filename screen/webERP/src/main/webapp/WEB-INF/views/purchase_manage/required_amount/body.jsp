@@ -111,7 +111,7 @@ String sequence = (String) request.getAttribute("sequence");
 	<table id="MRPTable">
 		<thead align="center" style="background-color: gray">
 			<td>备盒</td>
-			<td>葛前格</td>
+  			<td>葛前格</td>
 			<td>前锅</td>
 			<td>前疙</td>
 			<td>痹拜</td>
