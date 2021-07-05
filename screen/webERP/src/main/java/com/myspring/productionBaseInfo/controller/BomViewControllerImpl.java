@@ -188,13 +188,6 @@ public class BomViewControllerImpl implements BomViewController {
 			
 			mav.addObject("bomView", bomView);
 		}
-		else if(submit.equals("2")) {
-			List bomView = viewService.SearchView(number);
-			List childView = viewService.ChildView(number,childCode);
-			mav = new ModelAndView(viewName);
-			mav.addObject("bomView", bomView);
-			mav.addObject("childView",childView);
-		}
 		return mav;
 	}
 	@Override

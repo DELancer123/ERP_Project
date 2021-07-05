@@ -83,13 +83,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 		return sqlSession.selectOne("mappers.erp.selectNo");
 	}
 
-	@Override
-	public List childView(String itemNumber,String childCode) throws DataAccessException {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("0", itemNumber);
-		map.put("1", childCode);
-		return sqlSession.selectList("mappers.erp.childView",map);
-	}
 
 	@Override
 	public List SearchOutView() throws DataAccessException {
@@ -185,5 +178,6 @@ public class bomViewDAOImpl implements bomViewDAO{
 		System.out.println(bomList.size());
 		return bomList;
 	}
+
 
 }

@@ -85,10 +85,6 @@ public class BomViewServiceImpl implements BomViewService{
 		return bomDAO.selNo();
 	}
 
-	@Override
-	public List ChildView(String itemNumber,String childCode) throws DataAccessException {
-		return bomDAO.childView(itemNumber,childCode);
-	}
 
 	@Override
 	public List SearchOutView() throws DataAccessException {
@@ -207,4 +203,5 @@ public class BomViewServiceImpl implements BomViewService{
 		bomList = bomDAO.researveView(number);
 		return bomList;
 	}
+
 }

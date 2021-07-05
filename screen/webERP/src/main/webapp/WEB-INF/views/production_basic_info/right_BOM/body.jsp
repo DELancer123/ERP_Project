@@ -113,10 +113,10 @@
                     </thead>
                     <!-- 테스트용 데이터, 추후 표현식으로 수정필요 -->
                     <c:forEach var="bom" items="${bomView}">  
-                    <tbody align="center" style="background-color:yellow">
+                    <tbody align="center">
                         <td>${bom.no }</td>
                         <td>${bom.itemNumber}</td>
-                        <td><a href="#" name="item"  onclick="childSearch(this)">${bom.itemName}</a></td>
+                        <td>${bom.itemName}</td>
                         <td>${bom.standard}</td>
                         <td>${bom.unit }</td>
                         <td>${bom.division }</td>
@@ -125,7 +125,7 @@
                         <td>${bom.precisionQuantity+(bom.precisionQuantity * (bom.loss * 0.01)) }</td>
                     </tbody>
                     	
-                    <c:forEach var="child" items="${childView}">  
+                    <c:forEach var="child" items="${ChildSet}">  
                     <tbody align="center">
                         <td>${child.no }</td>
                         
@@ -166,19 +166,7 @@
 
 		  window.open(location.pathname + '?' + newParam, '_self');
  	}
-      function childSearch(name){
-    	  const URLSearch = new URLSearchParams(location.search);
-		  URLSearch.set('submit', '2');
-		  const newParam = URLSearch.toString();
-		  if(URLSearch.get('childCode') == null)
-		  window.open(location.pathname + '?' + newParam + "&&childCode=" + name.innerText, '_self');
-		  else{
-			  URLSearch.set('childCode',name.innerText);
-			  const newParam = URLSearch.toString();
-	          window.location.href = location.pathname +'?'+newParam;
-		  }
-			  
-      }
+      
       </script>
 </body>
 </html>
