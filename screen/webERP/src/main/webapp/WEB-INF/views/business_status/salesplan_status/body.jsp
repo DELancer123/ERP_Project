@@ -69,7 +69,7 @@
     }
           function search1(){
     	  
-        	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
+        	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper2.do','popupItem');  
     }
           
     </script>

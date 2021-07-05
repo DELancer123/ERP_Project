@@ -29,7 +29,6 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	public List selectAllItemList() throws DataAccessException {
 		List<ItemViewVO> allItemList = null;
 		allItemList = sqlSession.selectList("mappers.erp.selectAllItemList");
-		System.out.println("확인2");
 		return allItemList;
 	}//pop2
 	@Override
@@ -84,9 +83,10 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		return 0;
 	}
 	@Override
-	public List<ForwardVO> submitSubReg(String relCode) throws DataAccessException {
-		List<ForwardVO> subForward = null;
+	public List submitSubReg(String relCode) throws DataAccessException {
+		List subForward = null;
 		subForward = sqlSession.selectList("mappers.erp.submitItemForward",relCode);
+		System.out.println("사이즈dao" +  relCode);
 			return subForward;
 	}
 
@@ -98,22 +98,43 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 //}
 	@Override
 	public int addItemForward(CorVO corVO) throws DataAccessException {
-		int idx = corVO.getListVO().size()-1;
-		int result = sqlSession.insert("mappers.erp.insertForwardItem",corVO.getListVO().get(idx));
+		int result = sqlSession.insert("mappers.erp.insertForwardItem",corVO);
 		return 0;
 	}
-//	
-//	@Override
-//	public int updItemForward(CorVO corVO) throws DataAccessException {
-//		int result = 0; 
-//
-//		int idx = corVO.getListVO().size();
-//		for(int i = 0; i<idx; i++) {
-//			System.out.println("i" + i);
-//		result = sqlSession.update("mappers.erp.updateForward", getListVO().get(i));		
-//		}
-//		return result;
-//	}
+	
+	@Override
+	public int updItemForward(CorVO corVO) throws DataAccessException {
+		int result = 0; 
 
+		int idx = corVO.getListVO().size();
+		for(int i = 0; i<idx; i++) {
+			System.out.println("i" + i);
+		result = sqlSession.update("mappers.erp.updateForward", corVO.getListVO().get(i));		
+		}
+		return result;
+	}
+	@Override
+	public int updItemQuant(CorVO corVO) throws DataAccessException {
+		int result = 0; 
+
+		int idx = corVO.getListVO().size();
+		for(int i = 0; i<idx; i++) {
+			System.out.println("i" + i);
+		result = sqlSession.update("mappers.erp.updForwardQuantity", corVO.getListVO().get(i));		
+		}
+		return result;
+	}
+	@Override
+	public List selectStockList(String item_code) throws DataAccessException {
+		List<CorVO> stockQuant = null;
+		stockQuant = sqlSession.selectList("mappers.erp.stockQuantity",item_code);
+			return stockQuant;
+	}
+	@Override
+	public List selectItemSub() throws DataAccessException {
+		List<CorVO> subForwardItem = null;
+		subForwardItem = sqlSession.selectList("mappers.erp.allItemForward");
+			return subForwardItem;
+	}
 }
 

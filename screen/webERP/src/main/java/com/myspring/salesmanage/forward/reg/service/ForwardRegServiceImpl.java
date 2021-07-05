@@ -75,6 +75,25 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 		return forwardDAO.addItemForward(corVO);
 	}
 
+	@Override
+	public int updForwardQuant(CorVO corVO) throws DataAccessException {
+		return forwardDAO.updItemQuant(corVO);
+	}
+
+	@Override
+	public List submitStock(String item_code) throws DataAccessException {
+		List submitQuant = null;
+		submitQuant = forwardDAO.selectStockList(item_code);
+		return submitQuant;
+	}
+
+	@Override
+	public List listForwardsub() throws DataAccessException {
+		List subForwardItem = null;
+		subForwardItem = forwardDAO.selectItemSub();
+		return subForwardItem;
+	}
+
 //	@Override
 //	public void removeSubItem(String[] noary) throws DataAccessException {
 //		forwardDAO.delItemForward(noary);	
