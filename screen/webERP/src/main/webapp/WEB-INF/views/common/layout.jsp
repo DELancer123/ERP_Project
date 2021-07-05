@@ -307,10 +307,10 @@ img {
 			</ul>
 		</nav>
 		<nav id="nav2">
-			<button id="delete" onclick="deleteData()">삭제</button>
-			<button id="view_button" onclick="searchData()">조회</button>
-			<button id="save" onclick="newRow()">저장</button>
-			<button id="update" onclick="updateRow()">수정</button>
+			<button id="delete" onclick="deleteData()" style="cursor:pointer;">삭제</button>
+			<button id="view_button" onclick="searchData()" style="cursor:pointer;">조회</button>
+			<button id="save" onclick="newRow()" style="cursor:pointer;">저장</button>
+			<button id="update" onclick="updateRow()" style="cursor:pointer;">수정</button>
 		</nav>
 		<div>
 			<tiles:insertAttribute name="side" />
