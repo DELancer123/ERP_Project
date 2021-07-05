@@ -84,8 +84,11 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	}
 	@Override
 	public List submitSubReg(String relCode) throws DataAccessException {
-		List subForward = null;
+		List<CorVO> subForward = null;
 		subForward = sqlSession.selectList("mappers.erp.submitItemForward",relCode);
+		System.out.println("Restult List Size : " + subForward.size());
+
+		
 		System.out.println("사이즈dao" +  relCode);
 			return subForward;
 	}

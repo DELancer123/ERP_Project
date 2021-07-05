@@ -2153,9 +2153,9 @@ ORDER BY out.workordernumber]]>
 		 where REL.releaseNum = COR.code	
 		 and REL.releaseNum =#{relCode}]]>
 	</select>
-	<select id="submitItemForward" parameterType="String" resultMap="Corforward">
+	<select id="submitItemForward" parameterType="String" resultMap="Corfor">
 		<![CDATA[select * from CSM_SM_Rel_Pro REL, CSM_SM_COR_Reg COR
-		 where REL.releaseNum = COR.code and COR.code =#{ordCode}
+		 where REL.releaseNum = COR.code and COR.code =#{relCode}
 		 ]]>
 	</select>
 
@@ -2195,7 +2195,7 @@ ORDER BY out.workordernumber]]>
 	</update>
 	
 	<select id="stockQuantity" resultMap="Corfor" parameterType="String">
-		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code} order by item_code]]>
+		<![CDATA[select quantity from PM_SM_Pro_Stock where item_code = #{item_code} order by item_code]]>
 	</select>	
 		<update id="updForwardQuantity" parameterType="corVO">
 		<![CDATA[update PM_SM_Pro_Stock
