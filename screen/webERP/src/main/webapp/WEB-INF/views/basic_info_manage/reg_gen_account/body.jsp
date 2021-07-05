@@ -335,7 +335,7 @@ request.setCharacterEncoding("UTF-8");
         }
         
         function newRow(){
-        	if(general_Customer_Code == "" || general_Customer_Name == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
+        	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
         		{
         		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
         		} else {

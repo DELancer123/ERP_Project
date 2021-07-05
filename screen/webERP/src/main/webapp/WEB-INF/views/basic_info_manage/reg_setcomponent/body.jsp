@@ -180,10 +180,10 @@ request.setCharacterEncoding("UTF-8");
                 <c:forEach var="set" items="${setView}" >
 	                <tbody>
 	                    <td class="cck"><input type="checkbox" value = "${set.set_Code }"/></td>
-	                    <td><input type="text" id="set_Code" name="set_Code" value="${set.set_Code }" onfocus="searchView(this.value)" style="background-color: rgb(255, 255, 149); cursor:pointer;"></td>
-	                    <td><input type="text" id="set_Name" name="set_Name" value="${set.set_Name }" style="background-color: rgb(255, 255, 149);"></td>
-	                    <td><input type="text" id="set_Standard" name="set_Standard" value="${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
-	                    <td><input type="text" id="set_Unit" name="set_Unit" value="${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
+	                    <td><input type="text" id="set_Code" name="set_Code" value="${set.set_Code }" onfocus="searchView(this.value)" style="background-color: rgb(255, 255, 149); cursor:pointer;" maxlength="12"></td>
+	                    <td><input type="text" id="set_Name" name="set_Name" value="${set.set_Name }" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>
+	                    <td><input type="text" id="set_Standard" name="set_Standard" value="${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>
+	                    <td><input type="text" id="set_Unit" name="set_Unit" value="${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>
 	                </tbody>
                 </c:forEach>
            </table>
@@ -261,6 +261,7 @@ request.setCharacterEncoding("UTF-8");
         var addAction1 = document.getElementById("addAction1");
         var addAction2 = document.getElementById("addAction2");
         var curl = window.location.href;
+        
  		
         function addNewData1() {
         	const table = document.getElementById('subView1');
@@ -272,10 +273,10 @@ request.setCharacterEncoding("UTF-8");
         	const newCell5 = newRow.insertCell(4);
         	
         	newCell1.outerHTML = '<td style="width:5%"></td>';
-        	newCell2.outerHTML = '<td><input type="text" id="set_Code" name="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell3.outerHTML = '<td><input type="text" id="set_Name" name="set_Name" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell4.outerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell5.outerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell2.outerHTML = '<td><input type="text" id="subSet_Code" name="set_Code" style="background-color: rgb(255, 255, 149);" maxlength="12"></td>';
+        	newCell3.outerHTML = '<td><input type="text" id="subSet_Name" name="set_Name" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>';
+        	newCell4.outerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>';
+        	newCell5.outerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>';
         	
         	addRow1.style.display = "none";
         	addAction1.style.display = "block";
@@ -306,9 +307,16 @@ request.setCharacterEncoding("UTF-8");
         }
         
         function doAdd1() {
-        	alert('애드액션구현중');
-        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
-    		document.getElementById('reg_setcom1_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
+        	var subSet_Code = document.getElementById("subSet_Code");
+            var subSet_Name = document.getElementById("subSet_Name");
+            
+        	if(subSet_Code.value == "" || subSet_Name.value == ""){
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
+        	}else { 
+        		alert('등록되었습니다');
+	        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
+	    		document.getElementById('reg_setcom1_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
+        	}
         }
         function doAdd2() {
         	alert('애드액션구현중');
