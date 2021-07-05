@@ -180,12 +180,12 @@ request.setCharacterEncoding("UTF-8");
            <input type='button' onclick="addNewData1()" id="addRow1" value="신규등록"
            style="background-color: rgb(235, 235, 235); 
            border-style: none; 
-           text-align: center; width:100%;"/>
+           text-align: center; width:100%; cursor:pointer;"/>
            
-           <input type='button' onclick="addAction()" id="addAction" value="등록하기"
+           <input type='button' onclick="doAdd()" id="addAction" value="등록하기"
            style="background-color: rgb(235, 235, 235); 
            border-style: none; 
-           text-align: center; width:100%; display:none;"/>
+           text-align: center; width:100%; display:none; cursor:pointer;"/>
         </form>
         </container2>
         <container3 id="contents3">
@@ -222,7 +222,7 @@ request.setCharacterEncoding("UTF-8");
             <input type='button' onClick="addNewData2()"  id="addRow2" value="신규등록"
             style="background-color: rgb(235, 235, 235); 
             border-style: none;  display: none;
-            text-align: center; width:100%"/>
+            text-align: center; width:100%; cursor:pointer;"/>
             
                 
         </form>
@@ -251,8 +251,8 @@ request.setCharacterEncoding("UTF-8");
         	const newCell4 = newRow.insertCell(3);
         	const newCell5 = newRow.insertCell(4);
         	
-        	newCell1.innerHTML = '<form method="get" id="firstTableAddForm"><td class="cck"><input type="checkbox"/></td>';
-        	newCell2.innerHTML = '<td><input type="text" id="set_Code" name="set_Code" onfocus = "searchView(this.value)" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell1.innerHTML = '<form method="get" id="firstTableAddForm"><td class="cck"></td>';
+        	newCell2.innerHTML = '<td><input type="text" id="set_Code" name="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
         	newCell3.innerHTML = '<td><input type="text" id="set_Name" name="set_Name" style="background-color: rgb(255, 255, 149);"></td>';
         	newCell4.innerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell5.innerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td></form>';
@@ -273,7 +273,7 @@ request.setCharacterEncoding("UTF-8");
         	const newCell6 = newRow.insertCell(5);
         	const newCell7 = newRow.insertCell(6);
         	
-        	newCell1.innerHTML = '<td style="width:2%;"><input type="checkbox" id="check" name="checkedContent"/></td>';
+        	newCell1.innerHTML = '<td style="width:2%;"></td>';
         	newCell2.innerHTML = '<td><input type="text" name="set_Code" id="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
         	newCell3.innerHTML = '<td><input type="text" name="components_Code" id="components_Code" style="background-color: rgb(255, 255, 149);"></td>';
         	newCell4.innerHTML = '<td><input type="text" name="components_Name" id="components_Name" style="background-color: rgb(255, 255, 149);"></td>';
@@ -284,10 +284,10 @@ request.setCharacterEncoding("UTF-8");
         	addRow2.style.display = "none";
         }
         
-        function addAction() {
+        function doAdd() {
         	alert('애드액션구현중');
         	document.getElementById('firstTableAddForm').action = "${contextPath}/member/addSetComponents.do";
-    		document.getElementById('firstTableAddForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
+    		document.getElementById('firstTableAddForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
         }
         
         function searchView(name) { //조회를 담당하는 자바스크립트임

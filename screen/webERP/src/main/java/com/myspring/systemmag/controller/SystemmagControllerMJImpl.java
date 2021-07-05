@@ -474,7 +474,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
 		result = systemmagService.addSetComponents(systemmagVO);
-		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?submit=1&&com_code=" + systemmagVO.getSet_Code());
+		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?");
 		return mav;
 	}
 
