@@ -173,7 +173,7 @@
             </div>
             <div class="login-form-left-side">
                 <div class="login-top-wrap">
-                    <span>Web ERP Program ver 1.0</span>
+                    <span>Web MES Program ver 1.0</span>
                     <button class="enviroment-setting-btn shadow-light">Environment setting</button>
                 </div>
 			<form id="loginForm">

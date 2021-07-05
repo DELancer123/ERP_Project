@@ -425,7 +425,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?");
 		return mav;
 	}
-
+	
 	@Override
 	@RequestMapping(value = "/member/regsetcom.do", method = RequestMethod.GET)
 	public ModelAndView viewSetComponents(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -487,6 +487,18 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value = "/member/addSpecComponents.do", method = RequestMethod.GET)
+	public ModelAndView addSpecComponents(@ModelAttribute("Set") SystemmagVOMJ systemmagVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		int result = 0;
+		result = systemmagService.addSpecComponents(systemmagVO);
+		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+systemmagVO.getSet_Code());
+		return mav;
+	}
+	
 	
 	//AJAX CONTROLLER----------------------------------
 	@ResponseBody
