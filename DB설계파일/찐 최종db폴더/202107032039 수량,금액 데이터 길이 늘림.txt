@@ -99,7 +99,7 @@ DROP SEQUENCE seq_PM_SM_Pro_FProduct_no;
 drop trigger trg_ope_out_nodml;
 ----------------------------------------------
 drop trigger Quantity_Upd_TRG;
-drop trigger mps_del_trg;
+
 
 
 DROP PROCEDURE P_RESET_SEQ;
@@ -1918,15 +1918,6 @@ SELECT * FROM PMM_PM_MRP;
 --
 --SELECT * FROM PMM_PM_RRR;
 
-CREATE OR REPLACE TRIGGER Mps_Del_Trg
-AFTER UPDATE of deadline
-ON PMM_PM_ORDER
-FOR EACH ROW
-BEGIN
-delete from pmm_pm_mps
-WHERE item_Code = :new.item_Code;
-END;
-/
 
 
 
