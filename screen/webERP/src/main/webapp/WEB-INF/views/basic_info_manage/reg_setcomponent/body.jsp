@@ -38,6 +38,7 @@ request.setCharacterEncoding("UTF-8");
             height: 35%;
             border: 1px solid black;
             z-index: 1;
+            overflow:auto;
         }
         #contents3{
             position: absolute;
@@ -47,8 +48,14 @@ request.setCharacterEncoding("UTF-8");
             height: 35%;
             border: 1px solid black;
             z-index: 1;
+            overflow:auto;
         }
         #view{
+            width: 100%;
+            text-align: center;
+            border: 1px solid black;
+        }
+        #view2{
             width: 100%;
             text-align: center;
             border: 1px solid black;
@@ -57,12 +64,18 @@ request.setCharacterEncoding("UTF-8");
         #view td input:not(#check){
             width: 100%;
         }
+        #view2 td input:not(#check){
+            width: 100%;
+        }
         .con1_search{
             padding:0;
             text-align: center;
             position: absolute;
             top: 25%;
             left: 10%;
+        }
+        .cck {
+			width:5%;        
         }
 </style>
 <script>
@@ -145,7 +158,7 @@ request.setCharacterEncoding("UTF-8");
                     <td colspan="5">셋트품 등록</td>
                 </thead>
                 <thead style="font-weight: bold;">
-                    <td style="width: 5%;"></td>
+                    <td class="cck"></td>
                     <td>품번</td>
                     <td>품명</td>
                     <td>규격</td>
@@ -153,32 +166,28 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="set" items="${setView}" >
 	                <tbody>
-	                    <td style="width: 5%;"><input type="checkbox" value = "${set.set_Code }"/></td>
+	                    <td class="cck"><input type="checkbox" value = "${set.set_Code }"/></td>
 	                    <td><input type="text" id="set_Code" name="set_Code" value = "${set.set_Code }" onfocus = "searchView(this.value)" style="background-color: rgb(255, 255, 149);"></td>
 	                    <td><input type="text" id="set_Name" name="set_Name" value = "${set.set_Name }" style="background-color: rgb(255, 255, 149);"></td>
 	                    <td><input type="text" id="set_Standard" name="set_Standard" value = "${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
 	                    <td><input type="text" id="set_Unit" name="set_Unit" value = "${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
 	                </tbody>
                 </c:forEach>
-                <tr>
-                    <td colspan="5">
-                        <button onclick="newInstantRow()"
-                        style="background-color: rgb(235, 235, 235); 
-                        border-style: none; 
-                        text-align: center; width:99%">신규등록</button>
-                    </td>
-                </tr>
            </table>
+           <input type='button' onclick="addNewData1()" id="addRow1" value="신규등록"
+           style="background-color: rgb(235, 235, 235); 
+           border-style: none; 
+           text-align: center; width:99%"/>
         </form>
         </container2>
         <container3 id="contents3">
         <form  method="get" id="reg_setcom2">
-            <table id="view">
+            <table id="view2">
                 <thead>
                     <td colspan="12">구성품 등록</td>
                 </thead>
-                <thead style="font-weight: bold;">
-                    <td></td>
+                <thead style="font-weight: bold;" id="prTitle">
+                    <td class="cck"></td>
                     <td>셋트품코드</td>
                     <td>구성품코드</td>
                     <td>품명</td>
@@ -188,7 +197,7 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="compo" items="${compoView}" >
                 <tbody id="instantRow">
-                    <td style="width: 5%;"><input type="checkbox" value = "${compo.set_Code }" id="check" name="checkedContent"/></td>
+                    <td class="cck"><input type="checkbox" value = "${compo.set_Code }" id="check" name="checkedContent"/></td>
                     <td><input type="text" name="set_Code" id="set_Code" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);"></td>
                     <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149);"></td>
                     <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149);"></td>
@@ -197,15 +206,17 @@ request.setCharacterEncoding("UTF-8");
                     <td><input type="text" name="components_Stock" id="components_Stock" value = "${compo.components_Stock }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                 </tbody>
                 </c:forEach>
-                <tr>
-                    <td colspan="8">
-                        <button onclick="newInstantRow()"  id="addRow"
-                        style="background-color: rgb(235, 235, 235); 
-                        border-style: none;  display: none;
-                        text-align: center; width:99%">신규등록</button>
-                    </td>
-                </tr>
+                
             </table>
+            
+            
+            
+            <input type='button' onClick="addNewData2()"  id="addRow2" value="신규등록"
+            style="background-color: rgb(235, 235, 235); 
+            border-style: none;  display: none;
+            text-align: center; width:100%"/>
+            
+                
         </form>
         </container3>
         <script>
@@ -218,21 +229,53 @@ request.setCharacterEncoding("UTF-8");
         var components_Standard = document.getElementById("components_Standard");
         var components_Unit = document.getElementById("components_Unit");
         var components_Stock = document.getElementById("components_Stock");
-        var addRow = document.getElementById("addRow");
+        var addRow2 = document.getElementById("addRow2");
         var curl = window.location.href;
         var instantRow = document.getElementById("instantRow");
- 
-        function newInstantRow() {
-        	document.createElement("input");
+ 		
+        function addNewData1() {
+        	const table = document.getElementById('view');
+        	const newRow = table.insertRow();
+        	const newCell1 = newRow.insertCell(0);
+        	const newCell2 = newRow.insertCell(1);
+        	const newCell3 = newRow.insertCell(2);
+        	const newCell4 = newRow.insertCell(3);
+        	const newCell5 = newRow.insertCell(4);
+        	
+        	newCell1.innerHTML = '<td class="cck"><input type="checkbox"/></td>';
+        	newCell2.innerHTML = '<td><input type="text" id="set_Code" name="set_Code" onfocus = "searchView(this.value)" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell3.innerHTML = '<td><input type="text" id="set_Name" name="set_Name" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell4.innerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell5.innerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	
+        }
+        function addNewData2() {
+        	const table = document.getElementById('view2');
+        	const newRow = table.insertRow();
+        	const newCell1 = newRow.insertCell(0);
+        	const newCell2 = newRow.insertCell(1);
+        	const newCell3 = newRow.insertCell(2);
+        	const newCell4 = newRow.insertCell(3);
+        	const newCell5 = newRow.insertCell(4);
+        	const newCell6 = newRow.insertCell(5);
+        	const newCell7 = newRow.insertCell(6);
+        	
+        	newCell1.innerHTML = '<td class="cck"><input type="checkbox" id="check" name="checkedContent"/></td>';
+        	newCell2.innerHTML = '<td><input type="text" name="set_Code" id="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell3.innerHTML = '<td><input type="text" name="components_Code" id="components_Code" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell4.innerHTML = '<td><input type="text" name="components_Name" id="components_Name" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell5.innerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell6.innerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell7.innerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         }
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
             location.href = "${contextPath}/member/regsetcom.do?&submit=1&&com_code=" + name;
-   			addRow.style.display='block';
+   			addRow2.style.display='block';
         }
         
         if(curl.indexOf('submit=1')!=-1){
-        	addRow.style.display = 'block';
+        	addRow2.style.display = 'block';
         }
         
         function searchData() {
