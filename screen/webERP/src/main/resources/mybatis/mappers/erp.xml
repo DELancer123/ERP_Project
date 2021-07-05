@@ -1692,7 +1692,7 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertSujuRowSub" parameterType="StockManageVO">
 		<![CDATA[
 		 insert into CSM_SM_COR_Reg
-		 values('300',#{code}, #{itemCode}, #{itemName}, #{standard},#{inventoryUnit},#{dueDate},#{ordersQuantity},#{productPrice},#{vatPrice},#{expectedDate},#{inspection},'예외',#{busCode} )
+		 values(F_GET_NEXT_SEQ('CSM_SM_Ord_Reg'),#{code}, #{itemCode}, #{itemName}, #{standard},#{inventoryUnit},#{dueDate},#{ordersQuantity},#{productPrice},#{vatPrice},#{expectedDate},#{inspection},'예외',#{busCode} )
 		]]>  
 	</insert>
 	
