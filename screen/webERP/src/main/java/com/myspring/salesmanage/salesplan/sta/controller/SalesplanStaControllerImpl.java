@@ -43,6 +43,14 @@ public class SalesplanStaControllerImpl implements SalesplanStaController {
 		return mav;
 	}
 
+	@RequestMapping(value="/member/salsplanhelper2.do" ,method = RequestMethod.GET)
+	public ModelAndView listAllItemSales(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = getViewName(request);
+		List allItemList = salesplanService.listItems();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("allItemList", allItemList);
+		return mav;
+	}
 	@Override
 	@RequestMapping(value="/member/salesplanstat.do" ,method = RequestMethod.GET)
 	public ModelAndView submitItem(HttpServletRequest request, HttpServletResponse response) throws Exception {

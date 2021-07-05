@@ -81,17 +81,17 @@
 <body>
         <container3 id="contents3">
         	<div id= "forwardingInfo2">
-        		<form id="dataFormsub" mehtod="get" commandName="ListVO">
+        		<form id="dataFormsub" mehtod="get">
         	   		<table id="view">
                 		<thead>
-                    	<td style="width: 5%;"><input type="checkbox" name="content1" onclick="selectAll1(this)"></td>
+                		<td></td>
                    		<td>번호</td>
-                   		<td>주문 번호</td>
+                   		<td>출고 번호</td>
                    		<td>품번</td>
                     	<td>품명</td>
                     	<td>규격</td>
+                    	<td>출고 수량</td>
                     	<td>단위</td>
-                    	<td>주문수량</td>
                     	<td>단가</td>
                     	<td>공급가</td>
 						<td>부가세</td>
@@ -102,24 +102,29 @@
                     	<td>검사</td>
                 		</thead>
  					</table>
+ 			<%-- 		<c:forEach var="supForward" items="${subForward}" varStatus="status">
+ 					</c:forEach> --%>
  					<table id = "itemPop"></table>
                  	<table id="insertsubForward" align="center">
-                    	<td><input type="checkbox" value="${corVO.no}"/></td>
-                    	<td><input type="text" id="no" name="ListVO[${fn:length(subForward)}].no" value="${no}" /></td>
-                    	<td><input type="text" id="relCode" name="ListVO[${fn:length(subForward)}].relCode" value="${relCode}" /></td>
-                    	<td><a href="javascript:search5()"><input type="text" id=item_code name="ListVO[${fn:length(subForward)}].item_code" value="${param.item_code}" readonly/></td>
-                    	<td><a href="javascript:search5()"><input type="text" id="item_name" name="ListVO[${fn:length(subForward)}].item_name" value="${param.item_name}" readonly /></td>
-                    	<td><input type="text" id="stand" name="ListVO[${fn:length(subForward)}].stand" value="${param.stand}" readonly/></td>
-                    	<td><input type="text" id="unit" name="ListVO[${fn:length(subForward)}].unit" value="${param.unit}"  readonly/></td>
-                    	<td><input type="text" id="orderQuant" name="ListVO[${fn:length(subForward)}].orderQuant" value="${orderQuant}" /></td>
-                    	<td><input type="text" id="price" name="ListVO[${fn:length(subForward)}].price" value="${price}" /></td>
+                 	<td></td>
+                    	<td><input type="text" id="no" name="no" /></td>
+                    	<td><input type="text" id="relCode2" name="relCode"/></td>
+                    	<td><a href="javascript:search5()"><input type="text" id=item_code name="item_code" value="${param.item_code}" readonly/></td>
+                    	<td><a href="javascript:search5()"><input type="text" id="item_name" name="item_name" value="${param.item_name}" readonly /></td>
+                    	<td><input type="text" id="stand" name="stand"/></td>
+                    	<td><input type="text" id="orderQuant" name="orderQuant"/></td>
+                    	<td><input type="text" id="unit" name="unit" /></td>
+                    	<td><input type="text" id="price" name="price" /></td>
                     	<td><input type="text" id="publicSumPrice" value="${price*orderQuant}" readonly /></td>
                     	<td><input type="text" id="vatPrice" value="${(price*orderQuant)*0.1}" readonly /></td>
                     	<td><input type="text" id="sumPrice" value="${price*orderQuant}" readonly /></td>
-                    	<td><input type="date" id="dueDate" name="ListVO[${fn:length(subForward)}].dueDate" value="${dueDate}" /></td>
-                    	<td><input type="date" id="expDate" name="ListVO[${fn:length(subForward)}].expDate" value="${expDate}" /></td>
-                    	<td><input type="text" id="orderOX" name="ListVO[${fn:length(subForward)}].orderOX" value="${orderOX}" /></td>
-                    	<td><input type="text" id="inspection" name="ListVO[${fn:length(subForward)}].inspection" value="${inspection}" /></td>
+                    	<td><input type="date" id="dueDate" name="dueDate"/></td>
+                    	<td><input type="date" id="expDate" name="expDate"  /></td>
+                    	<td><input type="text" id="orderOX" name="orderOX" /></td>
+                    	<td><input type="text" id="inspection" name="inspection" /></td>
+                    	<input type="hidden" id="quantity" name="quantity" value="0" />
+                    	<input type="hidden" id="vatprice" name="vatprice" value="0" />
+                    	<input type="hidden" name="general_Customer_Code" value='${param.general_Customer_Code }'/>
                 	</table>
          		</form>
         	</div>
@@ -168,8 +173,6 @@
         
         function newRow2(){
           // dao에서 저장
-        
-           var row = insertsubForward.insertRow(); 
              const URLSearch = new URLSearchParams(location.search);
           const newParam = URLSearch.toString();
          var link = location.pathname +'?'+newParam;

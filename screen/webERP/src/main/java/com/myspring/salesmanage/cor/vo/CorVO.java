@@ -26,6 +26,7 @@ public class CorVO {
 	private String orderOX;
 	private String general_Customer_Code;
 	private int vatprice;
+	private int quantity;
 	private List<CorVO> ListVO;
 
 	
@@ -108,7 +109,7 @@ public class CorVO {
 	}
 
 	public void setListCor(List<CorVO> listVO) {
-		ListVO = listVO;
+		this.ListVO = listVO;
 	}
 
 	public Date getExpDate() {
@@ -171,6 +172,20 @@ public class CorVO {
 
 	public void setNo(String no) {
 		this.no = no;
+	}
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setListVO(List<CorVO> listVO) {
+		ListVO = listVO;
 	}
 	
 }
