@@ -117,7 +117,7 @@ a {
 								var words = $('#name').val();
 								$.ajax({
 									type : 'GET',
-									url : '/webERP/member/searchPopCustomerName.do',
+									url : '/webERP/member/searchPopCompoItemNameAjax.do',
 									//words값을 "itemName"이라는 이름의 파라미터로 전송한다.
 									data : {
 										"itemName" : words
@@ -132,13 +132,13 @@ a {
 											var str = '';
 											str += '<tr align="center" id = "yahoo">';
 											str += '<td><a href = "#">'
-													+ data[i].general_Customer_Code
+													+ data[i].item_Code
 													+ '</a></td>';
 											str += '<td><a href = "#">'
-													+ data[i].general_Customer_Name
+													+ data[i].item_Name
 													+ '</a></td>';
-											str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].general_Customer_Code+'"></td>';
-											str += '<td><input type = "hidden" id="iName" value = "'+data[i].general_Customer_Name+'" ></td>';
+											str += '<td><input type = "hidden" id="iCode" name ="iCode" value = "'+data[i].item_Code+'"></td>';
+											str += '<td><input type = "hidden" id="iName" value = "'+data[i].item_Name+'" ></td>';
 											str += '</tr>';
 											//반복문을 사용하여 searchItem table에 추가
 											$("#searchItem")

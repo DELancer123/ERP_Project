@@ -2036,7 +2036,7 @@ ORDER BY out.workordernumber]]>
 			#{components_Name}, 
 			#{components_Standard}, 
 			#{components_Unit},
-			#{components_Stock}]]>
+			#{components_Stock})]]>
 	</insert>
 	<select id="selectPopComponentsList" resultMap="comRegResult">
 		<![CDATA[ select components_Code, components_Name

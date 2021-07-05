@@ -255,7 +255,6 @@ request.setCharacterEncoding("UTF-8");
         border-style: none; 
         text-align: center; width:100%; display:none; cursor:pointer;"/>
             
-        </form>
         </container3>
         <script>
         var set_Code = document.getElementById("set_Code");
