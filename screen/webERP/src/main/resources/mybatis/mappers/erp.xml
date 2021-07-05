@@ -867,9 +867,16 @@ order by bom.parent_item_code]]>
 
   	<select id="selectAllMrpList" resultMap="mrpResult" parameterType="java.util.HashMap">
 		<![CDATA[select distinct bom.Parent_Item_Code, bom.item_Code, bom.item_Name,bom.division,
-    		pm.standard, pm.inventory_unit, pm.expectedDate, pm.dueDate, (pm.plan_quantity) as expected_quantity
+    		pm.standard, pm.inventory_unit, pm.expectedDate, pm.dueDate, (pm.plan_quantity * bom.PRECISIONQUANTITY) as expected_quantity
    			from CPM_BIM_BOM_Reg bom, pmm_pm_mps pm
-   			where bom.item_Code = pm.item_Code and expectedDate between #{startDate} and #{endDate}]]>
+   			where bom.parent_item_code = pm.item_Code and expectedDate between #{startDate} and #{endDate}
+            
+            union
+            
+			select distinct bom.Item_Group_Code,bom.item_code, bom.item_name,bom.division,
+    		pm.standard, pm.inventory_unit, pm.expectedDate, pm.dueDate, (pm.plan_quantity) as expected_quantity
+   			from sm_bim_ite_reg bom, pmm_pm_mps pm
+   			where bom.division = '부품' and bom.item_code = pm.item_Code and expectedDate between #{startDate} and #{endDate}]]>
 	</select>
 
 		<!-- orderclosing 발주마감 -->
@@ -1962,7 +1969,7 @@ ORDER BY out.workordernumber]]>
 		<result property="set_Unit" column="set_Unit" />
 	</resultMap>
 	<select id="selectAllSetComponents" resultMap="setRegResult">
-		<![CDATA[select * from SM_BIM_SET_REG]]>
+		<![CDATA[select * from SM_BIM_SET_REG order by set_Code]]>
 	</select>
 	<select id="selectOneSetComponents" parameterType="String" resultMap="setRegResult">
 		<![CDATA[select * from SM_BIM_SET_REG where set_Code = #{com_code}]]>
