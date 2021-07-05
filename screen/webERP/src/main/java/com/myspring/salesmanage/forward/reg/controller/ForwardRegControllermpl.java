@@ -83,8 +83,13 @@ public class ForwardRegControllermpl implements ForwardRegController{
 			throws Exception {
 
 		request.setCharacterEncoding("utf-8");
+		String viewName = getViewName(request);
+		String item_code = (String)request.getParameter("item_code");
+		List stockQuant = forwardRegService.submitStock(item_code);
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("stockQuant", stockQuant);
+
 		StringBuffer url = request.getRequestURL();
-		System.out.println("확인" + forwardVO.getListVO().size());
 		int result = 0;
 		result = forwardRegService.addForward(forwardVO);
 		String resulturl = url.toString();
@@ -123,6 +128,7 @@ public class ForwardRegControllermpl implements ForwardRegController{
 			ModelAndView mav = new ModelAndView();
 			List<ForwardVO> subForward = null;
 			subForward = forwardRegService.submitItemInfo(relCode);
+			System.out.println("사이즈" + subForward.size());
 			mav.addObject("subForward", subForward);
 			mav.setViewName("jsonView");
 
@@ -149,7 +155,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	public ModelAndView addForwardItem(@ModelAttribute("cor")CorVO corVO, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
-		System.out.println("확인" + corVO.getListVO().size());
 		int result = 0;
 		result = forwardRegService.addForwardItem(corVO);
 		String resulturl = url.toString();

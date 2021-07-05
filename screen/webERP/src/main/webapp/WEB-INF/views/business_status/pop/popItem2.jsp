@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title>일반거래처 검색창</title>
+<title>회원 정보 출력창</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <style>
     	a{
@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/member/orderstat" >
+<form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -67,40 +67,36 @@
         	<div id="view">
             	<table style="width: 100%;">
                 	<tr align="center">
-      					<td><b>코드</b></td>
-      					<td><b>거래처명</b></td>
-      					<td><b>사업자번호</b></td>
+      					<td><b>품번</b></td>
+      					<td><b>품명</b></td>
+      					<td><b>규격</b></td>
   					</tr>
    
- 					<c:forEach var="cust" items="${orderCustList}" >
+ 					<c:forEach var="item" items="${allItemList}" >
    						<tr align="center">
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custCode}</a></td>
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.custName}</a></td>
-      						<td><a href="javascript:popFunction('${cust.custCode}','${cust.custName}')">${cust.comNum}</a></td>
+      						<td><a href="javascript:popFunction('${item.item_code}','${item.item_name}')">${item.item_code}</td>
+      						<td>${item.item_name}</td>
+      						<td>${item.standard}</td>
 						</tr>
-  					</c:forEach> 
+  					</c:forEach>   
 				</table>
 			</div>
 		</div>
-		 <script>
-	    var submit_button = document.getElementById("submit");
-		var text_code = document.getElementById("code");
-		var text_name = document.getElementById("name");
-		
-	function popFunction(code,name){
-		alert("z");
-			text_code.value = code;
-			text_name.value = name;
-			
-	}
-
-	submit_button.onclick = function(){
-		var url = window.opener.document.location.href;
-		var url_arr = url.split('?');
-		opener.parent.location=url_arr[0] + '?custCode='+text_code.value+'&&custName='+text_name.value;
-		window.close();
-	}
-	</script>
+	 <script>
+      var submit_button = document.getElementById("submit");
+    		var text_code = document.getElementById("code");
+    		var text_name = document.getElementById("name");
+    	function popFunction(code,name){
+    		text_code.value = code;
+    		text_name.value = name;
+    	}
+    	  submit_button.onclick = function(){
+			var url = window.opener.document.location.href;
+             var url_arr = url.split('?');
+			 opener.parent.location=url_arr[0]+'?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
+ 			window.close();
+    	}
+    </script>
 	</form>
 </body>
 </html>
