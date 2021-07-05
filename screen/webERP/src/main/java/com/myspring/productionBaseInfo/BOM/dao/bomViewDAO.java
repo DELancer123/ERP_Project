@@ -20,7 +20,6 @@ public interface bomViewDAO {
 	public int updBOM(bomVO bomVO) throws DataAccessException;
 	public int selNo() throws DataAccessException;
 
-	public List childView(String itemNumber,String childCode) throws DataAccessException;
 
 	public List SearchOutView() throws DataAccessException;
 
@@ -45,4 +44,5 @@ public interface bomViewDAO {
 
 
 	public int updateBOM(bomVO bomVO) throws DataAccessException;
+
 }

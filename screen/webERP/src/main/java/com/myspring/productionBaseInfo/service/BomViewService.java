@@ -20,7 +20,6 @@ public interface BomViewService {
 	public int addBOM(bomVO bomVO) throws DataAccessException;
 	public void delBOM(String[] noary) throws DataAccessException;
 	public int inputNo() throws DataAccessException;
-	public List ChildView(String itemNumber,String childCode) throws DataAccessException;
 	public List SearchOutView() throws DataAccessException;
 	public List SearchOutView1(String itemNumber) throws DataAccessException;
 	public List getoutprice(String itemNumber, String placeCode) throws DataAccessException;
