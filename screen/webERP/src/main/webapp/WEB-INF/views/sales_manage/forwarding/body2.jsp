@@ -65,10 +65,10 @@
                 <c:forEach var="supForward" items="${submitCustList}" varStatus="status">
                 <tbody id="updsupForward" align="center">
                     <td><input type="checkbox" value = "${supForward.relCode}" name="content" onclick='getCheckboxValue(event)'/></td>
-                    <td><a href="javascript:popFunction1('${supForward.relCode}','${supForward.relDate}')">
+                    <td><a href="javascript:popFunction1('${supForward.relCode}')">
                     	<input type="text" class = "relCode" name="ListVO[${status.index}].relCode" value="${supForward.relCode}" readonly/></a></td>
                     <td><input type="date"  name="ListVO[${status.index}].relDate" value="${supForward.relDate}" readonly /></td>
-                    <td><input type="text" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
+                    <td><input type="text" class = "customerCode" name="ListVO[${status.index}].general_Customer_Code" value="${supForward.general_Customer_Code}" readonly />
                     <input type="hidden" value="${param.general_Customer_Name}"></td>
                     <td><input type="text" name="ListVO[${status.index}].releaseOX" value="${supForward.releaseOX}"/></td>
                     <td><input type="text" name="ListVO[${status.index}].deadLine" value="${supForward.deadLine}"  /></td>
@@ -110,11 +110,10 @@
         var orderOX = document.getElementById("orderOX");
         var inspection = document.getElementById("inspection");
 
-        function popFunction1(code,name){
-			text_code.value = code;
-			text_name.value = name;
-			
-	}
+        function popFunction1(relCode){
+        	relCode.value = relCode;
+        }
+	
            	function openWindowPop(url, name){
 			var options = 'top=0, left=0, width=320, height=420, status=no, menubar=no, toolbar=no, resizable=no';
 			window.open(url, name, options);
@@ -187,30 +186,30 @@
        		//dataType : 'text',
        		success: function(responseData){
        			var data = responseData.subForward;
-       			
+
        			// id=itemPop 안의 모든 요소 지우기
         			$("#itemPop").empty();
        			
        		/* 	var tbody4index = 0; */
        			for(var i =0; i<data.length; i++){
        				var html = '';
-       				html += '<tr>';  
-           			html += '<td style="width: 5%;"><input type = "checkbox" name = "ListVO[${status.index}].corVO.no"  value = "'+data[i].no+'" "></td>';  	
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.no"  value = "'+data[i].corVO.no+'" "></td>';
-        			html += '<td><input type = "text" name = "ListVO[${status.index}].relCode"  value = "'+data[i].relCode+'" "></td>';  	
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_code"  value = "'+data[i].corVO.item_code +'" "></td>';  		
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.item_name" value = "'+data[i].corVO.item_name +'"></td>';  			
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.stand" value = "'+data[i].corVO.stand+'"></td>';  			
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.orderQuant" value = "'+data[i].corVO.orderQuant+'"></td>';  			
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.unit" value = "'+data[i].corVO.unit+'"></td>';  			
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.price" value = "'+data[i].corVO.price+'"></td>'; 
+       				html += '<tr>';    
+           			html += '<td style="width: 5%;"><input type = "checkbox" name = "ListVO['+i+'].corVO.no"  value = "'+data[i].no+'" "></td>';  	
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.no"  value = "'+data[i].corVO.no+'" "></td>';
+        			html += '<td><input type = "text" name = "ListVO['+i+'].relCode"  value = "'+data[i].relCode+'" "></td>';  	
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.item_code"  value = "'+data[i].corVO.item_code +'" "></td>';  		
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.item_name" value = "'+data[i].corVO.item_name +'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.stand" value = "'+data[i].corVO.stand+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.orderQuant" value = "'+data[i].corVO.orderQuant+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.unit" value = "'+data[i].corVO.unit+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.price" value = "'+data[i].corVO.price+'"></td>'; 
            			html += '<td><input type = "text" name = "공급가" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
            			html += '<td><input type = "text" name = "부가세" value = "'+((data[i].corVO.price*data[i].corVO.orderQuant)*0.1)+'"></td>';
            			html += '<td><input type = "text" name = "합계액" value = "'+(data[i].corVO.price*data[i].corVO.orderQuant)+'"></td>';
-           			html += '<td><input type = "date" name = "ListVO[${status.index}].corVO.dueDate" value = "'+data[i].corVO.dueDate+'"></td>';  			
-           			html += '<td><input type = "date" name = "ListVO[${status.index}].corVO.expDate" value = "'+data[i].corVO.expDate+'"></td>';  			
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.orderOX" value = "'+data[i].corVO.orderOX+'"></td>';  			
-           			html += '<td><input type = "text" name = "ListVO[${status.index}].corVO.inspection" value = "'+data[i].corVO.inspection+'"></td>';  			
+           			html += '<td><input type = "date" name = "ListVO['+i+'].corVO.dueDate" value = "'+data[i].corVO.dueDate+'"></td>';  			
+           			html += '<td><input type = "date" name = "ListVO['+i+'].corVO.expDate" value = "'+data[i].corVO.expDate+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.orderOX" value = "'+data[i].corVO.orderOX+'"></td>';  			
+           			html += '<td><input type = "text" name = "ListVO['+i+'].corVO.inspection" value = "'+data[i].corVO.inspection+'"></td>';  			
            			html += '</tr>';
            			//  id=itemPop 안에 넣기
            			$("#itemPop").append(html);

@@ -89,6 +89,13 @@ request.setCharacterEncoding("UTF-8");
         #subView1 td input:not(#check){
             width: 100%;
         }
+        #subView2{
+            width: 100%;
+            text-align: center;
+        }
+        #subView2 td input:not(#check){
+            width: 100%;
+        }
 </style>
 <script>
    window.onload = function(){
@@ -223,7 +230,7 @@ request.setCharacterEncoding("UTF-8");
                 <c:forEach var="compo" items="${compoView}" >
                 <tbody>
                     <td style="width:2%;"><input type="checkbox" value = "${compo.set_Code }" id="check" name="checkedContent"/></td>
-                    <td><input type="text" name="set_Code" id="set_Code" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);"></td>
+                    <td><input type="text" name="set_Code" id="set_Code2" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);"></td>
                     <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149);"></td>
                     <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149);"></td>
                     <td><input type="text" name="components_Standard" id="components_Standard" value = "${compo.components_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
@@ -231,18 +238,22 @@ request.setCharacterEncoding("UTF-8");
                     <td><input type="text" name="components_Stock" id="components_Stock" value = "${compo.components_Stock }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                 </tbody>
                 </c:forEach>
-                
             </table>
+        </form>    
+        <form method="get" id="reg_setcom2_1">	
+	        <table id="subView2" style="width:100%">
+	        </table>
+        </form>
             
-            <input type='button' onClick="addNewData2()"  id="addRow2" value="신규등록"
-            style="background-color: rgb(235, 235, 235); 
-            border-style: none;  display: none;
-            text-align: center; width:100%; cursor:pointer;"/>
-            
-            <input type='button' onclick="doAdd2()" id="addAction2" value="등록하기"
-            style="background-color: rgb(235, 235, 235); 
-            border-style: none; 
-            text-align: center; width:100%; display:none; cursor:pointer;"/>
+        <input type='button' onClick="addNewData2()"  id="addRow2" value="신규등록"
+        style="background-color: rgb(235, 235, 235); 
+        border-style: none;  display: none;
+        text-align: center; width:100%; cursor:pointer;"/>
+        
+        <input type='button' onclick="doAdd2()" id="addAction2" value="등록하기"
+        style="background-color: rgb(235, 235, 235); 
+        border-style: none; 
+        text-align: center; width:100%; display:none; cursor:pointer;"/>
             
         </form>
         </container3>
@@ -261,7 +272,7 @@ request.setCharacterEncoding("UTF-8");
         var addAction1 = document.getElementById("addAction1");
         var addAction2 = document.getElementById("addAction2");
         var curl = window.location.href;
-        
+        const URLSearch = new URLSearchParams(location.search);
  		
         function addNewData1() {
         	const table = document.getElementById('subView1');
@@ -278,13 +289,18 @@ request.setCharacterEncoding("UTF-8");
         	newCell4.outerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>';
         	newCell5.outerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>';
         	
+        	if ( $('#addAction2').css('display') === 'block' ) {
+        		$('#addAction2').hide();
+        		$('#subView2').hide(); 
+        	}
+        	
         	addRow1.style.display = "none";
         	addAction1.style.display = "block";
         	
         }
         
         function addNewData2() {
-        	const table = document.getElementById('view2');
+        	const table = document.getElementById('subView2');
         	const newRow = table.insertRow();
         	const newCell1 = newRow.insertCell(0);
         	const newCell2 = newRow.insertCell(1);
@@ -294,16 +310,24 @@ request.setCharacterEncoding("UTF-8");
         	const newCell6 = newRow.insertCell(5);
         	const newCell7 = newRow.insertCell(6);
         	
-        	newCell1.outerHTML = '<td style="width:2%;"></td>';
-        	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="set_Code" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="components_Code" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="components_Name" style="background-color: rgb(255, 255, 149);"></td>';
+        	var temp = URLSearch.get('com_code');
+        	newCell1.outerHTML = '<td style="width:2%"></td>';
+        	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149);" onclick="searchCode()"></td>';
+        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149);"></td>';
         	newCell5.outerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell6.outerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell7.outerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	
-        	addRow2.style.display = "none";
-        	addAction2.style.display = "block";
+        	$('#subSet_Code2').attr('value', temp);
+        	
+        	if ( $('#addAction1').css('display') === 'block' ) {
+        		$('#addAction1').hide();
+        		$('#subView1').hide(); 
+        	}
+       		addRow2.style.display = "none";
+           	addAction2.style.display = "block";
+        	
         }
         
         function doAdd1() {
@@ -319,9 +343,17 @@ request.setCharacterEncoding("UTF-8");
         	}
         }
         function doAdd2() {
-        	alert('애드액션구현중');
-        	document.getElementById('secondTableAddForm').action = "${contextPath}/member/addSetComponents.do";
-    		document.getElementById('secondTableAddForm').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
+        	var subSet_Code2 = document.getElementById("subSet_Code2");
+        	var subComponents_Code = document.getElementById("subComponents_Code");
+        	var subComponents_Name = document.getElementById("subComponents_Name");
+        	
+        	if(subSet_Code2.value == "" || subComponents_Code.value == "" || subComponents_Name.value == ""){
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
+        	}else {
+        		alert('등록되었습니다');
+            	document.getElementById('reg_setcom2_1').action = "${contextPath}/member/addSpecComponents.do";
+        		document.getElementById('reg_setcom2_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
+        	}
         }
         
         function searchView(name) { //조회를 담당하는 자바스크립트임
@@ -404,12 +436,9 @@ request.setCharacterEncoding("UTF-8");
         } 
          
         function searchCode() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
-        	openWindowPop("${contextPath}/member/regbasicaccPopup.do", "regbasicaccPopup");
+        	openWindowPop("${contextPath}/member/searchPopComponentsName.do", "setComPopup");
         }
         
-        function searchZip() { //우편번호 검색 팝업을 띄우는 함수
-        	openWindowPop("${contextPath}/member/regbasicaccZipPopup.do", "regbasicaccZipPopup");
-        } 
         </script>
 </body>
 </html>

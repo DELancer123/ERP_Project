@@ -11,7 +11,6 @@ import com.myspring.productionBaseInfo.BOM.vo.bomVO;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface SystemmagControllerMJ {
-	//�Ϲݰŷ�ó���
 	public ModelAndView addCustomer (@ModelAttribute("company") SystemmagVOMJ company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -24,7 +23,8 @@ public interface SystemmagControllerMJ {
 	
 	public ModelAndView popupZipCustomer(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	 
-	//â��/����/���ְ������
+	
+	
 	public ModelAndView viewOutware(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView popupOutware1(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -32,8 +32,9 @@ public interface SystemmagControllerMJ {
 	public ModelAndView popupOutware2(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView popupOutware3(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	
-	//���������������
+	
 	public ModelAndView viewLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView addLogistics(@ModelAttribute("logis") SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -43,8 +44,9 @@ public interface SystemmagControllerMJ {
 	public ModelAndView updateLogistics(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView popupLogistics(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	
-	//�˻��������
+	
 	public ModelAndView addInspection (@ModelAttribute("ins") SystemmagVOMJ company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewInspection(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -53,8 +55,9 @@ public interface SystemmagControllerMJ {
 	
 	public ModelAndView updateInspection(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	//SET구성품등록
-	public ModelAndView addSetComponents (@ModelAttribute("company") SystemmagVOMJ company,
+
+	
+	public ModelAndView addSetComponents (@ModelAttribute("Set") SystemmagVOMJ company,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewSetComponents(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
@@ -63,6 +66,11 @@ public interface SystemmagControllerMJ {
 	public ModelAndView updateSetComponents(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 		
 	public ModelAndView popupSetComponents(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView addSpecComponents (@ModelAttribute("Set") SystemmagVOMJ company,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 	
 			
 }

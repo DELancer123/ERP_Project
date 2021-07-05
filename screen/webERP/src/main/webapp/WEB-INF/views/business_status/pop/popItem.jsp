@@ -60,7 +60,6 @@
             <div id="button">
                 <button id="search">조회</button>
                 <button id="submit">적용</button>
-                <input type="hidden" name="inputNo" value=""/>
                 <input type="reset" id="reset" value="초기화"/>
             </div>
         </div>
@@ -89,13 +88,11 @@
     	function popFunction(code,name){
     		text_code.value = code;
     		text_name.value = name;
+    		
     	}
     	  submit_button.onclick = function(){
-            /*   var url = window.opener.document.location.href;
-             var url_arr = url.split('?');
-			 opener.parent.location=url_arr[0]+'?item_code='+text_code.value+'&&item_name='+text_name.value+'&&submit='+0;
- */    		opener.setChildView(text_code.value, text_name.value);
- 			window.close();
+    		  opener.setChildView(text_code.value, text_name.value);
+   			window.close();
     	}
     </script>
 	</form>
