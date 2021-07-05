@@ -22,7 +22,7 @@ public interface ForwardRegDAO {
 	
 	//subReg-body3
 	
-	public List<ForwardVO> submitSubReg(String relCode) throws DataAccessException;
+	public List<CorVO> submitSubReg(String relCode) throws DataAccessException;
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException;
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;

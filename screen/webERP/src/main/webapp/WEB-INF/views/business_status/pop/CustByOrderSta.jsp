@@ -88,7 +88,6 @@
 		var text_name = document.getElementById("name");
 		
 	function popFunction(code,name){
-		alert("z");
 			text_code.value = code;
 			text_name.value = name;
 			
