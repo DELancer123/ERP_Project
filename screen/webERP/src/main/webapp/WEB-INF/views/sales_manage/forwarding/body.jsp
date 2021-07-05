@@ -53,6 +53,10 @@ function search1(){
 	  
 	openWindowPop('http://localhost:8090/webERP/member/salesmanagepop.do','salesmanagepop');  
 	}
+function view_quant(){
+	  
+	openWindowPop('http://localhost:8090/webERP/member/liststock.do','liststock');  
+	}
 	
 view_button.onclick = function(){
 	  const URLSearch = new URLSearchParams(location.search);
