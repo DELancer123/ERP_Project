@@ -49,7 +49,6 @@ public class BomViewControllerImpl implements BomViewController {
 		String submit = (String) request.getParameter("submit");
 		String itemNumber = (String) request.getParameter("itemCode");
 		int sum = 0;
-		System.out.println("�븘�씠�뀥肄붾뱶:" + itemNumber);
 		if(number == null || number.length() == 0 || submit.equals("0")) {
 			mav = new ModelAndView(viewName);
 			return mav;
@@ -64,7 +63,6 @@ public class BomViewControllerImpl implements BomViewController {
 		else if(submit.equals("2")) {
 			List bomView = viewService.SearchView(number);
 			List bomInsert = viewService.setText(itemNumber);
-			System.out.println(bomInsert.size());
 			mav = new ModelAndView(viewName);
 			mav.addObject("bomView", bomView);
 			mav.addObject("bomInsert",bomInsert);
@@ -115,13 +113,18 @@ public class BomViewControllerImpl implements BomViewController {
 	}
 	
 	@Override
-	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET)
+	@RequestMapping(value="/member/delBOM.do" ,method = RequestMethod.GET,produces="text/plain; charset=UTF-8")
 	public ModelAndView delMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setHeader("Content-Type", "text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		String iNumber = (String) request.getParameter("itemNumber");
+		String name = (String) request.getParameter("itemName");
 		String number = (String) request.getParameter("no");
+		System.out.println(name);
 		String viewName = getViewName(request);
 		String[] numberary = number.split(",");
 		viewService.delBOM(numberary);
-		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do");
+		ModelAndView mav = new ModelAndView("redirect:/member/regbom.do?itemNumber="+iNumber+"&&itemName="+name+"&&submit=1");
 		return mav;
 		}
 	@RequestMapping(value="/member/updateBOM.do" ,method = RequestMethod.GET)
@@ -340,7 +343,6 @@ public class BomViewControllerImpl implements BomViewController {
 		String[] numberary = number.split(",");
 		RegOutSourcingPriceVO outVO = new RegOutSourcingPriceVO();
 		List<RegOutSourcingPriceVO> outVO1= new ArrayList<RegOutSourcingPriceVO>();
-		System.out.println("湲몄씠" + numberary.length);
 		for(int i = 0;i<numberary.length;i++) {
 			outVO1.add(i,outVO);
 			outVO1.get(i).setOutcustomer(place);

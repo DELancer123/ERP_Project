@@ -1969,7 +1969,7 @@ ORDER BY out.workordernumber]]>
 		<result property="set_Unit" column="set_Unit" />
 	</resultMap>
 	<select id="selectAllSetComponents" resultMap="setRegResult">
-		<![CDATA[select * from SM_BIM_SET_REG]]>
+		<![CDATA[select * from SM_BIM_SET_REG order by set_Code]]>
 	</select>
 	<select id="selectOneSetComponents" parameterType="String" resultMap="setRegResult">
 		<![CDATA[select * from SM_BIM_SET_REG where set_Code = #{com_code}]]>

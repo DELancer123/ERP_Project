@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"    
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
@@ -27,7 +27,7 @@
         .con1_search{
             padding:0;
             text-align: center;
-            /* position: absolute; ƒ≠ ∏¿ﬂ∂Ûº≠ ¡ˆøÚ*/
+            /* position: absolute; Ïπ∏ Î™®ÏûòÎùºÏÑú ÏßÄÏõÄ*/
             top: 25%;
             left: 5%;
         }
@@ -51,42 +51,20 @@
                 <table>
                     <tr>
                         <td>
-                            ∏«∞∏Ò
+                            Î™®ÌíàÎ™©
                         </td>
                         <Td>
-                            <input type="text" name="factory" value='${param.itemNumber }' style="width: 120px; background-color: yellow;">
+                            <input type="text" id="factory" value='${param.itemNumber }' readonly style="width: 120px; background-color: yellow;">
                         </Td>
                         <td>
                             <a href="javascript:search1()"><i class="fas fa-search" style="color: blue;"></i></a>
                         </td>
                         <td>
-                            <input type="text" name="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
+                            <input type="text" id="ckfactory" value='${param.itemName }' style="width: 120px;" disabled>
                         </td>
-                        <!-- ∏«∞∏Ò ±‘∞› -->
-                        <td>
-                            <input type="text" style="width: 150px; background-color: skyblue;" disabled>
-                        </td>
-                        <!-- ∏«∞∏Ò ¥‹¿ß -->
-                        <td>
-                            <input type="text" style="width: 120px; background-color: skyblue;" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            ±‚¡ÿ¿œ¿⁄
-                        </td>
-                        <td colspan="2">
-                            <input type="date" name="department" style="width: 120px;">
-                        </td>
-                        
                     </tr>
                 </table>
                 </form>
-                <div id="button">
-                    <input type="button" value="BOM ∫πªÁ" style="padding: 5px; margin-left: 40px;"></input>
-                    
-                    <input type="button" value="¿œ∞˝¿⁄¿Á∫Ø∞Ê" style="padding: 5px;"></input>
-                </div>
                 
         </container1>
         

@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"    
     isELIgnored="false"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<%
-  request.setCharacterEncoding("UTF-8");
-%>    
+    
 <%
 	String inputNo = (String)request.getAttribute("inputNo");
 	
@@ -37,7 +35,7 @@
             z-index: 1;
         }
         
-        /* ÄÁÅ×ÀÌ³Ê ½ºÅ¸ÀÏºÎ */
+        /* ì»¨í…Œì´ë„ˆ ìŠ¤íƒ€ì¼ë¶€ */
         #workOrderInfo {
             overflow: scroll;
             height: 97%;
@@ -46,7 +44,7 @@
         #workOrderTable{
        		width:100%;
        	}
-        /* ÇÕ°è Ãâ·ÂºÎ */
+        /* í•©ê³„ ì¶œë ¥ë¶€ */
         #resultWindow{
             height: 3%;
             background-color: gray;
@@ -73,29 +71,28 @@ img {
 </script>
 </head>
 <body>
-<form id="regBOM" method="get" commandName = "ListVO">
+<form id="regBOM" method="get" commandName = "ListVO" >
         <container2 id= contents2>
             <div id="workOrderInfo">
                 <table id="workOrderTable">
                     <thead align="center" style="background-color:gray">
                         <td><input type="checkbox" name="content" onclick="selectAll(this)"/></td>
                         <td style="width:10px;">No</td>
-                        <td>¸ğÇ°¸ñÄÚµå</td>
-                        <td>Ç°¹øÄÚµå</td>
-                        <td>Ç°¸í</td>
-                        <td>±Ô°İ</td>
-                        <td>´ÜÀ§</td>
-                        <td>°èÁ¤</td>
-                        <td>Á¤¹Ì¼ö·®</td>
+                        <td>í’ˆë²ˆì½”ë“œ</td>
+                        <td>í’ˆëª…</td>
+                        <td>ê·œê²©</td>
+                        <td>ë‹¨ìœ„</td>
+                        <td>ê³„ì •</td>
+                        <td>ì •ë¯¸ìˆ˜ëŸ‰</td>
                         <td>LOSS(%)</td>
-                        <td>ÇÊ¿ä¼ö·®</td>
+                        <td>í•„ìš”ìˆ˜ëŸ‰</td>
                     </thead>
-                    <!-- Å×½ºÆ®¿ë µ¥ÀÌÅÍ, ÃßÈÄ Ç¥Çö½ÄÀ¸·Î ¼öÁ¤ÇÊ¿ä -->
+                    <!-- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°, ì¶”í›„ í‘œí˜„ì‹ìœ¼ë¡œ ìˆ˜ì •í•„ìš” -->
          <c:forEach var="bom" items="${bomView}" varStatus="status" >     
    <tr id= "updateTest" align="center">
    	  <td><input type="checkbox" name="content" value="${bom.no }"/></td>
    	  <td style="width:13px;"><input type="text" name="ListVO[${status.index}].no" value = '${bom.no }' readonly style="width:100%"/></td>
-   	  <td><input type="text" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/></td>
+   	  <input type="hidden" name="ListVO[${status.index}].parent" value = '${bom.parent}' readonly/>
    	  <td><input type="text" name="ListVO[${status.index}].itemNumber" value = '${bom.itemNumber}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].itemName" value = '${bom.itemName}' readonly/></td>
    	  <td><input type="text" name="ListVO[${status.index}].standard" value = '${bom.standard }' readonly/></td>
@@ -110,7 +107,7 @@ img {
     <tr id ="insertTest" align="center">
     <td></td>
     	<td><input type="text" id="no" name="ListVO[${fn:length(bomView) }].no" value='${inputNo }' readonly style="width:100%"/></td>
-    	<td><input type="text" id="parent" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' readonly /></td>
+    	<input type="hidden" id="parent" name="ListVO[${fn:length(bomView) }].parent" value = '${param.itemNumber }' />
     	<td><input type="text" id="itemNumber" name="ListVO[${fn:length(bomView) }].itemNumber" value='${itemNumber }' ondblclick="search2()" readonly/></td>
     	<td><input type="text" id="itemName" name="ListVO[${fn:length(bomView) }].itemName" value='${itemName }' readonly/></td>
     	<td><input type="text" id="standard" name="ListVO[${fn:length(bomView) }].standard" value='${standard }' readonly/></td>
@@ -124,11 +121,11 @@ img {
                 </table>
                  
             </div>
-            <!-- ÇÕ°è Ãâ·ÂºÎ -->
+            <!-- í•©ê³„ ì¶œë ¥ë¶€ -->
             <div id="resultWindow">
-                ÇÕ °è <span style="margin-left: 100px;">Á¤¹Ì¼ö·® <input type="text"></span><span style="margin-left: 100px;">ÇÊ¿ä¼ö·® <input type="text"></span>
+                í•© ê³„ <span style="margin-left: 100px;">ì •ë¯¸ìˆ˜ëŸ‰ <input type="text"></span><span style="margin-left: 100px;">í•„ìš”ìˆ˜ëŸ‰ <input type="text"></span>
             </div>
-            <!-- ÇÕ°è Ãâ·ÂºÎ Á¾·á -->
+            <!-- í•©ê³„ ì¶œë ¥ë¶€ ì¢…ë£Œ -->
         </container2>
         
       <script>
@@ -213,7 +210,7 @@ img {
   	}
       
       function newRow(){
-          // dao¿¡¼­ ÀúÀå
+          // daoì—ì„œ ì €ì¥
     	 
           const URLSearch = new URLSearchParams(location.search);
 		  URLSearch.set('submit', '1');
@@ -230,25 +227,25 @@ img {
   	     	  var actualQuantity = document.getElementById('actualQuantity').value;
   		     
   		   if (isEmpty(itemNumber)){
-	      		alert("Ç°¹ø°ªÀÌ ºñ¾îÁ®ÀÖ½À´Ï´Ù. °ªÀ» Ãß°¡ÇØÁÖ¼¼¿ä!");
+	      		alert("í’ˆë²ˆê°’ì´ ë¹„ì–´ì ¸ìˆìŠµë‹ˆë‹¤. ê°’ì„ ì¶”ê°€í•´ì£¼ì„¸ìš”!");
 	      		document.getElementById("itemNumber").focus();
 	      		return false;
 
 	  		}
   		   else 
   			   if (isEmpty(precisionQuantity)){
-	      		alert("Á¤¹Ì¼ö·®°ªÀÌ ºñ¾îÁ®ÀÖ½À´Ï´Ù. °ªÀ» Ãß°¡ÇØÁÖ¼¼¿ä!");
+	      		alert("ì •ë¯¸ìˆ˜ëŸ‰ê°’ì´ ë¹„ì–´ì ¸ìˆìŠµë‹ˆë‹¤. ê°’ì„ ì¶”ê°€í•´ì£¼ì„¸ìš”!");
 	      		document.getElementById("precisionQuantity").focus();
 	      		return false;
 
  	  		}
 		   else if(isEmpty(loss)){
-	      		alert("loss°ªÀÌ ºñ¾îÁ®ÀÖ½À´Ï´Ù. °ªÀ» Ãß°¡ÇØÁÖ¼¼¿ä!");		            	
+	      		alert("lossê°’ì´ ë¹„ì–´ì ¸ìˆìŠµë‹ˆë‹¤. ê°’ì„ ì¶”ê°€í•´ì£¼ì„¸ìš”!");		            	
 	      		document.getElementById("loss").focus();
 	      		return false;
 		   }
 		   else if(isEmpty(actualQuantity)){
-	      		alert("ÇÊ¿ä¼ö·®°ªÀÌ ºñ¾îÁ®ÀÖ½À´Ï´Ù. °ªÀ» Ãß°¡ÇØÁÖ¼¼¿ä!");		            	
+	      		alert("í•„ìš”ìˆ˜ëŸ‰ê°’ì´ ë¹„ì–´ì ¸ìˆìŠµë‹ˆë‹¤. ê°’ì„ ì¶”ê°€í•´ì£¼ì„¸ìš”!");		            	
 	      		document.getElementById("actualQuantity").focus();
 	      		return false;
 		   }
@@ -266,6 +263,8 @@ img {
       
      function deleteData() {
     	  var item = document.getElementsByName("content").length;
+    	  var number = document.getElementById("factory");
+    	  var name = document.getElementById("ckfactory");
     	  var no = "";
     	  var ary = [];
     	  for(var i=0; i<item;i++){
@@ -274,13 +273,13 @@ img {
     			  ary.push(no);
     		  }
     	  }
-	      	if(ary.length === 0 || ary === null){ //Ã¼Å©¹Ú½º°¡ ¾Æ¹«°Íµµ Ã¼Å©µÇÁö ¾Ê¾ÒÀ»¶§
-				alert('»èÁ¦ÇÒ ¸ñ·ÏÀÇ Ã¼Å©¹Ú½º¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä');
+	      	if(ary.length === 0 || ary === null){ //ì²´í¬ë°•ìŠ¤ê°€ ì•„ë¬´ê²ƒë„ ì²´í¬ë˜ì§€ ì•Šì•˜ì„ë•Œ
+				alert('ì‚­ì œí•  ëª©ë¡ì˜ ì²´í¬ë°•ìŠ¤ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”');
 				//window.history.back();
 			}
-	    	else {//ÄÁÆ®·Ñ·¯·Î ÇØ´ç¸ñ·ÏÀÇ no°ªÀ» º¸³½´Ù
-    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary;
-	    		alert('»èÁ¦µÇ¾ú½À´Ï´Ù');
+	    	else {//ì»¨íŠ¸ë¡¤ëŸ¬ë¡œ í•´ë‹¹ëª©ë¡ì˜ noê°’ì„ ë³´ë‚¸ë‹¤
+    			  window.location.href = "${contextPath}/member/delBOM.do?no="+ary+"&&itemNumber="+number.value+"&&itemName="+name.value;
+	    		alert('ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤');
 	
 	    	}
       }
