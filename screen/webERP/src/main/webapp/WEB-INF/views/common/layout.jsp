@@ -222,19 +222,7 @@ border: 0.1px  solid #87cb42;
 	left: 17%;
 }
 
-#view1, #view2 {
-	width: 100%;
-	text-align: center;
-	border: 1px solid #ccc;
-}
 
-#view2 td {
-	width: 5%;
-}
-
-#view2 td input {
-	width: 100%;
-}
 
 #header li a, p {
 	color: white;

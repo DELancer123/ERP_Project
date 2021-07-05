@@ -2031,7 +2031,8 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertNewSpecComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_COM_REG
-			values(#{components_Code},
+			values(#{set_Code},
+			#{components_Code},
 			#{components_Name}, 
 			#{components_Standard}, 
 			#{components_Unit},
