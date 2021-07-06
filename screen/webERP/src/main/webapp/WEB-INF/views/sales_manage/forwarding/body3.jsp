@@ -165,7 +165,7 @@
 			
 			   		ary.push(no); 
 		  		}
-		 	  	window.location.href = "${contextPath}/member/delforwardItem.do?no="+ary;
+		 	  	window.location.href = "${contextPath}/member/delforwarditem.do?no="+ary;
 	  		}
 		}
        	

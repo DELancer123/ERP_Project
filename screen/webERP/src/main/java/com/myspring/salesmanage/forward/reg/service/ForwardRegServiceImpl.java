@@ -84,10 +84,10 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 //	public void submitStock(String[] noary) throws DataAccessException {
 //		forwardDAO.selectStockList(noary);
 //	}
-//	@Override
-//	public void removeSubItem(String[] noary) throws DataAccessException {
-//		forwardDAO.delItemForward(noary);	
-//	}
+	@Override
+	public void removeSubItem(String[] noary) throws DataAccessException {
+		forwardDAO.delItemForward(noary);	
+	}
 //	@Override
 //	public int updSubItem(CorVO corVO) throws DataAccessException {
 //		return forwardDAO.updItemForward(corVO);

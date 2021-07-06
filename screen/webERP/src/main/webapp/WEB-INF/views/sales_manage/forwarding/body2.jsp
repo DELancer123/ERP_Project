@@ -194,7 +194,7 @@
         			for(var i =0; i<data.length; i++){
            				var html = '';
            				html += '<tr>';    
-               			html += '<td style="width: 5%;"><input type = "checkbox" name = "contentItem"  value = "${item_code} "></td>';  	
+               			html += '<td style="width: 5%;"><input type = "checkbox" name = "contentItem"  value = "'+data[i].no+'"></td>';  	
                			html += '<td><input type = "text" name = "ListVO['+i+'].no"  value = "'+data[i].no+'" "></td>';
             			html += '<td><input type = "text" name = "ListVO['+i+'].relCode"  value = "'+data[i].relCode+'" "></td>';  	
                			html += '<td><input type = "text" name = "ListVO['+i+'].item_code"  value = "'+data[i].item_code +'" "></td>';  		
@@ -227,18 +227,25 @@
     	
 		/*수정버튼*/
         function updateRow() {
-           var row = updsupForward.insertRow(); 
-           const URLSearch = new URLSearchParams(location.search);
-           const newParam = URLSearch.toString();
-            var link = location.pathname +'?'+newParam;
-          var linkPath = document.createElement("input");
-          linkPath.setAttribute("type","hidden");
-          linkPath.setAttribute("name","path");
-          linkPath.setAttribute("value", link);
-            document.getElementById('dataForm').appendChild(linkPath);
-            document.getElementById('dataForm').action = "${contextPath}/member/updForward.do";
-          document.getElementById('dataForm').submit();  
-        }
+        	  var updsupForward = document.getElementById('updsupForward');
+              var row = updsupForward.insertRow(); 
+              const URLSearch = new URLSearchParams(location.search);
+              URLSearch.set('submit', '1');
+    		  const newParam = URLSearch.toString();
+    		 var link = location.pathname +'?'+newParam;
+      			 document.getElementById("relCode").disabled = true;
+      		     document.getElementById("relDate").disabled = true;
+      		   	 var articleNOInput = document.createElement("input");
+    		     articleNOInput.setAttribute("type","hidden");
+    		     articleNOInput.setAttribute("name","path");
+    		     articleNOInput.setAttribute("value", link);
+    		     document.getElementById('dataForm').appendChild(articleNOInput);
+               document.getElementById('dataForm').action = "${contextPath}/member/updForward.do";
+      			document.getElementById('dataForm').submit();  
+               document.getElementByName('updsupForward').action = "${contextPath}/member/updForward.do";
+      			document.getElementByName('updsupForward').submit(); 
+          }
+        	
     	
         </script>
 </body>

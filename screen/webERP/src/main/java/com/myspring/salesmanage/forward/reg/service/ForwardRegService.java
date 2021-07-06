@@ -29,6 +29,6 @@ public interface ForwardRegService {
 	public int addForwardItem(CorVO corVO)throws DataAccessException;
 //	public void submitStock(String[] noary) throws DataAccessException;
 	public List listForwardsub() throws DataAccessException;
-	//	public void removeSubItem(String[] noary) throws DataAccessException;
+	public void removeSubItem(String[] noary) throws DataAccessException;
 //	public int updSubItem(ForwardVO forwardVO) throws DataAccessException;
 }
