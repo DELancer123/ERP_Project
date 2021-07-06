@@ -234,7 +234,7 @@
     			window.location.href = "${contextPath}/member/deleteItemg.do?no="+ary;       	
         }
       //체크박스 품목군을 참조하고 있는 품목이 있으면 disabled
-      function check_form(){
+       function check_form(){
     	  var checkedContent = document.getElementById('checkedContent');
     	  checkedContent.disabled = false;
       }
