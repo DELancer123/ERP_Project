@@ -142,7 +142,7 @@ String sequence = (String) request.getAttribute("sequence");
 				<td><input type="text" id="item_Code" name="ListVO[${fn:length(ClosingList) }].item_Code" value='${item_Code}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="item_Name" name="ListVO[${fn:length(ClosingList) }].item_Name" value='${item_Name}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
 				<td><input type="text" id="standard" name="ListVO[${fn:length(ClosingList) }].standard" value='${standard}' style="width: 100%" /></td>
-				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
+				<td><input type="text" id="inventory_unit" name="ListVO[${fn:length(ClosingList) }].inventory_unit" value='${inventory_unit}'readonly /></td>
 				<td><input type="text" id="order_quantity" name="ListVO[${fn:length(ClosingList) }].order_quantity" value='${order_quantity}' /></td>
 				<td><input type="text" id="deadline" name="ListVO[${fn:length(ClosingList) }].deadline" value='${deadline}' readonly/></td>
 				<td><input type="text" id="cost" name="ListVO[${fn:length(ClosingList) }].cost" value='${cost}' ondblclick="search1()" readonly  style="background-color:#E0FFFF"/></td>
