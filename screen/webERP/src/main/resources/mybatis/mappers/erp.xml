@@ -2041,6 +2041,12 @@ ORDER BY out.workordernumber]]>
 		  where components_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="searchPopCompoItemNameAjax" resultMap="comRegResult" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	<!-- SET구성품등록끝 -->
 	
 	<!-- popCust--> 
