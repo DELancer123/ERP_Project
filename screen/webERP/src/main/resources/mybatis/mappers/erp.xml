@@ -33,6 +33,7 @@
 		<result property="remainingPerformance" column="remainingPerformance" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
+		<result property="processCode" column="PROCESS_CODE" />
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
@@ -149,7 +150,7 @@
 	
 	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<![CDATA[select * from OperationRegistInfoVIEW]]>
 	</select>
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
