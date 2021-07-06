@@ -73,5 +73,6 @@ public interface SystemmagControllerMJ {
 	public ModelAndView searchPopCompoItemName(SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
+	public ModelAndView deleteSpecComponents(HttpServletRequest request, HttpServletResponse response) throws Exception;
 			
 }
