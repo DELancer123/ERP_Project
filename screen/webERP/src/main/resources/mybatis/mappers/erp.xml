@@ -2192,12 +2192,12 @@ ORDER BY out.workordernumber]]>
 		where no = #{no}]]>
 	</update>
 	
-	<select id="stockQuantity" resultMap="Corfor" parameterType="String">
-		<![CDATA[select quantity from PM_SM_Pro_Stock where item_code = #{item_code} order by item_code]]>
+	<select id="stockQuantity" resultMap="Corfor">
+		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code}]]>
 	</select>	
 		<update id="updForwardQuantity" parameterType="corVO">
 		<![CDATA[update PM_SM_Pro_Stock
-		 		 set quantity = #{quantity}
+		 		 set quantity = quantity - #{orderQuant}
 		 		 where item_code = #{item_code}]]>
 	</update>
 	

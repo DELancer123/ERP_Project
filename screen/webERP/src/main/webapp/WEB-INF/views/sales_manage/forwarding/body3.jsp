@@ -84,7 +84,7 @@
         		<form id="dataFormsub" mehtod="get">
         	   		<table id="view">
                 		<thead>
-                		<td></td>
+                		<td><input type="checkbox" id="check" name="contentItem" onclick="selectAll(this)"/></td>
                    		<td>번호</td>
                    		<td>출고 번호</td>
                    		<td>품번</td>
@@ -115,7 +115,7 @@
                     	<td><input type="text" id="price" name="price" /></td>
                     	<td><input type="text" id="publicSumPrice" value="${price*orderQuant}" readonly /></td>
                     	<td><input type="text" id="vatPrice" value="${(price*orderQuant)*0.1}" readonly /></td>
-                    	<td><input type="text" id="sumPrice" value="${price*orderQuant}" readonly /></td>
+                    	<td><input type="text" id="sumPrice" value="${price*orderQuant*1.1}" readonly /></td>
                     	<td><input type="date" id="dueDate" name="dueDate"/></td>
                     	<td><input type="date" id="expDate" name="expDate"  /></td>
                     	<td><input type="text" id="orderOX" name="orderOX" /></td>
@@ -144,7 +144,8 @@
         var expDate = document.getElementById("expDate");
         var orderOX = document.getElementById("orderOX");
         var inspection = document.getElementById("inspection");
-                function search5(){
+   
+        function search5(){
     	  
         	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
     			}
@@ -152,14 +153,15 @@
                 	$('input[id=item_code]').val(itemCode);
                 	$('input[id=item_name]').val(itemName);
                 }
+               
     	function deleteData2() {
     	    
-	  		var item = document.getElementsByName("content").length;
+	  		var item = document.getElementsByName("contentItem").length;
 	  		var no = "";
 	  		var ary = [];
 	  		for(var i=0; i<item;i++){
-		  		if(document.getElementsByName("content")[i].checked==true){
-					no = document.getElementsByName("content")[i].value;
+		  		if(document.getElementsByName("contentItem")[i].checked==true){
+					no = document.getElementsByName("contentItem")[i].value;
 			
 			   		ary.push(no); 
 		  		}
