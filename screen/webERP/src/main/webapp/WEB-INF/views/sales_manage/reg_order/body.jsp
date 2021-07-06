@@ -339,8 +339,8 @@ String parent = request.getParameter("itemNumber");
     	
         var tbody2html = '<tr class="newSubSujuRow">'
             + '<td><input type="checkbox" name="content2" /></td>'
-            + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemCode1" name="subSujuList['+ tbody3Index +'].itemCode" readonly value=""/></a></td>'
-            + '<td><a href="javascript:searchItem2()"><input type="text" id = "itemName2" name="subSujuList['+ tbody3Index +'].itemName" readonly value=""/></a></td>'
+            + '<td><a href="javascript:searchItem2(this)"><input type="text" id = "itemCode1" name="subSujuList['+ tbody3Index +'].itemCode" readonly value=""/></a></td>'
+            + '<td><a href="javascript:searchItem2(this)"><input type="text" id = "itemName2" name="subSujuList['+ tbody3Index +'].itemName" readonly value=""/></a></td>'
             + '<td><input type="text" name="subSujuList['+ tbody3Index +'].standard" value=""/></td>'
             + '<td><input type="text" name="subSujuList['+ tbody3Index +'].inventoryUnit" value=""/></td>'
             + '<td><input type="date" name="subSujuList['+ tbody3Index +'].dueDate" value=""/></td>'
