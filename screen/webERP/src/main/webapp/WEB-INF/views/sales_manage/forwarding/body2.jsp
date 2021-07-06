@@ -194,7 +194,7 @@
         			for(var i =0; i<data.length; i++){
            				var html = '';
            				html += '<tr>';    
-               			html += '<td style="width: 5%;"><input type = "checkbox" name = "ListVO['+i+'].no"  value = "'+data[i].no+'" "></td>';  	
+               			html += '<td style="width: 5%;"><input type = "checkbox" name = "contentItem"  value = "${item_code} "></td>';  	
                			html += '<td><input type = "text" name = "ListVO['+i+'].no"  value = "'+data[i].no+'" "></td>';
             			html += '<td><input type = "text" name = "ListVO['+i+'].relCode"  value = "'+data[i].relCode+'" "></td>';  	
                			html += '<td><input type = "text" name = "ListVO['+i+'].item_code"  value = "'+data[i].item_code +'" "></td>';  		
@@ -205,7 +205,7 @@
                			html += '<td><input type = "text" name = "ListVO['+i+'].price" value = "'+data[i].price+'"></td>'; 
                			html += '<td><input type = "text" name = "공급가" value = "'+(data[i].price*data[i].orderQuant)+'"></td>';
                			html += '<td><input type = "text" name = "부가세" value = "'+((data[i].price*data[i].orderQuant)*0.1)+'"></td>';
-               			html += '<td><input type = "text" name = "합계액" value = "'+(data[i].price*data[i].orderQuant)+'"></td>';
+               			html += '<td><input type = "text" name = "합계액" value = "'+((data[i].price*data[i].orderQuant)*1.1)+'"></td>';
                			html += '<td><input type = "date" name = "ListVO['+i+'].dueDate" value = "'+data[i].dueDate+'"></td>';  			
                			html += '<td><input type = "date" name = "ListVO['+i+'].expDate" value = "'+data[i].expDate+'"></td>';  			
                			html += '<td><input type = "text" name = "ListVO['+i+'].orderOX" value = "'+data[i].orderOX+'"></td>';  			
