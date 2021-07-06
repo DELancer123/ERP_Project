@@ -514,6 +514,20 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	}
 	
 	
+	@Override
+	@RequestMapping(value = "/member/deleteSpecComponents.do", method = RequestMethod.GET)
+	public ModelAndView deleteSpecComponents(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("딜리트스펙컴포");
+		String number = (String) request.getParameter("no2");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+
+		systemmagService.delSpecComponents(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+systemmagVO.getSet_Code());
+		return mav;
+	}
+	
+	
 	//AJAX CONTROLLER----------------------------------
 	@ResponseBody
 	@RequestMapping(value = "/member/searchPopCustomerName.do", method = RequestMethod.GET)
