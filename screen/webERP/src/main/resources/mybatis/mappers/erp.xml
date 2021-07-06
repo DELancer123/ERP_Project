@@ -1554,26 +1554,26 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectstockList" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_Stock
 		]]>
 	</select>
 	
 	<select id="selectfinishedstockList" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_FinishedProduct
 		]]>
 	</select>
 	
 	<select id="selectPopstockList" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_Stock
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
 	<select id="selectPopstockList2" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_FinishedProduct
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
@@ -1637,7 +1637,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code ,Item_Name  
+		<![CDATA[ select Item_Code ,Item_Name  ,standard,Inventory_Unit
 		  from SM_BIM_Ite_Reg  
 		]]>
 	</select>
@@ -1650,7 +1650,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name,standard,Inventory_Unit
 		  from SM_BIM_Ite_Reg
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
