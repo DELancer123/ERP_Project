@@ -566,7 +566,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		parameterType="String">
 		<![CDATA[select ite.item_code, ite.item_name,ite.standard,ite.inventory_unit,bom.precisionquantity,bom.loss, ite.division
 from cpm_bim_bom_Reg bom, sm_bim_ite_reg ite
-where not ite.division='완제품' and bom.parent_item_code = ite.item_code and bom.item_code = #{number}
+where bom.parent_item_code = ite.item_code and bom.item_code = #{number}
 order by bom.parent_item_code]]>
 	</select>
 	<select id="inputItem" resultMap="bomView"
