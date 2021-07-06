@@ -7,7 +7,9 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-
+<%
+	String item_code = (String)request.getParameter("item_code");	
+%>
 
 <html>
 <head>
@@ -44,7 +46,7 @@
     </style>
 </head>
 <body>
-<form name="popForm" method="get" action="${contextPath}/salesmanage/regplanitem" >
+<form name="popForm" method="get" action="${contextPath}/member/forwarding" >
     <div id="wrap">
         <div id="searchBox">
             <table id="search">
@@ -58,9 +60,8 @@
                 </tr>
             </table>
             <div id="button">
-                <button id="search">조회</button>
-                <button id="submit">적용</button>
-                <input type="reset" id="reset" value="초기화"/>
+                <button id="search" >조회</button>
+                <button id="submit" onclick="submitClick(this.form)" >적용</button>
             </div>
         </div>
         	<div id="view">
@@ -68,7 +69,7 @@
                 	<tr align="center">
       					<td><b>품번</b></td>
       					<td><b>품명</b></td>
-      					<td><b>규격</b></td>
+      					<td><b>재고 수량</b></td>
   					</tr>
    
  					<c:forEach var="item" items="${stockQuant}" >
@@ -90,7 +91,7 @@
     		text_name.value = name;
     		
     	}
-    	  submit_button.onclick = function(){
+		function submitClick(form) {
     		  opener.setChildView(text_code.value, text_name.value);
    			window.close();
     	}

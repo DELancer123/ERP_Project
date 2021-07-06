@@ -41,7 +41,7 @@
                 </tr>
                	<tr> 
                     <td><button id="delete" onclick="deleteData2()">품목 삭제</button></td>
-                    <td><button id="view_quant">재고 수량 확인</button></td>
+                    <td><button id="view_quant" onclick="view_quant()">재고 수량 확인</button></td>
                     <td><button id="save" onclick="newRow2()">저장</button></td>
 					<td><button id="update" onclick="updateRow2()">수정</button>
                 </tr>
@@ -53,10 +53,7 @@ function search1(){
 	  
 	openWindowPop('http://localhost:8090/webERP/member/salesmanagepop.do','salesmanagepop');  
 	}
-function view_quant(){
-	  
-	openWindowPop('http://localhost:8090/webERP/member/liststock.do','liststock');  
-	}
+
 	
 view_button.onclick = function(){
 	  const URLSearch = new URLSearchParams(location.search);

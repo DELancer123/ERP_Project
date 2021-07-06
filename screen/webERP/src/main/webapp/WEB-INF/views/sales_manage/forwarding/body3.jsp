@@ -115,7 +115,7 @@
                     	<td><input type="text" id="price" name="price" /></td>
                     	<td><input type="text" id="publicSumPrice" value="${price*orderQuant}" readonly /></td>
                     	<td><input type="text" id="vatPrice" value="${(price*orderQuant)*0.1}" readonly /></td>
-                    	<td><input type="text" id="sumPrice" value="${price*orderQuant}" readonly /></td>
+                    	<td><input type="text" id="sumPrice" value="${price*orderQuant*1.1}" readonly /></td>
                     	<td><input type="date" id="dueDate" name="dueDate"/></td>
                     	<td><input type="date" id="expDate" name="expDate"  /></td>
                     	<td><input type="text" id="orderOX" name="orderOX" /></td>
@@ -144,7 +144,8 @@
         var expDate = document.getElementById("expDate");
         var orderOX = document.getElementById("orderOX");
         var inspection = document.getElementById("inspection");
-                function search5(){
+   
+        function search5(){
     	  
         	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
     			}
@@ -152,6 +153,11 @@
                 	$('input[id=item_code]').val(itemCode);
                 	$('input[id=item_name]').val(itemName);
                 }
+               
+                function view_quant(){
+                	/*	itemCode.value = itemCode;  */
+                	openWindowPop('http://localhost:8090/webERP/member/liststock.do?&&item_code='+itemCode.value);  
+                	}    
     	function deleteData2() {
     	    
 	  		var item = document.getElementsByName("content").length;

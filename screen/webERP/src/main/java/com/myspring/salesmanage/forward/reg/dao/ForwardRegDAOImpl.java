@@ -128,9 +128,9 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		return result;
 	}
 	@Override
-	public List selectStockList(String item_code) throws DataAccessException {
+	public List selectStockList() throws DataAccessException {
 		List<CorVO> stockQuant = null;
-		stockQuant = sqlSession.selectList("mappers.erp.stockQuantity",item_code);
+		stockQuant = sqlSession.selectList("mappers.erp.stockQuantity");
 			return stockQuant;
 	}
 	@Override

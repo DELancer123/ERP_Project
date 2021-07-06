@@ -81,9 +81,9 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	}
 
 	@Override
-	public List submitStock(String item_code) throws DataAccessException {
+	public List submitStock() throws DataAccessException {
 		List submitQuant = null;
-		submitQuant = forwardDAO.selectStockList(item_code);
+		submitQuant = forwardDAO.selectStockList();
 		return submitQuant;
 	}
 
