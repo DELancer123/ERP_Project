@@ -2217,7 +2217,7 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code}]]>
 	</select>	
 		<update id="updForwardQuantity" parameterType="corVO">
-		<![CDATA[update PM_SM_Pro_Stock
+		<![CDATA[update PM_SM_Pro_finishedproduct
 		 		 set quantity = quantity - #{orderQuant}
 		 		 where item_code = #{item_code}]]>
 	</update>
