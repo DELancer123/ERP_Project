@@ -133,6 +133,7 @@
         </container3>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript">
+        var no = document.getElementById("no");
     	var relCode = document.getElementById("relCode");
        	var custCode = document.getElementById("custCode");
         var deadLine = document.getElementById("deadLine");
@@ -192,45 +193,23 @@
      }    	
    
 		/*수정버튼*/
-        /*function updateRow2() {
-        	var item = document.getElementsByName("contentItem").length;
-	  		var no = "";
-	  		var ary = [];
-	  		for(var i=0; i<item;i++){
-		  		if(document.getElementsByName("contentItem")[i].checked==true){
-					no = document.getElementsByName("contentItem")[i].value;
-			
-			   		ary.push(no); 
-		  		}
-     	  var itemPop = document.getElementById('itemPop');
-          var row = itemPop.insertRow(); 
-          const URLSearch = new URLSearchParams(location.search);
-         /*  URLSearch.set('item_code',itemCode.value);
-          URLSearch.set('item_name',itemName.value);
-          URLSearch.set('submit', '1'); 
-		  const newParam = URLSearch.toString();
-		 var link = location.pathname +'?'+newParam+'&item_code='+item_code.value+'&no='+ary;
-  			 document.getElementById("relCode").disabled = true;
-  		     document.getElementById("item_code").disabled = true;
-  		   document.getElementById("item_name").disabled = true;
-  		 document.getElementById("stand").disabled = true;
-  		document.getElementById("unit").disabled = true;
-  		document.getElementById("orderQuant").disabled = true;
-  		document.getElementById("price").disabled = true;
-  		document.getElementById("price").disabled = true;
-  		document.getElementById("price").disabled = true;
-  		document.getElementById("price").disabled = true;
-  		     var articleNOInput = document.createElement("input");
-		     articleNOInput.setAttribute("type","hidden");
-		     articleNOInput.setAttribute("name","path");
-		     articleNOInput.setAttribute("value", link);
-		     document.getElementById('dataFormsub').appendChild(articleNOInput);
-           document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
-           document.getElementById('dataFormsub').submit(); 
-             document.getElementByName('itemPop').action = "${contextPath}/member/updforwarditem.do";
-  			document.getElementByName('itemPop').submit();   
+        function updateRow2() {
+    	        const URLSearch = new URLSearchParams(location.search);
+		          const newParam = URLSearch.toString();
+		         var link = location.pathname +'?'+newParam;
+
+		           var linkPath = document.createElement("input");
+		            linkPath.setAttribute("type","hidden");
+		            linkPath.setAttribute("name","path");
+		            linkPath.setAttribute("value", link);
+		            
+		            document.getElementById('dataFormsub').appendChild(linkPath);
+		            document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
+		           document.getElementById('dataFormsub').submit();  
+             /* document.getElementByName('itemPop').action = "${contextPath}/member/updforwarditem.do";
+  			document.getElementByName('itemPop').submit();    */
       }
-          */
+	  		
         </script>
 </body>
 </html>

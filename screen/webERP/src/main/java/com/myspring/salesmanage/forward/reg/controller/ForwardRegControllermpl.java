@@ -137,18 +137,21 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		String code = (String)request.getParameter("item_code");
 		String from = request.getParameter("orderQuant");
 		int orderQuant = Integer.parseInt(from);
+		System.out.println("수정이 되었습니다.");
 		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 		return mav;
 	}		
 //	@RequestMapping(value="/member/updforwarditem.do" ,method = RequestMethod.GET)
 //	public ModelAndView updItemForward(@ModelAttribute("cor") CorVO corVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		System.out.println("왜 들어가질 못하니?");
+//		System.out.println("asd");
 //		request.setCharacterEncoding("utf-8");
-//		String path = request.getParameter("path");
-//		path = path.replace("/webERP", "");
+//		String viewName = getViewName(request);
+//		StringBuffer url = request.getRequestURL();
 //		int result = 0;
 //		result = forwardRegService.updSubItem(corVO);
-//		ModelAndView mav = new ModelAndView("redirect:" + path);
+//		String resulturl = url.toString();
+//		String code = (String)request.getParameter("item_code");
+//		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 //		return mav;
 //	}
 	

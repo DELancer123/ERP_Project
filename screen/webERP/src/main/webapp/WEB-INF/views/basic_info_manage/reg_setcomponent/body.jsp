@@ -314,11 +314,11 @@ request.setCharacterEncoding("UTF-8");
         	var temp = URLSearch.get('com_code');
         	newCell1.outerHTML = '<td style="width:5%"></td>';
         	newCell2.outerHTML = '<td style="width:15%"><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);" readonly></td>';
-        	newCell3.outerHTML = '<td style="width:15%"><input type="text" name="components_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly ></td>';
-        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly></td>';
-        	newCell5.outerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell6.outerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell7.outerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell3.outerHTML = '<td style="width:15%"><input type="text" name="subComponents_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly ></td>';
+        	newCell4.outerHTML = '<td><input type="text" name="subComponents_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly></td>';
+        	newCell5.outerHTML = '<td><input type="text" name="subComponents_Standard" id="subComponents_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell6.outerHTML = '<td><input type="text" name="subComponents_Unit" id="subComponents_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell7.outerHTML = '<td><input type="text" name="subComponents_Stock" id="subComponents_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	
         	$('#subSet_Code2').attr('value', temp);
         	
@@ -347,14 +347,20 @@ request.setCharacterEncoding("UTF-8");
         	var subSet_Code2 = document.getElementById("subSet_Code2");
         	var subComponents_Code = document.getElementById("subComponents_Code");
         	var subComponents_Name = document.getElementById("subComponents_Name");
-        	var compoObj = document.getElementsByName("components_Code");
         	
-        	const compoArray = Object.values(compoObj);
+        	var compoNode = document.getElementsByName("components_Code");
+			var checker = false;
         	
+        	for(var i=0; i<compoNode.length; i++){
+        		if(compoNode[i].value==subComponents_Code.value){
+        			checker = true;
+        		}
+        	}
+		        	
         	if(subSet_Code2.value == "" || subComponents_Code.value == "" || subComponents_Name.value == ""){
         		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
-        	}else if(compoArray.includes(subComponents_Code)){
-        		alert('이미존재하는 구성품코드입니다');
+        	}else if(checker) {
+        		alert('이미 존재하는 구성품코드입니다');
         	}
         	else {
         		alert('등록되었습니다');
@@ -391,7 +397,8 @@ request.setCharacterEncoding("UTF-8");
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("topBox").length;
         	var item2 = document.getElementsByName("bottomBox").length;
-        	var setCode = document.getElementById("set_Code").value;
+        	var compoArray = document.getElementsByName("components_Code").length;
+        	var temp = URLSearch.get('com_code');
         	var no = "";
         	var no2 = "";
         	var ary = [];
@@ -411,16 +418,17 @@ request.setCharacterEncoding("UTF-8");
         	}
         	if(ary.length === 0 && ary2.length === 0){ //체크박스가 아무것도 체크되지 않았을때
     			alert('삭제할 목록의 체크박스를 선택해주세요');
-    		}
-        	if(ary.length > 0 && ary2.length > 0){ //체크박스가 아무것도 체크되지 않았을때
+    		}else if(ary.length > 0 && ary2.length > 0){ //체크박스가 아무것도 체크되지 않았을때
     			alert('하나의 섹션안에서 선택해주세요');
+    		}else if(compoArray > 0 && ary.length > 0) {
+    			alert('해당하는 구성품을 먼저 삭제해 주세요')
     		}
         	else {//컨트롤러로 해당목록의 no값을 보낸다
         		alert('삭제 되었습니다');
         		if(ary.length>0)
-    				window.location.href = "${contextPath}/member/deleteSetComponents.do?no="+ary+"&&com_code="+setCode;
+    				window.location.href = "${contextPath}/member/deleteSetComponents.do?no="+ary+"&&com_code="+temp;
     			if(ary2.length>0)	
-    				window.location.href = "${contextPath}/member/deleteSpecComponents.do?no2="+ary2+"&&com_code="+setCode;
+    				window.location.href = "${contextPath}/member/deleteSpecComponents.do?no2="+ary2+"&&com_code="+temp;
         	}
         }
         
