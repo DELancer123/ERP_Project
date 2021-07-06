@@ -130,8 +130,8 @@ window.onload = function(){
                     	<td><input type="text" name="ListVO[${status.index}].planItemQuantity" value="${sp.planItemQuantity}" readonly/></td>
                     	<td><input type="text" name="ListVO[${status.index}].planUnitPrice" value="${sp.planUnitPrice}" readonly/></td>
                     	<td><input type="text" value="${sp.planItemQuantity * sp.planUnitPrice}" readonly/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].newPlanItemQuantity" value="${sp.newPlanItemQuantity}" style="background-color:rgb(255,255,149);"/></td>
-                    	<td><input type="text" name="ListVO[${status.index}].newPlanUnitPrice" value="${sp.newPlanUnitPrice}" style="background-color:rgb(255,255,149);"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].newPlanItemQuantity" value="${sp.newPlanItemQuantity}" maxlength="8" style="background-color:rgb(255,255,149);"/></td>
+                    	<td><input type="text" name="ListVO[${status.index}].newPlanUnitPrice" value="${sp.newPlanUnitPrice}"  maxlength="9"style="background-color:rgb(255,255,149);"/></td>
                     	<td><input type="text" value="${sp.newPlanItemQuantity * sp.newPlanUnitPrice}" readonly/></td>                                                                      
                 	</tr>
 				</c:forEach>
@@ -142,11 +142,11 @@ window.onload = function(){
                     	<td><input type="text" id="itemName" name="ListVO[${fn:length(spView) }].itemName" value='${itemName }' readonly/></td>
                     	<td><input type="text" id="standard" name="ListVO[${fn:length(spView) }].istandard" value='${standard }' readonly/></td>
                     	<td><input type="text" id="inventoryUnit" name="ListVO[${fn:length(spView) }].inventoryUnit" value='${inventoryUnit }' readonly/></td>
-                    	<td><input type="text" id="planItemQuantity" name="ListVO[${fn:length(spView) }].planItemQuantity" value='${planItemQuantity }' style="background-color:rgb(255,255,149);"/></td>
-                    	<td><input type="text" id="planUnitPrice" name="ListVO[${fn:length(spView) }].planUnitPrice" value='${planUnitPrice }' style="background-color:rgb(255,255,149);"/></td>
+                    	<td><input type="text" id="planItemQuantity" name="ListVO[${fn:length(spView) }].planItemQuantity" value='${planItemQuantity }' style="background-color:rgb(255,255,149) max;" maxlength="8"/></td>
+                    	<td><input type="text" id="planUnitPrice" name="ListVO[${fn:length(spView) }].planUnitPrice" value='${planUnitPrice }' style="background-color:rgb(255,255,149);" maxlength="9"/></td>
                     	<td><input type="text" value='${planItemQuantity * planUnitPrice }' readonly/></td>
-                    	<td><input type="text" id="newPlanItemQuantity" name="ListVO[${fn:length(spView) }].newPlanItemQuantity" value='${newPlanItemQuantity }' readonly/></td>
-                    	<td><input type="text" id="newPlanUnitPrice" name="ListVO[${fn:length(spView) }].newPlanUnitPrice" value='${newPlanUnitPrice }' readonly/></td>
+                    	<td><input type="text" id="newPlanItemQuantity" name="ListVO[${fn:length(spView) }].newPlanItemQuantity" value='${newPlanItemQuantity }'  maxlength="8" readonly/></td>
+                    	<td><input type="text" id="newPlanUnitPrice" name="ListVO[${fn:length(spView) }].newPlanUnitPrice" value='${newPlanUnitPrice }' maxlength="20" readonly/></td>
                     	<td><input type="text" value='${newPlanItemQuantity * newPlanUnitPrice }' readonly/></td>                                         
                 	</tr>
             	</table>
