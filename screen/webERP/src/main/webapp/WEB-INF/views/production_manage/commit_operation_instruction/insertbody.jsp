@@ -99,6 +99,7 @@
                         <td style="width: 80px;"><input type="text" style="width: 100%; background-color: yellow;"/></td>
                         <td><input type="text" name="" disabled/></td>
                         <td > <i class="fas fa-search" style="color: blue;"></i></td>
+                        <!-- 
                         <td>
                             <input type="button" value="자재출고" onClick="release()" style="padding: 5px; margin-left: 30px;"></input>
                         </td>
@@ -108,6 +109,7 @@
                         <td>
                             <input type="button" value="확정" onClick="confirm();" style="padding: 5px;"></input>
                         </td>
+                        -->
                         <td>
                         	<input type="button" value="원래 화면으로" onClick="back()" style="padding: 5px;" />
                         </td>
@@ -145,7 +147,7 @@
                         <td><input type="checkbox" value="${info.workOrderNumber }" name="content"/></td>
                         <td><input type="text" name="ListVO[${status.index }].workOrderNubmer" value="${info.workOrderNumber}" readonly /></td>
                         <td><input type="text" name="ListVO[${status.index }].materialstatus" value="${info.materialstatus}" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index }].workPlaceCode" value="${info.workPlaceCode}" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly/></td>
                         <td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly/></td>
                         <td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly/></td>

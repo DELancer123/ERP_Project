@@ -312,6 +312,7 @@ function isEmpty(str){
   		    linkPath.setAttribute("name","path");
   		    linkPath.setAttribute("value", link);
   		  var performanceQuantity = document.getElementById("performanceQuantity").value;
+  		if(URLSearch.has('searchNumber')===true){
    		   if (isEmpty(performanceDate)){
 		      		alert("날짜값이 비어져있습니다. 값을 추가해주세요!");
 		      		document.getElementById("performanceDate").focus();
@@ -326,6 +327,10 @@ function isEmpty(str){
   			document.getElementById('detailForm').submit();    
 	  		alert("값이 저장되었습니다!");          	
 		    }
+  		}else{
+  			alert("작업지시번호를 체크하지 않아 이전 화면으로 돌아갑니다! 작업지시번호를 체크한 후 먼저 조회를 눌러주세요!!");
+  			window.history.back();
+  		}
   		    
       }
       
