@@ -1987,10 +1987,10 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertNewSetComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_SET_REG
-			values(#{set_Code},
-			#{set_Name}, 
-			#{set_Standard}, 
-			#{set_Unit})]]>
+			values(#{subSet_Code},
+			#{subSet_Name}, 
+			#{subSet_Standard}, 
+			#{subSet_Unit})]]>
 	</insert>
 	<select id="selectPopSetList" resultMap="setRegResult">
 		<![CDATA[ select set_Code, set_Name

@@ -285,10 +285,10 @@ request.setCharacterEncoding("UTF-8");
         	const newCell5 = newRow.insertCell(4);
         	
         	newCell1.outerHTML = '<td style="width:5%"></td>';
-        	newCell2.outerHTML = '<td><input type="text" id="subSet_Code" name="set_Code" style="background-color: rgb(255, 255, 149);" maxlength="12"></td>';
-        	newCell3.outerHTML = '<td><input type="text" id="subSet_Name" name="set_Name" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>';
-        	newCell4.outerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>';
-        	newCell5.outerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>';
+        	newCell2.outerHTML = '<td><input type="text" id="subSet_Code" name="subSet_Code" style="background-color: rgb(255, 255, 149);" maxlength="12"></td>';
+        	newCell3.outerHTML = '<td><input type="text" id="subSet_Name" name="subSet_Name" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>';
+        	newCell4.outerHTML = '<td><input type="text" id="subSet_Standard" name="subSet_Standard" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>';
+        	newCell5.outerHTML = '<td><input type="text" id="subSet_Unit" name="subSet_Unit" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>';
         	
         	if ( $('#addAction2').css('display') === 'block' ) {
         		$('#addAction2').hide();
@@ -334,10 +334,32 @@ request.setCharacterEncoding("UTF-8");
         function doAdd1() {
         	var subSet_Code = document.getElementById("subSet_Code");
             var subSet_Name = document.getElementById("subSet_Name");
+			var setCode = document.getElementsByName("set_Code");            
+			var setName = document.getElementsByName("set_Name");            
+            var firstChecker = false;
+            var secondChecker = false;
+			
+			
+            for(var i=0; i<setCode.length; i++){
+        		if(setCode[i].value==subSet_Code.value){
+        			firstChecker = true;
+        		}
+        	}
+            for(var i=0; i<setName.length; i++){
+        		if(setName[i].value==subSet_Name.value){
+        			secondChecker = true;
+        		}
+        	}
+            
             
         	if(subSet_Code.value == "" || subSet_Name.value == ""){
         		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
-        	}else { 
+        	}else if(firstChecker) {
+        		alert('이미 존재하는 품번입니다');
+        	}else if(secondChecker) {
+        		alert('이미 존재하는 품명입니다');
+        	}
+        	else { 
         		alert('등록되었습니다');
 	        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
 	    		document.getElementById('reg_setcom1_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
