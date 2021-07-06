@@ -63,14 +63,12 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	@Override
 	public int updForward(ForwardVO forwardVO) throws DataAccessException {
 		int result = 0; 
-
 		int idx = forwardVO.getListVO().size();
 		for(int i = 0; i<idx; i++) {
 			result = sqlSession.update("mappers.erp.updateForward", forwardVO.getListVO().get(i));		
 		}
 		return result;
 	}
-
 
 	@Override
 	public int addForward(ForwardVO forwardVO) throws DataAccessException {
@@ -85,12 +83,12 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 			return subForward;
 	}
 
-//	@Override
-//	public void delItemForward(String[] ItemCodeary) throws DataAccessException {
-//		for(String item_code: forwardCodeary) {
-//			sqlSession.delete("mappers.erp.delItemforward",item_code);
-//			}
-//}
+	@Override
+	public void delItemForward(String[] ItemCodeary) throws DataAccessException {
+		for(String no: ItemCodeary) {
+			sqlSession.delete("mappers.erp.delItemforward",no);
+			}
+	}
 	@Override
 	public int addItemForward(CorVO corVO) throws DataAccessException {
 		int result = sqlSession.insert("mappers.erp.insertForwardItem",corVO);
@@ -104,16 +102,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 		int idx = corVO.getListVO().size();
 		for(int i = 0; i<idx; i++) {
-		result = sqlSession.update("mappers.erp.updateForward", corVO.getListVO().get(i));		
-		}
-		return result;
-	}
-	public int updIteminst(CorVO corVO) throws DataAccessException {
-		int result = 0; 
-
-		int idx = corVO.getListVO().size();
-		for(int i = 0; i<idx; i++) {
-		result = sqlSession.update("mappers.erp.updForwardInst", corVO.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.updateSubForward", corVO.getListVO().get(i));		
 		}
 		return result;
 	}

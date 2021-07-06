@@ -26,7 +26,7 @@ public interface ForwardRegDAO {
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException;
 	public int addForward(ForwardVO forwardVO) throws DataAccessException;
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
-//	public void delItemForward(String[] ItemCodeary) throws DataAccessException;
+	public void delItemForward(String[] ItemCodeary) throws DataAccessException;
 	public int addItemForward(CorVO corVO) throws DataAccessException;
 //	public void selectStockList(String[] itemCodeary) throws DataAccessException;
 	public int updItemForward(CorVO corVO)throws DataAccessException;

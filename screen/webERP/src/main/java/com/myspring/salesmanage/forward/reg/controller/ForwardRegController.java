@@ -20,5 +20,5 @@ public interface ForwardRegController {
 
 	public ModelAndView addForwardItem(@ModelAttribute("cor")CorVO corVO, HttpServletRequest request,HttpServletResponse response) throws Exception;
 ////	public ModelAndView listSubForwardCode(HttpServletRequest request, HttpServletResponse response) throws Exception;
-//	public ModelAndView delSubForward(HttpServletRequest request, HttpServletResponse response) throws Exception ;
+	public ModelAndView delForwardItem(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 }

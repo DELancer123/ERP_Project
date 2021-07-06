@@ -14,6 +14,7 @@ public class OperationRegistVO {
 	private Date billingDate;
 	private String materialstatus;
 	private String workPlaceCode;
+	private String processCode;
 	private Date instructionDate;
 	private Date dueDate;
 	private String itemCode;
@@ -233,6 +234,14 @@ public class OperationRegistVO {
 
 	public void setLoss(int loss) {
 		this.loss = loss;
+	}
+
+	public String getProcessCode() {
+		return processCode;
+	}
+
+	public void setProcessCode(String processCode) {
+		this.processCode = processCode;
 	}
 	
 	

@@ -33,6 +33,7 @@
 		<result property="remainingPerformance" column="remainingPerformance" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
+		<result property="processCode" column="PROCESS_CODE" />
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
@@ -149,7 +150,7 @@
 	
 	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<![CDATA[select * from OperationRegistInfoVIEW]]>
 	</select>
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
@@ -2052,7 +2053,7 @@ ORDER BY out.workordernumber]]>
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
-	</select>
+	</select><!--  -->
 	<select id="selectAllSalesplanList" resultMap="salesplan">
       <![CDATA[select * from SM_BIM_Sal_Pla_Reg order by plan_code]]>
 	</select>
@@ -2138,11 +2139,7 @@ ORDER BY out.workordernumber]]>
 		values (F_GET_NEXT_SEQ('CSM_SM_Rel_Pro'), #{relDate}, #{general_Customer_Code},#{releaseOX}, #{deadLine}, #{note})
 		]]>  
 	</insert>
-	<update id="updateForward" parameterType="forwardVO">
-		<![CDATA[update CSM_SM_Rel_Pro
-		set deadLine = #{deadLine}
-		where releaseNum = #{relCode}]]>
-	</update>
+
 	
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
@@ -2162,6 +2159,7 @@ ORDER BY out.workordernumber]]>
 		 where REL.releaseNum = COR.code and COR.code =#{relCode}
 		 ]]>
 	</select>
+	
 
 
 <resultMap id="Corfor" type="corVO">
@@ -2192,11 +2190,10 @@ ORDER BY out.workordernumber]]>
 		values (#{no},#{relCode},#{item_code},#{item_name}, #{stand}, #{unit},#{dueDate},#{orderQuant},#{price},#{vatprice},#{expDate},#{inspection},#{orderOX},#{general_Customer_Code})
 		]]>  
 	</insert>
-	<update id="updateSubForward" parameterType="forwardVO">
-		<![CDATA[update CSM_SM_COR_Reg
-		set inspection = #{inspection}, orderOX=#{orderOX}
-		where no = #{no}]]>
-	</update>
+
+	<delete id="delItemforward" parameterType="String">
+		<![CDATA[delete from CSM_SM_COR_Reg where no=#{no}]]>      
+  </delete>
 	
 	<select id="stockQuantity" resultMap="Corfor">
 		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code}]]>
@@ -2207,6 +2204,17 @@ ORDER BY out.workordernumber]]>
 		 		 where item_code = #{item_code}]]>
 	</update>
 	
+	
+		<update id="updateSubForward" parameterType="corVO">
+		<![CDATA[update CSM_SM_COR_Reg
+		set inspection = #{inspection}, orderOX=#{orderOX}
+		where item_code = #{item_code}]]>
+	</update>
+		<update id="updateForward" parameterType="forwardVO">
+		<![CDATA[update CSM_SM_Rel_Pro
+		set deadLine = #{deadLine}, note = #{note} 
+		where releaseNum = #{relCode}]]>
+	</update>
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
 		<result property="releaseNum" column="releaseNum" />
