@@ -327,28 +327,6 @@ input {
         var update_button = document.getElementById('update');
         var view_button = document.getElementById('view_button');
         var itemcode = document.getElementById('itemcode');
-        side_button1.onclick = function(){
-            var l_sub1 = document.getElementById('l_sub1');
-            if(l_sub1.style.display == 'none' || l_sub1.style.display==''){
-            l_sub1.style.display = "block";
-            l_sub1.style.position = "relative";
-            l_sub1.style.marginLeft = "10px";
-            }
-            else{
-                l_sub1.style.display = "none";
-            }
-        }
-        side_button2.onclick = function(){
-            var l_sub2 = document.getElementById('l_sub2');
-            if(l_sub2.style.display == 'none' || l_sub2.style.display==''){
-            l_sub2.style.display = "block";
-            l_sub2.style.position = "relative";
-            l_sub2.style.marginLeft = "10px";
-            }
-            else{
-                l_sub2.style.display = "none";
-            }
-        }
         
         search_box.onfocus = function(){
         	if(document.getElementById("search").value == ' 메뉴 검색'){
