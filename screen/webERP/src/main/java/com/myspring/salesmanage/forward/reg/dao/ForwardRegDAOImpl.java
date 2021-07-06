@@ -44,7 +44,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 		submitCustList = sqlSession.selectList("mappers.erp.submitSupForward",general_Customer_Code);
 		submitCustList.get(0).getDeadLine();
 		return submitCustList;
-	}//choice custCode by superForward (string�� forwardVO�� �ٲ�� ����� ��������
+	}//choice custCode by superForward
 	@Override
 	public void delSupForward(String[] forwardCodeary) throws DataAccessException {
 		for(String relCode: forwardCodeary) {
@@ -66,11 +66,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 		int idx = forwardVO.getListVO().size();
 		for(int i = 0; i<idx; i++) {
-			System.out.println("i" + i);
-		result = sqlSession.update("mappers.erp.updateForward", forwardVO.getListVO().get(i));		
-		System.out.println(forwardVO.getListVO().get(i).getDeadLine());
-		System.out.println(forwardVO.getListVO().get(i).getRelCode());
-		System.out.println("DAOresult:"+result);
+			result = sqlSession.update("mappers.erp.updateForward", forwardVO.getListVO().get(i));		
 		}
 		return result;
 	}
@@ -86,10 +82,6 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	public List submitSubReg(String relCode) throws DataAccessException {
 		List<CorVO> subForward = null;
 		subForward = sqlSession.selectList("mappers.erp.submitItemForward",relCode);
-		System.out.println("Restult List Size : " + subForward.size());
-
-		
-		System.out.println("사이즈dao" +  relCode);
 			return subForward;
 	}
 
@@ -112,7 +104,6 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 		int idx = corVO.getListVO().size();
 		for(int i = 0; i<idx; i++) {
-			System.out.println("i" + i);
 		result = sqlSession.update("mappers.erp.updateForward", corVO.getListVO().get(i));		
 		}
 		return result;
@@ -122,7 +113,6 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 		int idx = corVO.getListVO().size();
 		for(int i = 0; i<idx; i++) {
-			System.out.println("i" + i);
 		result = sqlSession.update("mappers.erp.updForwardInst", corVO.getListVO().get(i));		
 		}
 		return result;

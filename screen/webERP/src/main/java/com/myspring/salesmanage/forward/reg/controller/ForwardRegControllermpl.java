@@ -55,7 +55,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		String code = (String)request.getParameter("general_Customer_Code");
 		String custCode = (String)request.getParameter("custCode");
 		String submit = (String)request.getParameter("submit");
-		System.out.println(code);
 		
 		if(code == null || code.length() == 0||submit.equals("0")) {
 		
@@ -97,8 +96,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		String code = (String)request.getParameter("no");
 		String viewName = getViewName(request);
 		String[] codeary = code.split(",");
-		System.out.println(codeary+"codeary");
-		System.out.println(code+"code");
 		forwardRegService.removeForward(codeary);
 		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 		return mav;
@@ -132,7 +129,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
 	public ModelAndView addForwardItem(@ModelAttribute("cor")CorVO corVO, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("구간확인");
 		String viewName = getViewName(request);
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
@@ -141,13 +137,12 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		String code = (String)request.getParameter("item_code");
 		String from = request.getParameter("orderQuant");
 		int orderQuant = Integer.parseInt(from);
-		System.out.println("수정이 되었습니다.");
 		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 		return mav;
 	}
 	
 
-//		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
+//		@RequestMapping(value="/member/updForwarditem.do" ,method = RequestMethod.GET)
 //	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
 //		request.setCharacterEncoding("utf-8");
 //		String path = request.getParameter("path");

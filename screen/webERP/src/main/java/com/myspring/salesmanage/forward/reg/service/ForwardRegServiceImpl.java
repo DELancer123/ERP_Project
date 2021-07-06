@@ -66,7 +66,6 @@ public class ForwardRegServiceImpl implements ForwardRegService {
 	  
 	@Override
 	public List<CorVO> submitItemInfo(String relCode) throws DataAccessException {
-		
 		return forwardDAO.submitSubReg(relCode);	
 	}//submitSubReg
 
