@@ -44,7 +44,8 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-   <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
+
+    <definition name="PopupLayout"  template="/WEB-INF/views/common/pop.jsp">
 	  <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
@@ -75,7 +76,16 @@
       <put-attribute name="side" value="" />
       <put-attribute name="body" value="" />
    </definition>
-
+   <definition name="ListStock"  template="/WEB-INF/views/sales_manage/pop/popListStock.jsp">
+	  <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+      <definition name="/member/liststock" extends="ListStock">
+      <put-attribute name="title" value="역전개팝업" />
+      <put-attribute name="body" value="" />
+	  <put-attribute name="side" value="" />
+   </definition>
    <!-- bom 팝업 레이아웃 -->
     <definition name="BOMPopupLayout"  template="/WEB-INF/views/production_basic_info/reg_BOM/pop.jsp">
 	<put-attribute name="title" value="" />

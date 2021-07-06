@@ -186,11 +186,11 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="set" items="${setView}" >
 	                <tbody>
-	                    <td class="cck"><input type="checkbox" value = "${set.set_Code }"/></td>
-	                    <td><input type="text" id="set_Code" name="set_Code" value="${set.set_Code }" onfocus="searchView(this.value)" style="background-color: rgb(255, 255, 149); cursor:pointer;" maxlength="12"></td>
-	                    <td><input type="text" id="set_Name" name="set_Name" value="${set.set_Name }" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>
-	                    <td><input type="text" id="set_Standard" name="set_Standard" value="${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>
-	                    <td><input type="text" id="set_Unit" name="set_Unit" value="${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>
+	                    <td class="cck"><input type="checkbox" name="topBox" value = "${set.set_Code }"/></td>
+	                    <td><input type="text" id="set_Code" name="set_Code" value="${set.set_Code }" onfocus="searchView(this.value)" style="background-color: rgb(255, 255, 149); cursor:pointer;" maxlength="9"></td>
+	                    <td><input type="text" id="set_Name" name="set_Name" value="${set.set_Name }" style="background-color: rgb(255, 255, 149);" maxlength="40"></td>
+	                    <td><input type="text" id="set_Standard" name="set_Standard" value="${set.set_Standard }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="15"></td>
+	                    <td><input type="text" id="set_Unit" name="set_Unit" value="${set.set_Unit }" style="background-color: rgb(235,235,235); border-style: none;" maxlength="3"></td>
 	                </tbody>
                 </c:forEach>
            </table>
@@ -219,20 +219,22 @@ request.setCharacterEncoding("UTF-8");
                     <td colspan="12">구성품 등록</td>
                 </thead>
                 <thead style="font-weight: bold;" id="prTitle">
-                    <td style="width:2%;"></td>
-                    <td>셋트품코드</td>
-                    <td>구성품코드</td>
+                <tr>
+                    <td style="width:5%;"></td>
+                    <td style="width:15%;">셋트품코드</td>
+                    <td style="width:15%;">구성품코드</td>
                     <td>품명</td>
                     <td>단위</td>
                     <td>수량</td>
                     <td>규격</td>
+                </tr>
                 </thead>
                 <c:forEach var="compo" items="${compoView}" >
                 <tbody>
-                    <td style="width:2%;"><input type="checkbox" value = "${compo.set_Code }" id="check" name="checkedContent"/></td>
-                    <td><input type="text" name="set_Code" id="set_Code2" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);"></td>
-                    <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149);"></td>
-                    <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149);"></td>
+                    <td style="width:5%;"><input type="checkbox" value = "${compo.components_Code }" name="bottomBox"/></td>
+                    <td><input type="text" name="set_Code" id="set_Code2" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);" readonly></td>
+                    <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149); cursor:pointer" onclick="searchCompoItem()" readonly></td>
+                    <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149); cursor:pointer" onclick="searchCompoItem()" readonly></td>
                     <td><input type="text" name="components_Standard" id="components_Standard" value = "${compo.components_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                     <td><input type="text" name="components_Unit" id="components_Unit" value = "${compo.components_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                     <td><input type="text" name="components_Stock" id="components_Stock" value = "${compo.components_Stock }" style="background-color: rgb(235,235,235); border-style: none;"></td>
@@ -255,7 +257,6 @@ request.setCharacterEncoding("UTF-8");
         border-style: none; 
         text-align: center; width:100%; display:none; cursor:pointer;"/>
             
-        </form>
         </container3>
         <script>
         var set_Code = document.getElementById("set_Code");
@@ -311,13 +312,13 @@ request.setCharacterEncoding("UTF-8");
         	const newCell7 = newRow.insertCell(6);
         	
         	var temp = URLSearch.get('com_code');
-        	newCell1.outerHTML = '<td style="width:2%"></td>';
-        	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);"></td>';
-        	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly ></td>';
-        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" readonly></td>';
-        	newCell5.outerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell6.outerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
-        	newCell7.outerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell1.outerHTML = '<td style="width:5%"></td>';
+        	newCell2.outerHTML = '<td style="width:15%"><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);" readonly></td>';
+        	newCell3.outerHTML = '<td style="width:15%"><input type="text" name="subComponents_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly ></td>';
+        	newCell4.outerHTML = '<td><input type="text" name="subComponents_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly></td>';
+        	newCell5.outerHTML = '<td><input type="text" name="subComponents_Standard" id="subComponents_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell6.outerHTML = '<td><input type="text" name="subComponents_Unit" id="subComponents_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
+        	newCell7.outerHTML = '<td><input type="text" name="subComponents_Stock" id="subComponents_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	
         	$('#subSet_Code2').attr('value', temp);
         	
@@ -335,7 +336,7 @@ request.setCharacterEncoding("UTF-8");
             var subSet_Name = document.getElementById("subSet_Name");
             
         	if(subSet_Code.value == "" || subSet_Name.value == ""){
-        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
         	}else { 
         		alert('등록되었습니다');
 	        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
@@ -347,9 +348,21 @@ request.setCharacterEncoding("UTF-8");
         	var subComponents_Code = document.getElementById("subComponents_Code");
         	var subComponents_Name = document.getElementById("subComponents_Name");
         	
+        	var compoNode = document.getElementsByName("components_Code");
+			var checker = false;
+        	
+        	for(var i=0; i<compoNode.length; i++){
+        		if(compoNode[i].value==subComponents_Code.value){
+        			checker = true;
+        		}
+        	}
+		        	
         	if(subSet_Code2.value == "" || subComponents_Code.value == "" || subComponents_Name.value == ""){
-        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
-        	}else {
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
+        	}else if(checker) {
+        		alert('이미 존재하는 구성품코드입니다');
+        	}
+        	else {
         		alert('등록되었습니다');
             	document.getElementById('reg_setcom2_1').action = "${contextPath}/member/addSpecComponents.do";
         		document.getElementById('reg_setcom2_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
@@ -382,23 +395,40 @@ request.setCharacterEncoding("UTF-8");
         }
         
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
-        	var item = document.getElementsByName("checkedContent").length;
+        	var item = document.getElementsByName("topBox").length;
+        	var item2 = document.getElementsByName("bottomBox").length;
+        	var compoArray = document.getElementsByName("components_Code").length;
+        	var temp = URLSearch.get('com_code');
         	var no = "";
+        	var no2 = "";
         	var ary = [];
+        	var ary2 = [];
         	
         	for(var i=0; i<item; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
-        		if(document.getElementsByName("checkedContent")[i].checked==true) {
-        			no = document.getElementsByName("checkedContent")[i].value;
+        		if(document.getElementsByName("topBox")[i].checked==true) {
+        			no = document.getElementsByName("topBox")[i].value;
         			ary.push(no);
         		}       		
         	}
-        	if(ary.length === 0 || ary === null){ //체크박스가 아무것도 체크되지 않았을때
+        	for(var i=0; i<item2; i++) { //체크된 체크박스들의 no값을 반복문을 통하여 배열로만든다
+        		if(document.getElementsByName("bottomBox")[i].checked==true) {
+        			no2 = document.getElementsByName("bottomBox")[i].value;
+        			ary2.push(no2);
+        		}       		
+        	}
+        	if(ary.length === 0 && ary2.length === 0){ //체크박스가 아무것도 체크되지 않았을때
     			alert('삭제할 목록의 체크박스를 선택해주세요');
-    			location.reload();
+    		}else if(ary.length > 0 && ary2.length > 0){ //체크박스가 아무것도 체크되지 않았을때
+    			alert('하나의 섹션안에서 선택해주세요');
+    		}else if(compoArray > 0 && ary.length > 0) {
+    			alert('해당하는 구성품을 먼저 삭제해 주세요')
     		}
         	else {//컨트롤러로 해당목록의 no값을 보낸다
         		alert('삭제 되었습니다');
-    			window.location.href = "${contextPath}/member/deleteSetComponents.do?no="+ary;
+        		if(ary.length>0)
+    				window.location.href = "${contextPath}/member/deleteSetComponents.do?no="+ary+"&&com_code="+temp;
+    			if(ary2.length>0)	
+    				window.location.href = "${contextPath}/member/deleteSpecComponents.do?no2="+ary2+"&&com_code="+temp;
         	}
         }
         

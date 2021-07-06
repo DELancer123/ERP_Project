@@ -415,7 +415,6 @@
   			window.location.href = "${contextPath}/member/regcompany.do";
   		}
       	else //컨트롤러로 해당목록의 no값을 보낸다
-      		alert('삭제되었습니다')
   			window.location.href = "${contextPath}/member/deletecompany.do?no="+ary;       	
       }
 </script>

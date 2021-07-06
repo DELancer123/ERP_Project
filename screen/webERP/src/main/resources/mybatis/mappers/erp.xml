@@ -21,7 +21,6 @@
 	<resultMap id="OpePerRegResult" type="OperationRegistVO">
 		<result property="workOrderNumber" column="workOrderNumber" />
 		<result property="materialstatus" column="MATERIALFORWARDINGSTATUS" />
-		<result property="workPlaceCode" column="WORKPLACE_CODE" />
 		<result property="instructionDate" column="InstructionDate" />
 		<result property="dueDate" column="dueDate" />
 		<result property="itemCode" column="Item_Code" />
@@ -33,6 +32,8 @@
 		<result property="remainingPerformance" column="remainingPerformance" />
 		<result property="status" column="status" />
 		<result property="inspection" column="Inspection" />
+		<result property="processCode" column="func_pro_reg(PROCESS_CODE)" />
+		<result property="workplaceCode" column="WORKPLACE_CODE" />
 		<result property="productionFacility" column="PRODUCTIONFACILITY" />
 		<result property="taskTeam" column="taskTeam" />
 		<result property="note" column="note" />
@@ -149,12 +150,12 @@
 	
 	<!-- 작업지시 CURD -->
 	<select id="selectAllOperationRegistInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<![CDATA[select * from OperationRegistInfoVIEW]]>
 	</select>
 	<insert id="insertOperationInstruction" parameterType="OperationRegistVO">
 		<![CDATA[
 		 insert into CPM_PM_OPE_PER_REG
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', 'L101', #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획','작업지시','비검사', #{note}, #{productionPlanCode}, #{productionFacility}, #{taskTeam})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg'), '출고대기', #{processCode},#{workplaceCode}, #{instructionDate}, #{dueDate}, #{itemCode}, #{itemName}, #{standard}, #{inventoryUnit}, #{indicated}, '계획','작업지시','비검사', #{note}, #{productionPlanCode}, #{productionFacility}, #{taskTeam})
 		]]>  
 	</insert>
 	<update id="updateOperationInstruction" parameterType="OperationRegistVO">
@@ -285,13 +286,13 @@
 <resultMap id="RegistOperationPerformanceResultDetail" type="RegistOperationPerformanceDetailVO">
 	<result property="opNumber" column="opNumber" />
 	<result property="materialUseStatus" column="materialUseStatus" />
+	<result property="houseCode" column="func_hou_reg(House_Code)" />
 	<result property="performanceDate" column="performanceDate" />
 	<result property="processCode" column="PROCESS_CODE" />
 	<result property="workplaceCode" column="WORKPLACE_CODE" />
 	<result property="sortation" column="sortation" />
 	<result property="performanceQuantity" column="performanceQuantity" />
 	<result property="inspection" column="inspection" />
-	<result property="houseCode" column="HOUSE_CODE" />
 	<result property="note" column="note" />
 	<result property="workOrderNumber" column="workOrderNumber" />
 </resultMap>	
@@ -318,7 +319,7 @@ where (status = '확정' or status = '마감')
 		<![CDATA[
 		
 		 insert into CPM_PM_Ope_Per_Reg_Det
-		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무', #{performanceDate}, #{processCode}, #{workplaceCode}, #{sortation}, #{performanceQuantity}, #{inspection},#{houseCode},#{note}, #{workOrderNumber})
+		 values(F_GET_NEXT_SEQ('CPM_PM_Ope_Per_Reg_Det'),'무', #{performanceDate}, #{sortation}, #{performanceQuantity}, #{inspection},#{houseCode},#{note}, #{workOrderNumber})
 		]]>  
 	</insert>
 
@@ -422,7 +423,7 @@ where (status = '확정' or status = '마감')
 	
 	<!-- 작업지시 마감처리 CRUD -->
 		<select id="selectAllOperationInsClosingInfoCondition" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg ]]>
+		<![CDATA[select * from OperationInsClosingVIEW ]]>
 		<where> status = '확정' or status = '마감'
 			<if test="startDate != '' and startDate != null">
 				and instructionDate between #{startDate} and #{endDate}
@@ -434,7 +435,7 @@ where (status = '확정' or status = '마감')
 	</select>
 	
 		<select id="selectAllOperationInsClosingInfo" parameterType="CommitOperationInstructionVO" resultMap="OpePerRegResult">
-		<![CDATA[select * from CPM_PM_Ope_Per_Reg where status = '확정' or status = '마감' ]]>
+		<![CDATA[select * from OperationInsClosingVIEW where status = '확정' or status = '마감' ]]>
 	</select>
 	
 	<select id="selectAllOperationInsClosingDetail" resultType="OperationInsClosingVO" >
@@ -1553,26 +1554,26 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectstockList" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_Stock
 		]]>
 	</select>
 	
 	<select id="selectfinishedstockList" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_FinishedProduct
 		]]>
 	</select>
 	
 	<select id="selectPopstockList" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_Stock
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
 	
 	<select id="selectPopstockList2" resultMap="StoManage">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name, Standard, Inventory_Unit
 		  from PM_SM_Pro_FinishedProduct
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
@@ -1636,7 +1637,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code ,Item_Name  
+		<![CDATA[ select Item_Code ,Item_Name  ,standard,Inventory_Unit
 		  from SM_BIM_Ite_Reg  
 		]]>
 	</select>
@@ -1649,7 +1650,7 @@ ORDER BY out.workordernumber]]>
 	</select>
 	
 	<select id="selectPopItemList" resultMap="sujuView">
-		<![CDATA[ select Item_Code, Item_Name
+		<![CDATA[ select Item_Code, Item_Name,standard,Inventory_Unit
 		  from SM_BIM_Ite_Reg
 		  where Item_Name like '%'||#{itemName}||'%'
 		]]>
@@ -2006,6 +2007,14 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
+	<resultMap id="suBomRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="subComponents_Code" column="components_Code" />
+		<result property="subComponents_Name" column="components_Name" />
+		<result property="subComponents_Standard" column="components_Standard" />
+		<result property="subComponents_Unit" column="components_Unit" />
+		<result property="subComponents_Stock" column="components_Stock" />
+	</resultMap>
 	<select id="selectAllSpecComponents" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
@@ -2033,7 +2042,17 @@ ORDER BY out.workordernumber]]>
 			#{components_Name}, 
 			#{components_Standard}, 
 			#{components_Unit},
-			#{components_Stock}]]>
+			#{components_Stock})]]>
+	</insert>
+	<insert id="insertNewSubSpecComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_COM_REG
+			values(#{set_Code},
+			#{subComponents_Code},
+			#{subComponents_Name}, 
+			#{subComponents_Standard}, 
+			#{subComponents_Unit},
+			#{subComponents_Stock})]]>
 	</insert>
 	<select id="selectPopComponentsList" resultMap="comRegResult">
 		<![CDATA[ select components_Code, components_Name
@@ -2041,12 +2060,18 @@ ORDER BY out.workordernumber]]>
 		  where components_Name like '%'||#{itemName}||'%'
 		]]>
 	</select>
+	<select id="searchPopCompoItemNameAjax" resultMap="comRegResult" parameterType="String">
+		<![CDATA[ select *
+		  from SM_BIM_Ite_Reg
+		  where Item_Name like '%'||#{itemName}||'%'
+		]]>
+	</select>
 	<!-- SET구성품등록끝 -->
 	
 	<!-- popCust--> 
 	<select id="allCustList" resultMap="basicInfoResult">
 		<![CDATA[select * from SM_BIM_Gen_Cus_Reg order by General_Customer_Code]]>
-	</select>
+	</select><!--  -->
 	<select id="selectAllSalesplanList" resultMap="salesplan">
       <![CDATA[select * from SM_BIM_Sal_Pla_Reg order by plan_code]]>
 	</select>
@@ -2132,11 +2157,7 @@ ORDER BY out.workordernumber]]>
 		values (F_GET_NEXT_SEQ('CSM_SM_Rel_Pro'), #{relDate}, #{general_Customer_Code},#{releaseOX}, #{deadLine}, #{note})
 		]]>  
 	</insert>
-	<update id="updateForward" parameterType="forwardVO">
-		<![CDATA[update CSM_SM_Rel_Pro
-		set deadLine = #{deadLine}
-		where releaseNum = #{relCode}]]>
-	</update>
+
 	
 	  	<resultMap id="Corforward" type="forwardVO">
 		<result property="relCode" column="releaseNum" />
@@ -2156,6 +2177,7 @@ ORDER BY out.workordernumber]]>
 		 where REL.releaseNum = COR.code and COR.code =#{relCode}
 		 ]]>
 	</select>
+	
 
 
 <resultMap id="Corfor" type="corVO">
@@ -2186,21 +2208,31 @@ ORDER BY out.workordernumber]]>
 		values (#{no},#{relCode},#{item_code},#{item_name}, #{stand}, #{unit},#{dueDate},#{orderQuant},#{price},#{vatprice},#{expDate},#{inspection},#{orderOX},#{general_Customer_Code})
 		]]>  
 	</insert>
-	<update id="updateSubForward" parameterType="forwardVO">
-		<![CDATA[update CSM_SM_COR_Reg
-		set inspection = #{inspection}, orderOX=#{orderOX}
-		where no = #{no}]]>
-	</update>
+
+	<delete id="delItemforward" parameterType="String">
+		<![CDATA[delete from CSM_SM_COR_Reg where no=#{no}]]>      
+  </delete>
 	
-	<select id="stockQuantity" resultMap="Corfor" parameterType="String">
-		<![CDATA[select quantity from PM_SM_Pro_Stock where item_code = #{item_code} order by item_code]]>
+	<select id="stockQuantity" resultMap="Corfor">
+		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code}]]>
 	</select>	
 		<update id="updForwardQuantity" parameterType="corVO">
 		<![CDATA[update PM_SM_Pro_Stock
-		 		 set quantity = #{quantity}
+		 		 set quantity = quantity - #{orderQuant}
 		 		 where item_code = #{item_code}]]>
 	</update>
 	
+	
+		<update id="updateSubForward" parameterType="corVO">
+		<![CDATA[update CSM_SM_COR_Reg
+		set inspection = #{inspection}, orderOX=#{orderOX}
+		where item_code = #{item_code}]]>
+	</update>
+		<update id="updateForward" parameterType="forwardVO">
+		<![CDATA[update CSM_SM_Rel_Pro
+		set deadLine = #{deadLine}, note = #{note} 
+		where releaseNum = #{relCode}]]>
+	</update>
 	<!-- 출고현황(재원) -->
 	<resultMap id="rsjView" type="rsjVO">
 		<result property="releaseNum" column="releaseNum" />

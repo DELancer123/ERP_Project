@@ -115,6 +115,8 @@
                         <td>지시수량</td>
                         <td>상태</td>
                         <td>검사</td>
+                        <td>공정</td>
+                        <td>작업장</td>
                         <td>생산설비</td>
                         <td>작업팀</td>
                         <td>비고</td>
@@ -134,6 +136,8 @@
                      	<td><input type="text" name="ListVO[${status.index }].indicated" value="${info.indicated}" /></td>
                      	<td style="width:13px;"><input type="text" name="ListVO[${status.index }].status" value="${info.status}" readonly /></td>
                      	<td style="width:20px;"><input type="text" name="ListVO[${status.index }].inspection value="${info.inspection}" readonly /></td>
+                     	<td><input type="text" name="ListVO[${status.index }].processCode" value="${info.processCode }" /></td>
+                        <td><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode }" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].productionFacility" value="${info.productionFacility}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].taskTeam" value="${info.taskTeam}" /></td>
                      	<td><input type="text" name="ListVO[${status.index }].note" value="${info.note}" readonly /></td>
@@ -152,6 +156,8 @@
                         <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].processCode" ondblclick="processCodeSearch()" value="${param.processCode }" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].workplaceCode" ondblclick="workplaceCodeSearch()" value="${param.workplaceCode }" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.facility }" ondblclick="facilitySearch()"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" value="${param.taskTeam }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
@@ -293,4 +299,42 @@
         function facilitySearch(){
 			openWindowPop('http://localhost:8090/webERP/member/facilitySearchPop.do','facilitySearch');
 			}
+        
+        function setChildProcessCodeValue(name){
+        	  
+        	  const URLSearch = new URLSearchParams(location.search);  		  
+    		  const newParam = URLSearch.toString();
+            if(URLSearch.get('processCode') == null){
+    		window.location.href = location.pathname +'?'+newParam + '&processCode=' + name;
+            }
+            else{
+            	URLSearch.set('processCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+            
+        }
+          
+          function setChildWorkplaceCodeValue(name){
+        	  
+        	  const URLSearch = new URLSearchParams(location.search);  		  
+    		  const newParam = URLSearch.toString();
+            if(URLSearch.get('workplaceCode') == null){
+    		window.location.href = location.pathname +'?'+newParam + '&workplaceCode=' + name;
+            }
+            else{
+            	URLSearch.set('workplaceCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+            
+        }
+          
+    function processCodeSearch(){
+  			openWindowPop('http://localhost:8090/webERP/member/processCodeSearchPop.do','processCodeSearch');
+  	}
+   	
+   	function workplaceCodeSearch(){
+  		openWindowPop('http://localhost:8090/webERP/member/workplaceCodeSearchPop.do','workplaceCodeSearch');
+  	}
       </script>

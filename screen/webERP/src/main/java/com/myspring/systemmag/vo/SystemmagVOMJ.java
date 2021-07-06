@@ -451,6 +451,12 @@ public class SystemmagVOMJ {
 	private String components_Standard;
 	private String components_Unit;
 	private String components_Stock;
+	
+	private String subComponents_Code;
+	private String subComponents_Name;
+	private String subComponents_Standard;
+	private String subComponents_Unit;
+	private String subComponents_Stock;
 
 	public String getComponents_Code() {
 		return components_Code;
@@ -493,6 +499,36 @@ public class SystemmagVOMJ {
 	}
 	public void setItem_Name(String item_Name) {
 		this.item_Name = item_Name;
+	}
+	public String getSubComponents_Code() {
+		return subComponents_Code;
+	}
+	public void setSubComponents_Code(String subComponents_Code) {
+		this.subComponents_Code = subComponents_Code;
+	}
+	public String getSubComponents_Name() {
+		return subComponents_Name;
+	}
+	public void setSubComponents_Name(String subComponents_Name) {
+		this.subComponents_Name = subComponents_Name;
+	}
+	public String getSubComponents_Standard() {
+		return subComponents_Standard;
+	}
+	public void setSubComponents_Standard(String subComponents_Standard) {
+		this.subComponents_Standard = subComponents_Standard;
+	}
+	public String getSubComponents_Unit() {
+		return subComponents_Unit;
+	}
+	public void setSubComponents_Unit(String subComponents_Unit) {
+		this.subComponents_Unit = subComponents_Unit;
+	}
+	public String getSubComponents_Stock() {
+		return subComponents_Stock;
+	}
+	public void setSubComponents_Stock(String subComponents_Stock) {
+		this.subComponents_Stock = subComponents_Stock;
 	}
 	
 	

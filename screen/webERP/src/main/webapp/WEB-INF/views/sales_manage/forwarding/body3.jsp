@@ -81,10 +81,11 @@
 <body>
         <container3 id="contents3">
         	<div id= "forwardingInfo2">
-        		<form id="dataFormsub" mehtod="get">
+        		<form id="dataFormsub" mehtod="get" commandName="ListVO">
         	   		<table id="view">
                 		<thead>
-                		<td></td>
+                		<tr>
+                		<td><input type="checkbox" id="check" name="contentItem" onclick="selectAll(this)"/></td>
                    		<td>번호</td>
                    		<td>출고 번호</td>
                    		<td>품번</td>
@@ -100,37 +101,39 @@
                     	<td>출하 예정일</td>
                     	<td>주문 유무</td>
                     	<td>검사</td>
+                    	</tr>
                 		</thead>
  					</table>
- 			<%-- 		<c:forEach var="supForward" items="${subForward}" varStatus="status">
- 					</c:forEach> --%>
  					<table id = "itemPop"></table>
                  	<table id="insertsubForward" align="center">
+                 	<tr>
                  	<td></td>
                     	<td><input type="text" id="no" name="no" /></td>
                     	<td><input type="text" id="relCode2" name="relCode"/></td>
-                    	<td><a href="javascript:search5()"><input type="text" id=item_code name="item_code" value="${param.item_code}" readonly/></td>
-                    	<td><a href="javascript:search5()"><input type="text" id="item_name" name="item_name" value="${param.item_name}" readonly /></td>
+                    	<td><a href="javascript:search5()"><input type="text" id=item_code name="item_code" value="${param.item_code}" readonly/></a></td>
+                    	<td><a href="javascript:search5()"><input type="text" id="item_name" name="item_name" value="${param.item_name}" readonly /></a></td>
                     	<td><input type="text" id="stand" name="stand"/></td>
                     	<td><input type="text" id="orderQuant" name="orderQuant"/></td>
                     	<td><input type="text" id="unit" name="unit" /></td>
                     	<td><input type="text" id="price" name="price" /></td>
                     	<td><input type="text" id="publicSumPrice" value="${price*orderQuant}" readonly /></td>
                     	<td><input type="text" id="vatPrice" value="${(price*orderQuant)*0.1}" readonly /></td>
-                    	<td><input type="text" id="sumPrice" value="${price*orderQuant}" readonly /></td>
+                    	<td><input type="text" id="sumPrice" value="${price*orderQuant*1.1}" readonly /></td>
                     	<td><input type="date" id="dueDate" name="dueDate"/></td>
                     	<td><input type="date" id="expDate" name="expDate"  /></td>
                     	<td><input type="text" id="orderOX" name="orderOX" /></td>
-                    	<td><input type="text" id="inspection" name="inspection" /></td>
+                    	<td><input type="text" id="inspection" name="inspection" />
                     	<input type="hidden" id="quantity" name="quantity" value="0" />
                     	<input type="hidden" id="vatprice" name="vatprice" value="0" />
-                    	<input type="hidden" name="general_Customer_Code" value='${param.general_Customer_Code }'/>
+                    	<input type="hidden" name="general_Customer_Code" value='${param.general_Customer_Code }'/></td>
+                    </tr>
                 	</table>
          		</form>
         	</div>
         </container3>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript">
+        var no = document.getElementById("no");
     	var relCode = document.getElementById("relCode");
        	var custCode = document.getElementById("custCode");
         var deadLine = document.getElementById("deadLine");
@@ -146,7 +149,8 @@
         var expDate = document.getElementById("expDate");
         var orderOX = document.getElementById("orderOX");
         var inspection = document.getElementById("inspection");
-                function search5(){
+   
+        function search5(){
     	  
         	  openWindowPop('http://localhost:8090/webERP/member/salsplanhelper.do','popupItem');  
     			}
@@ -154,18 +158,19 @@
                 	$('input[id=item_code]').val(itemCode);
                 	$('input[id=item_name]').val(itemName);
                 }
+               
     	function deleteData2() {
     	    
-	  		var item = document.getElementsByName("content").length;
+	  		var item = document.getElementsByName("contentItem").length;
 	  		var no = "";
 	  		var ary = [];
 	  		for(var i=0; i<item;i++){
-		  		if(document.getElementsByName("content")[i].checked==true){
-					no = document.getElementsByName("content")[i].value;
+		  		if(document.getElementsByName("contentItem")[i].checked==true){
+					no = document.getElementsByName("contentItem")[i].value;
 			
 			   		ary.push(no); 
 		  		}
-		 	  	window.location.href = "${contextPath}/member/delforwardItem.do?no="+ary;
+		 	  	window.location.href = "${contextPath}/member/delforwarditem.do?no="+ary;
 	  		}
 		}
        	
@@ -189,19 +194,22 @@
    
 		/*수정버튼*/
         function updateRow2() {
-           var row = itemPop.insertRow(); 
-           const URLSearch = new URLSearchParams(location.search);
-           const newParam = URLSearch.toString();
-            var link = location.pathname +'?'+newParam;
-          var linkPath = document.createElement("input");
-          linkPath.setAttribute("type","hidden");
-          linkPath.setAttribute("name","path");
-          linkPath.setAttribute("value", link);
-            document.getElementById('dataFormsub').appendChild(linkPath);
-            document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
-          document.getElementById('dataFormsub').submit();  
-        }
-    	
+    	        const URLSearch = new URLSearchParams(location.search);
+		          const newParam = URLSearch.toString();
+		         var link = location.pathname +'?'+newParam;
+
+		           var linkPath = document.createElement("input");
+		            linkPath.setAttribute("type","hidden");
+		            linkPath.setAttribute("name","path");
+		            linkPath.setAttribute("value", link);
+		            
+		            document.getElementById('dataFormsub').appendChild(linkPath);
+		            document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
+		           document.getElementById('dataFormsub').submit();  
+             /* document.getElementByName('itemPop').action = "${contextPath}/member/updforwarditem.do";
+  			document.getElementByName('itemPop').submit();    */
+      }
+	  		
         </script>
 </body>
 </html>
