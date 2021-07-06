@@ -266,5 +266,10 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return systemmagDAO.viewsearchPopCompoItemName();
 	}
 	
+	@Override
+	public List<SystemmagVOMJ> searchPopCompoItemNameAjax(String itemName) throws DataAccessException {
+		return systemmagDAO.searchPopCompoItemNameAjax(itemName);
+	}
+	
 	
 }

@@ -87,6 +87,10 @@ public interface SystemmagDAOMJ {
 	public List<SystemmagVOMJ> viewsearchPopComponentsName(String itemName) throws DataAccessException;
 	
 	public List<SystemmagVOMJ> viewsearchPopCompoItemName() throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopCompoItemNameAjax(String itemName) throws DataAccessException;
+	
+	
 	//---
 	public List viewSpecComponents(String com_code) throws DataAccessException;
 	

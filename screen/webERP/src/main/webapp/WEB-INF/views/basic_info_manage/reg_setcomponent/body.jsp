@@ -219,7 +219,7 @@ request.setCharacterEncoding("UTF-8");
                     <td colspan="12">备己前 殿废</td>
                 </thead>
                 <thead style="font-weight: bold;" id="prTitle">
-                    <td style="width:2%;"></td>
+                    <td style="width:5%;"></td>
                     <td>悸飘前内靛</td>
                     <td>备己前内靛</td>
                     <td>前疙</td>
@@ -229,10 +229,10 @@ request.setCharacterEncoding("UTF-8");
                 </thead>
                 <c:forEach var="compo" items="${compoView}" >
                 <tbody>
-                    <td style="width:2%;"><input type="checkbox" value = "${compo.set_Code }" id="check" name="checkedContent"/></td>
-                    <td><input type="text" name="set_Code" id="set_Code2" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);"></td>
-                    <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149);"></td>
-                    <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149);"></td>
+                    <td style="width:5%;"><input type="checkbox" value = "${compo.set_Code }" id="check" name="checkedContent"/></td>
+                    <td><input type="text" name="set_Code" id="set_Code2" value = "${compo.set_Code }" style="background-color: rgb(255, 255, 149);" readonly></td>
+                    <td><input type="text" name="components_Code" id="components_Code" value = "${compo.components_Code }" style="background-color: rgb(255, 255, 149); cursor:pointer" onclick="searchCompoItem()" readonly></td>
+                    <td><input type="text" name="components_Name" id="components_Name" value = "${compo.components_Name }" style="background-color: rgb(255, 255, 149); cursor:pointer" onclick="searchCompoItem()" readonly></td>
                     <td><input type="text" name="components_Standard" id="components_Standard" value = "${compo.components_Standard }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                     <td><input type="text" name="components_Unit" id="components_Unit" value = "${compo.components_Unit }" style="background-color: rgb(235,235,235); border-style: none;"></td>
                     <td><input type="text" name="components_Stock" id="components_Stock" value = "${compo.components_Stock }" style="background-color: rgb(235,235,235); border-style: none;"></td>
@@ -310,10 +310,10 @@ request.setCharacterEncoding("UTF-8");
         	const newCell7 = newRow.insertCell(6);
         	
         	var temp = URLSearch.get('com_code');
-        	newCell1.outerHTML = '<td style="width:2%"></td>';
-        	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);"></td>';
+        	newCell1.outerHTML = '<td style="width:5%"></td>';
+        	newCell2.outerHTML = '<td><input type="text" name="set_Code" id="subSet_Code2" value="" style="background-color: rgb(255, 255, 149);" readonly></td>';
         	newCell3.outerHTML = '<td><input type="text" name="components_Code" id="subComponents_Code" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly ></td>';
-        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" readonly></td>';
+        	newCell4.outerHTML = '<td><input type="text" name="components_Name" id="subComponents_Name" style="background-color: rgb(255, 255, 149); cursor:pointer;" onclick="searchCompoItem()" readonly></td>';
         	newCell5.outerHTML = '<td><input type="text" name="components_Standard" id="components_Standard" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell6.outerHTML = '<td><input type="text" name="components_Unit" id="components_Unit" style="background-color: rgb(235,235,235); border-style: none;"></td>';
         	newCell7.outerHTML = '<td><input type="text" name="components_Stock" id="components_Stock" style="background-color: rgb(235,235,235); border-style: none;"></td>';
