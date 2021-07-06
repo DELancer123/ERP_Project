@@ -71,6 +71,8 @@ public interface SystemmagServiceMJ {
 	
 	public List viewAllSetComponents() throws DataAccessException;
 	
+	public List viewAllSpecComponents() throws DataAccessException;
+	
 	public List viewSetComponents(String com_code) throws DataAccessException;
 	
 	public int addSetComponents(SystemmagVOMJ systemmagVO) throws Exception;
@@ -86,6 +88,8 @@ public interface SystemmagServiceMJ {
 	public List<SystemmagVOMJ> searchPopCompoItemName() throws DataAccessException;
 	
 	public List<SystemmagVOMJ> searchPopCompoItemNameAjax(String itemName) throws DataAccessException;
+	
+	public List<SystemmagVOMJ> searchPopSpecItemNameAjax(String itemName) throws DataAccessException;
 	
 
 	public List viewSpecComponents(String com_code) throws DataAccessException;

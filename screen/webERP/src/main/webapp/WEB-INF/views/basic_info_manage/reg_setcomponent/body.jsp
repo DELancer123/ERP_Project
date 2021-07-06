@@ -73,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
             text-align: center;
             position: absolute;
             top: 25%;
-            left: 10%;
+            left: 30%;
         }
         .cck {
 			width:5%;        
@@ -112,60 +112,18 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td>셋트품</td>
                     <td>
-                        <select name="" id="">
-                            <option value="0">0.품번</option>
-                            <option value="1">1.품명</option>
-                            <option value="2">2.규격</option>
-                        </select>
+                        <input type="text" name="setSearchBox1" id="setSearchBox1" readonly>
+                        <a href="javascript:viewPopupSet()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
-                    <td><input type="text" name="" id=""></td>
-                    <td>품목군</td>
-                    <td>
-                        <input type="text">
-                        <i class="fas fa-search" style="color: blue;"></i>
-                    </td>
-                    <td><input type="text" name="" id="" disabled></td>
-                    <td>계정구분</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="7">전체</option>
-                            <option value="0">0.원재료</option>
-                            <option value="1">1.부재료</option>
-                            <option value="2">2.제품</option>
-                            <option value="4">4.반제품</option>
-                            <option value="5">5.상품</option>
-                            <option value="6">6.저장품</option>
-                        </select>
-                    </td>
+                    <td><input type="text" name="setSearchBox2" id="setSearchBox2" disabled></td>
                 </tr>
                 <tr>
                     <td>구성품</td>
                     <td>
-                        <select name="" id="">
-                            <option value="0">0.품번</option>
-                            <option value="1">1.품명</option>
-                            <option value="2">2.규격</option>
-                        </select>
+                        <input type="text" name="specSearchBox1" id="specSearchBox1" readonly>
+                        <a href="javascript:viewPopupSpec()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
-                    <td><input type="text" name="" id=""></td>
-                    <td>품목군</td>
-                    <td>
-                        <input type="text">
-                        <i class="fas fa-search" style="color: blue;"></i>
-                    </td>
-                    <td><input type="text" name="" id="" disabled></td>
-                    <td>계정구분</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="7">전체</option>
-                            <option value="0">0.원재료</option>
-                            <option value="1">1.부재료</option>
-                            <option value="2">2.제품</option>
-                            <option value="4">4.반제품</option>
-                            <option value="5">5.상품</option>
-                            <option value="6">6.저장품</option>
-                        </select>
-                    </td>
+                    <td><input type="text" name="specSearchBox2" id="specSearchBox2" disabled></td>
                 </tr>
             </table>
         </form>
@@ -454,7 +412,7 @@ request.setCharacterEncoding("UTF-8");
         	}
         }
         
-        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+/*         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
     		{
     		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
@@ -464,8 +422,16 @@ request.setCharacterEncoding("UTF-8");
 	    		document.getElementById('reg_gen_account').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
 	    		alert('수정되었습니다'); 
         	}      	
-        } 
-         
+        }  */
+        
+        function viewPopupSet() {
+        	openWindowPop("${contextPath}/member/viewPopupSet.do", "viewPopupSet");
+        }
+        
+        function viewPopupSpec() {
+        	openWindowPop("${contextPath}/member/viewPopupSpec.do", "viewPopupSpec");
+        }
+        
         function searchCompoItem() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
         	openWindowPop("${contextPath}/member/searchPopCompoItemName.do", "setComPopup");
         }

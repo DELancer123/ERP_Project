@@ -500,6 +500,20 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	}
 	
 	@Override
+	@RequestMapping(value = "/member/deleteSpecComponents.do", method = RequestMethod.GET)
+	public ModelAndView deleteSpecComponents(@ModelAttribute("Spec") SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String number = (String) request.getParameter("no2");
+		String setCode = (String) request.getParameter("com_code");
+		String viewName = getViewName(request);
+		String[] numberary = number.split(",");
+
+		System.out.println("setCode:"+setCode);
+		systemmagService.delSpecComponents(numberary);
+		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+setCode);
+		return mav;
+	}
+	
+	@Override
 	@RequestMapping(value = "/member/searchPopCompoItemName.do", method = RequestMethod.GET)
 	public ModelAndView searchPopCompoItemName(@ModelAttribute("") SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -513,20 +527,34 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		return mav;
 	}
 	
-	
 	@Override
-	@RequestMapping(value = "/member/deleteSpecComponents.do", method = RequestMethod.GET)
-	public ModelAndView deleteSpecComponents(@ModelAttribute("Spec") SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String number = (String) request.getParameter("no2");
-		String setCode = (String) request.getParameter("com_code");
+	@RequestMapping(value = "/member/viewPopupSet.do", method = RequestMethod.GET)
+	public ModelAndView viewPopupSet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = null;
 		String viewName = getViewName(request);
-		String[] numberary = number.split(",");
 
-		System.out.println("setCode:"+setCode);
-		systemmagService.delSpecComponents(numberary);
-		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+setCode);
+		List setView = systemmagService.viewAllSetComponents();
+		mav = new ModelAndView(viewName);
+		mav.addObject("setView", setView); 
+
 		return mav;
 	}
+	
+	@Override
+	@RequestMapping(value = "/member/viewPopupSpec.do", method = RequestMethod.GET)
+	public ModelAndView viewPopupSpec(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		ModelAndView mav = null;
+		String viewName = getViewName(request);
+
+		List compoView = systemmagService.viewAllSpecComponents();
+		mav = new ModelAndView(viewName);
+		mav.addObject("compoView", compoView); 
+
+		return mav;
+	}
+	
 	
 	
 	//AJAX CONTROLLER----------------------------------
@@ -584,6 +612,18 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		ModelAndView mav = new ModelAndView();
 		List<SystemmagVOMJ> popName = null;
 		popName = systemmagService.searchPopCompoItemNameAjax(itemName);
+		mav.addObject("popName", popName);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/searchPopSpecItemNameAjax.do", method = RequestMethod.GET)
+	public ModelAndView searchPopSpecItemNameAjax(@RequestParam("itemName") String itemName) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<SystemmagVOMJ> popName = null;
+		popName = systemmagService.searchPopSpecItemNameAjax(itemName);
 		mav.addObject("popName", popName);
 		mav.setViewName("jsonView");
 

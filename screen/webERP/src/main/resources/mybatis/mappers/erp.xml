@@ -2007,19 +2007,17 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
-	<resultMap id="suBomRegResult" type="SystemmagVOMJ">	
-		<result property="set_Code" column="set_Code" />
-		<result property="subComponents_Code" column="components_Code" />
-		<result property="subComponents_Name" column="components_Name" />
-		<result property="subComponents_Standard" column="components_Standard" />
-		<result property="subComponents_Unit" column="components_Unit" />
-		<result property="subComponents_Stock" column="components_Stock" />
-	</resultMap>
 	<select id="selectAllSpecComponents" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
 	<select id="selectOneSpecComponents" parameterType="String" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
+	</select>
+	<select id="selectPopSpecList" resultMap="setRegResult">
+		<![CDATA[ select components_Code, components_Name
+		  from SM_BIM_COM_REG
+		  where components_Name like '%'||#{itemName}||'%' order by set_Code
+		]]>
 	</select>
 	<delete id="deleteSpecComponents">
 		delete from SM_BIM_COM_REG where components_Code = #{no}
