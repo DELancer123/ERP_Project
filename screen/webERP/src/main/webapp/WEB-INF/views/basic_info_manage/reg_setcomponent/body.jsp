@@ -336,7 +336,7 @@ request.setCharacterEncoding("UTF-8");
             var subSet_Name = document.getElementById("subSet_Name");
             
         	if(subSet_Code.value == "" || subSet_Name.value == ""){
-        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
         	}else { 
         		alert('등록되었습니다');
 	        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
@@ -347,10 +347,16 @@ request.setCharacterEncoding("UTF-8");
         	var subSet_Code2 = document.getElementById("subSet_Code2");
         	var subComponents_Code = document.getElementById("subComponents_Code");
         	var subComponents_Name = document.getElementById("subComponents_Name");
+        	var compoObj = document.getElementsByName("components_Code");
+        	
+        	const compoArray = Object.values(compoObj);
         	
         	if(subSet_Code2.value == "" || subComponents_Code.value == "" || subComponents_Name.value == ""){
-        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
-        	}else {
+        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
+        	}else if(compoArray.includes(subComponents_Code)){
+        		alert('이미존재하는 구성품코드입니다');
+        	}
+        	else {
         		alert('등록되었습니다');
             	document.getElementById('reg_setcom2_1').action = "${contextPath}/member/addSpecComponents.do";
         		document.getElementById('reg_setcom2_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
@@ -385,6 +391,7 @@ request.setCharacterEncoding("UTF-8");
         function deleteData() {//체크박스의 체크한곳의 값을 배열로만들어 컨트롤러로 넘겨 삭제하는 기능을 하는 함수
         	var item = document.getElementsByName("topBox").length;
         	var item2 = document.getElementsByName("bottomBox").length;
+        	var setCode = document.getElementById("set_Code").value;
         	var no = "";
         	var no2 = "";
         	var ary = [];
@@ -411,9 +418,9 @@ request.setCharacterEncoding("UTF-8");
         	else {//컨트롤러로 해당목록의 no값을 보낸다
         		alert('삭제 되었습니다');
         		if(ary.length>0)
-    				window.location.href = "${contextPath}/member/deleteSetComponents.do?no="+ary;
+    				window.location.href = "${contextPath}/member/deleteSetComponents.do?no="+ary+"&&com_code="+setCode;
     			if(ary2.length>0)	
-    				window.location.href = "${contextPath}/member/deleteSpecComponents.do?no="+ary2;
+    				window.location.href = "${contextPath}/member/deleteSpecComponents.do?no2="+ary2+"&&com_code="+setCode;
         	}
         }
         
