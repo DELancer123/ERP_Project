@@ -277,7 +277,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	@Override
 	public List<SystemmagVOMJ> searchPopCompoItemNameAjax(String itemName) throws DataAccessException {
 		List<SystemmagVOMJ> popList = null;
-		popList = sqlSession.selectList("mappers.erp.outPopSearch",itemName);
+		popList = sqlSession.selectList("mappers.erp.searchPopCompoItemNameAjax",itemName);
 		return popList;
 	}
 	//----------
