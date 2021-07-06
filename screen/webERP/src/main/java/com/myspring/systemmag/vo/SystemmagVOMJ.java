@@ -420,6 +420,11 @@ public class SystemmagVOMJ {
 	private String set_Standard;
 	private String set_Unit;
 	
+	private String subSet_Code;
+	private String subSet_Name;
+	private String subSet_Standard;
+	private String subSet_Unit;
+	
 	public String getSet_Code() {
 		return set_Code;
 	}
@@ -443,6 +448,30 @@ public class SystemmagVOMJ {
 	}
 	public void setSet_Unit(String set_Unit) {
 		this.set_Unit = set_Unit;
+	}
+	public String getSubSet_Code() {
+		return subSet_Code;
+	}
+	public void setSubSet_Code(String subSet_Code) {
+		this.subSet_Code = subSet_Code;
+	}
+	public String getSubSet_Name() {
+		return subSet_Name;
+	}
+	public void setSubSet_Name(String subSet_Name) {
+		this.subSet_Name = subSet_Name;
+	}
+	public String getSubSet_Standard() {
+		return subSet_Standard;
+	}
+	public void setSubSet_Standard(String subSet_Standard) {
+		this.subSet_Standard = subSet_Standard;
+	}
+	public String getSubSet_Unit() {
+		return subSet_Unit;
+	}
+	public void setSubSet_Unit(String subSet_Unit) {
+		this.subSet_Unit = subSet_Unit;
 	}
 
 	//SM_BIM_COM_REG

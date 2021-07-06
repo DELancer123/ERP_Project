@@ -200,6 +200,13 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		comList = systemmagDAO.viewAllSetComponents();
 		return comList;
 	}
+	
+	@Override
+	public List viewAllSpecComponents() throws DataAccessException {
+		List comList = null;
+		comList = systemmagDAO.viewAllSpecComponents();
+		return comList;
+	}
 
 	@Override
 	public List viewSetComponents(String com_code) throws DataAccessException {
@@ -271,5 +278,8 @@ public class SystemmagServiceMJImpl implements SystemmagServiceMJ {
 		return systemmagDAO.searchPopCompoItemNameAjax(itemName);
 	}
 	
-	
+	@Override
+	public List<SystemmagVOMJ> searchPopSpecItemNameAjax(String itemName) throws DataAccessException {
+		return systemmagDAO.searchPopSpecItemNameAjax(itemName);
+	}
 }

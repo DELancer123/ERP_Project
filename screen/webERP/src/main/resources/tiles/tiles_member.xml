@@ -877,6 +877,26 @@
    <put-attribute name="body" value="" />   
    </definition>
    <!-- SET구성품등록 -->
+   <definition name="viewPopupSetLayout"  template="/WEB-INF/views/basic_info_manage/reg_setcomponent/setpop.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/viewPopupSet" extends="viewPopupSetLayout">
+      <put-attribute name="title" value="셋트품검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
+   <definition name="viewPopupSpecLayout"  template="/WEB-INF/views/basic_info_manage/reg_setcomponent/specpop.jsp">
+       <put-attribute name="title" value="" />
+      <put-attribute name="side" value="" />
+      <put-attribute name="body" value="" />
+   </definition>
+   <definition name="/member/viewPopupSpec" extends="viewPopupSpecLayout">
+      <put-attribute name="title" value="구성품검색부팝업" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="side" value="" />
+   </definition>
    <definition name="searchPopCompoItemNameLayout"  template="/WEB-INF/views/basic_info_manage/reg_setcomponent/pop.jsp">
        <put-attribute name="title" value="" />
       <put-attribute name="side" value="" />

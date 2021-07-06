@@ -227,6 +227,13 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 		comList = sqlSession.selectList("mappers.erp.selectAllSetComponents");
 		return comList;
 	}
+	
+	@Override
+	public List viewAllSpecComponents() throws DataAccessException {
+		List<SystemmagVOMJ> comList = null;
+		comList = sqlSession.selectList("mappers.erp.selectAllSpecComponents");
+		return comList;
+	}
 
 	@Override
 	public List viewSetComponents(String com_code) throws DataAccessException {
@@ -278,6 +285,13 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 	public List<SystemmagVOMJ> searchPopCompoItemNameAjax(String itemName) throws DataAccessException {
 		List<SystemmagVOMJ> popList = null;
 		popList = sqlSession.selectList("mappers.erp.searchPopCompoItemNameAjax",itemName);
+		return popList;
+	}
+	
+	@Override
+	public List<SystemmagVOMJ> searchPopSpecItemNameAjax(String itemName) throws DataAccessException {
+		List<SystemmagVOMJ> popList = null;
+		popList = sqlSession.selectList("mappers.erp.selectPopSpecList",itemName);
 		return popList;
 	}
 	//----------

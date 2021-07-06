@@ -73,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
             text-align: center;
             position: absolute;
             top: 25%;
-            left: 10%;
+            left: 30%;
         }
         .cck {
 			width:5%;        
@@ -112,60 +112,18 @@ request.setCharacterEncoding("UTF-8");
                 <tr>
                     <td>셋트품</td>
                     <td>
-                        <select name="" id="">
-                            <option value="0">0.품번</option>
-                            <option value="1">1.품명</option>
-                            <option value="2">2.규격</option>
-                        </select>
+                        <input type="text" name="setSearchBox1" id="setSearchBox1" readonly>
+                        <a href="javascript:viewPopupSet()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
-                    <td><input type="text" name="" id=""></td>
-                    <td>품목군</td>
-                    <td>
-                        <input type="text">
-                        <i class="fas fa-search" style="color: blue;"></i>
-                    </td>
-                    <td><input type="text" name="" id="" disabled></td>
-                    <td>계정구분</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="7">전체</option>
-                            <option value="0">0.원재료</option>
-                            <option value="1">1.부재료</option>
-                            <option value="2">2.제품</option>
-                            <option value="4">4.반제품</option>
-                            <option value="5">5.상품</option>
-                            <option value="6">6.저장품</option>
-                        </select>
-                    </td>
+                    <td><input type="text" name="setSearchBox2" id="setSearchBox2" disabled></td>
                 </tr>
                 <tr>
                     <td>구성품</td>
                     <td>
-                        <select name="" id="">
-                            <option value="0">0.품번</option>
-                            <option value="1">1.품명</option>
-                            <option value="2">2.규격</option>
-                        </select>
+                        <input type="text" name="specSearchBox1" id="specSearchBox1" readonly>
+                        <a href="javascript:viewPopupSpec()"><i class="fas fa-search" style="color: blue;"></i></a>
                     </td>
-                    <td><input type="text" name="" id=""></td>
-                    <td>품목군</td>
-                    <td>
-                        <input type="text">
-                        <i class="fas fa-search" style="color: blue;"></i>
-                    </td>
-                    <td><input type="text" name="" id="" disabled></td>
-                    <td>계정구분</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="7">전체</option>
-                            <option value="0">0.원재료</option>
-                            <option value="1">1.부재료</option>
-                            <option value="2">2.제품</option>
-                            <option value="4">4.반제품</option>
-                            <option value="5">5.상품</option>
-                            <option value="6">6.저장품</option>
-                        </select>
-                    </td>
+                    <td><input type="text" name="specSearchBox2" id="specSearchBox2" disabled></td>
                 </tr>
             </table>
         </form>
@@ -285,10 +243,10 @@ request.setCharacterEncoding("UTF-8");
         	const newCell5 = newRow.insertCell(4);
         	
         	newCell1.outerHTML = '<td style="width:5%"></td>';
-        	newCell2.outerHTML = '<td><input type="text" id="subSet_Code" name="set_Code" style="background-color: rgb(255, 255, 149);" maxlength="12"></td>';
-        	newCell3.outerHTML = '<td><input type="text" id="subSet_Name" name="set_Name" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>';
-        	newCell4.outerHTML = '<td><input type="text" id="set_Standard" name="set_Standard" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>';
-        	newCell5.outerHTML = '<td><input type="text" id="set_Unit" name="set_Unit" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>';
+        	newCell2.outerHTML = '<td><input type="text" id="subSet_Code" name="subSet_Code" style="background-color: rgb(255, 255, 149);" maxlength="12"></td>';
+        	newCell3.outerHTML = '<td><input type="text" id="subSet_Name" name="subSet_Name" style="background-color: rgb(255, 255, 149);" maxlength="50"></td>';
+        	newCell4.outerHTML = '<td><input type="text" id="subSet_Standard" name="subSet_Standard" style="background-color: rgb(235,235,235); border-style: none;" maxlength="20"></td>';
+        	newCell5.outerHTML = '<td><input type="text" id="subSet_Unit" name="subSet_Unit" style="background-color: rgb(235,235,235); border-style: none;" maxlength="5"></td>';
         	
         	if ( $('#addAction2').css('display') === 'block' ) {
         		$('#addAction2').hide();
@@ -334,10 +292,32 @@ request.setCharacterEncoding("UTF-8");
         function doAdd1() {
         	var subSet_Code = document.getElementById("subSet_Code");
             var subSet_Name = document.getElementById("subSet_Name");
+			var setCode = document.getElementsByName("set_Code");            
+			var setName = document.getElementsByName("set_Name");            
+            var firstChecker = false;
+            var secondChecker = false;
+			
+			
+            for(var i=0; i<setCode.length; i++){
+        		if(setCode[i].value==subSet_Code.value){
+        			firstChecker = true;
+        		}
+        	}
+            for(var i=0; i<setName.length; i++){
+        		if(setName[i].value==subSet_Name.value){
+        			secondChecker = true;
+        		}
+        	}
+            
             
         	if(subSet_Code.value == "" || subSet_Name.value == ""){
         		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요');
-        	}else { 
+        	}else if(firstChecker) {
+        		alert('이미 존재하는 품번입니다');
+        	}else if(secondChecker) {
+        		alert('이미 존재하는 품명입니다');
+        	}
+        	else { 
         		alert('등록되었습니다');
 	        	document.getElementById('reg_setcom1_1').action = "${contextPath}/member/addSetComponents.do";
 	    		document.getElementById('reg_setcom1_1').submit(); //폼태그*의 목록들을 컨트롤러로 전송함 */
@@ -432,7 +412,7 @@ request.setCharacterEncoding("UTF-8");
         	}
         }
         
-        function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
+/*         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
     		{
     		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
@@ -442,8 +422,16 @@ request.setCharacterEncoding("UTF-8");
 	    		document.getElementById('reg_gen_account').submit(); //폼태그*의 목록들을 컨트롤러로 전송함
 	    		alert('수정되었습니다'); 
         	}      	
-        } 
-         
+        }  */
+        
+        function viewPopupSet() {
+        	openWindowPop("${contextPath}/member/viewPopupSet.do", "viewPopupSet");
+        }
+        
+        function viewPopupSpec() {
+        	openWindowPop("${contextPath}/member/viewPopupSpec.do", "viewPopupSpec");
+        }
+        
         function searchCompoItem() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
         	openWindowPop("${contextPath}/member/searchPopCompoItemName.do", "setComPopup");
         }

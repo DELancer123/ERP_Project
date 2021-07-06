@@ -567,7 +567,7 @@ WHERE workOrderNumber=#{workOrderNumber}]]>
 		parameterType="String">
 		<![CDATA[select ite.item_code, ite.item_name,ite.standard,ite.inventory_unit,bom.precisionquantity,bom.loss, ite.division
 from cpm_bim_bom_Reg bom, sm_bim_ite_reg ite
-where not ite.division='완제품' and bom.parent_item_code = ite.item_code and bom.item_code = #{number}
+where bom.parent_item_code = ite.item_code and bom.item_code = #{number}
 order by bom.parent_item_code]]>
 	</select>
 	<select id="inputItem" resultMap="bomView"
@@ -1987,10 +1987,10 @@ ORDER BY out.workordernumber]]>
 	<insert id="insertNewSetComponents" parameterType="SystemmagVOMJ">
 		<![CDATA[
 			insert into SM_BIM_SET_REG
-			values(#{set_Code},
-			#{set_Name}, 
-			#{set_Standard}, 
-			#{set_Unit})]]>
+			values(#{subSet_Code},
+			#{subSet_Name}, 
+			#{subSet_Standard}, 
+			#{subSet_Unit})]]>
 	</insert>
 	<select id="selectPopSetList" resultMap="setRegResult">
 		<![CDATA[ select set_Code, set_Name
@@ -2007,19 +2007,17 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
-	<resultMap id="suBomRegResult" type="SystemmagVOMJ">	
-		<result property="set_Code" column="set_Code" />
-		<result property="subComponents_Code" column="components_Code" />
-		<result property="subComponents_Name" column="components_Name" />
-		<result property="subComponents_Standard" column="components_Standard" />
-		<result property="subComponents_Unit" column="components_Unit" />
-		<result property="subComponents_Stock" column="components_Stock" />
-	</resultMap>
 	<select id="selectAllSpecComponents" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
 	<select id="selectOneSpecComponents" parameterType="String" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG where set_Code = #{com_code}]]>
+	</select>
+	<select id="selectPopSpecList" resultMap="setRegResult">
+		<![CDATA[ select components_Code, components_Name
+		  from SM_BIM_COM_REG
+		  where components_Name like '%'||#{itemName}||'%' order by set_Code
+		]]>
 	</select>
 	<delete id="deleteSpecComponents">
 		delete from SM_BIM_COM_REG where components_Code = #{no}
@@ -2217,7 +2215,7 @@ ORDER BY out.workordernumber]]>
 		<![CDATA[select * from PM_SM_Pro_Stock where item_code = #{item_code}]]>
 	</select>	
 		<update id="updForwardQuantity" parameterType="corVO">
-		<![CDATA[update PM_SM_Pro_Stock
+		<![CDATA[update PM_SM_Pro_finishedproduct
 		 		 set quantity = quantity - #{orderQuant}
 		 		 where item_code = #{item_code}]]>
 	</update>
