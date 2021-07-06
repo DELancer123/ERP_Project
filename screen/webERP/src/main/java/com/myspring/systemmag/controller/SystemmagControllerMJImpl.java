@@ -522,6 +522,7 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 		String viewName = getViewName(request);
 		String[] numberary = number.split(",");
 
+		System.out.println("setCode:"+setCode);
 		systemmagService.delSpecComponents(numberary);
 		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+setCode);
 		return mav;

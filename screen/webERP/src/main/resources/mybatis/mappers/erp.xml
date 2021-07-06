@@ -2007,6 +2007,14 @@ ORDER BY out.workordernumber]]>
 		<result property="components_Unit" column="components_Unit" />
 		<result property="components_Stock" column="components_Stock" />
 	</resultMap>
+	<resultMap id="suBomRegResult" type="SystemmagVOMJ">	
+		<result property="set_Code" column="set_Code" />
+		<result property="subComponents_Code" column="components_Code" />
+		<result property="subComponents_Name" column="components_Name" />
+		<result property="subComponents_Standard" column="components_Standard" />
+		<result property="subComponents_Unit" column="components_Unit" />
+		<result property="subComponents_Stock" column="components_Stock" />
+	</resultMap>
 	<select id="selectAllSpecComponents" resultMap="comRegResult">
 		<![CDATA[select * from SM_BIM_COM_REG]]>
 	</select>
@@ -2035,6 +2043,16 @@ ORDER BY out.workordernumber]]>
 			#{components_Standard}, 
 			#{components_Unit},
 			#{components_Stock})]]>
+	</insert>
+	<insert id="insertNewSubSpecComponents" parameterType="SystemmagVOMJ">
+		<![CDATA[
+			insert into SM_BIM_COM_REG
+			values(#{set_Code},
+			#{subComponents_Code},
+			#{subComponents_Name}, 
+			#{subComponents_Standard}, 
+			#{subComponents_Unit},
+			#{subComponents_Stock})]]>
 	</insert>
 	<select id="selectPopComponentsList" resultMap="comRegResult">
 		<![CDATA[ select components_Code, components_Name

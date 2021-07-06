@@ -290,7 +290,7 @@ public class SystemmagDAOMJImpl implements SystemmagDAOMJ {
 
 	@Override
 	public int insertNewSpecComponents(SystemmagVOMJ systemmagVO) throws DataAccessException {
-		int result = sqlSession.insert("mappers.erp.insertNewSpecComponents",systemmagVO);
+		int result = sqlSession.insert("mappers.erp.insertNewSubSpecComponents",systemmagVO);
 		return result;
 	}
 
