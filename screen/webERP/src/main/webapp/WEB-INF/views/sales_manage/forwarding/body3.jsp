@@ -192,7 +192,7 @@
      }    	
    
 		/*수정버튼*/
-        function updateRow2() {
+        /*function updateRow2() {
         	var item = document.getElementsByName("contentItem").length;
 	  		var no = "";
 	  		var ary = [];
@@ -207,7 +207,7 @@
           const URLSearch = new URLSearchParams(location.search);
          /*  URLSearch.set('item_code',itemCode.value);
           URLSearch.set('item_name',itemName.value);
-          URLSearch.set('submit', '1'); */
+          URLSearch.set('submit', '1'); 
 		  const newParam = URLSearch.toString();
 		 var link = location.pathname +'?'+newParam+'&item_code='+item_code.value+'&no='+ary;
   			 document.getElementById("relCode").disabled = true;
@@ -227,10 +227,10 @@
 		     document.getElementById('dataFormsub').appendChild(articleNOInput);
            document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
            document.getElementById('dataFormsub').submit(); 
-           /*  document.getElementByName('itemPop').action = "${contextPath}/member/updforwarditem.do";
-  			document.getElementByName('itemPop').submit();  */ 
+             document.getElementByName('itemPop').action = "${contextPath}/member/updforwarditem.do";
+  			document.getElementByName('itemPop').submit();   
       }
-    	
+          */
         </script>
 </body>
 </html>
