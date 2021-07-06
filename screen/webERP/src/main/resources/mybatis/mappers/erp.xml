@@ -2201,7 +2201,7 @@ ORDER BY out.workordernumber]]>
 		<update id="updateSubForward" parameterType="corVO">
 		<![CDATA[update CSM_SM_COR_Reg
 		set inspection = #{inspection}, orderOX=#{orderOX}
-		where no = #{no}]]>
+		where item_code = #{item_code}]]>
 	</update>
 		<update id="updateForward" parameterType="forwardVO">
 		<![CDATA[update CSM_SM_Rel_Pro

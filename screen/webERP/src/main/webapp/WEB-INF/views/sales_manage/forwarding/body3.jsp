@@ -81,9 +81,10 @@
 <body>
         <container3 id="contents3">
         	<div id= "forwardingInfo2">
-        		<form id="dataFormsub" mehtod="get">
+        		<form id="dataFormsub" mehtod="get" commandName="ListVO">
         	   		<table id="view">
                 		<thead>
+                		<tr>
                 		<td><input type="checkbox" id="check" name="contentItem" onclick="selectAll(this)"/></td>
                    		<td>번호</td>
                    		<td>출고 번호</td>
@@ -100,15 +101,17 @@
                     	<td>출하 예정일</td>
                     	<td>주문 유무</td>
                     	<td>검사</td>
+                    	</tr>
                 		</thead>
  					</table>
  					<table id = "itemPop"></table>
                  	<table id="insertsubForward" align="center">
+                 	<tr>
                  	<td></td>
                     	<td><input type="text" id="no" name="no" /></td>
                     	<td><input type="text" id="relCode2" name="relCode"/></td>
-                    	<td><a href="javascript:search5()"><input type="text" id=item_code name="item_code" value="${param.item_code}" readonly/></td>
-                    	<td><a href="javascript:search5()"><input type="text" id="item_name" name="item_name" value="${param.item_name}" readonly /></td>
+                    	<td><a href="javascript:search5()"><input type="text" id=item_code name="item_code" value="${param.item_code}" readonly/></a></td>
+                    	<td><a href="javascript:search5()"><input type="text" id="item_name" name="item_name" value="${param.item_name}" readonly /></a></td>
                     	<td><input type="text" id="stand" name="stand"/></td>
                     	<td><input type="text" id="orderQuant" name="orderQuant"/></td>
                     	<td><input type="text" id="unit" name="unit" /></td>
@@ -119,10 +122,11 @@
                     	<td><input type="date" id="dueDate" name="dueDate"/></td>
                     	<td><input type="date" id="expDate" name="expDate"  /></td>
                     	<td><input type="text" id="orderOX" name="orderOX" /></td>
-                    	<td><input type="text" id="inspection" name="inspection" /></td>
+                    	<td><input type="text" id="inspection" name="inspection" />
                     	<input type="hidden" id="quantity" name="quantity" value="0" />
                     	<input type="hidden" id="vatprice" name="vatprice" value="0" />
-                    	<input type="hidden" name="general_Customer_Code" value='${param.general_Customer_Code }'/>
+                    	<input type="hidden" name="general_Customer_Code" value='${param.general_Customer_Code }'/></td>
+                    </tr>
                 	</table>
          		</form>
         	</div>
@@ -189,18 +193,43 @@
    
 		/*수정버튼*/
         function updateRow2() {
-           var row = itemPop.insertRow(); 
-           const URLSearch = new URLSearchParams(location.search);
-           const newParam = URLSearch.toString();
-            var link = location.pathname +'?'+newParam;
-          var linkPath = document.createElement("input");
-          linkPath.setAttribute("type","hidden");
-          linkPath.setAttribute("name","path");
-          linkPath.setAttribute("value", link);
-            document.getElementById('dataFormsub').appendChild(linkPath);
-            document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
-          document.getElementById('dataFormsub').submit();  
-        }
+        	var item = document.getElementsByName("contentItem").length;
+	  		var no = "";
+	  		var ary = [];
+	  		for(var i=0; i<item;i++){
+		  		if(document.getElementsByName("contentItem")[i].checked==true){
+					no = document.getElementsByName("contentItem")[i].value;
+			
+			   		ary.push(no); 
+		  		}
+     	  var itemPop = document.getElementById('itemPop');
+          var row = itemPop.insertRow(); 
+          const URLSearch = new URLSearchParams(location.search);
+         /*  URLSearch.set('item_code',itemCode.value);
+          URLSearch.set('item_name',itemName.value);
+          URLSearch.set('submit', '1'); */
+		  const newParam = URLSearch.toString();
+		 var link = location.pathname +'?'+newParam+'&item_code='+item_code.value+'&no='+ary;
+  			 document.getElementById("relCode").disabled = true;
+  		     document.getElementById("item_code").disabled = true;
+  		   document.getElementById("item_name").disabled = true;
+  		 document.getElementById("stand").disabled = true;
+  		document.getElementById("unit").disabled = true;
+  		document.getElementById("orderQuant").disabled = true;
+  		document.getElementById("price").disabled = true;
+  		document.getElementById("price").disabled = true;
+  		document.getElementById("price").disabled = true;
+  		document.getElementById("price").disabled = true;
+  		     var articleNOInput = document.createElement("input");
+		     articleNOInput.setAttribute("type","hidden");
+		     articleNOInput.setAttribute("name","path");
+		     articleNOInput.setAttribute("value", link);
+		     document.getElementById('dataFormsub').appendChild(articleNOInput);
+           document.getElementById('dataFormsub').action = "${contextPath}/member/updforwarditem.do";
+           document.getElementById('dataFormsub').submit(); 
+           /*  document.getElementByName('itemPop').action = "${contextPath}/member/updforwarditem.do";
+  			document.getElementByName('itemPop').submit();  */ 
+      }
     	
         </script>
 </body>

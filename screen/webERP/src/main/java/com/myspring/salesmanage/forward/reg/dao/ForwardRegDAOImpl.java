@@ -102,7 +102,7 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 
 		int idx = corVO.getListVO().size();
 		for(int i = 0; i<idx; i++) {
-		result = sqlSession.update("mappers.erp.updateForward", corVO.getListVO().get(i));		
+		result = sqlSession.update("mappers.erp.updateSubForward", corVO.getListVO().get(i));		
 		}
 		return result;
 	}

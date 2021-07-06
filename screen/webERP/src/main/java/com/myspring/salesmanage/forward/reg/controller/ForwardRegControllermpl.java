@@ -80,7 +80,6 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	@RequestMapping(value="/member/addforward.do", method = RequestMethod.GET)
 	public ModelAndView addForward(ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-
 		request.setCharacterEncoding("utf-8");
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
@@ -111,6 +110,17 @@ public class ForwardRegControllermpl implements ForwardRegController{
 		ModelAndView mav = new ModelAndView("redirect:" + path);
 		return mav;
 	}
+		@RequestMapping(value="/member/updforwarditem.do" ,method = RequestMethod.GET)
+		public ModelAndView updItemForward(@ModelAttribute("cor") CorVO corVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//			System.out.println("왜 들어가질 못하니?");
+			request.setCharacterEncoding("utf-8");
+			String path = request.getParameter("path");
+			path = path.replace("/webERP", "");
+			int result = 0;
+			result = forwardRegService.updSubItem(corVO);
+			ModelAndView mav = new ModelAndView("redirect:" + path);
+			return mav;
+		}
 
 		@Override
 		@ResponseBody
