@@ -132,47 +132,20 @@ public class ForwardRegControllermpl implements ForwardRegController{
 	@RequestMapping(value="/member/addforwarditem.do", method = RequestMethod.GET)
 	public ModelAndView addForwardItem(@ModelAttribute("cor")CorVO corVO, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		System.out.println("구간확인");
 		String viewName = getViewName(request);
 		StringBuffer url = request.getRequestURL();
 		int result = 0;
 		result = forwardRegService.addForwardItem(corVO);
 		String resulturl = url.toString();
 		String code = (String)request.getParameter("item_code");
-//		ModelAndView mav1 = new ModelAndView(viewName);
-//		mav1 = new ModelAndView(viewName);
-//		List stockQuant = forwardRegService.submitStock();
-//		mav1.addObject("stockQuant", stockQuant);
-		
+		String from = request.getParameter("orderQuant");
+		int orderQuant = Integer.parseInt(from);
+		System.out.println("수정이 되었습니다.");
 		ModelAndView mav = new ModelAndView("redirect:/member/forwarding.do");
 		return mav;
 	}
-	@RequestMapping(value="/member/liststock.do" ,method = RequestMethod.GET)
-	public ModelAndView listStock(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String viewName = getViewName(request);
-//		String code = (String)request.getParameter("item_code");
-//	
-//		ModelAndView mav = new ModelAndView(viewName);
-//		
-//		if(code == null || code.length() == 0){
-//			
-//			mav = new ModelAndView(viewName);
-//			return mav;
-//		}else {		
-//		List stockQuant = forwardRegService.submitStock(code);
-//			mav = new ModelAndView(viewName);
-//			mav.addObject("stockQuant", stockQuant);
-//		}
-//		
-//		return mav;
-		
-		String viewName = getViewName(request);
-		String item_code = (String) request.getParameter("item_code");
-		List stockQuant = forwardRegService.submitStock();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("stockQuant", stockQuant);
-		return mav;
 	
-	}
 
 //		@RequestMapping(value="/member/updForward.do" ,method = RequestMethod.GET)
 //	public ModelAndView updForward(@ModelAttribute("forward") ForwardVO forwardVO, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -183,8 +156,7 @@ public class ForwardRegControllermpl implements ForwardRegController{
 //		result = forwardRegService.updForward(forwardVO);
 //		ModelAndView mav = new ModelAndView("redirect:" + path);
 //		return mav;
-//	}
-	
+//	}		request.setCharacterEncoding("utf-8");
 //	@Override
 //	@RequestMapping(value="/member/delforwarditem.do", method = RequestMethod.GET)
 //	public ModelAndView delForwardItem(HttpServletRequest request, HttpServletResponse response) throws Exception {

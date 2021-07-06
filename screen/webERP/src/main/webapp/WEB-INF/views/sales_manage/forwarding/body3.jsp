@@ -84,7 +84,7 @@
         		<form id="dataFormsub" mehtod="get">
         	   		<table id="view">
                 		<thead>
-                		<td></td>
+                		<td><input type="checkbox" id="check" name="contentItem" onclick="selectAll(this)"/></td>
                    		<td>번호</td>
                    		<td>출고 번호</td>
                    		<td>품번</td>
@@ -154,18 +154,14 @@
                 	$('input[id=item_name]').val(itemName);
                 }
                
-                function view_quant(){
-                	/*	itemCode.value = itemCode;  */
-                	openWindowPop('http://localhost:8090/webERP/member/liststock.do?&&item_code='+itemCode.value);  
-                	}    
     	function deleteData2() {
     	    
-	  		var item = document.getElementsByName("content").length;
+	  		var item = document.getElementsByName("contentItem").length;
 	  		var no = "";
 	  		var ary = [];
 	  		for(var i=0; i<item;i++){
-		  		if(document.getElementsByName("content")[i].checked==true){
-					no = document.getElementsByName("content")[i].value;
+		  		if(document.getElementsByName("contentItem")[i].checked==true){
+					no = document.getElementsByName("contentItem")[i].value;
 			
 			   		ary.push(no); 
 		  		}

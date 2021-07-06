@@ -28,10 +28,8 @@ public interface ForwardRegDAO {
 	public int updForward(ForwardVO forwardVO) throws DataAccessException;
 //	public void delItemForward(String[] ItemCodeary) throws DataAccessException;
 	public int addItemForward(CorVO corVO) throws DataAccessException;
-	public List selectStockList() throws DataAccessException;
-//	public List selectStockList(String item_code) throws DataAccessException;
+//	public void selectStockList(String[] itemCodeary) throws DataAccessException;
 	public int updItemForward(CorVO corVO)throws DataAccessException;
-	public int updItemQuant(CorVO corVO)throws DataAccessException;
 	public List selectItemSub() throws DataAccessException;
 
 }

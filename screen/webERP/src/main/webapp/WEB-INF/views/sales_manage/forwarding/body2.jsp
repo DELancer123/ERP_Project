@@ -194,7 +194,7 @@
         			for(var i =0; i<data.length; i++){
            				var html = '';
            				html += '<tr>';    
-               			html += '<td style="width: 5%;"><input type = "checkbox" name = "ListVO['+i+'].no"  value = "'+data[i].no+'" "></td>';  	
+               			html += '<td style="width: 5%;"><input type = "checkbox" name = "contentItem"  value = "${item_code} "></td>';  	
                			html += '<td><input type = "text" name = "ListVO['+i+'].no"  value = "'+data[i].no+'" "></td>';
             			html += '<td><input type = "text" name = "ListVO['+i+'].relCode"  value = "'+data[i].relCode+'" "></td>';  	
                			html += '<td><input type = "text" name = "ListVO['+i+'].item_code"  value = "'+data[i].item_code +'" "></td>';  		
