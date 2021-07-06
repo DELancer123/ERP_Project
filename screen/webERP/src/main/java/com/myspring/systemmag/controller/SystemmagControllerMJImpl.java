@@ -516,14 +516,14 @@ public class SystemmagControllerMJImpl implements SystemmagControllerMJ {
 	
 	@Override
 	@RequestMapping(value = "/member/deleteSpecComponents.do", method = RequestMethod.GET)
-	public ModelAndView deleteSpecComponents(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("딜리트스펙컴포");
+	public ModelAndView deleteSpecComponents(@ModelAttribute("Spec") SystemmagVOMJ systemmagVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String number = (String) request.getParameter("no2");
+		String setCode = (String) request.getParameter("com_code");
 		String viewName = getViewName(request);
 		String[] numberary = number.split(",");
 
 		systemmagService.delSpecComponents(numberary);
-		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+systemmagVO.getSet_Code());
+		ModelAndView mav = new ModelAndView("redirect:/member/regsetcom.do?&submit=1&&com_code="+setCode);
 		return mav;
 	}
 	

@@ -13,7 +13,7 @@ public class OperationRegistVO {
 	private String forwardingNumber;
 	private Date billingDate;
 	private String materialstatus;
-	private String workPlaceCode;
+	private String processCode;
 	private Date instructionDate;
 	private Date dueDate;
 	private String itemCode;
@@ -56,14 +56,6 @@ public class OperationRegistVO {
 
 	public void setMaterialstatus(String materialstatus) {
 		this.materialstatus = materialstatus;
-	}
-
-	public String getWorkPlaceCode() {
-		return workPlaceCode;
-	}
-
-	public void setWorkPlaceCode(String workPlaceCode) {
-		this.workPlaceCode = workPlaceCode;
 	}
 
 	@Override
@@ -233,6 +225,14 @@ public class OperationRegistVO {
 
 	public void setLoss(int loss) {
 		this.loss = loss;
+	}
+
+	public String getProcessCode() {
+		return processCode;
+	}
+
+	public void setProcessCode(String processCode) {
+		this.processCode = processCode;
 	}
 	
 	

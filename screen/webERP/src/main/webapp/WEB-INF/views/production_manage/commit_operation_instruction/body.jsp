@@ -142,7 +142,7 @@
                         <td><input type="checkbox" id="workOrderNumber" value="${info.workOrderNumber }" name="content"/></td>
                         <td><input type="text" name="ListVO[${status.index }].workOrderNubmer" value="${info.workOrderNumber}" readonly /></td>
                         <td><input type="text" name="ListVO[${status.index }].materialstatus" value="${info.materialstatus}" readonly/></td>
-                        <td><input type="text" name="ListVO[${status.index }].workPlaceCode" value="${info.workPlaceCode}" readonly/></td>
+                        <td><input type="text" name="ListVO[${status.index }].workplaceCode" value="${info.workplaceCode}" readonly/></td>
                         <td><input type="date" name="ListVO[${status.index }].instructiondate" value="${info.instructionDate}" readonly/></td>
                         <td><input type="date" name="ListVO[${status.index }].dueDate" value="${info.dueDate}" readonly/></td>
                         <td><input type="text" name="ListVO[${status.index }].itemCode" value="${info.itemCode }" readonly/></td>
