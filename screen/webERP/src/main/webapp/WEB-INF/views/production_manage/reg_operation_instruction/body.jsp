@@ -156,8 +156,8 @@
                         <td><input type="text" id="indicated" name="ListVO[${fn:length(infoList)}].indicated" value="${param.quantity }"/></td>
                         <td style="width:13px;"><input type="text" name="ListVO[${fn:length(infoList)}].status" readonly/></td>
                         <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].inspection" readonly/></td>
-                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].processCode" readonly/></td>
-                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].workplaceCode" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].processCode" ondblclick="processCodeSearch()" readonly/></td>
+                        <td style="width:20px;"><input type="text" name="ListVO[${fn:length(infoList)}].workplaceCode" ondblclick="workplaceCodeSearch()" readonly/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].productionFacility" value="${param.facility }" ondblclick="facilitySearch()"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].taskTeam" value="${param.taskTeam }"/></td>
                         <td><input type="text" name="ListVO[${fn:length(infoList)}].note" value="${param.note }"/></td>
@@ -299,4 +299,42 @@
         function facilitySearch(){
 			openWindowPop('http://localhost:8090/webERP/member/facilitySearchPop.do','facilitySearch');
 			}
+        
+        function setChildProcessCodeValue(name){
+        	  
+        	  const URLSearch = new URLSearchParams(location.search);  		  
+    		  const newParam = URLSearch.toString();
+            if(URLSearch.get('processCode') == null){
+    		window.location.href = location.pathname +'?'+newParam + '&processCode=' + name;
+            }
+            else{
+            	URLSearch.set('processCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+            
+        }
+          
+          function setChildWorkplaceCodeValue(name){
+        	  
+        	  const URLSearch = new URLSearchParams(location.search);  		  
+    		  const newParam = URLSearch.toString();
+            if(URLSearch.get('workplaceCode') == null){
+    		window.location.href = location.pathname +'?'+newParam + '&workplaceCode=' + name;
+            }
+            else{
+            	URLSearch.set('workplaceCode', name);
+            	const newParam = URLSearch.toString();
+            	window.location.href = location.pathname +'?'+newParam;
+            }
+            
+        }
+          
+    function processCodeSearch(){
+  			openWindowPop('http://localhost:8090/webERP/member/processCodeSearchPop.do','processCodeSearch');
+  	}
+   	
+   	function workplaceCodeSearch(){
+  		openWindowPop('http://localhost:8090/webERP/member/workplaceCodeSearchPop.do','workplaceCodeSearch');
+  	}
       </script>

@@ -181,8 +181,6 @@
                         <td> </td>
                         <td>작업실적번호</td>
                         <td>자재사용유무</td>
-                        <td>공정</td>
-                        <td>작업장</td>
                         <td>입고창고</td>
                         <td>실적일</td>
                         <td>구분</td>
@@ -198,8 +196,6 @@
   					 	<td><input type="checkbox" value="${detail.opNumber }" name="content2"/></td>
                         <td><input type="text" name="DetailVO[${status.index }].OPNumber" value="${detail.opNumber }" readonly /></td>
                         <td><input type="text" name="DetailVO[${status.index }].materialUseStatus" value="${detail.materialUseStatus }" readonly /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].processCode" value="${detail.processCode }" /></td>
-                        <td><input type="text" name="DetailVO[${status.index }].workplaceCode" value="${detail.workplaceCode }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].houseCode" value="${detail.houseCode}"/></td>
                         <td><input type="date" name="DetailVO[${status.index }].performanceDate" value="${detail.performanceDate }" /></td>
                         <td><input type="text" name="DetailVO[${status.index }].sortation" value="${detail.sortation}"/></td>
@@ -213,8 +209,6 @@
                         <td><input type="checkbox" value = "check" id="check" name="content2"/></td>
                         <td><input type="text" id="opNumber" name="DetailVO[${fn:length(detailList)}].opNumber" value="${param.opNumber }" readonly /></td>
                         <td><input type="text" id="materialUseStatus" name="DetailVO[${fn:length(detailList)}].materialUseStatus" value="${param.materialUseStatus }" readonly /></td>
-                        <td><input type="text" id="processCode" name="DetailVO[${fn:length(detailList)}].processCode" value="${param.processCode }" ondblclick="processCodeSearch()"/></td>
-                        <td><input type="text" id="workplaceCode" name="DetailVO[${fn:length(detailList)}].workplaceCode" value="${param.workplaceCode }" ondblclick="workplaceCodeSearch()"/></td>
                         <td><input type="text" id="houseCode" name="DetailVO[${fn:length(detailList)}].houseCode" ondblclick="houseCodeSearch()" value="${param.houseCode }" /></td>
                         <td><input type="date" id="performanceDate" name="DetailVO[${fn:length(detailList)}].performanceDate" value="${param.performanceDate }"/></td>
                         <td><input type="text" id="sortation" name="DetailVO[${fn:length(detailList)}].sortation" value="${param.sortation }"/></td>
@@ -402,35 +396,7 @@ function isEmpty(str){
         
         }
         
-        function setChildProcessCodeValue(name){
-      	  
-      	  const URLSearch = new URLSearchParams(location.search);  		  
-  		  const newParam = URLSearch.toString();
-          if(URLSearch.get('processCode') == null){
-  		window.location.href = location.pathname +'?'+newParam + '&processCode=' + name;
-          }
-          else{
-          	URLSearch.set('processCode', name);
-          	const newParam = URLSearch.toString();
-          	window.location.href = location.pathname +'?'+newParam;
-          }
-          
-      }
         
-        function setChildWorkplaceCodeValue(name){
-      	  
-      	  const URLSearch = new URLSearchParams(location.search);  		  
-  		  const newParam = URLSearch.toString();
-          if(URLSearch.get('workplaceCode') == null){
-  		window.location.href = location.pathname +'?'+newParam + '&workplaceCode=' + name;
-          }
-          else{
-          	URLSearch.set('workplaceCode', name);
-          	const newParam = URLSearch.toString();
-          	window.location.href = location.pathname +'?'+newParam;
-          }
-          
-      }
         
         function setChildHouseCodeValue(name){
         	  
@@ -452,11 +418,5 @@ function isEmpty(str){
  			openWindowPop('http://localhost:8090/webERP/member/houseCodeSearchPop.do','houseCodeSearch');
 		}
 	
- 	function processCodeSearch(){
-			openWindowPop('http://localhost:8090/webERP/member/processCodeSearchPop.do','processCodeSearch');
-	}
  	
- 	function workplaceCodeSearch(){
-		openWindowPop('http://localhost:8090/webERP/member/workplaceCodeSearchPop.do','workplaceCodeSearch');
-	}
       </script>

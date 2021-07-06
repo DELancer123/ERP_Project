@@ -98,13 +98,9 @@ public class ForwardRegDAOImpl implements ForwardRegDAO{
 	
 	@Override
 	public int updItemForward(CorVO corVO) throws DataAccessException {
-		int result = 0; 
-
-		int idx = corVO.getListVO().size();
-		for(int i = 0; i<idx; i++) {
-		result = sqlSession.update("mappers.erp.updateSubForward", corVO.getListVO().get(i));		
-		}
-		return result;
+		int result = sqlSession.insert("mappers.erp.updateSubForward",corVO);
+		
+		return 0;
 	}
 	
 //	@Override
