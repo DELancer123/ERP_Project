@@ -120,15 +120,12 @@ request.setCharacterEncoding("UTF-8");
 			<form method="get" id="searchForm" class="tab-1 tab-content current">
 	            <table class="con1_search" style="margin-left:15%;">
 	                <tr>
-	                    <td>창고코드</td>
+	                    <td></td>
 	                    <td>
-	                        <input type="text" style="width:100px;" id="outwareCode" name="outwareCode" readonly/>
 	                    </td>
 	                    <td>
-	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode1()"><i class="fas fa-search" style="color :blue;"></i></a></div>
 	                    </td> 
 	                    <td>
-	                        <input type="text" id="outwareName" name="outwareName" disabled/>
 	                    </td>
 						<td style="width:50px;"></td>
 	                </tr>
@@ -335,31 +332,13 @@ request.setCharacterEncoding("UTF-8");
     
     		})
     		
-    		function searchCode1() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
-        		openWindowPop("${contextPath}/member/outwarePopup1.do", "outwarePopup1");
-        	}
-        	function searchCode2() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
-        		openWindowPop("${contextPath}/member/outwarePopup2.do", "outwarePopup2");
-        	}
-        	function searchCode3() { //돋보기버튼을 클릭하면 컨트롤러로 팝업에 대한 정보를 호출함       	
-        		openWindowPop("${contextPath}/member/outwarePopup3.do", "outwarePopup3");
-        	}
+    		document.getElementById("delete").removeEventListener();
+    		document.getElementById("view_button").removeEventListener();
+    		document.getElementById("save").removeEventListener();
+    		document.getElementById("update").removeEventListener();
+    		
+    		
         	
-        	function searchData() {
-            	var searchForm = $('#searchForm');
-            	var is_empty = false; //변수 is_empty로 조건문의 분기를 만듬
-            	$('#searchForm').find('input[type!="hidden"]').each(function(){//값이 비어있는지 체크하는 제이쿼리
-            	    if(!$(this).val()) { //#reg_gen_account는 form태그의 id값임
-            	    	is_empty = true;      	    	
-            	    }      	 
-            	});       	 
-            	if(is_empty) { //비어있는내용이 있는지 체크함
-            	    alert('검색내용이 비어있습니다');
-            	}
-            	else{	        	
-    	    		searchForm.submit();
-            	} 
-            }
     </script>
 </body>
 </html>

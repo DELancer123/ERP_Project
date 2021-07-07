@@ -59,7 +59,15 @@
         .input2 {
         	width:90%;
         }
-        
+        #view1 {
+        	width:100%;
+        }
+        #view2 {
+        	width:100%;
+        }
+        #view2 input {
+        	width:100%;
+        }
 </style>
 <script>
 		window.onload = function(){
