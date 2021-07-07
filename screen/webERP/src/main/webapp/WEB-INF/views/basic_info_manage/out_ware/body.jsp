@@ -120,48 +120,18 @@ request.setCharacterEncoding("UTF-8");
 			<form method="get" id="searchForm" class="tab-1 tab-content current">
 	            <table class="con1_search" style="margin-left:15%;">
 	                <tr>
-	                    <td></td>
-	                    <td>
-	                    </td>
-	                    <td>
-	                    </td> 
-	                    <td>
-	                    </td>
-						<td style="width:50px;"></td>
 	                </tr>
 	            </table>
             </form>
             <form method="get" id="searchForm" class="tab-2 tab-content">
 	            <table class="con1_search" style="margin-left:15%;">
 	                <tr>
-	                    <td>생산공정코드</td>
-	                    <td>
-	                        <input type="text" style="width:100px;" id="processCode" name="processCode" readonly>
-	                    </td>
-	                    <td>
-	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode2()"><i class="fas fa-search" style="color :blue;"></i></a></div>
-	                    </td> 
-	                    <td>
-	                        <input type="text" id="processName" name="processName" disabled>
-	                    </td>
-						<td style="width:50px;"></td>
 	                </tr>
 	            </table>
 	        </form>
             <form method="get" id="searchForm" class="tab-3 tab-content">
 	            <table class="con1_search" style="margin-left:15%;">
 	                <tr>
-	                    <td>외주공정코드</td>
-	                    <td>
-	                        <input type="text" style="width:100px;" id="outsourcingCode" name="outsourcingCode" readonly>
-	                    </td>
-	                    <td>
-	                    	<div style="text-align:center; width:100%;" id=searchCodeButton><a href="javascript:searchCode3()"><i class="fas fa-search" style="color :blue;"></i></a></div>
-	                    </td> 
-	                    <td>
-	                        <input type="text" id="outsourcingName" name="outsourcingName" disabled>
-	                    </td>
-						<td style="width:50px;"></td>
 	                </tr>
 	            </table>
 	        </form>

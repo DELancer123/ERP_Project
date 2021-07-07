@@ -163,10 +163,20 @@
 	        	}
 	        }
 	        
-	        function newRow(){
+	        function newRow(){//있다가 수정해
+	        	var checker = false;
+	        	
+	        	for(var i=0; i<compoNode.length; i++){
+	        		if(compoNode[i].value==inspection_Code.value){
+	        			checker = true;
+	        		}
+	        	}
+	        	
 	        	if(inspection_Code == "" || inspection_Name == ""){
 	        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
-	        	} else {
+	        	}else if(checker) {
+	        		alert('씨발럼아');
+	        	}else {
 	        			
 				alert('등록되었습니다');        	
 	    		const URLSearch = new URLSearchParams(location.search);

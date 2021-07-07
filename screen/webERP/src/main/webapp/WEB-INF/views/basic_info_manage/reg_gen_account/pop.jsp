@@ -61,7 +61,7 @@ a {
 					</tr>
 					<tr>
 						<td>품목명</td>
-						<td><input type="text" id="name" class="name" name="name" /></td>
+						<td><input type="text" id="name" class="name" name="name" placeholder="검색어를 입력하세요" style="background-color:beige; text-align:center;"/></td>
 					</tr>
 				</table>
 				<div id="button">
@@ -170,6 +170,7 @@ a {
 				$('input[name=code]').val(initCode);
 				$('input[name=name]').val(initName);
 			});
+			
 		</script>
 	</form>
 

@@ -167,7 +167,7 @@ request.setCharacterEncoding("UTF-8");
 	                    	<input type="checkbox" name="checkedContent" value="${com.general_Customer_Code}"/>
 	                    </td>                   
 	                    <td>
-	                        <input type="text" onfocus = "searchView(this.value)" value="${com.general_Customer_Code}" readonly/>
+	                        <input type="text" onfocus = "searchView(this.value)" value="${com.general_Customer_Code}" style="background-color:#eee; cursor:pointer;" readonly/>
 	                    </td>     
 	                    <td>
 	                        <input type="text" value="${com.general_Customer_Name}" readonly/>

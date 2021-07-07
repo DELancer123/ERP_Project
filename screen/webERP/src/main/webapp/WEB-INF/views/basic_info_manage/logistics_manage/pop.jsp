@@ -56,12 +56,12 @@ a {
 			<div id="searchBox">
 				<table id="search">
 					<tr>
-						<td>품목코드</td>
-						<td><input type="text" id="code" name="code" /></td>
+						<td>관리코드</td>
+						<td><input type="text" id="code" name="code" style="text-align:center;"/></td>
 					</tr>
 					<tr>
-						<td>품목명</td>
-						<td><input type="text" id="name" class="name" name="name" /></td>
+						<td>관리항목명</td>
+						<td><input type="text" id="name" class="name" name="name" placeholder="검색어를 입력해주세요" style="background-color:beige; text-align:center;" /></td>
 					</tr>
 				</table>
 				<div id="button">
@@ -72,9 +72,8 @@ a {
 			<div id="view">
 				<table id="searchItem" style="width: 100%;">
 					<tr align="center">
-						<td>품목코드</td>
-						<td>품명</td>
-						<td>규격</td>
+						<td>관리코드</td>
+						<td>관리항목명</td>
 					</tr>
 
 					<c:forEach var="lv" items="${logisticsView}">
