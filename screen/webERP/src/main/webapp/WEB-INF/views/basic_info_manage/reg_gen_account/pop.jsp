@@ -57,7 +57,7 @@ a {
 				<table id="search">
 					<tr>
 						<td>품목코드</td>
-						<td><input type="text" id="code" name="code" /></td>
+						<td><input type="text" id="code" name="code" style="text-align:center;"/></td>
 					</tr>
 					<tr>
 						<td>품목명</td>

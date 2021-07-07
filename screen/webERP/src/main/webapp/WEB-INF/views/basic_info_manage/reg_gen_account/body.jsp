@@ -156,7 +156,7 @@ request.setCharacterEncoding("UTF-8");
                     <td></td>
                     <td align="center">코드</td>
                     <td align="center">거래처명</td>
-                    <td align="center">구분</td>
+                    <td align="center">사업자등록번호</td>
                 </thead>
                     
                 <tbody>
@@ -167,13 +167,13 @@ request.setCharacterEncoding("UTF-8");
 	                    	<input type="checkbox" name="checkedContent" value="${com.general_Customer_Code}"/>
 	                    </td>                   
 	                    <td>
-	                        <input type="text" onfocus = "searchView(this.value)" value="${com.general_Customer_Code}" style="background-color:#eee; cursor:pointer;" readonly/>
+	                        <input type="text" name="codeList" onfocus = "searchView(this.value)" value="${com.general_Customer_Code}" style="background-color:#eee; cursor:pointer;" readonly/>
 	                    </td>     
 	                    <td>
-	                        <input type="text" value="${com.general_Customer_Name}" readonly/>
+	                        <input type="text" name="nameList" value="${com.general_Customer_Name}" readonly/>
 	                    </td>                    
 	                    <td>
-	                        <input type="text" value="${com.general_Customer_Division}" readonly/>
+	                    	<input type="text" name="numberList" value="${com.company_Registration_Number }" readonly/>
 	                    </td>
 	                </tr>
 	               
@@ -183,7 +183,7 @@ request.setCharacterEncoding("UTF-8");
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%">신규등록</button>
+                        text-align: center; width:99%; cursor:pointer;">신규등록</button>
                     </td>
                 </tr>
                 </tbody>
@@ -335,11 +335,39 @@ request.setCharacterEncoding("UTF-8");
         }
         
         function newRow(){
-        	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )
-        		{
+        	var checker1 = false;
+        	var checker2 = false;
+        	var checker3 = false;
+        	
+        	var codeList = document.getElementsByName("codeList");
+        	var nameList = document.getElementsByName("nameList");
+        	var numberList = document.getElementsByName("numberList");
+        	
+        	for(var i=0; i<codeList.length; i++){
+        		if(codeList[i].value==general_Customer_Code.value){
+        			checker1 = true;
+        		}
+        	}
+        	for(var i=0; i<nameList.length; i++){
+        		if(nameList[i].value==general_Customer_Name.value){
+        			checker2 = true;
+        		}
+        	}
+        	for(var i=0; i<numberList.length; i++){
+        		if(numberList[i].value==company_Registration_Number.value){
+        			checker3 = true;
+        		}
+        	}
+        	
+        	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" ){
         		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.')
-        		} else {
-        			
+        	}else if(checker1){
+        		alert('이미 존재하는 거래처코드입니다');
+        	}else if(checker2){
+        		alert('이미 존재하는 거래처명입니다');
+        	}else if(checker3){
+        		alert('이미 존재하는 사업자등록번호입니다');
+        	}else {
 			alert('등록되었습니다');        	
     		const URLSearch = new URLSearchParams(location.search);
     		URLSearch.set('submit','1');
@@ -352,7 +380,7 @@ request.setCharacterEncoding("UTF-8");
     		document.getElementById('reg_gen_account').appendChild(articleNOInput);
     		document.getElementById('reg_gen_account').action = "${contextPath}/member/addbasicacc.do";
     		document.getElementById('reg_gen_account').submit();
-    	}
+    		}
         }
         function updateRow() {  //목록을 수정한 내용을 컨트롤러로 넘기는 함수
         	if(general_Customer_Code.value == "" || general_Customer_Name.value == "" || general_Customer_Division.value == "" || company_Registration_Number.value == "" || representativs_Name.value == "" || upstate.value == "" || industry.value == "" || zipCode.value == "" || workplace_Address.value == "" )

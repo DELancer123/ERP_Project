@@ -31,7 +31,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List comView() throws DataAccessException {
 		List comList = null;
 		comList = systemmagDAO.viewCom();
-		System.out.println("sercom :"+comList);
 		return comList;
 	}
 	//회사등록(수정)
@@ -94,7 +93,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List itemView() throws DataAccessException {
 		List itemList = null;
 		itemList = systemmagDAO.viewItem();
-		System.out.println("sercom= :"+itemList);
 		return itemList;
 	}
 	//품목군(조건조회)	
@@ -136,7 +134,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List itemgView() throws DataAccessException {
 		List itemgList = null;
 		itemgList = systemmagDAO.allviewItemg();
-		System.out.println("sercom= :");
 		return itemgList;
 	}
 	//품목군등록(수정)
@@ -158,7 +155,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 	public List employeeView() throws DataAccessException {
 		List employeeList = null;
 		employeeList = systemmagDAO.allviewemployee();
-		System.out.println("sercom= :");
 		return employeeList;
 	}
 	//부서등록(조회)
@@ -166,7 +162,6 @@ public class SystemmagServiceImpl implements SystemmagService {
 		public List departmentView() throws DataAccessException {
 			List departmentList = null;
 			departmentList = systemmagDAO.allviewdepartment();
-			System.out.println("sercom= :");
 			return departmentList;
 		}
 	//부서등록

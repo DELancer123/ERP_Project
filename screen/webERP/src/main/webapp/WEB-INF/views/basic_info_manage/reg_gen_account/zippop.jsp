@@ -53,11 +53,11 @@
             <table id="search">
                 <tr>
                     <td>우편번호</td>
-                    <td><input type="text" id="code" name="code" /></td>
+                    <td><input type="text" id="code" name="code" style="text-align:center;"/></td>
                 </tr>
                 <tr>
                     <td>도로명주소</td>
-                    <td><input type="text" id="name" class="name" name="name"/></td>
+                    <td><input type="text" id="name" class="name" name="name" placeholder="검색어를 입력하세요" style="background-color:beige; text-align:center;"/></td>
                 </tr>
             </table>
             <div id="button">
