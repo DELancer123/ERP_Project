@@ -85,10 +85,10 @@ request.setCharacterEncoding("UTF-8");
 	                    	<input type="checkbox"  name="checkedContent" value="${logis.logistics_In_Code}"/>
 	                    </td>                   
 	                    <td>
-	                        <input type="text" onfocus = "searchView(this.value)" value="${logis.logistics_In_Code}"/>
+	                        <input type="text" id="codeList" name="codeList" onfocus = "searchView(this.value)" value="${logis.logistics_In_Code}" style="cursor:pointer; background-color:#eee" readonly/>
 	                    </td>     
 	                    <td>
-	                        <input type="text" value="${logis.logistics_In_Name}"  maxlength="50"/>
+	                        <input type="text" id="nameList" name="nameList" value="${logis.logistics_In_Name}"  maxlength="50" readonly/>
 	                    </td>                    	                    
 	                </tr>
 	               
@@ -98,7 +98,7 @@ request.setCharacterEncoding("UTF-8");
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%">새로등록</button>
+                        text-align: center; width:99%; cursor:pointer;">새로등록</button>
                     </td>
                 </tr>           
             </table>
@@ -151,6 +151,7 @@ request.setCharacterEncoding("UTF-8");
         <script>
         var logistics_In_Code = document.getElementById("logistics_In_Code");
         var logistics_In_Name = document.getElementById("logistics_In_Name");
+        var codeList = document.getElementsByName("codeList");
         
 	        function searchView(name) { //조회를 담당하는 자바스크립트임
 	            window.location.href = "${contextPath}/member/logistics_manage.do?submit=1&&com_code=" + name; 
@@ -194,11 +195,21 @@ request.setCharacterEncoding("UTF-8");
 	        }
 	        //등록
 	        function newRow(){
-	        	if(logistics_In_Code.value == "" || logistics_In_Name == "")
-	        		{
-	        			alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+				var checker = false;
+	        	
+	        	for(var i=0; i<codeList.length; i++){
+	        		if(codeList[i].value==logistics_In_Code.value){
+	        			checker = true;
 	        		}
-	        	else {
+	        	}
+	        	
+	        	if(logistics_In_Code.value == "" || logistics_In_Name == ""){
+       				alert("필수 입력항목이 비어있습니다. 모두 입력해주세요.");
+       				
+	        	}else if(checker){
+	        		alert("이미 존재하는 관리내역코드입니다");
+	        		
+	        	}else {
 	    		const URLSearch = new URLSearchParams(location.search);
 	    		URLSearch.set('submit','1');
 	    		const newParam = URLSearch.toString();

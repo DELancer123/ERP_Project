@@ -59,7 +59,15 @@
         .input2 {
         	width:90%;
         }
-        
+        #view1 {
+        	width:100%;
+        }
+        #view2 {
+        	width:100%;
+        }
+        #view2 input {
+        	width:100%;
+        }
 </style>
 <script>
 		window.onload = function(){
@@ -74,7 +82,7 @@
             <table id="view1">
                 <thead>
                     <td></td>
-                    <td align="center">코드</td>
+                    <td align="center">검사코드</td>
                     <td align="center">검사유형명</td>
                     <td align="center">비고</td>
                 </thead>
@@ -86,7 +94,7 @@
 	                    	<input type="checkbox" name="checkedContent" value="${ins.inspection_Code}"/>
 	                    </td>                   
 	                    <td>
-	                        <input type="text" onfocus = "searchView(this.value)" value="${ins.inspection_Code}" readonly/>
+	                        <input type="text" name="codeList" onfocus = "searchView(this.value)" value="${ins.inspection_Code}" style="background-color:#eee; cursor:pointer;" readonly/>
 	                    </td>     
 	                    <td>
 	                        <input type="text" value="${ins.inspection_Name}" readonly/>
@@ -101,7 +109,7 @@
                         <button onclick="searchView(this.value)"
                         style="background-color: rgb(235, 235, 235); 
                         border-style: none; 
-                        text-align: center; width:99%">신규등록</button>
+                        text-align: center; width:99%; cursor:pointer;">신규등록</button>
                     </td>
                 </tr>
                 </tbody>
@@ -111,7 +119,7 @@
         <form method="get" id="reg_inspection_type">
             <table id="view2">
                 <thead>
-                    <td align="center">코드</td>
+                    <td align="center">검사코드</td>
                     <td align="center">검사유형명</td>
                     <td align="center">검사유형질문</td>
                     <td align="center">비고</td>
@@ -126,9 +134,9 @@
         </form>
         </container3>
         <script>
-        
 	        var inspection_Code = document.getElementById("inspection_Code");
 	        var inspection_Name = document.getElementById("inspection_Name");
+	        var codeList = document.getElementsByName("codeList");
 	        
 	        function searchView(name) { //조회를 담당하는 자바스크립트임
 	            window.location.href = "${contextPath}/member/reginspection.do?submit=1&&com_code=" + name; 
@@ -155,10 +163,20 @@
 	        	}
 	        }
 	        
-	        function newRow(){
+	        function newRow(){//있다가 수정해
+	        	var checker = false;
+	        	
+	        	for(var i=0; i<codeList.length; i++){
+	        		if(codeList[i].value==inspection_Code.value){
+	        			checker = true;
+	        		}
+	        	}
+	        	
 	        	if(inspection_Code == "" || inspection_Name == ""){
 	        		alert('필수 입력항목이 비어있습니다. 모두 입력해주세요.');
-	        	} else {
+	        	}else if(checker) {
+	        		alert('이미 존재하는 검사코드입니다');
+	        	}else {
 	        			
 				alert('등록되었습니다');        	
 	    		const URLSearch = new URLSearchParams(location.search);
