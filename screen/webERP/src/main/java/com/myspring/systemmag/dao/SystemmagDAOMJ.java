@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.myspring.systemmag.vo.SystemmagVOMJ;
 
 public interface SystemmagDAOMJ {
-	//占싹반거뤄옙처占쏙옙占�
+
 	public List viewAllCustomer() throws DataAccessException;
 	
 	public List viewCustomer(String com_code) throws DataAccessException;
@@ -26,7 +26,7 @@ public interface SystemmagDAOMJ {
 	
 	public List<SystemmagVOMJ> viewsearchPopZipCodeName(String itemName) throws DataAccessException;
 	
-	//창占쏙옙/占쏙옙占쏙옙/占쏙옙占쌍곤옙占쏙옙占쏙옙황
+
 	public List viewAllHouOutware() throws DataAccessException;
 	
 	public List viewAllProOutware() throws DataAccessException;
@@ -45,7 +45,7 @@ public interface SystemmagDAOMJ {
 	
 	public List viewSelectedOutOutware(String search) throws DataAccessException;
 	
-	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占�
+
 	public List viewAllLogistics() throws DataAccessException;
 	
 	public List viewSelectedLogistics(String com_code) throws DataAccessException;
@@ -60,7 +60,7 @@ public interface SystemmagDAOMJ {
 
 	public List<SystemmagVOMJ> searchPopOutwareName(String itemName) throws DataAccessException;
 	
-	//寃��궗�쑀�삎�벑濡�
+
 	public List viewAllInspection() throws DataAccessException;
 	
 	public List viewInspection(String com_code) throws DataAccessException;
@@ -71,7 +71,7 @@ public interface SystemmagDAOMJ {
 	
 	public void updateInspection(SystemmagVOMJ systemmagVO) throws DataAccessException;
 	
-	//SET援ъ꽦�뭹�벑濡�
+
 	public List viewAllSetComponents() throws DataAccessException;
 	
 	public List viewAllSpecComponents() throws DataAccessException;
@@ -95,7 +95,7 @@ public interface SystemmagDAOMJ {
 	public List<SystemmagVOMJ> searchPopSpecItemNameAjax(String itemName) throws DataAccessException;
 	
 	
-	//---
+
 	public List viewSpecComponents(String com_code) throws DataAccessException;
 	
 	public int insertNewSpecComponents (SystemmagVOMJ systemmagVO) throws DataAccessException;
